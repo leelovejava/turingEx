@@ -39,6 +39,7 @@ const routes = [
         component: () => import('@/views/Layout.vue'),
         children: [
           { path: 'index', meta: { tarbar: true, }, name: 'quotesIndex', component: () => import(/* webpackChunkName: "quotes" */ '@/views/quotes/List.vue') },
+          { path: 'hotGallery', meta: { tarbar: true }, name: 'quotesHotGallery', component: () => import(/* webpackChunkName: "quotesHotGallery" */ '@/views/quotes/HotGallery.vue') },
           { path: 'detail', component: () => import(/* webpackChunkName: "detail" */ '@/views/quotes/Detail.vue') },
           { path: 'constituentDetail', meta: { tarbar: true }, component: () => import(/* webpackChunkName: "constituentDetail" */ '@/views/quotes/ConstituentDetail.vue') },
           { path: 'usStockDetail', component: () => import(/* webpackChunkName: "usStockDetail" */ '@/views/usStock/Detail.vue') },

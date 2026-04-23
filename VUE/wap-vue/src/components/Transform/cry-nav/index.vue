@@ -1,15 +1,15 @@
 <template>
-  <div class="mt-5 text-28">
-    <div class="nav mb-2">
+  <div class="cry-nav-root mt-5">
+    <div class="nav nav-row">
       <div v-for="(item, index) in navList" :key="index" class="list" @click="goPath(item.path, item.isLogin)">
         <div class="imgBox"><img :src="handleImage(item.icon)" alt=""></div>
-        <div class="mt-1 text-center">{{ item.name }}</div>
+        <div class="nav-label">{{ item.name }}</div>
       </div>
     </div>
-    <div class="nav mb-2">
+    <div class="nav nav-row">
       <div v-for="(item, index) in navList1" :key="index" class="list" @click="goPath(item.path, item.isLogin)">
         <div class="imgBox"><img :src="handleImage(item.icon)" alt="" v-if="item.icon"></div>
-        <div class="mt-4 text-center">{{ item.name }}</div>
+        <div class="nav-label">{{ item.name }}</div>
       </div>
     </div>
   </div>
@@ -128,44 +128,63 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cry-nav-root {
+  font-size: 12px;
+}
+
 #cryptos {
-  .nav {
+  .nav-row {
     display: flex;
-    align-items: center;
-    font-size: 26px;
-    color: #21262F;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4px;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 4px;
+    }
   }
 
   .list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    // margin-right: 50px;
-    width: 20%;
-    color: $text_color;
-
-    &:last-child {
-      margin-right: 0px;
-    }
-
-    .text-center {
-      height: 70px;
-      word-wrap: break-word;
-      white-space: normal;
-      width: 100%;
-      line-height: 30px;
-      text-align: center;
-    }
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    max-width: none;
+    color: rgba(255, 255, 255, 0.92);
   }
 
   .imgBox {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
+    border-radius: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
     img {
-      width: 100%;
-      height: 100%;
+      width: 98px;
+      height: 98px;
+      object-fit: contain;
     }
+  }
+
+  .nav-label {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.88);
+    word-break: break-word;
+    white-space: normal;
+    padding: 0 2px;
   }
 }
 </style>

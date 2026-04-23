@@ -19,6 +19,7 @@ export default defineConfig({
     isVisualizer && visualizer({ gzipSize: true }),
     legacy({
       targets: ['defaults', 'not IE 11'],
+      renderLegacyChunks: false,
     }),
   ],
   css: {
@@ -52,6 +53,7 @@ export default defineConfig({
     }
   },
   build: {
+    target: 'esnext',
     assetsDir: "static",
     rollupOptions: {
       input: {

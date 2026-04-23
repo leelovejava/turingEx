@@ -18,19 +18,36 @@
         </van-swipe-item>
       </van-swipe>
     </section>
-    <div class="py-4">
-      <van-notice-bar class="text-26 textColor" left-icon="" :scrollable="false" background="transparent">
-        <div slot="left-icon" class=" flex items-center more-img"><img class="w-10 h-10 more-img"
-            src="../../assets/Horn.png" alt="">
-        </div>
+    <div class="quotes-notice-outer">
+      <van-notice-bar
+        class="quotes-notice-bar text-26"
+        left-icon=""
+        :scrollable="false"
+        background="transparent"
+      >
+        <template #left-icon>
+          <span class="quotes-notice-bell" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M18 8a6 6 0 10-12 0c0 7-3 7-3 7h18s-3 0-3-7" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M13.73 21a2 2 0 01-3.46 0" stroke-linecap="round" />
+            </svg>
+          </span>
+        </template>
         <van-swipe vertical class="notice-swipe" :autoplay="2000" :show-indicators="false">
-          <van-swipe-item v-for="item in announceList" :key="item.id" @click="toAnnounceDetail(item.uuid)">{{ item.title
-          }}
+          <van-swipe-item
+            v-for="item in announceList"
+            :key="item.id"
+            class="notice-swipe-item"
+            @click="toAnnounceDetail(item.uuid)"
+          >
+            {{ item.title }}
           </van-swipe-item>
         </van-swipe>
-        <div class="ml-20 flex items-center " slot="right-icon" @click.stop="$router.push('/cryptos/announce')"><img
-            class="w-10 h-10 more-img" src="../../assets/more.png" alt="">
-        </div>
+        <template #right-icon>
+          <span class="quotes-notice-more" @click.stop="$router.push('/cryptos/announce')">
+            <img class="more-img" src="../../assets/more.png" alt="">
+          </span>
+        </template>
       </van-notice-bar>
     </div>
     <cry-nav />
@@ -266,32 +283,80 @@ export default {
 .home {
   width: 100%;
   box-sizing: border-box;
-  padding: 16px 16px 108px;
+  padding: 8px 12px 108px;
+  background: #121212;
 }
 
 .news-banner-container {
-  margin: 20px 0;
-  height: 320px;
-  padding: 0 12px;
+  margin: 8px 0 12px;
+  height: 204px;
+  padding: 0;
 
   .swipe-box {
-    border-radius: 8px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
   .van-swipe-item {
     color: $text_color;
     font-size: 20px;
-    line-height: 320px;
+    line-height: 204px;
     text-align: center;
-    background-color: $selectSymbol_background;
+    background: linear-gradient(135deg, #1e3a5f 0%, #3d2b6e 100%);
 
     img {
       display: block;
-      height: 320px;
+      height: 204px;
       width: 100%;
       object-fit: cover;
     }
   }
+}
+
+.quotes-notice-outer {
+  margin-bottom: 8px;
+  padding: 0;
+  border-radius: 16px;
+  background: #1f1f1f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.quotes-notice-bell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 56px;
+  color: rgba(255, 255, 255, 0.85);
+  flex-shrink: 0;
+}
+
+.quotes-notice-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 56px;
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+:deep(.quotes-notice-bar.van-notice-bar) {
+  padding: 0 4px 0 8px;
+  height: 56px;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 16px;
+}
+
+:deep(.quotes-notice-bar .van-notice-bar__left-icon) {
+  margin-right: 8px;
+}
+
+:deep(.quotes-notice-bar .van-notice-bar__right-icon) {
+  margin-left: 8px;
 }
 
 .box {
@@ -374,35 +439,48 @@ export default {
 
 #cryptos .quickly {
   width: 100%;
-  height: 136px;
+  min-height: 110px;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  margin: 10px 0 24px;
+  gap: 8px;
+  margin: 16px 0 20px;
 
   .quickBox {
     flex: 1;
-    height: 100%;
+    min-height: 110px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
-    border-radius: 14px;
-    border: 1px solid rgba(120, 138, 170, 0.24);
-    background: linear-gradient(135deg, rgba(65, 75, 110, 0.45), rgba(34, 42, 65, 0.88));
+    padding: 16px 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(
+      145deg,
+      rgba(40, 42, 55, 0.95) 0%,
+      rgba(28, 28, 32, 0.98) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 4px 16px rgba(0, 0, 0, 0.25);
 
     .left {
       display: flex;
       align-items: center;
       flex: 1;
+      min-width: 0;
 
       .leftBox {
-        width: 74px;
-        height: 74px;
+        width: 75px;
+        height: 75px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img {
-          width: 100%;
-          height: 100%;
+          width: 70px;
+          height: 70px;
+          object-fit: contain;
         }
       }
     }
@@ -411,17 +489,18 @@ export default {
       margin-left: 12px;
 
       p {
-        font-size: 22px;
-        color: #dfe6f8;
+        font-size: 30px;
+        color: #f3f4f6;
         font-weight: 600;
-        line-height: 24px;
+        line-height: 1.3;
       }
     }
 
     .right {
-      width: 32px;
-      height: 32px;
-      opacity: 0.9;
+      width: 36px;
+      height: 36px;
+      opacity: 0.55;
+      flex-shrink: 0;
 
       img {
         width: 100%;
@@ -437,23 +516,26 @@ export default {
 
 
 
-.van-notice-bar {
-  height: 60px;
-}
-
 .notice-swipe {
-  height: 60px;
-  line-height: 60px;
+  flex: 1;
+  height: 56px;
+  line-height: 56px;
+  margin: 0;
 }
 
-.van-swipe-item {
-  font-size: 30px;
+.notice-swipe-item {
+  font-size: 16px;
+  line-height: 56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .more-img {
-  width: 40px !important;
-  height: 40px !important;
-  margin-top: 8px;
+  width: 18px !important;
+  height: 18px !important;
+  object-fit: contain;
 }
 
 .content-title {

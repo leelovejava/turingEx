@@ -1,29 +1,26 @@
 <template>
-  <div class="list-hot text-32">
+  <div class="list-hot ex-hot-cards">
     <div class="hotBox">
-      <div v-for="item in listData" :key="item.id" class="box-border">
-        <ul class="box-border flex flex-col w-full px-4" @click="onItemClick(item)">
-          <li class="flex items-center justify-between mb-4">
-            <p class="flex items-end items-center">
-              <strong>{{ item.symbol && item.symbol.toUpperCase() || '--' }}</strong>
-              <span class="grey">{{ item.name && item.name.replace(item.symbol.toUpperCase(), '') ||
-                '--' }}</span>
-              <span class="text-22" :class="item.changeRatio > 0 ? 'green' : 'red'">{{ item.changeRatio > 0
-                ?
-                '+' : '' }}{{ item.changeRatio }}%</span>
-            </p>
-          </li>
-          <li class="mb-4">
-            <p>
-              <strong class="font-bold text-36" :class="item.changeRatio > 0 ? 'green' : 'red'">{{
-                item.close || '--' }}</strong><br />
-              <span class="grey text-28">≈ {{ currency.currency_symbol }}{{ item.close && (item.close
-                *
-                currency.rate).toFixed(2) || '--'
-              }}</span>
-            </p>
-          </li>
-        </ul>
+      <div
+        v-for="item in listData"
+        :key="item.id"
+        class="hot-card"
+        @click="onItemClick(item)"
+      >
+        <p class="hot-pair">
+          <strong>{{ item.symbol && item.symbol.toUpperCase() || '--' }}</strong><span class="hot-quote">/USDT</span>
+        </p>
+        <p class="hot-price" :class="item.changeRatio > 0 ? 'is-up' : 'is-down'">
+          {{ item.close || '--' }}
+        </p>
+        <p class="hot-sub">
+          <span class="hot-fiat">
+            ≈ {{ currency.currency_symbol }}{{ item.close && (item.close * currency.rate).toFixed(2) || '--' }}
+          </span>
+          <span class="hot-pct" :class="item.changeRatio > 0 ? 'is-up' : 'is-down'">
+            {{ item.changeRatio > 0 ? '▲' : '▼' }}{{ item.changeRatio > 0 ? '+' : '' }}{{ item.changeRatio }}%
+          </span>
+        </p>
       </div>
     </div>
   </div>
@@ -64,32 +61,81 @@ export default {
 
 <style lang="scss" scoped>
 #cryptos {
-  .list-hot {
-    font-size: 26px;
-
-    p {
-      color: $text_color1;
-    }
-  }
-
-  .red {
-    color: #E35561
-  }
-
-  .green {
-    color: $green
-  }
-
-  .grey {
-    color: $text_color1;
+  .ex-hot-cards {
+    margin-bottom: 16px;
   }
 
   .hotBox {
     display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
 
-    >div {
-      flex: 1;
+  .hot-card {
+    flex: 1;
+    min-width: 0;
+    padding: 18px 12px 16px;
+    border-radius: 18px;
+    background: #1a1a1c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+
+    &:active {
+      background: #222226;
+      border-color: rgba(255, 255, 255, 0.12);
     }
+  }
+
+  .hot-pair {
+    margin: 0 0 10px;
+    font-size: 26px;
+    line-height: 1.2;
+    color: #fff;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  .hot-quote {
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+  }
+
+  .hot-price {
+    margin: 0 0 8px;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .hot-sub {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  .hot-fiat {
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .hot-pct {
+    font-weight: 600;
+  }
+
+  .is-up {
+    color: #34d399;
+  }
+
+  .is-down {
+    color: #f87171;
   }
 }
 </style>

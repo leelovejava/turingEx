@@ -1,5 +1,5 @@
 <template>
-  <section class="pb-fix">
+  <section class="pb-fix quotes-page">
     <div class="quotes-container-box">
       <header class="header">
         <div class="flex-l">
@@ -312,29 +312,36 @@ onBeforeRouteLeave(() => {
   z-index: 999;
 }
 
+.quotes-page {
+  min-height: 100vh;
+  background: #121212;
+  box-sizing: border-box;
+}
+
 :deep(.van-tabs__nav) {
-  background: #1a2133;
-  border-radius: 14px;
-  padding: 6px;
+  background: #1f1f1f;
+  border-radius: 16px;
+  padding: 8px;
   display: flex;
   gap: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 :deep(.van-tab) {
   flex: 0 0 auto;
-  min-width: 56px;
-  height: 32px;
-  padding: 0 14px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  color: #9fa8bd;
+  min-width: 64px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 13px;
   font-weight: 500;
 }
 
 :deep(.van-tab.van-tab--active) {
   background: #ffffff;
-  color: #1a2236;
+  color: #121212;
   font-weight: 700;
 }
 
@@ -369,9 +376,10 @@ onBeforeRouteLeave(() => {
 
   .header {
     display: flex;
-    height: 34px;
-    padding: 0 12px;
+    min-height: 44px;
+    padding: 8px 14px 4px;
     justify-content: space-between;
+    align-items: center;
 
     .flex-l {
       flex: 1;
@@ -392,9 +400,10 @@ onBeforeRouteLeave(() => {
 
     .title {
       font-weight: 700;
-      font-size: 20px;
-      line-height: 28px;
-      color: $mainTextColor;
+      font-size: 22px;
+      line-height: 30px;
+      color: #ffffff;
+      letter-spacing: 0.02em;
     }
 
     .icon-group {
@@ -402,20 +411,26 @@ onBeforeRouteLeave(() => {
 
       .icon {
         display: flex;
-        width: 28px;
-        height: 28px;
-        margin-left: 16px;
+        width: 40px;
+        height: 40px;
+        margin-left: 8px;
         justify-content: center;
         align-items: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+
+        &.search img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+        }
       }
     }
-
-
   }
 
   .quotes-tab-container {
-    margin-top: 18px;
-    padding: 0 10px;
+    margin-top: 12px;
+    padding: 0 12px 8px;
   }
 
 
