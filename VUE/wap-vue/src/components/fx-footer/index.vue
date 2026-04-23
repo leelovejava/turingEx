@@ -7,13 +7,13 @@
           <img :src="active == 'optional' ? icon.optional.active : icon.optional.inactive" alt="optional" />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item name="quotes" to="http://localhost:333/syn/#/quotes/index">
+      <van-tabbar-item name="quotes" to="/quotes/index">
         <span :class="[active === 'quotes' ? 'active' : '']">{{ $t("quotes") }}</span>
         <template #icon>
           <img :src="active == 'quotes' ? icon.quotes.active : icon.quotes.inactive" alt="quotes" />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item name="trade" to="http://localhost:333/syn/#/trade/index">
+      <van-tabbar-item name="trade" to="/trade/index">
         <span :class="[active === 'trade' ? 'active' : '']">{{ $t("trade") }}</span>
         <template #icon>
           <img :src="active == 'trade' ? icon.trade.active : icon.trade.inactive" alt="trade" />

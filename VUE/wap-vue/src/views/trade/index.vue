@@ -588,39 +588,32 @@ const navTabV2 = ref([
 ]);
 
 const listTab = ref([
-  // {
-  //   title: 'ETF',
-  //   type: 'Etf',
-  //   urlMatch: 'etf',
-  //   symbolType: 'indices',
-  //   tabIndex: 0
-  // },
-  // {
-  //   title: t('加密货币'),
-  //   type: 'Cryptos',
-  //   urlMatch: 'crypto',
-  //   symbolType: 'cryptos',
-  //   tabIndex: 1
-  // },
-  // {
-  //   title: t('外汇'),
-  //   type: 'Foreign',
-  //   urlMatch: 'for',
-  //   symbolType: 'forex',
-  //   tabIndex: 2
-  // },
   {
-    title: t('印度股'),
-    type: 'INDIAStock',
-    urlMatch: 'INDIA-stocks',
-    symbolType: 'INDIA-stocks',
-    tabIndex: 8
+    title: t('加密货币'),
+    type: 'Cryptos',
+    urlMatch: 'crypto',
+    symbolType: 'cryptos',
+    tabIndex: 0
   },
   {
     title: t('UsStocks'),
     type: 'UsStock',
     urlMatch: 'stock',
     symbolType: 'US-stocks',
+    tabIndex: 1
+  },
+  {
+    title: t('外汇'),
+    type: 'Foreign',
+    urlMatch: 'for',
+    symbolType: 'forex',
+    tabIndex: 2
+  },
+  {
+    title: 'ETF',
+    type: 'Etf',
+    urlMatch: 'etf',
+    symbolType: 'indices',
     tabIndex: 3
   },
   {
