@@ -1,0 +1,60 @@
+export const tableOption = {
+  searchMenuSpan: 6,
+  columnBtn: false,
+  border: true,
+  selection: false,
+  index: false,
+  indexLabel: '序号',
+  stripe: true,
+  menuAlign: 'center',
+  menuWidth: 130,
+  align: 'center',
+  refreshBtn: true,
+  searchSize: 'mini',
+  addBtn: false,
+  editBtn: false,
+  delBtn: false,
+  viewBtn: false,
+  menu:true,
+  props: {
+    label: 'label',
+    value: 'value'
+  },
+  column: [{
+    label: '订单ID',
+    prop: 'uuid'
+  }, {
+    label: '买订单号',
+    prop: 'symbol'
+  }, {
+    label: '卖订单号',
+    prop: 'symbol'
+  }, {
+    label: '买家用户名/ID',
+    prop: 'name'
+  }, {
+    label: '卖家用户名/ID',
+    prop: 'MinimumTradingVolume'
+  }, {
+    label: '成交价格',
+    prop: 'RandomFactorOfTradingVolume'
+  }, {
+    label: '币对',
+    prop: 'CurrencyPricePrecision'
+  }, {
+    label: '交易量',
+    prop: 'CurrencyQuantityPrecision'
+  }, {
+    label: '交易额',
+    prop: 'MaximumPriceDifferenceBetweenBuyingAndSellingOrders'
+  }, {
+    label: '买单手续费',
+    prop: 'InitialNumberOfOrders'
+  }, {
+    label: '卖单手续费',
+    prop: 'StepSizeOfPriceChange'
+  }, {
+    label: '创建时间',
+    prop: 'OrderInterval'
+  }]
+}

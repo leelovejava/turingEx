@@ -1,0 +1,175 @@
+const menuMap = {
+    'C2C_0':'.c2c_all',
+    'C2C支付方式模板_1':'',
+    'C2C支付方式管理_1':'',
+    'C2C承兑商管理_1':'',
+    'C2C广告配置_1':'',
+    'C2C订单_1':'.c2c_order_untreated_cout',
+    'C2C申诉_1':'.c2c_appeal_untreated_cout',
+    '理财矿机_0':'',
+    '理财配置_1':'',
+    '矿机配置_1':'',
+    '理财订单_1':'',
+    '矿机订单_1':'',
+    '质押借币订单_1':'',
+    '报表_0':'',
+    '总充提报表_1':'',
+    '代理商充提报表_1':'',
+    '用户收益报表_1':'',
+    '配置_0':'',
+    '汇率配置_1':'',
+    '用户端内容管理_1':'',
+    '新闻管理_1':'',
+    '横幅管理_1':'',
+    '停盘配置_1':'',
+    '系统_0':'',
+    '菜单管理_1':'',
+    '系统参数(ROOT)_1':'',
+    '系统参数_1':'',
+    '客服管理_1':'',
+    '角色管理_1':'',
+    '系统用户管理_1':'',
+    '账变日志_1':'',
+    '操作日志_1':'',
+    '转账转换日志_1':'',
+    '验证码日志_1':'',
+    '用户管理_0':'',
+    '综合查询_1':'',
+    '用户基础管理_1':'',
+    '用户管理_1':'',
+    '行情管理_1':'',
+    '用户关系管理_0':'.user_untreated_count',
+    '代理商_1':'',
+    '推荐关系_1':'',
+    '用户基础认证_1':'.kyc_untreated_cout',
+    '用户高级认证_1':'.kyc_high_level_untreated_cout',
+    '人工重置管理_1':'.user_safeword_apply_untreated_cout',
+    '财务_0':'.money_untreated_count',
+    '充值订单_1':'.recharge_blockchain_order_untreated_cout',
+    '提现订单_1':'.withdraw_order_untreated_cout', 
+    '银行卡订单_1':'.bank_card_order_untreated_cout',
+
+    "永续持仓单(DC)_1":".cryptos-spots-cryptos-spots-transport",
+    "交割合约单(DC)_1":".cryptos-spots-cryptos-pickAddr",
+    "永续委托单(DC)_1":".cryptos-spots-cryptos-hotSearch",
+    "永续持仓单(外汇)_1":".shop-transport",
+    "交割合约单(外汇)_1":".shop-pickAddr",
+    "永续委托单(外汇)_1":".shop-hotSearch",
+    "永续持仓单(CO)_1":".commodity-cryptos-spots-transport",
+    "交割合约单(CO)_1":".commodity-cryptos-pickAddr",
+    "永续委托单(CO)_1":".commodity-cryptos-hotSearch",
+    "永续合约(ETF)_1":".etf-spots-etf-transport",
+    "交割合约单(ETF)_1":".etf-spots-etf-pickAddr",
+    "永续委托单(ETF)_1":".etf-spots-etf-hotSearch",
+    "永续持仓单(美股)_1":".us-spots-us-transport",
+    "交割合约单(美股)_1":".us-spots-us-pickAddr",
+    "永续委托单(美股)_1":".us-spots-us-hotSearch",
+    "永续持仓单(TW)_1":".tw-stocks-transport",
+    "交割合约单(TW)_1":".tw-stocks-pickAddr",
+    "永续委托单(TW)_1":".tw-stocks-hotSearch",
+    "永续持仓单(HK)_1":".hk-stocks-transport",
+    "交割合约单(HK)_1":".hk-stocks-pickAddr",
+    "永续委托单(HK)_1":".hk-stocks-hotSearch",
+    "永续持仓单(A)_1":".A-stocks-transport",
+    "交割合约单(A)_1":".A-stocks-pickAddr",
+    "永续委托单(A)_1":".A-stocks-hotSearch",
+    "永续持仓单(JP)_1":".jp-stocks-transport",
+    "交割合约单(JP)_1":".jp-stocks-pickAddr",
+    "永续委托单(JP)_1":".jp-stocks-hotSearch",
+
+    "永续持仓单(印度)_1":".INDIA-stocks-transport",
+    "交割合约单(印度)_1":".INDIA-stocks-pickAddr",
+    "永续委托单(印度)_1":".INDIA-stocks-hotSearch",
+
+    "永续持仓单(UK)_1":".UK-stocks-transport",
+    "交割合约单(UK)_1":".UK-stocks-pickAddr",
+    "永续委托单(UK)_1":".UK-stocks-hotSearch",
+
+    '美股_0':'.us_all',
+    '台股_0':'.tw_all',
+    '港股_0':'.hk_all',
+
+    '数字货币_0':'.cryptos_all',
+    'ETF_0':'.etf_all',
+    '外汇_0':'.forex_all',
+    '大宗商品_0':'.commodity_all',
+    'A股_0':'.a_all',
+
+    '日股_0':'.jp_all',
+
+    '印度股_0':'.INDIA_all',
+    '英股_0':'.UK_all',
+
+    '股票_0':'.spots_all',
+    "永续持仓单_1":".stocks-transport",
+    "交割合约单_1":".stocks-pickAddr",
+    "永续委托单_1":".stocks-hotSearch"
+}
+
+
+const menuTipAdd = new Map([
+    [".user_untreated_count" , [".kyc_untreated_cout",".kyc_high_level_untreated_cout",".user_safeword_apply_untreated_cout-0",".user_safeword_apply_untreated_cout-1",".user_safeword_apply_untreated_cout-2",".user_safeword_apply_untreated_cout-3"]],
+    [".money_untreated_count" , [".recharge_blockchain_order_untreated_cout",".withdraw_order_untreated_cout",".bank_card_order_untreated_cout"]],
+    [".user_safeword_apply_untreated_cout" , [".user_safeword_apply_untreated_cout-0",".user_safeword_apply_untreated_cout-1",".user_safeword_apply_untreated_cout-2",".user_safeword_apply_untreated_cout-3"]],
+    [".user_user" , [".recharge_blockchain_order_untreated_cout",".withdraw_order_untreated_cout",".kyc_untreated_cout",".kyc_high_level_untreated_cout"]],
+    [".c2c_all" , [".c2c_order_untreated_cout",".c2c_appeal_untreated_cout"]],
+
+    [".cryptos_all" , [".cryptos-spots-cryptos-spots-transport",".cryptos-spots-cryptos-pickAddr",".cryptos-spots-cryptos-hotSearch"]],
+    [".forex_all" , [".shop-transport",".shop-pickAddr",".shop-hotSearch"]],
+    [".commodity_all" , [".commodity-cryptos-spots-transport",".commodity-cryptos-pickAddr",".commodity-cryptos-hotSearch"]],
+    [".etf_all" , [".etf-spots-etf-transport",".etf-spots-etf-pickAddr",".etf-spots-etf-hotSearch"]],
+    
+    [".us_all" , [".us-spots-us-transport",".us-spots-us-pickAddr",".us-spots-us-hotSearch"]],
+    [".tw_all" , [".tw-stocks-transport",".tw-stocks-pickAddr",".tw-stocks-hotSearch"]],
+    [".hk_all" , [".hk-stocks-transport",".hk-stocks-pickAddr",".hk-stocks-hotSearch"]],
+
+    [".a_all" , [".A-stocks-transport",".A-stocks-pickAddr",".A-stocks-hotSearch"]],
+
+    [".jp_all" , [".jp-stocks-transport",".jp-stocks-pickAddr",".jp-stocks-hotSearch"]],
+
+    [".INDIA_all" , [".INDIA-stocks-transport",".INDIA-stocks-pickAddr",".INDIA-stocks-hotSearch"]],
+    [".UK_all" , [".UK-stocks-transport",".UK-stocks-pickAddr",".UK-stocks-hotSearch"]],
+
+    [".spots_all",[".us-spots-us-transport",".us-spots-us-pickAddr",".us-spots-us-hotSearch",
+    ".hk-stocks-transport",".hk-stocks-pickAddr",".hk-stocks-hotSearch",
+    ".tw-stocks-transport",".tw-stocks-pickAddr",".tw-stocks-hotSearch",
+    ".A-stocks-transport",".A-stocks-pickAddr",".A-stocks-hotSearch",
+    ".jp-stocks-transport",".jp-stocks-pickAddr",".jp-stocks-hotSearch",
+    ".INDIA-stocks-transport",".INDIA-stocks-pickAddr",".INDIA-stocks-hotSearch",
+    ".UK-stocks-transport",".UK-stocks-pickAddr",".UK-stocks-hotSearch"]],
+
+    [".stocks-transport",[".us-spots-us-transport",
+    ".hk-stocks-transport",
+    ".tw-stocks-transport",
+    ".A-stocks-transport",
+    ".jp-stocks-transport",
+    ".INDIA-stocks-transport",
+    ".UK-stocks-transport"]],
+
+    [".stocks-pickAddr",[".us-spots-us-pickAddr",
+    ".hk-stocks-pickAddr",
+    ".tw-stocks-pickAddr",
+    ".A-stocks-pickAddr",
+    ".jp-stocks-pickAddr",
+    ".INDIA-stocks-pickAddr",
+    ".UK-stocks-pickAddr"]],
+
+    [".stocks-hotSearch",[".us-spots-us-hotSearch",
+    ".hk-stocks-hotSearch",
+    ".tw-stocks-hotSearch",
+    ".A-stocks-hotSearch",
+    ".jp-stocks-hotSearch",
+    ".INDIA-stocks-hotSearch",
+    ".UK-stocks-hotSearch"]],
+
+
+
+
+
+]);
+
+
+export {  
+    menuMap,
+    menuTipAdd
+}
