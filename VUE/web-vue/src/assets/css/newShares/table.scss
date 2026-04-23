@@ -1,0 +1,41 @@
+:deep(.newShares-table){
+    .el-table, .el-table__expanded-cell {
+        background-color: transparent;
+    }
+    .el-table th,
+    .el-table tr,
+    .el-table td {
+        background-color: transparent;
+    }
+    .el-table--enable-row-transition .el-table__body td, .el-table .cell{
+        background-color: transparent;
+    }
+    .el-table__inner-wrapper::before {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 0px;
+    }
+    .el-table__cell{
+        text-align: right;
+        color: #fff;
+        &:not(.is-leaf){
+            border: 0;
+        }
+        &:nth-of-type(1){
+            text-align: left;
+        }
+    }
+    .is-leaf{
+        border-color: #232A40 !important;
+        color: #747A8F !important;
+    }
+    tbody tr:hover>td {
+        background-color: transparent !important;
+    }
+    .el-table__empty-text{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+}

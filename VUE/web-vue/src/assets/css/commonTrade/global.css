@@ -1,0 +1,139 @@
+.css-13xytqh >>> .rests3 {
+  border: none;
+  outline: none;
+}
+/* dialog弹窗蒙层 */
+.v-modal {
+  width: 0 !important;
+}
+
+.el-popper[x-placement^="bottom"] .popper__arrow {
+  display: none;
+}
+
+.top-right .el-tabs__nav-wrap {
+  font-size: 12px !important;
+}
+
+/* tabs 下划线去掉 */
+.el-tabs__nav-wrap::after {
+  width: 0 !important;
+}
+.el-tabs__header {
+  margin: 0;
+}
+/* 弹窗 */
+.el-dialog {
+  padding: 0 20px;
+}
+.el-dialog__header {
+  border-bottom: 1px solid #494b55;
+}
+
+.el-dialog__wrapper {
+  background: rgba(0, 0, 0, 0.6);
+}
+.el-button {
+  border: none;
+}
+
+/* 影响到了别的页面，先注释掉 */
+/* .el-input--suffix .el-input__inner {
+   padding-right: 30px;
+   outline: none;
+} */
+
+.el-input-group__append,
+.el-input-group__prepend {
+  background-color: #ffffff;
+  /* color: #909399; */
+  vertical-align: middle;
+  display: table-cell;
+  position: relative;
+  border: none;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  /* min-width: 1200px; */
+  margin: 0;
+}
+.btnMain {
+  margin: 0px 8px 0px 0px;
+  appearance: none;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  padding: 6px 12px;
+  min-width: 52px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  word-break: keep-all;
+  color: rgb(30, 35, 41);
+  border-radius: 4px;
+  min-height: 24px;
+  border: none;
+  background-color: rgb(252 213 53);
+  width: 128px;
+  height: 40px;
+}
+.btnMain:disabled {
+  cursor: not-allowed;
+  box-shadow: none;
+  color: rgb(183, 189, 198);
+  background-color: rgb(245, 245, 245);
+}
+
+.leftright {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.flexcolume {
+  display: flex;
+  flex-direction: column;
+}
+.itemContentCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.itemContentCenterNoh {
+  display: flex;
+  align-items: center;
+}
+.border {
+  padding: 15px 0px;
+  border: 1px solid;
+  border-color: gray;
+  border-radius: 5px;
+}
+.itemContent {
+  display: flex;
+  height: 100px;
+
+  align-items: center;
+}
+.itemContent1 {
+  display: flex;
+  justify-content: flex-end;
+}
+.img1 {
+  width: 60px;
+  height: auto;
+}

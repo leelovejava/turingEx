@@ -1,0 +1,132 @@
+a {
+  background-color: transparent;
+}
+
+:focus {
+  outline: 0px;
+}
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.css-ov54vn {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  cursor: pointer;
+  min-width: auto;
+}
+
+.css-1cahv52 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin-right: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #707a8a;
+  border-radius: 4px;
+}
+@media screen and (min-width: 767px) {
+  .css-1cahv52 {
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    margin-right: 24px;
+  }
+}
+.css-1cahv52.active {
+  background-color: #f5f5f5;
+  color: #1e2329;
+}
+
+.css-1mzk4e3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+}
+@media screen and (min-width: 767px) {
+  .css-1mzk4e3 {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+.rests1 {
+  display: flex;
+  justify-content: center;
+}
+
+.css-62gygx {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  -webkit-scrollbar-width: none;
+  -moz-scrollbar-width: none;
+  -ms-scrollbar-width: none;
+  scrollbar-width: none;
+  margin-bottom: 24px;
+}
+.css-62gygx::-webkit-scrollbar {
+  display: none;
+}
+
+/*! CSS Used from: Embedded */
+.css-tmpver {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media screen and (min-width: 767px) {
+  .css-tmpver {
+    width: 420px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .css-tmpver {
+    width: 420px;
+  }
+}
+
+/*! CSS Used from: Embedded */
+.css-ov54vn {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  cursor: pointer;
+  min-width: auto;
+}

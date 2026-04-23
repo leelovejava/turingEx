@@ -1,0 +1,15 @@
+.question-collapse :deep {
+  width: 100%;
+  .el-collapse-item {
+    border-left: 1px solid#d9d9d9;
+    border-right: 1px solid#d9d9d9;
+  }
+  .el-collapse-item__header {
+    font-size: 14px;
+    color: #575c65;
+    padding: 30px 24px;
+  }
+  .el-collapse-item__content {
+    padding: 0 48px 24px 24px;
+  }
+}

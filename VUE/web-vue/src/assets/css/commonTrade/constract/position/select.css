@@ -1,0 +1,35 @@
+/* 仓位区选择状态的下拉框 */
+.position-block .el-select {
+  width: 124px;
+}
+.position-block .el-select .el-input__wrapper {
+  background: #171a1e;
+  box-shadow: none;
+}
+
+.hposition-block .el-select .el-input .el-input__inner {
+  background: #303133;
+  border: 1px solid #171a1e;
+  color: #409eff;
+  text-align: right;
+}
+
+.position-select.el-select__popper.el-popper {
+  background: #171a1e;
+  border: 1px solid #303133;
+}
+
+.position-select.el-select__popper.el-popper .el-popper__arrow {
+  display: none;
+}
+
+.position-select .el-select-dropdown__item {
+  text-align: right;
+}
+.position-select .el-select-dropdown__item.selected {
+  color: #409eff;
+}
+.position-select .el-select-dropdown__item.hover {
+  background: #171a1e;
+  color: #409eff;
+}

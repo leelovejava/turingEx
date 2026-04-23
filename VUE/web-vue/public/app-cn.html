@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://www.asiaex-pro.com/web/down/hb -->
+<html lang="en" data-dpr="1" class="no-touch" style="font-size: 50px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script>
+      (function (doc, win) {
+        var docEl = doc.documentElement,
+          isIOS = navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+          dpr = isIOS ? Math.min(win.devicePixelRatio, 3) : 1,
+          dpr = window.top === window.self ? dpr : 1, //被iframe引用时，禁止缩放
+          dpr = 1,
+          scale = 1 / dpr,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+        docEl.dataset.dpr = dpr;
+        var metaEl = doc.createElement('meta');
+        metaEl.name = 'viewport';
+        metaEl.content = 'initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale;
+        docEl.firstElementChild.appendChild(metaEl);
+        var recalc = function () {
+          var width = docEl.clientWidth;
+          if (width / dpr > 750) {
+            width = 750 * dpr;
+          }
+          // 乘以100，px : rem = 100 : 1
+          docEl.style.fontSize = 100 * (width / 750) + 'px';
+        };
+        recalc()
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+      })(document, window);
+    </script>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .part1 {
+            width: 100%;
+            height: 100vh;
+            //height: 12.7rem;
+            background: url("./images/bg.png") top center no-repeat;
+            background-size: 100%;
+        }
+
+        .part2 {
+            margin-bottom: 1rem;
+        }
+
+        .bg {
+            width: 100%;
+        }
+
+        .cnen {
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            top: .4rem;
+            right: 0rem;
+            color: #000000;
+            font-size: .2rem;
+        }
+
+        .cnen a {
+            color: #000000;
+            margin: .2rem .3rem;
+            text-decoration: none;
+        }
+
+        .part1_con {
+            width: 100%;
+            height: 12.7rem;
+            position: absolute;
+            top: 1px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo1 {
+            width: 3rem;
+            height: 1rem;
+            margin: .89rem 0 .39rem 0
+        }
+
+        .logo2 {
+            width: 3.49rem;
+            margin-bottom: .52rem;
+        }
+
+        .p1 {
+            color: #fff;
+            font-size: .36rem;
+        }
+
+        .p2 {
+            color: #fff;
+            font-size: .5rem;
+            margin-top: .38rem;
+            margin-bottom: .55rem;
+        }
+
+        .p3 {
+            color: #A797FA;
+            font-size: .2rem;
+            margin-bottom: .1rem;
+
+        }
+
+        .download {
+            width: 5rem;
+            margin-top: 7.5rem;
+
+        }
+
+        .li {
+            /* display: flex; */
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .li a {
+            display: block;
+            width: 4.6rem;
+            height: 1.1rem;
+            line-height: 1.1rem;
+            margin: 0 auto .65rem;
+            font-size: 14px;
+            text-align: center;
+            background: linear-gradient(90deg, #383730 0%, #383730 100%);
+            border-radius: 0rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .li img {
+            width: 2.4rem;
+            height: .63rem;
+            margin: .1rem 0;
+        }
+
+        .p4 {
+            color: #4174BB;
+            font-size: .26rem;
+            margin-top: .7rem
+        }
+
+        .part2_1 {
+            display: flex;
+            justify-content: space-around;
+            margin-top: .82rem;
+            margin-bottom: .95rem;
+
+        }
+
+        .part2_1 div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .part2_1 img {
+            width: 1.39rem;
+            height: 1.39rem;
+        }
+
+        .part2_1 p {
+            font-size: .22rem;
+            color: #999999;
+        }
+
+        .part2_2 {
+            border-bottom: 1px solid #F3F3F3;
+            height: .6rem;
+
+            width: 92%;
+            margin: auto;
+            margin-bottom: .2rem;
+        }
+
+        .intro {
+
+            width: 86%;
+            padding: 3%;
+            margin: 0 auto;
+            background: #F3F3F3;
+            color: #999999;
+            font-size: .24rem;
+        }
+
+        .p5 {
+            color: #000000;
+            font-size: .34rem;
+
+            margin: .44rem 0 .2rem .3rem
+        }
+
+        .ios {
+            width: 82%;
+            margin: 0 auto;
+            line-height: .6rem;
+            font-size: .28rem;
+            color: #666666;
+        }
+
+        .course {
+            display: flex;
+            justify-content: space-between;
+            margin-top: .36rem;
+        }
+
+        .course img {
+            width: 3.6rem;
+            height: 5.74rem;
+        }
+
+        .part3 {
+            width: 100%;
+            height: 3.82rem;
+            position: relative;
+            margin-top: .8rem;
+        }
+
+        .bg2 {
+            width: 100%;
+            height: 3.82rem;
+        }
+
+        .bottom {
+            position: absolute;
+            padding-top: .99rem;
+            top: 0;
+            width: 100%;
+            height: 3.82rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .p6 {
+            font-size: .26rem;
+            color: #FFf;
+            margin-bottom: .2rem;
+        }
+
+        .p7 {
+            font-size: .24rem;
+            color: #FFf;
+        }
+
+        .part-dw {
+            width: 100%;
+            font-size: 16px;
+            text-align: center;
+            color: #383730;
+        }
+
+        .part-dw .logo-img {
+            width: 180px;
+            margin: 50px 0;
+        }
+
+        .part-dw .dw-img {
+            width: 200px;
+            margin-top: 40px;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 14px;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 0;
+            //background-color: #409eff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .dropdown-trigger img {
+            width: 14px;
+            margin-left: 6px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: -15px;
+            display: none;
+            min-width: 100px;
+            background: rgba(0, 0, 0, .8);
+            border-radius: 6px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .dropdown-menu-item {
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: #fff;
+            border-bottom: 1px solid #363940;
+        }
+
+        .dropdown-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .logo {
+            width: 72px;
+            margin: 0 auto;
+            padding-top: 60px;
+        }
+
+        .logo img {
+            width: 100%;
+        }
+
+        .main {
+            padding-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .desc {
+            font-size: 12px;
+            color: #727988;
+        }
+
+        .main .title-main {
+            width: 80%;
+            margin: 14px auto 0;
+        }
+
+        .img-main {
+            width: 93%;
+            margin: 20px auto 0;
+        }
+
+        .img-main img {
+            width: 100%;
+        }
+
+        .desc-list {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 16px;
+            margin-top: 15px;
+        }
+
+        .desc-list .item {
+            flex: 1;
+        }
+
+        .desc-list .item:nth-child(2) {
+            margin: 0 24px;
+        }
+
+        .desc-list .item .title {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .btn-wrapper {
+            padding: 0 16px;
+            margin-top: 34px;
+        }
+
+        .btn-wrapper .btn-list {
+            display: flex;
+        }
+
+        .btn-wrapper .btn-list a {
+            display: block;
+            flex: 1;
+        }
+
+        .btn-wrapper .btn-list .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 48px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            background: #2C2F36;
+            border-radius: 8px;
+        }
+
+        .btn-wrapper .btn-list a:nth-child(2) {
+            margin-left: 20px;
+        }
+
+        .btn-wrapper .btn-list .btn img {
+            width: 24px;
+            margin-right: 15px;
+        }
+
+        .btn-wrapper .desktop-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 48px;
+            font-size: 14px;
+            font-weight: 600;
+            background: #D7585F;
+            color: #fff;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .btn-wrapper .desktop-btn img {
+            width: 26px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="part-dw" class="part-dw">
+    <img class="logo-img" src="images/logo.png" alt="">
+    <div>请用手机扫描二维码</div>
+    <img class="dw-img" src="images/dw.png"/>
+</div>
+<div id="part1" class="part1">
+    <div class="dropdown">
+        <div class="dropdown-trigger" onclick="toggleDropdown()">
+            <div>中文简体</div>
+            <img src="./images/down.png" alt="">
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <div class="dropdown-menu-item" onclick="changeLanguage('app-cn')">中文简体</div>
+            <div class="dropdown-menu-item" onclick="changeLanguage('app-ft')">中文繁体</div>
+            <div class="dropdown-menu-item" onclick="changeLanguage('app')">English</div>
+        </div>
+    </div>
+    <div class="logo">
+        <img src="images/logo.png" alt="">
+    </div>
+    <div class="main">
+        <div class="title-main" style="font-size: 24px;">
+            <div style="font-weight: 600;">
+                交易安全可靠
+                <br/>
+                随时、随地。
+            </div>
+            <div class="desc" style="margin-top: 20px; font-size: 14px; line-height: 28px">
+                使用我们的APP，不管在家，还是路上，随时交易。
+                苹果商店、谷歌应用市场等多种获取方式。
+            </div>
+        </div>
+        <div class="img-main">
+            <img src="images/img1.png" alt="">
+        </div>
+        <div class="desc-list">
+            <div class="item">
+                <div class="title">安全</div>
+                <div class="desc">顶尖的安全保障。保护您的资金安全。</div>
+            </div>
+            <div class="item">
+                <div class="title">快速</div>
+                <div class="desc">我们用先进的技术确保极致快速的交易体验。</div>
+            </div>
+            <div class="item">
+                <div class="title">低费率</div>
+                <div class="desc">通过我们的低交易和定期折扣，让您的钱省的更多。</div>
+            </div>
+        </div>
+        <div class="btn-wrapper">
+            <div class="btn-list">
+                <a href="https://down.uchajq0.com/Vrex.app">
+                    <div class="btn">
+                        <img src="images/ios.png" alt="">
+                        IOS 下载
+                    </div>
+                </a>
+                <a href="android.apk">
+                    <div class="btn">
+                        <img src="images/android.png" alt="">
+                        Android 下载
+                    </div>
+                </a>
+            </div>
+            <a id="add-to" href="h5地址">
+                <div class="desktop-btn">
+                    <img src="images/desktop.png" alt="">
+                    桌面签
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+  var issafariBrowser = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+  if (issafariBrowser) {
+    document.getElementById("add-to").style.display = "block"
+  } else {
+    document.getElementById("add-to").style.display = "none"
+  }
+
+  // 判断浏览器函数
+  function isMobile() {
+    if (window.navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) {
+      document.getElementById("part1").style.display = "block"
+      document.getElementById("part-dw").style.display = "none"
+      // 移动端
+    } else {
+      document.getElementById("part1").style.display = "none"
+      document.getElementById("part-dw").style.display = "block"
+      // PC端
+    }
+  }
+
+  isMobile();
+
+  function toggleDropdown() {
+    var dropdownMenu = document.getElementById('dropdownMenu');
+    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+  }
+
+  const changeLanguage = (lang) => {
+    window.location.href = lang + '.html'
+  }
+</script>
+
+</body>
+</html>

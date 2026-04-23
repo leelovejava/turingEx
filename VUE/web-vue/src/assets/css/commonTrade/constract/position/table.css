@@ -1,0 +1,37 @@
+/* 永续合约-仓位-table-背景色 */
+
+.position-block .el-table {
+  background-color: #171a1e;
+}
+.position-block .el-table tr {
+  background-color: #171a1e;
+  height: 66px;
+}
+.position-block .el-table tbody tr:hover > td {
+  background-color: #171a1e !important;
+}
+
+.position-block .el-table th.el-table__cell.is-leaf {
+  background: #171a1e;
+}
+
+.position-block .el-table td.el-table__cell,
+.position-block .el-table th.el-table__cell.is-leaf {
+  border-bottom: 1px solid #24272c;
+}
+
+.position-block .el-table__body-wrapper {
+  background-color: #171a1e;
+}
+.position-block .el-table__inner-wrapper::before {
+  height: 0px;
+}
+
+.position-block .el-table--border::after,
+.position-block .el-table--group::after,
+.position-block .el-table::before {
+  content: "";
+  position: absolute;
+  background-color: #171a1e;
+  z-index: 1;
+}

@@ -1,0 +1,21 @@
+.slider-input-amount {
+  width: 100%;
+}
+.slider-input-amount .el-input__inner {
+  height: 30px;
+  line-height: 30px;
+  text-align: right;
+  color: #fff;
+}
+.slider-input-amount .el-input__wrapper {
+  background: #1f2328;
+  border: 1px solid #404040;
+  box-shadow: none;
+  padding: 0;
+}
+.slider-input-amount .el-input-number__increase {
+  display: none;
+}
+.slider-input-amount .el-input-number__decrease {
+  display: none;
+}

@@ -1,0 +1,27 @@
+.slider-block {
+  height: 68px;
+  width: 96%;
+}
+
+.slider-block .el-slider__bar {
+  height: 2px;
+}
+
+.slider-block .el-slider__runway {
+  height: 2px;
+  background: rgb(64, 64, 64);
+}
+
+.slider-block .el-slider__button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: -4px;
+}
+
+.slider-block .el-slider__marks-stop {
+  height: 8px;
+  width: 8px;
+  margin-top: -3px;
+  border-radius: 50%;
+}

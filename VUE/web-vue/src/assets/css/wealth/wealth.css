@@ -1,0 +1,497 @@
+/* 理财、矿机头部样式 */
+.financial-background {
+  background: #0d0e13 url("@/assets/images/wealth/financial-background.png")
+    no-repeat center;
+  /* background:#1D91FF; */
+  height: 538px;
+  /* padding:40px 0; */
+}
+
+.miner-background {
+  background: #0d0e13 url("@/assets/images/wealth/mine-background.png")
+    no-repeat center;
+  height: 538px;
+  /* padding:40px 0; */
+}
+
+.wealth-background {
+  background-color: #0c0e12;
+  padding: 40px 0;
+}
+
+.wealth-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wealth-left {
+  margin-top: 25px;
+}
+
+.wealth-left > h3 {
+  font-size: 40px;
+  margin: 10px 0 0 0;
+}
+
+.wealth-left > p {
+  color: #b7bdc6;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.wealth-right {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  border: 1px solid #fafafa;
+  padding: 10px 0 20px 0;
+  border-radius: 4px;
+}
+
+.wealth-right > div {
+  margin: 0 20px;
+}
+
+.wealth-right > div > p {
+  line-height: 30px;
+}
+
+.wealth-right > div > a {
+  display: inline-block;
+  margin-top: 25px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wealth-right > div > button {
+  margin-top: 20px;
+}
+
+.wealth-title {
+  width: 1200px;
+  height: 60px;
+  font-size: 26px;
+  line-height: 30px;
+
+  color: #ffffff;
+  text-align: center;
+}
+
+.wealth-content {
+  /* position: absolute; */
+  width: 1200px;
+  height: 20px;
+  /* left: 740px; */
+  /* top: 120px; */
+
+  /* font-weight: 400; */
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+
+  /* 浅灰 */
+  color: #b7bdc6;
+  text-align: center;
+}
+
+.wealth-list {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  border: 0px solid #fafafa;
+  padding: 0px 20px 20px 0;
+  border-radius: 4px;
+
+  /* position: absolute; */
+  /* left: 440px; */
+  /* top: 180px; */
+  margin: auto;
+}
+
+.wealth-list > div {
+  margin: 0 60px 60px 0px;
+}
+
+.wealth-list > div > p {
+  line-height: 30px;
+}
+
+.wealth-list > div > a {
+  display: inline-block;
+  margin-top: 25px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wealth-list > div > button {
+  margin-top: 20px;
+}
+
+.wealth-zhanghu {
+  position: absolute;
+
+  left: 25%;
+  top: 40%;
+  /* top: 340px; */
+  color: #ff8a00;
+}
+
+.wealth-licai {
+  position: absolute;
+
+  right: 25%;
+  top: 40%;
+  /* top: 340px; */
+  color: #ff8a00;
+}
+
+.wealth-buy-button {
+  min-width: 100px;
+  height: 40px;
+  line-height: 40px;
+  background-color: white;
+  border: 2px solid #1d91ff;
+  color: #1d91ff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 10px;
+  padding: 0 10px;
+}
+
+.wealth-buy-button:hover {
+  min-width: 100px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #1d91ff;
+  border: 2px solid #1d91ff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 10px;
+  padding: 0 10px;
+}
+
+.text-decoration-underline {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ----------------------------------------- */
+/*! CSS Used from: Embedded */
+.css-search-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+}
+
+/*! CSS Used from: Embedded */
+.css-search-2 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+/*! CSS Used from: Embedded */
+.css-search-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+  height: 32px;
+  margin-top: 4px;
+  margin-bottom: 0px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: 1.6;
+  border: 1px solid transparent;
+  border-color: #eaecef;
+  border-radius: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #ffffff;
+  margin-top: 0;
+  width: 100%;
+  height: 44px;
+}
+.css-search-3:hover:not(.bn-input-status-disabled):not(.bn-input-status-error) {
+  border-color: #f0b90b;
+}
+.css-search-3 input {
+  color: #1e2329;
+  font-size: 14px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.css-search-3 .bn-input-prefix {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+@media screen and (min-width: 767px) {
+  .css-search-3 {
+    width: 282px;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .css-search-3 {
+    width: 282px;
+  }
+}
+
+.css-search-4 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+/*! CSS Used from: Embedded */
+.css-search-5 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  color: #848e9c;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  fill: #1e2329;
+  fill: #848e9c;
+  vertical-align: middle;
+  color: #b7bdc6;
+  width: 1em;
+  height: 1em;
+}
+
+/*! CSS Used from: Embedded */
+.css-search-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: inherit;
+  opacity: 1;
+  font-size: 14px;
+}
+.css-search-6::-webkit-input-placeholder {
+  color: #b7bdc6;
+  font-size: 14px;
+}
+.css-search-6::-moz-placeholder {
+  color: #b7bdc6;
+  font-size: 14px;
+}
+.css-search-6:-ms-input-placeholder {
+  color: #b7bdc6;
+  font-size: 14px;
+}
+.css-search-6::placeholder {
+  color: #b7bdc6;
+  font-size: 14px;
+}
+.css-search-6::-webkit-input-placeholder {
+  color: #b7bdc6;
+}
+.css-search-6::-moz-placeholder {
+  color: #b7bdc6;
+}
+.css-search-6:-ms-input-placeholder {
+  color: #b7bdc6;
+}
+.css-search-6::placeholder {
+  color: #b7bdc6;
+}
+
+.inline-div {
+  display: inline-block;
+}
+
+.item-box-wealth {
+  display: flex;
+  padding: 40px 0 20px 0;
+}
+
+.wealth-btn-licai {
+  height: 25px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.wealth-btn-kuangchi {
+  margin-left: 100px;
+
+  height: 25px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.wealth-btn-licai-grey {
+  height: 25px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #868e9b;
+}
+
+.wealth-btn-kuangchi-grey {
+  margin-left: 100px;
+  /* left: 350px;
+  top: 550px; */
+
+  height: 25px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #868e9b;
+}
+
+.wealth-btn-rect-licai {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  left: 0%;
+  bottom: -10px;
+  background: #1d91ff;
+}
+
+.wealth-btn-rect-kuangchi {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  left: 0%;
+  bottom: -10px;
+  background: #1d91ff;
+}
+
+.css-input {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+
+  border: 1px solid black;
+  background-color: inherit;
+  opacity: 1;
+  font-size: 14px;
+
+  /* outline: 1;
+  outline-color: #000000;
+  outline-style: solid;
+  outline-width: 1px; */
+  width: 15px;
+  height: 15px;
+}
+
+/* border:3px;border-color:#000000;outline:1px outline-color: #000000;outline-width: 1px;outline-style: solid;" */
+
+/* .css-input:checked{
+    background: url(https://file.hbfile.net/global/image/icon-inmail-checked.50865b6.svg) no-repeat 50%
+} */
+
+/* input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+} */
+
+input[type="checkbox"]:checked {
+  background: url(https://file.hbfile.net/global/image/icon-inmail-checked.50865b6.svg)
+    no-repeat 50%;
+  /* background: url("https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=5bc58607708b4710da22f59ea2a7a898/622762d0f703918f418843ec533d269759eec4bf.jpg")
+    no-repeat center;
+  background-size: 100% 100%; */
+}
+
+input[type="checkbox"] {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+
+  border: 1px solid black;
+  background-color: inherit;
+  opacity: 1;
+  font-size: 14px;
+
+  /* outline: 1;
+  outline-color: #000000;
+  outline-style: solid;
+  outline-width: 1px; */
+  width: 15px;
+  height: 15px;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  outline: none;
+}
+input[type="checkbox"]:checked {
+  background: url(https://file.hbfile.net/global/image/icon-inmail-checked.50865b6.svg)
+    no-repeat 50%;
+}
+
+.el-dialog__header {
+  border-bottom: 0px solid #ffffff;
+}

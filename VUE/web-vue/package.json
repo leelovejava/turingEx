@@ -1,0 +1,81 @@
+{
+  "name": "foregin-pc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint:fix": "eslint --fix --ext .vue,.js ./",
+    "build:visualizer": "NODE_ENV=production VISUALIZER=show vite build"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@vitejs/plugin-legacy": "^4.0.2",
+    "axios": "^1.3.6",
+    "clipboard": "^2.0.11",
+    "core-js": "^3.8.3",
+    "echarts": "^5.4.2",
+    "element-plus": "^2.3.1",
+    "image-conversion": "^2.1.1",
+    "js-big-decimal": "^1.4.1",
+    "js-md5": "^0.7.3",
+    "klinecharts": "^9.2.1",
+    "pinia": "^2.0.33",
+    "pinia-plugin-persistedstate": "^3.1.0",
+    "qrcode": "^1.5.3",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "sass": "^1.60.0",
+    "swiper": "^10.2.0",
+    "tailwindcss": "^3.3.0",
+    "vue": "^3.2.13",
+    "vue-drag-resize": "^1.5.4",
+    "vue-i18n": "^9.2.2",
+    "vue-qrcode": "^2.2.0",
+    "vue-router": "^4.1.6",
+    "vue-slider-component": "^3.2.24",
+    "vue3-country-intl": "^1.0.16",
+    "vue3-eventbus": "^2.0.0",
+    "vue3-lazy": "^1.0.0-alpha.1",
+    "vue3-slide-verify": "^1.1.4",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "postcss": "^8.4.21",
+    "unplugin-auto-import": "^0.15.2",
+    "unplugin-icons": "^0.16.1",
+    "unplugin-vue-components": "^0.24.1",
+    "unplugin-vue-define-options": "^1.3.2",
+    "vite": "^4.2.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
