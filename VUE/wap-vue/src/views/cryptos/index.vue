@@ -50,7 +50,7 @@
           <img v-else src="@/assets/theme/white/image/goto.png" alt="">
         </div>
       </div>
-      <div class="quickBox tibi ml-10" :class="THEME == 'dark' ? 'dark' : 'white'"
+      <div class="quickBox tibi" :class="THEME == 'dark' ? 'dark' : 'white'"
         @click="$router.push('/cryptos/withdraw/withdrawPage')">
         <div class="left">
           <div class="leftBox"><img src="@/assets/theme/dark/image/tiicon.png" alt=""></div>
@@ -374,19 +374,22 @@ export default {
 
 #cryptos .quickly {
   width: 100%;
-  height: 144px;
+  height: 136px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin: 10px 0 24px;
 
   .quickBox {
-    width: 370px;
+    flex: 1;
     height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 40px;
-    padding-left: 16px;
+    padding: 0 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(120, 138, 170, 0.24);
+    background: linear-gradient(135deg, rgba(65, 75, 110, 0.45), rgba(34, 42, 65, 0.88));
 
     .left {
       display: flex;
@@ -394,8 +397,8 @@ export default {
       flex: 1;
 
       .leftBox {
-        width: 100px;
-        height: 100px;
+        width: 74px;
+        height: 74px;
 
         img {
           width: 100%;
@@ -405,19 +408,20 @@ export default {
     }
 
     .leftCont {
-      margin-left: 24px;
+      margin-left: 12px;
 
       p {
-        font-size: 24px;
-        color: $text_color;
+        font-size: 22px;
+        color: #dfe6f8;
         font-weight: 600;
-        line-height: 14px;
+        line-height: 24px;
       }
     }
 
     .right {
-      width: 48px;
-      height: 48px;
+      width: 32px;
+      height: 32px;
+      opacity: 0.9;
 
       img {
         width: 100%;
@@ -426,25 +430,9 @@ export default {
     }
   }
 
-  .chongbi {
-    background: url('@/assets/theme/white/image/chongb.png');
-    background-size: cover;
+  .chongbi {}
 
-    &.dark {
-      background: url('@/assets/theme/dark/image/chongb.png');
-      background-size: cover;
-    }
-  }
-
-  .tibi {
-    background: url('@/assets/theme/white/image/tib.png');
-    background-size: cover;
-
-    &.dark {
-      background: url('@/assets/theme/dark/image/tib.png');
-      background-size: cover;
-    }
-  }
+  .tibi {}
 }
 
 

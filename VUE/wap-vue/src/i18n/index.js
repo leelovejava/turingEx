@@ -1,5 +1,4 @@
 import { createI18n } from 'vue-i18n'
-import { getStorage } from '@/utils/index'
 import enLocale from './modules/en'
 import cnLocale from './modules/CN'
 import zhcnLocale from './modules/zh-CN'
@@ -13,7 +12,14 @@ import gr from './modules/gr'
 import Italy from './modules/Italy'
 import SpanishLocal from './modules/es'
 import PortugueseLocal from './modules/pt'
-const lang = getStorage('lang') || 'en'
+const lang = (() => {
+  try {
+    const raw = window.localStorage.getItem('lang')
+    return raw ? JSON.parse(raw) : 'en'
+  } catch (e) {
+    return 'en'
+  }
+})()
 
 const messages = {
   'en': {

@@ -313,24 +313,33 @@ onBeforeRouteLeave(() => {
 }
 
 :deep(.van-tabs__nav) {
-  background: $mainBgColor;
+  background: #1a2133;
+  border-radius: 14px;
+  padding: 6px;
+  display: flex;
+  gap: 8px;
 }
 
 :deep(.van-tab) {
-  font-size: 14px;
-  color: $text_color;
-  font-weight: 400;
+  flex: 0 0 auto;
+  min-width: 56px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #9fa8bd;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 :deep(.van-tab.van-tab--active) {
+  background: #ffffff;
+  color: #1a2236;
   font-weight: 700;
 }
 
 :deep(.van-tabs__line) {
-  background: url('../../assets/image/active.png') no-repeat center;
-  width: 9px;
-  height: 8px;
-  background-size: 100% 100%;
+  display: none;
 }
 
 .soon-container {
@@ -406,6 +415,7 @@ onBeforeRouteLeave(() => {
 
   .quotes-tab-container {
     margin-top: 18px;
+    padding: 0 10px;
   }
 
 

@@ -1,46 +1,60 @@
 <template>
   <div class="relative z-30 footer">
-    <van-tabbar route v-model="active" active-color="#1194F7" @change="changeIndex" fixed safe-area-inset-bottom>
+    <van-tabbar class="arc-tabbar" route v-model="active" active-color="#1194F7" @change="changeIndex" fixed safe-area-inset-bottom>
       <van-tabbar-item name="optional" to="/optional">
         <span :class="[active === 'optional' ? 'active' : '']">{{ $t("Optional") }}</span>
-        <template #icon="props">
-          <img :src="active == 'optional' ? icon.optional.active : icon.optional.inactive" alt="optional" />
+        <template #icon>
+          <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="7" width="18" height="12" rx="3" />
+            <path d="M3 11h18" />
+            <path d="M8 5h8" />
+          </svg>
         </template>
       </van-tabbar-item>
+
       <van-tabbar-item name="quotes" to="/quotes/index">
         <span :class="[active === 'quotes' ? 'active' : '']">{{ $t("quotes") }}</span>
         <template #icon>
-          <img :src="active == 'quotes' ? icon.quotes.active : icon.quotes.inactive" alt="quotes" />
+          <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3l2.8 4.7 5.2.9-3.6 3.8.8 5.3L12 15.7 7 17.7l.8-5.3L4.2 8.6l5.2-.9L12 3z" />
+            <path d="M12 7v6" />
+          </svg>
         </template>
       </van-tabbar-item>
+
       <van-tabbar-item name="trade" to="/trade/index">
         <span :class="[active === 'trade' ? 'active' : '']">{{ $t("trade") }}</span>
         <template #icon>
-          <img :src="active == 'trade' ? icon.trade.active : icon.trade.inactive" alt="trade" />
+          <div class="center-icon-wrap">
+            <svg class="tab-icon center-tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 8h10" />
+              <path d="M14 5l3 3-3 3" />
+              <path d="M17 16H7" />
+              <path d="M10 13l-3 3 3 3" />
+            </svg>
+          </div>
         </template>
       </van-tabbar-item>
-      <!-- <van-tabbar-item name="funds" to="/funds"> -->
-        <!-- <span :class="[active === 'funds' ? 'active' : '']">{{ $t('资金') }}</span> -->
-        <!-- <template #icon="props"> -->
-          <!-- <img :src="props.active ? icon.funds.active : icon.funds.inactive" alt="funds" /> -->
-        <!-- </template> -->
-      <!-- </van-tabbar-item> -->
+
       <van-tabbar-item name="news" to="/news">
         <span :class="[active === 'news' ? 'active' : '']">{{ $t("news") }}</span>
         <template #icon>
-          <img :src="active == 'news' ? icon.news.active : icon.news.inactive" alt="news" />
+          <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="2.5" />
+            <path d="M8 9h8" />
+            <path d="M8 13h8" />
+            <path d="M8 17h5" />
+          </svg>
         </template>
       </van-tabbar-item>
-      <!-- <van-tabbar-item name="trade" to="/exchange">
-        <span>{{ $t('trade') }}</span>
-        <template #icon="props">
-          <img :src="props.active ? icon.trade.active : icon.trade.inactive"  alt="exchange"/>
-        </template>
-      </van-tabbar-item> -->
+
       <van-tabbar-item name="mine" to="/my">
         <span :class="[active === 'mine' ? 'active' : '']">{{ $t("my") }}</span>
         <template #icon>
-          <img :src="active == 'mine' ? icon.mine.active : icon.mine.inactive" alt="mine" />
+          <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.2" />
+            <path d="M5.5 19.5c1.7-3.2 4-4.8 6.5-4.8s4.8 1.6 6.5 4.8" />
+          </svg>
         </template>
       </van-tabbar-item>
     </van-tabbar>
@@ -49,15 +63,11 @@
 
 <script setup>
 import { ref } from "vue";
-import { useQuotesStore } from "@/store/quotes.store.js";
-import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { watch } from "vue";
-import { themeStore } from "@/store/theme";
-const thStore = themeStore();
-const { t } = useI18n();
 const active = ref("home");
 const route = useRoute();
+
 if (route.path == "/trade/index") {
   active.value = "trade";
 } else if (route.path.indexOf("/quotes") != -1) {
@@ -71,11 +81,10 @@ if (route.path == "/trade/index") {
 } else if (route.path == "/funds/index") {
   active.value = "funds";
 }
-let quotesStore = useQuotesStore();
 
 watch(
   () => route.path,
-  (nv) => {
+  () => {
     if (route.path == "/trade/index") {
       active.value = "trade";
     } else if (route.path.indexOf("/quotes") != -1) {
@@ -91,94 +100,109 @@ watch(
     }
   }
 );
-// 底部列表
-const icon = {
-  optional: {
-    active: new URL(
-      "@/assets/theme/dark/image/footer/optional-active.png",
-      import.meta.url
-    ),
-    inactive: new URL(
-      `../../assets/theme/${thStore.theme}/image/footer/optional.png`,
-      import.meta.url
-    ),
-  },
-  quotes: {
-    active: new URL(
-      "@/assets/theme/dark/image/footer/quotes-active.png",
-      import.meta.url
-    ),
-    inactive: new URL(
-      `../../assets/theme/${thStore.theme}/image/footer/quotes.png`,
-      import.meta.url
-    ),
-  },
-  news: {
-    active: new URL("@/assets/theme/dark/image/footer/news-active.png", import.meta.url),
-    inactive: new URL(
-      `../../assets/theme/${thStore.theme}/image/footer/news.png`,
-      import.meta.url
-    ),
-  },
-  trade: {
-    active: new URL("@/assets/theme/dark/image/footer/trade-active.png", import.meta.url),
-    inactive: new URL(
-      `../../assets/theme/${thStore.theme}/image/footer/trade.png`,
-      import.meta.url
-    ),
-  },
-  funds: {
-    active: new URL('@/assets/theme/dark/image/footer/funds-active.png', import.meta.url),
-    inactive: new URL(`../../assets/theme/${thStore.theme}/image/footer/funds.png`, import.meta.url),
-  },
-  mine: {
-    active: new URL("@/assets/theme/dark/image/footer/menu-active.png", import.meta.url),
-    inactive: new URL(
-      `../../assets/theme/${thStore.theme}/image/footer/menu.png`,
-      import.meta.url
-    ),
-  },
-};
-const changeIndex = (index) => {
-  // console.log(index)
-};
+
+const changeIndex = () => {};
 </script>
 
 <style lang="scss" scoped>
 :deep(.van-tabbar-item__text) {
   font-size: 12px;
-  color: $footer_color !important;
+  color: #bfc5d6 !important;
 }
 
 :deep(.van-tabbar-item--active) {
-  background-color: $footer_bg;
-  color: $color_main !important;
+  background-color: transparent;
+  color: #2f66ff !important;
 }
 
-.van-tabbar--fixed {
+.footer :deep(.arc-tabbar.van-tabbar) {
   z-index: 10;
-  padding-bottom: constant(safe-area-inset-bottom);
-  padding-bottom: env(safe-area-inset-bottom);
-  background-color: $footer_bg;
-  box-shadow: 5px 5px 5px 5px $footer-border;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 72px;
+  padding: 8px 10px calc(env(safe-area-inset-bottom) + 4px);
+  padding-bottom: calc(constant(safe-area-inset-bottom) + 4px);
+  background: linear-gradient(180deg, #131a2a 0%, #0c1322 100%);
+  border-top: 1px solid rgba(125, 148, 190, 0.24);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.45);
+  overflow: visible;
 }
 
-.van-hairline--top-bottom::after {
-  border: none;
+.footer :deep(.arc-tabbar.van-tabbar)::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  transform: translateX(-50%);
+  width: 164px;
+  height: 68px;
+  border-radius: 0 0 82px 82px;
+  background: radial-gradient(ellipse at 50% 0,
+      rgba(86, 119, 214, 0.24) 0%,
+      rgba(36, 54, 97, 0.16) 42%,
+      rgba(12, 19, 34, 0) 74%);
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
-.blue {
-  color: $blue !important;
+.footer :deep(.arc-tabbar .van-tabbar-item) {
+  padding-top: 6px;
+}
+
+.footer :deep(.arc-tabbar .van-tabbar-item:nth-child(3)) {
+  margin-top: -24px;
+}
+
+.footer :deep(.arc-tabbar .van-tabbar-item:nth-child(3) .van-tabbar-item__icon) {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #2d6dff 0%, #1e54f2 45%, #153fd3 100%);
+  border: 4px solid #121a2c;
+  box-shadow: 0 10px 20px rgba(10, 38, 114, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer :deep(.arc-tabbar .van-tabbar-item:nth-child(3) .van-tabbar-item__text) {
+  margin-top: 2px;
+}
+
+.tab-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #c6ccdc;
+  stroke-width: 1.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.footer :deep(.van-tabbar-item--active) .tab-icon {
+  stroke: #2f66ff;
+  filter: drop-shadow(0 0 3px rgba(47, 102, 255, 0.35));
+}
+
+.center-tab-icon {
+  width: 24px;
+  height: 24px;
+  stroke: #eef3ff;
+}
+
+.center-icon-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .active {
-  color: $active_line !important;
-}
-
-.footer {
-  img {
-    width: 20px;
-    height: 20px;
-  }
+  color: #2f66ff !important;
 }
 </style>

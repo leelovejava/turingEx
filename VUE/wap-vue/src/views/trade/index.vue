@@ -9,7 +9,7 @@
       </header>
       <section class="trade-tab-container">
         <van-tabs v-model:active="tabActive" shrink @click-tab="onClickTab">
-          <van-tab v-for="(item, index) in listTab" :key="item.tabIndex" :name="item.tabIndex" :title="item.title">
+          <van-tab v-for="(item, index) in displayListTab" :key="item.tabIndex" :name="item.tabIndex" :title="item.title">
             <div class="content-container">
               <div class="user-info px-4 mt-4">
                 <div class="mt-8 flex">
@@ -676,6 +676,12 @@ const listTab = ref([
 
 const navTabList = computed(() => {
   return [1, 2].includes(tabActive.value) ? navTabV2.value : navTabV1.value;
+});
+
+const displayListTab = computed(() => {
+  return listTab.value.filter(
+    (item) => !['HK-stocks', 'UK-stocks', 'DE-stocks'].includes(item.symbolType)
+  );
 });
 
 const getCurrency = async () => {

@@ -60,6 +60,7 @@ export const BASE_URL = base_url
 export const WS_URL = ws_url
 export const IMG_PATH = host_url
 export const HOST_URL = host_url
+export const FILE_URL = 'https://file.turingex.top'
 
 export default {
     sliderOptions: {

@@ -25,7 +25,7 @@
             <ul class="flex justify-between w-full items-center" @click="onItemClick(item)">
               <li class="flex items-center left">
                 <img
-                  :src="item.symbol ? `${HOST_URL}/symbol/${item.symbol}.png` : handleImage('../../../assets/loading-default.png')"
+                  :src="item.symbol ? `${FILE_URL}/symbol/${item.symbol}.png` : handleImage('../../../assets/loading-default.png')"
                   alt="logo" class="w-16 h-16 rounded-full mr-4" />
                 <p class="flex flex-col">
                   <span class="flex items-end text-32 flex items-center">
@@ -60,7 +60,7 @@
           <van-cell v-for="item in showList" :key="item.id">
             <ul class="flex justify-between w-full items-center" @click="onItemClick(item)">
               <li class="flex items-center left">
-                <img :src="`${HOST_URL}/symbol/${item.symbol}.png`" alt="logo" class="w-16 h-16 rounded-full mr-4" />
+                <img :src="`${FILE_URL}/symbol/${item.symbol}.png`" alt="logo" class="w-16 h-16 rounded-full mr-4" />
                 <p class="flex flex-col">
                   <span class="flex items-end text-32 flex items-center">
                     <span class="textColor text-30">{{ item.symbol && item.symbol.toUpperCase() || '--'
@@ -108,14 +108,14 @@ import { List, Cell } from 'vant'
 import { mapGetters, mapActions } from 'vuex'
 import { fixDate, setStorage } from "@/utils";
 import ExTabs from "@/components/Transform/ex-tabs/index.vue";
-import { HOST_URL } from '@/config'
+import { FILE_URL } from '@/config'
 import { SET_CURRENCY } from "@/store/const.store";
 export default {
   name: 'ListQuotation',
   data() {
     return {
       fixDate,
-      HOST_URL,
+      FILE_URL,
       active: 0,
       type: 'left' //left 从左往右 right 从有王座
     }
