@@ -1,0 +1,89 @@
+<template>
+    <div class="ex-tabs">
+        <div class="ex-tab" v-for="(item, index) in listArr" :key="index" @click="changeTab(index)"
+            :class="active == index ? 'active' : ''">
+            {{ item.name }}
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    props: {
+
+    },
+    components: {
+
+    },
+    data() {
+        return {
+            active: 0,
+            listArr: [
+                {
+                    name: this.$t('热门美股')
+                },
+                {
+                    name: this.$t('涨幅排名')
+                },
+                {
+                    name: this.$t('跌幅排名')
+                },
+            ],
+        }
+    },
+    methods: {
+        changeTab(index) {
+            this.active = index;
+            this.$emit('tabs', index)
+        },
+    },
+    activated() {
+        this.listArr = [
+            {
+                name: this.$t('热门美股')
+            },
+            {
+                name: this.$t('涨幅排名')
+            },
+            {
+                name: this.$t('跌幅排名')
+            },
+        ]
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.ex-tabs {
+    font-size: 28px;
+    display: flex;
+    margin-top: 52px;
+    justify-content: center;
+    align-items: center;
+
+    .ex-tab {
+        text-align: center;
+        flex: 1;
+        padding: 10px 17px !important;
+        border-radius: 4px;
+        color: #787E8C;
+    }
+}
+
+.ex-tabs .active {
+    // border-bottom: 2px solid $btn_main;
+    color: $text_color;
+    position: relative;
+
+    &::after {
+        content: '';
+        width: 80%;
+        height: 2px;
+        background-color: $btn_main;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+</style>

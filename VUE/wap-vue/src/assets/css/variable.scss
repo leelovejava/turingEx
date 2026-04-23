@@ -1,0 +1,740 @@
+html[theme="white"]:root {
+    //白色主题
+    --mainBgColor: #fff;
+    --mainTextColor: #333;
+    --mainbgWhiteColor: #fff;
+    --main_background: #fff;
+    --main2_background: #fff; //主题浅色背景
+    --text_color: #333; //文字颜色
+    --text_color1: #868D9A; //文字浅色
+    --text_color2: #333; // 白色文字
+    --text_color3: #999; // 
+    --text_color4: #333; //浅色标题背景文字颜色
+    --text_color5: #878A96; // 
+    --text_color6: #666; // 文字更浅色
+    --tab_background: #F6F8F9; //tab切换背景颜色
+    --active_line: #1678FF; //tab选中样式颜色
+    --footer_background: #252738; // 底部颜色
+    --btn_main: #1678FF; //主题色按钮
+    --color_main: #1678FF; //主题色文字
+    --btn_background: #474B62; //按钮颜色
+    --input_background: #F5F5F5; //input背景颜色
+    --cont_background1: #f5f5f5; //title背景色
+    --title_color: #B8BDC5;
+    --line_color: #F5F5F5;
+    --bg_dark: #f5f5f5;
+    --border_color: #F5F5F5;
+    --divi_line: #F5F5F5; //分割线
+    --bg_step: #868D9A;
+    --bg_Bottom: #F5F5F5;
+    --chat_bg: #474B62;
+    --upload_bg: #969696;
+    --grey_bg: #f5f5f5;
+    --input_background1: #F5F5F5; //质押借币input
+    --c2c_color: #333;
+    --c2c_background: #fff;
+    --c2c_background1: #f5f5f5;
+    --c2c_tab_background: #f5f5f5;
+    --c2c_tip_background: #fff;
+    --selectSymbol_background: #f5f5f5; //自选与选择币种背景颜色
+    --options_background: #f5f5f5; //外汇操作按钮
+    --US_tab_background: #f5f5f5;
+    --US_tabActice_background: #f5f5f5;
+    --lable_color: #B6BDD4;
+    --cont_background: #f6f6f6;
+    --delivery_left_tab_background: #f6f6f6;
+    --delivery_tab_background: #f5f5f5;
+    --search_background: #F5F5F5;
+    --pledgeLoan_background: #00E3FF;
+    --financialBackground: #fff; //理财背景
+    --footer_bg: #FFFFFF; //底部背景
+    --footer_color: #4A4D51; //底部字体颜色
+    --recommend_bg: #F6F8F9; //首页推荐背景
+    --tab_normal_text: #666;
+    --hot-item-bg: #F6F8F9;
+    --second-bg: #F5F5F5;
+    --dot-alp: rgba(0, 0, 0, 0.3);
+    --btn-group: #FFFFFF;
+    --popup-bg: #fff;
+    --tab-second-bg: #f5f5f5;
+    --filter: invert(1);
+    --chat-border: #e2e2e2;
+    --more-bg: #fff;
+    --fina-border: #EAEDF2; //理财边框
+    --financialBut: #f5f5f5;
+    --select-bg: #f1f1f1;
+    --foot-border: #e9e9e9;
+    --input-border: #e5e5e5;
+    --c2c-tab-bg: #ffffff;
+    --step-border: #dbdbdb;
+    --step-bg: #f5f5f5;
+    --news-bg-1: #f2f7ff;
+    --news-bg-2: #fcfcfc;
+    --footer-border: #ccc;
+    --hot-bg-1: #ECF4FF;
+    --hot-bg-2: #FFFFFF;
+    --bz-bg:#fff;
+    --jp-hot-bg-1: #fff;
+    --jp-hot-bg-2: #E2ECFF;
+    --hot-text-color1: #AEB2BE;
+    --hot-text-color2: #747A8F;
+    --lower-text-color: #797B85;
+    --en-hot-bg-1: #E2ECFF;
+    --en-hot-bg-2: #fff;
+    --en-stock-bg:#F5F5F5;
+    --down-bg: linear-gradient(180deg, #e7a2b5 0%, #fef2f2 100%);
+    --up-bg: linear-gradient(180deg, #6cf9dd 0%, #e8fcf0 100%);
+    --tab_active: #EAEDF2;
+    --exchange-bg: #f5f5f5;
+    --f10-text: #868D9A;
+    --quotes-btn-bg: #2988FC;
+    --quotes-btn-text: #ffffff;
+    --van-bg: #ffffff;
+    --ipo_card_bg: #F5F8FC;
+    --ipo_normal_text: #747A8F;
+    --van-step-b: #ffffff;
+    --van-step-s: #cdcdcd;
+    --van-step-g: #ffffff;
+}
+
+html[theme="dark"]:root {
+    //黑色主题
+    --mainBgColor: #131A2E;
+    --mainTextColor: #fff;
+    --mainbgWhiteColor: #fff;
+    --main_background: #131a2e;
+    --main2_background: #1F233D; //主题浅色背景
+    --text_color: #fff; //文字颜色
+    --text_color1: #868D9A; //文字浅色
+    --text_color2: #fff; // 白色文字
+    --text_color3: #CFD5EC; // 
+    --text_color4: #333; //浅色标题背景文字颜色
+    --text_color5: #878A96; // 
+    --text_color6: #B7BDD1; // 文字更浅色
+    --tab_background: #27293B; //tab切换背景颜色
+    --active_line: #1678FF; //tab选中样式颜色
+    --footer_background: #252738; // 底部颜色
+    --btn_main: #1678FF; //主题色按钮
+    --color_main: #1678FF; //主题色文字
+    --btn_background: #474B62; //按钮颜色
+    --input_background: #27293B; //input背景颜色
+    --cont_background1: #27293B; //title背景色
+    --title_color: #B8BDC5;
+    --line_color: #393E49;
+    --bg_dark: #474B62;
+    --border_color: #212C4E;
+    --divi_line: #151726; //分割线
+    --bg_step: #868D9A;
+    --bg_Bottom: #313346;
+    --chat_bg: #474B62;
+    --upload_bg: #474B62;
+    --grey_bg: #474B62;
+    --input_background1: #131a2e; //质押借币input
+    --c2c_color: #fff;
+    --c2c_background: #131a2e;
+    --c2c_background1: #27293B;
+    --c2c_tab_background: #27293B;
+    --c2c_tip_background: #131a2e;
+    --selectSymbol_background: #131A2E; //自选与选择币种背景颜色
+    --options_background: #232C46; //外汇操作按钮
+    --US_tab_background: #112542;
+    --US_tabActice_background: #112542;
+    --lable_color: #B6BDD4;
+    --cont_background: #f6f6f6;
+    --delivery_left_tab_background: #1B2134;
+    --delivery_tab_background: #2A324D;
+    --search_background: #1B233B;
+    --pledgeLoan_background: #00E3FF;
+    --financialBackground: #1E2340; //理财背景
+    --footer_bg: #131A2E; //底部背景
+    --footer_color: #BEC1D2; //底部字体颜色
+    --recommend_bg: #1A2136; //首页推荐背景
+    --tab_normal_text: #999;
+    --hot-item-bg: #1B2134;
+    --second-bg: #0D1224;
+    --dot-alp: rgba(255, 255, 255, 0.3);
+    --btn-group: #000;
+    --popup-bg: #1f233d;
+    --tab-second-bg: #1b2134;
+    --filter: invert(0);
+    --chat-border: #313346;
+    --more-bg: #131A2E;
+    --fina-border: #1E2340; //理财边框
+    --financialBut: #3D476C; //取消按钮理财背景
+    --select-bg: #1C2946;
+    --foot-border: #2B314A;
+    --input-border: #131a2e;
+    --c2c-tab-bg: #27293B;
+    --step-border: #212C4E;
+    --step-bg: #15284F;
+    --news-bg-1: #1c253f;
+    --news-bg-2: #12192c;
+    --footer-border: #21273C;
+    --hot-bg-1: #1B2134;
+    --hot-bg-2: #1B2134;
+    --bz-bg: #1B2134;
+    --jp-hot-bg-1: #2E3650;
+    --jp-hot-bg-2: #1B2134;
+    --hot-text-color1: #747A8F;
+    --hot-text-color2: #B6BDD4;
+    --lower-text-color: #B8BDD1;
+    --en-hot-bg-1: #2E3650;
+    --en-hot-bg-2: #1B2134;
+    --en-stock-bg:#0D1224;
+    --down-bg: linear-gradient(180deg, #430E1D 0%, rgba(35, 35, 35, 0.8) 100%);
+    --up-bg: linear-gradient(180deg, #18382d 0%, rgba(35, 35, 35, 0.8) 100%);
+    --tab_active: #1F233D;
+    --exchange-bg: #0D1323;
+    --f10-text: #B6BDD4;
+    --quotes-btn-bg: #112542;
+    --quotes-btn-text: #1194F7;
+    --van-bg: #121a2e;
+    --ipo_card_bg: #192137;
+    --ipo_normal_text: #B7BDD1;
+    --van-step-b: #202840;
+    --van-step-s: #15284F;
+    --van-step-g: #131A2E;
+}
+
+$mainBgColor: var(--mainBgColor);
+$mainTextColor: var(--mainTextColor);
+$mainbgWhiteColor: var(--mainbgWhiteColor);
+
+$main_background: var(--main_background); //主题色
+$main2_background: var(--main2_background); //主题浅色背景
+$text_color: var(--text_color); //文字颜色
+$text_color1: var(--text_color1); //文字浅色
+$text_color2: var(--text_color2); // 白色文字
+$text_color3: var(--text_color3); // 
+$text_color4: var(--text_color4); //浅色标题背景文字颜色
+$text_color5: var(--text_color5); // 
+$text_color6: var(--text_color6); // 文字更浅色
+$tab_background: var(--tab_background); //tab切换背景颜色
+$active_line: var(--active_line); //tab选中样式颜色
+$footer_background: var(--footer_background); // 底部颜色
+$btn_main: var(--btn_main); //主题色按钮
+$color_main: var(--color_main); //主题色文字
+$btn_background: var(--btn_background); //按钮颜色
+$input_background: var(--input_background); //input背景颜色
+$cont_background1: var(--cont_background1); //title背景色
+$title_color: var(--title_color);
+$line_color: var(--line_color);
+$bg_dark: var(--bg_dark);
+$border_color: var(--border_color);
+$divi_line: var(--divi_line); //分割线
+$bg_step: var(--bg_step);
+$bg_Bottom: var(--bg_Bottom);
+$chat_bg: var(--chat_bg);
+$upload_bg: var(--upload_bg);
+$grey_bg: var(--grey_bg);
+$input_background1: var(--input_background1); //质押借币input
+$c2c_color: var(--c2c_color);
+$c2c_background: var(--c2c_background);
+$c2c_background1: var(--c2c_background1);
+$c2c_tab_background: var(--c2c_tab_background);
+$c2c_tip_background: var(--c2c_tip_background);
+$selectSymbol_background: var(--selectSymbol_background); //自选与选择币种背景颜色
+$options_background: var(--options_background); //外汇操作按钮
+$US_tab_background: var(--US_tab_background);
+$US_tabActice_background: var(--US_tabActice_background);
+$lable_color: var(--lable_color);
+$cont_background: var(--cont_background);
+$delivery_left_tab_background: var(--delivery_left_tab_background);
+$delivery_tab_background: var(--delivery_tab_background);
+$search_background: var(--search_background);
+$pledgeLoan_background: var(--pledgeLoan_background);
+$financialBackground: var(--financialBackground); //理财背景
+$financialBut: var(--financialBut); //取消按钮理财背景
+$footer_bg: var(--footer_bg);
+$recommend-bg: var(--recommend_bg);
+$footer_color: var(--footer_color);
+$tab_normal_text: var(--tab_normal_text);
+$hot-item-bg: var(--hot-item-bg);
+$second-bg: var(--second-bg);
+$dot-alp: var(--dot-alp);
+$btn-group: var(--btn-group);
+$popup-bg: var(--popup-bg);
+$tab-second-bg: var(--tab-second-bg);
+$filter :var(--filter);
+$chat-border: var(--chat-border);
+$more-bg: var(--more-bg);
+$fina-border: var(--fina-border);
+
+$select-bg: var(--select-bg);
+$foot-border: var(--foot-border);
+$input-border: var(--input-border);
+$c2c-tab-bg: var(--c2c-tab-bg);
+$step-border: var(--step-border);
+$step-bg: var(--step-bg);
+$news-bg-1: var(--news-bg-1);
+$news-bg-2: var(--news-bg-2);
+$footer-border: var(--footer-border);
+$hot-bg-1: var(--hot-bg-1);
+$hot-bg-2: var(--hot-bg-2);
+$bz-bg: var(--bz-bg);
+$jp-hot-bg-1: var(--jp-hot-bg-1);
+$jp-hot-bg-2: var(--jp-hot-bg-2);
+$hot-text-color1: var(--hot-text-color1);
+$hot-text-color2: var(--hot-text-color2);
+$lower-text-color: var(--lower-text-color);
+$down-bg: var(--down-bg);
+$up-bg: var(--up-bg);
+$tab_active: var(--tab_active);
+$exchange-bg: var(--exchange-bg);
+$f10-text: var(--f10-text);
+$quotes-btn-bg: var(--quotes-btn-bg);
+$quotes-btn-text: var(--quotes-btn-text);
+$van-bg: var(--van-bg);
+$ipo_card_bg: var(--ipo_card_bg);
+$ipo_normal_text: var(--ipo_normal_text);
+$van-step-b: var(--van-step-b);
+$van-step-s: var(--van-step-s);
+$van-step-g: var(--van-step-g);
+$en-hot-bg-1: var(--en-hot-bg-1);
+$en-hot-bg-2: var(--en-hot-bg-2);
+$en-stock-bg: var(--en-stock-bg);
+
+
+
+/* 颜色值 */
+$white: #ffffff;
+$black: #000000;
+$dark-black: #22262F;
+// $grey:#868C9A;
+$grey: #E5E7ED;
+$dark-grey: #868C9A;
+$light-grey: #C8CAD2;
+$border-grey: #E5E7ED;
+$blue: #1678FF;
+$light-blue: #1199FA;
+$red: #F43368;
+$green: #06CDA5;
+$purple: #9A4DFD;
+$night: #131A2E;
+$main-btn-color: #fff;
+
+// 第三版
+$c-blue: #1199FA;
+$c-red: #DE5D56;
+
+// 主题-蓝涨红跌
+.blue-up-color {
+    color: $c-blue  !important;
+}
+
+.red-down-color {
+    color: $c-red  !important;
+}
+
+.blue-up-bg {
+    background: $c-blue  !important;
+}
+
+.red-down-bg {
+    background: $c-red  !important;
+}
+
+.mainBackground {
+    background: $main_background;
+}
+
+.textColor {
+    color: $text_color
+}
+
+.textColor1 {
+    color: $text_color1
+}
+
+.textColor2 {
+    color: $text_color2
+}
+
+.textColor3 {
+    color: $text_color3
+}
+
+.textColor4 {
+    color: $text_color4
+}
+
+.c2cColor {
+    color: $c2c_color
+}
+
+.tabBackground {
+    background: $tab_background;
+}
+
+.activeLine {
+    background: $active_line;
+}
+
+.bgFooter {
+    background: $footer_background;
+}
+
+.btnMain {
+    background: $btn_main;
+}
+
+.colorMain {
+    color: $color_main;
+}
+
+.borderMain {
+    border: 1px solid $color_main;
+}
+
+.borderColor {
+    border: 1px solid $border_color;
+}
+
+.btnBackground {
+    background: $btn_background;
+}
+
+.inputBackground {
+    background: $input_background;
+}
+
+.inputBackground1 {
+    background: $input_background1;
+}
+
+.contBackground {
+    background: $cont_background;
+}
+
+.contBackground1 {
+    background: $cont_background1;
+}
+
+.titleColor {
+    color: $title_color;
+}
+
+.border-b-color {
+    border-bottom: 1px solid $line_color;
+}
+
+.border-t-color {
+    border-top: 1px solid $line_color;
+}
+
+.bgDark {
+    background: $bg_dark;
+}
+
+.diviLine {
+    background: $divi_line;
+}
+
+.bgStep {
+    background: $bg_step;
+}
+
+.bgBottom {
+    background: $bg_Bottom;
+}
+
+.chatBg {
+    background: $chat_bg;
+}
+
+.uploadBg {
+    background: $upload_bg;
+}
+
+.greyBg {
+    background: $grey_bg;
+}
+
+.c2cBackground {
+    background: $c2c_background;
+}
+
+.c2cBackground1 {
+    background: $c2c_background1;
+}
+
+.c2cTabBackground {
+    background: $c2c_tab_background;
+}
+
+.c2cTabBg {
+    background: $c2c-tab-bg;
+}
+
+.c2cTipBackground {
+    background: $c2c_tip_background;
+}
+
+.main2_background {
+    background: $main2_background;
+}
+
+.delivery_tab_background {
+    background: $delivery_tab_background;
+}
+
+.delivery_left_tab_background {
+    background: $delivery_left_tab_background;
+}
+
+.pledgeLoan_background {
+    background: $pledgeLoan_background;
+}
+
+.text_color6 {
+    color: $text_color6;
+}
+
+.red {
+    color: $red;
+}
+
+.green {
+    color: $green;
+}
+
+.financialBackground {
+    background: $financialBackground;
+}
+
+.financialBut {
+    background: $financialBut;
+}
+
+.popup-bg {
+    background-color: $popup-bg  !important;
+}
+
+.color-white {
+    color: $white  !important;
+}
+
+.fina-border {
+    border: 1px solid $fina-border;
+}
+
+
+.w-half {
+    width: 50%;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.w-screen {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.h-screen {
+    height: 100%;
+}
+
+.h-1000 {
+    height: 1000px;
+}
+
+/* background */
+.bg-white {
+    background: $white;
+}
+
+.bg-black {
+    background: #131A2E;
+}
+
+.bg-night {
+    background: #131A2E;
+    color: #fff;
+}
+
+.bg-night1 {
+    background: #000;
+}
+
+.bg-grey {
+    background: $grey;
+}
+
+.bg-dark-grey {
+    background: $dark-grey
+}
+
+;
+
+.bg-light-grey {
+    background: $light-grey;
+}
+
+.bg-red {
+    background: $red;
+}
+
+.bg-green {
+    background: $green;
+}
+
+.bg-blue {
+    background: $blue;
+}
+
+.bg-dark-blue {
+    background: #6C52E6;
+}
+
+.bg-light-blue {
+    background: #7F81FD;
+}
+
+.bg-f5 {
+    background: #F5F5F5
+}
+
+.bg-none {
+    background: none;
+}
+
+.bg-grey-f3 {
+    background: $grey;
+}
+
+
+/* color */
+.text-white {
+    color: $white;
+}
+
+.text-black {
+    color: $black;
+}
+
+.text-dark-black {
+    color: $dark-black;
+}
+
+.text-grey {
+    color: $dark-grey;
+}
+
+.text-blue {
+    color: $blue;
+}
+
+.text-light-blue {
+    color: $light-blue;
+}
+
+.text-red {
+    color: $red;
+}
+
+.text-green {
+    color: $green;
+}
+
+.text-purple {
+    color: $purple;
+}
+
+.text-night {
+    color: $night;
+}
+
+/* border-color */
+.border-white {
+    border-color: $white;
+}
+
+.border-black {
+    border-color: $black;
+}
+
+.border-grey {
+    border-color: $grey;
+}
+
+.border-light-grey {
+    border-color: $light-grey;
+}
+
+.border-red {
+    border-color: $red;
+}
+
+.border-green {
+    border-color: $green;
+}
+
+.border-blue {
+    border-color: $blue;
+}
+
+.border-light-blue {
+    border-color: $light-blue;
+}
+
+.border-solid {
+    border-style: solid;
+    border-color: $border-grey;
+}
+
+.border-b-grey {
+    border-bottom: 1px solid $border-grey;
+}
+
+.border-r-grey {
+    border-right: 1px solid $border-grey;
+}
+
+.border-t-grey {
+    border-top: 1px solid $border-grey;
+}
+
+.border-solid-blue {
+    border: 1px solid $blue;
+}
+
+.border-solid-grey {
+    border: 1px solid $grey;
+}
+
+.border-solid-dark-grey {
+    border: 1px solid $dark-grey;
+}
+
+.border-solid-light-grey {
+    border: 1px solid $border-grey;
+}
+
+.border-b-dashed-black {
+    border-bottom: 1px dashed #000;
+}
+
+// .border-b-grey { border-bottom: 1px solid #E5E7ED;}
+// .border-r-grey { border-right: 1px solid #E5E7ED;}
+
+// overwrite vant
+.mining-pledge {
+    .van-tabs__wrap {
+        height: 145px !important;
+
+        .van-tab {
+            &:first-child {
+                border-right: 1px solid $border-grey;
+            }
+        }
+    }
+}
+
+:root {
+    --theme-color: #1194F7;
+}

@@ -1,0 +1,34 @@
+.recharge-text{
+    background-color:$tab_background;
+    max-width:260px;
+    height:60px;
+    line-height:60px;
+    margin:52px 0;
+    color: $text_color;
+}
+
+.mt20{
+    margin-top:20px;
+}
+.mb82{
+    margin-bottom:82px;
+}
+.common-round{
+    width:16px;
+    height:16px;
+    border-radius:100%;
+    margin-right:15px;
+    margin-top:15px;
+}
+
+.yellow-round{
+    background-color:#F5D658;
+}
+
+.green-round{
+    background-color:$green;
+}
+
+.red-round{
+    background-color:red;
+}

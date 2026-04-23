@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/relicon.png" />
+  <link rel="manifest" href="./public/desk/manifest.json">
+  <meta name="package" content="20231125T0359">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#131A2E">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#131A2E" />
+  <link rel="apple-touch-icon" href="./public/img/App.png">
+  <title>Composite</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <!-- <script>
+    (function (win) {
+      let scripts = document.getElementsByTagName('script')
+      for(let i = 0; i < scripts.length; i++) {
+        let script = scripts[i]
+        let url = script.getAttribute("src")
+        let type = script.getAttribute("type")
+        let scriptText = script.innerHTML
+        // 如果有引用地址或者 type 属性 为 "module" 则代表该标签需要更改
+        if (url || type === "module") {
+          let tag=document.createElement('script');
+          tag.setAttribute('url',url);
+          tag.innerHTML = scriptText
+          // 删除原先的标签
+          script.remove()
+          document.getElementsByTagName('head')[0].appendChild(tag)
+        }
+      }
+    })(window)
+  </script> -->
+</body>
+
+</html>
