@@ -1,0 +1,140 @@
+server:
+  port: 8085
+spring:
+  servlet:
+    session:
+      timeout: 14400
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    # 东八区时区
+    url: jdbc:mysql://localhost:3306/auyeung-root?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true
+    # 纽约时区 - GMT-5
+    username: auyeung-root
+    password: auyeung-root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 配置初始化大小/最小/最大
+      initial-size: 20
+      # 最小连接池数量
+      min-idle: 20
+      # 最大连接池数量
+      max-active: 50
+      # 获取连接时最大等待时间，单位毫秒。
+      # 配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁。
+      max-wait: 6000
+      # 间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在连接池中的最小生存时间，单位毫秒。(连接保持空闲而不被驱逐的最小时间)
+      min-evictable-idle-time-millis: 300000
+      max-evictable-idle-time-millis: 900000
+      # 用来检测连接是否有效的sql，要求是一个查询语句，常用select 'x'。
+      # 如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会起作用。
+      validation-query: SELECT 1
+      # 建议配置为true，不影响性能，并且保证安全性。
+      # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+      test-while-idle: true
+      # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-borrow: false
+      # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-return: false
+      # 连接池中的minIdle数量以内的连接，空闲时间超过minEvictableIdleTimeMillis，则会执行keepAlive操作。
+      keep-alive: true
+      phy-max-use-count: 1000
+      # 生产环境中不配置以下配置（影响性能）
+      # 超过时间限制是否回收
+      remove-abandoned: false
+      # 超时时间；单位为秒。1800秒=30分钟
+      remove-abandoned-timeout: 900
+      # 关闭abandoned连接时输出错误日志
+      log-abandoned: true
+  cache:
+    type: redis
+    redis:
+      cache-null-values: true
+  redis:
+    redisson:
+      config: classpath:redisson/redisson-dev.yml
+      config-spider: classpath:redisson/redisson-spider.yml
+    host: localhost
+    port: 6379
+    password: auyeung-root
+  freemarker:
+    check-template-location: false
+logging:
+  config: classpath:logback/logback-dev.xml
+
+jetcache:
+  # 统计间隔，0表示不统计，开启后定期在控制台输出缓存信息
+  statIntervalMinutes: 10
+  # 是否把cacheName作为远程缓存key前缀
+  areaInCacheName: true
+  # @Cached和@CreateCache自动生成name的时候，为了不让name太长，hiddenPackages指定的包名前缀被截掉
+  hiddenPackages: com.yami.trading
+  # 本地缓存配置
+  local:
+    # default表示全部生效，也可以指定某个cacheName，可以配置更多的area(缓存分类，相当于命名空间)
+    # 对应@Cached和@CreateCache的area属性。注意如果注解上没有指定area，默认值是"default"
+    default:
+      # 已支持可选：linkedhashmap、caffeine
+      type: linkedhashmap
+      # key转换器
+      keyConvertor: fastjson
+      # 以毫秒为单位，指定更新后多长时间就让缓存失效，当前只有本地缓存支持。0表示不使用这个功能
+      expireAfterWriteInMillis: 100000
+  # 远程缓存配置
+  remote:
+    default:
+      # 缓存类型。tair、redis为当前支持的远程缓存
+      type: redis
+      # 其他可选：fastjson2 / jackson / fastjson
+      keyConvertor: fastjson
+      # jetcahe2.7的两级缓存支持更新以后失效其他JVM中的local cache
+      broadcastChannel: jetcacheTrading
+      # 采用Java序列化存储,其他可选：kryo/kryo5
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${spring.redis.host}
+      port: ${spring.redis.port}
+      password: ${spring.redis.password}
+      database: 1
+
+db:
+  ip: localhost
+  port: 3306
+  database.name: auyeung-root
+  username: auyeung-root
+  password: auyeung-root
+  backup.path: /backup
+
+http.server.host: http://localhost:8080/images/
+admin_rest_url: https://enjdhdg.site/api
+images.dir: /mydata/img/
+admin_url: https://localhost:8080/admin
+web_url: http://localhost:8080/wap/
+
+email:
+  host: smtp.gmail.com
+  username: giteeac@gmail.com
+  password: bqbfgogerlacrxvj
+  from: smtp.gmail.com
+
+exchange:
+  rate: https://openexchangerates.org/api/latest.json?app_id=1de9ea307c074f2198d1052117464aba
+
+config:
+  timezone:
+    # 配置当前盘口存储数据使用的时区
+    record: GMT+8
+    # 配置当前盘口展示数据使用的时区
+    show: GMT+8
+
+sign:
+  encryption-key: d78585e683ed11eaa13f0242ac110003
+  version-number: 
