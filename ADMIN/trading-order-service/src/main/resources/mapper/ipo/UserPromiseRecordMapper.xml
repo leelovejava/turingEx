@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.ipo.UserPromiseRecordMapper">
+
+
+    <select id="sumPromise" resultType="com.yami.trading.bean.ipo.dto.SumUserPromiseDto">
+        SELECT SUM(deduct_usdt)  as  sumUdst ,SUM(deduct_number)  as  deductNumber,count(*) as 'count' FROM t_user_promise_record where
+           user_id = #{userId} and product_code=#{productCode}
+    </select>
+
+
+    <select id="pageUserPromiseData" resultType="com.yami.trading.bean.ipo.dto.UserPromiseListDto">
+
+    SELECT * FROM  t_user_promise_record  pr LEFT JOIN t_apply_new_shares_order  nss
+       ON pr.order_no=nss.order_no  WHERE pr.user_id=#{userId}
+        <if test="symbols != null and symbols.size() >0">
+            AND pr.product_code in
+            <foreach collection="symbols" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+    <select id="pagePromiseData" resultType="com.yami.trading.bean.ipo.dto.UserListDto">
+
+       SELECT pr.*,nss.sub_price as subPrice,
+        nss.winning_number,nss.required_subscribe,nss.required_number,
+              u.user_name, u.user_code, u.real_name FROM  t_user_promise_record  pr LEFT JOIN tz_user  u
+       ON pr.user_id=u.user_id
+         LEFT JOIN t_apply_new_shares_order  nss
+        ON pr.order_no=nss.order_no
+       WHERE 1=1
+
+        <if test="children != null and children.size() >0">
+            AND nss.user_id in
+            <foreach collection="children" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+
+        <if test="userCode!=null and userCode!=''">
+            and (u.user_name=#{userCode} or u.user_code=#{userCode})
+        </if>
+
+        <if test="productCode!=null and productCode!=''">
+            and pr.product_code=#{productCode}
+        </if>
+
+        <if test="roleName!=null and roleName!=''">
+            and u.role_name=#{roleName}
+        </if>
+
+        <if test="name!=null and name!=''">
+            and pr.name=#{name}
+        </if>
+        <if test="productName!=null and productName!=''">
+            and pr.product_name=#{productName}
+        </if>
+
+       <if test="status!=null and status!=''" >
+           and pr.status=#{status}
+
+       </if>
+        order by pr.create_time desc
+    </select>
+
+
+
+    <select id="topData" resultType="com.yami.trading.bean.ipo.dto.PromiseTopDto">
+           SELECT SUM(pr.deduct_usdt) AS 'subscriptionLimit',SUM(nss.winning_number*nss.sub_price) AS 'winningQuota' FROM  t_user_promise_record  pr LEFT JOIN t_apply_new_shares_order  nss
+    ON pr.order_no=nss.order_no   WHERE pr.user_id=#{userId}
+
+    </select>
+
+
+
+</mapper>

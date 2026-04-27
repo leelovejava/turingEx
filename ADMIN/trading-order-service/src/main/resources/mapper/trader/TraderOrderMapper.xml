@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.trader.TraderOrderMapper">
+
+    <select id="listDatas" resultType="java.util.Map">
+
+        SELECT trader_order.SYMBOL symbol, trader_order.TRADE_AVG_PRICE trade_avg_price, trader_order.DIRECTION direction, trader_order.STATE state,trader_order.PROFIT profit,
+               trader_order.CLOSE_AVG_PRICE close_avg_price,trader_order.CHANGE_RATIO change_ratio , DATE_FORMAT(trader_order.CLOSE_TIME, '%Y-%m-%d %H:%i:%S') close_time,
+               DATE_FORMAT(trader_order.CREATE_TIME, '%Y-%m-%d %H:%i:%S') create_time, trader_order.VOLUME_OPEN volume_open,item.NAME itemname, trader_order.ORDER_NO order_no, trader_order.DEL_FLAG del_flag,
+               trader_order.LEVER_RATE lever_rate, trader.FOLLOWER_NOW follow_now, trader.FOLLOWER_MAX follow_max
+        FROM T_TRADER_ORDER trader_order
+        LEFT JOIN T_ITEM item ON trader_order.SYMBOL = item.SYMBOL
+        LEFT JOIN T_TRADER trader ON  trader.PARTY_ID   = trader_order.PARTY_ID
+        WHERE 1 = 1
+        and trader_order.PARTY_ID = #{partyId}
+        ORDER BY trader_order.CREATE_TIME DESC
+        LIMIT #{pageNo}, #{pageSize}
+    </select>
+
+    <select id="listMDatas" resultType="java.util.Map">
+        SELECT trader.NAME trader_name,party.user_name username,party.user_code usercode,party.role_name rolename,trader_order.UUID id,trader_order.STATE state,
+               trader_order.VOLUME_OPEN  volume_open,trader_order.ORDER_NO order_no,DATE_FORMAT(trader_order.CREATE_TIME, '%Y-%m-%d %H:%i:%S') create_time,DATE_FORMAT(trader_order.CLOSE_TIME, '%Y-%m-%d %H:%i:%S') close_time,
+               trader_order.TRADE_AVG_PRICE trade_avg_price,trader_order.close_avg_price CLOSE_AVG_PRICE,trader_order.CLOSE_TIME close_time,trader_order.CHANGE_RATIO change_ratio,
+               trader_order.DIRECTION direction,trader_order.PROFIT profit,item.NAME itemname, trader_order.DEL_FLAG del_flag, trader_order.LEVER_RATE lever_rate, trader.FOLLOWER_NOW follow_now, trader.FOLLOWER_MAX follow_max
+        FROM T_TRADER_ORDER trader_order
+        LEFT JOIN TZ_USER party ON  party.user_id  = trader_order.PARTY_ID
+        LEFT JOIN T_TRADER trader ON  trader.PARTY_ID   = trader_order.PARTY_ID
+        LEFT JOIN T_ITEM item ON trader_order.SYMBOL=item.SYMBOL
+        WHERE 1 = 1
+        <if test="null != name and name != ''">
+            AND trader.NAME =#{name}
+        </if>
+        <if test="null != rolename and rolename != ''">
+            and party.role_name =#{rolename}
+        </if>
+        <if test="null != username and username != ''">
+            AND (party.user_name like CONCAT('%',#{username},'%') OR party.user_code like CONCAT('%',#{username},'%'))
+        </if>
+        ORDER BY trader_order.CREATE_TIME DESC
+        LIMIT #{pageNo}, #{pageSize}
+    </select>
+</mapper>

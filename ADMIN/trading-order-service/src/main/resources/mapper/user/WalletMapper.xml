@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.user.WalletMapper">
+
+  <select id="sumMoney" resultType="java.math.BigDecimal">
+      SELECT IFNULL(SUM(w.MONEY),0) AS totle_money FROM tz_wallet w LEFT JOIN tz_user u ON u.user_id=w.user_id
+      WHERE 1=1 AND u.role_name ='MEMBER'
+
+
+      <if test=" children !=null and children.size > 0">
+          and u.user_id  in
+          <foreach collection="children" item="item" index="index" open="(" close=")" separator=",">
+              #{item}
+          </foreach>
+      </if>
+  </select>
+
+
+
+
+</mapper>

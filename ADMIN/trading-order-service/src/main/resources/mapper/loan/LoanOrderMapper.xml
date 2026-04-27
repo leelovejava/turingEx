@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.loan.LoanOrderMapper">
+    <select id="pagedQuery" resultType="java.util.HashMap">
+
+        SELECT loan.uuid id, loan.order_no orderNo, loan.party_id partyId, loan.order_type orderType,
+        loan.loan_amount loanAmount, loan.state state, loan.loan_currency loanCurrency,
+        loan.pledge_currency pledgeCurrency, loan.pledge_amount pledgeAmount, loan.pledge_type pledgeType, loan.pledge_rate pledgeRate,
+        loan.debt_amount debtAmount, loan.interest_amount interestAmount, loan.hourly_rate hourlyRate, loan.loan_cycle loanCycle,
+        loan.create_time createTime, loan.expire_time expireTime,
+        party.user_name username,party.user_code usercode,party.role_name rolename
+        FROM t_loan_order loan
+        LEFT JOIN tz_user party ON loan.party_id = party.user_id
+        WHERE 1 = 1
+
+        <if test="userParam!=null and userParam!=''">
+            AND (party.user_name like CONCAT('%', #{userParam}, '%') OR party.user_code like CONCAT('%', #{userParam}, '%') )
+        </if>
+
+        <if test="orderNo!=null and orderNo!=''">
+            and loan.order_no =#{orderNo}
+        </if>
+
+        <if test="state!=null and state!=''">
+            and loan.state =#{state}
+        </if>
+
+
+        <if test="rolename!=null and rolename!=''">
+            and party.role_name =#{rolename}
+        </if>
+
+        <if test="children != null and children.size() >0">
+            AND loan.party_id in
+            <foreach collection="children" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+
+        order by loan.CREATE_TIME desc
+    </select>
+</mapper>

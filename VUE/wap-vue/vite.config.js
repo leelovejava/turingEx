@@ -8,6 +8,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import legacy from '@vitejs/plugin-legacy';
 
 const isVisualizer = process.env.VISUALIZER === 'show'
+const useLegacy = process.env.BUILD_LEGACY === 'true'
 export default defineConfig({
   base: '/syn/', 
   plugins: [
@@ -17,15 +18,15 @@ export default defineConfig({
     }),
     DefineOptions(),
     isVisualizer && visualizer({ gzipSize: true }),
-    legacy({
+    useLegacy && legacy({
       targets: ['defaults', 'not IE 11'],
       renderLegacyChunks: false,
     }),
-  ],
+  ].filter(Boolean),
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/assets/css/variable.scss";`
+        additionalData: `@use "@/assets/css/variables.scss" as *;`
       },
     }
   },
@@ -55,6 +56,7 @@ export default defineConfig({
   build: {
     target: 'esnext',
     assetsDir: "static",
+    reportCompressedSize: false,
     rollupOptions: {
       input: {
         index: path.resolve(__dirname, "index.html"),

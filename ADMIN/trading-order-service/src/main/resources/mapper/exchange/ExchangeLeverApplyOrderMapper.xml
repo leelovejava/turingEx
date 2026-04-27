@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.exchangelever.ExchangeLeverApplyOrderMapper">
+    <select id="listPage" resultType="com.yami.trading.bean.exchange.dto.ExchangeLeverApplyOrderDto">
+        select
+        orders.uuid ,
+        orders.symbol ,
+        orders.order_no ,
+        orders.direction ,
+        orders.offset ,
+        orders.volume_open ,
+        orders.lever_rate ,
+        orders.state ,
+        orders.order_price_type ,
+        orders.stop_price_loss ,
+        orders.create_time ,
+        orders.stop_price_profit ,
+        orders.price ,
+        item.name itemname,
+        party.user_name ,
+        party.user_code ,
+        party.role_name
+        from
+        t_exchange_lever_apply_order orders
+        left join tz_user party on orders.party_id = party.user_id
+        left join t_item item on orders.symbol = item.symbol
+        where
+        1 = 1
+        <if test="roleName!=null and roleName!=''">
+            and party.role_name=#{rolename}
+        </if>
+
+        <if test="status!=null and status!=''">
+            and orders.state=#{status}
+        </if>
+        <if test="orderNo!=null and orderNo!=''">
+            and orders.order_no=#{orderNo}
+        </if>
+        <if test="userName!=null and userName!=''">
+            and (party.user_code=#{userName} or party.user_name=#{userName})
+        </if>
+        <if test=" userIds !=null and userIds.size > 0">
+            and u.user_id in
+            <foreach collection="userIds" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+
+        order by orders.create_time desc
+    </select>
+</mapper>

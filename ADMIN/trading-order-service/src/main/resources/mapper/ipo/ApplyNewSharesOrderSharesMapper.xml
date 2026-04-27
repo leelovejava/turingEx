@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.ipo.ApplyNewSharesOrderSharesMapper">
+
+
+    <select id="pageData" resultType="com.yami.trading.bean.ipo.dto.ApplyNewSharesOrderSharesDto">
+        SELECT answ.*, u.user_name, u.user_code, u.real_name
+        FROM t_apply_new_shares_order answ
+                 LEFT JOIN tz_user u ON answ.user_id = u.user_id
+        where 1 = 1
+
+        <if test="orderNo!=null and orderNo!=''">
+            and answ.order_no=#{orderNo}
+        </if>
+        <if test="status!=null and status!=''">
+            and answ.status=#{status}
+        </if>
+
+        <if test="symbolCode!=null and symbolCode!=''">
+            and answ.symbol_code  like  CONCAT('%', #{symbolCode}, '%')
+        </if>
+
+        <if test="children != null and children.size() >0">
+            AND answ.user_id in
+            <foreach collection="children" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+
+        <if test="symbolName!=null and symbolName!=''">
+            and answ.symbol_name  like  CONCAT('%', #{symbolName}, '%')
+        </if>
+
+        <if test="userName!=null and userName!=''">
+            and u.user_name=#{userName} or u.user_code=#{userName}
+        </if>
+         order by answ.create_time desc
+    </select>
+
+    <select id="sumSpotStock" resultType="com.yami.trading.bean.ipo.dto.SumSpotStockDto">
+        SELECT symbol_code, SUM(winning_number) AS 'sumWinningNumber'
+        FROM t_apply_new_shares_order
+        WHERE `status` = 2
+          AND user_id = #{userId}
+        GROUP BY symbol_code
+    </select>
+
+    <select id="sumWinningNumberByUserId" resultType="java.math.BigDecimal">
+        SELECT  SUM(winning_number) AS 'sumWinningNumber'
+        FROM t_apply_new_shares_order
+        WHERE `status` = 2
+          AND user_id = #{userId} and symbol_code=#{symbolCode}
+    </select>
+
+</mapper>
