@@ -57,15 +57,6 @@
                         </div>
                         <div class="mt-3 text-20 h-5 textColor">{{ $t('credentObverse') }}</div>
                     </div>
-                    <div class="flex-1 flex flex-col text-center justify-center items-center">
-                        <div class="upload-wrap">
-                            <img src="@/assets/image/kyc/2.png" alt="" class="w-full"
-                                v-if="[1, 2].includes(status) && fileList.length === 0" />
-                            <van-uploader v-model="fileList" :max-count="1" :disabled="disabled()" :deletable="!disabled()"
-                                :after-read="afterRead" @click-upload="onClickUpload('fileList')" v-else />
-                        </div>
-                        <div class="mt-3 text-20 h-5 textColor">{{ $t('handCredent') }}</div>
-                    </div>
                 </div>
             </div>
             <template v-if="!disabled()">
@@ -111,7 +102,6 @@ const name = ref('')
 
 const frontFile = ref([])
 const reverseFile = ref([])
-const fileList = ref([])
 const curFile = ref('frontFile')
 const status = ref(-1) // 0
 const imgs = ref([])
@@ -132,7 +122,6 @@ const fetchInfo = () => {   // 获取状态
             name.value = data.name
             frontFile.value = data.idimg_1 ? [{ url: data.idimg_1_path }] : []
             reverseFile.value = data.idimg_2 ? [{ url: data.idimg_2_path }] : []
-            fileList.value = data.idimg_3 ? [{ url: data.idimg_3_path }] : []
         }
     })
 }
@@ -157,8 +146,6 @@ const afterRead = (file) => { /// 处理文件
             frontFile.value = [file]
         } else if (curFile.value == 'reverseFile') {
             reverseFile.value = [file]
-        } else {
-            fileList.value = [file]
         }
         // [curFile.value].value = [file]
     }).catch(err => {
@@ -192,7 +179,7 @@ const onSubmit = () => {
         showToast(t('entryCredent'))
         return
     }
-    if (!frontFile.value.length || !reverseFile.value.length || !fileList.value.length) {
+    if (!frontFile.value.length || !reverseFile.value.length) {
         showToast(t('uploadComplete'))
         return
     }
@@ -204,7 +191,6 @@ const onSubmit = () => {
             idnumber: idnumber.value,
             frontFile: frontFile.value,
             reverseFile: reverseFile.value,
-            fileList: fileList.value,
             countryName: countryCode.value // countryName 存储的 code, 回来再遍历
         }).then(() => {
             showToast(t('submitSuccess'))

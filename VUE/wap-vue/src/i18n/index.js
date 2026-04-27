@@ -12,62 +12,65 @@ import gr from './modules/gr'
 import Italy from './modules/Italy'
 import SpanishLocal from './modules/es'
 import PortugueseLocal from './modules/pt'
+
+const SUPPORT_LOCALES = ['en', 'CN', 'zh-CN', 'Korean', 'Japanese', 'de', 'fr', 'vi', 'th', 'Italy', 'es', 'pt', 'gr']
+
 const lang = (() => {
   try {
     const raw = window.localStorage.getItem('lang')
-    return raw ? JSON.parse(raw) : 'en'
+    const current = raw ? JSON.parse(raw) : 'en'
+    return SUPPORT_LOCALES.includes(current) ? current : 'en'
   } catch (e) {
     return 'en'
   }
 })()
 
 const messages = {
-  'en': {
+  en: {
     ...enLocale
   },
-  'CN': {
+  CN: {
     ...cnLocale
   },
   'zh-CN': {
     ...zhcnLocale
   },
-  'Korean': {
+  Korean: {
     ...korcnLocale
   },
-  'Japanese': {
+  Japanese: {
     ...japcnLocale
   },
-  'de': {
+  de: {
     ...Deutsch
   },
-  'fr': {
+  fr: {
     ...fr
   },
-  'vi': {
+  vi: {
     ...vi
   },
-  'th': {
+  th: {
     ...th
   },
-  'Italy': {
+  Italy: {
     ...Italy
   },
-  'es': {
+  es: {
     ...SpanishLocal
   },
-  'pt': {
+  pt: {
     ...PortugueseLocal
   },
-  'gr': {
+  gr: {
     ...gr
   }
 }
 
-
 const i18n = createI18n({
   legacy: false,
-  locale: lang, // 首先从缓存里拿，没有的话就用浏览器语言，
-  fallbackLocale: 'en', // 设置备用语言
+  locale: lang,
+  fallbackLocale: 'en',
   messages,
 })
 

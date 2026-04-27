@@ -41,7 +41,7 @@
     <!-- <div class="divider"></div> -->
     <div v-if="userStore.userInfo && userStore.userInfo.token">
       <van-cell-group :title="t('快捷入口')" :border="false"></van-cell-group>
-      <van-grid class="van-grid-main" :column-num="5" :border="false">
+      <van-grid class="van-grid-main" :column-num="4" :border="false">
         <van-grid-item v-for="(item, index) in quickList" :key="index" icon="photo-o" :to="item.path"
           :text="t(item.name)">
           <template #icon>
@@ -158,7 +158,7 @@ const state = reactive({
 });
 const quickList = reactive([
   {
-    name: "安全",
+    name: "safe",
     path: "/safety",
     icon: new URL(
       `../../assets/theme/${thStore.theme}/image/assets-center/fast-icon2.png`,
@@ -166,15 +166,7 @@ const quickList = reactive([
     ),
   },
   {
-    name: "修改密码",
-    path: "/changePassword",
-    icon: new URL(
-      `../../assets/theme/${thStore.theme}/image/assets-center/fast-icon3.png`,
-      import.meta.url
-    ),
-  },
-  {
-    name: "账变记录",
+    name: "\u8d26\u53d8\u8bb0\u5f55",
     path: "/cryptos/accountChange",
     icon: new URL(
       `../../assets/theme/${thStore.theme}/image/assets-center/fast-icon1.png`,
@@ -182,7 +174,7 @@ const quickList = reactive([
     ),
   },
   {
-    name: "邀请推广",
+    name: "\u9080\u8bf7\u63a8\u5e7f",
     path: "/promote",
     icon: new URL(
       `../../assets/theme/${thStore.theme}/image/assets-center/fast-icon4.png`,

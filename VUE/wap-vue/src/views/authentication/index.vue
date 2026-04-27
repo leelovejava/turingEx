@@ -64,15 +64,6 @@
               </div>
               <div class="text-28 h-10 textColor1">{{ $t('credentObverse') }}</div>
             </div>
-            <div class="flex-1 flex flex-col text-center justify-center items-center">
-              <div class="upload-wrap">
-                <img src="../../assets/image/kyc/2.png" alt="" class="w-full"
-                  v-if="[1, 2].includes(status) && fileList.length === 0" />
-                <van-uploader v-model="fileList" :max-count="1" :disabled="disabled()" :deletable="!disabled()"
-                  :after-read="afterRead" @click-upload="onClickUpload('fileList')" v-else />
-              </div>
-              <div class="text-28 h-10" style="color:#868D9A;">{{ $t('handCredent') }}</div>
-            </div>
           </div>
         </div>
         <template v-if="!disabled()">
@@ -120,13 +111,11 @@ const idnumber = ref('')
 const name = ref('')
 const frontFile = ref([])
 const reverseFile = ref([])
-const fileList = ref([])
 const curFile = ref('frontFile')
 const status = ref('')
 const imgs = ref([])
 const idcard_path_front_path = ref('')
 const idcard_path_back_path = ref('')
-const idcard_path_hold_path = ref('')
 const resultArr = ref(['small-success_' + t('applynoView'), 'identifing_' + t('reviewing'), 'small-success_' + t('passView'), 'icon-close_' + t('noPassView')])
 const show = ref(false)
 const controlChild = ref(null)
@@ -151,7 +140,6 @@ const fetchInfo = () => {   // 获取状态
       name.value = data.name
       frontFile.value = data.idimg_1 ? [{ url: data.idimg_1_path, resURL: data.idimg_1 }] : []
       reverseFile.value = data.idimg_2 ? [{ url: data.idimg_2_path, resURL: data.idimg_2 }] : []
-      fileList.value = data.idimg_3 ? [{ url: data.idimg_3_path, resURL: data.idimg_3 }] : []
     }
   })
 }
@@ -203,7 +191,7 @@ const onSubmit = () => {
     showToast(t('entryCredent'))
     return
   }
-  if (!frontFile.value.length || !reverseFile.value.length || !fileList.value.length) {
+  if (!frontFile.value.length || !reverseFile.value.length) {
     showToast(t('uploadComplete'))
     return
   }
@@ -212,7 +200,6 @@ const onSubmit = () => {
     idnumber: idnumber.value,
     frontFile: frontFile.value,
     reverseFile: reverseFile.value,
-    fileList: fileList.value,
     countryName: countryCode.value // this.countryName 存储的 code, 回来再遍历
   }).then(() => {
     showToast(t('submitSuccess'))

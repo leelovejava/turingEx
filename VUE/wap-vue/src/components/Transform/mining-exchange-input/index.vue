@@ -10,7 +10,7 @@
     <div style="box-sizing: border-box"
       class="w-full rounded mt-5 px-3 flex items-center box-border py-3 inputBackground">
       <div class="flex border-r-gray border-white items-center" @click="onShowActionSheet">
-        <img :src="`${HOST_URL}/symbol/${type == 1 ? iconImg1 : iconImg2}.png`" alt="logo"
+        <img :src="`${FILE_URL}/symbol/${type == 1 ? iconImg1 : iconImg2}.png`" alt="logo"
           class="rounded-full mr-5 currency-icon" />
         <span class="text-26 mr-5 w-16 textColor">{{ type == 1 ? coin.toUpperCase() : coin1.toUpperCase() }}</span>
         <img src="./icon-arrow.png" alt="logo" class="icon-arrow" />
@@ -33,7 +33,7 @@
           <div class="tab-item flex-1 textColor" :class="[activeIndex == 0 ? 'active' : '']" @click="checkActive(0)">
             <div class="mt-5 text-30">{{ $t('从') }}</div>
             <div class="flex items-center justify-center mt-5">
-              <img :src="`${HOST_URL}/symbol/${iconImg1}.png`" alt="logo"
+              <img :src="`${FILE_URL}/symbol/${iconImg1}.png`" alt="logo"
                 class="w-8 h-8 rounded-full mr-5 currency-icon" />
 
               {{ coin.toUpperCase() }}
@@ -42,7 +42,7 @@
           <div class="tab-item flex-1 textColor" :class="[activeIndex == 1 ? 'active' : '']" @click="checkActive(1)">
             <div class="mt-5 text-30">{{ $t('至') }}</div>
             <div class="flex items-center justify-center  mt-5">
-              <img :src="`${HOST_URL}/symbol/${iconImg2}.png`" alt="logo"
+              <img :src="`${FILE_URL}/symbol/${iconImg2}.png`" alt="logo"
                 class="w-8 h-8 rounded-full mr-5 currency-icon" />
               {{ coin1.toUpperCase() }}
             </div>
@@ -62,7 +62,7 @@
             <div class="flex-1 flex items-center">
               <div>
 
-                <img :src="`${HOST_URL}/symbol/${item.symbol.toLowerCase()}.png`" alt="logo"
+                <img :src="`${FILE_URL}/symbol/${item.symbol.toLowerCase()}.png`" alt="logo"
                   class="w-8 h-9 rounded-full mr-5 currency-icon" />
               </div>
               <div>
@@ -82,7 +82,7 @@
 
 <script>
 import { ActionSheet, Popup, Field } from "vant";
-import { HOST_URL } from '@/config'
+import { FILE_URL } from '@/config'
 // import { mapGetters } from "vuex";
 export default {
   name: "MiningExchangeInput",
@@ -176,7 +176,7 @@ export default {
   },
   data() {
     return {
-      HOST_URL,
+      FILE_URL,
       show: false,
       searchValue: '',
       activeIndex: 0,

@@ -3,113 +3,91 @@
     <fx-header>
       <template #title>{{ $t('allPay') }}</template>
     </fx-header>
-    <!-- <van-search v-model="value1" placeholder="请输入搜索关键词" /> -->
     <van-index-bar v-for="(item, index) in keyList" :key="index" :index-list="newLetter">
       <van-index-anchor class="index-anchor" :index="item.name" />
-      <div @click="openAdd(items)" class="item-cell ml-4 py-4" v-for="(items, index) in item.list" :key="index">
-        {{ $t(`${items}`) }}
+      <div
+        v-for="(items, itemIndex) in item.list"
+        :key="itemIndex"
+        class="item-cell ml-4 py-4"
+        @click="openAdd(items)"
+      >
+        {{ items }}
       </div>
     </van-index-bar>
   </div>
 </template>
 
 <script setup>
-import { onBeforeMount, ref, onMounted, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { _getBankPaymentMethodConfig } from "@/service/user.api.js";
-import Pinyin from '@/utils/ChinesePY'
-import { useI18n } from "vue-i18n";
-const { t } = useI18n()
-const route = useRoute()
-const router = useRouter()
-let value1 = ref('')
-let keysList = ref(null)
-let keyList = ref([])
-let newLetter = ref([])
+
+const router = useRouter();
+
+const ALLOWED_METHODS = ["USDT", "USDC", "BTC", "ETH"];
+
+const keysList = ref({});
+const keyList = ref([]);
+const newLetter = ref([]);
+
+const normalizeMethodName = (value) => {
+  return String(value || "").trim().toUpperCase().replace(/[^A-Z0-9-]/g, "");
+};
+
+const buildMethodList = (methodMap) => {
+  const filteredEntries = Object.entries(methodMap || {})
+    .map(([id, name]) => [id, normalizeMethodName(name)])
+    .filter(([, name]) => ALLOWED_METHODS.includes(name))
+    .sort((a, b) => ALLOWED_METHODS.indexOf(a[1]) - ALLOWED_METHODS.indexOf(b[1]));
+
+  keysList.value = Object.fromEntries(filteredEntries);
+  keyList.value = [];
+  newLetter.value = [];
+
+  const groups = {};
+  filteredEntries.forEach(([, name]) => {
+    const letter = name.charAt(0);
+    if (!groups[letter]) {
+      groups[letter] = [];
+    }
+    groups[letter].push(name);
+  });
+
+  newLetter.value = Object.keys(groups);
+  keyList.value = newLetter.value.map((letter) => ({
+    name: letter,
+    list: groups[letter],
+  }));
+};
 
 const openAdd = (val) => {
-  let id = ''
+  let id = '';
   for (const key in keysList.value) {
-    if (keysList.value.hasOwnProperty.call(keysList.value, key)) {
-      if (keysList.value[key] === val) {
-        id = key
-      }
+    if (Object.prototype.hasOwnProperty.call(keysList.value, key) && keysList.value[key] === val) {
+      id = key;
+      break;
     }
   }
-  sessionStorage.setItem("editAdd", JSON.stringify({ id: id, name: val, type: 'add' }));
-  router.push('add')
-}
-onMounted(async () => {
-  console.log(route.query.name);
-  getC2cPaymentMethodConfig()
-})
-watch(value1, (val, oldVal) => {
-  if (!val) {
-    return
-  }
-  keyList.value.map((item) => {
-    item.list.map((item2) => {
-      if (item2.indexOf(val) !== -1) {
-        console.log(item2)
-      }
-    })
-  })
-  this.filterFruitList = this.fruitList.filter((item) => {
-    return item.name.indexOf(val) !== -1;
-  })
-  if (!val) {
-    return
-  }
-  // for (let i = 0; i < keyList.value.length; i++) {
-  //     for (let j = 0; j < keyList.value[i].list.length; j++) {
-  //         // console.log(keyList.value[i].list[j])
-  //         console.log(keyList.value[i].list[j].indexOf(val))
-  //         if (keyList.value[i].list[j].indexOf(val) === -1) {
-  //             // console.log(keyList.value[i].list[j])
-  //         } else {
-  //             console.log(keyList.value[i].list[j])
-  //         }
-  //     }
+  sessionStorage.setItem("editAdd", JSON.stringify({ id, name: val, type: 'add' }));
+  router.push('add');
+};
 
-  // }
-})
 const getC2cPaymentMethodConfig = () => {
   _getBankPaymentMethodConfig().then((res) => {
-    keysList.value = res
-    let arry = Object.values(res)
-    let nweArry = []
-    let letter = []
-    arry.map((item) => {
-      let obj = {
-        name: item,
-        code: Pinyin.getWordsCode(item).substring(0, 1)
-      }
-      letter.push(Pinyin.getWordsCode(item).substring(0, 1))
-      nweArry.push(obj)
-    })
-    newLetter.value = Array.from(new Set(letter))
-    newLetter.value.map((item) => {
-      let obj = {
-        name: item,
-        list: []
-      }
-      nweArry.map((items) => {
-        if (item == items.code) {
-          obj.list.push(items.name)
-        }
-      })
-      keyList.value.push(obj)
-    })
-  })
-}
+    buildMethodList(res);
+  });
+};
+
+onMounted(() => {
+  getC2cPaymentMethodConfig();
+});
 </script>
+
 <style lang="scss" scoped>
 .selectPay {
   .index-anchor {
     background: $recommend_bg;
   }
-
-
 }
 
 :deep(.van-index-anchor) {

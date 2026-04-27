@@ -27,7 +27,7 @@
           <div class="px-8 flex items-center mt-8">
             <div class="flex-1 textColor text-center">
               <div class="text-center flex justify-center">
-                <img v-if="detail.symbol" :src="`${HOST_URL}/symbol/${detail.iconImg1}.png`" alt="logo"
+                <img v-if="detail.symbol" :src="`${FILE_URL}/symbol/${detail.iconImg1}.png`" alt="logo"
                   class="w-16 h-16 rounded-full" />
               </div>
               <div class="text-grey text-28 mt-5">{{ $t('从') }}</div>
@@ -37,7 +37,7 @@
 
             <div class="flex-1 textColor text-center">
               <div class="text-center flex justify-center">
-                <img v-if="detail.symbol_to" :src="`${HOST_URL}/symbol/${detail.iconImg2}.png`" alt="logo"
+                <img v-if="detail.symbol_to" :src="`${FILE_URL}/symbol/${detail.iconImg2}.png`" alt="logo"
                   class="w-16 h-16 rounded-full" />
               </div>
               <div class="text-grey text-28 mt-5">{{ $t('至') }}</div>
@@ -85,7 +85,7 @@ import assetsHead from "@/components/Transform/assets-head/index.vue";
 import ListAccount from '@/components/Transform/mining-account/index.vue'
 import { _initExchange, _exchange } from "@/service/fund.api";
 import { Popup, showToast } from "vant"
-import { HOST_URL } from '@/config'
+import { FILE_URL } from '@/config'
 export default {
   components: {
     assetsHead,
@@ -99,7 +99,7 @@ export default {
       detail: {},
       interval: null,
       count: 10,
-      HOST_URL,
+      FILE_URL,
     }
   },
   created() {

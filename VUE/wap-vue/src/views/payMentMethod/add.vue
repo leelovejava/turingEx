@@ -32,13 +32,6 @@
                 </van-field>
             </van-cell-group>
         </van-form>
-        <div class="tips mx-4 mt-8 px-4 pt-4 pb-4">
-            <div class="flex tip-title">
-                <img class="mr-2" src="@/assets/image/Record/icon4.png" />
-                {{ $t('specialReminder') }}
-            </div>
-            <div class="pl-4 ash mt-2 text-24">{{ $t('tips1') }}</div>
-        </div>
         <div class="text-24 mt-20 ash px-4">{{ $t('tips12') }}</div>
         <div class="px-4 pt-6 mt-3">
             <van-button class="w-full" type="primary" @click="submit">{{ $t('submit') }}</van-button>

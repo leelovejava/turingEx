@@ -138,7 +138,7 @@ export default {
       value: 'USDT', //选中的币种
       show: false,
       showSymbol: false,
-      actions: [{ name: 'USDT' }, { name: 'BTC' }, { name: 'ETH' }],
+      actions: [{ name: 'USDT' }, { name: 'USDC' }, { name: 'BTC' }, { name: 'ETH' }],
       blockList: [],
       blockchainIndex: "",
       usdtBalance: "", //余额

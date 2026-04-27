@@ -206,8 +206,7 @@ export const _applyIdentify = data => {
             idNumber: data.idnumber, // 证件号码
             name: data.name, // 姓名
             idFrontImg: data.frontFile.length && data.frontFile[0].resURL || '',
-            idBackImg: data.reverseFile.length && data.reverseFile[0].resURL || '',
-            handheldPhoto: data.fileList.length && data.fileList[0].resURL || ''
+            idBackImg: data.reverseFile.length && data.reverseFile[0].resURL || ''
         }
     })
 }

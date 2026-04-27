@@ -53,7 +53,7 @@
         <div class="flex justify-between">
           <div class="flex items-center">
             <img :src="item.symbol
-              ? `${HOST_URL}/symbol/${item.symbol.toLowerCase()}.png`
+              ? `${FILE_URL}/symbol/${item.symbol.toLowerCase()}.png`
               : handleImage('../../../assets/loading-default.png')
               " class="w-16 h-16 rounded-full" />
             <div class="text-grey symbol-name text-30 textColor2">
@@ -152,7 +152,7 @@
 import { _getAllWallet } from "@/service/fund.api";
 import { Dialog } from "vant";
 import { mapGetters } from "vuex";
-import { HOST_URL } from "@/config";
+import { FILE_URL } from "@/config";
 import { themeStore } from "@/store/theme";
 const thStore = themeStore();
 const THEME = thStore.theme;
@@ -168,7 +168,7 @@ export default {
   data() {
     return {
       THEME,
-      HOST_URL,
+      FILE_URL,
       list: [],
       total: "",
       status: "", //身份认证状态 0已申请未审核，1审核中，2审核通过，3审核未通过
