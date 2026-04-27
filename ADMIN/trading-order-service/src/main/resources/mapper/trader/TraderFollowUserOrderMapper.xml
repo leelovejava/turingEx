@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.trader.TraderFollowUserOrderMapper">
+
+    <select id="listDatas" resultType="java.util.Map">
+        SELECT orders.SYMBOL symbol,orders.AMOUNT_CLOSE amount_close,orders.TRADE_AVG_PRICE trade_avg_price,orders.DIRECTION direction,orders.UNIT_AMOUNT unit_amount,
+               orders.STATE state,orders.FEE fee,orders.PROFIT profit,orders.DEPOSIT deposit,orders.DEPOSIT_OPEN deposit_open,orders.CLOSE_AVG_PRICE close_avg_price,
+               DATE_FORMAT(orders.CLOSE_TIME, '%Y-%m-%d %H:%i:%S') closeTime,DATE_FORMAT(orders.CREATE_TIME, '%Y-%m-%d %H:%i:%S') createTime,
+               orders.VOLUME_OPEN volume_open,orders.VOLUME volume,item.NAME itemname,trader_user_order.USER_ORDER_NO order_no,
+               orders.stop_price_profit stop_price_profit, orders.stop_price_loss stop_price_loss, orders.lever_rate lever_rate, orders.force_close_price force_close_price,
+               trader_user_order.TRADER_PARTY_ID trader_party_id
+        FROM T_TRADER_FOLLOW_USER_ORDER trader_user_order
+        INNER JOIN T_CONTRACT_ORDER orders ON orders.ORDER_NO  = trader_user_order.USER_ORDER_NO
+        INNER JOIN T_ITEM item ON orders.SYMBOL = item.SYMBOL
+        WHERE 1 = 1
+        <if test="null != state and state != ''">
+            AND orders.state =#{state}
+        </if>
+        AND trader_user_order.PARTY_ID = #{partyId}
+        ORDER BY trader_user_order.CREATE_TIME desc
+        LIMIT #{pageNo}, #{pageSize}
+    </select>
+
+    <select id="listMDatas" resultType="java.util.Map">
+        SELECT trader.NAME trader_name,trader_user.USERNAME username,party.user_code usercode,party.role_name rolename,trader_user_order.UUID id,trader_user_order.STATE state,
+        trader_user_order.VOLUME  volume,trader_user_order.USER_ORDER_NO user_order_no,trader_user_order.TRADER_ORDER_NO trader_order_no ,DATE_FORMAT(trader_user_order.CREATE_TIME, '%Y-%m-%d %H:%i:%S') create_time
+        FROM T_TRADER_FOLLOW_USER_ORDER trader_user_order
+        INNER JOIN T_TRADER_FOLLOW_USER trader_user ON  trader_user.PARTY_ID  = trader_user_order.PARTY_ID
+        INNER JOIN TZ_USER party ON  party.user_id  = trader_user_order.PARTY_ID
+        INNER JOIN T_TRADER trader ON  trader.PARTY_ID   = trader_user_order.TRADER_PARTY_ID
+        WHERE 1 = 1
+        <if test="null != name and name != ''">
+            AND trader.NAME =#{name}
+        </if>
+        <if test="null != rolename and rolename != ''">
+            and party.role_name =#{rolename}
+        </if>
+        <if test="null != username and username != ''">
+            AND (trader_user.USERNAME like CONCAT('%',#{username},'%') OR party.user_code like CONCAT('%',#{username},'%'))
+        </if>
+        ORDER BY trader_user_order.CREATE_TIME DESC
+        LIMIT #{pageNo}, #{pageSize}
+    </select>
+</mapper>

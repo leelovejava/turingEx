@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.trader.TraderFollowUserMapper">
+
+    <select id="listDatas" resultType="java.util.Map">
+        SELECT trader.NAME trader_name,trader_user.USERNAME username,party.user_code usercode,party.role_name rolename,trader_user.UUID id,trader_user.STATE state  ,trader_user.SYMBOL symbol,
+        trader_user.FOLLOW_TYPE follow_type,trader_user.VOLUME  volume,trader_user.PROFIT profit,trader_user.AMOUNT_SUM amount_sum,trader_user.STOP_PFOFIT stop_profit,trader_user.STOP_LOSS  stop_loss,
+        trader_user.VOLUME_MAX volume_max,DATE_FORMAT(trader_user.CREATE_TIME, '%Y-%m-%d %H:%i:%S') create_time, trader_user.DEL_FLAG del_flag
+        FROM T_TRADER_FOLLOW_USER trader_user
+        LEFT JOIN TZ_USER party ON  party.user_id  = trader_user.PARTY_ID
+        LEFT JOIN T_TRADER trader ON  trader.PARTY_ID   = trader_user.TRADER_PARTY_ID
+        WHERE 1 = 1
+        <if test="null != name and name != ''">
+            AND trader.NAME =#{name}
+        </if>
+        <if test="null != username and username != ''">
+            AND (trader_user.USERNAME like CONCAT('%',#{username},'%') OR party.user_code like CONCAT('%',#{username},'%'))
+        </if>
+        ORDER BY trader_user.CREATE_TIME DESC
+        LIMIT #{pageNo}, #{pageSize}
+    </select>
+</mapper>

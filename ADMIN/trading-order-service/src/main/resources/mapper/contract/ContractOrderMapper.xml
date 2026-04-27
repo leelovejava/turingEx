@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.contract.ContractOrderMapper">
+
+    <sql id="contractOrderColumns">
+        a.uuid AS "uuid",
+        a.party_id AS "partyId",
+        a.symbol AS "symbol",
+        a.order_no AS "orderNo",
+        a.direction AS "direction",
+        a.unit_amount AS "unitAmount",
+        a.amount_close AS "amountClose",
+        a.fee AS "fee",
+        a.deposit AS "deposit",
+        a.deposit_open AS "depositOpen",
+        a.profit AS "profit",
+        a.trade_avg_price AS "tradeAvgPrice",
+        a.stop_price_profit AS "stopPriceProfit",
+        a.stop_price_loss AS "stopPriceLoss",
+        a.pips AS "pips",
+        a.pips_amount AS "pipsAmount",
+        a.state AS "state",
+        a.lever_rate AS "leverRate",
+        a.volume AS "volume",
+        a.volume_open AS "volumeOpen",
+        a.close_time AS "closeTime",
+        a.close_avg_price AS "closeAvgPrice",
+        a.create_by AS "createBy",
+        a.create_time AS "createTime",
+        a.update_by AS "updateBy",
+        a.update_time AS "updateTime",
+        a.remarks AS "remarks",
+        a.del_flag AS "delFlag",
+        a.create_time_ts AS "createTimeTs",
+        a.update_time_ts AS "updateTimeTs"
+    </sql>
+
+    <sql id="contractOrderJoins">
+
+    </sql>
+
+
+    <select id="listRecordCur" resultType="com.yami.trading.bean.contract.dto.ContractOrderDTO">
+        select *,b.role_name AS "roleName",b.user_code AS "userCode",c.money,item.name AS "symbolName" from t_contract_order a
+        left join tz_user b on a.party_id = b.user_id
+        left join tz_wallet c ON a.party_id = c.user_id
+        left join t_item item on a.symbol = item.symbol
+        <where>
+            <if test="query.type!=null and query.type!=''">
+                and item.type=#{query.type}
+            </if>
+            <if test="query.orderNo!=null and query.orderNo!=''">
+                and a.order_no=#{query.orderNo}
+            </if>
+            <if test="query.children != null and query.children.size() >0">
+                AND a.party_id in
+                <foreach collection="query.children" item="item" index="index" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="query.state!=null and query.state!=''">
+                and a.state=#{query.state}
+            </if>
+            <if test="query.startTimeStr != null and query.startTimeStr != ''">
+                and a.create_time &gt;= #{query.startTimeStr}
+            </if>
+
+            <if test="query.endTimeStr != null and query.endTimeStr != ''">
+                and a.create_time &lt;= #{query.endTimeStr}
+            </if>
+            <if test="query.userId!=null and query.userId!=''">
+                and b.user_id=#{query.userId}
+            </if>
+            <if test="query.userCode!=null and query.userCode!=''">
+                and b.user_code=#{query.userCode}
+            </if>
+            <if test="query.roleName!=null and query.roleName!=''">
+                and b.role_name=#{query.roleName}
+            </if>
+            <if test="query.ip!=null and query.ip!=''">
+                and b.user_lastip like CONCAT('%', #{query.ip}, '%')
+            </if>
+
+            <if test="query.userName!=null and query.userName!=''">
+                AND (b.user_name like CONCAT('%', #{query.userName}, '%') or b.user_code like CONCAT('%',
+                #{query.userName}, '%'))
+            </if>
+        </where>
+        order by a.create_time desc
+    </select>
+
+
+    <select id="listRecordHistory" resultType="com.yami.trading.bean.contract.dto.ContractOrderDTO">
+        select *,b.role_name AS "roleName",b.user_code AS "userCode",c.money,item.name AS "symbolName" from t_contract_order a
+        left join tz_user b on a.party_id = b.user_id
+        left join tz_wallet c ON c.user_id = b.user_id
+        left join t_item item on a.symbol = item.symbol
+        <where>
+            <if test="query.type!=null and query.type!=''">
+                and item.type=#{query.type}
+            </if>
+            <if test="query.orderNo!=null and query.orderNo!=''">
+                and a.order_no=#{query.orderNo}
+            </if>
+            <if test="query.children != null and query.children.size() >0">
+                AND a.party_id in
+                <foreach collection="query.children" item="item" index="index" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="query.state!=null and query.state!=''">
+                and a.state=#{query.state}
+            </if>
+            <if test="query.startTimeStr != null and query.startTimeStr!=''">
+                and a.create_time &gt;= #{query.startTimeStr}
+            </if>
+
+            <if test="query.endTimeStr != null and query.endTimeStr != ''">
+                and a.create_time &lt;= #{query.endTimeStr}
+            </if>
+            <if test="query.userId!=null and query.userId!=''">
+                and b.user_id=#{query.userId}
+            </if>
+            <if test="query.userCode!=null and query.userCode!=''">
+                and b.user_code=#{query.userCode}
+            </if>
+            <if test="query.roleName!=null and query.roleName!=''">
+                and b.role_name=#{query.roleName}
+            </if>
+            <if test="query.ip!=null and query.ip!=''">
+                and b.user_lastip like CONCAT('%', #{query.ip}, '%')
+            </if>
+
+            <if test="query.userName!=null and query.userName!=''">
+                AND (b.user_name like CONCAT('%', #{query.userName}, '%') or b.user_code like CONCAT('%',
+                #{query.userName}, '%'))
+            </if>
+        </where>
+        order by a.close_time_ts desc
+    </select>
+
+
+    <select id="findById" resultType="com.yami.trading.bean.contract.dto.ContractOrderDTO">
+        SELECT
+        <include refid="contractOrderColumns"/>
+        FROM t_contract_order a
+        <include refid="contractOrderJoins"/>
+        WHERE a.uuid = #{id} and a.del_flag = 0
+    </select>
+
+    <select id="findList" resultType="com.yami.trading.bean.contract.dto.ContractOrderDTO">
+        SELECT
+        <include refid="contractOrderColumns"/>
+        FROM t_contract_order a
+        <include refid="contractOrderJoins"/>
+        ${ew.customSqlSegment}
+    </select>
+
+    <update id="batchUpdateBuffer">
+        <foreach collection="list" item="item" index="index" open="" separator=";" close="">
+            UPDATE t_contract_order
+            SET force_close_price =#{item.forceClosePrice}
+            WHERE uuid = #{item.uuid} and state = 'submitted'
+        </foreach>
+    </update>
+
+
+
+</mapper>

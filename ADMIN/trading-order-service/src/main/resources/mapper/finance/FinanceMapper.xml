@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.finance.FinanceMapper">
+
+    <select id="pagedQuery" resultType="java.util.HashMap">
+        select finance.uuid id,finance.name name,finance.name_en name_en,finance.name_cn name_cn,
+        finance.name_kn name_kn,finance.name_jn name_jn,finance.img img,finance.cycle cycle,
+        finance.daily_rate daily_rate  ,finance.daily_rate_max daily_rate_max  ,finance.today_rate today_rate ,finance.state state,
+        finance.default_ratio default_ratio  ,finance.investment_min investment_min,finance.investment_max investment_max
+        from t_finance finance where 1=1
+        <if test="name_para!=null and name_para!=''">
+            and  finance.name like CONCAT('%', #{name_para}, '%')
+        </if>
+    </select>
+
+    <select id="findAll" resultType="java.util.HashMap">
+        FROM Finance
+    </select>
+
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.miner.MinerOrderMapper">
+
+    <select id="pagedQuery" resultType="java.util.HashMap">
+        select finance.uuid id,finance.name name,finance.name_en name_en,finance.name_cn name_cn,
+        finance.name_kn name_kn,finance.name_jn name_jn,finance.img img,finance.cycle cycle,
+        finance.daily_rate daily_rate  ,finance.daily_rate_max daily_rate_max  ,finance.today_rate today_rate ,finance.state state,
+        finance.default_ratio default_ratio  ,finance.investment_min investment_min,finance.investment_max investment_max
+        from t_finance finance where 1=1
+        <if test="name_para!=null and name_para!=''">
+            and  finance.name like CONCAT('%', #{name_para}, '%')
+        </if>
+
+        order by finance.create_time desc
+    </select>
+
+    <select id="pagedQuery1" resultType="java.util.HashMap">
+        select minerOrder.uuid id,minerOrder.order_no order_no ,minerOrder.miner_id minerId  ,
+        minerOrder.amount amount,DATE_FORMAT(minerOrder.create_time,'%Y-%m-%d %H:%i:%S') create_time,
+        DATE(minerOrder.earn_time) earn_time,DATE(minerOrder.stop_time) stop_time,minerOrder.profit profit,
+        minerOrder.state state,minerOrder.base_compute_amount base_compute_amount,
+        miner.cycle cycle,miner.cycle_close cycle_close,miner.daily_rate daily_rate,miner.test test,
+        miner.name miner_name,miner.name_en miner_name_en,miner.name_cn miner_name_cn
+        FROM t_miner_order minerOrder
+        LEFT JOIN t_miner miner ON miner.uuid= minerOrder.miner_id where 1=1
+        <if test="partyId!=null and partyId!=''">
+            AND minerOrder.party_id=#{partyId}
+        </if>
+
+        <if test="state!=null and state==2">
+            AND minerOrder.state in('0','2')
+        </if>
+
+        <if test="state!=null and state==1">
+            AND minerOrder.state=#{state}
+        </if>
+
+        order by minerOrder.create_time desc
+    </select>
+
+
+    <select id="pagedQueryComputeOrder" resultType="java.util.HashMap">
+        select * FROM t_miner_order WHERE state =1
+    </select>
+
+    <select id="pagedQueryAdmin" resultType="java.util.HashMap">
+        SELECT minerOrder.uuid id,minerOrder.order_no order_no  ,minerOrder.miner_id minerId  , minerOrder.amount amount,minerOrder.create_time create_time,minerOrder.base_compute_amount base_compute_amount,
+        minerOrder.earn_time earn_time,minerOrder.stop_time stop_time,minerOrder.profit profit,
+        minerOrder.state state,minerOrder.close_time close_time,minerOrder.default_money default_money,
+        party.user_name username,party.user_code usercode,party.role_name rolename,
+        miner.name miner_name,miner.name_en miner_name_en
+        FROM t_miner_order minerOrder
+        LEFT JOIN tz_user party ON minerOrder.party_id = party.user_id
+        LEFT JOIN t_miner miner ON miner.uuid = minerOrder.miner_id
+        WHERE 1 = 1
+
+        <if test="children != null and children.size() >0">
+            and minerOrder.party_id in
+            <foreach collection="children" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+
+        <if test="miner_para!=null and miner_para!=''">
+            and miner.name=#{miner_para}
+        </if>
+
+        <if test="name_para!=null and name_para!=''">
+            AND (party.user_name like CONCAT('%', #{name_para}, '%') OR party.user_code like CONCAT('%', #{name_para}, '%'))
+        </if>
+
+        <if test="status_para!=null and status_para!='' and status_para!=0 ">
+            and  minerOrder.STATE = #{status_para}
+        </if>
+
+        <if test="status_para!=null and status_para==0 ">
+            and  (minerOrder.STATE ='0' OR minerOrder.STATE ='2' )
+        </if>
+
+        <if test="orderNo!=null and orderNo!=''">
+            and minerOrder.order_no =#{orderNo}
+        </if>
+
+        <if test="rolename_para!=null and rolename_para!=''">
+            and   party.role_name =#{rolename_para}
+        </if>
+
+
+        <if test="status_para!=null and status_para!='' and status_para == '0'">
+            order by minerOrder.close_time desc
+        </if>
+
+        <if test="status_para!=null and status_para!='' and status_para != '0'">
+            order by minerOrder.create_time desc
+        </if>
+
+        <if test="status_para==null or status_para==''">
+            order by minerOrder.create_time desc
+        </if>
+
+    </select>
+
+</mapper>

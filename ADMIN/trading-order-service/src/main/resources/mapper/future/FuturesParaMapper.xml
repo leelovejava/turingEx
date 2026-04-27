@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.future.FuturesParaMapper">
+
+	<sql id="tFuturesParaColumns">
+		a.uuid AS "uuid",
+		a.symbol AS "symbol",
+		a.timenum AS "timenum",
+		a.timeunit AS "timeunit",
+		a.unit_amount AS "unitAmount",
+		a.unit_max_amount AS "unitMaxAmount",
+		a.profit_ratio AS "profitRatio",
+		a.profit_ratio_cardinality AS "profitRatioCardinality",
+		a.unit_fee AS "unitFee",
+		a.profit_ratio_max AS "profitRatioMax",
+		a.create_by AS "createBy",
+		a.update_by AS "updateBy",
+		a.update_time AS "updateTime",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.create_time_ts AS "createTimeTs",
+		a.update_time_ts AS "updateTimeTs",
+		a.create_time AS "createTime"
+
+	</sql>
+
+	<sql id="tFuturesParaJoins">
+
+	</sql>
+
+
+	<select id="findById" resultType="com.yami.trading.bean.future.dto.FuturesParaDTO">
+		SELECT
+			<include refid="tFuturesParaColumns"/>
+		FROM t_futures_para a
+		<include refid="tFuturesParaJoins"/>
+		WHERE a.uuid = #{id} and a.del_flag = 0
+	</select>
+
+	<select id="findList" resultType="com.yami.trading.bean.future.dto.FuturesParaDTO">
+		SELECT
+			<include refid="tFuturesParaColumns"/>
+		FROM t_futures_para a
+		<include refid="tFuturesParaJoins"/>
+	    ${ew.customSqlSegment}
+	</select>
+
+
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.c2c.C2cPaymentMethodMapper">
+
+    <select id="listPage" resultType="com.yami.trading.bean.c2c.dto.C2cPaymentMethodDto">
+        select
+        cpm.*,
+        party.user_id ,
+        party.user_code ,
+        party.user_name
+        from
+        t_c2c_payment_method cpm
+        left join tz_user party on cpm.party_id = party.user_id
+        left join t_c2c_user cu on cu.c2c_user_party_id = party.user_id
+        where
+        1 = 1  and cpm.type=#{type}
+          <if test="loginPartyId!=null and loginPartyId!=''">
+            and cu.c2c_manager_party_id=#{loginPartyId}
+        </if>
+        <if test="userCode!=null and userCode!=''">
+            AND (party.user_name like CONCAT('%', #{userCode}, '%') or party.user_code like CONCAT('%', #{userCode},
+            '%'))
+        </if>
+
+        <if test="methodType!=null and methodType!=''">
+            and cpm.method_type =${methodType}
+        </if>
+        <if test="methodName!=null and methodName!=''">
+            and cpm.method_name like CONCAT('%', #{methodName}, '%')
+        </if>
+        order by cpm.create_time desc
+    </select>
+</mapper>

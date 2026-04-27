@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.trader.TraderMapper">
+
+    <select id="listDatas" resultType="java.util.Map">
+        SELECT trader.NAME name,party.user_name username,party.user_code usercode,party.role_name rolename,trader.UUID id,trader.REMARKS remarks ,trader.SYMBOLS  symbols,
+        trader.PROFIT profit ,trader.PROFIT_RATIO profit_ratio ,trader.ORDER_PROFIT  order_profit,trader.ORDER_LOSS order_loss, trader.ORDER_SUM order_sum, trader.FOLLOWER_SUM follower_sum,
+        trader.FOLLOWER_NOW follower_now,trader.DEVIATION_PROFIT deviation_profit ,trader.DEVIATION_PROFIT_RATIO deviation_profit_ratio,trader.DEVIATION_ORDER_PROFIT  deviation_order_profit,
+        trader.DEVIATION_ORDER_LOSS deviation_order_loss, trader.DEVIATION_ORDER_SUM deviation_order_sum,trader.DEVIATION_FOLLOWER_SUM deviation_follower_sum,trader.DEVIATION_FOLLOWER_NOW deviation_follower_now,
+        trader.PROFIT_SHARE_RATIO profit_share_ratio,trader.STATE state,trader.FOLLOWER_MAX  follower_max,trader.IMG img  ,DATE_FORMAT(trader.CREATE_TIME, '%Y-%m-%d %H:%i:%S') create_time, trader.CHECKED checked,
+        trader.DEL_FLAG del_flag
+        FROM T_TRADER trader
+        LEFT JOIN TZ_USER party ON  party.user_id  = trader.PARTY_ID
+        WHERE 1 = 1
+        <if test="null != name and name != ''">
+            AND trader.NAME =#{name}
+        </if>
+        <if test="null != username and username != ''">
+          AND (party.user_name like CONCAT('%',#{username},'%') OR party.user_code like CONCAT('%',#{username},'%'))
+        </if>
+        ORDER BY trader.CREATE_TIME DESC
+        LIMIT #{pageNo}, #{pageSize}
+    </select>
+</mapper>

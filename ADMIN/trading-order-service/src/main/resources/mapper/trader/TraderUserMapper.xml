@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.trader.TraderUserMapper">
+
+    <select id="listDatas" resultType="java.util.Map">
+        SELECT trader_user.NAME name,party.user_name username,party.user_code user_code,party.role_name rolename,
+               trader_user.UUID id,trader_user.PROFIT profit ,trader_user.AMOUNT_SUM  amount_sum,
+               DATE_FORMAT(trader_user.CREATE_TIME, '%Y-%m-%d %H:%i:%S') create_time
+        FROM T_TRADER_USER trader_user
+        LEFT JOIN TZ_USER party ON  party.user_id  = trader_user.PARTY_ID
+        WHERE 1 = 1
+        <if test="null != name and name != ''">
+          AND T_TRADER_USER.NAME =#{name}
+        </if>
+        <if test="null != username and username != ''">
+          AND (party.user_name like CONCAT('%',#{username},'%') OR party.user_code like CONCAT('%',#{username},'%'))
+        </if>
+        ORDER BY trader_user.CREATE_TIME DESC
+        LIMIT #{pageNo}, #{pageSize}
+    </select>
+</mapper>

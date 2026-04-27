@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.finance.FinanceOrderMapper">
+<!--    FROM FinanceOrder WHERE 1=1-->
+<!--    AND partyId=:partyId-->
+<!--    AND (state =:state_2 OR state =:state_0-->
+<!--    &#45;&#45; AND state=:state-->
+<!--    &#45;&#45; AND state=:state-->
+<!--    order by create_time desc-->
+
+    <select id="pagedQuery" resultType="java.util.HashMap">
+        select * from t_finance_order where 1=1
+        <if test="partyId!=null and partyId!=''">
+            and party_id=#{partyId}
+        </if>
+
+        <if test="state!=null and state==2">
+            AND t_finance_order.state in('0','2')
+        </if>
+
+        <if test="state!=null and state==1">
+            AND t_finance_order.state=#{state}
+        </if>
+
+        order by create_time desc
+    </select>
+
+    <select id="pagedQueryByDate" resultType="java.util.HashMap">
+        select * from t_finance_order where 1=1
+        <if test="date!=null and date!=''">
+            and create_time=#{date}
+        </if>
+
+        order by create_time desc
+    </select>
+
+
+    <select id="pagedQuery1" resultType="java.util.HashMap">
+        SELECT financeOrder.uuid id,financeOrder.order_no order_no  ,financeOrder.finance_id financeId  ,
+        financeOrder.amount amount,financeOrder.create_time create_time,
+        financeOrder.close_time close_time,financeOrder.profit profit,
+        financeOrder.state state,
+        party.user_name username,party.user_code usercode,party.role_name rolename,
+        finance.name,finance.name_en,
+        finance.name_kn,finance.name_jn
+        FROM t_finance_order financeOrder
+        LEFT JOIN tz_user party ON financeOrder.party_id = party.user_id
+        LEFT JOIN t_finance finance ON finance.uuid = financeOrder.finance_id
+        WHERE 1 = 1
+        <if test="name_para!=null and name_para!=''">
+            AND (party.user_name like CONCAT('%', #{name_para}, '%') OR party.user_code like CONCAT('%', #{name_para}, '%') )
+        </if>
+
+        <if test="finance_para!=null and finance_para!=''">
+            and  (finance.name=#{finance_para} or finance.name_en =#{finance_para} or finance.name_cn =#{finance_para})
+        </if>
+
+        <if test="orderNo!=null and orderNo!=''">
+            and  (finance.order_no=#{orderNo})
+        </if>
+
+        <if test="rolename_para!=null and rolename_para!=''">
+            and party.role_name=#{rolename_para}
+        </if>
+
+        <if test="children != null and children.size() >0">
+            AND financeOrder.party_id in
+            <foreach collection="children" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+
+        <if test="status_para!=null and status_para!=''">
+            and financeOrder.state=#{status_para}
+        </if>
+
+        <if test="createTime !=null and createTime!=''">
+            and financeOrder.create_time <![CDATA[ >= ]]>  #{createTime}
+        </if>
+
+        <if test="closeTime !=null and closeTime!=''">
+            and financeOrder.close_time <![CDATA[ >= ]]>  #{closeTime}
+        </if>
+
+        order by financeOrder.create_time desc
+    </select>
+
+
+</mapper>

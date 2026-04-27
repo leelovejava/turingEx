@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.exchangelever.ExchangeLeverOrderMapper">
+    <select id="listPage" resultType="com.yami.trading.bean.exchange.dto.ExchangeLeverOrderDto">
+        SELECT
+        orders.uuid ,
+        orders.symbol ,
+        orders.amount_close ,
+        orders.stop_price_profit ,
+        orders.stop_price_loss,
+        orders.order_no,
+        orders.trade_avg_price,
+        orders.direction,
+        orders.unit_amount ,
+        orders.state ,
+        orders.fee ,
+        orders.profit ,
+        orders.create_time ,
+        orders.deposit ,
+        orders.deposit_open ,
+        orders.close_time ,
+        orders.volume_open ,
+        orders.volume ,
+        item.name  itemName,
+        wallet.money ,
+        party.user_name,
+        party.user_code,
+        party.role_name
+        FROM
+        t_exchange_lever_order orders
+        LEFT JOIN tz_user party ON orders.party_id = party.user_id
+        LEFT JOIN tz_wallet wallet ON wallet.user_id = party.user_id
+        LEFT JOIN t_item item ON orders.symbol = item.symbol
+        WHERE
+        1 = 1
+        <if test="roleName!=null and roleName!=''">
+            and party.role_name=#{rolename}
+        </if>
+
+        <if test="status!=null and status!=''">
+            and orders.state=#{status}
+        </if>
+        <if test="orderNo!=null and orderNo!=''">
+            and orders.order_no=#{orderNo}
+        </if>
+        <if test="userName!=null and userName!=''">
+            and (party.user_code=#{userName} or party.user_name=#{userName})
+        </if>
+        <if test="startTime!=null and endTime!=null">
+            and orders.create_time BETWEEN #{startTime} and #{endTime}
+        </if>
+
+
+        <if test=" userIds !=null and userIds.size > 0">
+            and u.user_id  in
+            <foreach collection="userIds" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+
+
+
+        order by orders.create_time desc
+    </select>
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.exchange.ExchangeApplyOrderMapper">
+  <select id="listPage" resultType="com.yami.trading.bean.exchange.dto.ExchangeApplyOrderDto">
+      select
+      orders.uuid id,
+      party.user_code,
+      party.role_name,
+      orders.symbol symbol,
+      orders.order_no order_no,
+      orders.offset offset,
+      orders.volume volume,
+      orders.symbol_value symbolValue,
+      orders.create_time createtime,
+      orders.close_time closetime,
+      orders.state state,
+      orders.order_price_type order_price_type,
+      orders.close_price close_price,
+      orders.price price,
+      item.name itemname,
+      orders.is_trigger_order is_trigger_order,
+      orders.trigger_price trigger_price,
+      orders.success_volume successVolume,
+      party.user_name ,
+      ur.user_name username_parent
+      from
+      t_exchange_apply_order orders
+      left join tz_user  party on orders.party_id = party.user_id
+      left join  tz_user ur on ur.user_id = party.user_recom
+      left join  t_item item on item.symbol = orders.symbol
+      where
+      1 =1
+      <if test="rolename!=null and rolename!=''">
+          and party.role_name=#{rolename}
+      </if>
+      <if test="symbolType!=null and symbolType!=''">
+          and item.type=#{symbolType}
+      </if>
+      <if test="userName!=null and userName!=''">
+          and party.user_name=#{userName} or party.user_code=#{userName}
+      </if>
+      <if test="userCode!=null and userCode!=''">
+          and party.user_code=#{userCode}
+      </if>
+      <if test="orderNo!=null and orderNo!=''">
+          and orders.order_no=#{orderNo}
+      </if>
+      <if test="symbol!=null and symbol!=''">
+          and orders.symbol=#{symbol}
+      </if>
+      <if test="state!=null and state!=''">
+          and orders.state=#{state}
+      </if>
+      <if test="offset!=null and offset!=''">
+          and orders.offset=#{offset}
+      </if>
+      <if test="userIds !=null and userIds.size > 0">
+          and orders.party_id  in
+          <foreach collection="userIds" item="item" index="index" open="(" close=")" separator=",">
+              #{item}
+          </foreach>
+      </if>
+         order by orders.create_time desc
+  </select>
+
+
+    <select id="getTodayTransaction"  resultType="com.yami.trading.bean.exchange.dto.TodayTransactionDto">
+
+        SELECT  AVG(close_price) as  'avgPrice',symbol,SUM(volume) as 'volume' FROM t_exchange_apply_order
+         where  party_id=#{userId}  and state=#{state}  and  create_time  between  #{startTime}  and  #{endTime}
+        <if test="symbols !=null and symbols.size > 0">
+                and symbol in
+            <foreach collection="symbols" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+
+          group by symbol
+    </select>
+</mapper>

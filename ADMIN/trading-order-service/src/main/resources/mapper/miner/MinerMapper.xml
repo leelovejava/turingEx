@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.miner.MinerMapper">
+
+    <select id="pagedQuery" resultType="java.util.HashMap">
+        SELECT miner.uuid id,miner.name name,miner.name_en name_en,miner.name_cn name_cn,
+            miner.img img,miner.cycle cycle,miner.cycle_close cycle_close,miner.show_daily_rate show_daily_rate  ,
+            miner.daily_rate daily_rate  ,miner.state state,miner.on_sale on_sale,miner.test test,miner.investment_min investment_min,
+            miner.investment_max investment_max, miner.buy_currency, miner.output_currency FROM t_miner miner WHERE 1 = 1
+        <if test="name_para!=null and name_para!=''">
+            and  miner.name like CONCAT('%', #{name_para}, '%')
+        </if>
+
+        ORDER BY miner.investment_min+0 ASC
+    </select>
+
+</mapper>
