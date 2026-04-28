@@ -51,27 +51,39 @@ import java.util.Map;
 @Slf4j
 public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> implements WithdrawService {
     @Autowired
-    HighLevelAuthRecordService highLevelAuthRecordService;
+    private  HighLevelAuthRecordService highLevelAuthRecordService;
     @Autowired
-    WalletService walletService;
+    private WalletService walletService;
     @Autowired
-    SysparaService sysparaService;
+    private SysparaService sysparaService;
     @Autowired
-    RealNameAuthRecordService realNameAuthRecordService;
+    private RealNameAuthRecordService realNameAuthRecordService;
     @Autowired
-    MoneyLogService moneyLogService;
+    private MoneyLogService moneyLogService;
     @Autowired
-    TipService tipService;
+    private TipService tipService;
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    UserDataService userDataService;
+    private UserDataService userDataService;
     @Autowired
-    QRGenerateService qRGenerateService;
+    private QRGenerateService qRGenerateService;
     @Autowired
-    WalletLogService walletLogService;
+    private WalletLogService walletLogService;
     @Autowired
-    LogService logService;
+    private LogService logService;
+
+    /**
+     * USDT资产
+     * @param symbol
+     * @return
+     */
+    private String normalizeUsdtAssetSymbol(String symbol) {
+        if ("usdc".equalsIgnoreCase(symbol)) {
+            return "usdt";
+        }
+        return symbol;
+    }
 
     @Override
     public Page listRecord(Page page, String status, String roleName,
@@ -473,7 +485,7 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             }
         }
         log.info("saveApply:channel:{}", channel);
-        String symbol = channel.split("_")[0];
+        String symbol = normalizeUsdtAssetSymbol(channel.split("_")[0]);
         // 根据币种检查提现额度
         Map<String, String> limitMap = this.getWithdrawLimitBySymbol(symbol, true);
         String withdraw_limit = limitMap.get("limit");
@@ -715,7 +727,7 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
 //
 //		withdraw.setAmount(Double.valueOf(df.format(Arith.mul(withdraw.getVolume(), exchangeRate.getRata()))));
         withdraw.setAmount(new BigDecimal(Arith.sub(withdraw.getVolume().doubleValue(), fee)));
-        if (channel.indexOf("USDT") != -1) {
+        if (channel.indexOf("USDT") != -1 || channel.indexOf("USDC") != -1) {
             withdraw.setMethod(channel);
         }
 //		if ("USDT".equals(channel)) {
@@ -830,7 +842,7 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
     public void applyWithdraw(Withdraw withdraw, User user) {
         String channel = withdraw.getMethod();
         BigDecimal amount = withdraw.getAmount();
-        String symbol = "btc";
+        String symbol = normalizeUsdtAssetSymbol(channel.split("_")[0]).toLowerCase();
         if (!UserConstants.SECURITY_ROLE_MEMBER.equals(user.getRoleName())) {
             throw new YamiShopBindException("无权限");
         }

@@ -75,6 +75,14 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
     @Autowired
     DataService dataService;
 
+    /**
+     * 是USDT资产
+     * @param symbol
+     * @return
+     */
+    private boolean isUsdtAssetSymbol(String symbol) {
+        return "usdt".equalsIgnoreCase(symbol) || "usdc".equalsIgnoreCase(symbol);
+    }
 
     @Override
     public Page pageRecord(Page page, String roleName, String orderNo, String userName, Date startTime, Date endTime, String status,
@@ -119,7 +127,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
          * 如果是usdt则加入wallet，否则寻找walletExtend里相同币种
          */
         Syspara user_recom_bonus_open = sysparaService.find("user_recom_bonus_open");
-        if ("usdt".equals(recharge.getSymbol())) {
+        if (isUsdtAssetSymbol(recharge.getSymbol())) {
             double amount1 = recharge.getVolume();
             Wallet wallet = new Wallet();
             wallet = walletService.saveWalletByPartyId(recharge.getPartyId());
@@ -143,7 +151,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             /**
              * 给他的代理添加充值记录
              */
-            userDataService.saveRechargeHandle(recharge.getPartyId(), recharge.getVolume(), recharge.getSymbol());
+            userDataService.saveRechargeHandle(recharge.getPartyId(), recharge.getVolume(), "usdt");
             /**
              * 首次充值彩金
              */
@@ -413,7 +421,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
         // }
         double recharge_limit_min = Double.valueOf(sysparaService.find("recharge_limit_min").getSvalue());
         double recharge_limit_max = Double.valueOf(sysparaService.find("recharge_limit_max").getSvalue());
-        if ("usdt".equals(recharge.getSymbol())) {
+        if (isUsdtAssetSymbol(recharge.getSymbol())) {
             if (recharge.getVolume() < recharge_limit_min) {
                 throw new YamiShopBindException("充值数量不得小于最小限额");
             }
