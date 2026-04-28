@@ -106,6 +106,32 @@
               <!-- 张数输入 -->
               <amount-slider ref="sliderRef" :maxAmount="getVolumnByLever()" @getAmount="getAmount"></amount-slider>
             </template>
+            <template v-if="selectIndex == 1">
+              <div class="stop-switch-row">
+                <input v-model="enableTpSl" type="checkbox" class="stop-checkbox" />
+                <span class="ml-3 text-24 textColor">TP/SL</span>
+              </div>
+              <div v-if="enableTpSl" class="stop-input-wrapper">
+                <div class="h-18 greyBg mb-5 flex pr-5 justify-center rounded-lg textColor items-center">
+                  <input
+                    v-model="tpPrice"
+                    type="number"
+                    placeholder="TP Price"
+                    class="greyBg w-full pl-5 h-16 border-none text-left rounded-lg"
+                  />
+                  <span class="ml-5">{{ getCurrentUnit() }}</span>
+                </div>
+                <div class="h-18 greyBg mb-5 flex pr-5 justify-center rounded-lg textColor items-center">
+                  <input
+                    v-model="slPrice"
+                    type="number"
+                    placeholder="SL Price"
+                    class="greyBg w-full pl-5 h-16 border-none text-left rounded-lg"
+                  />
+                  <span class="ml-5">{{ getCurrentUnit() }}</span>
+                </div>
+              </div>
+            </template>
             <template v-if="selectIndex == 1 && userInfo.token">
               <div class="flex justify-between mt-8">
                 <div class="text-grey">{{ $t('合约金额') }}</div>
@@ -517,6 +543,9 @@ export default {
         amount: '', // 数量
         para_id: '' // 交割周琦id
       },
+      enableTpSl: false,
+      tpPrice: "",
+      slPrice: "",
       focus: false,
       type: "1",//选中市价或限价类型
       // action: _orderOpen // 开仓or
@@ -778,6 +807,16 @@ export default {
     throttleFn: throttle(function (type) {
       this.order(type)
     }, 500),
+    normalizeStopPrice(value) {
+      if (value === '' || value === null || value === undefined) {
+        return undefined
+      }
+      const num = Number(value)
+      if (Number.isNaN(num) || num <= 0) {
+        return undefined
+      }
+      return num
+    },
     order(type) {
       if (!this.userInfo.token) {
         this.$router.push('/login')
@@ -809,21 +848,31 @@ export default {
       }
       let _order = null // api
       let emitFunc = null // 触发函数
+      const submitForm = { ...this.form }
       if (this.selectIndex / 1 === 1) { // 永续合约
         // 永续合约
-        this.form.session_token = this.initOpen.session_token
+        submitForm.session_token = this.initOpen.session_token
+        if (this.enableTpSl) {
+          submitForm.stop_price_profit = this.normalizeStopPrice(this.tpPrice)
+          submitForm.stop_price_loss = this.normalizeStopPrice(this.slPrice)
+        } else {
+          submitForm.stop_price_profit = 0
+          submitForm.stop_price_loss = 0
+        }
         _order = _orderOpen
         emitFunc = this.currentType
-        this.openOrder(_order, emitFunc);
+        this.openOrder(_order, emitFunc, submitForm);
       } else { // 交割合约
-        this.form.session_token = this.initFutrue.session_token
+        submitForm.session_token = this.initFutrue.session_token
+        delete submitForm.stop_price_profit
+        delete submitForm.stop_price_loss
         _order = _futrueOrder
         emitFunc = 'futrue'
 
         if (this.initFutrue.session_token == undefined || this.initFutrue.session_token == '') {
           _futrueOrderInit(this.symbol).then(data => {
-            this.form.session_token = data.session_token;
-            this.openOrder(_order, emitFunc);
+            submitForm.session_token = data.session_token;
+            this.openOrder(_order, emitFunc, submitForm);
           }).catch((err) => {
             if (err.code == 'ECONNABORTED') {
               showToast(this.$t('网络超时！'));
@@ -832,17 +881,20 @@ export default {
             }
           });
         } else {
-          this.form.session_token = this.initFutrue.session_token;
-          this.openOrder(_order, emitFunc);
+          submitForm.session_token = this.initFutrue.session_token;
+          this.openOrder(_order, emitFunc, submitForm);
         }
       }
     },
-    openOrder(_order, emitFunc) {
-      _order(this.form).then((res) => {
+    openOrder(_order, emitFunc, payload) {
+      _order(payload).then((res) => {
         showToast(this.$t('操作成功'))
         if (this.selectIndex / 1 === 1) {
           this.$refs.sliderRef.emptyValue()
         }
+        this.enableTpSl = false
+        this.tpPrice = ""
+        this.slPrice = ""
         this.$emit('ordered', emitFunc)
         _getBalance().then(data => { // 刷新余额
           this.$store.commit('user/SET_USERINFO', { balance: data.money })
@@ -884,6 +936,21 @@ export default {
 
     .half-input {
       width: 100%;
+    }
+
+    .stop-switch-row {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .stop-checkbox {
+      width: 24px;
+      height: 24px;
+    }
+
+    .stop-input-wrapper {
+      margin-top: 12px;
     }
   }
 
