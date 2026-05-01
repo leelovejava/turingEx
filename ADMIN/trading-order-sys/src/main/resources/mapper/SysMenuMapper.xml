@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yami.trading.sys.dao.SysMenuMapper">
+
+	<select id="listMenuIdByRoleId" resultType="Long">
+			SELECT sm.menu_id  FROM tz_sys_role_menu rm LEFT JOIN
+  tz_sys_menu sm  ON  rm.menu_id=sm.menu_id   WHERE sm.app_type=#{appType} AND rm.role_id=#{roleId}
+	</select>
+
+	<!-- 查询用户的所有菜单 -->
+	<select id="listMenuByUserId" resultType="com.yami.trading.sys.model.SysMenu">
+		SELECT DISTINCT m.menu_id AS menu_id,m.parent_id,m.app_type,m.name,url,m.type,m.icon,m.order_num FROM tz_sys_user_role ur
+			LEFT JOIN tz_sys_role_menu rm ON ur.role_id = rm.role_id LEFT JOIN tz_sys_menu m ON m.`menu_id` = rm.`menu_id`
+		WHERE  ur.user_id = #{userId} and m.type != 2
+		
+		<if test="appType!=null and appType!='' ">
+			AND  app_type=#{appType}
+		</if>
+
+		order by order_num
+	</select>
+	<!-- 查询所有菜单 -->
+	<select id="listMenu" resultType="com.yami.trading.sys.model.SysMenu">
+		select * from tz_sys_menu where `type` != 2
+		<if test="appType!=null and appType!='' ">
+			AND  app_type=#{appType}
+		</if>
+		order by order_num
+	</select>
+
+	<select id="listSimpleMenuNoButton" resultType="com.yami.trading.sys.model.SysMenu">
+		select menu_id ,parent_id ,`name` from tz_sys_menu where `type` != 2
+
+		<if test="appType!=null and appType!='' ">
+			AND  app_type=#{appType}
+		</if>
+
+		order by order_num
+	</select>
+
+	<select id="listRootMenu" resultType="com.yami.trading.sys.model.SysMenu">
+		select menu_id,`name` from tz_sys_menu where `type` = 0
+	</select>
+
+	<select id="listChildrenMenuByParentId" resultType="com.yami.trading.sys.model.SysMenu">
+		select menu_id,`name` from tz_sys_menu where parent_id = #{parentId}
+	</select>
+
+	<select id="listMenuAndBtn" resultType="com.yami.trading.sys.model.SysMenu">
+	   select * from tz_sys_menu where
+	    1=1
+	     <if test="appType!=null and appType!='' ">
+			 AND  app_type=#{appType}
+		 </if>
+	    order by order_num
+	</select>
+
+	<!-- 查询用户的所有菜单 -->
+	<select id="listMenuByUserId2" resultType="com.yami.trading.sys.model.SysMenu">
+		SELECT DISTINCT m.menu_id AS menu_id,m.parent_id,m.app_type,m.name,url,m.type,m.icon,m.order_num FROM tz_sys_menu m where 1=1
+		<if test="appType!=null and appType!='' ">AND app_type=#{appType}</if>
+		<if test="children != null and children.size()>0">and m.menu_id in
+			<foreach collection="children" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		</if>
+	</select>
+
+	<select id="queryAllPerms2" resultType="com.yami.trading.sys.model.SysMenu">
+		select m.menu_id,m.parent_id from tz_sys_user_role ur
+		LEFT JOIN tz_sys_role_menu rm on ur.role_id = rm.role_id
+		LEFT JOIN tz_sys_menu m on rm.menu_id = m.menu_id
+		where ur.user_id = #{userId} and perms!=""
+	</select>
+
+</mapper>
+
+
+

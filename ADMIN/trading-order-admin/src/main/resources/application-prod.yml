@@ -19,7 +19,7 @@ spring:
       config-spider: classpath:redisson/redisson-spider.yml
     host: localhost
     port: 6379
-    password: BHvK&mg6cckt
+    #password: BHvK&mg6cckt
   freemarker:
     check-template-location: false
 logging:
@@ -61,7 +61,7 @@ jetcache:
         maxTotal: 50
       host: ${spring.redis.host}
       port: ${spring.redis.port}
-      password: ${spring.redis.password}
+      #password: ${spring.redis.password}
       database: 1
 
 db:

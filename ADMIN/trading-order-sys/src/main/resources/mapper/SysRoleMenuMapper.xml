@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yami.trading.sys.dao.SysRoleMenuMapper">
+    <delete id="deleteBatch">
+        delete from tz_sys_role_menu where id in
+
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="getIdByApp" resultType="java.lang.Long">
+        SELECT rm.id from tz_sys_role_menu  rm
+        LEFT JOIN tz_sys_menu m ON  rm.menu_id=m.menu_id  WHERE 1=1
+         <if test="appType!=null and appType!=''">
+            and m.app_type=#{appType}
+         </if>
+        and rm.role_id in
+        <foreach item="roleId" collection="roleIds" open="(" separator="," close=")">
+            #{roleId}
+        </foreach>
+    </select>
+
+    <delete id="deleteByMenuId">
+        delete
+        from tz_sys_role_menu
+        where menu_id = #{menuId}
+    </delete>
+
+    <insert id="insertRoleAndRoleMenu">
+        insert into tz_sys_role_menu (role_id,menu_id) values
+        <foreach collection="menuIdList" item="menuId" separator=",">
+            (#{roleId},#{menuId})
+        </foreach>
+    </insert>
+
+</mapper>
