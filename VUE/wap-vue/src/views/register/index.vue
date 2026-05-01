@@ -1,37 +1,41 @@
-<template>
+﻿<template>
   <div class="register">
     <div class="top" @click="router.go(-1)">
       <img src="../../assets/image/icon-close.png" alt="" />
     </div>
     <Step :step="1"></Step>
     <div class="title textColor">{{ $t("register") }}</div>
+
     <div class="flex re-tab">
-      <div class="textColor1" :class="activeIndex == 0 ? 'active' : ''" @click="changeIndex(0)">
-        {{ $t("account") }}
-      </div>
-      <div class="textColor1" :class="activeIndex == 1 ? 'active' : ''" @click="changeIndex(1)">
-        {{ $t("email") }}
-      </div>
-      <div class="textColor1" :class="activeIndex == 2 ? 'active' : ''" @click="changeIndex(2)">
-        {{ $t("phoneNum") }}
-      </div>
+      <div class="textColor1 active">{{ $t("email") }}</div>
     </div>
-    <ExInput :label="getRegType(activeIndex, true)" :placeholderText="getRegType(activeIndex, false)" v-model="username"
-      :area="isArea" :dialCode="dialCode" @selectArea="onSelectArea" :icon="icon" />
+
+    <ExInput :label="$t('email')" :placeholderText="$t('entryEmail')" v-model="username" />
+
+    <ExInput
+      :label="$t('phoneNum')"
+      :placeholderText="$t('entryPhone')"
+      v-model="phone"
+      :area="true"
+      :dialCode="dialCode"
+      @selectArea="onSelectArea"
+      :icon="icon"
+    />
 
     <ExInput :label="$t('setPassword')" :placeholderText="$t('passwordTips')" v-model="password" typeText="password" />
     <ExInput :label="$t('repassword')" :placeholderText="$t('surePassword')" v-model="repassword" typeText="password" />
-    <ExInput :label="$t('setSafeword')" :placeholderText="$t('safewordTips')" v-model="safeword" typeText="password"
-      v-if="activeIndex === 1" />
-    <div class="inputCom" v-if="activeIndex === 1">
-      <p class="label textColor">{{ $t("验证码") }}</p>
+    <ExInput :label="$t('setSafeword')" :placeholderText="$t('safewordTips')" v-model="safeword" typeText="password" />
+
+    <div class="inputCom">
+      <p class="label textColor">{{ $t("楠岃瘉鐮?) }}</p>
       <div class="iptbox inputBackground">
         <input class="inputBackground textColor" type="text" :placeholder="$t('entryVerifyCode')" v-model="verifyCode" />
-        <span v-if="type !== 3" @click="senCode">{{ $t("sendVerifyCode") }}
+        <span @click="senCode">{{ $t("sendVerifyCode") }}
           <template v-if="time">({{ time }})s</template>
         </span>
       </div>
     </div>
+
     <ExInput :label="$t('invitCode')" :placeholderText="$t('entryInvitCode')" v-model="invitCode" :clearBtn="false" />
     <div class="protocol textColor">
       <i @click="agreeProt">
@@ -61,7 +65,7 @@
 <script setup>
 import ExInput from "@/components/ex-input/index.vue";
 import Step from "./step.vue";
-import { _registerUser, _sendVerifyCode } from "@/service/login.api";
+import { _sendVerifyCode } from "@/service/login.api";
 import { _bindEmailRegister } from "@/service/user.api.js";
 import { useUserStore } from "@/store/user";
 import { GET_USERINFO } from "@/store/types.store";
@@ -75,41 +79,29 @@ import { useRouter } from "vue-router";
 import { ref, onMounted, reactive, onUnmounted } from "vue";
 import { showToast } from "vant";
 import store from "@/store/store";
+
 const { t } = useI18n();
 const router = useRouter();
-const onRoute = (path) => {
-  router.push(path);
-};
 const userStore = useUserStore();
 
-let show = ref(false);
+const show = ref(false);
 const msg = ref("");
-const type = ref(1);
 const time = ref(0);
-let agree = ref(false);
+const agree = ref(false);
 const username = ref("");
+const phone = ref("");
 const password = ref("");
 const repassword = ref("");
 const verifyCode = ref("");
 const safeword = ref("");
-const fundPassword = ref("");
-const refundPassword = ref("");
-const activeIndex = ref(0);
-const typeText = ref("password");
-let isArea = ref(false);
-let dialCode = ref(0);
-let icon = ref("");
-const state = reactive({
-  timer: null,
-});
+const dialCode = ref(0);
+const icon = ref("");
+const state = reactive({ timer: null });
+const invitCode = ref("");
 
-let invitCode = ref("");
 onMounted(() => {
-  console.log(store);
-  let usercode = getStorage("usercode");
-  if (usercode) {
-    invitCode.value = usercode;
-  }
+  const usercode = getStorage("usercode");
+  if (usercode) invitCode.value = usercode;
   clearInterval(state.timer);
   state.timer = null;
 });
@@ -119,33 +111,16 @@ onUnmounted(() => {
   state.timer = null;
 });
 
-const getRegType = (activeIndex, bFlag) => {
-  switch (activeIndex) {
-    case 0:
-      return bFlag ? t("account") : t("entryAccount");
-    case 1:
-      return bFlag ? t("email") : t("entryEmail");
-    case 2:
-      return bFlag ? t("phoneNum") : t("entryPhone");
-  }
-};
-
 const senCode = () => {
-  if (time.value > 0) {
-    return false;
-  }
-  if (activeIndex.value === 1) {
-    let match = username.value.search(/@/);
-    if (username.value == "" || match == -1) {
-      showToast(t("entryCorrectEmail"));
-      return;
-    }
+  if (time.value > 0) return;
+  const match = username.value.search(/@/);
+  if (username.value == "" || match == -1) {
+    showToast(t("entryCorrectEmail"));
+    return;
   }
 
-  _sendVerifyCode({
-    target: username.value,
-  })
-    .then((res) => {
+  _sendVerifyCode({ target: username.value })
+    .then(() => {
       time.value = 60;
       state.timer = setInterval(() => {
         if (time.value > 0) {
@@ -163,14 +138,11 @@ const senCode = () => {
 };
 
 const onSuccess = () => {
-  console.log("onSuccess");
   registerApi();
   show.value = false;
 };
+
 const onFail = () => {
-  msg.value = "";
-};
-const onRefresh = () => {
   msg.value = "";
 };
 
@@ -183,43 +155,20 @@ const getName = (params) => {
   icon.value = params.code;
   dialCode.value = params.dialCode;
 };
+
 const agreeProt = () => {
   agree.value = !agree.value;
 };
+
 const register = () => {
-  console.log(activeIndex.value, "activeIndex.value");
-  if (activeIndex.value == 0) {
-    if (username.value == "") {
-      showToast(t("entryAccount"));
-      return;
-    }
-    if (username.value.length < 6 || username.value.length > 30) {
-      showToast(t("accountLength"));
-      return;
-    }
-  } else if (activeIndex.value == 1) {
-    let match = username.value.search(/@/);
-    if (username.value == "" || match.value == -1) {
-      showToast(t("entryCorrectEmail"));
-      return;
-    }
-    if (safeword.value == "") {
-      showToast(t("safewordTips"));
-      return;
-    }
-    if (verifyCode.value.length < 6) {
-      showToast(t("entryVerifyTips"));
-      return;
-    }
-  } else if (activeIndex.value == 2) {
-    if (!/(^[1-9]\d*$)/.test(username.value)) {
-      showToast(t("entryPhone"));
-      return;
-    }
-    if (username.value == "") {
-      showToast(t("entryPhone"));
-      return;
-    }
+  const match = username.value.search(/@/);
+  if (username.value == "" || match == -1) {
+    showToast(t("entryCorrectEmail"));
+    return;
+  }
+  if (!/(^[1-9]\d*$)/.test(phone.value)) {
+    showToast(t("entryPhone"));
+    return;
   }
   if (password.value == "") {
     showToast(t("entryPassword"));
@@ -233,97 +182,39 @@ const register = () => {
     showToast(t("noSamePassword"));
     return;
   }
+  if (safeword.value == "") {
+    showToast(t("safewordTips"));
+    return;
+  }
+  if (verifyCode.value.length < 6) {
+    showToast(t("entryVerifyTips"));
+    return;
+  }
   if (!agree.value) {
     showToast(t("agreeServiceCond"));
     return;
   }
   show.value = true;
 };
-const changeIndex = (index) => {
-  activeIndex.value = index;
-  if (index == 0 || index == 1) {
-    isArea.value = false;
-  } else {
-    isArea.value = true;
-  }
-};
-const registerApi = () => {
-  switch (activeIndex.value) {
-    case 0: {
-      type.value = 3;
-      break;
-    }
-    case 1: {
-      type.value = 2;
-      break;
-    }
-    case 2: {
-      type.value = 1;
-      break;
-    }
-  }
 
-  if (activeIndex.value === 1) {
-    _bindEmailRegister({
-      username: username.value,
-      password: password.value,
-      type: "2", // 2邮箱
-      verifcode: verifyCode.value,
-      usercode: invitCode.value,
-      safeword: safeword.value,
-    }).then((res) => {
-      userStore[GET_USERINFO](res);
-      store.state.user.userInfo = res;
-      // 其他操作？？
-      router.push("/identity");
-    });
-  } else {
-    _registerUser({
-      userName:
-        activeIndex.value === 0 || activeIndex.value === 1
-          ? username.value
-          : `${dialCode.value}${username.value}`,
-      password: password.value,
-      // re_password: repassword.value,
-      type: type.value,
-      userCode: invitCode.value,
-    }).then((res) => {
-      userStore[GET_USERINFO](res);
-      store.state.user.userInfo = res;
-      if (activeIndex.value == 0) {
-        router.push("/setFond");
-      } else {
-        router.push({
-          name: "verify",
-          query: {
-            type: activeIndex.value,
-            account:
-              activeIndex.value == 1
-                ? username.value
-                : `${dialCode.value}${username.value}`,
-          },
-        });
-      }
-    });
-  }
+const registerApi = () => {
+  _bindEmailRegister({
+    username: username.value,
+    password: password.value,
+    type: "2",
+    verifcode: verifyCode.value,
+    usercode: invitCode.value,
+    safeword: safeword.value,
+    phone: `${dialCode.value}${phone.value}`,
+  }).then((res) => {
+    userStore[GET_USERINFO](res);
+    store.state.user.userInfo = res;
+    router.push("/identity");
+  });
 };
 </script>
 
 <style lang="scss" scoped>
-.activeBKClick {
-  &:active {
-    background: $tab_background;
-    opacity: 0.5;
-  }
-}
-
-.activeClick {
-  &:active {
-    background: $mainbgWhiteColor;
-    opacity: 0.5;
-  }
-}
-
 .register {
   width: 100%;
   box-sizing: border-box;
@@ -364,12 +255,6 @@ const registerApi = () => {
     background: $US_tabActice_background;
     color: $color_main;
   }
-}
-
-.forget {
-  color: $color_main;
-  font-size: 12px;
-  line-height: 14px;
 }
 
 .noTips {

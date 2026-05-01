@@ -13,7 +13,7 @@
         >
           <div :class="selectPath == it.url ? 'item-active-line' : ''"></div>
           <img :src="$getImages(`headIcon/personal-menu/${it.imgKey}.png`)" />
-          <span>{{ $t(`message.user.${it.label}`) }}</span>
+          <span>{{ it.text || $t(`message.user.${it.label}`) }}</span>
         </div>
       </div>
       <!-- right -->
@@ -46,6 +46,11 @@ const list = [
     imgKey: "help-center",
     label: "bangzhuzhongxin",
     url: "/my/helpCenter",
+  },
+  {
+    imgKey: "help-center",
+    text: "工单中心",
+    url: "/my/workerOrder",
   },
   {
     imgKey: "notice",

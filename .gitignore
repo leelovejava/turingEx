@@ -1,0 +1,32 @@
+*.class
+
+# Maven / Java build
+target/
+**/target/
+out/
+build/
+*.jar
+*.war
+*.ear
+
+# Node / frontend build
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Logs
+*.log
+logs/
+**/logs/
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*

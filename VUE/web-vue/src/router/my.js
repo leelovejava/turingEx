@@ -10,6 +10,7 @@ const myRoutes = [
       { path: '/my/payment',name:'payment', component:()=>import('@/views/my/payment.vue')},//收款方式
       { path: '/my/universal', name:'universal',component:()=>import('@/views/my/universal.vue')},//通用
       { path:'/my/helpCenter',name:'helpCenter',component:()=>import("@/views/my/helpCenter.vue")}, //帮助中心
+      { path:'/my/workerOrder',name:'workerOrder',component:()=>import("@/views/my/workerOrder.vue")}, //工单中心
       { path:'/my/announcement',name:'Announcement',component:()=>import("@/views/my/announcement.vue")},//公告中心
 		]
   },
