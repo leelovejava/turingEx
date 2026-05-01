@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     '印度股交易': 'Trading di azioni indiane',
     '印度股': 'Azioni indiane',
     '已断网': 'Disconnesso da internet',
@@ -1127,7 +1127,7 @@ export default {
     '余币宝': 'Yubibao',
     '稳健增值,周期灵活': 'Ciclo costante a valore aggiunto e flessibile',
     '安心理财': 'Tranquillità nella gestione finanziaria',
-    '智能矿池': 'Pool minerario intelligente',
+    'AI量化': 'Quantitativo AI',
     '真实矿机租赁，套餐选择灵活': 'Noleggio di macchine minerarie reali, selezione flessibile dei pacchetti',
     '搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。': `Lo spostamento dei mattoni consiste nell'affidare USDT alla piattaforma e il team di professionisti della piattaforma eseguirà l'arbitraggio dello spostamento dei mattoni.Durante il periodo di custodia del fondo, i partecipanti possono ottenere la quota di reddito della piattaforma dallo spostamento dei mattoni.`,
     '什么是余币宝': `Cos'è Yubibao`,
@@ -3051,3 +3051,6 @@ export default {
     '币种手续费值不合理':'La commissione per la gestione della valuta è irragionevole',
     '首日涨幅': "Aumento del primo giorno",
 }
+
+
+

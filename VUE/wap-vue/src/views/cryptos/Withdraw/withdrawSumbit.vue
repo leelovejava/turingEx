@@ -73,7 +73,7 @@ export default {
       this.time = dataTimeEx(Date.parse(new Date()), true);
     },
     tokefu() {
-      this.$router.push('/customerService')
+      this.$router.push('/workerOrder')
     }
   }
 }
@@ -123,4 +123,5 @@ export default {
   }
 }
 </style>
+
 

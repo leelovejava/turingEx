@@ -2955,5 +2955,30 @@ export default {
     '二级返佣': "二級返傭",
     '三级返佣': "三級返傭",
     '币种手续费值不合理':'幣種手續費值不合理',
+    workerOrder: {
+        center: '工单中心',
+        detail: '工单详情',
+        createOrder: '发起工单',
+        noOrders: '暂无工单',
+        noReplies: '暂无回复',
+        orderNo: '工单号',
+        createTime: '创建时间',
+        status: '状态',
+        completed: '已完成',
+        processing: '处理中',
+        title: '标题',
+        content: '内容',
+        pleaseEnterTitle: '请输入标题',
+        pleaseEnterContent: '请输入内容',
+        submit: '提交',
+        submitSuccess: '提交成功',
+        customerService: '客服',
+        me: '我',
+        enterReply: '输入回复内容',
+        sendReply: '发送回复',
+        sendSuccess: '发送成功'
+    },
     '首日涨幅': "首日漲幅",
 }
+
+

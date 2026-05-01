@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     '印度股交易': 'Indischer Aktienhandel',
     '印度股': 'Indische Aktien',
     '已断网': 'Internetverbindung ist unterbrochen',
@@ -1141,7 +1141,7 @@ export default {
     "余币宝": "Yubibao",
     "稳健增值,周期灵活": "Stabile Wertschöpfung, flexible Zyklen",
     "安心理财": "Ruhiges Finanzverwaltung",
-    "智能矿池": "Intelligente Mine",
+    "AI量化": "KI-Quant",
     "真实矿机租赁，套餐选择灵活": "Real Mining Machine Leasing, flexible Paketauswahl",
     "搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。": "Moving Bricks soll USDT auf der Plattform hosten, und das professionelle Team der Plattform wird Arbitrage durchführen, und die Teilnehmer können während der Depotzeit des Fonds einen Anteil an den Einnahmen der Plattform aus dem Brick-Moving erhalten. ",
     "什么是余币宝": "Was ist Yubibao? ",
@@ -2974,3 +2974,5 @@ export default {
     '币种手续费值不合理':'Die Währungsbearbeitungsgebühr ist unangemessen',
     '首日涨幅': "Erhöhung am ersten Tag",
 }
+
+

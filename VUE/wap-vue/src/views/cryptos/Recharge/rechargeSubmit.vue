@@ -75,7 +75,7 @@ export default {
       });
     },
     tokefu() {
-      this.$router.push('/customerService')
+      this.$router.push('/workerOrder')
     }
   }
 }
@@ -126,3 +126,4 @@ export default {
 }
 </style>
   
+

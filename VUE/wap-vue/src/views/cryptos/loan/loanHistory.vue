@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="right text-center text-white">
-              <div class="loanBtn mb-5" @click="$router.push('/customerService')" v-if="item.state === 2">
+              <div class="loanBtn mb-5" @click="$router.push('/workerOrder')" v-if="item.state === 2">
                 {{ $t("申请还款") }}
               </div>
               <div class="loanBtn mb-5" :style="{ background: loanBgText(item.state) }" v-else>
@@ -297,3 +297,4 @@ export default {
   }
 }
 </style>
+

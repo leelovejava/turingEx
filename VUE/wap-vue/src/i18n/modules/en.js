@@ -2135,9 +2135,9 @@
     "关联账户": "Linked Accounts",
     "订单执行": "Order Execution",
     "前3名投资者": "Top 3 Investors",
-    "资产管理": "Asset Management",
+    "资产管理": "Asset",
     "排行榜": "Rankings",
-    "AI量化基金": "AI Quant Fund",
+    "AI量化": "AI Quant",
     "交易对": "Trading pair",
     "24h涨跌幅": "24h change",
     "搜索": "Search",
@@ -2966,6 +2966,32 @@
     '二级返佣': "Second level rebate",
     '三级返佣': "Level three rebate",
     '币种手续费值不合理':'The currency handling fee is unreasonable',
+    workerOrder: {
+        center: 'Work Order Center',
+        detail: 'Work Order Detail',
+        createOrder: 'Create Work Order',
+        noOrders: 'No work orders',
+        noReplies: 'No replies',
+        orderNo: 'Work Order No',
+        createTime: 'Create Time',
+        status: 'Status',
+        completed: 'Completed',
+        processing: 'Processing',
+        title: 'Title',
+        content: 'Content',
+        pleaseEnterTitle: 'Please enter a title',
+        pleaseEnterContent: 'Please enter content',
+        submit: 'Submit',
+        submitSuccess: 'Submitted successfully',
+        customerService: 'Customer Service',
+        me: 'Me',
+        enterReply: 'Enter reply content',
+        sendReply: 'Send Reply',
+        sendSuccess: 'Sent successfully'
+    },
     '首日涨幅': "First day increase",
 }
+
+
+
 

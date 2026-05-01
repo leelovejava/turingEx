@@ -121,7 +121,7 @@ const showPopup = ref(false)
 const orderNo = ref(null)
 const onRoute = () => {
   // router.push('/order/success')
-  router.push('/customerService?order_no=' + orderNo.value)
+  router.push('/workerOrder?order_no=' + orderNo.value)
 }
 const onClickLeft = () => {
   router.push('/exchange/channel-in')
@@ -377,3 +377,4 @@ const copy = async () => {
   color: $text_color;
 }
 </style>
+

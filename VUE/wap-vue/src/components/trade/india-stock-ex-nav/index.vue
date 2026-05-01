@@ -76,7 +76,7 @@ export default {
         {
           name: this.$t('客服'),
           icon: new URL(`../../../assets/theme/${thStore.theme}/image/indexNav/3270.png`, import.meta.url),
-          path: '/customerService'
+          path: '/workerOrder'
         }
       ]
     }
@@ -144,3 +144,4 @@ export default {
   }
 }
 </style>
+

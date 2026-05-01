@@ -2,10 +2,10 @@
   <section class="my-index">
     <fx-header :title="$t('my')" :showLeft="false">
       <template v-slot:right>
-        <!-- <van-icon name="service-o" size="18" @click="$router.push('/customerService')"
+        <!-- <van-icon name="service-o" size="18" @click="$router.push('/workerOrder')"
           :badge="`${unread_num}`"></van-icon> -->
         <van-badge class="w-35 h-33 mr-22" :content="unreadMsg">
-          <van-icon name="service-o" size="18" @click="$router.push('/customerService')" />
+          <van-icon name="service-o" size="18" @click="$router.push('/workerOrder')" />
         </van-badge>
       </template>
     </fx-header>
@@ -143,7 +143,7 @@ const state = reactive({
       title: t("universal"),
       list: [
         { icon: "font-o", title: t("language"), path: "/language" },
-        { icon: "service-o", title: t("onLineService"), path: "/customerService" },
+        { icon: "service-o", title: t("onLineService"), path: "/workerOrder" },
         {
           icon: "idcard",
           title: t("authVerify"),
@@ -230,7 +230,7 @@ const cellList = computed(() => {
               import.meta.url
             ),
             title: t("onLineService"),
-            path: "/customerService",
+            path: "/workerOrder",
           },
           {
             icon: new URL(
@@ -309,8 +309,8 @@ const cellList = computed(() => {
               "../../assets/image/assets-center/aboutUs.png",
               import.meta.url
             ),
-            title: t("onLineService"),
-            path: "/customerService",
+            title: "工单中心",
+            path: "/workerOrder",
           },
         ],
       },
@@ -464,3 +464,4 @@ h1.title {
   margin-right: 10px;
 }
 </style>
+

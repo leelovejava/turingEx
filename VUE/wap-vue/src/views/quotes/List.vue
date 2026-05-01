@@ -11,6 +11,9 @@
           </div>
         </div>
       </header>
+      <section class="chain-intro">
+        <p class="chain-intro-text">{{ t('全球最大的区块链资产平台') }}</p>
+      </section>
       <section class="quotes-tab-container">
         <van-tabs v-model:active="tabActive" shrink @click-tab="onClickTab">
           <van-tab v-for="(item, index) in listTab" :key="item.tabIndex" :name="item.tabIndex" :title="item.title">
@@ -472,6 +475,21 @@ onBeforeRouteLeave(() => {
       border: 20px solid transparent;
       border-top: 24px solid $fina-border;
     }
+  }
+
+  .chain-intro {
+    margin: 2px 14px 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .chain-intro-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.82);
   }
 }
 </style>

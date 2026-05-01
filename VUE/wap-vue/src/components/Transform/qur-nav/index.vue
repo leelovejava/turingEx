@@ -57,7 +57,7 @@ export default {
         {
           name: this.$t('客服'),
           icon: new URL(`../../../assets/theme/${thStore.theme}/image/indexNav/3270.png`, import.meta.url),
-          path: '/customerService'
+          path: '/workerOrder'
         },
       ],
       navList1: [
@@ -156,7 +156,7 @@ export default {
       //   path: '/cryptos/fund'
       // },
       // {
-      //   name: this.$t('智能矿池'),
+      //   name: this.$t('AI量化'),
       //   icon: new URL('@/assets/theme/dark/image/nav/SmartKuangchi.png', import.meta.url),
       //   path: '/cryptos/machine'
       // },

@@ -124,7 +124,7 @@ export default {
       this.$router.push({ path: '/cryptos/chat' })
     },
     tokefu() {
-      this.$router.push('/customerService')
+      this.$router.push('/workerOrder')
     }
   },
   computed: {
@@ -181,3 +181,4 @@ export default {
   }
 }
 </style>
+

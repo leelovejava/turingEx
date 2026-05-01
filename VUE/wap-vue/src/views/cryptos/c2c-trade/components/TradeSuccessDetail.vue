@@ -161,7 +161,7 @@ export default {
       return str
     },
     tokefu() {
-      this.$router.push('/customerService')
+      this.$router.push('/workerOrder')
     }
   }
 }
@@ -230,3 +230,4 @@ export default {
 
 }
 </style>
+

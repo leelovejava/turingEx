@@ -211,7 +211,7 @@ const onSubmit = () => {
   })
 }
 const tokefu = () => {
-  router.push('/customerService')
+  router.push('/workerOrder')
 }
 
 </script>
@@ -276,3 +276,4 @@ input:disabled {
   padding-top: 16px;
 }
 </style>
+

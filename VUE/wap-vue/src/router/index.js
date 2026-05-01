@@ -709,6 +709,21 @@ const routes = [
         name: 'customerService',
         component: () => import(/* webpackChunkName: "customerService" */ '@/views/customerService/index.vue')
       },
+      { //工单列表
+        path: '/workerOrder',
+        name: 'workerOrder',
+        component: () => import(/* webpackChunkName: "workerOrder" */ '@/views/workerOrder/index.vue')
+      },
+      { //发起工单
+        path: '/workerOrder/create',
+        name: 'workerOrderCreate',
+        component: () => import(/* webpackChunkName: "workerOrderCreate" */ '@/views/workerOrder/create.vue')
+      },
+      { //工单详情
+        path: '/workerOrder/detail',
+        name: 'workerOrderDetail',
+        component: () => import(/* webpackChunkName: "workerOrderDetail" */ '@/views/workerOrder/detail.vue')
+      },
       { //身份认证
         path: '/certificationCenter',
         name: 'certificationCenter',

@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     '手机号格式不正常': 'Formatul numărului de telefon este anormal',
     '手机号已存在': 'Numărul de telefon există deja',
     '邮箱已存在': 'Emailul există deja',
@@ -1105,7 +1105,7 @@ export default {
     '余币宝': '余币宝',
     '稳健增值,周期灵活': '稳健增值,周期灵活',
     '安心理财': '安心理财',
-    '智能矿池': '智能矿池',
+    'AI量化': 'Cuantificare AI',
     '真实矿机租赁，套餐选择灵活': '真实矿机租赁，套餐选择灵活',
     '搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。': '搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。',
     '什么是余币宝': '什么是余币宝',
@@ -2933,3 +2933,5 @@ export default {
     '币种手续费值不合理':'Taxa de gestionare a valutei este nerezonabilă',
     '首日涨幅': "Creștere în prima zi",
 }
+
+

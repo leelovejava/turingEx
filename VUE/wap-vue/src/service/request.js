@@ -44,7 +44,11 @@ service.interceptors.request.use(
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
     config.headers[' x-api-client-timezone'] = timeZone
     const userStore = useUserStore()
-    const TOKEN = userStore.userInfo.token
+    const piniaToken = userStore?.userInfo?.token
+    const vuexToken = store?.state?.user?.userInfo?.token
+    const localUser = getStorage('user')
+    const localToken = localUser?.userInfo?.token || localUser?.token
+    const TOKEN = piniaToken || vuexToken || localToken
     const { systemRandom, timestamp, signature } = signatureGenerate()
     if (!config.params) {
       config.params = {}

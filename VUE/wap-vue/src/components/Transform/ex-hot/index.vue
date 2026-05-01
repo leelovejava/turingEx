@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="list-hot ex-hot-cards">
     <div class="hotBox">
       <div
@@ -11,7 +11,7 @@
           <strong>{{ item.symbol && item.symbol.toUpperCase() || '--' }}</strong><span class="hot-quote">/USDT</span>
         </p>
         <p class="hot-price" :class="item.changeRatio > 0 ? 'is-up' : 'is-down'">
-          {{ item.close || '--' }}
+          {{ formatPrice(item.close) }}
         </p>
         <p class="hot-sub">
           <span class="hot-fiat">
@@ -28,15 +28,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { fixDate } from "@/utils";
 export default {
-  data() {
-    return {
-      fixDate
-    }
-  },
-  components: {
-  },
   props: {
     listData: {
       type: Array,
@@ -49,7 +41,14 @@ export default {
     ...mapGetters({ currency: 'home/currency' })
   },
   methods: {
-    onItemClick(item) { // 点击进入合约交易
+    formatPrice(value) {
+      if (value === null || value === undefined || value === '') return '--'
+      const str = String(value)
+      if (!str.includes('.')) return str
+      const [intPart, decPart] = str.split('.')
+      return `${intPart}.${(decPart || '').slice(0, 4)}`
+    },
+    onItemClick(item) {
       this.$router.push({
         path: `/cryptos/trendDetails/${item.symbol}`,
         query: { type: 'cryptos' }
@@ -67,75 +66,69 @@ export default {
 
   .hotBox {
     display: flex;
-    gap: 8px;
+    gap: 14px;
     align-items: stretch;
   }
 
   .hot-card {
     flex: 1;
     min-width: 0;
-    padding: 18px 12px 16px;
-    border-radius: 18px;
-    background: #1a1a1c;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease;
-
-    &:active {
-      background: #222226;
-      border-color: rgba(255, 255, 255, 0.12);
-    }
+    min-height: 236px;
+    padding: 22px 16px 18px;
+    border-radius: 24px;
+    background: #1f2540;
+    border: 2px solid rgba(177, 189, 222, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
 
   .hot-pair {
-    margin: 0 0 10px;
-    font-size: 26px;
+    margin: 0 0 14px;
+    font-size: 24px;
     line-height: 1.2;
-    color: #fff;
+    color: #eef1f7;
 
     strong {
-      font-weight: 700;
+      font-weight: 600;
     }
   }
 
   .hot-quote {
-    color: rgba(255, 255, 255, 0.45);
+    color: #d7dcea;
     font-weight: 500;
   }
 
   .hot-price {
-    margin: 0 0 8px;
-    font-size: 36px;
+    margin: 0 0 10px;
+    font-size: 48px;
     font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 
   .hot-sub {
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 8px;
+    display: block;
     font-size: 20px;
-    line-height: 1.3;
+    line-height: 1.35;
   }
 
   .hot-fiat {
-    color: rgba(255, 255, 255, 0.45);
+    display: block;
+    color: #8f96a8;
   }
 
   .hot-pct {
-    font-weight: 600;
+    display: block;
+    margin-top: 2px;
+    font-weight: 700;
+    font-size: 20px;
   }
 
   .is-up {
-    color: #34d399;
+    color: #57d6b4;
   }
 
   .is-down {
-    color: #f87171;
+    color: #e46b93;
   }
 }
 </style>

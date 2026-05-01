@@ -214,7 +214,7 @@ export default {
       return formatTime(new Date(time), 'yyyy-MM-dd hh:mm:ss')
     },
     tokefu() {
-      this.$router.push('/customerService')
+      this.$router.push('/workerOrder')
     }
   },
   watch: {
@@ -287,3 +287,4 @@ export default {
   }
 }
 </style>
+

@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     '印度股交易': 'Giao dịch cổ phiếu Ấn Độ',
     '印度股': 'Cổ phiếu Ấn Độ',
     '已断网': 'Đã ngắt kết nối từ internet',
@@ -1125,7 +1125,7 @@ export default {
     '余币宝': 'Yubibao',
     '稳健增值,周期灵活': 'Giá trị gia tăng ổn định, chu kỳ linh hoạt',
     '安心理财': 'Quản lý tài chính an toàn',
-    '智能矿池': 'Smart Pool',
+    'AI量化': 'Định lượng AI',
     '真实矿机租赁，套餐选择灵活': 'Cho thuê máy khai thác thực, tùy chọn gói linh hoạt',
     '搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。': "Các brick lưu động là để lưu trữ USDT vào nền tảng và đội ngũ chuyên nghiệp của nền tảng sẽ thực hiện kinh doanh hối đoái và những người tham gia có thể nhận được phần doanh thu brick lưu động của nền tảng trong thời gian lưu ký quỹ. ",
     '什么是余币宝': 'Yubibao là gì',
@@ -2896,3 +2896,6 @@ export default {
     '币种手续费值不合理':'Phí xử lý tiền tệ là không hợp lý',
     '首日涨幅': "Tăng ngày đầu tiên",
 }
+
+
+

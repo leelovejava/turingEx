@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     '印度股交易': 'Negociación de acciones de India',
     '印度股': 'Acciones indias',
     '已断网': 'Desconectado del internet',
@@ -1123,7 +1123,7 @@ export default {
     '余币宝': 'Tesoro de la moneda',
     '稳健增值,周期灵活': 'Valor agregado constante, ciclo flexible',
     '安心理财': 'Tranquilidad financiera',
-    '智能矿池': 'Fondo de minería inteligente',
+    'AI量化': 'Cuantificación IA',
     '真实矿机租赁，套餐选择灵活': 'Alquiler de máquinas mineras reales con opciones flexibles',
     '搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。': 'El brickeo se realiza depositando USDT en la plataforma y el equipo profesional de la misma llevará a cabo el brickeo para el arbitraje, y los participantes recibirán una parte de los ingresos del brickeo de la plataforma durante el tiempo que los fondos estén depositados. ',
     '什么是余币宝': '¿Qué es el tesoro de la moneda? ',
@@ -2747,3 +2747,5 @@ export default {
     '币种手续费值不合理':'La tarifa por manejo de moneda no es razonable.',
     '首日涨幅': "Aumento del primer día",
 }
+
+

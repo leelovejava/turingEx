@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     tokefu() {
-      this.$router.push('/customerService')
+      this.$router.push('/workerOrder')
     },
     hide() {
       this.$emit("back");
@@ -55,3 +55,4 @@ export default {
   }
 }
 </style>
+

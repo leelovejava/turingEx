@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     '印度股交易': "Trading d'actions indiennes",
     '印度股': 'Actions indiennes',
     '已断网': "Déconnecté de l'internet'",
@@ -1034,7 +1034,7 @@ export default {
     '快捷充币': `Dépôt rapide`,
     '稳健增值,周期灵活': `Stable et flexible`,
     '安心理财': `La paix de l'esprit`,
-    '智能矿池': `Pools miniers intelligents`,
+    'AI量化': 'Quantification IA',
     '真实矿机租赁，套餐选择灵活': `Location de machines d'exploitation minière réelles avec des options de forfaits flexibles`,
     '锁仓挖矿说明': `Instructions de cadenassage des mines`,
     '1、本产品所有锁仓日期均为挡位设定，到期自动解锁，无法人为干预': `1. toutes les dates de verrouillage pour ce produit sont fixées par bloc et automatiquement déverrouillées lorsqu'elles expirent, aucune intervention humaine n'est possible`,
@@ -1306,7 +1306,7 @@ export default {
     '你好，欢迎来到我们的数字货币平台!': 'Bonjour et bienvenue sur notre plateforme de monnaie numérique !',
     '区块链认证合同基金总额': 'Total Fonds pour les contrats certifiés blockchain',
     '暂无数据': 'Aucune donnée disponible',
-    'AI量化': 'Quantification',
+    'AI量化': 'Quantification IA',
     '白皮书': 'Livre blanc',
     '转出地址(选填)': 'Adresse de transfert de sortie (facultatif)',
     '请输入转出地址': 'Veuillez saisir l\'adresse de réexpédition',
@@ -2899,3 +2899,6 @@ export default {
     '币种手续费值不合理':'Les frais de traitement des devises sont déraisonnables',
     '首日涨幅': "Augmentation du premier jour",
 }
+
+
+

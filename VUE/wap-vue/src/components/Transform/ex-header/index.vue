@@ -52,7 +52,7 @@ export default {
       this.tabList[index]['data'] = this.tabList[index]['data'].filter(item => item.symbol.includes(this.keywords))
     },
     tokefu() {
-      this.$router.push('/customerService')
+      this.$router.push('/workerOrder')
     }
   }
 }

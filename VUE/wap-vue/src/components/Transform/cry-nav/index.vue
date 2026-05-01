@@ -79,7 +79,7 @@ export default {
           path: '/cryptos/fund'
         },
         {
-          name: this.$t('智能矿池'),
+          name: this.$t('AI量化'),
           icon: new URL(`../../../assets/theme/${thStore.theme}/image/nav/SmartKuangchi.png`, import.meta.url),
           path: '/cryptos/machine'
         },

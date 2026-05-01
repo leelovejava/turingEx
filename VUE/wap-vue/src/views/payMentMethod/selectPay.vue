@@ -31,13 +31,21 @@ const keyList = ref([]);
 const newLetter = ref([]);
 
 const normalizeMethodName = (value) => {
-  return String(value || "").trim().toUpperCase().replace(/[^A-Z0-9-]/g, "");
+  return String(value || "").trim().toUpperCase();
+};
+
+const extractAllowedToken = (name) => {
+  const upperName = normalizeMethodName(name);
+  return ALLOWED_METHODS.find((token) => upperName.includes(token)) || "";
 };
 
 const buildMethodList = (methodMap) => {
   const filteredEntries = Object.entries(methodMap || {})
-    .map(([id, name]) => [id, normalizeMethodName(name)])
-    .filter(([, name]) => ALLOWED_METHODS.includes(name))
+    .map(([id, name]) => {
+      const token = extractAllowedToken(name);
+      return token ? [id, token] : null;
+    })
+    .filter(Boolean)
     .sort((a, b) => ALLOWED_METHODS.indexOf(a[1]) - ALLOWED_METHODS.indexOf(b[1]));
 
   keysList.value = Object.fromEntries(filteredEntries);
@@ -69,7 +77,7 @@ const openAdd = (val) => {
     }
   }
   sessionStorage.setItem("editAdd", JSON.stringify({ id, name: val, type: 'add' }));
-  router.push('add');
+  router.push('/payMentMethod/add');
 };
 
 const getC2cPaymentMethodConfig = () => {

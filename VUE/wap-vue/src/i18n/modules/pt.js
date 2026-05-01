@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     '印度股交易': 'Negociação de ações da Índia',
     '印度股': 'Ações indianas',
     '已断网': 'Desconectado da internet',
@@ -1098,7 +1098,7 @@ export default {
     '余币宝': 'Bao de moeda restante',
     '稳健增值,周期灵活': 'Valorização estável, período flexível',
     '安心理财': 'Investimento seguro',
-    '智能矿池': 'Piscina de mineração inteligente',
+    'AI量化': 'Quant IA',
     '真实矿机租赁，套餐选择灵活': 'Locação real de mineradoras, pacotes flexíveis',
     '搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。': 'Arbitragem é feita através da custódia de USDT para a plataforma, realizada pela equipe profissional da plataforma. Durante o período de custódia, os participantes recebem uma parcela da receita de arbitragem da plataforma.',
     '什么是余币宝': 'O que é o Bao de Moeda Restante',
@@ -2916,3 +2916,6 @@ export default {
     '币种手续费值不合理':'A taxa de manuseio de moeda não é razoável',
     '首日涨幅': "Aumento no primeiro dia",
 }
+
+
+

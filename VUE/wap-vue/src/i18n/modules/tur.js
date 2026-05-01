@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     '印度股交易': 'Hindistan hisse işlemleri',
     '印度股': 'Hint hisseleri',
     '已断网': 'İnternetten bağlantısı kesildi',
@@ -1111,7 +1111,7 @@ export default {
     '余币宝': '余币宝',
     '稳健增值,周期灵活': '稳健增值,周期灵活',
     '安心理财': '安心理财',
-    '智能矿池': '智能矿池',
+    'AI量化': 'Yapay Zeka Kantitatif',
     '真实矿机租赁，套餐选择灵活': '真实矿机租赁，套餐选择灵活',
     '搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。': '搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。',
     '什么是余币宝': '什么是余币宝',
@@ -2935,3 +2935,5 @@ export default {
     '币种手续费值不合理':'Döviz işlem ücreti makul değil',
     '首日涨幅': "İlk gün artış",
 }
+
+
