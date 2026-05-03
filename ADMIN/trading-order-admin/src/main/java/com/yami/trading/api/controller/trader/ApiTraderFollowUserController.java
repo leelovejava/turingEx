@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 @CrossOrigin
 @RequestMapping()
 public class ApiTraderFollowUserController {
-	private static final long serialVersionUID = 623416500874018208L;
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 交易员api接口
 	 */
@@ -49,24 +49,24 @@ public class ApiTraderFollowUserController {
 //	 */
 //	private String symbol;
 //	/**
-//	 * 跟单固定张数/固定比例---选择 1,固定张数�?2，固定比�?
+//	 * 跟单固定张数/固定比例---选择 1,固定张数：2，固定比例：
 //	 */
 //	private String follow_type;
 //
 //	/**
-//	 * 跟单张数或比�?---具体�?
+//	 * 跟单张数或比例---具体值
 //	 */
 //	private double volume;
 //	/**
-//	 * �?大持仓张�?
+//	 * 最大持仓张数
 //	 */
 //	private double volume_max;
 //	/**
-//	 * 止盈百分�?
+//	 * 止盈百分比
 //	 */
 //	private double stop_profit;
 //	/**
-//	 * 止损百分�?
+//	 * 止损百分比
 //	 */
 //	private double stop_loss;
 	
@@ -189,7 +189,7 @@ public class ApiTraderFollowUserController {
 			TraderFollowUser entity = this.traderFollowUserService.findByPartyIdAndTrader_partyId(partyId,
 					trader.getPartyId());
 			/**
-			 * 跟单固定张数/固定比例---选择 1,固定张数�?2，固定比�?
+			 * 跟单固定张数/固定比例---选择 1,固定张数，2，固定比例
 			 */
 			entity.setFollowType(follow_type);
 			entity.setStopLoss(Double.parseDouble(stop_loss));
@@ -198,7 +198,7 @@ public class ApiTraderFollowUserController {
 			entity.setVolume(Double.parseDouble(volume));
 			entity.setVolumeMax(Double.parseDouble(volume_max));
 			/**
-			 * 状�?? 是否还在跟随状�?? 1,跟随�?2，取消跟�?
+			 * 状态 是否还在跟随状态 1,跟随，2，取消跟随
 			 */
 			entity.setState("1");
 
