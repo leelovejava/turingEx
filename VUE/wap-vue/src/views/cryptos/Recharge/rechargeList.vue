@@ -11,7 +11,7 @@
       </assets-head>
       <div class="pl-9 pr-9">
         <div class="recharge-title text-36 textColor">{{ $t('请选择充值币种') }}</div>
-        <div class="recharge-list flex justify-between">
+        <div class="recharge-list flex flex-wrap justify-start">
           <div class="item-view flex flex-col items-center justify-center text-center w-48 h-56 box-border"
             @click="selectSymbol('usdt')">
             <img src="../../../assets/image/symbol/usdt.png" class="w-24 h-92" />
@@ -26,6 +26,11 @@
             @click="selectSymbol('eth')">
             <img src="../../../assets/image/symbol/eth.png" class="w-24 h-92" />
             <div class="text-grey text-26 mt-8">{{ $t('ETH充值') }}</div>
+          </div>
+          <div class="item-view flex flex-col items-center justify-center text-center w-48 h-56 box-border"
+            @click="selectSymbol('usdc')">
+            <img src="../../../assets/image/symbol/usdc.png" class="w-24 h-92" />
+            <div class="text-grey text-26 mt-8">{{ $t('USDC充值') }}</div>
           </div>
         </div>
       </div>
@@ -136,10 +141,12 @@ export default {
     margin: 86px 0 104px 0;
   }
 
-  .recharge-list>div {
+  .recharge-list > div {
     border: 2px solid $border_color;
     border-radius: 15px;
     box-sizing: border-box;
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
 }
 </style>

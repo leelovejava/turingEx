@@ -187,6 +187,14 @@ export const _orderSellBatch = () => {
   })
 }
 
+// 永续修改持仓单 修改止盈止损
+export const _stopLossAndProfit = (params) => {
+  return request({
+    url: `${API_PREFIX}/contractOrder!stopLossAndProfit.action`,
+    method: 'POST',
+    data: params
+  })
+}
 
 export const _exchangeratelist = (params) => {
   return request({

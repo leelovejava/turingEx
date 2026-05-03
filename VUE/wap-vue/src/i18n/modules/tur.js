@@ -1,4 +1,4 @@
-﻿export default {
+export default {
     '印度股交易': 'Hindistan hisse işlemleri',
     '印度股': 'Hint hisseleri',
     '已断网': 'İnternetten bağlantısı kesildi',
@@ -1661,6 +1661,7 @@
     "USDT充值": "USDT充值",
     "BTC充值": "BTC充值",
     "ETH充值": "ETH充值",
+    "USDC充值": "USDC充值",
     "提币详情": "提币详情",
     "提现费用": "提现费用",
     "快速提币": "快速提币",
@@ -1965,6 +1966,10 @@
     "平仓价格": "平仓价格",
     "止损": "止损",
     "止盈": "止盈",
+    "设置止盈止损": "止损 / 止盈 Ayarla",
+    "请输入止盈价格": "Kâr fiyatı girin",
+    "请输入止损价格": "Zarar durdurma fiyatı girin",
+    "修改成功": "Başarıyla değiştirildi",
     "状态": "状态",
     "已平仓": "已平仓",
     "持仓": "持仓",

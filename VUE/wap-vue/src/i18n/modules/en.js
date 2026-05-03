@@ -1,4 +1,4 @@
-﻿export default {
+export default {
     '印度股交易': 'India stock trading',
     '印度股': 'Indian stocks',
     '已断网': 'Disconnected from the internet',
@@ -1649,6 +1649,7 @@
     "USDT充值": "USDT deposit",
     "BTC充值": "BTC deposit",
     "ETH充值": "ETH deposit",
+    "USDC充值": "USDC deposit",
     "提币详情": "Withdrawal details",
     "提现费用": "Withdrawal fee",
     "快速提币": "Withdrawal",
@@ -1982,6 +1983,10 @@
     "平仓价格": "Closing price",
     "止损": "Stop Loss",
     "止盈": "Stop Profit",
+    "设置止盈止损": "Set Stop Loss / Take Profit",
+    "请输入止盈价格": "Enter take profit price",
+    "请输入止损价格": "Enter stop loss price",
+    "修改成功": "Modified successfully",
     "状态": "Status",
     "已平仓": "Close",
     "持仓": "Holdings",

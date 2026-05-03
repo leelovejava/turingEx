@@ -1,4 +1,4 @@
-﻿export default {
+export default {
     '印度股交易': 'Giao dịch cổ phiếu Ấn Độ',
     '印度股': 'Cổ phiếu Ấn Độ',
     '已断网': 'Đã ngắt kết nối từ internet',
@@ -1685,6 +1685,7 @@
     "USDT充值": "Tiền gửi USDT",
     "BTC充值": "Tiền gửi BTC",
     "ETH充值": "Tiền gửi ETH",
+    "USDC充值": "Tiền gửi USDC",
     "提币详情": "Chi tiết rút tiền",
     "提现费用": "Phí rút tiền",
     "快速提币": "Rút tiền",
@@ -1996,6 +1997,10 @@
     "平仓价格": "Giá đóng cửa",
     "止损": "Cắt lỗ",
     "止盈": "Chốt lãi",
+    "设置止盈止损": "Đặt Cắt lỗ / Chốt lãi",
+    "请输入止盈价格": "Nhập giá chốt lãi",
+    "请输入止损价格": "Nhập giá cắt lỗ",
+    "修改成功": "Sửa đổi thành công",
     "状态": "Trạng thái",
     "已平仓": "Tất ",
     "持仓": "Đang giữ",

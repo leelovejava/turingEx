@@ -60,15 +60,37 @@
           <div class="textColor">{{ detail.close_time ? dayjs(detail.close_time * 1000).format('YYYY-MM-DD HH:mm:ss') :
             '--' }}</div>
         </div>
+        <div class="flex justify-between cell-item" v-if="detail.state !== 'created'">
+          <div class="text-grey">{{ $t('止盈价格') }}</div>
+          <div class="textColor">{{ detail.stop_price_profit || '--' }}</div>
+        </div>
+        <div class="flex justify-between cell-item" v-if="detail.state !== 'created'">
+          <div class="text-grey">{{ $t('止损价格') }}</div>
+          <div class="textColor">{{ detail.stop_price_loss || '--' }}</div>
+        </div>
+        <div class="flex justify-center cell-item mt-30" v-if="detail.state !== 'created'">
+          <van-button type="primary" size="small" @click="openStopLossProfit">{{ $t('设置止盈止损') }}</van-button>
+        </div>
       </div>
     </div>
+    <van-popup v-model:show="stopLossProfitVisible" round position="bottom" :style="{ height: '50%' }">
+      <div class="p-4">
+        <div class="text-center text-32 font-semibold mb-4">{{ $t('设置止盈止损') }}</div>
+        <van-field v-model="stopPriceProfit" :label="$t('止盈价格')" :placeholder="$t('请输入止盈价格')" type="number" />
+        <van-field v-model="stopPriceLoss" :label="$t('止损价格')" :placeholder="$t('请输入止损价格')" type="number" />
+        <div class="flex gap-4 mt-4">
+          <van-button block @click="stopLossProfitVisible = false">{{ $t('取消') }}</van-button>
+          <van-button type="primary" block @click="submitStopLossProfit">{{ $t('确定') }}</van-button>
+        </div>
+      </div>
+    </van-popup>
   </div>
 </template>
 
 <script>
-import { _orderHoldDetail } from "@/service/trade.api";
+import { _orderHoldDetail, _stopLossAndProfit } from "@/service/trade.api";
 import assetsHead from "@/components/Transform/assets-head/index.vue";
-import { Popup } from "vant";
+import { Popup, Field, Button, showToast } from "vant";
 import dayjs from 'dayjs'
 export default {
   name: "orderDetail",
@@ -77,11 +99,17 @@ export default {
       detail: {
 
       },
-      timer: null
+      timer: null,
+      stopLossProfitVisible: false,
+      stopPriceProfit: '',
+      stopPriceLoss: '',
     }
   },
   components: {
     assetsHead,
+    [Popup.name]: Popup,
+    [Field.name]: Field,
+    [Button.name]: Button,
   },
   created() {
     let order_no = this.$route.query.order_no;
@@ -124,6 +152,22 @@ export default {
     },
     onClickLeft() {
       this.$router.go(-1);
+    },
+    openStopLossProfit() {
+      this.stopPriceProfit = this.detail.stop_price_profit || '';
+      this.stopPriceLoss = this.detail.stop_price_loss || '';
+      this.stopLossProfitVisible = true;
+    },
+    submitStopLossProfit() {
+      _stopLossAndProfit({
+        order_no: this.detail.order_no,
+        stop_price_profit: this.stopPriceProfit,
+        stop_price_loss: this.stopPriceLoss,
+      }).then(() => {
+        showToast(this.$t('修改成功'));
+        this.stopLossProfitVisible = false;
+        this.fetchDetail(this.detail.order_no);
+      })
     },
     fetchDetail(order_no) {
       _orderHoldDetail(order_no).then(data => {

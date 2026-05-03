@@ -1,4 +1,4 @@
-﻿export default {
+export default {
     '印度股交易': 'Negociação de ações da Índia',
     '印度股': 'Ações indianas',
     '已断网': 'Desconectado da internet',
@@ -1632,6 +1632,7 @@
     "USDT充值": "Depósito USDT",
     "BTC充值": "Depósito BTC",
     "ETH充值": "Depósito ETH",
+    "USDC充值": "Depósito USDC",
     "提币详情": "Detalhes da retirada",
     "提现费用": "Taxa de retirada",
     "快速提币": "Retirada rápida",
@@ -1948,6 +1949,10 @@
     "平仓价格": "Preço de fechamento",
     "止损": "Stop Loss",
     "止盈": "Take Profit",
+    "设置止盈止损": "Definir Stop Loss / Take Profit",
+    "请输入止盈价格": "Digite o preço de Take Profit",
+    "请输入止损价格": "Digite o preço de Stop Loss",
+    "修改成功": "Modificado com sucesso",
     "状态": "Estado",
     "已平仓": "Fechado",
     "持仓": "Em aberto",

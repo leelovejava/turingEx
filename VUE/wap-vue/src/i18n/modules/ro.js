@@ -1,4 +1,4 @@
-﻿export default {
+export default {
     '手机号格式不正常': 'Formatul numărului de telefon este anormal',
     '手机号已存在': 'Numărul de telefon există deja',
     '邮箱已存在': 'Emailul există deja',
@@ -1655,6 +1655,7 @@
     "USDT充值": "USDT充值",
     "BTC充值": "BTC充值",
     "ETH充值": "ETH充值",
+    "USDC充值": "USDC充值",
     "提币详情": "提币详情",
     "提现费用": "提现费用",
     "快速提币": "快速提币",
@@ -1959,6 +1960,10 @@
     "平仓价格": "平仓价格",
     "止损": "止损",
     "止盈": "止盈",
+    "设置止盈止损": "Setați Stop Loss / Take Profit",
+    "请输入止盈价格": "Introduceți prețul de profit",
+    "请输入止损价格": "Introduceți prețul stop loss",
+    "修改成功": "Modificat cu succes",
     "状态": "状态",
     "已平仓": "已平仓",
     "持仓": "持仓",
