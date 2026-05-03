@@ -2412,7 +2412,7 @@
     popularIndex: "Popular Index",
     plateHotspots: "plate hotspots",
     Amount: "Amount",
-    SpotTrading: "Spot Trading",
+    SpotTrading: "Spot",
     USstocktrading: "US Stock Trading",
     ETFTrading: "ETF Trading",
     Netfunds: "Net funds inflow",
