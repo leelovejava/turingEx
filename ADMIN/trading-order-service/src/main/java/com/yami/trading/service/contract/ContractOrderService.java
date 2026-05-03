@@ -613,35 +613,46 @@ public class ContractOrderService extends ServiceImpl<ContractOrderMapper, Contr
 
 
     /**
-     * 收益结算，平仓时计算
+     * 合约订单收益结算
+     * 平仓时计算盈亏，确定退还给用户的金额（保证金+盈亏）
      *
-     * @param volume 平仓的张数
+     * @param order   持仓订单对象
+     * @param volume  平仓的张数
+     * @return 退还用户的总金额（保证金+盈亏）
      */
     public BigDecimal settle(ContractOrder order, BigDecimal volume) {
         /**
-         * 平仓比率
+         * 平仓比率（注释的旧代码）
          */
 //        BigDecimal rate = volume.divide(order.getVolumeOpen(), 10, RoundingMode.HALF_UP);
 
+        // 从缓存获取该订单的实时收益数据
         ContractOrderProfit cacheProfit = getCacheProfit(order.getUuid());
         BigDecimal originProfit = BigDecimal.ZERO;
         if (cacheProfit != null) {
+            // 如果缓存有收益数据，则使用缓存的收益
             originProfit = cacheProfit.getProfit();
+            // 设置平仓均价
             order.setCloseAvgPrice(cacheProfit.getCloseAvgPrice());
         }
 
+        // 计算退还金额：当前保证金 + 收益
         BigDecimal profit = order.getDeposit().add(originProfit);
 
+        // 如果是跟单订单，需要扣除跟单利息（当前这段代码逻辑未完全实现）
         if (ContractOrder.ORDER_FOLLOW == order.getFollow()) { // 跟单还得减去利息收益
             BigDecimal orderAmount = order.getUnitAmount().multiply(order.getTradeAvgPrice()).multiply(order.getLeverRate()); //订单总金额
+            // 查询跟单关系
             TraderFollowUserOrder traderFollowUserOrder = traderFollowUserOrderService.findByPartyIdAndOrderNo(order.getPartyId(), order.getOrderNo());
             if (null != traderFollowUserOrder) {
                 TraderFollowUser traderFollowUser = traderFollowUserService.findByPartyIdAndTrader_partyId(order.getPartyId(), traderFollowUserOrder.getTraderPartyId());
                 if (StringUtils.isNotEmpty(traderFollowUser.getDaysSetting())) {
+                    // 查询按天计费配置
                     TraderDaysSetting traderDaysSetting = traderDaysSettingService.selectById(traderFollowUser.getDaysSetting());
                     if (null != traderDaysSetting) { // 借款利率
                         int days = 0;
                         try {
+                            // 计算持仓天数
                             days = daysBetween(order.getCreateTime(), new Date());
                         } catch (ParseException e) {
 //                            throw new RuntimeException(e);
@@ -656,45 +667,67 @@ public class ContractOrderService extends ServiceImpl<ContractOrderMapper, Contr
 
         }
 
+        // 更新订单的累计平仓金额
         order.setAmountClose(order.getAmountClose().add(profit));
+        // 减少持仓数量
         order.setVolume(order.getVolume().subtract(volume));
+        // 减少保证金（全额减去开仓保证金）
         order.setDeposit(order.getDeposit().subtract(order.getDepositOpen()));
+        // 如果持仓数量减到0，标记订单为已平仓
         if (order.getVolume().compareTo(BigDecimal.ZERO) <= 0) {
             order.setState(ContractOrder.STATE_CREATED);
             order.setCloseTime(DateUtil.currentSeconds());
             order.setCloseTimeTs(DateUtil.currentSeconds());
         }
+        // 设置订单最终盈亏
         order.setProfit(originProfit);
+        // 返回应退还用户的总金额
         return profit;
     }
 
+    /**
+     * 合约订单开仓处理
+     * 将委托订单（ContractApplyOrder）转换为持仓订单（ContractOrder），保存到数据库和Redis缓存
+     *
+     * @param applyOrder  委托订单（用户提交的开仓申请）
+     * @param realtime    实时价格数据
+     */
     @Transactional
     public void saveOpen(ContractApplyOrder applyOrder, Realtime realtime) {
+        // 获取交易品种的配置信息（包含小数点精度、最小波动点等）
         Item item = this.itemService.findBySymbol(applyOrder.getSymbol());
 
+        // 创建持仓订单对象
         ContractOrder order = new ContractOrder();
-        order.setPartyId(applyOrder.getPartyId());
-        order.setSymbol(applyOrder.getSymbol());
+        order.setPartyId(applyOrder.getPartyId());                // 设置用户ID
+        order.setSymbol(applyOrder.getSymbol());                   // 设置交易品种
+        // 生成订单号：格式=年月日时分秒(12位)+8位随机数
         String orderNo = com.yami.trading.common.util.DateUtil.formatDate(new Date(), "yyMMddHHmmss") + RandomUtil.getRandomNum(8);
         order.setOrderNo(orderNo);
-        order.setDirection(applyOrder.getDirection());
-        order.setLeverRate(applyOrder.getLeverRate());
-        order.setVolume(applyOrder.getVolume());
-        order.setVolumeOpen(applyOrder.getVolumeOpen());
-        order.setOrderPriceType(applyOrder.getOrderPriceType());
-        order.setUnitAmount(applyOrder.getUnitAmount());
-        order.setFee(applyOrder.getFee());
-        order.setDeposit(applyOrder.getDeposit());
-        order.setDepositOpen(applyOrder.getDeposit());
+        order.setDirection(applyOrder.getDirection());             // 设置交易方向：0=买涨，1=买跌
+        order.setLeverRate(applyOrder.getLeverRate());             // 设置杠杆倍数
+        order.setVolume(applyOrder.getVolume());                   // 设置当前持仓数量
+        order.setVolumeOpen(applyOrder.getVolumeOpen());           // 设置开仓数量
+        order.setOrderPriceType(applyOrder.getOrderPriceType());   // 设置订单价格类型
+        order.setUnitAmount(applyOrder.getUnitAmount());           // 设置每张合约面值
+        order.setFee(applyOrder.getFee());                         // 设置手续费
+        order.setDeposit(applyOrder.getDeposit());                 // 设置当前保证金
+        order.setDepositOpen(applyOrder.getDeposit());             // 设置开仓保证金
 
+        // 设置开仓成交均价（使用当前实时价格）
         order.setTradeAvgPrice(BigDecimal.valueOf(realtime.getClose()));
+        // 设置止盈价格
         order.setStopPriceProfit(applyOrder.getStopPriceProfit());
+        // 设置止损价格
         order.setStopPriceLoss(applyOrder.getStopPriceLoss());
 
-        order.setPips(BigDecimal.valueOf(item.getPips()));
-        order.setPipsAmount(BigDecimal.valueOf(item.getPipsAmount()));
-        order.setFollow(applyOrder.getFollow());
-        // 爆仓是爆整个钱包
+        // 设置品种最小波动点配置
+        order.setPips(BigDecimal.valueOf(item.getPips()));         // 最小波动点（如 0.01）
+        order.setPipsAmount(BigDecimal.valueOf(item.getPipsAmount())); // 最小波动点对应金额（如 1）
+        order.setFollow(applyOrder.getFollow());                   // 设置是否跟单：0=不是，1=是
+        // 复制订单级别的期权预设结果（-1=亏损，0=未设置，1=盈利）
+        order.setOptionPreResult(applyOrder.getOptionPreResult());
+        // 爆仓是爆整个钱包（注释的旧代码）
 //        BigDecimal forceClose = BigDecimal.ZERO;
 //        BigDecimal base = order.getDepositOpen().multiply(order.getPips()).divide(order.getPipsAmount(), 10, RoundingMode.HALF_UP).divide(order.getVolume(),10, RoundingMode.HALF_UP);
 //        if(order.getDirection().equalsIgnoreCase(ContractOrder.DIRECTION_BUY)){
@@ -706,32 +739,41 @@ public class ContractOrderService extends ServiceImpl<ContractOrderMapper, Contr
 //            forceClose  =  BigDecimal.ZERO;
 //        }
 //        order.setForceClosePrice(forceClose.toPlainString());
+
+        // 保存订单到数据库
         save(order);
+        // 缓存订单到Redis（订单号为Key）
         RedisUtil.set(ContractRedisKeys.CONTRACT_ORDERNO + order.getOrderNo(), order);
 
+        // 从Redis获取该用户的持仓订单列表，如果不存在则新建
         Map<String, ContractOrder> map = RedisUtil
                 .get(ContractRedisKeys.CONTRACT_SUBMITTED_ORDER_PARTY_ID + order.getPartyId());
         if (map == null) {
             map = new ConcurrentHashMap<String, ContractOrder>();
         }
+        // 将新订单加入用户持仓列表
         map.put(order.getOrderNo(), order);
         RedisUtil.set(ContractRedisKeys.CONTRACT_SUBMITTED_ORDER_PARTY_ID + order.getPartyId(), map);
 
         // 获取单个订单的合约总资产、总保证金、总未实现盈利
         Map<String, BigDecimal> contractAssetsOrder = this.walletService.getMoneyContractByOrder(order);
 
+        // 从Redis获取用户已有的合约总资产，如果不存在则初始化为0
         BigDecimal contractAssets = RedisUtil.get(ContractRedisKeys.CONTRACT_ASSETS_PARTY_ID + order.getPartyId());
         if (contractAssets == null) {
             contractAssets = BigDecimal.ZERO;
         }
+        // 从Redis获取用户已有的总保证金，如果不存在则初始化为0
         BigDecimal contractAssetsDeposit = RedisUtil.get(ContractRedisKeys.CONTRACT_ASSETS_DEPOSIT_PARTY_ID + order.getPartyId());
         if (contractAssetsDeposit == null) {
             contractAssetsDeposit = BigDecimal.ZERO;
         }
+        // 从Redis获取用户已有的总未实现盈利，如果不存在则初始化为0
         BigDecimal contractAssetsProfit = RedisUtil.get(ContractRedisKeys.CONTRACT_ASSETS_PROFIT_PARTY_ID + order.getPartyId());
         if (contractAssetsProfit == null) {
             contractAssetsProfit = BigDecimal.ZERO;
         }
+        // 更新Redis缓存：将新订单的资产数据累加到用户总数据
         RedisUtil.set(ContractRedisKeys.CONTRACT_ASSETS_PARTY_ID + order.getPartyId(),
                 contractAssets.add(contractAssetsOrder.get("money_contract")));
         RedisUtil.set(ContractRedisKeys.CONTRACT_ASSETS_DEPOSIT_PARTY_ID + order.getPartyId(),
@@ -740,41 +782,46 @@ public class ContractOrderService extends ServiceImpl<ContractOrderMapper, Contr
                 contractAssetsProfit.add(contractAssetsOrder.get("money_contract_profit")));
 
         /**
-         * 进入市场
+         * 委托订单处理：标记已完成，不再在任务中重复处理
          */
         applyOrder.setVolume(BigDecimal.ZERO);
         applyOrder.setState(ContractApplyOrder.STATE_CREATED);
 
+        // 更新委托订单状态为已创建（已完成）
         contractApplyOrderService.updateById(applyOrder);
         // contractApplyOrder 状态改了，此处立即刷新缓存，防止在 ContractApplyOrderHandleJob 处重复处理
         RedisUtil.sremove(RedisKeys.NEW_CONTRACT_APPLY_ORDERS, applyOrder.getUuid());
 
         /**
-         * 如果是跟单订单，将持仓订单号也存入数据表
+         * 跟单业务处理：交易员开仓后，跟随者自动跟单
          */
         /**
-         * 交易员带单
+         * 交易员带单逻辑：检查该用户是否是已审核的交易员
          */
         Trader trader = traderService.findByPartyIdAndChecked(applyOrder.getPartyId(), 1); // 交易员存在
         if (trader != null) {
+            // 交易员开仓，通知所有跟随者自动跟单开仓
             traderFollowUserOrderService.traderOpen(order, contractApplyOrderService, this, 1); // 交易员跟随者开启永续合约委托, 加个跟单标识
         }
 
         /**
          * 检查是否是跟单订单，如果是需要将TraderFollowUserOrder里的用户委托单号修改成用户持仓单号
-         *
          */
         TraderFollowUserOrder traderFollowUserOrder = traderFollowUserOrderService.findByPartyIdAndOrderNo(applyOrder.getPartyId(), applyOrder.getOrderNo());
         if (traderFollowUserOrder != null) {
+            // 将持仓订单号更新到跟单关系表中，方便后续平仓时处理
             traderFollowUserOrder.setUserOrderNo(order.getOrderNo());
             traderFollowUserOrderService.update(traderFollowUserOrder);
         }
 
+        // 获取用户信息，用于发送开仓提示
         User party = this.userService.getById(order.getPartyId());
+        // 如果是会员角色，发送开仓成功提示
         if (Constants.SECURITY_ROLE_MEMBER.equals(party.getRoleName())) {
 
             Syspara isUnionStocks = sysparaService.find("is-union-stocks");
 
+            // 根据系统配置判断使用哪种提示类型（普通/联合股票）
             if(isUnionStocks != null && isUnionStocks.getBoolean()){
                 if(TipConstants.ACTION_CONTRACT_ITEM_MAP_NEW.get(item.getType()) != null){
                     tipService.saveTip(order.getUuid(), TipConstants.ACTION_CONTRACT_ITEM_MAP_NEW.get(item.getType()),party.getUserId());
@@ -785,56 +832,75 @@ public class ContractOrderService extends ServiceImpl<ContractOrderMapper, Contr
                     tipService.saveTip(order.getUuid(), TipConstants.ACTION_CONTRACT_ITEM_MAP.get(item.getType()));
                 }
             }
-
-
         }
+        // 删除委托订单的提示，避免重复提示
         tipService.deleteTip(applyOrder.getUuid());
     }
 
+    /**
+     * 合约订单平仓处理
+     * 将持仓订单（ContractOrder）进行平仓，结算收益，归还保证金
+     *
+     * @param applyOrder  委托订单（用户提交的平仓申请）
+     * @param realtime    实时价格数据
+     * @param order_no    持仓订单号
+     * @return 更新后的委托订单
+     */
     public ContractApplyOrder saveClose(ContractApplyOrder applyOrder, Realtime realtime, String order_no) {
+        // 根据订单号查询持仓订单
         ContractOrder order = this.findByOrderNo(order_no);
+        // 校验订单状态：订单不存在、非持仓状态、持仓数量为0，则直接返回
         if (order == null || !ContractOrder.STATE_SUBMITTED.equals(order.getState()) || order.getVolume().compareTo(BigDecimal.ZERO) <= 0) {
             /**
              * 状态已改变，退出处理
              */
             return applyOrder;
         }
+        // 确定实际平仓数量：如果委托平仓数量不能超过当前持仓数量
         BigDecimal volume;
         if (applyOrder.getVolume().compareTo(order.getVolume()) > 0) {
-            volume = order.getVolume();
+            volume = order.getVolume();  // 全部平仓
         } else {
-            volume = applyOrder.getVolume();
+            volume = applyOrder.getVolume();  // 部分平仓
         }
         /**
-         * 平仓退回的金额
+         * 平仓退回的金额（保证金+收益）
          */
         BigDecimal profit = this.settle(order, volume);
+        // 更新订单状态到数据库
         update(order);
+        // 查询用户钱包
         Wallet wallet = this.walletService.findByUserId(order.getPartyId());
-        BigDecimal amount_before = wallet.getMoney();
+        BigDecimal amount_before = wallet.getMoney();  // 平仓前的余额
 
         String symbol = order.getSymbol();
 //        Item item = itemService.findBySymbol(symbol);
 //        profit = exchangeRateService.getUsdtByType(profit, item.getType());
+        // 防止钱包余额出现负数：如果余额+收益 < 0，则收益调整为 -余额
         if (wallet.getMoney().add(profit).compareTo(BigDecimal.ZERO) < 0) {
             profit = wallet.getMoney().negate();
         }
+        // 更新钱包余额：将收益（保证金+盈亏）加回用户钱包，并记录资金流水
         walletService.updateMoney(symbol, order.getPartyId(), profit, BigDecimal.ZERO,
                 Constants.MONEYLOG_CATEGORY_CONTRACT, Constants.WALLET_USDT, Constants.MONEYLOG_CONTENT_CONTRACT_CLOSE, "平仓，平仓合约数[" + volume + "],订单号[" + order.getOrderNo() + "]");
 
 
+        // 更新委托订单剩余数量
         applyOrder.setVolume(applyOrder.getVolume().subtract(volume));
+        // 如果委托单剩余数量为0，标记委托订单为已完成
         if (applyOrder.getVolume().compareTo(BigDecimal.ZERO) <= 0) {
             applyOrder.setState(ContractApplyOrder.STATE_CREATED);
         }
+        // 更新委托订单到数据库
         contractApplyOrderService.updateById(applyOrder);
 
         /**
-         * 交易员带单,用户跟单
+         * 交易员带单：交易员平仓，跟随者也自动平仓
          */
         traderFollowUserOrderService.traderClose(order, this);
 
 
+        // 删除订单提示
         tipService.deleteTip(order.getUuid());
 
         return applyOrder;

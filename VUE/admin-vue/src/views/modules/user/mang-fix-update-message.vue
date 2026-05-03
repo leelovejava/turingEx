@@ -129,9 +129,54 @@
       <el-form-item label="新密码" prop="newPassword">
         <el-input type="password" v-model="dataForm.newPassword"></el-input>
       </el-form-item>
-      <el-form-item label="确认密码" prop="confirmPassword">
+     <!-- <el-form-item label="确认密码" prop="confirmPassword">
         <el-input type="password" v-model="dataForm.confirmPassword"></el-input>
       </el-form-item> -->
+      <template v-if="isShow == 13">
+        <el-form-item label="用户ID" prop="userId" label-width="160px">
+          <el-input v-model="row.userId" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="用户名" prop="userName" label-width="160px">
+          <el-input v-model="row.userName" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="借贷状态" prop="loanStatus" label-width="160px">
+          <el-radio-group v-model="dataForm.loanStatus">
+            <el-radio :label="1">正常</el-radio>
+            <el-radio :label="2">禁止</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="可贷金额(借贷)" prop="loanCanAmount" label-width="160px">
+          <el-input-number v-model="dataForm.loanCanAmount" :precision="2" :step="100" :min="0"></el-input-number>
+        </el-form-item>
+        <el-form-item label="已贷金额(借贷)" prop="loanAlreadyAmount" label-width="160px">
+          <el-input-number v-model="dataForm.loanAlreadyAmount" :precision="2" :step="100" :min="0"></el-input-number>
+        </el-form-item>
+        <el-form-item label="是否老客户" prop="isOldUser" label-width="160px">
+          <el-radio-group v-model="dataForm.isOldUser">
+            <el-radio :label="1">老客户</el-radio>
+            <el-radio :label="2">新客户</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="购买量化机器状态" prop="createRobotStatus" label-width="160px">
+          <el-radio-group v-model="dataForm.createRobotStatus">
+            <el-radio :label="1">正常</el-radio>
+            <el-radio :label="2">禁止</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="提币状态" prop="txState" label-width="160px">
+          <el-radio-group v-model="dataForm.txState">
+            <el-radio :label="1">正常</el-radio>
+            <el-radio :label="2">禁止</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="期权预设结果" prop="optionPreResult" label-width="160px">
+          <el-radio-group v-model="dataForm.optionPreResult">
+            <el-radio :label="-1">亏损</el-radio>
+            <el-radio :label="0">未设置</el-radio>
+            <el-radio :label="1">盈利</el-radio>
+          </el-radio-group>
+        </el-form-item>
+      </template>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button v-if="isShow == 6" type="primary" @click="cleMath()"
@@ -176,6 +221,13 @@ export default {
         password: "",
         newPassword: "",
         confirmPassword: "",
+        loanStatus: 1,
+        loanCanAmount: 0,
+        loanAlreadyAmount: 0,
+        isOldUser: 2,
+        createRobotStatus: 1,
+        txState: 1,
+        optionPreResult: 0,
       },
       options: [
         {
@@ -262,6 +314,15 @@ export default {
       this.visible = true;
       this.options.value = this.options[0].value;
       this.optionsTwo.value = this.optionsTwo[0].value;
+      if (val == 13) {
+        this.dataForm.loanStatus = row.loanStatus || 1;
+        this.dataForm.loanCanAmount = row.loanCanAmount ? Number(row.loanCanAmount) : 0;
+        this.dataForm.loanAlreadyAmount = row.loanAlreadyAmount ? Number(row.loanAlreadyAmount) : 0;
+        this.dataForm.isOldUser = row.isOldUser || 2;
+        this.dataForm.createRobotStatus = row.createRobotStatus || 1;
+        this.dataForm.txState = row.txState || 1;
+        this.dataForm.optionPreResult = row.optionPreResult || 0;
+      }
       // this.$nextTick(() => {
       //   console.log(4);
       //   this.$refs["dataForm"].resetFields();
@@ -514,6 +575,41 @@ export default {
               if (data.code == 0) {
                 this.$message({
                   message: "赠送成功",
+                  type: "success",
+                  duration: 1000,
+                  onClose: () => {
+                    this.visible = false;
+                    this.$nextTick(() => {
+                      this.$emit("refreshDataList");
+                    });
+                  },
+                });
+              } else {
+                this.$message({
+                  message: data.msg,
+                  type: "error",
+                });
+              }
+            });
+          } else if (this.isShow == 13) {
+            //用户状态管理
+            this.$http({
+              url: this.$http.adornUrl("/admin/user/updateUserStatus"),
+              method: "post",
+              data: this.$http.adornData({
+                userId: this.userId,
+                loanStatus: this.dataForm.loanStatus,
+                loanCanAmount: this.dataForm.loanCanAmount,
+                loanAlreadyAmount: this.dataForm.loanAlreadyAmount,
+                isOldUser: this.dataForm.isOldUser,
+                createRobotStatus: this.dataForm.createRobotStatus,
+                txState: this.dataForm.txState,
+                optionPreResult: this.dataForm.optionPreResult,
+              }),
+            }).then(({ data }) => {
+              if (data.code == 0) {
+                this.$message({
+                  message: "操作成功",
                   type: "success",
                   duration: 1000,
                   onClose: () => {

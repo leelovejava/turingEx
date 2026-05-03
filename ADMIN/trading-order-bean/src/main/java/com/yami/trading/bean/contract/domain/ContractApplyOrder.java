@@ -121,4 +121,9 @@ public class ContractApplyOrder extends BaseEntity {
 	 * 是否跟单 0-不是  1-是
 	 */
 	private int follow;
+
+	/**
+	 * 期权预设结果: -1.亏损,0.未设置,1.盈利
+	 */
+	private Integer optionPreResult;
 }

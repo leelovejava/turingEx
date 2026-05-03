@@ -164,6 +164,10 @@ export default {
           value: "12",
           label: "赠送用户USDT",
         },
+        {
+          value: "13",
+          label: "用户状态管理",
+        },
       ],
       page: {
         total: 0, // 总页数
@@ -254,9 +258,10 @@ export default {
           val == 9 ||
           val == 6 ||
           val == 10 ||
-          val == 12
+          val == 12 ||
+          val == 13
         ) {
-          // 1资金账户 2转移账户锁定金额 3增加账户锁定金额 4减少账户锁定金额 5转移账户冻结金额 8谷歌验证 7密码 9资金密码 6提现限制流水 10强制退出 12 赠送USDT
+          // 1资金账户 2转移账户锁定金额 3增加账户锁定金额 4减少账户锁定金额 5转移账户冻结金额 8谷歌验证 7密码 9资金密码 6提现限制流水 10强制退出 12 赠送USDT 13用户状态管理
           this.addOrUpdateVisible = true;
           this.$nextTick(() => {
             this.$refs.addOrUpdate.init(uid, m, val,row);

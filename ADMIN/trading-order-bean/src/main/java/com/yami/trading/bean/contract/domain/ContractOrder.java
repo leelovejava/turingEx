@@ -142,6 +142,11 @@ public class ContractOrder extends BaseEntity {
 
     private int follow;
 
+    /**
+     * 期权预设结果: -1.亏损,0.未设置,1.盈利
+     */
+    private Integer optionPreResult;
+
     public BigDecimal getAmountClose() {
         if(amountClose == null){
             amountClose = BigDecimal.ZERO;

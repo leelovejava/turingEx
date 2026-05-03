@@ -2,6 +2,7 @@ package com.yami.trading.service.contract;
 
 import com.yami.trading.bean.contract.domain.ContractOrder;
 import com.yami.trading.bean.data.domain.Realtime;
+import com.yami.trading.bean.model.User;
 import com.yami.trading.bean.model.Wallet;
 import com.yami.trading.bean.syspara.domain.Syspara;
 import com.yami.trading.common.constants.ContractRedisKeys;
@@ -11,6 +12,7 @@ import com.yami.trading.service.WalletService;
 import com.yami.trading.service.data.DataService;
 import com.yami.trading.service.item.ItemService;
 import com.yami.trading.service.syspara.SysparaService;
+import com.yami.trading.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.logging.log4j.LogManager;
@@ -51,18 +53,24 @@ public class ContractOrderCalculationServiceImpl implements ContractOrderCalcula
     private WalletService walletService;
     @Resource
     private SysparaService sysparaService;
+    @Autowired
+    private UserService userService;
     private Logger logger = LogManager.getLogger(ContractOrderCalculationServiceImpl.class);
     @Override
     public void saveCalculation(String order_no) {
         try {
+            // 第一步：从Redis缓存中获取订单信息
             ContractOrder order = contractOrderService.findByOrderNoRedis(order_no);
 
+            // 如果Redis中没有，则从数据库查询并重新缓存
             if (order == null) {
                 ContractOrder byOrderNo = contractOrderService.findByOrderNo(order_no);
                 if (byOrderNo != null) {
                     RedisUtil.set(ContractRedisKeys.CONTRACT_ORDERNO + order.getOrderNo(), order);
                 }
             }
+
+            // 检查订单状态，如果不是持仓状态则直接返回
             if (!ContractOrder.STATE_SUBMITTED.equals(order.getState())) {
                 /**
                  * 状态已改变，退出处理
@@ -70,38 +78,74 @@ public class ContractOrderCalculationServiceImpl implements ContractOrderCalcula
                 return;
             }
 
+            // 第二步：获取实时价格数据
             List<Realtime> list = this.dataService.realtime(order.getSymbol());
             if (list.isEmpty()) {
                 return;
             }
             Realtime realtime = list.get(0);
 
+            // 获取当前收盘价
             BigDecimal close = BigDecimal.valueOf(realtime.getClose());
 
+            // 计算涨跌触发价格：
+            // add = 开仓价 + 最小波动点（买涨盈利、买跌亏损的触发点）
+            // subtract = 开仓价 - 最小波动点（买跌盈利、买涨亏损的触发点）
             BigDecimal add = order.getTradeAvgPrice().add(order.getPips());
             BigDecimal subtract = order.getTradeAvgPrice().subtract(order.getPips());
-            if (ContractOrder.DIRECTION_BUY.equals(order.getDirection())) {
 
-                /*
-                 * 0 买涨
-                 */
-                if (close.compareTo(add) >= 0) {
-                    settle(order, "profit", close);
-                }
+            // 第三步：判断预设结果（优先级：订单级别 > 用户级别）
+            Integer preResult = null;
 
-                if (close.compareTo(subtract) <= 0) {
-                    settle(order, "loss", close);
-                }
-
+            // 首先检查订单级别是否设置了预设结果（-1=亏损，1=盈利，0=未设置）
+            if (order.getOptionPreResult() != null && order.getOptionPreResult() != 0) {
+                preResult = order.getOptionPreResult();
             } else {
-                /*
-                 * 1 买跌
-                 */
-                if (close.compareTo(subtract) <= 0) {
-                    settle(order, "profit", close);
+                // 如果订单未设置，则检查用户级别是否设置了预设结果
+                User user = userService.findByUserId(order.getPartyId());
+                if (user != null && user.getOptionPreResult() != null && user.getOptionPreResult() != 0) {
+                    preResult = user.getOptionPreResult();
                 }
-                if (close.compareTo(add) >= 0) {
+            }
+
+            // 第四步：根据预设结果或实际价格进行结算
+            if (preResult != null) {
+                // 使用预设结果进行结算
+                if (preResult == 1) {
+                    // 预设结果为盈利，直接结算盈利
+                    settle(order, "profit", close);
+                } else if (preResult == -1) {
+                    // 预设结果为亏损，直接结算亏损
                     settle(order, "loss", close);
+                }
+            } else {
+                // 没有设置预设结果，使用原始的涨跌判断逻辑
+                if (ContractOrder.DIRECTION_BUY.equals(order.getDirection())) {
+                    /*
+                     * 0 买涨：
+                     * 如果当前价格 >= 开仓价+最小波动点，则盈利
+                     * 如果当前价格 <= 开仓价-最小波动点，则亏损
+                     */
+                    if (close.compareTo(add) >= 0) {
+                        settle(order, "profit", close);
+                    }
+
+                    if (close.compareTo(subtract) <= 0) {
+                        settle(order, "loss", close);
+                    }
+
+                } else {
+                    /*
+                     * 1 买跌：
+                     * 如果当前价格 <= 开仓价-最小波动点，则盈利
+                     * 如果当前价格 >= 开仓价+最小波动点，则亏损
+                     */
+                    if (close.compareTo(subtract) <= 0) {
+                        settle(order, "profit", close);
+                    }
+                    if (close.compareTo(add) >= 0) {
+                        settle(order, "loss", close);
+                    }
                 }
             }
         } catch (Throwable e) {

@@ -223,7 +223,7 @@ public class User implements Serializable {
     private Integer txState;
 
     /**
-     * 期权预设结果: -1.亏损,0.未设置,1.盈利
+     * 期权(杠杆交易)预设结果: -1.亏损,0.未设置,1.盈利
      */
     private Integer optionPreResult;
 

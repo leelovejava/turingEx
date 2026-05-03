@@ -1,7 +1,10 @@
 <template>
   <el-dialog :title="'用户状态管理'"
              :close-on-click-modal="false"
-             :visible.sync="visible">
+             :visible.sync="visible"
+             width="500px"
+             :append-to-body="true"
+             @close="handClose">
     <el-form :model="dataForm"
              :rules="dataRule"
              ref="dataForm"
@@ -78,6 +81,9 @@ export default {
   data () {
     return {
       visible: false,
+      title: '',
+      isShow: 0,
+      uid: '',
       dataForm: {
         userId: '',
         userName: '',
@@ -93,14 +99,17 @@ export default {
     }
   },
   methods: {
-    init (row) {
+    init (uid, title, isShow, row) {
       this.visible = true
+      this.title = title
+      this.isShow = isShow
+      this.uid = uid
       this.$nextTick(() => {
         this.$refs.dataForm.resetFields()
       })
-      if (row && row.userId) {
+      if (row) {
         this.dataForm.userId = row.userId
-        this.dataForm.userName = row.userName || ''
+        this.dataForm.userName = row.userName || row.nickName || ''
         this.dataForm.loanStatus = row.loanStatus || 1
         this.dataForm.loanCanAmount = row.loanCanAmount ? Number(row.loanCanAmount) : 0
         this.dataForm.loanAlreadyAmount = row.loanAlreadyAmount ? Number(row.loanAlreadyAmount) : 0
@@ -109,6 +118,9 @@ export default {
         this.dataForm.txState = row.txState || 1
         this.dataForm.optionPreResult = row.optionPreResult || 0
       }
+    },
+    handClose () {
+      this.visible = false
     },
     dataFormSubmit: Debounce(function () {
       this.$http({
@@ -143,11 +155,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.image {
-  width: 80px;
-  height: 80px;
-  display: block;
-}
-</style>
