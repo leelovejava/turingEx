@@ -109,7 +109,7 @@ public class AdminTraderFollowUserController {
 				entity.setUsername(party.getUserName());
 			}
 			/**
-			 * 跟单固定张数/固定比例---选择 1,固定张数�?2，固定比�?
+			 * 跟单固定张数/固定比例---选择 1,固定张数，2，固定比例
 			 */
 
 			entity.setFollowType(follow_type);
@@ -122,7 +122,7 @@ public class AdminTraderFollowUserController {
 
 			entity.setVolumeMax(Double.parseDouble(volume_max));
 			/**
-			 * 状�?? 是否还在跟随状�?? 1,跟随�?2，取消跟�?
+			 * 状态 是否还在跟随状态 1,跟随，2，取消跟随
 			 */
 			entity.setState("1");
 

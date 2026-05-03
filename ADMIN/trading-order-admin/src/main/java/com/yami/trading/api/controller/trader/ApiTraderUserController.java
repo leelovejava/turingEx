@@ -34,7 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * 用户api接口，累计数�?
+ * 用户api接口，累计数据
  */
 @RestController
 @CrossOrigin
@@ -76,7 +76,7 @@ public class ApiTraderUserController {
 	 */
 //	private String type;
 	/**
-	 * 我的跟单查询类型�? orders 当前委托�? ，hisorders 历史委托�?
+	 * 我的跟单查询类型： orders 当前委托，hisorders 历史委托
 	 */
 //	private String type_order;
 
@@ -208,7 +208,7 @@ public class ApiTraderUserController {
 		map.put("name", entity.getName());
 		map.put("profit", entity.getProfit());
 		map.put("amount_sum", entity.getAmountSum());
-		Date date_now = new Date();// 取时�?
+		Date date_now = new Date();// 取时间
 		int days = daysBetween(entity.getCreateTime(), date_now);
 		if (days < 0) {
 			days = 0;
