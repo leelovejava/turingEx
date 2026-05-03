@@ -60,11 +60,11 @@
           <div class="textColor">{{ detail.close_time ? dayjs(detail.close_time * 1000).format('YYYY-MM-DD HH:mm:ss') :
             '--' }}</div>
         </div>
-        <div class="flex justify-between cell-item" v-if="detail.state !== 'created'">
+        <div class="flex justify-between cell-item">
           <div class="text-grey">{{ $t('止盈价格') }}</div>
           <div class="textColor">{{ detail.stop_price_profit || '--' }}</div>
         </div>
-        <div class="flex justify-between cell-item" v-if="detail.state !== 'created'">
+        <div class="flex justify-between cell-item">
           <div class="text-grey">{{ $t('止损价格') }}</div>
           <div class="textColor">{{ detail.stop_price_loss || '--' }}</div>
         </div>
