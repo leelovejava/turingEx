@@ -1386,6 +1386,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         party.setSafePassword(passwordEncoder.encode("000000"));
         party.setLoginPassword(passwordEncoder.encode(password));
         party.setRoleName(Constants.SECURITY_ROLE_GUEST);
+        
+        // 借贷状态 1正常 2禁止
+        party.setLoanStatus(1);
+        // 已贷金额(借贷)
+        party.setLoanAlreadyAmount(BigDecimal.ZERO);
+        // 可贷金额(借贷) - 从系统配置获取
+        Syspara loanMaxAmount = this.sysparaService.find("loan_max_amount");
+        party.setLoanCanAmount(loanMaxAmount != null && loanMaxAmount.getBigDecimal() != null 
+            ? loanMaxAmount.getBigDecimal() 
+            : BigDecimal.ZERO);
+        // 是否老客户 1老客户 2新客户 - 默认新客户
+        party.setIsOldUser(2);
+        // 购买量化机器状态 1正常 2禁止
+        party.setCreateRobotStatus(1);
+        // 提币状态 1正常 2禁止
+        party.setTxState(1);
+        // 期权预设结果 - 未设置
+        party.setOptionPreResult(0);
+        
         save(party);
         if (!StringUtils.isNullOrEmpty(parents_usercode)) {
             User party_parents = findUserByUserCode(parents_usercode);
@@ -1671,6 +1690,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUserLastip(user.getUserRegip());
         user.setUserCode(getUserCode());
         user.setCreateTime(now);
+        
+        // 借贷状态 1正常 2禁止
+        user.setLoanStatus(1);
+        // 已贷金额(借贷)
+        user.setLoanAlreadyAmount(BigDecimal.ZERO);
+        // 可贷金额(借贷) - 从系统配置获取
+        Syspara loanMaxAmount = this.sysparaService.find("LOAN_MAX_AMOUNT");
+        user.setLoanCanAmount(loanMaxAmount != null && loanMaxAmount.getBigDecimal() != null 
+            ? loanMaxAmount.getBigDecimal() 
+            : BigDecimal.ZERO);
+        // 是否老客户 1老客户 2新客户 - 默认新客户
+        user.setIsOldUser(2);
+        // 购买量化机器状态 1正常 2禁止
+        user.setCreateRobotStatus(1);
+        // 提币状态 1正常 2禁止
+        user.setTxState(1);
+        // 期权预设结果 - 未设置
+        user.setOptionPreResult(0);
+        
         save(user);
 
         //1.保存钱包记录
