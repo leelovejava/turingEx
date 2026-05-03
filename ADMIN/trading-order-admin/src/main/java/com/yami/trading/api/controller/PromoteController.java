@@ -44,7 +44,8 @@ public class PromoteController {
         String  level_temp= request.getParameter("level");
         if (StringUtils.isNullOrEmpty(level_temp)
                 || !StringUtils.isInteger(level_temp) || Integer.valueOf(level_temp) <= 0) {
-            throw new YamiShopBindException("代理层级错误");
+// 代理层级错误
+            throw new YamiShopBindException("Agent level error");
         }
         int level = Integer.valueOf(level_temp);
         String page_no = request.getParameter("page_no");

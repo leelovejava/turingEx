@@ -158,13 +158,15 @@ public class ApiItemUserOptionalListController {
     public Result<String> save(@Valid ItemUserOptionalListDTO itemUserOptionalListDTO) {
         String partyId = SecurityUtils.getUser().getUserId();
         if (itemUserOptionalListService.findOne(partyId, itemUserOptionalListDTO.getName()) != null) {
-            return Result.failed("该自选组名称已经使用");
+            // 该自选组名称已经使用
+            return Result.failed("This optional list name is already in use");
         }
         //新增或编辑表单保存
         ItemUserOptionalList entity = itemUserOptionalListWrapper.toEntity(itemUserOptionalListDTO);
         entity.setPartyId(partyId);
         itemUserOptionalListService.save(entity);
-        return Result.succeed("保存自选分组成功");
+        // 保存自选分组成功
+        return Result.succeed("Optional list saved successfully");
     }
 
     /**
@@ -175,14 +177,16 @@ public class ApiItemUserOptionalListController {
     public Result<String> saveItem(String listId, String symbol) {
         String partyId = SecurityUtils.getUser().getUserId();
         if (itemUserOptionalItemService.findOne(partyId, listId, symbol) != null) {
-            return Result.failed("已经添加过该分组了");
+            // 已经添加过该分组了
+            return Result.failed("Already added to this group");
         }
         ItemUserOptionalItem itemUserOptionalItem = new ItemUserOptionalItem();
         itemUserOptionalItem.setListId(listId);
         itemUserOptionalItem.setSymbol(symbol);
         itemUserOptionalItem.setPartyId(partyId);
         itemUserOptionalItemService.save(itemUserOptionalItem);
-        return Result.succeed("保存自选分组成功");
+        // 保存自选分组成功
+        return Result.succeed("Added to optional list successfully");
     }
 
     /**
@@ -222,10 +226,12 @@ public class ApiItemUserOptionalListController {
         String partyId = SecurityUtils.getUser().getUserId();
         ItemUserOptionalItem one = itemUserOptionalItemService.findOne(partyId, listId, symbol);
         if (one == null) {
-            return Result.succeed("删除成功");
+            // 删除成功
+            return Result.succeed("Deletion successful");
         }
         itemUserOptionalItemService.removeById(one);
-        return Result.succeed("删除成功");
+        // 删除成功
+        return Result.succeed("Deletion successful");
     }
 
     /**
@@ -237,13 +243,15 @@ public class ApiItemUserOptionalListController {
         String partyId = SecurityUtils.getUser().getUserId();
         ItemUserOptionalList one = itemUserOptionalListService.findOne(partyId, updateDTO.getName());
         if (one != null && !one.getUuid().equalsIgnoreCase(updateDTO.getUuid())) {
-            return Result.failed("该自选组名称已经使用");
+            // 该自选组名称已经使用
+            return Result.failed("This optional list name is already in use");
         }
         //新增或编辑表单保存
         ItemUserOptionalList entity = BeanUtil.copyProperties(updateDTO, ItemUserOptionalList.class);
         entity.setPartyId(partyId);
         itemUserOptionalListService.updateById(entity);
-        return Result.succeed("保存自选分组成功");
+        // 保存自选分组成功
+        return Result.succeed("Optional list updated successfully");
     }
 
     /**
@@ -255,14 +263,16 @@ public class ApiItemUserOptionalListController {
         String idArray[] = ids.split(",");
         ArrayList<String> list = Lists.newArrayList(idArray);
         if(list.size() == 0){
-            return Result.succeed(null, "删除自选分组成功");
+            // 删除自选分组成功
+            return Result.succeed(null, "Optional list deleted successfully");
         }
         itemUserOptionalListService.removeByIds(list);
         QueryWrapper<ItemUserOptionalItem> queryWrapper = new QueryWrapper<>();
         queryWrapper.in("list_id", list);
         List<String> collect = itemUserOptionalItemService.list(queryWrapper).stream().map(ItemUserOptionalItem::getUuid).collect(Collectors.toList());
         itemUserOptionalItemService.removeByIds(collect);
-        return Result.succeed(null, "删除自选分组成功");
+        // 删除自选分组成功
+        return Result.succeed(null, "Optional list deleted successfully");
     }
 
 }

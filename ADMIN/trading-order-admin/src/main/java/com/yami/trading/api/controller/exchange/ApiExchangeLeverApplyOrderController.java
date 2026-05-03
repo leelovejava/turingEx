@@ -192,11 +192,13 @@ public class ApiExchangeLeverApplyOrderController {
         this.sessionTokenService.del(session_token);
         SecurityUtils.getCurrentUserId();
         if ((object == null) || (!partyId.equals((String) object))) {
-            throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+            throw new YamiShopBindException("Please try again later");
         }
         User party = userService.getById(partyId);
         if (!party.isEnabled()) {
-            throw new YamiShopBindException("用户已禁用");
+// 用户已禁用
+            throw new YamiShopBindException("User is disabled");
         }
         ExchangeLeverApplyOrder order = new ExchangeLeverApplyOrder();
         order.setPartyId(SecurityUtils.getCurrentUserId());

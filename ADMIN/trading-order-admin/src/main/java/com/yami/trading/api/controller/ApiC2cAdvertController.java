@@ -83,7 +83,7 @@ public class ApiC2cAdvertController {
      */
     @RequestMapping("/api/c2cAdvert!symbol.action")
     public Result symbol() {
-        Map<String, String> asMap =c2cAdvertService.getC2cSyspara("c2c_advert_symbol");
+        Map<String, String> asMap = c2cAdvertService.getC2cSyspara("c2c_advert_symbol");
         Map<String, String> data = new HashMap<>();
         List<Item> itemList = itemService.cacheGetAll();
         data.put("usdt", "USDT");
@@ -122,17 +122,20 @@ public class ApiC2cAdvertController {
             page_no = "1";
         }
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         int page_no_int = Integer.valueOf(page_no).intValue();
         String partyId = SecurityUtils.getUser().getUserId();
-         String c2cUserId = "";
+        String c2cUserId = "";
         User party = userService.getById(partyId);
         if (null == party) {
-            throw new YamiShopBindException("用户不存在");
+// 用户不存在
+            throw new YamiShopBindException("User does not exist");
         }
         if (Arrays.asList(1, 2).contains(party.getC2cUserType())) {
             C2cUser c2cUser = c2cUserService.getByPartyId(partyId);
@@ -155,7 +158,7 @@ public class ApiC2cAdvertController {
                         continue;
                     }
                     // 获取 Map<支付方式模板ID，支付方式模板类型>
-                    Map<String, String> methodConfigIdTypeMap =c2cPaymentMethodConfigService.getMethodConfigIdTypeMap();
+                    Map<String, String> methodConfigIdTypeMap = c2cPaymentMethodConfigService.getMethodConfigIdTypeMap();
                     String[] payTypes = pay_type.toString().split(",");
                     for (String type : payTypes) {
                         if (method_type.equals(methodConfigIdTypeMap.get(type))) {
@@ -213,7 +216,7 @@ public class ApiC2cAdvertController {
                     }
                 }
             }
-            return  Result.succeed(dataResult);
+            return Result.succeed(dataResult);
         }
     }
 
@@ -227,19 +230,23 @@ public class ApiC2cAdvertController {
         String id = request.getParameter("id");
         String language = request.getParameter("language");
         if (StringUtils.isEmptyString(id)) {
-            throw new YamiShopBindException("C2C广告id不正确");
+// C2C广告id不正确
+            throw new YamiShopBindException("C2C advertisement ID is incorrect");
         }
         C2cAdvert c2cAdvert = c2cAdvertService.getById(id);
         if (null == c2cAdvert) {
-            throw new YamiShopBindException("广告不存在");
+// 广告不存在
+            throw new YamiShopBindException("Advertisement does not exist");
         }
         C2cUser c2cUser = this.c2cUserService.getById(c2cAdvert.getC2cUserId());
         if (null == c2cUser) {
-            throw new YamiShopBindException("承兑商不存在");
+// 承兑商不存在
+            throw new YamiShopBindException("Merchant does not exist");
         }
         User c2cParty = userService.getById(c2cUser.getC2cUserPartyId());
         if (null == c2cParty) {
-            throw new YamiShopBindException("承兑商的用户信息不存在");
+// 承兑商的用户信息不存在
+            throw new YamiShopBindException("Merchant user info does not exist");
         }
         Map<String, String> data = new HashMap<>();
         data.put("id", c2cAdvert.getUuid());
@@ -299,22 +306,27 @@ public class ApiC2cAdvertController {
 
     private String verif(String direction, String currency, String symbol, String method_type, String amount) {
         if (!StringUtils.isEmptyString(direction) && !Arrays.asList("buy", "sell").contains(direction)) {
-            return "买卖方式不正确";
+            // 买卖方式不正确
+            return "Invalid trading direction";
         }
         Map<String, String> currencyMap = this.c2cAdvertService.getCurrencyMap();
         Map<String, String> symbolMap = this.c2cAdvertService.getSymbolMap();
         if (!StringUtils.isEmptyString(currency) && null != currencyMap && !currencyMap.containsKey(currency)) {
-            return "支付币种不正确";
+            // 支付币种不正确
+            return "Invalid payment currency";
         }
         if (!StringUtils.isEmptyString(symbol) && null != symbolMap && !symbolMap.containsKey(symbol)) {
-            return "上架币种不正确";
+            // 上架币种不正确
+            return "Invalid listing currency";
         }
         Map<String, String> pmtMap = this.c2cAdvertService.getC2cSyspara("c2c_payment_method_type");
         if (!StringUtils.isEmptyString(method_type) && !pmtMap.keySet().contains(method_type)) {
-            return "支付方式类型不正确";
+            // 支付方式类型不正确
+            return "Invalid payment method type";
         }
         if (!StringUtils.isEmptyString(amount) && (!StringUtils.isDouble(amount) || Double.valueOf(amount).doubleValue() < 0)) {
-            return "支付金额不正确";
+            // 支付金额不正确
+            return "Invalid payment amount";
         }
         return null;
     }

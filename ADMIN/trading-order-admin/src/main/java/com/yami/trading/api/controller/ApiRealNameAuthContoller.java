@@ -74,10 +74,12 @@ public class ApiRealNameAuthContoller {
         }
 
         if (model.getIdNumber().length() > 50) {
-            throw new YamiShopBindException("证件号码长度超过50");
+// 证件号码长度超过50
+            throw new YamiShopBindException("ID card number exceeds 50 characters");
         }
         if (model.getName().length()  >50) {
-            throw new YamiShopBindException("实名姓名长度超过50");
+// 实名姓名长度超过50
+            throw new YamiShopBindException("Real name exceeds 50 characters");
         }
 
         Date now = new Date();

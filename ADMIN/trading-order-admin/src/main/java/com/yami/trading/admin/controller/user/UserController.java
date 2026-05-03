@@ -379,6 +379,60 @@ public class UserController {
         return  Result.succeed(asset_data);
     }
 
+    @ApiOperation(value = "更新用户状态信息")
+    @PostMapping("updateUserStatus")
+    @SysLog("更新用户状态信息")
+    public Result updateUserStatus(@RequestBody User user) {
+        if (user.getUserId() == null) {
+            return Result.failed("用户ID不能为空");
+        }
+        User existUser = userService.getById(user.getUserId());
+        if (existUser == null) {
+            return Result.failed("用户不存在");
+        }
+        User updateUser = new User();
+        updateUser.setUserId(user.getUserId());
+        // 借贷状态 1正常 2禁止
+        if (user.getLoanStatus() != null) {
+            updateUser.setLoanStatus(user.getLoanStatus());
+        }
+        // 可贷金额(借贷)
+        if (user.getLoanCanAmount() != null) {
+            updateUser.setLoanCanAmount(user.getLoanCanAmount());
+        }
+        // 是否老客户 1老客户 2新客户
+        if (user.getIsOldUser() != null) {
+            updateUser.setIsOldUser(user.getIsOldUser());
+        }
+        // 已贷金额(借贷)
+        if (user.getLoanAlreadyAmount() != null) {
+            updateUser.setLoanAlreadyAmount(user.getLoanAlreadyAmount());
+        }
+        // 购买量化机器状态 1正常 2禁止
+        if (user.getCreateRobotStatus() != null) {
+            updateUser.setCreateRobotStatus(user.getCreateRobotStatus());
+        }
+        // 提币状态 1正常 2禁止
+        if (user.getTxState() != null) {
+            updateUser.setTxState(user.getTxState());
+        }
+        // 期权预设结果: -1.亏损,0.未设置,1.盈利
+        if (user.getOptionPreResult() != null) {
+            updateUser.setOptionPreResult(user.getOptionPreResult());
+        }
+        userService.updateById(updateUser);
+
+        Log log = new Log();
+        log.setCategory(Constants.LOG_CATEGORY_OPERATION);
+        log.setUsername(existUser.getUserName());
+        log.setUserId(existUser.getUserId());
+        log.setOperator(SecurityUtils.getSysUser().getUsername());
+        log.setLog("更新用户[" + existUser.getUserName() + "]状态信息");
+        logService.save(log);
+
+        return Result.ok(null);
+    }
+
 }
 
 

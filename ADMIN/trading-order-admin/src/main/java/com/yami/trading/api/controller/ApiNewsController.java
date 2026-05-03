@@ -72,10 +72,12 @@ public class ApiNewsController {
             page_no = "1";
         }
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         Page<News> page = new Page<>(1, 1000000);
         LambdaQueryWrapper<News> lambdaQueryWrapper = Wrappers.<News>query().lambda().eq(News::getLanguage, language)
@@ -137,10 +139,12 @@ public class ApiNewsController {
             page_no = "1";
         }
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         List<News> list = null;
         if (StringUtils.isEmptyString(token)) {
@@ -187,10 +191,12 @@ public class ApiNewsController {
             page_no = "1";
         }
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         List<News> list;
         if (StringUtils.isEmptyString(token)) {

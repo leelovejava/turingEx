@@ -86,7 +86,8 @@ public class ApiFuturesOrderController {
         Map<String, Object> data = new HashMap<>();
         Item bySymbol = itemService.findBySymbol(symbol);
         if (bySymbol == null) {
-            throw new YamiShopBindException("当前币对不存在");
+// 当前币对不存在
+            throw new YamiShopBindException("Current trading pair does not exist");
         }
 
         Date now = new Date();
@@ -146,11 +147,13 @@ public class ApiFuturesOrderController {
     public Result<Map<String, String>> open(FutureOpenAction futureOpenAction) {
         Item bySymbol = itemService.findBySymbol(futureOpenAction.getSymbol());
         if (bySymbol == null) {
-            throw new YamiShopBindException("当前币对不存在");
+// 当前币对不存在
+            throw new YamiShopBindException("Current trading pair does not exist");
         }
         boolean isOpen = MarketOpenChecker.isMarketOpenByItemCloseType(bySymbol.getOpenCloseType());
         if (!isOpen) {
-            throw new YamiShopBindException("当前已经休市");
+// 当前已经休市
+            throw new YamiShopBindException("Market is currently closed");
         }
 
         String partyId = SecurityUtils.getUser().getUserId();
@@ -159,7 +162,8 @@ public class ApiFuturesOrderController {
             Map<String, String> data = new HashMap<>();
 
             if (!FuturesLock.add(partyId)) {
-                throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+                throw new YamiShopBindException("Please try again later");
             }
 
             lock = true;
@@ -168,7 +172,8 @@ public class ApiFuturesOrderController {
             this.sessionTokenService.del(session_token);
             User party = this.partyService.findUserByUserCode(partyId);
             if (!party.isEnabled()) {
-                throw new YamiShopBindException("用户已锁定");
+// 用户已锁定
+                throw new YamiShopBindException("User has been locked");
             }
             if (null == object || !party.getUserId().equals((String) object)) {
                 throw new BusinessException("请稍后再试");
@@ -178,7 +183,8 @@ public class ApiFuturesOrderController {
             if (org.apache.commons.lang3.StringUtils.isNotEmpty(stopUserInternet)) {
                 String[] stopUsers = stopUserInternet.split(",");
                 if (Arrays.asList(stopUsers).contains(party.getUserName())) {
-                    throw new YamiShopBindException("无网络");
+// 无网络
+                    throw new YamiShopBindException("No network connection");
                 }
             }
 
@@ -249,7 +255,8 @@ public class ApiFuturesOrderController {
         FuturesOrder order = this.futuresOrderService.cacheByOrderNo(order_no);
         if (null == order) {
             log.info("futuresOrder!get order_no:" + order_no + ", order null");
-            throw new YamiShopBindException("订单不存在");
+// 订单不存在
+            throw new YamiShopBindException("Order does not exist");
         }
         return Result.succeed(this.futuresOrderService.bulidOne(order));
     }

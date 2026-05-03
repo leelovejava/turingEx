@@ -62,7 +62,8 @@ public class ApiItemUserOptionalController {
 				queryWrapper.eq("symbol", symbol);
 				long count = itemUserOptionalService.count(queryWrapper);
 				if (count > 0) {
-					throw new YamiShopBindException("当前已经加入过自选");
+// 当前已经加入过自选
+					throw new YamiShopBindException("Already added to favorites");
 
 				}
 
@@ -71,11 +72,13 @@ public class ApiItemUserOptionalController {
 				entity.setSymbol(symbol);
 				itemUserOptionalService.save(entity);
 			} else {
-				throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+				throw new YamiShopBindException("Please try again later");
 			}
 		} catch (Exception e) {
 			log.error("保存自选失败", e);
-			throw new YamiShopBindException("保存自选失败:"+ e.getMessage());
+// 保存自选失败
+			throw new YamiShopBindException("Failed to save favorite: "+ e.getMessage());
 		}finally {
 			if (lock) {
 				ThreadUtils.sleep(50);
@@ -101,11 +104,13 @@ public class ApiItemUserOptionalController {
 				queryWrapper.eq("symbol", symbol);
 				itemUserOptionalService.remove(queryWrapper);
 			} else {
-				throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+				throw new YamiShopBindException("Please try again later");
 			}
 		} catch (Exception e) {
 			log.error("删除失败", e);
-			throw new YamiShopBindException("删除失败");
+// 删除失败
+			throw new YamiShopBindException("Failed to delete");
 
 		} finally {
 			if (lock) {

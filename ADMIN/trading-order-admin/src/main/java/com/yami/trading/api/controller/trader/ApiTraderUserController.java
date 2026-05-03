@@ -126,10 +126,12 @@ public class ApiTraderUserController {
 				page_no = "1";
 			}
 			if (!StringUtils.isInteger(page_no)) {
-				throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+				throw new YamiShopBindException("Page number must be an integer");
 			}
 			if (Integer.valueOf(page_no).intValue() <= 0) {
-				throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+				throw new YamiShopBindException("Page number must be greater than 0");
 			}
 			Page<T> page = new Page<>(1, 1000000);
 

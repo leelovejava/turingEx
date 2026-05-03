@@ -101,7 +101,8 @@ public class ApiOtcOnlineChatController {
 				return resultObject;
 			}
 			if(StringUtils.isEmptyString(orderNo)) {
-				throw new YamiShopBindException("订单号不能未空");
+// 订单号不能为空
+				throw new YamiShopBindException("Order number cannot be empty");
 			}
 			otcOnlineChatMessageService.saveSend(SecurityUtils.getCurrentUserId(), type, content, null, orderNo);
 		} catch (Exception e) {
@@ -122,7 +123,8 @@ public class ApiOtcOnlineChatController {
 			int unreadMsg;
 			String orderNo = request.getParameter("orderNo");
 			if(StringUtils.isEmptyString(orderNo)) {
-				throw new YamiShopBindException("订单号不能未空");
+// 订单号不能为空
+				throw new YamiShopBindException("Order number cannot be empty");
 			}
 			unreadMsg = otcOnlineChatMessageService.unreadMsg(orderNo, SecurityUtils.getCurrentUserId());
 			resultObject.setData(unreadMsg);

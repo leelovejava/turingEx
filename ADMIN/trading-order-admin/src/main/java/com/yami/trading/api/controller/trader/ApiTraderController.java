@@ -89,10 +89,12 @@ public class ApiTraderController {
 				page_no = "1";
 			}
 			if (!StringUtils.isInteger(page_no)) {
-				throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+				throw new YamiShopBindException("Page number must be an integer");
 			}
 			if (Integer.valueOf(page_no).intValue() <= 0) {
-				throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+				throw new YamiShopBindException("Page number must be greater than 0");
 			}
 			Page<Trader> page = new Page<>(1, 1000000);
 
@@ -180,10 +182,12 @@ public class ApiTraderController {
 				page_no = "1";
 			}
 			if (!StringUtils.isInteger(page_no)) {
-				throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+				throw new YamiShopBindException("Page number must be an integer");
 			}
 			if (Integer.valueOf(page_no).intValue() <= 0) {
-				throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+				throw new YamiShopBindException("Page number must be greater than 0");
 			}
 			Page<Trader> page = new Page<>(1, 1000000);
 			Trader data = null;
@@ -536,46 +540,51 @@ public class ApiTraderController {
 								int deviation_week_3_order_profit, int week_3_order_sum, int deviation_week_3_order_sum, double order_amount, double deviation_order_amount,
 								int follower_sum, int deviation_follower_sum, int follower_now, int deviation_follower_now, double profit_share_ratio, int follower_max, double follow_volumn_min) {
 		if (StringUtils.isEmptyString(name))
-			return "请输入交易员名称";
+			// 请输入交易员名称
+			return "Please enter trader name";
 		if (StringUtils.isEmptyString(img))
-			return "请上传交易员头像";
+			// 请上传交易员头像
+			return "Please upload trader avatar";
 
-//		if (StringUtils.isEmptyString(this.remarks))
-//			return "请输入交易员简介";
 		if (StringUtils.isEmptyString(symbols))
-			return "请输入带币品种";
-//		if (Arith.add(this.profit,this.deviation_profit) < 0.0D)
-//			return "累计收益加偏差值不能小于0";
-//		if (Arith.add(this.profit_ratio,this.deviation_profit_ratio) < 0.0D)
-//			return "累计收益率加偏差值不能小于0";
+			// 请输入带币品种
+			return "Please enter trading symbol";
 		if (Arith.add(order_profit, deviation_order_profit) < 0)
-			return "累计盈利笔数加偏差值不能小于0";
+			// 累计盈利笔数加偏差值不能小于0
+			return "Cumulative profit orders plus deviation cannot be less than 0";
 		if (Arith.add(order_loss, deviation_order_loss) < 0)
-			return "累计亏损笔数加偏差值不能小于0";
-//		if (Arith.add(this.week_3_profit,this.deviation_week_3_profit) < 0.0D)
-//			return "近3周收益加偏差值不能小于0";
+			// 累计亏损笔数加偏差值不能小于0
+			return "Cumulative loss orders plus deviation cannot be less than 0";
 		if (Arith.add(week_3_order_amount, deviation_week_3_order_amount) < 0.0D)
-			return "近3周累计金额加偏差值不能小于0";
-//		if (Arith.add(this.week_3_profit_ratio,this.deviation_week_3_profit_ratio) < 0.0D)
-//			return "近3周收益率加偏差值不能小于0";
+			// 近3周累计金额加偏差值不能小于0
+			return "Recent 3-week cumulative amount plus deviation cannot be less than 0";
 		if (Arith.add(week_3_order_profit, deviation_week_3_order_profit) < 0)
-			return "近3周盈利笔数加偏差值不能小于0";
+			// 近3周盈利笔数加偏差值不能小于0
+			return "Recent 3-week profit orders plus deviation cannot be less than 0";
 		if (Arith.add(week_3_order_sum, deviation_week_3_order_sum) < 0)
-			return "近3周交易笔数加偏差值不能小于0";
+			// 近3周交易笔数加偏差值不能小于0
+			return "Recent 3-week trading orders plus deviation cannot be less than 0";
 		if (Arith.add(order_amount, deviation_order_amount) < 0.0D)
-			return "累计金额加偏差值不能小于0";
+			// 累计金额加偏差值不能小于0
+			return "Cumulative amount plus deviation cannot be less than 0";
 		if (Arith.add(follower_sum, deviation_follower_sum) < 0)
-			return "累计跟随加偏差值人数不能小于0";
+			// 累计跟随加偏差值人数不能小于0
+			return "Cumulative followers plus deviation cannot be less than 0";
 		if (Arith.add(follower_now, deviation_follower_now) < 0)
-			return "当前跟随人数加偏差值不能小于0";
+			// 当前跟随人数加偏差值不能小于0
+			return "Current followers plus deviation cannot be less than 0";
 		if (profit_share_ratio < 0.0D)
-			return "利润分成比例不能小于0";
+			// 利润分成比例不能小于0
+			return "Profit sharing ratio cannot be less than 0";
 		if (follower_max <= 0)
-			return "此次跟单最多跟随人数不能小于等于0";
+			// 此次跟单最多跟随人数不能小于等于0
+			return "Maximum followers for this copy trading cannot be less than or equal to 0";
 		if (follower_max < Arith.add(follower_now, deviation_follower_now))
-			return "此次跟单最多跟随人数不能小于当前跟随人数加偏差值";
+			// 此次跟单最多跟随人数不能小于当前跟随人数加偏差值
+			return "Maximum followers cannot be less than current followers plus deviation";
 		if (follow_volumn_min < 0)
-			return "最小跟单张数不能小于0";
+			// 最小跟单张数不能小于0
+			return "Minimum copy volume cannot be less than 0";
 		return null;
 	}
 

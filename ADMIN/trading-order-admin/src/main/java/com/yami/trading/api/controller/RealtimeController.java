@@ -74,7 +74,8 @@ public class RealtimeController {
 			return Result.ok(data);
 		} catch (Exception e) {
 			log.error("生成实时数据失败", e);
-			throw  new YamiShopBindException("生成实时数据失败");
+// 生成实时数据失败
+			throw  new YamiShopBindException("Failed to generate real-time data");
 		}
 	}
 	@ApiOperation(value = "行情")
@@ -125,7 +126,8 @@ public class RealtimeController {
 			return Result.ok(list);
 		} catch (Exception e) {
 			log.error("获取热门币种实时价格失败", e);
-			throw new YamiShopBindException("生成实时数据失败");
+// 生成实时数据失败
+			throw new YamiShopBindException("Failed to generate real-time data");
 		}
 	}
 
@@ -170,7 +172,8 @@ public class RealtimeController {
 			return Result.ok(list);
 		} catch (Exception e) {
 			log.error("获取热门币种实时价格失败", e);
-			throw new YamiShopBindException("生成实时数据失败");
+// 生成实时数据失败
+			throw new YamiShopBindException("Failed to generate real-time data");
 		}
 	}
 	/**
@@ -217,7 +220,8 @@ public class RealtimeController {
 			return Result.ok(list);
 		} catch (Exception e) {
 			log.error("获取热门币种实时价格失败", e);
-			throw new YamiShopBindException("生成实时数据失败");
+// 生成实时数据失败
+			throw new YamiShopBindException("Failed to generate real-time data");
 		}
 	}
 
@@ -364,7 +368,7 @@ public class RealtimeController {
 			return ok;
 		} catch (Exception e) {
 			log.error("根据币种分类，分页获取实时价格数据", e);
-			throw new YamiShopBindException("生成实时数据失败");
+			throw new YamiShopBindException("Failed to generate real-time data");
 		}
 	}
 
@@ -395,7 +399,7 @@ public class RealtimeController {
 			return Result.ok(stockTradeList);
 		} catch (Exception e) {
 			log.error("生成实时数据失败", e);
-			throw  new YamiShopBindException("生成实时数据失败");
+			throw  new YamiShopBindException("Failed to generate real-time data");
 		}
 	}
 

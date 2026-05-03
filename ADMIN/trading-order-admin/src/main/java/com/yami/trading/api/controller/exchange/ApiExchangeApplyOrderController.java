@@ -81,7 +81,8 @@ public class ApiExchangeApplyOrderController {
         if (realtimes != null && realtimes.size() > 0) {
             close = realtimes.get(0).getClose();
         } else {
-            throw new YamiShopBindException("参数错误");
+// 参数错误
+            throw new YamiShopBindException("Parameter error");
         }
         return close;
     }
@@ -223,27 +224,32 @@ public class ApiExchangeApplyOrderController {
     @RequestMapping(action + "open.action")
     public Object open(String volume, String total, String session_token, String symbol, String price, String order_price_type) {
         if (StringUtils.isNullOrEmpty(volume) || !StringUtils.isDouble(volume) || Double.parseDouble(volume) <= 0) {
-            throw new YamiShopBindException("请输入正确的货币数量");
+// 请输入正确的货币数量
+            throw new YamiShopBindException("Please enter correct currency amount");
         }
         if (StringUtils.isNullOrEmpty(total) || !StringUtils.isDouble(total) || Double.parseDouble(total) <= 0) {
-            throw new YamiShopBindException("请输入正确的货币数量");
+// 请输入正确的货币数量
+            throw new YamiShopBindException("Please enter correct currency amount");
         }
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
         String partyId = SecurityUtils.getUser().getUserId();
         if ((!partyId.equals(object))) {
-            throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+            throw new YamiShopBindException("Please try again later");
         }
         User party = userService.getById(partyId);
         if (!party.isEnabled()) {
-            throw new YamiShopBindException("用户已禁用");
+// 用户已禁用
+            throw new YamiShopBindException("User is disabled");
         }
         Syspara syspara = sysparaService.find("stop_user_internet");
         String stopUserInternet = syspara.getSvalue();
         if (org.apache.commons.lang3.StringUtils.isNotEmpty(stopUserInternet)) {
             String[] stopUsers = stopUserInternet.split(",");
             if (Arrays.asList(stopUsers).contains(party.getUserName())) {
-                throw new YamiShopBindException("无网络");
+// 无网络
+                throw new YamiShopBindException("No network connection");
             }
         }
         Realtime realtime = this.dataService.realtime(symbol).get(0);
@@ -252,7 +258,8 @@ public class ApiExchangeApplyOrderController {
             double rate = Math.abs(Arith.sub(realtime.getClose(), priceTemp));
             if (Arith.div(rate, priceTemp) > 0.05D) {
                 log.error("币种数量异常{},{},{}", symbol, priceTemp, realtime.getClose());
-                throw new YamiShopBindException("请稍后再试");
+    // 请稍后再试
+            throw new YamiShopBindException("Please try again later");
             }
         }
 
@@ -284,23 +291,27 @@ public class ApiExchangeApplyOrderController {
         String order_price_type = request.getParameter("order_price_type");
         String partyId = SecurityUtils.getUser().getUserId();
         if (StringUtils.isNullOrEmpty(volume) || !StringUtils.isDouble(volume) || Double.parseDouble(volume) <= 0) {
-            throw new YamiShopBindException("请输入正确的货币数量");
+// 请输入正确的货币数量
+            throw new YamiShopBindException("Please enter correct currency amount");
         }
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
         if ((!partyId.equals(object))) {
-            throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+            throw new YamiShopBindException("Please try again later");
         }
         User party = userService.getById(partyId);
         if (!party.isEnabled()) {
-            throw new YamiShopBindException("用户已禁用");
+// 用户已禁用
+            throw new YamiShopBindException("User is disabled");
         }
         Syspara syspara = sysparaService.find("stop_user_internet");
         String stopUserInternet = syspara.getSvalue();
         if (org.apache.commons.lang3.StringUtils.isNotEmpty(stopUserInternet)) {
             String[] stopUsers = stopUserInternet.split(",");
             if (Arrays.asList(stopUsers).contains(party.getUserName())) {
-                throw new YamiShopBindException("无网络");
+// 无网络
+                throw new YamiShopBindException("No network connection");
             }
         }
         ExchangeApplyOrder order = new ExchangeApplyOrder();
@@ -408,13 +419,15 @@ public class ApiExchangeApplyOrderController {
     public Object buyAndSell(HttpServletRequest request) {
         String volume_temp = request.getParameter("volume");
         if (StringUtils.isNullOrEmpty(volume_temp) || !StringUtils.isDouble(volume_temp) || Double.parseDouble(volume_temp) <= 0) {
-            throw new YamiShopBindException("请输入正确的货币数量");
+// 请输入正确的货币数量
+            throw new YamiShopBindException("Please enter correct currency amount");
         }
         double volume = Double.parseDouble(volume_temp);
         String symbol = request.getParameter("symbol");
         String symbol_to = request.getParameter("symbol_to");
         if (symbol.equals(symbol_to)) {
-            throw new YamiShopBindException("请选择正确的币种");
+// 请选择正确的币种
+            throw new YamiShopBindException("Please select correct currency");
         }
         String session_token = request.getParameter("session_token");
         String partyId = SecurityUtils.getUser().getUserId();
@@ -423,11 +436,13 @@ public class ApiExchangeApplyOrderController {
         if ((!partyId.equals(object))) {
             log.info("sessionToken{}", object);
             System.out.println("sessionToken " + object);
-            throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+            throw new YamiShopBindException("Please try again later");
         }
         User party = userService.getById(partyId);
         if (!party.isEnabled()) {
-            throw new YamiShopBindException("用户已禁用!");
+// 用户已禁用
+            throw new YamiShopBindException("User is disabled");
         }
         symbol = itemService.getCleanSymbol(symbol);
         symbol_to = itemService.getCleanSymbol(symbol_to);
@@ -492,13 +507,15 @@ public class ApiExchangeApplyOrderController {
         // 兑换后的币种
         String symbol_to = request.getParameter("symbol_to");
         if (symbol.equals(symbol_to)) {
-            throw new YamiShopBindException("请选择正确的币种");
+// 请选择正确的币种
+            throw new YamiShopBindException("Please select correct currency");
         }
         // 委托数量
         String volume_temp = request.getParameter("volume");
         if (StringUtils.isNullOrEmpty(volume_temp)
                 || !StringUtils.isDouble(volume_temp) || Double.valueOf(volume_temp) < 0) {
-            throw new YamiShopBindException("请输入正确的兑换数量");
+// 请输入正确的兑换数量
+            throw new YamiShopBindException("Please enter correct exchange amount");
         }
         Map<String, Object> data = new HashMap<>();
         symbol = itemService.getCleanSymbol(symbol);

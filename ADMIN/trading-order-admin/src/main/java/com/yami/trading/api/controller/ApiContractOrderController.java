@@ -214,7 +214,8 @@ public class ApiContractOrderController {
         ContractOrder order = this.contractOrderService.findByOrderNo(order_no);
         if (null == order) {
             log.info("contractOrder!get order_no:" + order_no + ", order null");
-            throw new YamiShopBindException("订单不存在");
+// 订单不存在
+            throw new YamiShopBindException("Order does not exist");
         }
 
         Map<String, Object> retData = this.contractOrderService.bulidOne(order);
@@ -272,10 +273,12 @@ public class ApiContractOrderController {
         }
 
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         String partyId = SecurityUtils.getCurrentUserId();
 

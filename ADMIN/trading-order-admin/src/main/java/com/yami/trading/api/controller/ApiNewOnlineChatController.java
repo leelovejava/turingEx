@@ -127,7 +127,8 @@ public class ApiNewOnlineChatController {
             String content = request.getParameter("content");
             String type = request.getParameter("type");
             if (StringUtils.isNullOrEmpty(content.trim()) || StringUtils.isNullOrEmpty(type)) {
-                return Result.failed("发送消息为空");
+                // 发送消息为空
+                return Result.failed("Message content is empty");
             }
             if (!content.contains("%")) {
                 content = URLDecoder.decode(content, "utf-8");

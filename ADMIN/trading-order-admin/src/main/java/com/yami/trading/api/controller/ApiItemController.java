@@ -201,7 +201,8 @@ public class ApiItemController {
     public Result<RelatedStocksDto> relateStocks(String symbol) {
         Item bySymbol = itemService.findBySymbol(symbol);
         if (bySymbol == null) {
-            throw new YamiShopBindException(symbol + " 不存在");
+// 币对不存在
+            throw new YamiShopBindException(symbol + " does not exist");
         }
 
         List<StocksDto> stocks = findRealTimeByBoard(symbol);

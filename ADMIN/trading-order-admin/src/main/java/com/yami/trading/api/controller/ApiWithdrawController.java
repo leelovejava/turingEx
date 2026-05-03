@@ -106,19 +106,23 @@ public class ApiWithdrawController implements InitializingBean {
         // 交易所提现是否需要资金密码
         String exchange_withdraw_need_safeword = this.sysparaService.find("exchange_withdraw_need_safeword").getSvalue();
         if (StringUtils.isEmptyString(exchange_withdraw_need_safeword)) {
-            throw new YamiShopBindException("系统参数错误");
+// 系统参数错误
+            throw new YamiShopBindException("System parameter error");
         }
         // 开关打开，则验证
         if ("true".equals(exchange_withdraw_need_safeword)) {
             // 资金密码验证
             if (StringUtils.isEmptyString(safeword)) {
-                throw new YamiShopBindException("资金密码不能为空");
+// 资金密码不能为空
+                throw new YamiShopBindException("Fund password cannot be empty");
             }
             if (safeword.length() < 6 || safeword.length() > 12) {
-                throw new YamiShopBindException("资金密码必须6-12位");
+// 资金密码必须6-12位
+                throw new YamiShopBindException("Fund password must be 6-12 characters");
             }
             if (!userService.checkLoginSafeword(SecurityUtils.getUser().getUserId(), safeword)) {
-                throw new YamiShopBindException("资金密码错误");
+// 资金密码错误
+                throw new YamiShopBindException("Fund password is incorrect");
             }
             if (StringUtils.isNotEmpty(verifcode_type)) {
                 // 校验用户的验证码
@@ -152,7 +156,8 @@ public class ApiWithdrawController implements InitializingBean {
     public Result get(@RequestParam String order_no) throws IOException {
         Withdraw withdraw = this.withdrawService.findByOrderNo(order_no);
         if (withdraw == null) {
-            throw new YamiShopBindException("订单不存在!");
+// 订单不存在
+            throw new YamiShopBindException("Order does not exist");
         }
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("order_no", withdraw.getOrderNo());
@@ -182,10 +187,12 @@ public class ApiWithdrawController implements InitializingBean {
             page_no = "1";
         }
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         int page_no_int = Integer.valueOf(page_no).intValue();
         List<Map<String, Object>> data = this.walletLogService.pagedQueryWithdraw(page_no_int, 10, SecurityUtils.getUser().getUserId(), "1").getRecords();
@@ -285,13 +292,16 @@ public class ApiWithdrawController implements InitializingBean {
 
     private String verif(String amount) {
         if (StringUtils.isNullOrEmpty(amount)) {
-            return "提币数量必填";
+            // 提币数量必填
+            return "Withdrawal amount is required";
         }
         if (!StringUtils.isDouble(amount)) {
-            return "提币数量输入错误，请输入浮点数";
+            // 提币数量输入错误，请输入浮点数
+            return "Withdrawal amount input error, please enter a decimal number";
         }
         if (Double.valueOf(amount).doubleValue() <= 0) {
-            return "提币数量不能小于等于0";
+            // 提币数量不能小于等于0
+            return "Withdrawal amount cannot be less than or equal to 0";
         }
 
         return null;

@@ -107,7 +107,8 @@ public class KlineController {
             return Result.succeed(this.build(data, line, symbol));
         } catch (Exception e) {
             log.error("getKline error", e);
-            throw new YamiShopBindException("k线图获取失败");
+// k线图获取失败
+            throw new YamiShopBindException("Failed to get k-line chart");
         }
     }
 

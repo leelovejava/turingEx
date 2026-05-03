@@ -104,10 +104,12 @@ public class ApiUserController {
     @GetMapping("login")
     public Result login(String username, String password) {
         if (StringUtils.isEmptyString(username)) {
-            throw new YamiShopBindException("用户名不能为空");
+// 用户名不能为空
+            throw new YamiShopBindException("Username cannot be empty");
         }
         if (StringUtils.isEmptyString(password)) {
-            throw new YamiShopBindException("登录密码不能为空");
+// 登录密码不能为空
+            throw new YamiShopBindException("Login password cannot be empty");
         }
 //        if (password.length() < 6 || password.length() > 12) {
 //            throw new YamiShopBindException("登录密码必须6-12位");
@@ -115,7 +117,8 @@ public class ApiUserController {
         String ip = IPHelper.getIpAddr();
         if (!IpUtil.isCorrectIpRegular(ip)) {
             log.error("校验IP不合法,参数{}", ip);
-            throw new YamiShopBindException("校验IP不合法");
+// 校验IP不合法
+            throw new YamiShopBindException("IP verification failed");
         }
 
         Date now = new Date();
@@ -125,7 +128,8 @@ public class ApiUserController {
         if (org.apache.commons.lang3.StringUtils.isNotEmpty(blackUsers)) {
             String[] ips = blackUsers.split(",");
             if (Arrays.asList(ips).contains(ip.trim())) {
-                throw new YamiShopBindException("当前用户在黑名单中");
+// 当前用户在黑名单中
+                throw new YamiShopBindException("Current user is in blacklist");
             }
         }
 
@@ -164,28 +168,22 @@ public class ApiUserController {
     private String validateParam(String username, String verifcode, String password, String type) {
 
         if (StringUtils.isEmptyString(username)) {
-            return "用户名不能为空";
+            // 用户名不能为空
+            return "Username is required";
         }
-//		if (StringUtils.isEmptyString(verifcode)) {
-//			return "验证码不能为空";
-//		}
         if (StringUtils.isEmptyString(password)) {
-            return "登录密码不能为空";
+            // 登录密码不能为空
+            return "Login password is required";
         }
         int min = 6;
         int max = 12;
         if (!RegexUtil.length(password, min, max)) {
-            return "登陆密码长度不符合设定";
+            // 登陆密码长度不符合设定
+            return "Login password length does not meet requirements";
         }
-//		if (!RegexUtil.isDigits(this.password)) {
-//			// 只能输入数字
-//			return "登陆密码不符合设定";
-//		}
-//		if (StringUtils.isEmptyString(this.usercode)) {
-//			return "推荐码不能为空";
-//		}
         if (StringUtils.isEmptyString(type) || !Arrays.asList("1", "2").contains(type)) {
-            return "类型不能为空";
+            // 类型不能为空
+            return "Type is required";
         }
         return null;
     }
@@ -201,10 +199,12 @@ public class ApiUserController {
             throw new YamiShopBindException(error);
         }
         if (StringUtils.isEmptyString(safeword)) {
-            throw new YamiShopBindException("资金密码不能为空");
+// 资金密码不能为空
+            throw new YamiShopBindException("Fund password cannot be empty");
         }
         if (safeword.length() != 6 || !Strings.isNumber(safeword)) {
-            throw new YamiShopBindException("资金密码不符合设定");
+// 资金密码不符合设定
+            throw new YamiShopBindException("Fund password does not meet requirements");
         }
         userService.saveRegister(username, password, usercode, safeword, verifcode, type);
         User secUser = userService.findByUserName(username);
@@ -244,7 +244,8 @@ public class ApiUserController {
             throw new YamiShopBindException("The fund password cannot be blank");
         }
         if (safeword.length() != 6 || !Strings.isNumber(safeword)) {
-            throw new YamiShopBindException("资金密码不符合设定");
+// 资金密码不符合设定
+            throw new YamiShopBindException("Fund password does not meet requirements");
         }
         userService.setSafeword(SecurityUtils.getUser().getUserId(), passwordEncoder.encode(model.getSafeword()));
         return Result.succeed(null);
@@ -330,23 +331,29 @@ public class ApiUserController {
         String verifcode_type = request.getParameter("verifcode_type");
         String verifcode = request.getParameter("verifcode");
         if (StringUtils.isEmptyString(username)) {
-            throw new YamiShopBindException("用户名不能为空");
+// 用户名不能为空
+            throw new YamiShopBindException("Username cannot be empty");
         }
         if (StringUtils.isEmptyString(password)) {
-            throw new YamiShopBindException("密码不能为空");
+// 密码不能为空
+            throw new YamiShopBindException("Password cannot be empty");
         }
         if (password.length() < 6 || password.length() > 12) {
-            throw new YamiShopBindException("密码必须6-12位");
+// 密码必须6-12位
+            throw new YamiShopBindException("Password must be 6-12 characters");
         }
         if (StringUtils.isEmptyString(verifcode_type)) {
-            throw new YamiShopBindException("验证类型不能为空");
+// 验证类型不能为空
+            throw new YamiShopBindException("Verification type cannot be empty");
         }
         if (StringUtils.isEmptyString(verifcode)) {
-            throw new YamiShopBindException("验证码不能为空");
+// 验证码不能为空
+            throw new YamiShopBindException("Verification code cannot be empty");
         }
         User party = userService.findByUserName(username);
         if (null == party) {
-            throw new YamiShopBindException("用户名不存在");
+// 用户名不存在
+            throw new YamiShopBindException("Username does not exist");
         }
         // 根据验证类型获取验证key verifcode_type: 1/手机;2/邮箱;3/谷歌验证器;
         String key = "";
@@ -384,7 +391,8 @@ public class ApiUserController {
         // 如果是演示用户，则不判断验证码
         if (!"GUEST".contentEquals(party.getRoleName())) {
             if (!passed) {
-                throw new YamiShopBindException("验证码不正确");
+// 验证码不正确
+                throw new YamiShopBindException("Verification code is incorrect");
             }
         }
         party.setLoginPassword(passwordEncoder.encode(password));
@@ -401,11 +409,13 @@ public class ApiUserController {
 
         Map<String, Object> data = new HashMap<>();
         if (StringUtils.isEmptyString(username)) {
-            throw new YamiShopBindException("用户名参数为空");
+// 用户名参数为空
+            throw new YamiShopBindException("Username parameter is empty");
         }
         User party = userService.findByUserName(username);
         if (null == party) {
-            throw new YamiShopBindException("用户名不存在");
+// 用户名不存在
+            throw new YamiShopBindException("Username does not exist");
         }
         // verifcode_type未明确指定，返回所有的方式
         if (StringUtils.isEmptyString(verifcode_type) || !Arrays.asList("1", "2", "3").contains(verifcode_type)) {
@@ -560,7 +570,8 @@ public class ApiUserController {
                              String usercode) {
 //			if (StringUtils.isEmptyString(phone) || !Strings.isNumber(phone) || phone.length() > 15) {
         if (StringUtils.isEmptyString(phone) || phone.length() > 20) {
-            throw new YamiShopBindException("请填写正确的电话号码");
+// 请填写正确的电话号码
+            throw new YamiShopBindException("Please enter correct phone number");
         }
         String loginPartyId = SecurityUtils.getUser().getUserId();
         User party = userService.getById(loginPartyId);
@@ -569,7 +580,8 @@ public class ApiUserController {
 //        }
         User partyPhone = userService.findPartyByVerifiedPhone(phone);
         if (null != partyPhone && !partyPhone.getUserId().toString().equals(loginPartyId)) {
-            throw new YamiShopBindException("电话号码已绑定其他用户");
+// 电话号码已绑定其他用户
+            throw new YamiShopBindException("Phone number is already bound to another user");
         }
         String authcode = identifyingCodeTimeWindowService.getAuthCode(phone);
         String bind_phone_email_ver = this.sysparaService.find("bind_phone_email_ver").getSvalue();
@@ -578,19 +590,23 @@ public class ApiUserController {
         if (!"GUEST".contentEquals(party.getRoleName())) {
             if ("1".contentEquals(bind_phone_email_ver)) {
                 if (StringUtils.isEmptyString(verifcode)) {
-                    throw new YamiShopBindException("请填写正确的验证码");
+// 请填写正确的验证码
+                    throw new YamiShopBindException("Please enter correct verification code");
                 }
                 if ((null == authcode) || (!authcode.equals(verifcode))) {
-                    throw new YamiShopBindException("验证码不正确");
+// 验证码不正确
+                    throw new YamiShopBindException("Verification code is incorrect");
                 }
             }
             if ("1".contentEquals(bind_usercode)) {
                 if (StringUtils.isEmptyString(usercode)) {
-                    throw new YamiShopBindException("请输入推荐码");
+// 请输入推荐码
+                    throw new YamiShopBindException("Please enter referral code");
                 }
                 User party_reco = userService.findUserByUserCode(usercode);
                 if (null == party_reco || party_reco.getStatus() != 1) {
-                    throw new YamiShopBindException("推荐人无权限推荐");
+// 推荐人无权限推荐
+                    throw new YamiShopBindException("Referrer has no permission to recommend");
                 }
                 UserRecom userRecom = this.userRecomService.findByPartyId(party.getUserId());
                 if (null == userRecom) {
@@ -625,16 +641,19 @@ public class ApiUserController {
     public Result<?> save_email(String email, String verifcode) {
 
         if (StringUtils.isEmptyString(email) || !Strings.isEmail(email)) {
-            throw new YamiShopBindException("请填写正确的邮箱地址");
+// 请填写正确的邮箱地址
+            throw new YamiShopBindException("Please enter correct email address");
         }
         String loginPartyId = SecurityUtils.getUser().getUserId();
         User party = userService.getById(loginPartyId);
         if (null != party.getUserMail() && party.getUserMail().equals(email) && true == party.isMailBind()) {
-            throw new YamiShopBindException("邮箱已绑定");
+// 邮箱已绑定
+            throw new YamiShopBindException("Email is already bound");
         }
         User partyEmail = userService.findPartyByVerifiedEmail(email);
         if (null != partyEmail && !partyEmail.getUserId().toString().equals(loginPartyId)) {
-            throw new YamiShopBindException("邮箱已绑定其他用户");
+// 邮箱已绑定其他用户
+            throw new YamiShopBindException("Email is already bound to another user");
         }
         String authcode = this.identifyingCodeTimeWindowService.getAuthCode(email);
         String bind_phone_email_ver = sysparaService.find("bind_phone_email_ver").getSvalue();
@@ -642,10 +661,12 @@ public class ApiUserController {
         if (!"GUEST".contentEquals(party.getRoleName())) {
             if ("1".contentEquals(bind_phone_email_ver)) {
                 if (StringUtils.isEmptyString(verifcode)) {
-                    throw new YamiShopBindException("请填写正确的验证码");
+// 请填写正确的验证码
+                    throw new YamiShopBindException("Please enter correct verification code");
                 }
                 if ((null == authcode) || (!authcode.equals(verifcode))) {
-                    throw new YamiShopBindException("验证码不正确");
+// 验证码不正确
+                    throw new YamiShopBindException("Verification code is incorrect");
                 }
             }
         }
@@ -739,23 +760,29 @@ public class ApiUserController {
     public Result updateOldAndNewPsw(String old_password, String password, String re_password) {
 
         if (StringUtils.isEmptyString(old_password)) {
-            throw new YamiShopBindException("旧密码不能为空");
+// 旧密码不能为空
+            throw new YamiShopBindException("Old password cannot be empty");
         }
         if (StringUtils.isEmptyString(password)) {
-            throw new YamiShopBindException("新密码不能为空");
+// 新密码不能为空
+            throw new YamiShopBindException("New password cannot be empty");
         }
         if (StringUtils.isEmptyString(re_password)) {
-            throw new YamiShopBindException("新密码确认不能为空");
+// 新密码确认不能为空
+            throw new YamiShopBindException("Password confirmation cannot be empty");
         }
         if (old_password.length() < 6 || old_password.length() > 12 || password.length() < 6 || password.length() > 12) {
-            throw new YamiShopBindException("密码必须6-12位");
+// 密码必须6-12位
+            throw new YamiShopBindException("Password must be 6-12 characters");
         }
         User secUser = userService.getById(SecurityUtils.getUser().getUserId());
         if (!passwordEncoder.matches(old_password, secUser.getLoginPassword())) {
-            throw new YamiShopBindException("旧密码不正确!");
+// 旧密码不正确
+            throw new YamiShopBindException("Old password is incorrect");
         }
         if (!password.equals(re_password)) {
-            throw new YamiShopBindException("新密码不一致");
+// 新密码不一致
+            throw new YamiShopBindException("New passwords do not match");
         }
         secUser.setLoginPassword(passwordEncoder.encode(re_password));
         userService.updateById(secUser);
@@ -770,16 +797,20 @@ public class ApiUserController {
     public Result setSafeword(String safeword, String verifcode_type, String verifcode) {
 
         if (StringUtils.isEmptyString(safeword)) {
-            throw new YamiShopBindException("资金密码不能为空");
+// 资金密码不能为空
+            throw new YamiShopBindException("Fund password cannot be empty");
         }
         if (safeword.length() != 6 || !Strings.isNumber(safeword)) {
-            throw new YamiShopBindException("资金密码不符合设定");
+// 资金密码不符合设定
+            throw new YamiShopBindException("Fund password does not meet requirements");
         }
         if (StringUtils.isEmptyString(verifcode_type)) {
-            throw new YamiShopBindException("验证类型不能为空");
+// 验证类型不能为空
+            throw new YamiShopBindException("Verification type cannot be empty");
         }
         if (StringUtils.isEmptyString(verifcode)) {
-            throw new YamiShopBindException("验证码不能为空");
+// 验证码不能为空
+            throw new YamiShopBindException("Verification code cannot be empty");
         }
         String loginPartyId = SecurityUtils.getUser().getUserId();
         User party = userService.getById(loginPartyId);
@@ -819,7 +850,8 @@ public class ApiUserController {
         // 如果是演示用户，则不判断验证码
         if (!"GUEST".contentEquals(party.getRoleName())) {
             if (!passed) {
-                throw new YamiShopBindException("验证码不正确");
+// 验证码不正确
+                throw new YamiShopBindException("Verification code is incorrect");
             }
         }
         party.setSafePassword(passwordEncoder.encode(safeword));
@@ -839,18 +871,22 @@ public class ApiUserController {
                                      String remark) {
 
         if (StringUtils.isNullOrEmpty(operate)) {
-            throw new YamiShopBindException("操作类型为空");
+// 操作类型为空
+            throw new YamiShopBindException("Operation type is empty");
         }
         if (!StringUtils.isInteger(operate)) {
-            throw new YamiShopBindException("操作类型不是整数");
+// 操作类型不是整数
+            throw new YamiShopBindException("Operation type is not an integer");
         }
         if (Integer.valueOf(operate).intValue() < 0) {
-            throw new YamiShopBindException("操作类型不能小于0");
+// 操作类型不能小于0
+            throw new YamiShopBindException("Operation type cannot be less than 0");
         }
 
         if (!StrUtil.isEmpty(remark)) {
             if (remark.length() > 250) {
-                throw new YamiShopBindException("备注长度超过250");
+// 备注长度超过250
+                throw new YamiShopBindException("Remark exceeds 250 characters");
             }
         }
         Integer operate_int = Integer.valueOf(operate);
@@ -892,10 +928,12 @@ public class ApiUserController {
                 return Result.failed(error);
             }
             if (StringUtils.isEmptyString(safeword)) {
-                throw new YamiShopBindException("资金密码不能为空");
+// 资金密码不能为空
+                throw new YamiShopBindException("Fund password cannot be empty");
             }
             if (safeword.length() != 6 || !Strings.isNumber(safeword)) {
-                throw new YamiShopBindException("资金密码不符合设定");
+// 资金密码不符合设定
+                throw new YamiShopBindException("Fund password does not meet requirements");
             }
             boolean register_image_code_button = sysparaService.find("register_image_code_button").getBoolean();
             if (register_image_code_button) {
@@ -988,22 +1026,27 @@ public class ApiUserController {
     private String validateParamUsername(String username, String password) {
 
         if (StringUtils.isNullOrEmpty(username)) {
-            return "用户名不能为空";
+            // 用户名不能为空
+            return "Username is required";
         }
         if (StringUtils.isNullOrEmpty(password)) {
-            return "登录密码不能为空";
+            // 登录密码不能为空
+            return "Login password is required";
         }
         if (!RegexUtil.isUSername(username)) {
-            return "用户名必须由数字和英文字母组成";
+            // 用户名必须由数字和英文字母组成
+            return "Username must consist of numbers and English letters";
         }
         int min = 6;
         int max = 12;
         int max_name = 24;
         if (!RegexUtil.length(username, min, max_name)) {
-            return "用户名不符合设定";
+            // 用户名不符合设定
+            return "Username does not meet requirements";
         }
         if (!RegexUtil.length(password, min, max)) {
-            return "登陆密码长度不符合设定";
+            // 登陆密码长度不符合设定
+            return "Login password length does not meet requirements";
         }
         return null;
     }

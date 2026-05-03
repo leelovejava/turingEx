@@ -60,7 +60,8 @@ public class ApiGoogleAuthController {
         if (flag) {
             User user = userService.getById(userId);
             if (user.isGoogleAuthBind()) {
-                throw new YamiShopBindException("谷歌验证码已绑定");
+// 谷歌验证码已绑定
+                throw new YamiShopBindException("Google verification code is already bound");
             }
             user.setGoogleAuthBind(true);
             user.setGoogleAuthSecret(model.getSecret());
@@ -71,7 +72,8 @@ public class ApiGoogleAuthController {
             map.put("google_auth_bind",true);
             return Result.succeed(map);
         } else {
-            throw new YamiShopBindException("谷歌验证码错误");
+// 谷歌验证码错误
+            throw new YamiShopBindException("Google verification code is incorrect");
         }
     }
 }

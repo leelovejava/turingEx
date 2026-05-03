@@ -26,7 +26,8 @@ public class ApiUploadFileController {
     public Result uploadFile(FileUploadParamsModel model) {
         try {
             if (model.getFile().getSize() / 1000L > 4500) {
-               throw  new YamiShopBindException("图片大小不能超过4M");
+// 图片大小不能超过4M
+               throw  new YamiShopBindException("Image size cannot exceed 4M");
             }
             String path =  awsS3OSSFileService.uploadFile(model.getModuleName(), model.getFile());
             return Result.succeed(path);

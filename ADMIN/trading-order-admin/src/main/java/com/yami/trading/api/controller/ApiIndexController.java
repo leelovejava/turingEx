@@ -83,14 +83,16 @@ public class ApiIndexController {
             if(model.getLanguage().equals("en")){
                 throw new YamiShopBindException("Incorrect account or password");
             }
-            throw new YamiShopBindException("账号或密码不正确");
+// 账号或密码不正确
+            throw new YamiShopBindException("Incorrect account or password");
         }
 
         if (!user.isLoginAuthority()) {
             if(model.getLanguage().equals("en")){
                 throw new YamiShopBindException("login fail");
             }
-            throw new YamiShopBindException("登录失败");
+// 登录失败
+            throw new YamiShopBindException("Login failed");
         }
 
         // 半小时内密码输入错误十次，已限制登录30分钟
@@ -163,7 +165,8 @@ public class ApiIndexController {
         String password = model.getPassword();
         String authCode = identifyingCodeTimeWindowService.getAuthCode(username);
         if (!model.getVerifcode().equalsIgnoreCase(authCode)) {
-            throw new YamiShopBindException("无效验证码");
+// 无效验证码
+            throw new YamiShopBindException("Invalid verification code");
         }
 
         User user = userService.register(username,

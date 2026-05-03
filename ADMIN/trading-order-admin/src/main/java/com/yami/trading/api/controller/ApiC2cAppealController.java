@@ -47,22 +47,27 @@ public class ApiC2cAppealController {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         if (StringUtils.isEmptyString(order_no)) {
-            throw new YamiShopBindException("申诉订单号不正确");
+// 申诉订单号不正确
+            throw new YamiShopBindException("Appeal order number is incorrect");
         }
         if (StringUtils.isEmptyString(reason)) {
-            throw new YamiShopBindException("请输入申诉原因");
+// 请输入申诉原因
+            throw new YamiShopBindException("Please enter appeal reason");
         }
         if (StringUtils.isEmptyString(img)) {
-            throw new YamiShopBindException("请上传申诉凭证");
+// 请上传申诉凭证
+            throw new YamiShopBindException("Please upload appeal evidence");
         }
         String partyId = SecurityUtils.getUser().getUserId();
         C2cOrder order = this.c2cOrderService.get(order_no);
         if (null == order || !partyId.equals(order.getPartyId())) {
-            throw new YamiShopBindException("订单不存在");
+// 订单不存在
+            throw new YamiShopBindException("Order does not exist");
         }
         C2cAppeal appeal = this.c2cAppealService.findByOrderNo(order_no);
         if (null != appeal) {
-            throw new YamiShopBindException("该订单已提交申诉");
+// 该订单已提交申诉
+            throw new YamiShopBindException("Appeal already submitted");
         }
         C2cAppeal entity = new C2cAppeal();
         entity.setOrderNo(order_no);

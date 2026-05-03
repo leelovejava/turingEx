@@ -16,7 +16,8 @@ public class ApiUploadImgController {
     @RequestMapping("/api/public/uploadimg!execute.action")
     public Result<String> execute(MultipartFile file) {
         if (file.getSize() / 1024L > 30720L) {
-            return Result.failed("图片大小不能超过30M");
+            // 图片大小不能超过30M
+            return Result.failed("Image size cannot exceed 30MB");
         }
         String path = awsS3OSSFileService.uploadFile("chat", file);
         return Result.succeed(awsS3OSSFileService.getUrl(path));

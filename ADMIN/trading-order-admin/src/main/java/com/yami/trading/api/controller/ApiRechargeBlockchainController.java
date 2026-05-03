@@ -86,27 +86,31 @@ public class ApiRechargeBlockchainController {
             // 币充值是否强制需要上传图片，需要true,不需要false
             boolean recharge_must_need_qr = this.sysparaService.find("recharge_must_need_qr").getBoolean();
             if (recharge_must_need_qr) {
+                // 请上传图片
                 if (StringUtils.isEmptyString(img)) {
-                    throw new YamiShopBindException("请上传图片");
+                    throw new YamiShopBindException("Please upload an image");
                 }
             }
         }
         double amount_double = Double.valueOf(amount).doubleValue();
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
+        // 请稍后再试
         if (null == object || !SecurityUtils.getUser().getUserId().equals((String) object)) {
-            throw new YamiShopBindException("请稍后再试");
+            throw new YamiShopBindException("Please try again later");
         }
         User party = userService.getById(SecurityUtils.getUser().getUserId());
+        // 无权限
         if (Constants.SECURITY_ROLE_TEST.equals(party.getRoleName())) {
-            throw new YamiShopBindException("无权限");
+            throw new YamiShopBindException("No permission");
         }
         // 充值申请中的订单是否只能唯一：1唯一，2不限制
         double recharge_only_one = Double.valueOf(sysparaService.find("recharge_only_one").getSvalue());
         // 用户未结束银行卡订单数量
         Long nofinishOrderCount = this.c2cOrderService.getNofinishOrderCount(SecurityUtils.getUser().getUserId().toString());
+        // 提交失败，当前有未处理银行卡订单
         if (null != nofinishOrderCount && 0 != nofinishOrderCount.longValue() && 1 == recharge_only_one) {
-            throw new YamiShopBindException("提交失败，当前有未处理银行卡订单");
+            throw new YamiShopBindException("Submission failed, there are unprocessed bank card orders");
         }
 
 
@@ -174,10 +178,12 @@ public class ApiRechargeBlockchainController {
             page_no = "1";
         }
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+            // 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+            // 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         int page_no_int = Integer.valueOf(page_no).intValue();
         Page<Map> page = new Page<>(page_no_int, 10);
@@ -206,22 +212,27 @@ public class ApiRechargeBlockchainController {
 
     private String verif(String amount, String coin, String blockchain_name, String channel_address) {
         if (StringUtils.isNullOrEmpty(amount)) {
-            return "充值数量必填!";
+            // 充值数量必填
+            return "Recharge amount is required";
         }
         if (!StringUtils.isDouble(amount)) {
-            return "充值数量输入错误，请输入浮点数";
+            // 充值数量输入错误，请输入浮点数
+            return "Recharge amount input error, please enter a decimal number";
         }
         if (Double.valueOf(amount).doubleValue() <= 0) {
-            return "充值数量不能小于等于0";
+            // 充值数量不能小于等于0
+            return "Recharge amount cannot be less than or equal to 0";
         }
         if (StringUtils.isEmptyString(coin)) {
-            return "请输入充值币种";
+            // 请输入充值币种
+            return "Please enter recharge coin type";
         }
         if (StringUtils.isEmptyString(blockchain_name)) {
             return "Parameter Error";
         }
         if (StringUtils.isEmptyString(channel_address)) {
-            return "请输入地址";
+            // 请输入地址
+            return "Please enter address";
         }
         return null;
     }

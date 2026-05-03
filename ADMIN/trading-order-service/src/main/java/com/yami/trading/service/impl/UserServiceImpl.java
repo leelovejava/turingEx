@@ -70,6 +70,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     WalletLogService walletLogService;
 
+    @Autowired
+    TzUserOldService tzUserOldService;
+
     /**
      * UserCode生成并发锁
      */
@@ -1700,8 +1703,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setLoanCanAmount(loanMaxAmount != null && loanMaxAmount.getBigDecimal() != null 
             ? loanMaxAmount.getBigDecimal() 
             : BigDecimal.ZERO);
-        // 是否老客户 1老客户 2新客户 - 默认新客户
-        user.setIsOldUser(2);
+        // 是否老客户 1老客户 2新客户
+        // 查询老客户表，如果邮箱或手机号存在则标记为老客户
+        String email = user.getUserMail();
+        String phone = user.getUserMobile();
+        boolean isOld = tzUserOldService.isOldUser(email, phone);
+        user.setIsOldUser(isOld ? 1 : 2);
         // 购买量化机器状态 1正常 2禁止
         user.setCreateRobotStatus(1);
         // 提币状态 1正常 2禁止

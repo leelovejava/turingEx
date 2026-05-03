@@ -220,12 +220,14 @@ public class ApiContractApplyOrderController {
             
             lockResult = rLock.tryLock(5, TimeUnit.SECONDS);
             if (!lockResult) {
-                throw new YamiShopBindException("请稍后再试");
+                // 请稍后再试
+                throw new YamiShopBindException("Please try again later");
             }
 
             User user = userService.getById(partyId);
             if (!user.isEnabled()) {
-                throw new YamiShopBindException("用户已锁定");
+                // 用户已锁定
+                throw new YamiShopBindException("User has been locked");
             }
 
             Syspara syspara = sysparaService.find("stop_user_internet");
@@ -237,14 +239,16 @@ public class ApiContractApplyOrderController {
                 System.out.println("stopUserInternet = " + stopUserInternet);
 
                 if(Arrays.asList(stopUsers).contains(user.getUserName())){
-                    throw new YamiShopBindException("无网络");
+                    // 无网络
+                    throw new YamiShopBindException("No network connection");
                 }
             }
 			List<Map<String, Object>> list = this.contractOrderService.findSubmittedRedis(partyId, openAction.getSymbol());
 			if (ObjectUtils.isNotEmpty(list)) {
 				for (Map<String, Object> map :list) {
 					if(!openAction.getDirection().equals(map.get("direction"))) {
-						throw new YamiShopBindException("同一币种不允许多空双开");
+                        // 同一币种不允许多空双开
+						throw new YamiShopBindException("Cannot open both long and short positions");
 					}
 				}
 			}
@@ -287,12 +291,14 @@ public class ApiContractApplyOrderController {
         RLock rLock = redissonClient.getLock("contract_close_" + partyId);
         boolean lockResult = rLock.tryLock(5, TimeUnit.SECONDS);
         if (!lockResult) {
-            throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+            throw new YamiShopBindException("Please try again later");
         }
         try {
             User user = userService.getById(partyId);
             if (!user.isEnabled()) {
-                throw new YamiShopBindException("用户已锁定");
+// 用户已锁定
+                throw new YamiShopBindException("User has been locked");
             }
 
             Syspara syspara = sysparaService.find("stop_user_internet");
@@ -304,7 +310,8 @@ public class ApiContractApplyOrderController {
                 System.out.println("stopUserInternet = " + stopUserInternet);
 
                 if(Arrays.asList(stopUsers).contains(user.getUserName())){
-                    throw new YamiShopBindException("无网络");
+// 无网络
+                    throw new YamiShopBindException("No network connection");
                 }
             }
 
@@ -365,7 +372,8 @@ public class ApiContractApplyOrderController {
 
         ContractApplyOrder order = this.contractApplyOrderService.findByOrderNo(order_no);
         if (order == null) {
-            throw new YamiShopBindException("委托单不存在");
+// 委托单不存在
+            throw new YamiShopBindException("Order does not exist");
         }
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("order_no", order.getOrderNo());
@@ -408,7 +416,8 @@ public class ApiContractApplyOrderController {
             t.start();
         } catch (Exception e) {
             log.error("执行撤单异常", e);
-            throw new YamiShopBindException("执行撤单异常");
+// 执行撤单异常
+            throw new YamiShopBindException("Order cancellation failed");
         }
         return Result.succeed(null,"success");
     }
@@ -424,7 +433,8 @@ public class ApiContractApplyOrderController {
             t.start();
         } catch (Exception e) {
             log.error("执行撤单异常", e);
-            throw new YamiShopBindException("执行撤单异常");
+// 执行撤单异常
+            throw new YamiShopBindException("Order cancellation failed");
         }
         return Result.succeed(null,"success");
     }
@@ -510,10 +520,12 @@ public class ApiContractApplyOrderController {
         Page<ContractApplyOrder> result = contractApplyOrderService.findList(page, SecurityUtils.getUser().getUserId(), type,  symbolType);
         List<ContractApplyOrder> datas = result.getRecords();
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         Long count = 0L;
 

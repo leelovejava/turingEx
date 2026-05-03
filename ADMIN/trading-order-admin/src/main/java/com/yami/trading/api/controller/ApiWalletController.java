@@ -425,11 +425,13 @@ public class ApiWalletController {
     public Result getPairs(@RequestParam String pairs, String symbolType) {
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
         if (StringUtils.isEmptyString(pairs) || !pairs.contains("/")) {
-            throw new YamiShopBindException("参数错误");
+// 参数错误
+            throw new YamiShopBindException("Parameter error");
         }
         List<String> symbolList = Arrays.asList(pairs.split("/"));
         if (null == symbolList || 2 != symbolList.size()) {
-            throw new YamiShopBindException("参数错误");
+// 参数错误
+            throw new YamiShopBindException("Parameter error");
         }
         String symbol1 = symbolList.get(0).toLowerCase();
         String symbol2 = symbolList.get(1).toLowerCase();
@@ -631,10 +633,12 @@ public class ApiWalletController {
             status_int = null;
         } else {
             if (!StringUtils.isInteger(status)) {
-                throw new YamiShopBindException("状态不是整数");
+// 状态不是整数
+                throw new YamiShopBindException("Status is not an integer");
             }
             if (Integer.valueOf(status).intValue() < 0) {
-                throw new YamiShopBindException("状态不能小于0");
+// 状态不能小于0
+                throw new YamiShopBindException("Status cannot be less than 0");
             }
             status_int = Integer.valueOf(status);
         }
@@ -642,10 +646,12 @@ public class ApiWalletController {
             page_no = "1";
         }
         if (!StringUtils.isInteger(page_no)) {
-            throw new YamiShopBindException("页码不是整数");
+// 页码不是整数
+            throw new YamiShopBindException("Page number must be an integer");
         }
         if (Integer.valueOf(page_no).intValue() <= 0) {
-            throw new YamiShopBindException("页码不能小于等于0");
+// 页码不能小于等于0
+            throw new YamiShopBindException("Page number must be greater than 0");
         }
         int page_no_int = Integer.valueOf(page_no).intValue();
         List<Map<String, Object>> data = this.walletLogService.pagedQueryRecords(page_no_int, 10, SecurityUtils.getUser().getUserId(), category, start_time, end_time, wallet_type, status_int).getRecords();

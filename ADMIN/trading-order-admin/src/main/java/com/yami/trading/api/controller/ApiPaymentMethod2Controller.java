@@ -125,7 +125,8 @@ public class ApiPaymentMethod2Controller {
         String id = request.getParameter("id");
         List<C2cOrder> order = c2cOrderService.getByPayId(id);
         if (ObjectUtils.isNotEmpty(order)) {
-            throw new YamiShopBindException("当前支付方式有未处理完成的订单!");
+// 当前支付方式有未处理完成的订单
+            throw new YamiShopBindException("Current payment method has unprocessed orders");
         }
         this.c2cPaymentMethodService.removeById(id);
 
@@ -464,15 +465,18 @@ public class ApiPaymentMethod2Controller {
         String id = request.getParameter("id");
         String language = request.getParameter("language");
         if (StringUtils.isEmptyString(id)) {
-            throw new YamiShopBindException("广告id不正确");
+// 广告id不正确
+            throw new YamiShopBindException("Advertisement ID is incorrect");
         }
         C2cAdvert c2cAdvert = c2cAdvertService.getById(id);
         if (null == c2cAdvert) {
-            throw new YamiShopBindException("广告不存在");
+// 广告不存在
+            throw new YamiShopBindException("Advertisement does not exist");
         }
         C2cUser c2cUser = this.c2cUserService.getById(c2cAdvert.getC2cUserId());
         if (null == c2cUser) {
-            throw new YamiShopBindException("承兑商不存在");
+// 承兑商不存在
+            throw new YamiShopBindException("Merchant does not exist");
         }
         List<C2cPaymentMethod> list = new ArrayList<C2cPaymentMethod>();
         Map<String, C2cPaymentMethod> map = this.c2cPaymentMethodService.getByPartyId(c2cUser.getC2cUserPartyId());
@@ -484,7 +488,8 @@ public class ApiPaymentMethod2Controller {
             }
         }
         if (null == list || 0 == list.size()) {
-            throw new YamiShopBindException("承兑商支付方式未配置");
+// 承兑商支付方式未配置
+            throw new YamiShopBindException("Merchant payment method not configured");
         }
         String[] payTypes = c2cAdvert.getPayType().split(",");
         List<C2cPaymentMethod> resList = new ArrayList<C2cPaymentMethod>();
@@ -498,7 +503,8 @@ public class ApiPaymentMethod2Controller {
             }
         }
         if (null == resList || 0 == resList.size()) {
-            throw new YamiShopBindException("承兑商广告支付方式未配置");
+// 承兑商广告支付方式未配置
+            throw new YamiShopBindException("Merchant advertisement payment method not configured");
         }
         for (int i = 0; i < resList.size(); i++) {
             C2cPaymentMethod method = resList.get(i);

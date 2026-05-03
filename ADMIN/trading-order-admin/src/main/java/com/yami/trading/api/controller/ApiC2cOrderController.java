@@ -71,7 +71,8 @@ public class ApiC2cOrderController {
     public Object order_open(HttpServletRequest request) {
         String currency = request.getParameter("currency");
         if (StringUtils.isEmptyString(currency)) {
-            throw new YamiShopBindException("支付币种不正确");
+            // 支付币种不正确
+            throw new YamiShopBindException("Incorrect payment currency");
         }
         String partyId = SecurityUtils.getCurrentUserId();
         String session_token = sessionTokenService.savePut(partyId);
@@ -84,18 +85,22 @@ public class ApiC2cOrderController {
 
     private String verifOpen(String direction, String currency, String symbol, String order_type) {
         if (StringUtils.isEmptyString(direction) || !Arrays.asList("buy", "sell").contains(direction)) {
-            return "买卖方式不正确";
+            // 买卖方式不正确
+            return "Invalid trading direction";
         }
         Map<String, String> currencyMap = this.c2cAdvertService.getCurrencyMap();
         Map<String, String> symbolMap = this.c2cAdvertService.getSymbolMap();
         if (null == currencyMap || !currencyMap.containsKey(currency)) {
-            return "支付币种不正确";
+            // 支付币种不正确
+            return "Invalid payment currency";
         }
         if (null == symbolMap || !symbolMap.containsKey(symbol)) {
-            return "上架币种不正确";
+            // 上架币种不正确
+            return "Invalid listing currency";
         }
         if (StringUtils.isEmptyString(order_type) || !Arrays.asList("by_amount", "by_num").contains(order_type)) {
-            throw new BusinessException("订单类型不正确");
+            // 订单类型不正确
+            throw new BusinessException("Invalid order type");
         }
 
         return null;
@@ -129,37 +134,40 @@ public class ApiC2cOrderController {
         String partyId = SecurityUtils.getCurrentUserId();
         User party = userService.getById(partyId);
         if (Constants.SECURITY_ROLE_TEST.equals(party.getRoleName())) {
-            throw new BusinessException("无权限");
+            // 无权限
+            throw new BusinessException("No permission");
         }
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
         if (null == object || !partyId.equals((String) object)) {
-            throw new BusinessException("请稍后再试");
+            // 请稍后再试
+            throw new BusinessException("Please try again later");
         }
         if (!party.isEnabled()) {
-            throw new BusinessException("用户已锁定");
+            // 用户已锁定
+            throw new BusinessException("User has been locked");
         }
         String error = this.verifOpen(direction, currency, symbol, order_type);
         if (StringUtils.isNotEmpty(error)) {
             throw new BusinessException(error);
         }
         if (StringUtils.isEmptyString(c2c_advert_id)) {
-            throw new BusinessException("广告不存在");
+            // 广告不存在
+            throw new BusinessException("Advertisement does not exist");
         }
         if (C2cOrder.ORDER_TYPE_BY_AMOUNT.equals(order_type)) {
-            // 按支付金额支付
             if (StringUtils.isEmptyString(amount)
                     || !StringUtils.isDouble(amount)
                     || Double.valueOf(amount).doubleValue() <= 0) {
-                throw new BusinessException("支付金额不正确");
+                // 支付金额不正确
+                throw new BusinessException("Invalid payment amount");
             }
-          //  coin_amount = "0";
         } else {
-            // 按币种数量支付
             if (StringUtils.isEmptyString(coin_amount)
                     || !StringUtils.isDouble(coin_amount)
                     || Double.valueOf(coin_amount).doubleValue() <= 0) {
-                throw new BusinessException("币种数量不正确");
+                // 币种数量不正确
+                throw new BusinessException("Invalid currency quantity");
             }
             amount = "0";
         }
@@ -168,7 +176,8 @@ public class ApiC2cOrderController {
         Object obj2 = this.sysparaService.find("c2c_nofinish_order_count_max");
         if (null != obj2) {
             if (nofinishOrderCount >= Long.valueOf(this.sysparaService.find("c2c_nofinish_order_count_max").getSvalue()).longValue()) {
-                throw new BusinessException("用户未结束订单数量已达上限");
+                // 用户未结束订单数量已达上限
+                throw new BusinessException("User unfinished order count has reached the limit");
             }
         }
         // C2C用户下单是否需要基础认证（true:是，false:否）
@@ -176,7 +185,8 @@ public class ApiC2cOrderController {
         if (null != obj) {
             if (!party.isRealNameAuthority()
                     && "true".equals(this.sysparaService.find("c2c_order_need_kyc").getSvalue())) {
-                throw new YamiShopBindException("401", "未实名认证，是否认证？");
+                // 未实名认证，是否认证？
+                throw new YamiShopBindException("401", "Real name authentication not completed, authenticate now?");
             }
         }
         // C2C每日订单取消最大次数
@@ -188,7 +198,8 @@ public class ApiC2cOrderController {
         Object obj1 = this.sysparaService.find("c2c_order_cancel_day_times");
         if (null != obj1) {
             if (orderCancelDayTimes >= Integer.valueOf(this.sysparaService.find("c2c_order_cancel_day_times").getSvalue()).intValue()) {
-                throw new BusinessException("今日取消订单次数太多了，请明日再试");
+                // 今日取消订单次数太多了，请明日再试
+                throw new BusinessException("Too many order cancellations today, please try again tomorrow");
             }
         }
         C2cOrder c2cOrder = new C2cOrder();
@@ -343,7 +354,8 @@ public class ApiC2cOrderController {
             party = userService.getById(partyId);
             log.error("用户" + direction + "开始当前用户uid:" + party.getUserCode() + "当前用户名:" + party.getUserName() + "生成的订单号:" + orderNo);
             if (Constants.SECURITY_ROLE_TEST.equals(party.getRoleName())) {
-                throw new YamiShopBindException("无权限");
+// 无权限
+                throw new YamiShopBindException("No permission");
             }
             if (!C2cLock.add(partyId)) {
                 throw new YamiShopBindException("Please try again later");
@@ -352,7 +364,8 @@ public class ApiC2cOrderController {
             Object object = this.sessionTokenService.cacheGet(session_token);
             this.sessionTokenService.del(session_token);
             if (null == object || !partyId.equals(object)) {
-                throw new YamiShopBindException("请稍后再试");
+// 请稍后再试
+                throw new YamiShopBindException("Please try again later");
             }
             if (!party.isEnabled()) {
                 return Result.succeed("用户已锁定");
@@ -362,14 +375,16 @@ public class ApiC2cOrderController {
             String c2c_sell_only_one = sysparaService.find("c2c_sell_only_one").getSvalue();
             if (StringUtils.isNotEmpty(c2c_sell_only_one) && "1".equals(c2c_sell_only_one)) {
                 if (nofinishOrderCount >= 1) {
-                    throw new YamiShopBindException("提交失败，当前有未处理订单");
+// 提交失败，当前有未处理订单
+                    throw new YamiShopBindException("Submission failed, there are unprocessed orders");
                 }
                 Long.valueOf(c2c_sell_only_one).longValue();
             }
             Object obj2 = this.sysparaService.find("c2c_nofinish_order_count_max");
             if (null != obj2) {
                 if (nofinishOrderCount >= Long.valueOf(this.sysparaService.find("c2c_nofinish_order_count_max").getSvalue()).longValue()) {
-                    throw new YamiShopBindException("用户未结束订单数量已达上限");
+// 用户未结束订单数量已达上限
+                    throw new YamiShopBindException("User has reached maximum open orders limit");
                 }
             }
             // C2C用户下单是否需要基础认证（true:是，false:否）
@@ -388,30 +403,36 @@ public class ApiC2cOrderController {
             Object obj1 = this.sysparaService.find("c2c_order_cancel_day_times");
             if (null != obj1) {
                 if (orderCancelDayTimes >= Integer.valueOf(this.sysparaService.find("c2c_order_cancel_day_times").getSvalue()).intValue()) {
-                    throw new YamiShopBindException("今日取消订单次数太多了，请明日再试");
+// 今日取消订单次数太多了，请明日再试
+                    throw new YamiShopBindException("Too many order cancellations today, please try tomorrow");
                 }
             }
             C2cAdvert c2cAdvert = this.c2cAdvertService.getById(c2c_advert_id);
             if (null == c2cAdvert) {
-                throw new YamiShopBindException("广告不存在");
+// 广告不存在
+                throw new YamiShopBindException("Advertisement does not exist");
             }
             C2cPaymentMethod method = c2cPaymentMethodService.get(payment_method_id);
             if (null == method) {
-                throw new YamiShopBindException("支付方式不存在");
+// 支付方式不存在
+                throw new YamiShopBindException("Payment method does not exist");
             }
             if (StringUtils.isEmptyString(order_type) || !Arrays.asList("by_amount", "by_num").contains(order_type)) {
-                throw new YamiShopBindException("订单类型不正确");
+// 订单类型不正确
+                throw new YamiShopBindException("Order type is incorrect");
             }
             if (C2cOrder.ORDER_TYPE_BY_AMOUNT.equals(order_type)) {
                 // 按支付金额支付
                 if (StringUtils.isEmptyString(amount) || !StringUtils.isDouble(amount) || Double.valueOf(amount).doubleValue() <= 0) {
-                    throw new YamiShopBindException("支付金额不正确");
+// 支付金额不正确
+                    throw new YamiShopBindException("Payment amount is incorrect");
                 }
                 coin_amount = "0";
             } else {
                 // 按币种数量支付
                 if (StringUtils.isEmptyString(coin_amount) || !StringUtils.isDouble(coin_amount) || Double.valueOf(coin_amount).doubleValue() <= 0) {
-                    throw new YamiShopBindException("币种数量不正确");
+// 币种数量不正确
+                    throw new YamiShopBindException("Currency amount is incorrect");
                 }
                 amount = "0";
             }

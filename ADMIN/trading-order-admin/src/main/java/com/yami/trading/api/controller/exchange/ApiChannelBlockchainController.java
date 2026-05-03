@@ -194,7 +194,8 @@ public class ApiChannelBlockchainController {
             Response response = okHttpClient.newCall(requestParm).execute();
             result = response.body().string();
         } catch (Exception e) {
-            throw new YamiShopBindException("请求第三方失败");
+// 请求第三方失败
+            throw new YamiShopBindException("Third party request failed");
         }
         JSONObject resultJson = JSON.parseObject(result);
         Integer code = resultJson.getInteger("code");
