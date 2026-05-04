@@ -9,7 +9,7 @@ spring:
       max-request-size: 100MB
   datasource:
     # 东八区时区
-    url: jdbc:mysql://localhost:3306/auyeung-root?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/auyeung-root?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=America/New_York&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true
     # 纽约时区 - GMT-5
     username: auyeung-root
     password: auyeung-root

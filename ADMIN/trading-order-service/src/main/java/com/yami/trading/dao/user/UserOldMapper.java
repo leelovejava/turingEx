@@ -1,16 +1,14 @@
-package com.yami.trading.bean.mapper;
+package com.yami.trading.dao.user;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yami.trading.bean.model.TzUserOld;
-import org.apache.ibatis.annotations.Mapper;
+import com.yami.trading.bean.model.UserOld;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
  * 老客户表Mapper接口
  */
-@Mapper
-public interface TzUserOldMapper extends BaseMapper<TzUserOld> {
+public interface UserOldMapper extends BaseMapper<UserOld> {
 
     /**
      * 根据邮箱或手机号查询是否存在老客户

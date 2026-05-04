@@ -26,6 +26,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * KlineBlankRepairTask.java - K线空白修复任务
+ */
 @Component
 @Lazy(value = false)
 @Slf4j
@@ -42,7 +45,14 @@ public class KlineBlankRepairTask {
     private KlineInitService klineInitService;
     @Autowired
     private KlineContext klineContext;
+
+
     // 虚拟货币10分钟检查下虚拟货币，外汇，股票的k线图是否为空
+    /**
+     * 虚拟货币K线修复任务
+     * 周期：每7分钟执行一次
+     * 处理逻辑：检查虚拟货币K线图是否为空，若为空则进行修复
+     */
     @Scheduled(cron = "0 0/7 * ? * *")
     @Async
     public void doTask() throws InterruptedException {
@@ -54,7 +64,11 @@ public class KlineBlankRepairTask {
 
     }
 
-
+    /**
+     * 外汇K线修复任务
+     * 周期：每6分钟执行一次
+     * 处理逻辑：检查外汇K线图是否为空，若为空则进行修复
+     */
     @Scheduled(cron = "0 0/6 * ? * *")
     @Async
     public void doForexTask() throws InterruptedException {
@@ -65,6 +79,12 @@ public class KlineBlankRepairTask {
         checkTask(forexPeriod, forexs);
 
     }
+
+    /**
+     * 香港股票K线修复任务
+     * 周期：每5分钟执行一次
+     * 处理逻辑：检查香港股票K线图是否为空，若为空则进行修复
+     */
     @Async
     @Scheduled(cron = "0 0/5 * ? * *")
     public void doHkTask() throws InterruptedException {
@@ -75,6 +95,12 @@ public class KlineBlankRepairTask {
         checkTask(stockPeriod, stocks);
 
     }
+
+    /**
+     * 台湾股票K线修复任务
+     * 周期：每5分钟执行一次
+     * 处理逻辑：检查台湾股票K线图是否为空，若为空则进行修复
+     */
     @Async
     @Scheduled(cron = "0 0/5 * ? * *")
     public void doTWTask() throws InterruptedException {
@@ -84,6 +110,12 @@ public class KlineBlankRepairTask {
         List<Item> stocks = itemService.findByType(Item.TW_STOCKS);
         checkTask(stockPeriod, stocks);
     }
+
+    /**
+     * 香港股票K线修复任务
+     * 周期：每5分钟执行一次
+     * 处理逻辑：检查香港股票K线图是否为空，若为空则进行修复
+     */
     @Async
     @Scheduled(cron = "0 0/5 * ? * *")
     public void doATask() throws InterruptedException {
@@ -94,6 +126,11 @@ public class KlineBlankRepairTask {
         checkTask(stockPeriod, stocks);
     }
 
+    /**
+     * 投资股票K线修复任务
+     * 周期：每5分钟执行一次
+     * 处理逻辑：检查投资股票K线图是否为空，若为空则进行修复
+     */
     @Async
     @Scheduled(cron = "0 0/5 * ? * *")
     public void doInvestTask() throws InterruptedException {
@@ -111,6 +148,12 @@ public class KlineBlankRepairTask {
 
         checkTask(stockPeriod, stocks);
     }
+
+    /**
+     * 美国股票K线修复任务
+     * 周期：每5分钟执行一次
+     * 处理逻辑：检查美国股票K线图是否为空，若为空则进行修复
+     */
     @Async
     @Scheduled(cron = "0 0/5 * ? * *")
     public void doUSTask() throws InterruptedException {
@@ -120,6 +163,12 @@ public class KlineBlankRepairTask {
         List<Item> stocks = itemService.findByType(Item.US_STOCKS);
         checkTask(stockPeriod, stocks);
     }
+
+    /**
+     * 美国股票K线修复任务
+     * 周期：每5分钟执行一次
+     * 处理逻辑：检查美国股票K线图是否为空，若为空则进行修复
+     */
     @Async
     @Scheduled(cron = "0 0/5 * ? * *")
     public void doETFTask() throws InterruptedException {
@@ -130,6 +179,11 @@ public class KlineBlankRepairTask {
         checkTask(stockPeriod, stocks);
     }
 
+    /**
+     * 检查K线图是否为空
+     * @param periods K线周期
+     * @param items 产品列表
+     */
     public void checkTask(List<String> periods, List<Item> items){
         ThreadUtil.execAsync(() ->{
             for(Item item : items){

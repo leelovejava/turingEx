@@ -1,14 +1,12 @@
 package com.yami.trading.service.user;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yami.trading.bean.model.TzUserOld;
-
-import java.util.List;
+import com.yami.trading.bean.model.UserOld;
 
 /**
  * 老客户服务接口
  */
-public interface TzUserOldService extends IService<TzUserOld> {
+public interface UserOldService extends IService<UserOld> {
 
     /**
      * 判断是否为老客户

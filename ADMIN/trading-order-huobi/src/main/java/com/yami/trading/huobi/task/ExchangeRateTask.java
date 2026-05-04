@@ -21,6 +21,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * ExchangeRateTask - 外汇汇率定时同步任务
+ *
+ * 功能说明：
+ * 该任务负责从外部汇率API接口定时获取最新汇率数据，并更新到系统数据库中
+ * 汇率数据用于外汇交易品种的价格换算和结算
+ *
+ * 数据来源：通过openExchangeRates API获取全球主要货币对美元的汇率
+ * 更新策略：每6小时执行一次（受API调用次数限制，免费API每月仅1000次）
+ */
 @Component
 @Slf4j
 public class ExchangeRateTask {
@@ -34,15 +44,20 @@ public class ExchangeRateTask {
     @Value("${exchange.rate}")
     private String exchangeRateUrl;
 
-    /**
-     * 每小时执行一次，现在的apikey,一个月只能调用1000次
-     */
-    @Scheduled(cron = "0 0 */6 * * ?")
+    // 外汇汇率定时同步方法
+    // 执行周期：每6小时执行一次（cron: 0 0 0/6 * * ?）
+    // 执行条件：系统参数 auto_exchange_rate 配置为 true 时才执行同步，这样可以灵活控制是否需要同步汇率数据
+    // 处理流程：
+    // 1. 检查系统参数 auto_exchange_rate，判断是否启用自动汇率同步
+    // 2. 查询数据库中所有需要同步的汇率配置（ExchangeRate表）
+    // 3. 调用外部汇率API获取最新汇率数据
+    // 4. 遍历系统中的汇率配置，匹配并更新对应的汇率值
+    // 5. 汇率精度保留4位小数，向下取整
+    @Scheduled(cron = "0 0 0/6 * * ?")
     public void getExchangeRate() {
 
         Syspara syspara = sysparaService.find("auto_exchange_rate");
 
-        //配置了汇率同步才同步数据，否则不同步数据
         if (Objects.nonNull(syspara) && syspara.getBoolean()) {
 
             List<ExchangeRate> rates = exchangeRateService.list();
@@ -50,7 +65,6 @@ public class ExchangeRateTask {
             if (CollectionUtil.isNotEmpty(rates)) {
 
                 try {
-
                     String json = HttpHelper.getJSONFromHttpNew(exchangeRateUrl, new HashMap<>(), HttpMethodType.GET);
                     JSONObject resultJson = JSON.parseObject(json);
                     JSONObject dataArray = resultJson.getJSONObject("rates");

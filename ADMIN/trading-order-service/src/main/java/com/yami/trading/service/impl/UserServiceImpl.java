@@ -71,7 +71,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     WalletLogService walletLogService;
 
     @Autowired
-    TzUserOldService tzUserOldService;
+    UserOldService tzUserOldService;
 
     /**
      * UserCode生成并发锁

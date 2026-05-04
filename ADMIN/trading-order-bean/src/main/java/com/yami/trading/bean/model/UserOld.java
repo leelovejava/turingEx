@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("tz_user_old")
-public class TzUserOld implements Serializable {
+public class UserOld implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
