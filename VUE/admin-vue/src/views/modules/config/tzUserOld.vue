@@ -92,7 +92,7 @@ export default {
       };
       this.dataListLoading = true;
       this.$http({
-        url: this.$http.adornUrl("/admin/tzUserOld/list"),
+        url: this.$http.adornUrl("/admin/userOld/list"),
         method: "post",
         data: this.$http.adornData(params),
       }).then(({ data }) => {
@@ -145,7 +145,7 @@ export default {
       })
         .then(() => {
           this.$http({
-            url: this.$http.adornUrl("/admin/tzUserOld/deleteBatch"),
+            url: this.$http.adornUrl("/admin/userOld/deleteBatch"),
             method: "post",
             data: this.$http.adornData(ids),
           }).then(({ data }) => {

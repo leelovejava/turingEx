@@ -78,7 +78,7 @@ export default {
           // 编辑模式
           this.dataForm.id = row.id;
           this.$http({
-            url: this.$http.adornUrl("/admin/tzUserOld/getById"),
+            url: this.$http.adornUrl("/admin/userOld/getById"),
             method: "get",
             params: this.$http.adornParams({ id: row.id }),
           }).then(({ data }) => {
@@ -110,8 +110,8 @@ export default {
           }
 
           const url = this.dataForm.id
-            ? "/admin/tzUserOld/update"
-            : "/admin/tzUserOld/save";
+            ? "/admin/userOld/update"
+            : "/admin/userOld/save";
           const method = "post";
 
           this.$http({
