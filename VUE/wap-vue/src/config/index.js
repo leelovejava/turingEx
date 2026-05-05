@@ -21,7 +21,7 @@ export const CONTENT_TYPES = {
 export const WITH_CREDENTIALS = false
 
 // API前缀
-export const API_PREFIX = '/api/api'
+export const API_PREFIX = '/api'
 
 
 // 请求频率
@@ -39,7 +39,7 @@ const ENV_DEV = 'api.turingex.top' // 填写前端域名网址
 
 // const ENV_DEV = '45.77.173.85:7001' // dev
 
-const ENV_PRO = window.location.hostname // 接口域名跟随 H5
+const ENV_PRO = 'api.turingex.top' // 正式环境固定接口域名
 
 // 避免打包出错务必把 app域名的注释要放在在本地ENV_PRO的下面
 // const ENV_PRO = 'foilwm.com' //  app域名
@@ -50,11 +50,11 @@ let host_url = ''
 if (import.meta.env.MODE === 'development') {
     host_url = 'https://' + ENV_DEV
     base_url = 'https://' + ENV_DEV
-    ws_url = 'wss://' + ENV_DEV + '/api/api/websocket'
+    ws_url = 'wss://' + ENV_DEV + '/api/websocket'
 } else {
     host_url = 'https://' + ENV_PRO
     base_url = 'https://' + ENV_PRO
-    ws_url = `wss://${ENV_PRO}/api/api/websocket`
+    ws_url = `wss://${ENV_PRO}/api/websocket`
 }
 export const BASE_URL = base_url
 export const WS_URL = ws_url

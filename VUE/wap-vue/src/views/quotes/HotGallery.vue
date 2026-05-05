@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <section class="pb-fix hot-gallery">
     <div class="hot-scroll">
       <div class="hero-card">
@@ -228,9 +228,10 @@ import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
-import { _getInformationList } from '@/service/etf.api'
+import { _getNewsList1 } from '@/service/user.api'
 import { _getRealtimeByType } from '@/service/quotes.api'
 import { FILE_URL } from '@/config'
+import { getStorage } from '@/utils/index'
 
 const userStore = useUserStore()
 const { t } = useI18n()
@@ -264,7 +265,7 @@ const homeGridItems = computed(() => [
   { key: 'news', label: t('news'), path: '/news', isLogin: false },
       { key: 'service', label: t('客服'), path: '/workerOrder', isLogin: false },
   { key: 'ieo', label: 'IEO', path: '/more', isLogin: false },
-  { key: 'quant', label: t('AI量化基金'), path: '/cryptos/fm-home', isLogin: false },
+  { key: 'quant', label: 'AI量化', path: '/cryptos/fm-home', isLogin: false },
   { key: 'loan', label: t('助力贷'), path: '/cryptos/loan', isLogin: true },
   { key: 'ipo', label: 'IPO', path: '/ipo/index', isLogin: false },
 ])
@@ -344,13 +345,14 @@ const displayNewsItems = computed(() => (
 
 const getInformationList = async () => {
   try {
-    const data = await _getInformationList('')
+    const lang = getStorage('lang') || 'en'
+    const data = await _getNewsList1({ language: lang })
     newsItems.value = (Array.isArray(data) ? data : [])
       .slice(0, 3)
       .map((item) => normalizeNewsItem(item))
       .filter(item => item.title)
   } catch (error) {
-    console.error('getInformationList error:', error)
+    console.error('getNewsList error:', error)
   }
 }
 

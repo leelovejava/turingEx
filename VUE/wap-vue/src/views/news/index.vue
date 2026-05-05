@@ -2,22 +2,15 @@
   <section class="inner-tab-container">
     <p class="title">{{ t('news') }}</p>
     <div class="news-container">
-      <van-steps direction="vertical" :active="0">
+      <van-empty v-if="list.length === 0 && !loading" :description="t('暂无数据')" />
+      <van-steps direction="vertical" :active="0" v-else>
         <van-step v-for="(item, index) in list" :key="item.uuid || index">
           <p class="time">{{ item.createdAt }}</p>
           <p class="context" v-html="item.description"></p>
         </van-step>
-        <!-- <van-step>
-          <p class="time">2023-06-15 11:30</p>
-          <p class="context">南非汇市：兰特兑美元走高，美国通胀报告发布后美元跌至约两周地点</p>
-        </van-step>
-        <van-step>
-          <p class="time">2023-06-14 14:20</p>
-          <p class="context">降息预期遭重挫败！CPI环比增速抬头 美联储抗通胀之路注定崎岖</p>
-        </van-step> -->
       </van-steps>
       <div class="flex mt-2" v-if="list.length > 0">
-        <van-button type="default" plain class="more-btn" @click="onLoadMore">{{ t('更多数据') }}</van-button>
+        <van-button type="default" plain class="more-btn" @click="onLoadMore" :loading="loading">{{ loading ? t('加载中') : t('更多数据') }}</van-button>
       </div>
     </div>
   </section>
@@ -27,23 +20,37 @@
 import { ref, onMounted } from 'vue';
 import { _getInformationList } from '@/service/etf.api'
 import { useI18n } from 'vue-i18n'
+import { showToast } from 'vant'
 
 const { t } = useI18n()
 const list = ref([])
 const maxTime = ref('')
+const loading = ref(false)
 
 onMounted(async () => {
   getInformationList()
 })
 
 const onLoadMore = () => {
-  maxTime.value = list.value[list.value.length - 1].createdAt
-  getInformationList()
+  if (list.value.length > 0) {
+    maxTime.value = list.value[list.value.length - 1].createdAt
+    getInformationList()
+  }
 }
 
 const getInformationList = () => {
+  loading.value = true
   _getInformationList(maxTime.value).then(data => {
-    list.value = [...list.value, ...data]
+    loading.value = false
+    if (Array.isArray(data)) {
+      list.value = [...list.value, ...data]
+    } else {
+      console.error('API返回数据格式错误:', data)
+    }
+  }).catch(err => {
+    loading.value = false
+    console.error('获取资讯列表失败:', err)
+    showToast('加载失败')
   })
 }
 

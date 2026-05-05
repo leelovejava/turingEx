@@ -10,7 +10,7 @@ import legacy from '@vitejs/plugin-legacy';
 const isVisualizer = process.env.VISUALIZER === 'show'
 const useLegacy = process.env.BUILD_LEGACY === 'true'
 export default defineConfig({
-  base: '/syn/', 
+  base: '/', 
   plugins: [
     vue(),
     Components({

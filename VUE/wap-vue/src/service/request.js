@@ -112,6 +112,12 @@ service.interceptors.response.use(
       // case 402:
       // case 407:
       case 403: // 登录状态已过期，您可以继续留在该页面，或者重新登录
+        // 如果当前在注册页面，则不跳转登录
+        const currentPath = router.currentRoute.value?.path || ''
+        if (currentPath.startsWith('/register')) {
+          showToast(i18n.global.t(msg))
+          return Promise.reject(res.data)
+        }
         userStore.userInfo = {}
         store.state.user.userInfo = {}
         router.push({

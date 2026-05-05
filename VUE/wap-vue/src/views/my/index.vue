@@ -2,9 +2,7 @@
   <section class="my-index">
     <fx-header :title="$t('my')" :showLeft="false">
       <template v-slot:right>
-        <!-- <van-icon name="service-o" size="18" @click="$router.push('/workerOrder')"
-          :badge="`${unread_num}`"></van-icon> -->
-        <van-badge class="w-35 h-33 mr-22" :content="unreadMsg">
+        <van-badge v-if="userStore.userInfo && userStore.userInfo.token" class="w-35 h-33 mr-22" :content="unreadMsg">
           <van-icon name="service-o" size="18" @click="$router.push('/workerOrder')" />
         </van-badge>
       </template>
@@ -53,8 +51,15 @@
     <!-- <div class="divider"></div> -->
     <div class="mt-4">
       <van-cell-group v-for="(item, index) in cellList" :key="index" :title="item.title" :border="false">
-        <van-cell v-for="(_item, _index) in item.list" :key="_index" is-link="is-link" center="center"
-          :title="_item.title" @click="onRoute(_item.path)">
+        <van-cell 
+          v-for="(_item, _index) in item.list" 
+          :key="_index" 
+          is-link="is-link" 
+          center="center"
+          :title="_item.title" 
+          @click="onRoute(_item.path)"
+          v-show="!_item.requireLogin || (userStore.userInfo && userStore.userInfo.token)"
+        >
           <template #icon>
             <img class="cell-img" :src="_item.icon" />
           </template>
@@ -143,7 +148,7 @@ const state = reactive({
       title: t("universal"),
       list: [
         { icon: "font-o", title: t("language"), path: "/language" },
-        { icon: "service-o", title: t("onLineService"), path: "/workerOrder" },
+        { icon: "service-o", title: t("workerOrder.center"), path: "/workerOrder", requireLogin: true },
         {
           icon: "idcard",
           title: t("authVerify"),

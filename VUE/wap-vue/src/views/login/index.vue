@@ -10,13 +10,8 @@
             </div>
             <div class="textColor1" :class="activeIndex == 1 ? 'active' : ''" @click="changeIndex(1)">{{ $t('email') }}
             </div>
-            <div class="textColor1" :class="activeIndex == 2 ? 'active' : ''" @click="changeIndex(2)">{{
-                $t('phoneNum')
-            }}
-            </div>
         </div>
-        <ExInput :label="getRegType(activeIndex, true)" :placeholderText="getRegType(activeIndex, false)" v-model="username"
-            :dialCode="dialCode" @selectArea="onSelectArea" :area="isArea" :icon="icon" />
+        <ExInput :label="getRegType(activeIndex, true)" :placeholderText="getRegType(activeIndex, false)" v-model="username" />
         <ExInput style="padding-bottom:0!important;" :label="$t('password')" :placeholderText="$t('entryPassword')"
             v-model="password" typeText="password" />
         <div class="forget colorMain" @click="$router.push('/forget')">{{ $t('forgetPassword') }}</div>
@@ -25,7 +20,6 @@
         <div class="noTips textColor">{{ $t('noAccount') }}<span class="colorMain" @click="$router.push('/register')">
                 {{ $t('goRegister') }}</span>
         </div>
-        <nationality-list ref='controlChildRef' :title="$t('selectArea')" @getName="getName"></nationality-list>
     </div>
 </template>
 
@@ -36,7 +30,6 @@ import { _exchangerateuserconfig } from "@/service/trade.api";
 import { GET_USERINFO } from '@/store/types.store'
 import { useUserStore } from '@/store/user';
 import { useI18n } from 'vue-i18n'
-import nationalityList from '../authentication/components/nationalityList.vue'
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { showToast } from "vant";
@@ -55,9 +48,6 @@ const onRoute = (path) => {
 let username = ref('')
 let password = ref('')
 let activeIndex = ref(0)
-let isArea = ref(false)
-let dialCode = ref(0)
-let icon = ref('')
 const type = ref(3)
 
 const getRegType = (activeIndex, bFlag) => {
@@ -66,36 +56,11 @@ const getRegType = (activeIndex, bFlag) => {
             return bFlag ? t('account') : t('entryAccount');
         case 1:
             return bFlag ? t('email') : t('entryEmail');
-        case 2:
-            return bFlag ? t('phoneNum') : t('entryPhone');
     }
-}
-const controlChildRef = ref(null)
-const isLoading = ref(false)
-
-const onSelectArea = () => {
-    controlChildRef.value.open();
-}
-
-//获取到当前选中国家的code值
-const getName = (params) => {
-    icon.value = params.code;
-    dialCode.value = params.dialCode;
 }
 
 const changeIndex = (index) => {
     activeIndex.value = index;
-    switch (index) {
-        case 0:
-        case 1: {
-            isArea.value = false;
-            break;
-        }
-        case 2: {
-            isArea.value = true;
-            break;
-        }
-    }
 }
 
 const verifyLogin = () => {
@@ -110,11 +75,6 @@ const verifyLogin = () => {
                 type.value = 2;
                 break;
             }
-        case 2:
-            {
-                type.value = 1;
-                break;
-            }
     }
     if (username.value == '') {
         switch (activeIndex.value) {
@@ -126,11 +86,6 @@ const verifyLogin = () => {
             case 1:
                 {
                     showToast(t('entryEmail'));
-                    break;
-                }
-            case 2:
-                {
-                    showToast(t('entryPhone'));
                     break;
                 }
         }
@@ -147,7 +102,7 @@ const userStore = useUserStore();
 const loginUser = () => {
     isLoading.value = true
     _loginUser({
-        userName: (activeIndex.value == 0 || activeIndex.value == 1) ? username.value : `${dialCode.value}${username.value}`,
+        userName: username.value,
         passWord: password.value,
         type: type.value
     }).then((res) => {

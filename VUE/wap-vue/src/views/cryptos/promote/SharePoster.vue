@@ -108,7 +108,7 @@ export default {
       const t = this
       _localuser({}).then((res) => {
         t.localuser = res
-        const shareUrl = 'https://' + window.location.hostname + '/syn/#/?usercode='+res.usercode;
+        const shareUrl = 'https://' + window.location.hostname + '/#/?usercode='+res.usercode;
         t.localuser.invitUrl = shareUrl
         t.getQRCode()
 
