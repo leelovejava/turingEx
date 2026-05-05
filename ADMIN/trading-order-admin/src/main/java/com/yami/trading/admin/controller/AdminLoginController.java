@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import com.yami.trading.service.syspara.SysparaService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -88,6 +89,10 @@ public class AdminLoginController {
 
     @Autowired
     SysparaService sysparaService;
+
+    @Autowired
+    private Environment environment;
+
     @PostMapping("/adminLogin")
     @ApiOperation(value = "账号密码 + 验证码登录(用于后台登录)", notes = "通过账号/手机号/用户名密码登录")
     public Result<?> login(@Valid @RequestBody LoginModel loginModel) {
@@ -97,15 +102,18 @@ public class AdminLoginController {
             throw new YamiShopBindException("账号或密码不正确");
         }
 
-        if (StrUtil.isEmpty(sysUser.getGoogleAuthSecret())){
-            throw new YamiShopBindException("谷歌验证码错误!");
-        }
-        long t = System.currentTimeMillis();
-        GoogleAuthenticator ga = new GoogleAuthenticator();
-        ga.setWindowSize(5);
-        boolean flag = ga.check_code(sysUser.getGoogleAuthSecret(), loginModel.getGoogleAuthCode(), t);
-        if (!flag) {
-            throw new YamiShopBindException("谷歌验证码错误!");
+        boolean isDevEnv = Arrays.asList(environment.getActiveProfiles()).contains("dev");
+        if (!isDevEnv) {
+            if (StrUtil.isEmpty(sysUser.getGoogleAuthSecret())){
+                throw new YamiShopBindException("谷歌验证码错误!");
+            }
+            long t = System.currentTimeMillis();
+            GoogleAuthenticator ga = new GoogleAuthenticator();
+            ga.setWindowSize(5);
+            boolean flag = ga.check_code(sysUser.getGoogleAuthSecret(), loginModel.getGoogleAuthCode(), t);
+            if (!flag) {
+                throw new YamiShopBindException("谷歌验证码错误!");
+            }
         }
         // 半小时内密码输入错误十次，已限制登录30分钟
         String decryptPassword = passwordManager.decryptPassword(loginModel.getPassWord());

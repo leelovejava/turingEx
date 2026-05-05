@@ -9,10 +9,10 @@ spring:
       max-request-size: 100MB
   datasource:
     # 东八区时区
-    url: jdbc:mysql://localhost:3306/auyeung-root?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=America/New_York&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/auyeung?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=America/New_York&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true
     # 纽约时区 - GMT-5
-    username: auyeung-root
-    password: auyeung-root
+    username: auyeung
+    password: TC7JhaB3SGdxp5Jk
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -60,7 +60,7 @@ spring:
       config-spider: classpath:redisson/redisson-spider.yml
     host: localhost
     port: 6379
-    password: auyeung-root
+    #password: auyeung-root
   freemarker:
     check-template-location: false
 logging:
@@ -102,7 +102,7 @@ jetcache:
         maxTotal: 50
       host: ${spring.redis.host}
       port: ${spring.redis.port}
-      password: ${spring.redis.password}
+      #password: ${spring.redis.password}
       database: 1
 
 db:
@@ -120,13 +120,18 @@ admin_url: https://localhost:8080/admin
 web_url: http://localhost:8080/wap/
 
 email:
-  host: smtp.gmail.com
-  username: giteeac@gmail.com
-  password: bqbfgogerlacrxvj
-  from: smtp.gmail.com
+  host: us3.smtp.mailhostbox.com
+  username: support@@helixcapital.net
+  password: 6Q$NG6Ik$gJaiLzj
+  from: us3.smtp.mailhostbox.com
+  # 协议
+  protocol: smtp
+  port: 587
+  # 发件人名称
+  subject: helixcapital
 
 exchange:
-  rate: https://openexchangerates.org/api/latest.json?app_id=1de9ea307c074f2198d1052117464aba
+  rate: https://api.frankfurter.dev/v2/rates?base=USD
 
 config:
   timezone:

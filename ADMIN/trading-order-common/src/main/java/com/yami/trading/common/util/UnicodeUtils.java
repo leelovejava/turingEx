@@ -45,7 +45,7 @@ public class UnicodeUtils {
                 charStr = dataStr.substring(start + 2, end);
             }
             char letter = (char) Integer.parseInt(charStr, 16); // 16进制parse整形字符串。
-            buffer.append(new Character(letter).toString());
+            buffer.append(letter);
             start = end;
         }
         return buffer.toString();

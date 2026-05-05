@@ -79,13 +79,19 @@ admin_url: https://localhost:8080/admin
 web_url: http://localhost:8080/wap/
 
 email:
-  host: smtp.gmail.com
-  username: test
-  password: test
-  from: smtp.gmail.com
+  host: us3.smtp.mailhostbox.com
+  username: support@@helixcapital.net
+  password: 6Q$NG6Ik$gJaiLzj
+  from: us3.smtp.mailhostbox.com
+  # 协议
+  protocol: smtp
+  port: 587
+  # 发件人名称
+  subject: helixcapital
+
 
 exchange:
-  rate: https://openexchangerates.org/api/latest.json?app_id=1de9ea307c074f2198d1052117464aba
+  rate: https://api.frankfurter.dev/v2/rates?base=USD
 
 #config:
 #  timezone:

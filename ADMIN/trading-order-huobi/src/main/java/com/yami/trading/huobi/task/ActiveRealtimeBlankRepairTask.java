@@ -30,15 +30,20 @@ public class ActiveRealtimeBlankRepairTask {
     @Qualifier("dataService")
     @Autowired
     private DataService dataService;
+
+    /**
+     * 重新补充实时价格数据
+     * @throws InterruptedException
+     */
     @Scheduled(cron = "*/3 * * ? * *")
     @Async
     public void doStockTask() throws InterruptedException {
-        log.debug("ActiveRealtimeBlankRepairTask 正在对已经激活的，重新补充实时价格数据");
+        ///log.debug("ActiveRealtimeBlankRepairTask 正在对已经激活的，重新补充实时价格数据");
         List<Item> stocks = itemService.listManualActive();
         for(Item item  : stocks){
             Realtime realtime = DataCache.getRealtime(item.getSymbol());
             if(realtime == null){
-                log.info("ActiveRealtimeBlankRepairTask  重新补充实时价格数据 :{}", item.getSymbol());
+                ///log.info("ActiveRealtimeBlankRepairTask  重新补充实时价格数据 :{}", item.getSymbol());
                 stockGetDataJob.realtimeHandle(item.getRemarks());
             }
         }

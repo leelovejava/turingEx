@@ -8,15 +8,15 @@ import com.yami.trading.admin.controller.loanOrder.LoanConstants;
 import com.yami.trading.admin.controller.loanOrder.LoanOrderService;
 import com.yami.trading.bean.loanOrder.LoanOrder;
 import com.yami.trading.common.util.LockFilter;
-import com.yami.trading.common.util.ThreadUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
+import javax.annotation.PreDestroy;
 
 /**
  * LoanCloseoutJob - 借贷订单强平计算任务
@@ -26,7 +26,7 @@ import javax.annotation.PostConstruct;
  * 质押率 = 质押物价值 / 债务价值，当质押率过低时需要平仓以偿还债务
  *
  * 执行机制：
- * - 使用独立线程持续运行，不使用Spring的@Scheduled注解
+ * - 使用独立线程持续运行，不使用Spring的Scheduled注解
  * - 每30秒检查一次所有活跃的借贷订单
  * - 使用分布式锁LockFilter防止多节点重复处理同一订单
  *
@@ -41,77 +41,113 @@ import javax.annotation.PostConstruct;
 @Slf4j
 public class LoanCloseoutJob implements Runnable {
 
-	private Logger logger = LoggerFactory.getLogger(LoanCloseoutJob.class);
+	private final Logger logger = LoggerFactory.getLogger(LoanCloseoutJob.class);
 
 	@Autowired
 	protected LoanOrderService loanOrderService;
 
-	/**
-	 * 启动强平计算任务
-	 *
-	 * 使用@PostConstruct在Bean初始化后启动独立线程
-	 * 添加延迟确保数据源等依赖已完全初始化
-	 */
-	@PostConstruct
-	public void start() {
-		// 延迟启动，等待数据源等依赖初始化完成
-		new Thread(() -> {
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-			new Thread(this, "LoanCloseoutJob").start();
-		}).start();
+	private volatile boolean running = false;
+	private volatile Thread workerThread;
+
+	@EventListener(ApplicationReadyEvent.class)
+	public synchronized void start() {
+		if (running) {
+			return;
+		}
+		running = true;
+		Thread thread = new Thread(this, "LoanCloseoutJob");
+		thread.setDaemon(true);
+		workerThread = thread;
+		thread.start();
+		logger.info("LoanCloseoutJob started");
 	}
 
+	public synchronized void stop() {
+		running = false;
+		Thread thread = workerThread;
+		if (thread != null) {
+			thread.interrupt();
+		}
+	}
+
+	@PreDestroy
+	public void destroy() {
+		stop();
+	}
+
+	@Override
 	public void run() {
-		while (true) {
-			try {
-				List<String> list = new ArrayList<>();
-				// 获取所有活跃借贷订单
-				List<LoanOrder> orders = loanOrderService.cacheOrders();
-				if (null != orders && orders.size() > 0) {
-					for (LoanOrder order : orders) {
-						// 跳过已结算和已强平的订单
-						if (LoanConstants.PLEDGE_ORDER_STATE_SETTLE == order.getState()
-								|| LoanConstants.PLEDGE_ORDER_STATE_CLOSEOUT == order.getState()) {
-							list.add(order.getUuid());
-							continue;
-						}
-						boolean lock = false;
-						try {
-							// 添加分布式锁，防止多节点重复处理
-							if (!LockFilter.add(order.getUuid())) {
-								return;
-							}
-							lock = true;
-							// 计算当前质押率
-							Map<String, Double> rateMap = loanOrderService.calculatePledgeRate(order.getPledgeCurrency(), order.getDebt_amount(), order.getPledge_amount());
-							// 判断是否达到强平条件
-							if (rateMap != null && rateMap.get("pledgeRate") >= LoanConstants.PLEDGE_RATE_CLOSEOUT) {
-								// 触发强平操作
-								loanOrderService.updateCloseout(order, rateMap.get("pledgeRate"));
+		try {
+			while (running && !Thread.currentThread().isInterrupted()) {
+				try {
+					List<String> list = new ArrayList<>();
+					List<LoanOrder> orders = loanOrderService.cacheOrders();
+					if (orders != null && !orders.isEmpty()) {
+						for (LoanOrder order : orders) {
+							if (LoanConstants.PLEDGE_ORDER_STATE_SETTLE == order.getState()
+									|| LoanConstants.PLEDGE_ORDER_STATE_CLOSEOUT == order.getState()) {
 								list.add(order.getUuid());
+								continue;
 							}
-						} catch (Throwable t) {
-							logger.error("LoanCloseoutJob taskExecutor.execute() fail", t);
-						} finally {
-							if (lock) {
-								ThreadUtils.sleep(200);
-								LockFilter.remove(order.getUuid());
+							if (!running || Thread.currentThread().isInterrupted()) {
+								break;
 							}
+							boolean lock = false;
+							try {
+								if (!LockFilter.add(order.getUuid())) {
+									continue;
+								}
+								lock = true;
+								Map<String, Double> rateMap = loanOrderService.calculatePledgeRate(
+										order.getPledgeCurrency(),
+										order.getDebt_amount(),
+										order.getPledge_amount());
+								if (rateMap != null && rateMap.get("pledgeRate") >= LoanConstants.PLEDGE_RATE_CLOSEOUT) {
+									loanOrderService.updateCloseout(order, rateMap.get("pledgeRate"));
+									list.add(order.getUuid());
+								}
+							} catch (Throwable t) {
+								if (!running) {
+									break;
+								}
+								logger.error("LoanCloseoutJob taskExecutor.execute() fail", t);
+							} finally {
+								if (lock) {
+									LockFilter.remove(order.getUuid());
+								}
+							}
+						}
+						if (!list.isEmpty()) {
+							loanOrderService.cacheRemoveOrders(list);
 						}
 					}
-					// 将已处理的订单从缓存移除
-					loanOrderService.cacheRemoveOrders(list);
+				} catch (Throwable e) {
+					if (!running) {
+						break;
+					}
+					logger.error("LoanCloseoutJob taskExecutor.execute() fail", e);
 				}
-			} catch (Throwable e) {
-				logger.error("LoanCloseoutJob taskExecutor.execute() fail", e);
-			} finally {
-				// 每30秒检查一次
-				ThreadUtils.sleep(1000 * 30);
+				if (!sleepQuietly(30_000L)) {
+					break;
+				}
 			}
+		} finally {
+			synchronized (this) {
+				if (Thread.currentThread() == workerThread) {
+					workerThread = null;
+				}
+			}
+			logger.info("LoanCloseoutJob stopped");
+		}
+	}
+
+	private boolean sleepQuietly(long millis) {
+		try {
+			Thread.sleep(millis);
+			return running;
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			return false;
 		}
 	}
 

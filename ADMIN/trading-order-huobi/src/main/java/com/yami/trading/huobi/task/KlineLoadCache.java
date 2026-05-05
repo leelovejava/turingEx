@@ -40,14 +40,14 @@ public class KlineLoadCache {
 
     public void loadCache() {
         List<Item> items = new ArrayList<>(itemService.listWithOutCache());
-        log.info("--------------> KlineLoadCache.loadCache, item 集合长度为1:" + items.size());
+        ///log.info("--------------> KlineLoadCache.loadCache, item 集合长度为1:" + items.size());
         // 加载调整值到内存
         for (Item item : items) {
             AdjustmentValueCache.getCurrentValue().put(item.getSymbol(), item.getAdjustmentValue());
         }
 
         // 加载最新实时价格数据到内存
-        log.info("--------------> KlineLoadCache.loadCache, item 集合长度为2:" + items.size());
+        ///log.info("--------------> KlineLoadCache.loadCache, item 集合长度为2:" + items.size());
         for (Item item : items) {
             if(!item.isActive()){
                 continue;
@@ -61,7 +61,7 @@ public class KlineLoadCache {
 
         try {
             // 加载最新实时价格数据到内存
-            log.info("--------------> KlineLoadCache.loadCache, item 集合长度为3:" + items.size());
+            ///log.info("--------------> KlineLoadCache.loadCache, item 集合长度为3:" + items.size());
             for (Item item : items) {
                 if(!item.isActive()){
                     continue;
@@ -78,7 +78,7 @@ public class KlineLoadCache {
             }
 
             // 加载K线数据到内存
-            log.info("--------------> KlineLoadCache.loadCache, item 集合长度为4:" + items.size());
+            ///log.info("--------------> KlineLoadCache.loadCache, item 集合长度为4:" + items.size());
             long beginTime = System.currentTimeMillis();
             for (Item item : items) {
                 if(!item.isActive()){
@@ -97,11 +97,11 @@ public class KlineLoadCache {
                 bulidInit(item.getSymbol(), KlineConstant.PERIOD_1MON);
                 bulidInit(item.getSymbol(), KlineConstant.PERIOD_QUARTER);
                 bulidInit(item.getSymbol(), KlineConstant.PERIOD_YEAR);
-                log.info("系统启动时候，{} k线图初始化成功", item.getSymbol());
+                ///log.info("系统启动时候，{} k线图初始化成功", item.getSymbol());
                 klineContext.initKlineSuccess(item.getSymbol());
             }
             long endTime = System.currentTimeMillis();
-            log.info("------> 加载: {} 项 K 线图耗时:{} ", items.size(), (endTime - beginTime));
+            ///log.info("------> 加载: {} 项 K 线图耗时:{} ", items.size(), (endTime - beginTime));
         } catch (Exception e) {
             log.error("--------------> KlineLoadCache.loadCache, item 集合长度为5:" + items.size() + ", 异常:", e);
             throw e;

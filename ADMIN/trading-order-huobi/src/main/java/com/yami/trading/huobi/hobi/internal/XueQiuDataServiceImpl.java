@@ -36,13 +36,54 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * 完成需求k线图采集
+ * 雪球数据服务实现类
+ *
+ * 本类负责从雪球(XueQiu)平台采集以下数据：
+ * 1. 股票/ETF的K线数据（日线、周线、月线、季度、年线以及分钟级K线）
+ * 2. 实时行情数据（价格、成交量、涨跌幅等）
+ * 3. 盘口数据（买卖盘深度）
+ * 4. 逐笔交易数据
+ * 5. 财经新闻资讯
+ *
+ * 主要功能：
+ * - fetchRealtime: 获取多个标的后实时行情
+ * - realtimeSingle: 获取单个标的后实时行情
+ * - getHourlyAndMinuteHistory: 获取小时和分钟级别的K线历史数据
+ * - getDailyWeekMonthHistory: 获取日、周、月级别的K线历史数据
+ * - getMarkets: 获取市场数据
+ * - pankous: 获取盘口数据（买卖盘深度）
+ * - tradeList: 获取逐笔成交数据
+ * - getInformation: 获取雪球财经新闻资讯
+ *
+ * 数据来源：
+ * - K线数据：雪球官方API (https://stock.xueqiu.com)
+ * - 实时行情：onjdo.com平台提供的美股实时数据接口
+ * - 注意：onjdo.com接口目前可能已失效(404)，需要寻找替代方案
  */
 @Component
 public class XueQiuDataServiceImpl {
-    //   https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=TSLA&begin=1682695800000&period=120m&type=before&count=-500&indicator=kline";
+
+    /**
+     * 雪球K线API地址
+     *
+     * 参数说明：
+     * - symbol: 股票代码（如AAPL、TSLA）
+     * - begin: 开始时间戳（毫秒）
+     * - period: K线周期（1m=1分钟、120m=2小时、1d=1天、1w=1周、1mon=1月）
+     * - type: before表示获取历史数据
+     * - count: 负数表示向前获取，-500表示获取500条
+     * - indicator: kline表示K线指标
+     *
+     * 示例：https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=TSLA&begin=1682695800000&period=120m&type=before&count=-500&indicator=kline
+     */
     public final static String klineUrl = "https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol={}&begin={}&period={}&type=before&count=-500&indicator=kline";
-    ExecutorService executor = Executors.newFixedThreadPool(12); // 根据需要执行的任务数量调整线程池大小
+
+    /**
+     * 线程池，用于并发获取不同周期的K线数据
+     * 线程池大小为12，可同时处理12个并发任务
+     */
+    ExecutorService executor = Executors.newFixedThreadPool(12);
+
     @Autowired
     private InfomationService infomationService;
 
@@ -51,13 +92,111 @@ public class XueQiuDataServiceImpl {
     private RedissonClient redissonClientSpider;
 
     /**
-     * live
+     * ==========================================
+     * 以下是onjdo.com平台的API接口定义
+     * 注意：这些接口目前返回404错误，需要替换
+     * ==========================================
+     */
+
+    /**
+     * 获取单个或多个标的后实时行情数据
+     *
+     * 请求方式：GET
+     * 请求参数：currency - 股票代码，多个用逗号分隔（如 "AAPL,TSLA"）
+     *
+     * 响应数据格式：
+     * {
+     *   "code": "ok",
+     *   "data": [
+     *     {
+     *       "currency": "AAPL",
+     *       "timestamp": 1234567890000,
+     *       "open": 150.00,
+     *       "close": 151.00,
+     *       "mid": 150.50,           // 中间价
+     *       "high": 152.00,
+     *       "low": 149.00,
+     *       "ask": 151.00,            // 卖一价
+     *       "bid": 150.50,            // 买一价
+     *       "volume": 1000000,        // 成交量
+     *       "amount": 150000000,      // 成交额
+     *       "percent": 0.67,          // 涨跌幅(%)
+     *       "chg": 1.00,              // 涨跌额
+     *       "marketCapital": 2500000000000,  // 总市值
+     *       "floatMarketCapital": 2400000000000,  // 流通市值
+     *       "peForecast": 25.5,       // 预测市盈率
+     *       "volumeRatio": 1.2,       // 量比
+     *       "turnoverRate": 0.55,     // 换手率(%)
+     *       "navps": 4.5,             // 每股净资产
+     *       "pb": 3.2,                // 市净率
+     *       "amplitude": 2.5,         // 振幅(%)
+     *       "eps": 5.8                // 每股收益
+     *     }
+     *   ]
+     * }
+     *
+     * 问题：此接口返回404，需要替换为其他实时行情数据源
      */
     public final static String live = "https://onjdo.com/stock/api/live/getLiveRates";
+
+    /**
+     * 获取市场概要数据
+     *
+     * 请求方式：GET
+     * 请求参数：currency - 股票代码，多个用逗号分隔
+     *
+     * 响应数据格式：
+     * {
+     *   "code": "ok",
+     *   "data": [StockMarket对象列表]
+     * }
+     *
+     * 问题：此接口返回404，需要替换为其他市场数据源
+     */
     public final static String markets = "https://onjdo.com/stock/api/live/getMarkets";
 
+    /**
+     * 获取盘口数据（买卖盘深度）
+     *
+     * 请求方式：GET
+     * 请求参数：currency - 股票代码
+     *
+     * 响应数据格式：
+     * {
+     *   "code": "ok",
+     *   "data": [Depth对象列表，每个Depth包含 asks(卖盘)和bids(买盘)]
+     * }
+     *
+     * 问题：此接口返回404，需要替换为其他盘口数据源
+     */
     public final static String pankou = "https://onjdo.com/stock/api/live/getPanKou";
+
+    /**
+     * 获取逐笔成交数据
+     *
+     * 请求方式：GET
+     * 请求参数：currency - 股票代码
+     *
+     * 响应数据格式：
+     * {
+     *   "code": "ok",
+     *   "data": [[TradeDetails对象列表]]
+     * }
+     *
+     * 问题：此接口返回404，需要替换为其他成交数据源
+     */
     public final static String tradeList = "https://onjdo.com/stock/api/live/getTrade";
+
+    /**
+     * 续约接口，用于保持数据采集权限
+     *
+     * 请求方式：GET
+     * 请求参数：
+     * - currency: 股票代码
+     * - type: 开通/关闭类型（来自Item.openCloseType）
+     *
+     * 问题：此接口返回404，需要替换
+     */
     public final static String lease = "https://onjdo.com/stock/api/live/lease";
 
     private static Logger logger = LoggerFactory.getLogger(XueQiuDataServiceImpl.class);
@@ -67,6 +206,21 @@ public class XueQiuDataServiceImpl {
     @Autowired
     private ItemService itemService;
 
+    /**
+     * 获取盘口数据（买卖盘深度）
+     *
+     * @param remarks 股票代码（如 "AAPL"）
+     * @return 盘口深度数据列表，包含各档位的买卖盘价格和数量
+     *
+     * 接口调用流程：
+     * 1. 构建请求参数 {currency: remarks}
+     * 2. 调用 onjdo.com 的 getPanKou 接口
+     * 3. 解析返回的JSON，提取code字段
+     * 4. 如果code为"ok"，则解析data数组并转换为Depth对象列表
+     * 5. 返回空列表表示获取失败
+     *
+     * 问题：onjdo.com接口已失效(404)，需要替换为其他盘口数据源
+     */
     public static List<Depth> pankous(String remarks) {
         Map<String, String> param = new HashMap<>();
         param.put("currency", remarks);
@@ -82,6 +236,21 @@ public class XueQiuDataServiceImpl {
         return Lists.newArrayList();
     }
 
+    /**
+     * 获取市场概要数据
+     *
+     * @param symbols 股票代码列表，多个用逗号分隔（如 "AAPL,OIL"）
+     * @return 市场数据列表，包含各股票的市场概况信息
+     *
+     * 接口调用流程：
+     * 1. 构建请求参数 {currency: symbols}
+     * 2. 调用 onjdo.com 的 getMarkets 接口
+     * 3. 解析返回的JSON，提取code字段
+     * 4. 如果code为"ok"，则解析data数组并转换为StockMarket对象列表
+     * 5. 返回空列表表示获取失败
+     *
+     * 问题：onjdo.com接口已失效(404)，需要替换为其他市场数据源
+     */
     public static List<StockMarket> getMarkets(String symbols) {
         Map<String, String> param = new HashMap<>();
         param.put("currency", symbols);
@@ -97,6 +266,11 @@ public class XueQiuDataServiceImpl {
         return Lists.newArrayList();
     }
 
+    /**
+     * 主方法，用于测试getMarkets功能
+     *
+     * @param args 命令行参数
+     */
     public static void main(String[] args) {
         XueQiuDataServiceImpl service = new XueQiuDataServiceImpl();
 //        List<Kline> sz300750 = service.buildOneYearPeriod("AAPL");
@@ -104,6 +278,25 @@ public class XueQiuDataServiceImpl {
         List<StockMarket> markets1 = service.getMarkets("AAPL,OIL");
         System.out.println(markets1);
     }
+
+    /**
+     * 续约接口调用
+     *
+     * 功能说明：
+     * - 用于保持数据采集权限的续约
+     * - 如果标的的crawlStatus为"DEFAULT"（非激活状态），则跳过续约
+     *
+     * @param symbol 股票代码
+     *
+     * 处理流程：
+     * 1. 根据股票代码查询标的详细信息
+     * 2. 检查crawlStatus，如果为"DEFAULT"则直接返回（不续约）
+     * 3. 构建请求参数：currency(股票代码)和type(开通关闭类型)
+     * 4. 调用onjdo.com的lease接口
+     * 5. 如果返回code为"ok"，记录续约成功日志
+     *
+     * 问题：onjdo.com接口已失效(404)，需要替换为其他续约接口
+     */
     public void lease(String symbol) {
         Item bySymbol = itemService.findBySymbol(symbol);
         if(Item.DEFAULT_ACTIVE.equalsIgnoreCase(bySymbol.getCrawlStatus())){
@@ -119,6 +312,34 @@ public class XueQiuDataServiceImpl {
             logger.info("{} 采集续约成功", symbol);
         }
     }
+
+    /**
+     * 获取雪球财经新闻资讯
+     *
+     * 功能说明：
+     * - 从雪球平台采集最新的财经新闻和资讯
+     * - 解析新闻内容，提取来源信息
+     * - 使用Redis缓存已采集的新闻URL，避免重复采集
+     * - 缓存有效期为1周（60*60*24*7秒）
+     *
+     * 处理流程：
+     * 1. 获取雪球首页Cookie（用于认证）
+     * 2. 调用雪球新闻列表API获取最新15条新闻
+     * 3. 遍历每条新闻，解析以下字段：
+     *    - dataId: 新闻ID
+     *    - text: 新闻内容/描述
+     *    - created_at: 创建时间
+     *    - target: 原始文章URL
+     * 4. 从新闻内容中提取来源（匹配最后一个括号内的文本）
+     * 5. 检查Redis是否已缓存该URL
+     *    - 如果未缓存，则添加到待保存列表，并缓存URL（有效期1周）
+     * 6. 批量保存到数据库
+     *
+     * 数据保存：
+     * - Infomation对象包含：dataId、description、createdAt、type、originUrl、source、lang
+     * - lang固定为"zh-CN"（中文）
+     * - type固定为"1"（新闻类型）
+     */
     public void getInformation() {
         String cookie = HttpHelper.getCookie("https://xueqiu.com/");
         String url = "https://xueqiu.com/statuses/livenews/list.json?since_id=-1&max_id=-1&count=15";
@@ -152,9 +373,39 @@ public class XueQiuDataServiceImpl {
         }
     }
 
+    /**
+     * 获取小时和分钟级别的K线历史数据
+     *
+     * 功能说明：
+     * - 并发获取多个时间周期的K线数据
+     * - 支持的周期：4小时、2小时、1小时、30分钟、15分钟、5分钟、1分钟
+     *
+     * @param symbol 股票代码（如 "AAPL"）
+     * @param cookie 雪球认证Cookie（可为空，内部会自动获取）
+     * @return Map，key为周期常量（如KlineConstant.PERIOD_4HOUR），value为该周期的K线列表
+     *
+     * 并发处理：
+     * - 使用CompletableFuture并发调用7个不同周期的K线获取方法
+     * - 使用allOf等待所有并发任务完成
+     * - 每个周期独立获取，互不影响
+     *
+     * 特殊处理：
+     * - 2小时周期：如果雪球API直接返回数据则使用，否则根据1小时数据计算生成
+     * - 计算方式：将连续两根1小时K线合并为一根2小时K线
+     *
+     * 周期与数据范围：
+     * - 4小时(4H): 约3个月历史数据
+     * - 2小时(2H): 约2个月历史数据
+     * - 1小时(1H): 约1个月历史数据
+     * - 30分钟(30m): 约10天历史数据
+     * - 15分钟(15m): 约5天历史数据
+     * - 5分钟(5m): 约2天历史数据
+     * - 1分钟(1m): 约1天历史数据
+     */
     public Map<String, List<Kline>> getHourlyAndMinuteHistory(String symbol, String cookie)  {
         Map<String, List<Kline>> map = new HashMap<>();
         try {
+            // 启动7个并发任务获取不同周期的K线数据
             CompletableFuture<List<Kline>> fourHourlyFuture = CompletableFuture.supplyAsync(() -> getTimeseriesForFourHourly(symbol, cookie), executor);
             CompletableFuture<List<Kline>> oneHourlyFuture = CompletableFuture.supplyAsync(() -> getTimeseriesForOneHourly(symbol, cookie), executor);
             CompletableFuture<List<Kline>> twoHourlyFuture = CompletableFuture.supplyAsync(() -> getTimeseriesForTwoHourly(symbol, cookie), executor);
@@ -163,6 +414,7 @@ public class XueQiuDataServiceImpl {
             CompletableFuture<List<Kline>> fiveMinuteFuture = CompletableFuture.supplyAsync(() -> getTimeseriesFiveMinute(symbol, cookie), executor);
             CompletableFuture<List<Kline>> oneMinuteFuture = CompletableFuture.supplyAsync(() -> getTimeseriesOneMinute(symbol, cookie), executor);
 
+            // 等待所有任务完成
             CompletableFuture<Void> allFutures = CompletableFuture.allOf(
                     fourHourlyFuture, oneHourlyFuture, twoHourlyFuture, thirtyMinuteFuture, fifteenMinuteFuture, fiveMinuteFuture, oneMinuteFuture);
 
@@ -172,12 +424,13 @@ public class XueQiuDataServiceImpl {
             map.put(KlineConstant.PERIOD_4HOUR, fourHourlyFuture.get());
             map.put(KlineConstant.PERIOD_60MIN, oneHourlyFuture.get());
 
-            // 特殊处理两小时数据
+            // 特殊处理两小时数据：如果雪球API没有直接返回，则根据1小时数据计算
             List<Kline> twoHourlyList = twoHourlyFuture.get();
             if (twoHourlyList == null || twoHourlyList.isEmpty()) {
                 try {
                     List<Kline> hourList = oneHourlyFuture.get();
                     if (hourList != null && !hourList.isEmpty()) {
+                        // 使用K线服务将1小时K线合并为2小时K线
                         map.put(Kline.PERIOD_2HOUR, klineService.calculateKline(symbol, 2, Kline.PERIOD_2HOUR, hourList));
                     }
                 } catch (Exception e) {
@@ -200,6 +453,18 @@ public class XueQiuDataServiceImpl {
         return map;
     }
 
+    /**
+     * 从新闻内容中提取来源信息
+     *
+     * @param text 新闻文本内容
+     * @return 来源字符串（匹配最后一个括号内的文本），如果没有则返回空字符串
+     *
+     * 示例：
+     * - 输入: "这是一条新闻内容（新浪财经）"
+     * - 输出: "新浪财经"
+     * - 输入: "这是新闻（来源1）（来源2）"
+     * - 输出: "来源2"
+     */
     public static String getSource(String text) {
 
         String pattern = "（([^（）]*)）$"; // 匹配最后一个括号内的文本
@@ -216,7 +481,20 @@ public class XueQiuDataServiceImpl {
     }
 
     /**
-     * 可以多个
+     * 获取逐笔成交数据
+     *
+     * @param remarks 股票代码（如 "AAPL"）
+     * @param isUSStock 是否为美股（美股会设置深度数据）
+     *
+     * 功能说明：
+     * 1. 调用onjdo.com的getTrade接口获取逐笔成交数据
+     * 2. 解析返回数据，获取每笔成交的详情
+     * 3. 将成交数据转换为TradeDetails对象列表
+     * 4. 将数据存入DataCache（内存缓存）
+     * 5. 转换并保存交易数据
+     * 6. 如果是美股，还会设置盘口深度数据
+     *
+     * 问题：onjdo.com接口已失效(404)，需要替换为其他成交数据源
      */
     public void tradeList(String remarks, boolean isUSStock) {
         Map<String, String> param = new HashMap<>();
@@ -242,23 +520,44 @@ public class XueQiuDataServiceImpl {
         }
     }
 
-
+    /**
+     * 将逐笔成交数据转换为盘口深度数据并缓存
+     *
+     * @param symbol 股票代码
+     * @param tradeDetails 逐笔成交详情列表
+     *
+     * 功能说明：
+     * 1. 从逐笔成交数据中筛选出所有卖盘(side=1)和买盘(side=-1)
+     * 2. 卖盘数据转换为Asks列表，买盘数据转换为Bids列表
+     * 3. 每个深度条目包含：价格(price)和数量(amount)
+     * 4. 使用成交时间戳作为深度数据的TS
+     * 5. 将深度数据封装并存入DataCache
+     *
+     * 盘口数据结构：
+     * - asks: 卖盘列表（按价格升序排列）
+     * - bids: 买盘列表（按价格降序排列）
+     */
     public static void setTradeListToDepth(String symbol, List<TradeDetails> tradeDetails) {
         Depth depth = new Depth();
         depth.setTs(tradeDetails.get(0).getTimestamp() / 1000);
         depth.setSymbol(symbol);
+
+        // 筛选卖盘（side=1）并转换为深度条目
         List<DepthEntry> asks = tradeDetails.stream().filter(t -> t.getSide() == -1).map(t -> {
             DepthEntry depthEntry = new DepthEntry();
             depthEntry.setAmount((double) t.getTrade_volume());
             depthEntry.setPrice(t.getCurrent());
             return depthEntry;
         }).collect(Collectors.toList());
+
+        // 筛选买盘（side=1）并转换为深度条目
         List<DepthEntry> bids = tradeDetails.stream().filter(t -> t.getSide() == 1).map(t -> {
             DepthEntry depthEntry = new DepthEntry();
             depthEntry.setAmount((double) t.getTrade_volume());
             depthEntry.setPrice(t.getCurrent());
             return depthEntry;
         }).collect(Collectors.toList());
+
         depth.setAsks(asks);
         depth.setBids(bids);
 
@@ -267,7 +566,22 @@ public class XueQiuDataServiceImpl {
         DataCache.putDepth(depth.getSymbol(), timeObject);
     }
 
-
+    /**
+     * 将逐笔成交数据转换为交易数据并缓存
+     *
+     * @param symbol 股票代码
+     * @param tradeDetails 逐笔成交详情列表
+     *
+     * 功能说明：
+     * 1. 从DataCache获取现有的TradeTimeObject
+     * 2. 将逐笔成交数据转换为TradeEntry列表
+     * 3. 转换规则：
+     *    - direction: side=1转为"sell"（卖出），side=-1转为"buy"（买入）
+     *    - amount: 成交数量
+     *    - price: 成交价格
+     *    - ts: 时间戳（毫秒转秒）
+     * 4. 将转换后的数据存入TradeTimeObject并更新到DataCache
+     */
     public static void tradeListToTrade(String symbol, List<TradeDetails> tradeDetails) {
         TradeTimeObject timeObject = DataCache.getTrade(symbol);
         if (timeObject == null) {
@@ -287,11 +601,14 @@ public class XueQiuDataServiceImpl {
     }
 
     /**
-     * 获取原始的K线图数据
+     * 获取原始的K线图数据（按分钟）
      *
-     * @param symbol
-     * @param cookie
-     * @return
+     * @param symbol 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return JSON字符串，直接返回雪球API的原始响应
+     *
+     * 注意：此方法返回的是未经解析的JSON字符串
+     * 主要用于调试或需要原始数据的场景
      */
     public String getRawTimeseriesByMinute(String symbol, String cookie) {
         long nowTs = System.currentTimeMillis();
@@ -300,6 +617,43 @@ public class XueQiuDataServiceImpl {
         return HttpHelper.sendGetHttp(url, null, cookie);
     }
 
+    /**
+     * 获取单个标的后实时行情数据
+     *
+     * @param symbol 股票代码（如 "AAPL"）
+     * @return Realtime对象列表，包含该标的的实时行情信息
+     *
+     * 功能说明：
+     * 1. 调用onjdo.com的getLiveRates接口获取实时数据
+     * 2. 解析返回数据，提取各字段信息
+     * 3. 将数据转换为Realtime对象并设置精度
+     *
+     * 返回的Realtime对象包含以下字段：
+     * - symbol: 股票代码（通过remarks转换）
+     * - name: 名称（同symbol）
+     * - ts: 时间戳
+     * - open: 开盘价
+     * - close: 收盘价（中间价mid或收盘价close）
+     * - high: 最高价
+     * - low: 最低价
+     * - ask: 卖一价
+     * - bid: 买一价
+     * - volume: 成交量
+     * - amount: 成交额
+     * - percent: 涨跌幅(%)
+     * - chg: 涨跌额
+     * - marketCapital: 总市值
+     * - floatMarketCapital: 流通市值
+     * - peForecast: 预测市盈率
+     * - volumeRatio: 量比
+     * - turnoverRate: 换手率
+     * - navps: 每股净资产
+     * - pb: 市净率
+     * - amplitude: 振幅
+     * - eps: 每股收益
+     *
+     * 问题：onjdo.com接口已失效(404)，需要替换为其他实时行情数据源
+     */
     public List<Realtime> realtimeSingle(String symbol) {
         List<Realtime> list = new ArrayList<>();
         try {
@@ -313,7 +667,6 @@ public class XueQiuDataServiceImpl {
                 for (int i = 0; i < dataArray.size(); i++) {
                     JSONObject realtimeJson = dataArray.getJSONObject(i);
                     Realtime realtime = new Realtime();
-                    // realtime.setUuid(ApplicationUtil.getCurrentTimeUUID());
                     String currency;
                     currency = realtimeJson.getString("currency");
                     int decimal = itemService.getDecimal(currency);
@@ -396,13 +749,34 @@ public class XueQiuDataServiceImpl {
     }
 
     /**
-     * 1day       历史数据  ： 周期 1年
-     * 1week,1mon 历史数据  ： 周期 5年
-     * 请求 350次
+     * ==========================================
+     * 以下是日、周、月级别K线数据获取方法
+     * ==========================================
+     */
+
+    /**
+     * 获取日、周、月级别的K线历史数据
+     *
+     * @param symbol 股票代码（如 "AAPL"）
+     * @param cookie 雪球认证Cookie（可为空，内部会自动获取）
+     * @return Map，key为周期常量，value为该周期的K线列表
+     *
+     * 支持的周期及数据范围：
+     * - 1day(日线): 最近1年历史数据
+     * - 1week(周线): 最近5年历史数据
+     * - 1mon(月线): 最近5年历史数据
+     * - 5day(5日线): 约1000天历史数据
+     * - quarter(季度线): 约100年历史数据
+     * - year(年线): 约100年历史数据
+     *
+     * 并发处理：
+     * - 使用CompletableFuture并发调用6个不同周期的K线获取方法
+     * - 大幅减少数据获取时间
      */
     public Map<String, List<Kline>> getDailyWeekMonthHistory(String symbol,String cookie) {
         Map<String, List<Kline>> map = new HashMap<>();
         try {
+            // 启动6个并发任务获取不同周期的K线数据
             CompletableFuture<List<Kline>> oneWeekFuture = CompletableFuture.supplyAsync(() -> buildOneWeekPeriod(symbol, cookie), executor);
             CompletableFuture<List<Kline>> oneMonthFuture = CompletableFuture.supplyAsync(() -> buildOneMonthPeriod(symbol, cookie), executor);
             CompletableFuture<List<Kline>> oneDayFuture = CompletableFuture.supplyAsync(() -> buildOneDayPeriod(symbol, cookie), executor);
@@ -424,33 +798,105 @@ public class XueQiuDataServiceImpl {
         return map;
     }
 
+    /**
+     * 获取日线K线数据
+     *
+     * @param currency 股票代码（如 "AAPL"）
+     * @param cookie 雪球认证Cookie
+     * @return 日线K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByPeriod(currency, "day", Kline.PERIOD_1DAY, 365, cookie)
+     * - 表示获取日线周期，最近365天数据
+     */
     public List<Kline> buildOneDayPeriod(String currency, String cookie) {
         return getTimeseriesByPeriod(currency, "day", Kline.PERIOD_1DAY, 365, cookie);
 
     }
 
-
+    /**
+     * 获取周线K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 周线K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByPeriod(currency, "week", Kline.PERIOD_1WEEK, 365*5, cookie)
+     * - 表示获取周线周期，最近5年数据
+     */
     public List<Kline> buildOneWeekPeriod(String currency, String cookie) {
         return getTimeseriesByPeriod(currency, "week", Kline.PERIOD_1WEEK, 365 * 5, cookie);
 
     }
 
+    /**
+     * 获取月线K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 月线K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByPeriod(currency, "month", Kline.PERIOD_1MON, 365*5, cookie)
+     * - 表示获取月线周期，最近5年数据
+     */
     public List<Kline> buildOneMonthPeriod(String currency, String cookie) {
         return getTimeseriesByPeriod(currency, "month", Kline.PERIOD_1MON, 365 * 5, cookie);
     }
 
+    /**
+     * 获取季度K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 季度K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByPeriod(currency, "quarter", Kline.PERIOD_QUARTER, 365*100, cookie)
+     * - 表示获取季度周期，最多100年数据
+     */
     public List<Kline> buildOneQuarterPeriod(String currency , String cookie) {
         return getTimeseriesByPeriod(currency, "quarter", Kline.PERIOD_QUARTER, 365 * 100, cookie);
     }
 
+    /**
+     * 获取年线K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 年线K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByPeriod(currency, "year", Kline.PERIOD_YEAR, 365*100, cookie)
+     * - 表示获取年线周期，最多100年数据
+     */
     public List<Kline> buildOneYearPeriod(String currency , String cookie) {
         return getTimeseriesByPeriod(currency, "year", Kline.PERIOD_YEAR, 365 * 100, cookie);
     }
 
     /**
-     * 雪球支持120分钟的，讲120分钟的，
-     * Hourly
-     * 4hourly 3月
+     * 生成5日K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 5日K线列表
+     *
+     * 算法说明：
+     * 1. 获取1000天的日线数据
+     * 2. 从最新一根日线开始，每隔5根K线合并为一根5日K线
+     * 3. 合并规则：
+     *    - open: 第一根K线的开盘价
+     *    - close: 最后一根K线的收盘价
+     *    - high: 5根K线中的最高价
+     *    - low: 5根K线中的最低价
+     *    - volume: 5根K线的成交量之和
+     *    - amount: 5根K线的成交额之和
+     *    - ts: 最后一根K线的时间戳
+     *
+     * 重试机制：
+     * - 使用@Retryable注解，失败时最多重试5次
+     * - 每次重试间隔2秒（@Backoff(delay = 2000)）
      */
     @Retryable(
             value = {RuntimeException.class},  // 需要重试的异常类型
@@ -461,10 +907,13 @@ public class XueQiuDataServiceImpl {
         List<Kline> result = Lists.newArrayList();
         List<Kline> timeseriesByOneDay = getTimeseriesByPeriod(currency, "day", Kline.PERIOD_1DAY, 1000 , cookie);
 
+        // 按时间戳升序排列
         Collections.sort(timeseriesByOneDay, Kline::compareTo);
         int lastIndex = timeseriesByOneDay.size() - 1;
+
+        // 从最新一根开始，每隔5根K线生成一根5日K线
         for (int i = lastIndex; i >= 5; i = i - 5) {
-            // 1天K线最新的5条数据
+            // 获取连续的5根K线
             List<Kline> klineOneTop5 = new ArrayList<>();
             klineOneTop5.add(timeseriesByOneDay.get(i));
             klineOneTop5.add(timeseriesByOneDay.get(i - 1));
@@ -472,6 +921,7 @@ public class XueQiuDataServiceImpl {
             klineOneTop5.add(timeseriesByOneDay.get(i - 3));
             klineOneTop5.add(timeseriesByOneDay.get(i - 4));
 
+            // 计算最高价和最低价
             Double high = null;
             Double low = null;
             for (Kline kline : klineOneTop5) {
@@ -482,7 +932,8 @@ public class XueQiuDataServiceImpl {
                     low = kline.getLow();
                 }
             }
-            // 保存K线到数据库
+
+            // 创建新的5日K线
             Kline kline = new Kline();
             if(itemService != null){
                 kline.setSymbol(itemService.getSymbolByRemarks(currency));
@@ -496,10 +947,13 @@ public class XueQiuDataServiceImpl {
             kline.setLow(low);
             kline.setClose(klineOneTop5.get(0).getClose());
             kline.setPeriod(Kline.PERIOD_5DAY);
+
             // 格式化小数点位
             if(klineService != null){
                 klineService.formatPoint(kline);
             }
+
+            // 计算总成交量和总成交额
             double sumAmount = klineOneTop5.stream()
                     .map(Kline::getAmount)
                     .filter(amount -> amount != 0)
@@ -510,6 +964,7 @@ public class XueQiuDataServiceImpl {
                     .reduce(0D, Double::sum);
             kline.setAmount(sumAmount);
             kline.setVolume(sumVolume);
+
             if(klineService != null){
                 klineService.repairKline(kline);
             }
@@ -521,9 +976,27 @@ public class XueQiuDataServiceImpl {
 
 
     /**
-     * 雪球支持120分钟的，讲120分钟的，
-     * Hourly
-     * 4hourly 3月
+     * 生成4小时K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 4小时K线列表
+     *
+     * 算法说明：
+     * 1. 获取120分钟的K线数据（120条，约3个月）
+     * 2. 每隔2根120分钟K线合并为一根4小时K线
+     * 3. 合并规则：
+     *    - open: 第一根K线的开盘价
+     *    - close: 最后一根K线的收盘价
+     *    - high: 两根K线中的最高价
+     *    - low: 两根K线中的最低价
+     *    - volume: 两根K线的成交量之和
+     *    - amount: 两根K线的成交额之和
+     *    - ts: 第一根K线的时间戳
+     *
+     * 重试机制：
+     * - 使用@Retryable注解，失败时最多重试5次
+     * - 每次重试间隔2秒
      */
     @Retryable(
             value = {RuntimeException.class},  // 需要重试的异常类型
@@ -539,6 +1012,7 @@ public class XueQiuDataServiceImpl {
         List<Kline> timeseriesByMinute = getTimeseriesByMinute(currency, 120, 90, cookie);
         Collections.sort(timeseriesByMinute, Kline::compareTo);
         int lastIndex = timeseriesByMinute.size() - 1;
+
         for (int i = lastIndex; i >= 1; i = i - 2) {
             Kline first = timeseriesByMinute.get(i);
             Kline secnd = timeseriesByMinute.get(i - 1);
@@ -571,39 +1045,75 @@ public class XueQiuDataServiceImpl {
     }
 
     /**
-     * Hourly
-     * 1hourly 2个小时
+     * 生成2小时K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 2小时K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByMinute(currency, 120, 300, cookie)
+     * - 表示获取120分钟周期，约300条数据
      */
     public List<Kline> getTimeseriesForTwoHourly(String currency, String cookie) {
         return getTimeseriesByMinute(currency, 120, 300, cookie);
     }
 
     /**
-     * Hourly
-     * 1hourly 1月
+     * 生成1小时K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 1小时K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByMinute(currency, 60, 300, cookie)
+     * - 表示获取60分钟周期，约300条数据
      */
     public List<Kline> getTimeseriesForOneHourly(String currency, String cookie) {
         return getTimeseriesByMinute(currency, 60, 300, cookie);
     }
 
     /**
-     * Minute
-     * 30minute 10天
-     * 15minute 5天
-     * 5minute  2天
-     * 1minute  1天
+     * 生成30分钟K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 30分钟K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByMinute(currency, 30, 10, cookie)
+     * - 表示获取30分钟周期，约10条数据
      */
-    public List<Kline> getTimeseriesOneMinute(String currency, String cookie) {
-        return getTimeseriesByMinute(currency, 1, 15,cookie);
-
+    public List<Kline> getTimeseriesThirtyMinute(String currency, String cookie) {
+        return getTimeseriesByMinute(currency, 30, 10, cookie);
     }
 
     /**
-     * Minute
-     * 30minute 10天
-     * 15minute 5天
-     * 5minute  2天
-     * 1minute  1天
+     * 生成15分钟K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 15分钟K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByMinute(currency, 15, 15, cookie)
+     * - 表示获取15分钟周期，约15条数据
+     */
+    public List<Kline> getTimeseriesFifteenMinute(String currency, String cookie) {
+        return getTimeseriesByMinute(currency, 15, 15, cookie);
+    }
+
+    /**
+     * 生成5分钟K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 5分钟K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByMinute(currency, 5, 15, cookie)
+     * - 表示获取5分钟周期，约15条数据
      */
     public List<Kline> getTimeseriesFiveMinute(String currency, String cookie) {
         return getTimeseriesByMinute(currency, 5, 15, cookie);
@@ -611,27 +1121,52 @@ public class XueQiuDataServiceImpl {
     }
 
     /**
-     * Minute
-     * 30minute 10天
-     * 15minute 5天
-     * 5minute  2天
-     * 1minute  1天
+     * 生成1分钟K线数据
+     *
+     * @param currency 股票代码
+     * @param cookie 雪球认证Cookie
+     * @return 1分钟K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByMinute(currency, 1, 15, cookie)
+     * - 表示获取1分钟周期，约15条数据
      */
-    public List<Kline> getTimeseriesFifteenMinute(String currency, String cookie) {
-        return getTimeseriesByMinute(currency, 15, 15, cookie);
+    public List<Kline> getTimeseriesOneMinute(String currency, String cookie) {
+        return getTimeseriesByMinute(currency, 1, 15,cookie);
+
     }
 
     /**
-     * Minute
-     * 30minute 15
-     * 15minute 15
-     * 5minute  15
-     * 1minute  15
+     * 从雪球API获取K线历史数据（通用方法）
+     *
+     * @param currency 股票代码（如 "AAPL"）
+     * @param periodXieQiu 雪球API的周期参数（如 "1m", "120m", "1d", "1w", "1mon"）
+     * @param sysPeriod 系统内部周期常量（如 Kline.PERIOD_1DAY）
+     * @param limitDays 需要获取的历史数据天数
+     * @param cookie 雪球认证Cookie（可为空，内部会自动获取）
+     * @return K线列表，按时间升序排列
+     *
+     * 算法说明：
+     * 1. 计算开始和结束时间戳
+     * 2. 分页获取数据：每次最多获取500条
+     * 3. 使用时间戳去重，避免重复数据
+     * 4. 数据按时间升序排列
+     * 5. 修复可能的K线数据问题
+     *
+     * 雪球API返回数据格式：
+     * {
+     *   "data": {
+     *     "item": [
+     *       [时间戳, 成交量, 开盘价, 最高价, 最低价, 收盘价, ... , 成交额],
+     *       ...
+     *     ]
+     *   }
+     * }
+     *
+     * 重试机制：
+     * - 使用@Retryable注解，失败时最多重试5次
+     * - 每次重试间隔2秒
      */
-    public List<Kline> getTimeseriesThirtyMinute(String currency, String cookie) {
-        return getTimeseriesByMinute(currency, 30, 10, cookie);
-    }
-
     @Retryable(
             value = {RuntimeException.class},  // 需要重试的异常类型
             maxAttempts = 5,  // 最大重试次数
@@ -642,13 +1177,20 @@ public class XueQiuDataServiceImpl {
         long nowTs = System.currentTimeMillis();
         long startTs = System.currentTimeMillis() - limitDays * 24 * 60 * 60 * 1000;
         long begin = nowTs;
+
+        // 如果没有提供Cookie，则自动获取雪球Cookie
         if(cookie == null){
             cookie = HttpHelper.getCookie("https://xueqiu.com/");
         }
+
+        // 将股票代码转换为雪球格式（如 AAPL -> US_AAPL）
         if(itemService != null){
             currency = itemService.findBySymbol(currency).getRemarks();
         }
+
         Set<Long> tsSet = new HashSet<>();
+
+        // 分页获取数据，直到获取完所有历史数据
         while (begin > startTs) {
             String url = StrUtil.format(klineUrl, currency, begin, periodXieQiu);
             String json = HttpHelper.sendGetHttp(url, null, cookie);
@@ -656,6 +1198,7 @@ public class XueQiuDataServiceImpl {
             JSONArray dataArray = resultJson.getJSONObject("data").getJSONArray("item");
             List<List> lists = dataArray.toJavaList(List.class);
             long minTS = begin;
+
             for (List result : lists) {
                 Kline kline = new Kline();
                 if(itemService != null){
@@ -664,47 +1207,76 @@ public class XueQiuDataServiceImpl {
                     kline.setSymbol(sysPeriod);
                 }
                 kline.setPeriod(sysPeriod);
-                // 毫秒
+
+                // 解析时间戳（可能是毫秒或秒）
                 long ts = Long.parseLong(result.get(0).toString());
                 if (Long.toString(ts).length() > 13) {
                     ts = ts / 1000;
                 }
+
+                // 去重
                 if (tsSet.contains(ts)) {
                     continue;
                 } else {
                     tsSet.add(ts);
                 }
                 kline.setTs(ts);
+
+                // 解析K线数据
+                // result数组格式：[时间戳, 成交量, 开盘价, 最高价, 最低价, 收盘价, ..., 成交额]
                 kline.setOpen(new BigDecimal(result.get(2).toString()).doubleValue());
                 kline.setClose(new BigDecimal(result.get(5).toString()).doubleValue());
                 kline.setHigh(new BigDecimal(result.get(3).toString()).doubleValue());
                 kline.setLow(new BigDecimal(result.get(4).toString()).doubleValue());
                 kline.setVolume(new BigDecimal(result.get(1).toString()).doubleValue());
                 kline.setAmount(new BigDecimal(result.get(9).toString()).doubleValue());
+
                 if (klineService != null) {
                     klineService.repairKline(kline);
                 }
                 resList.add(kline);
+
                 if (ts < minTS) {
                     minTS = ts;
                 }
             }
+
+            // 如果没有获取到新数据，退出循环
             if (minTS == begin) {
                 break;
             }
+
             begin = minTS;
             if (begin < startTs) {
                 break;
             }
         }
+
+        // 按时间升序排列
         Collections.sort(resList);
+
+        // 修复开盘价：如果相邻两根K线的开盘价不连续，用前一根的收盘价填充
         int len = resList.size();
         for (int i = 1; i < len; i++) {
             resList.get(i).setOpen(resList.get(i - 1).getClose());
         }
+
         return resList;
     }
 
+    /**
+     * 获取分钟级K线数据的便捷方法
+     *
+     * @param currency 股票代码
+     * @param minute 分钟数（如 1, 5, 15, 30, 60, 120）
+     * @param limitDays 限制天数
+     * @param cookie 雪球认证Cookie
+     * @return 相应周期的K线列表
+     *
+     * 内部调用：
+     * - getTimeseriesByPeriod(currency, minute+"m", minute+"min", limitDays, cookie)
+     * - 将分钟数转换为雪球API的周期参数
+     */
     public List<Kline> getTimeseriesByMinute(String currency, int minute, long limitDays, String cookie) {
         return getTimeseriesByPeriod(currency, minute + "m", minute + "min", limitDays, cookie );
     }

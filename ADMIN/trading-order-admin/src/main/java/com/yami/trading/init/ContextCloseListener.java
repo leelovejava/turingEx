@@ -1,7 +1,9 @@
 package com.yami.trading.init;
 
+import com.yami.trading.admin.controller.loanOrder.job.LoanCloseoutJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Service;
@@ -13,13 +15,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContextCloseListener implements ApplicationListener<ContextClosedEvent> {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	/**
-	 * 停止 springboot 时调用了一次
-	 */
+
+	@Autowired(required = false)
+	private LoanCloseoutJob loanCloseoutJob;
+
 	@Override
     public void onApplicationEvent(ContextClosedEvent event) {
-		// 关闭所有的线程池，回收其他资源
-
+		logger.info("Application context is closing, stopping LoanCloseoutJob...");
+		if (loanCloseoutJob != null) {
+			loanCloseoutJob.stop();
+		}
     }
 }
