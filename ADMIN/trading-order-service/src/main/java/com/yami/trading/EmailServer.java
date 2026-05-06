@@ -15,11 +15,11 @@ import com.yami.trading.service.InternalEmailSenderService;
 /**
  * 邮件服务类，负责从短信消息队列取出短信消息并发送
  */
-public class EmailServer implements Runnable,InitializingBean {
+public class EmailServer implements Runnable, InitializingBean {
 
     @Autowired
     private InternalEmailSenderService internalEmailSenderService;
-    
+
     private static final Logger logger = LoggerFactory.getLogger(EmailServer.class);
 
     /**
@@ -31,10 +31,10 @@ public class EmailServer implements Runnable,InitializingBean {
         while (true) {
             try {
                 EmailMessage item = EmailMessageQueue.poll();
-                if (null!=item) {
-                	logger.info("邮寄地址：" + item.getTomail()+"内容:"+item.getContent());
+                if (null != item) {
+                    logger.info("邮寄地址：" + item.getTomail() + "内容:" + item.getContent());
                     internalEmailSenderService.send(item);
-                }else {
+                } else {
                     ThreadUtils.sleep(50);
                 }
             } catch (Throwable e) {
@@ -44,11 +44,11 @@ public class EmailServer implements Runnable,InitializingBean {
     }
 
     public void afterPropertiesSet() throws Exception {
-    	logger.info("启动邮件发送服务！");
-    	ThreadPool.getFixedTaskExecutor(1,"EmailServer").execute(this);
+        logger.info("启动邮件发送服务！");
+        ThreadPool.getFixedTaskExecutor(1, "EmailServer").execute(this);
     }
-    
-	public void setInternalEmailSenderService(InternalEmailSenderService internalEmailSenderService) {
-		this.internalEmailSenderService = internalEmailSenderService;
-	}
+
+    public void setInternalEmailSenderService(InternalEmailSenderService internalEmailSenderService) {
+        this.internalEmailSenderService = internalEmailSenderService;
+    }
 }

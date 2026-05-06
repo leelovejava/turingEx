@@ -216,7 +216,7 @@ public class EmailSendTest {
         logger.info("========== 测试6: 完整的邮件发送流程测试 ==========");
 
         try {
-            String testEmail = "liufeiyu2021@gmail.com";
+            String testEmail = "1@gmail.com";
             String subject = "【完整流程测试】" + System.currentTimeMillis();
             String content = "测试完整流程";
 

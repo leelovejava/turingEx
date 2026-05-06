@@ -68,7 +68,7 @@ public class AdjustmentValueServiceImpl implements AdjustmentValueService {
     }
 
     @Override
-    public AdjustmentValue getDelayValue(String symbol) {
+    public AdjustmentValue getDelayValue2(String symbol) {
         return AdjustmentValueCache.getDelayValue().get(symbol);
     }
 

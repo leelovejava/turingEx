@@ -27,6 +27,12 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.icegreen</groupId>
+            <artifactId>greenmail</artifactId>
+            <version>1.6.15</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 </project>

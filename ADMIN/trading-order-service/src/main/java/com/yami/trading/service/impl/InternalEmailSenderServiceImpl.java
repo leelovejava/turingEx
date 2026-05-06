@@ -155,9 +155,13 @@ public class InternalEmailSenderServiceImpl implements InternalEmailSenderServic
         String port = ApplicationUtil.getProperty("email.port", "587");
         mailSender.setPort(Integer.parseInt(port));
 
-        // 协议默认smtp，JavaMail也支持smtps（加密版本）
-        // 但通常我们通过设置port和socketFactory来控制加密方式
-        mailSender.setProtocol(ApplicationUtil.getProperty("email.protocol", "smtp"));
+
+        String protocol = ApplicationUtil.getProperty("email.protocol", "ssl");
+
+        // JavaMail协议名称转换：ssl -> smtps
+        // JavaMail没有"ssl"协议，需要转换为"smtps"（SSL加密的SMTP）
+        String mailProtocol = "ssl".equals(protocol) ? "smtps" : protocol;
+        mailSender.setProtocol(mailProtocol);
 
         // ========== 第4步：配置JavaMail Properties ==========
         // JavaMail使用Properties配置SMTP连接的各种参数
@@ -177,7 +181,7 @@ public class InternalEmailSenderServiceImpl implements InternalEmailSenderServic
         
         // ========== Java 11+ TLS协议兼容配置 ==========
         // Java 11+ 默认禁用了 TLS 1.0 和 TLS 1.1
-        // 强制使用 TLS 1.2 解决兼容性问题
+        // 设置安全证书(强制使用 TLS 1.2 解决兼容性问题)
         javaMailProperties.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
         javaMailProperties.setProperty("mail.smtp.starttls.protocols", "TLSv1.2");
 
@@ -185,6 +189,9 @@ public class InternalEmailSenderServiceImpl implements InternalEmailSenderServic
         // 大多数SMTP服务器要求客户端认证才能发送邮件
         // 认证信息通过username和password提供
         javaMailProperties.setProperty("mail.smtp.auth", "true");
+
+        // 开启debug调试
+        ///javaMailProperties.setProperty("mail.debug", "true");
 
         // 设置SMTP服务器地址（必须与mailSender.setHost一致）
         // JavaMail会根据这个地址建立TCP连接
@@ -195,15 +202,19 @@ public class InternalEmailSenderServiceImpl implements InternalEmailSenderServic
         // - 端口465: 传统SMTP over SSL，连接建立时即使用SSL加密
         // - 端口587: 通常使用STARTTLS，连接建立后升级为加密
         // - 这里我们根据端口判断是否启用SSL socketFactory
-        if ("465".equals(port)) {
-            // 设置SSL socket工厂类
-            // javax.net.ssl.SSLSocketFactory是Java标准库提供的SSL套接字工厂
-            // 使用这个工厂创建的socket会自动进行SSL握手和加密
-            javaMailProperties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-            // 设置SSL socket监听的端口
-            // 通常与SMTP端口一致
-            javaMailProperties.setProperty("mail.smtp.socketFactory.port", port);
+        if("ssl".equals(protocol)) {
+            // 使用 smtps 协议时，属性前缀是 mail.smtps.*
+            javaMailProperties.setProperty("mail.smtps.port", port);
+            javaMailProperties.setProperty("mail.smtps.host", ApplicationUtil.getProperty("email.host"));
+            javaMailProperties.setProperty("mail.smtps.auth", "true");
+            javaMailProperties.setProperty("mail.smtps.ssl.protocols", "TLSv1.2");
+            javaMailProperties.setProperty("mail.smtps.socketFactory.port", port);
+            javaMailProperties.setProperty("mail.smtps.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            // 禁用 mail.smtp.* 属性的干扰
+            javaMailProperties.setProperty("mail.smtp.starttls.enable", "false");
+        } else if("smtp".equals(protocol)) {
+            // 启用STARTTLS加密
+            javaMailProperties.setProperty("mail.smtp.starttls.enable", "true");
         }
 
         // 将Properties设置到mailSender
@@ -365,13 +376,15 @@ public class InternalEmailSenderServiceImpl implements InternalEmailSenderServic
             // - 认证失败（用户名或密码错误）
             // - 收件人地址格式错误
             // - 邮件内容过大超过服务器限制
-            logger.error(e.getMessage(), e);
+            logger.error("邮件发送异常:", e);
         } catch (UnsupportedEncodingException e) {
             // 字符编码异常
             // 可能的原因：
             // - 附件文件名包含不支持的字符集
             // - 邮件内容编码与声明的编码不符
-            logger.error(e.getMessage(), e);
+            logger.error("邮件发送异常:", e);
+        } catch (Exception e) {
+            logger.error("邮件发送异常:", e);
         }
     }
 

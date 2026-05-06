@@ -12,6 +12,6 @@ public interface AdjustmentValueService {
 
 	double getCurrentValue(String symbol);
 
-	AdjustmentValue getDelayValue(String symbol);
+	AdjustmentValue getDelayValue2(String symbol);
 
 }
