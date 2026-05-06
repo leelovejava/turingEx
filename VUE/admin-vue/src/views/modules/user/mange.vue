@@ -234,6 +234,26 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mod-mange {
+  width: 100%;
+  min-width: 100%;
+}
+
+.mod-mange :deep(.avue-crud) {
+  width: 100%;
+  min-width: 100%;
+}
+
+.mod-mange :deep(.el-table) {
+  width: 100%;
+  min-width: 100%;
+}
+
+.mod-mange :deep(.el-table__header) {
+  width: 100%;
+}
+
+.mod-mange :deep(.el-table__body) {
+  width: 100%;
 }
 
 .speacButton {

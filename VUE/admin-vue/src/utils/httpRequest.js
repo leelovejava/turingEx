@@ -153,10 +153,9 @@ http.adornUrl = (actionName) => {
   // );
 
   return (
-    //域名跟随
     (process.env.NODE_ENV !== "production"
       ? process.env.VUE_APP_BASE_API
-      : "https://" + window.location.hostname + "/api") + actionName
+      : process.env.VUE_APP_API_BASE_URL) + actionName
   );
 };
 

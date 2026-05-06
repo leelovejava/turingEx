@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="!dataForm.id ? '新增' : '编辑'"
+    :title="!dataForm.id ? 'Add' : 'Edit'"
     :close-on-click-modal="false"
     :visible.sync="visible"
     append-to-body
@@ -11,31 +11,19 @@
       :rules="dataRule"
       label-width="140px"
     >
-      <el-form-item label="手机号码" prop="phone">
-        <el-input
-          v-model="dataForm.phone"
-          placeholder="手机号码"
-          clearable
-        ></el-input>
+      <el-form-item label="Phone" prop="phone">
+        <el-input v-model="dataForm.phone" placeholder="Phone" clearable />
       </el-form-item>
-      <el-form-item label="手机号码(备用)" prop="phoneAll">
-        <el-input
-          v-model="dataForm.phoneAll"
-          placeholder="手机号码(备用)"
-          clearable
-        ></el-input>
+      <el-form-item label="Phone All" prop="phoneAll">
+        <el-input v-model="dataForm.phoneAll" placeholder="Phone All" clearable />
       </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input
-          v-model="dataForm.email"
-          placeholder="邮箱"
-          clearable
-        ></el-input>
+      <el-form-item label="Email" prop="email">
+        <el-input v-model="dataForm.email" placeholder="Email" clearable />
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="visible = false">取消</el-button>
-      <el-button type="primary" @click="dataFormSubmit()">确定</el-button>
+      <el-button @click="visible = false">Cancel</el-button>
+      <el-button type="primary" @click="dataFormSubmit()">OK</el-button>
     </span>
   </el-dialog>
 </template>
@@ -55,14 +43,14 @@ export default {
         phone: [
           {
             pattern: /^1[3-9]\d{9}$/,
-            message: "手机号格式不正确",
+            message: "Invalid phone number",
             trigger: "blur",
           },
         ],
         email: [
           {
             type: "email",
-            message: "邮箱格式不正确",
+            message: "Invalid email format",
             trigger: "blur",
           },
         ],
@@ -75,7 +63,6 @@ export default {
       this.$nextTick(() => {
         this.$refs.dataForm.resetFields();
         if (row && row.id) {
-          // 编辑模式
           this.dataForm.id = row.id;
           this.$http({
             url: this.$http.adornUrl("/admin/userOld/getById"),
@@ -91,7 +78,6 @@ export default {
             }
           });
         } else {
-          // 新增模式
           this.dataForm.id = 0;
           this.dataForm.phone = "";
           this.dataForm.phoneAll = "";
@@ -99,24 +85,21 @@ export default {
         }
       });
     },
-    // 表单提交
     dataFormSubmit() {
       this.$refs.dataForm.validate((valid) => {
         if (valid) {
-          // 验证手机号和邮箱不能同时为空
           if (!this.dataForm.phone && !this.dataForm.email) {
-            this.$message.error("手机号和邮箱不能同时为空");
+            this.$message.error("Phone and email cannot both be empty");
             return;
           }
 
           const url = this.dataForm.id
             ? "/admin/userOld/update"
             : "/admin/userOld/save";
-          const method = "post";
 
           this.$http({
             url: this.$http.adornUrl(url),
-            method: method,
+            method: "post",
             data: this.$http.adornData({
               id: this.dataForm.id || undefined,
               phone: this.dataForm.phone || undefined,
@@ -125,7 +108,7 @@ export default {
             }),
           }).then(({ data }) => {
             if (data && data.code === 0) {
-              this.$message.success("操作成功");
+              this.$message.success("Success");
               this.visible = false;
               this.$emit("refreshDataList");
             } else {

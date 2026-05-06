@@ -12,55 +12,51 @@
     >
       <template slot="menuLeft">
         <el-button
+          v-if="isAuth('tzUserOld:save')"
           type="primary"
           icon="el-icon-plus"
           size="small"
-          v-if="isAuth('tzUserOld:save')"
           @click.stop="addOrUpdateHandle()"
-          >新增</el-button
-        >
+        >Add</el-button>
         <el-button
+          v-if="isAuth('tzUserOld:delete')"
           type="danger"
           icon="el-icon-delete"
           size="small"
-          v-if="isAuth('tzUserOld:delete')"
-          @click.stop="deleteHandle()"
           :disabled="dataListSelections.length <= 0"
-          >批量删除</el-button
-        >
+          @click.stop="deleteHandle()"
+        >Batch Delete</el-button>
       </template>
-      <template slot-scope="scope" slot="menu">
+      <template slot="menu" slot-scope="scope">
         <el-button
+          v-if="isAuth('tzUserOld:update')"
           type="primary"
           icon="el-icon-edit"
           size="small"
-          v-if="isAuth('tzUserOld:update')"
           @click.stop="addOrUpdateHandle(scope.row)"
-          >编辑</el-button
-        >
+        >Edit</el-button>
         <el-button
+          v-if="isAuth('tzUserOld:delete')"
           type="danger"
           icon="el-icon-delete"
           size="small"
-          v-if="isAuth('tzUserOld:delete')"
           @click.stop="deleteHandle(scope.row.id)"
-          >删除</el-button
-        >
+        >Delete</el-button>
       </template>
     </avue-crud>
 
-    <!-- 弹窗, 新增 / 修改 -->
     <add-or-update
       v-if="addOrUpdateVisible"
       ref="addOrUpdate"
       @refreshDataList="getDataList"
-    ></add-or-update>
+    />
   </div>
 </template>
 
 <script>
 import { tableOption } from "@/crud/config/tzUserOld";
 import AddOrUpdate from "./tzUserOld-add-or-update";
+
 export default {
   data() {
     return {
@@ -69,7 +65,7 @@ export default {
       dataListLoading: false,
       dataListSelections: [],
       addOrUpdateVisible: false,
-      tableOption: tableOption,
+      tableOption,
       searchParams: {},
       page: {
         total: 0,
@@ -81,9 +77,7 @@ export default {
   components: {
     AddOrUpdate,
   },
-  created() {},
   methods: {
-    // 获取数据列表
     getDataList(page, done) {
       const params = {
         current: page == null ? this.page.currentPage : page.currentPage,
@@ -108,39 +102,32 @@ export default {
         }
       });
     },
-    // 搜索触发
     searchChange(params, done) {
       this.searchParams = params;
       this.page.currentPage = 1;
       this.getDataList(null, done);
     },
-    // 刷新回调
     refreshChange() {
       this.getDataList();
     },
-    // 多选
     selectionChange(val) {
       this.dataListSelections = val;
     },
-    // 新增 / 修改
     addOrUpdateHandle(row) {
       this.addOrUpdateVisible = true;
       this.$nextTick(() => {
         this.$refs.addOrUpdate.init(row);
       });
     },
-    // 删除
     deleteHandle(id) {
-      var ids = id
-        ? [id]
-        : this.dataListSelections.map((item) => item.id);
+      const ids = id ? [id] : this.dataListSelections.map((item) => item.id);
       if (ids.length === 0) {
-        this.$message.warning("请选择要删除的记录");
+        this.$message.warning("Please select records to delete");
         return;
       }
-      this.$confirm(`确定要删除选中的记录吗?`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$confirm("Confirm delete selected records?", "Tip", {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
         type: "warning",
       })
         .then(() => {
@@ -150,7 +137,7 @@ export default {
             data: this.$http.adornData(ids),
           }).then(({ data }) => {
             if (data && data.code === 0) {
-              this.$message.success("删除成功");
+              this.$message.success("Deleted");
               this.getDataList();
             } else {
               this.$message.error(data.msg);

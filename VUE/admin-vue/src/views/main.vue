@@ -2,10 +2,8 @@
   <div
     class="site-wrapper"
     :class="{ 'site-sidebar--fold': sidebarFold }"
-    v-loading.fullscreen.lock="loading"
-    element-loading-text="拼命加载中"
   >
-    <template v-if="!loading">
+    <template>
       <main-navbar />
       <main-sidebar v-if="!isShowService" />
       <div

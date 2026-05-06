@@ -126,6 +126,95 @@
           placeholder="评分"
         ></el-input>
       </el-form-item>
+      <el-form-item v-if="id" label="借贷状态" label-width="100px">
+        <el-select
+          v-model="dataForm.loanStatus"
+          class="inpspase"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in optionsLoanStatus"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item v-if="id" label="可贷金额" label-width="100px">
+        <el-input
+          v-model="dataForm.loanCanAmount"
+          type="number"
+          placeholder="可贷金额"
+        ></el-input>
+      </el-form-item>
+      <el-form-item v-if="id" label="是否老客户" label-width="100px">
+        <el-select
+          v-model="dataForm.isOldUser"
+          class="inpspase"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in optionsOldUser"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item v-if="id" label="已贷金额" label-width="100px">
+        <el-input
+          v-model="dataForm.loanAlreadyAmount"
+          type="number"
+          placeholder="已贷金额"
+        ></el-input>
+      </el-form-item>
+      <el-form-item v-if="id" label="购买量化机器状态" label-width="100px">
+        <el-select
+          v-model="dataForm.createRobotStatus"
+          class="inpspase"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in optionsRobotStatus"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item v-if="id" label="提币状态" label-width="100px">
+        <el-select
+          v-model="dataForm.txState"
+          class="inpspase"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in optionsTxState"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item v-if="id" label="期权预设结果" label-width="100px">
+        <el-select
+          v-model="dataForm.optionPreResult"
+          class="inpspase"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in optionsOptionPreResult"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="备注" label-width="100px" prop="remarks">
         <el-input
           type="textarea"
@@ -191,6 +280,13 @@ export default {
         userLevel: "",
         realNameAuthority:'',
         status: 1,
+        loanStatus: '',
+        loanCanAmount: '',
+        isOldUser: '',
+        loanAlreadyAmount: '',
+        createRobotStatus: '',
+        txState: '',
+        optionPreResult: '',
       },
       options: [
         {
@@ -232,6 +328,60 @@ export default {
           value: false,
         },
       ],
+      optionsLoanStatus: [
+        {
+          label: "正常",
+          value: 1,
+        },
+        {
+          label: "禁止",
+          value: 2,
+        },
+      ],
+      optionsOldUser: [
+        {
+          label: "老客户",
+          value: 1,
+        },
+        {
+          label: "新客户",
+          value: 2,
+        },
+      ],
+      optionsRobotStatus: [
+        {
+          label: "正常",
+          value: 1,
+        },
+        {
+          label: "禁止",
+          value: 2,
+        },
+      ],
+      optionsTxState: [
+        {
+          label: "正常",
+          value: 1,
+        },
+        {
+          label: "禁止",
+          value: 2,
+        },
+      ],
+      optionsOptionPreResult: [
+        {
+          label: "亏损",
+          value: -1,
+        },
+        {
+          label: "未设置",
+          value: 0,
+        },
+        {
+          label: "盈利",
+          value: 1,
+        },
+      ],
       dataRule: {
         username: [
           { required: true, message: "用户名不能为空", trigger: "blur" },
@@ -270,6 +420,13 @@ export default {
         this.dataForm.userLevel = row.userLevel;
         this.dataForm.realNameAuthority = row.realNameAuthority;
         this.dataForm.remarks = row.remarks;
+        this.dataForm.loanStatus = row.loanStatus;
+        this.dataForm.loanCanAmount = row.loanCanAmount;
+        this.dataForm.isOldUser = row.isOldUser;
+        this.dataForm.loanAlreadyAmount = row.loanAlreadyAmount;
+        this.dataForm.createRobotStatus = row.createRobotStatus;
+        this.dataForm.txState = row.txState;
+        this.dataForm.optionPreResult = row.optionPreResult;
       } else {
         this.options.value1 = this.options[0].value1;
         this.optionsTwo.value2 = this.optionsTwo[0].value2;
@@ -288,6 +445,15 @@ export default {
         email: "",
         mobile: "",
         userLevel: "",
+        realNameAuthority:'',
+        status: 1,
+        loanStatus: '',
+        loanCanAmount: '',
+        isOldUser: '',
+        loanAlreadyAmount: '',
+        createRobotStatus: '',
+        txState: '',
+        optionPreResult: '',
       };
     },
     changeVal(val) {
@@ -322,7 +488,14 @@ export default {
                 userId: this.roleList.userId,
                 remarks: this.dataForm.remarks,
                 userLevel: this.dataForm.userLevel,
-                realNameAuthority:this.dataForm.realNameAuthority
+                realNameAuthority:this.dataForm.realNameAuthority,
+                loanStatus: this.dataForm.loanStatus,
+                loanCanAmount: this.dataForm.loanCanAmount,
+                isOldUser: this.dataForm.isOldUser,
+                loanAlreadyAmount: this.dataForm.loanAlreadyAmount,
+                createRobotStatus: this.dataForm.createRobotStatus,
+                txState: this.dataForm.txState,
+                optionPreResult: this.dataForm.optionPreResult
               }),
             }).then(({ data }) => {
               if (data.code == 0) {

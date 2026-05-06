@@ -25,7 +25,7 @@ import './core/global-component'
 // import '@/permission'
 // import '@/icons'
 
-// 引入自定义全局css源码分享站ymfxz.com
+// 引入自定义全局css
 // import '@/assets/css/global.less'
 
 // import cloneDeep from 'lodash/cloneDeep'

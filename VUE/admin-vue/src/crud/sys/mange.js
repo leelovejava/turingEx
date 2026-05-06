@@ -16,6 +16,8 @@ export const tableOption = {
     editBtn: false,
     delBtn: false,
     viewBtn: false,
+    expand: true,
+    emptyText: '暂无数据',
     props: {
       label: 'label',
       value: 'value'
@@ -135,7 +137,71 @@ export const tableOption = {
     },{
       label: 'IP',
       prop: 'userRegip',
-    }, {
+    },{
+      label: '借贷状态',
+      prop: 'loanStatus',
+      type: 'select',
+      dicData: [{
+        label: '正常',
+        value: 1
+      },{
+        label: '禁止',
+        value: 2
+      }]
+    },{
+      label: '可贷金额',
+      prop: 'loanCanAmount'
+    },{
+      label: '是否老客户',
+      prop: 'isOldUser',
+      type: 'select',
+      dicData: [{
+        label: '老客户',
+        value: 1
+      },{
+        label: '新客户',
+        value: 2
+      }]
+    },{
+      label: '已贷金额',
+      prop: 'loanAlreadyAmount'
+    },{
+      label: '购买量化机器状态',
+      prop: 'createRobotStatus',
+      type: 'select',
+      dicData: [{
+        label: '正常',
+        value: 1
+      },{
+        label: '禁止',
+        value: 2
+      }]
+    },{
+      label: '提币状态',
+      prop: 'txState',
+      type: 'select',
+      dicData: [{
+        label: '正常',
+        value: 1
+      },{
+        label: '禁止',
+        value: 2
+      }]
+    },{
+      label: '期权预设结果',
+      prop: 'optionPreResult',
+      type: 'select',
+      dicData: [{
+        label: '亏损',
+        value: -1
+      },{
+        label: '未设置',
+        value: 0
+      },{
+        label: '盈利',
+        value: 1
+      }]
+    },{
       label: '备注',
       prop: 'remarks'
     }]

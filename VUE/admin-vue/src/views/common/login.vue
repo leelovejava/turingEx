@@ -76,23 +76,14 @@
 
       <div class="bottom"></div>
     </div>
-    <Verify
-      ref="verify"
-      :captcha-type="'blockPuzzle'"
-      :img-size="{ width: '400px', height: '200px' }"
-      @success="login"
-    />
   </div>
 </template>
 
 <script>
 import { getUUID } from "@/utils";
-import Verify from "@/components/verifition/Verify";
 import { encrypt } from "@/utils/crypto";
 export default {
-  components: {
-    Verify,
-  },
+  components: {},
   data() {
     return {
       dataForm: {
