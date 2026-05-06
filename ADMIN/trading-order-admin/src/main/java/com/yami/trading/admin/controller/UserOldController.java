@@ -9,31 +9,46 @@ import com.yami.trading.service.user.UserOldService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
-/**
- * 老客户管理控制器
- */
 @RestController
 @CrossOrigin
-@Api(tags = "老客户管理")
+@Api(tags = "User Old")
 @RequestMapping("admin/userOld")
 public class UserOldController {
 
     @Autowired
     private UserOldService userOldService;
 
-    /**
-     * 老客户列表
-     */
     @PostMapping("list")
-    @ApiOperation("老客户列表")
-    public Result<Page<UserOld>> list(Page<UserOld> page, String phone, String email) {
+    @ApiOperation("User old list")
+    public Result<Page<UserOld>> list(@RequestBody(required = false) Map<String, Object> params) {
+        Map<String, Object> query = params == null ? Collections.emptyMap() : params;
+        long current = toLong(query.get("current"), 1L);
+        long size = toLong(query.get("size"), 10L);
+        String id = toText(query.get("id"));
+        String phone = toText(query.get("phone"));
+        String email = toText(query.get("email"));
+
+        Page<UserOld> page = new Page<>(current, size);
         LambdaQueryWrapper<UserOld> queryWrapper = new LambdaQueryWrapper<>();
-        
-        // 按手机号查询
+
+        if (StringUtils.isNotEmpty(id)) {
+            try {
+                queryWrapper.eq(UserOld::getId, Integer.valueOf(id));
+            } catch (NumberFormatException ignored) {
+            }
+        }
+
         if (StringUtils.isNotEmpty(phone)) {
             queryWrapper.and(wrapper -> wrapper
                 .like(UserOld::getPhone, phone)
@@ -41,87 +56,77 @@ public class UserOldController {
                 .like(UserOld::getPhoneAll, phone)
             );
         }
-        
-        // 按邮箱查询
+
         if (StringUtils.isNotEmpty(email)) {
             queryWrapper.like(UserOld::getEmail, email);
         }
-        
-        // 按ID降序排列
+
         queryWrapper.orderByDesc(UserOld::getId);
-        
-        Page<UserOld> result = userOldService.page(page, queryWrapper);
-        return Result.succeed(result);
+        return Result.succeed(userOldService.page(page, queryWrapper));
     }
 
-    /**
-     * 根据ID获取老客户信息
-     */
     @GetMapping("getById")
-    @ApiOperation("根据ID获取老客户信息")
+    @ApiOperation("Get by id")
     public Result<UserOld> getById(Integer id) {
         if (id == null || id <= 0) {
-            return Result.failed("ID不能为空");
+            return Result.failed("ID cannot be empty");
         }
-        UserOld tzUserOld = userOldService.getById(id);
-        return Result.succeed(tzUserOld);
+        return Result.succeed(userOldService.getById(id));
     }
 
-    /**
-     * 添加老客户
-     */
     @PostMapping("save")
-    @ApiOperation("添加老客户")
-    public Result<String> save(@RequestBody UserOld tzUserOld) {
-        // 验证
-        if (StringUtils.isEmpty(tzUserOld.getPhone()) && StringUtils.isEmpty(tzUserOld.getEmail())) {
-            return Result.failed("手机号和邮箱不能同时为空");
+    @ApiOperation("Save")
+    public Result<String> save(@RequestBody UserOld userOld) {
+        if (StringUtils.isEmpty(userOld.getPhone()) && StringUtils.isEmpty(userOld.getEmail())) {
+            return Result.failed("phone and email cannot both be empty");
         }
-        
-        tzUserOld.setId(null);
-        userOldService.save(tzUserOld);
-        return Result.succeed("添加成功");
+        userOld.setId(null);
+        userOldService.save(userOld);
+        return Result.succeed("ok");
     }
 
-    /**
-     * 更新老客户信息
-     */
     @PostMapping("update")
-    @ApiOperation("更新老客户信息")
-    public Result<String> update(@RequestBody UserOld tzUserOld) {
-        if (tzUserOld.getId() == null || tzUserOld.getId() <= 0) {
-            return Result.failed("ID不能为空");
+    @ApiOperation("Update")
+    public Result<String> update(@RequestBody UserOld userOld) {
+        if (userOld.getId() == null || userOld.getId() <= 0) {
+            return Result.failed("ID cannot be empty");
         }
-
-        userOldService.updateById(tzUserOld);
-        return Result.succeed("更新成功");
+        userOldService.updateById(userOld);
+        return Result.succeed("ok");
     }
 
-    /**
-     * 删除老客户
-     */
     @GetMapping("delete")
-    @ApiOperation("删除老客户")
+    @ApiOperation("Delete")
     public Result<String> delete(Integer id) {
         if (id == null || id <= 0) {
-            return Result.failed("ID不能为空");
+            return Result.failed("ID cannot be empty");
         }
-
         userOldService.removeById(id);
-        return Result.succeed("删除成功");
+        return Result.succeed("ok");
     }
 
-    /**
-     * 批量删除老客户
-     */
     @PostMapping("deleteBatch")
-    @ApiOperation("批量删除老客户")
+    @ApiOperation("Delete batch")
     public Result<String> deleteBatch(@RequestBody List<Integer> ids) {
         if (ids == null || ids.isEmpty()) {
-            return Result.failed("请选择要删除的记录");
+            return Result.failed("Please select records to delete");
         }
-
         userOldService.removeByIds(ids);
-        return Result.succeed("批量删除成功");
+        return Result.succeed("ok");
+    }
+
+    private long toLong(Object value, long defaultValue) {
+        if (value == null) {
+            return defaultValue;
+        }
+        try {
+            return Long.parseLong(String.valueOf(value));
+        } catch (Exception ignored) {
+            return defaultValue;
+        }
+    }
+
+    private String toText(Object value) {
+        return value == null ? null : String.valueOf(value).trim();
     }
 }

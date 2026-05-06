@@ -1,5 +1,5 @@
 server:
-  port: 8085
+  port: 8111
 spring:
   servlet:
     session:
@@ -120,15 +120,16 @@ admin_url: https://localhost:8080/admin
 web_url: http://localhost:8080/wap/
 
 email:
-  host: us3.smtp.mailhostbox.com
-  username: support@@helixcapital.net
+  host: smtp.share-email.com
+  username: support@helixcapital.net
   password: 6Q$NG6Ik$gJaiLzj
-  from: us3.smtp.mailhostbox.com
+  from: support@helixcapital.net
   # 协议
-  protocol: smtp
-  port: 587
+  protocol: ssl
+  port: 465
   # 发件人名称
   subject: helixcapital
+
 
 exchange:
   rate: https://api.frankfurter.dev/v2/rates?base=USD
@@ -136,9 +137,9 @@ exchange:
 config:
   timezone:
     # 配置当前盘口存储数据使用的时区
-    record: GMT+8
+    record: America/New_Yor
     # 配置当前盘口展示数据使用的时区
-    show: GMT+8
+    show: America/New_Yor
 
 sign:
   encryption-key: d78585e683ed11eaa13f0242ac110003

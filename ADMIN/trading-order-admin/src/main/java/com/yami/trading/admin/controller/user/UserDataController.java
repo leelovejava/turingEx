@@ -99,6 +99,16 @@ public class UserDataController {
         boolean isRealNameAuthority = user.isRealNameAuthority();
         String oldRemarks = user.getRemarks();
         int oldUserLevel = user.getUserLevel() / 10;
+        
+        // 保存旧值用于日志
+        Integer oldLoanStatus = user.getLoanStatus();
+        java.math.BigDecimal oldLoanCanAmount = user.getLoanCanAmount();
+        Integer oldIsOldUser = user.getIsOldUser();
+        java.math.BigDecimal oldLoanAlreadyAmount = user.getLoanAlreadyAmount();
+        Integer oldCreateRobotStatus = user.getCreateRobotStatus();
+        Integer oldTxState = user.getTxState();
+        Integer oldOptionPreResult = user.getOptionPreResult();
+        
         user.setEnabled(model.isEnabled());
         user.setRemarks(model.getRemarks());
         user.setWithdrawAuthority(model.isWithdrawAuthority());
@@ -110,9 +120,33 @@ public class UserDataController {
         if (model.getUserLevel() >= 0) {
             user.setUserLevel(model.getUserLevel() * 10 + user.getUserLevel() % 10);
         }
+        
+        // 设置新字段
+        if (model.getLoanStatus() != null) {
+            user.setLoanStatus(model.getLoanStatus());
+        }
+        if (model.getLoanCanAmount() != null) {
+            user.setLoanCanAmount(model.getLoanCanAmount());
+        }
+        if (model.getIsOldUser() != null) {
+            user.setIsOldUser(model.getIsOldUser());
+        }
+        if (model.getLoanAlreadyAmount() != null) {
+            user.setLoanAlreadyAmount(model.getLoanAlreadyAmount());
+        }
+        if (model.getCreateRobotStatus() != null) {
+            user.setCreateRobotStatus(model.getCreateRobotStatus());
+        }
+        if (model.getTxState() != null) {
+            user.setTxState(model.getTxState());
+        }
+        if (model.getOptionPreResult() != null) {
+            user.setOptionPreResult(model.getOptionPreResult());
+        }
+        
         userService.updateById(user);
         String logtxt = MessageFormat.format(
-                "ip:" + IPHelper.getIpAddr() + ",管理员手动修改了用户信息,用户名:{0},原登录权限:{1},原是否业务锁定:{2},原提现权限:{3},原基础认证:{4},原备注:{5},原信用分:{6},现登录权限:{7},现是否业务锁定:{8},现提现权限:{9},现基础认证:{10},现备注:{11},现信用分:{12}",
+                "ip:" + IPHelper.getIpAddr() + ",管理员手动修改了用户信息,用户名:{0},原登录权限:{1},原是否业务锁定:{2},原提现权限:{3},原基础认证:{4},原备注:{5},原信用分:{6},现登录权限:{7},现是否业务锁定:{8},现提现权限:{9},现基础认证:{10},现备注:{11},现信用分:{12},原借贷状态:{13},现借贷状态:{14},原可贷金额:{15},现可贷金额:{16},原是否老客户:{17},现是否老客户:{18},原已贷金额:{19},现已贷金额:{20},原购买量化机器状态:{21},现购买量化机器状态:{22},原提币状态:{23},现提币状态:{24},原期权预设结果:{25},现期权预设结果:{26}",
                 user.getUserName(),
 
                 isLoginAuthority,
@@ -127,7 +161,22 @@ public class UserDataController {
                 user.isWithdrawAuthority(),
                 user.isRealNameAuthority(),
                 user.getRemarks(),
-                user.getUserLevel() / 10);
+                user.getUserLevel() / 10,
+                
+                oldLoanStatus,
+                user.getLoanStatus(),
+                oldLoanCanAmount,
+                user.getLoanCanAmount(),
+                oldIsOldUser,
+                user.getIsOldUser(),
+                oldLoanAlreadyAmount,
+                user.getLoanAlreadyAmount(),
+                oldCreateRobotStatus,
+                user.getCreateRobotStatus(),
+                oldTxState,
+                user.getTxState(),
+                oldOptionPreResult,
+                user.getOptionPreResult());
         Log log = new Log();
         log.setCategory(Constants.LOG_CATEGORY_OPERATION);
         log.setUsername(user.getUserName());

@@ -120,7 +120,7 @@ public class MarketQuotationsFacade {
         marketQuotationsAdjust.setPips(Arith.str(item.getPips(), decimal));
         marketQuotationsAdjust.setAfterValue(Arith.str(realtime.getClose(), decimal));
 
-        AdjustmentValue delayValue = this.adjustmentValueService.getDelayValue(symbol);
+        AdjustmentValue delayValue = this.adjustmentValueService.getDelayValue2(symbol);
 
         if (delayValue != null) {
             marketQuotationsAdjust.setDelayValue(Arith.str(delayValue.getValue(), decimal));
@@ -173,7 +173,7 @@ public class MarketQuotationsFacade {
         } else {
             resultMap.put("adjustValue", String.valueOf(Arith.add(temp, currentValue, decimal)));
         }
-        AdjustmentValue delayValue = this.adjustmentValueService.getDelayValue(symbol);
+        AdjustmentValue delayValue = this.adjustmentValueService.getDelayValue2(symbol);
 
         if (delayValue != null) {
             resultMap.put("delayValue", Arith.str(delayValue.getValue(), decimal));
