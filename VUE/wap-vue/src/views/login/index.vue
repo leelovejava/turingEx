@@ -48,6 +48,7 @@ const onRoute = (path) => {
 let username = ref('')
 let password = ref('')
 let activeIndex = ref(0)
+let isLoading = ref(false)
 const type = ref(3)
 
 const getRegType = (activeIndex, bFlag) => {
@@ -106,13 +107,13 @@ const loginUser = () => {
         passWord: password.value,
         type: type.value
     }).then((res) => {
-        isLoading.value = false
         userStore[GET_USERINFO](res)
         store.commit('user/SET_USERINFO', res)
         router.push('/')
     }).catch((res) => {
-        isLoading.value = false
         console.log(res)
+    }).finally(() => {
+        isLoading.value = false
     })
 }
 </script>

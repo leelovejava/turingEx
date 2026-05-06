@@ -309,14 +309,6 @@ const cellList = computed(() => {
             path: "/language",
           },
           // { icon: 'gold-coin-o', title: t('计价方式'), path: '/cryptos/exchangeRate' },
-          {
-            icon: new URL(
-              "../../assets/image/assets-center/aboutUs.png",
-              import.meta.url
-            ),
-            title: "工单中心",
-            path: "/workerOrder",
-          },
         ],
       },
       // {

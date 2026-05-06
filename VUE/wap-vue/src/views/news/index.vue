@@ -5,8 +5,8 @@
       <van-empty v-if="list.length === 0 && !loading" :description="t('暂无数据')" />
       <van-steps direction="vertical" :active="0" v-else>
         <van-step v-for="(item, index) in list" :key="item.uuid || index">
-          <p class="time">{{ item.createdAt }}</p>
-          <p class="context" v-html="item.description"></p>
+          <p class="time">{{ item.createdAt || item.createTime || item.time || '' }}</p>
+          <p class="context" v-html="item.description || item.content || item.title || ''"></p>
         </van-step>
       </van-steps>
       <div class="flex mt-2" v-if="list.length > 0">
@@ -18,13 +18,13 @@
     
 <script setup>
 import { ref, onMounted } from 'vue';
-import { _getInformationList } from '@/service/etf.api'
+import { _getNewsList1 } from '@/service/user.api'
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
+import { getStorage } from '@/utils/index'
 
 const { t } = useI18n()
 const list = ref([])
-const maxTime = ref('')
 const loading = ref(false)
 
 onMounted(async () => {
@@ -33,14 +33,15 @@ onMounted(async () => {
 
 const onLoadMore = () => {
   if (list.value.length > 0) {
-    maxTime.value = list.value[list.value.length - 1].createdAt
-    getInformationList()
+    const lastItem = list.value[list.value.length - 1]
+    getInformationList(lastItem.createTime)
   }
 }
 
-const getInformationList = () => {
+const getInformationList = (maxTime) => {
   loading.value = true
-  _getInformationList(maxTime.value).then(data => {
+  const lang = getStorage('lang') || 'en'
+  _getNewsList1({ language: lang, maxTime }).then(data => {
     loading.value = false
     if (Array.isArray(data)) {
       list.value = [...list.value, ...data]
@@ -53,8 +54,6 @@ const getInformationList = () => {
     showToast('加载失败')
   })
 }
-
-
 </script>
 <style lang="scss" scoped>
 :deep(.van-steps) {
