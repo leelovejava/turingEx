@@ -155,6 +155,11 @@ public class AdminMinerOrderController {
 					MinerOrder order = minerOrderService.findByOrder_no(orderNo);
 
 					Miner miner = minerService.findById(order.getMiner_id());
+					
+					// 体验矿机不支持提前赎回
+					if ("Y".equals(miner.getTest())) {
+						throw new BusinessException("体验矿机不支持提前赎回");
+					}
 
 					Date date_now = new Date();// 取时间
 					double last_days = daysBetween(order.getCreate_time(), date_now);
@@ -173,6 +178,8 @@ public class AdminMinerOrderController {
 					break;
 				}
 
+			} catch (BusinessException e) {
+				logger.error("error:", e);
 			} catch (Exception e) {
 				logger.error("error:", e);
 			}

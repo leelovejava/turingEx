@@ -352,6 +352,10 @@ public class AdminMinerController {
 		String test = miner.getTest();
 		String on_sale = miner.getOn_sale();
 		
+		// 体验矿机随机日利率范围
+		double daily_rate_start = miner.getDaily_rate_start();
+		double daily_rate_end = miner.getDaily_rate_end();
+		
 		//基础参数
 		String algorithm = miner.getAlgorithm();
 		double computing_power = miner.getComputing_power();
@@ -378,6 +382,9 @@ public class AdminMinerController {
 		map.put("show_daily_rate", show_daily_rate);
 		map.put("test", test);
 		map.put("on_sale", on_sale);
+		// 体验矿机日利率范围
+		map.put("daily_rate_start", daily_rate_start);
+		map.put("daily_rate_end", daily_rate_end);
 		map.put("algorithm", algorithm);
 		map.put("computing_power", computing_power);
 		map.put("computing_power_unit", computing_power_unit);
@@ -433,6 +440,9 @@ public class AdminMinerController {
 		String on_sale = request.getParameter("on_sale");
 		String login_safeword = request.getParameter("login_safeword");
 		String computing_power_unit = request.getParameter("computing_power_unit");
+		// 体验矿机日利率范围
+		String daily_rate_start = request.getParameter("daily_rate_start");
+		String daily_rate_end = request.getParameter("daily_rate_end");
 		
 //		ModelAndView model = new ModelAndView();
 //		model.addObject("id", id);
@@ -486,6 +496,14 @@ public class AdminMinerController {
 			miner.setOn_sale(on_sale);
 			miner.setShow_daily_rate(Double.valueOf(show_daily_rate));
 //			miner.setState(this.state);
+			
+			// 设置体验矿机日利率范围
+			if(daily_rate_start != null && !daily_rate_start.isEmpty()) {
+				miner.setDaily_rate_start(Double.valueOf(daily_rate_start));
+			}
+			if(daily_rate_end != null && !daily_rate_end.isEmpty()) {
+				miner.setDaily_rate_end(Double.valueOf(daily_rate_end));
+			}
 			
 			//基础参数
 			miner.setAlgorithm(algorithm);

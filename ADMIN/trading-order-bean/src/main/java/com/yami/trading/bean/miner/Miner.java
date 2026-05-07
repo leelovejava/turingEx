@@ -19,7 +19,7 @@ import java.util.Comparator;
 @TableName("t_miner")
 public class Miner extends UUIDEntity implements Comparator<Miner> {
 
-	private static final long serialVersionUID = 1639941028310043811L;
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 矿机名称(简体中文)
@@ -53,6 +53,26 @@ public class Miner extends UUIDEntity implements Comparator<Miner> {
 	 * 展示日利率(%)
 	 */
 	private double show_daily_rate;
+
+	/**
+	 * 显示日利率开始值(%) - 用于前端展示的日利率区间开始
+	 */
+	private double show_daily_rate_start;
+
+	/**
+	 * 显示日利率结束值(%) - 用于前端展示的日利率区间结束
+	 */
+	private double show_daily_rate_end;
+
+	/**
+	 * 日利率开始值(%) - 用于体验矿机随机利率计算
+	 */
+	private double daily_rate_start;
+
+	/**
+	 * 日利率结束值(%) - 用于体验矿机随机利率计算
+	 */
+	private double daily_rate_end;
 
 	/**
 	 * 最低投资金额(USDT)
@@ -236,6 +256,70 @@ public class Miner extends UUIDEntity implements Comparator<Miner> {
 
 	public void setShow_daily_rate(double show_daily_rate) {
 		this.show_daily_rate = show_daily_rate;
+	}
+
+	/**
+	 * 获取显示日利率开始值(%)
+	 * @return 显示日利率开始值
+	 */
+	public double getShow_daily_rate_start() {
+		return show_daily_rate_start;
+	}
+
+	/**
+	 * 设置显示日利率开始值(%)
+	 * @param show_daily_rate_start 显示日利率开始值
+	 */
+	public void setShow_daily_rate_start(double show_daily_rate_start) {
+		this.show_daily_rate_start = show_daily_rate_start;
+	}
+
+	/**
+	 * 获取显示日利率结束值(%)
+	 * @return 显示日利率结束值
+	 */
+	public double getShow_daily_rate_end() {
+		return show_daily_rate_end;
+	}
+
+	/**
+	 * 设置显示日利率结束值(%)
+	 * @param show_daily_rate_end 显示日利率结束值
+	 */
+	public void setShow_daily_rate_end(double show_daily_rate_end) {
+		this.show_daily_rate_end = show_daily_rate_end;
+	}
+
+	/**
+	 * 获取日利率开始值(%)
+	 * @return 日利率开始值
+	 */
+	public double getDaily_rate_start() {
+		return daily_rate_start;
+	}
+
+	/**
+	 * 设置日利率开始值(%)
+	 * @param daily_rate_start 日利率开始值
+	 */
+	public void setDaily_rate_start(double daily_rate_start) {
+		this.daily_rate_start = daily_rate_start;
+	}
+
+	/**
+	 * 获取日利率结束值(%)
+	 * @return 日利率结束值
+	 */
+	public double getDaily_rate_end() {
+		return daily_rate_end;
+	}
+
+	/**
+	 * 设置日利率结束值(%)
+	 * @param daily_rate_end 日利率结束值
+	 */
+	public void setDaily_rate_end(double daily_rate_end) {
+		this.daily_rate_end = daily_rate_end;
 	}
 
 	public int compare(Miner o1, Miner o2) {

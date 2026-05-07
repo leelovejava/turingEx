@@ -73,6 +73,18 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 	protected NamedParameterJdbcOperations namedParameterJdbcTemplate;
 
 	/**
+	 * 预收益服务
+	 */
+	@Autowired
+	private com.yami.trading.service.quant.service.QuantPreIncomeService quantPreIncomeService;
+
+	/**
+	 * 机器人订单服务
+	 */
+	@Autowired
+	private com.yami.trading.service.quant.service.QuantBotOrderService quantBotOrderService;
+
+	/**
 	 * 计算推荐人收益
 	 */
 	protected Map<String, Double> cacheRecomProfit = new ConcurrentHashMap<>();
@@ -94,10 +106,16 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 	/**
 	 * 计算订单收益
 	 * 
+	 * 所有矿机收益计算逻辑（已调整）：
+	 * - 收益 = 投资金额 × 随机日利率(%)
+	 * - 随机日利率在购买时生成，介于矿机的daily_rate_start和daily_rate_end之间
+	 * - 例如：投资金额100U，随机日利率1.8%，则每日收益 = 100 × 1.8% = 1.8U
+	 * 
 	 * @param orders                 订单列表
 	 * @param miner_profit_symbol    指定币种
 	 * @param realtime               币种行情
 	 * @param miner_bonus_parameters 推荐人收益参数
+	 * @param systemTime             系统时间
 	 */
 	@Override
 	public void saveComputeOrderProfit(List orders, String miner_profit_symbol, Realtime realtime,
@@ -119,7 +137,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 			if (miner.getTest().equals("N") && systemTime.before(order.getEarn_time())) {
 				continue;
 			}
-			// 体验矿机，今天<起息日 不计息
+			// 体验矿机判断：systemTime < 当日起息日零点 则不计息（体验矿机当天购买当天计息）
 			if (miner.getTest().equals("Y") && systemTime.before(DateUtils.getDayStart(order.getEarn_time()))) {
 				continue;
 			}
@@ -132,42 +150,55 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 				// 当天计算过，则不再计算，例如 1号4点计算， 则2号0点以前进入都判定计算过
 				if (order.getCompute_day() != null
 						&& systemTime.before(DateUtils.getDayStart(DateUtils.addDate(order.getCompute_day(), 1)))) {
-					double day_profit = 0;
-					if (miner.getTest().equals("Y")) {
-						day_profit = miner_test_profit;
-					} else {
-						day_profit = Arith.mul(order.getAmount(), Arith.mul(miner.getDaily_rate(), 0.01));
-					}
-					handleRecomProfit(order.getPartyId().toString(), day_profit, miner, miner_bonus_parameters);// 已经计息过的直接进入缓存
+					// 收益已计算过，跳过（不在每日发放，改为赎回时一次性发放）
 					continue;
 				}
-				/**
-				 * 当日获取的收益
-				 */
-				double day_profit = 0;
-				if (miner.getTest().equals("Y")) {
-					day_profit = miner_test_profit;
-				} else {
-					day_profit = Arith.mul(order.getAmount(), Arith.mul(miner.getDaily_rate(), 0.01));
+
+				// 从预收益表中读取收益（属于该订单的预收益记录）
+				List<com.yami.trading.bean.quant.QuantPreIncome> preIncomes = 
+					quantPreIncomeService.findUnusedByQuantOrderId(order.getUuid());
+				
+				if (preIncomes != null && !preIncomes.isEmpty()) {
+					// 累计当天220条预收益记录的收益
+					double dailyTotalProfit = 0;
+					int count = 0;
+					Integer lastPreIncomeId = null;
+					
+					for (com.yami.trading.bean.quant.QuantPreIncome preIncome : preIncomes) {
+						if (count >= 220) { // 每天最多处理220条
+							break;
+						}
+						dailyTotalProfit = Arith.add(dailyTotalProfit, preIncome.getIncome());
+						quantPreIncomeService.markAsUsed(preIncome.getId());
+						lastPreIncomeId = preIncome.getId();
+						count++;
+					}
+					
+					order.setCompute_day(systemTime);// 记息日期
+					order.setProfit(Arith.add(order.getProfit(), dailyTotalProfit));// 累计收益（不发放，赎回时一起发放）
+
+					// 在 t_quant_bot_orders 表中新增一条使用记录（当天的汇总记录）
+					com.yami.trading.bean.quant.QuantBotOrder botOrder = new com.yami.trading.bean.quant.QuantBotOrder();
+					botOrder.setUserId(order.getPartyId());
+					botOrder.setNumber(BigDecimal.valueOf(order.getAmount()));
+					botOrder.setStatus(3); // 已平仓
+					botOrder.setCreatedAt(new Date());
+					botOrder.setUpdatedAt(new Date());
+					botOrder.setHandledAt(new Date());
+					botOrder.setCompleteAt(new Date());
+					// 最终收益 = 当天220条预收益记录的累加值
+					botOrder.setFactProfits(BigDecimal.valueOf(dailyTotalProfit));
+					botOrder.setProfitResult(dailyTotalProfit >= 0 ? 1 : -1); // 1:盈利, -1:亏损
+					botOrder.setPreProfitResult(dailyTotalProfit >= 0 ? 1 : -1);
+					botOrder.setBotOrderId(lastPreIncomeId); // 关联最后一条预收益记录ID
+					botOrder.setProfitRatio(BigDecimal.valueOf(order.getRandom_daily_rate())); // 设置收益率（日利率）
+					quantBotOrderService.createBotOrder(botOrder);
+
+					saveMinerOrders
+							.add(new MinerOrderMessage(order.getOrder_no(), order.getProfit(), order.getCompute_day()));
+					// 更新矿机订单
+					redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + order.getOrder_no(), order);
 				}
-				order.setCompute_day(systemTime);// 记息日期
-				order.setProfit(Arith.add(order.getProfit(), day_profit));// 累计收益
-				/**
-				 * 给钱包增加收益
-				 */
-				/**
-				 * 矿机产出是否需要转化成某个币种,若为空则不转化，若写入的symbol代码不存在则也不转化
-				 */
-				updateProfitToWallet(miner_profit_symbol, day_profit, realtime, order, systemTime);
-
-				saveMinerOrders
-						.add(new MinerOrderMessage(order.getOrder_no(), order.getProfit(), order.getCompute_day()));
-				// 更新矿机订单
-				redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + order.getOrder_no(), order);
-
-				userDataService.saveMinerProfit(order.getPartyId().toString(), day_profit);
-
-				handleRecomProfit(order.getPartyId().toString(), day_profit, miner, miner_bonus_parameters);
 				//每单处理完后等待100ms，避免循环提交事务导致问题
 				ThreadUtils.sleep(200);
 			}
@@ -217,42 +248,56 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 				// 当天计算过，则不再计算，例如 1号4点计算， 则2号0点以前进入都判定计算过
 				if (order.getCompute_day() != null
 						&& new Date().before(DateUtils.getDayStart(DateUtils.addDate(order.getCompute_day(), 1)))) {
-					double day_profit = 0;
-					if (miner.getTest().equals("Y")) {
-						day_profit = miner_test_profit;
-					} else {
-						day_profit = Arith.mul(order.getAmount(), Arith.mul(miner.getDaily_rate(), 0.01));
-					}
-					handleRecomProfit(order.getPartyId().toString(), day_profit, miner, miner_bonus_parameters);// 已经计息过的直接进入缓存
+					// 收益已计算过，跳过（不在每日发放，改为赎回时一次性发放）
 					continue;
 				}
-				/**
-				 * 当日获取的收益
-				 */
-				double day_profit = 0;
-				if (miner.getTest().equals("Y")) {
-					day_profit = miner_test_profit;
-				} else {
-					day_profit = Arith.mul(order.getAmount(), Arith.mul(miner.getDaily_rate(), 0.01));
+
+				// 从预收益表中读取收益（全局未使用的预收益记录）
+				// 限制每天最多使用220条预收益记录
+				List<com.yami.trading.bean.quant.QuantPreIncome> preIncomes = 
+					quantPreIncomeService.findUnusedByQuantOrderId(null);
+				
+				if (preIncomes != null && !preIncomes.isEmpty()) {
+					// 累计当天220条预收益记录的收益
+					double dailyTotalProfit = 0;
+					int count = 0;
+					Integer lastPreIncomeId = null;
+					
+					for (com.yami.trading.bean.quant.QuantPreIncome preIncome : preIncomes) {
+						if (count >= 220) { // 每天最多处理220条
+							break;
+						}
+						dailyTotalProfit = Arith.add(dailyTotalProfit, preIncome.getIncome());
+						quantPreIncomeService.markAsUsed(preIncome.getId());
+						lastPreIncomeId = preIncome.getId();
+						count++;
+					}
+					
+					order.setCompute_day(new Date());// 记息日期
+					order.setProfit(Arith.add(order.getProfit(), dailyTotalProfit));// 累计收益（不发放，赎回时一起发放）
+
+					// 在 t_quant_bot_orders 表中新增一条使用记录（当天的汇总记录）
+					com.yami.trading.bean.quant.QuantBotOrder botOrder = new com.yami.trading.bean.quant.QuantBotOrder();
+					botOrder.setUserId(order.getPartyId());
+					botOrder.setNumber(BigDecimal.valueOf(order.getAmount()));
+					botOrder.setStatus(3); // 已平仓
+					botOrder.setCreatedAt(new Date());
+					botOrder.setUpdatedAt(new Date());
+					botOrder.setHandledAt(new Date());
+					botOrder.setCompleteAt(new Date());
+					// 最终收益 = 当天220条预收益记录的累加值
+					botOrder.setFactProfits(BigDecimal.valueOf(dailyTotalProfit));
+					botOrder.setProfitResult(dailyTotalProfit >= 0 ? 1 : -1); // 1:盈利, -1:亏损
+					botOrder.setPreProfitResult(dailyTotalProfit >= 0 ? 1 : -1);
+					botOrder.setBotOrderId(lastPreIncomeId); // 关联最后一条预收益记录ID
+					botOrder.setProfitRatio(BigDecimal.valueOf(order.getRandom_daily_rate())); // 设置收益率（日利率）
+					quantBotOrderService.createBotOrder(botOrder);
+
+					saveMinerOrders
+							.add(new MinerOrderMessage(order.getOrder_no(), order.getProfit(), order.getCompute_day()));
+					// 更新矿机订单
+					redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + order.getOrder_no(), order);
 				}
-				order.setCompute_day(new Date());// 记息日期
-				order.setProfit(Arith.add(order.getProfit(), day_profit));// 累计收益
-				/**
-				 * 给钱包增加收益
-				 */
-				/**
-				 * 矿机产出是否需要转化成某个币种,若为空则不转化，若写入的symbol代码不存在则也不转化
-				 */
-				updateProfitToWallet(miner_profit_symbol, day_profit, realtime, order);
-
-				saveMinerOrders
-						.add(new MinerOrderMessage(order.getOrder_no(), order.getProfit(), order.getCompute_day()));
-				// 更新矿机订单
-				redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + order.getOrder_no(), order);
-
-				userDataService.saveMinerProfit(order.getPartyId(), day_profit);
-
-				handleRecomProfit(order.getPartyId(), day_profit, miner, miner_bonus_parameters);
 				//每单处理完后等待100ms，避免循环提交事务导致问题
 				ThreadUtils.sleep(200);
 			}
@@ -537,6 +582,56 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 				new Object[] { new Date(), cacheRecomProfit.size() });
 		// 处理完后收益清空
 
+	}
+
+	/**
+	 * 计算单个订单收益（赎回时调用）
+	 * 
+	 * @param order 矿机订单
+	 */
+	@Override
+	public void saveComputeOrderProfit(MinerOrder order) {
+		log.info("start compute single order profit, orderNo:{}", order.getOrder_no());
+		
+		Miner miner = minerService.cacheById(order.getMiner_id());
+		if (null == miner) {
+			log.error("该矿机不存在，停止计息，minerId:" + order.getMiner_id());
+			return;
+		}
+
+		// 如果没有关联的预收益订单ID，直接返回
+		String quantBotOrderId = order.getUuid();
+		if (StringUtils.isNotEmpty(quantBotOrderId)) {
+			log.info("no quantBotOrderId found for order:{}", order.getOrder_no());
+			return;
+		}
+		
+		// 从预收益表中读取该订单所有未使用的收益记录
+		List<com.yami.trading.bean.quant.QuantPreIncome> preIncomes = 
+			quantPreIncomeService.findUnusedByQuantOrderId(quantBotOrderId);
+		
+		if (preIncomes != null && !preIncomes.isEmpty()) {
+			// 计算所有未使用的预收益记录总和
+			double totalProfit = 0;
+			for (com.yami.trading.bean.quant.QuantPreIncome preIncome : preIncomes) {
+				totalProfit = Arith.add(totalProfit, preIncome.getIncome());
+				// 标记预收益记录为已使用
+				quantPreIncomeService.markAsUsed(preIncome.getId());
+			}
+			
+			order.setProfit(Arith.add(order.getProfit(), totalProfit));
+			
+			// 更新矿机订单
+			redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + order.getOrder_no(), order);
+			
+			// 持久化到数据库
+			String sql = "UPDATE T_MINER_ORDER SET PROFIT=? WHERE ORDER_NO=?";
+			jdbcTemplate.update(sql, order.getProfit(), order.getOrder_no());
+			
+			log.info("finish compute single order profit, orderNo:{}, totalProfit:{}", order.getOrder_no(), totalProfit);
+		} else {
+			log.info("no unused pre-income records found for order:{}", order.getOrder_no());
+		}
 	}
 
 	@Override

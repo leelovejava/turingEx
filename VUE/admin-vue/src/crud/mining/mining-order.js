@@ -114,6 +114,15 @@ export const tableOption = {
     label: '金额',
     prop: 'amount'
   }, {
+    label: '日利率(%)',
+    prop: 'random_daily_rate',
+    formatter: (row, value, label, column) => {
+      if (row.random_daily_rate) {
+        return row.random_daily_rate
+      }
+      return '-'
+    }
+  }, {
     label: '收益',
     prop: 'profit'
   }, {

@@ -32,6 +32,13 @@ public interface MinerOrderProfitService {
 	void saveComputeOrderProfit(List orders, String miner_profit_symbol, Realtime realtime,
 			String miner_bonus_parameters,Date systemTime);
 	/**
+	 * 计算单个订单收益（赎回时调用）
+	 * 
+	 * @param order 矿机订单
+	 */
+	void saveComputeOrderProfit(MinerOrder order);
+	
+	/**
 	 * 推荐人收益清空
 	 */
 	void cacheRecomProfitClear();

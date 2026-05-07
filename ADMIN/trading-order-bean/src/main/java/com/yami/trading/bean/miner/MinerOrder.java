@@ -15,7 +15,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_miner_order")
 public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
-	private static final long serialVersionUID = -726057340004619294L;
+	private static final long serialVersionUID = 1L;
 
 	@TableField("party_id")
 	private String party_id;
@@ -90,6 +90,11 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	 * 基础计息金额
 	 */
 	private double base_compute_amount;
+
+	/**
+	 * 体验矿机随机日利率(%) - 购买时随机生成，介于日利率开始和结束值之间
+	 */
+	private double random_daily_rate;
 
 	@Setter
 	@Getter
@@ -198,6 +203,22 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 
 	public void setBase_compute_amount(double base_compute_amount) {
 		this.base_compute_amount = base_compute_amount;
+	}
+
+	/**
+	 * 获取体验矿机随机日利率(%)
+	 * @return 随机日利率
+	 */
+	public double getRandom_daily_rate() {
+		return random_daily_rate;
+	}
+
+	/**
+	 * 设置体验矿机随机日利率(%)
+	 * @param random_daily_rate 随机日利率
+	 */
+	public void setRandom_daily_rate(double random_daily_rate) {
+		this.random_daily_rate = random_daily_rate;
 	}
 
 	@Override

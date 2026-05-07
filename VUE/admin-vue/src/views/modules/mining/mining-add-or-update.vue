@@ -250,11 +250,47 @@
               </template></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="8">
-          <el-form-item label="今日利率" prop="daily_rate">
+      </el-row>
+      <!-- 矿机日利率范围（所有矿机都有） -->
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="日利率最小值" prop="daily_rate_start">
             <el-input
-              v-model="dataForm.daily_rate"
-              placeholder="今日利率"
+              v-model="dataForm.daily_rate_start"
+              placeholder="日利率最小值"
+            ><template v-slot:append>
+                <span>%</span>
+              </template></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="日利率最大值" prop="daily_rate_end">
+            <el-input
+              v-model="dataForm.daily_rate_end"
+              placeholder="日利率最大值"
+            ><template v-slot:append>
+                <span>%</span>
+              </template></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <!-- 矿机显示日利率范围（前端展示用） -->
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="显示日利率开始" prop="show_daily_rate_start">
+            <el-input
+              v-model="dataForm.show_daily_rate_start"
+              placeholder="显示日利率开始"
+            ><template v-slot:append>
+                <span>%</span>
+              </template></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="显示日利率结束" prop="show_daily_rate_end">
+            <el-input
+              v-model="dataForm.show_daily_rate_end"
+              placeholder="显示日利率结束"
             ><template v-slot:append>
                 <span>%</span>
               </template></el-input>

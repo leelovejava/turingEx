@@ -144,7 +144,8 @@ public class MinerServiceImpl extends ServiceImpl<MinerMapper, Miner> implements
 			if (realtime_list.size() > 0) {
 				realtime = realtime_list.get(0);
 			} else {
-				throw new BusinessException("行情获取异常，稍后再试");
+				// 行情获取异常，稍后再试
+				throw new BusinessException("Market data acquisition exception, please try again later");
 			}
 			symbol_profit = Arith.mul(symbol_profit, realtime.getClose());
 		}
@@ -155,7 +156,8 @@ public class MinerServiceImpl extends ServiceImpl<MinerMapper, Miner> implements
 			if (realtime_list.size() > 0) {
 				realtime = realtime_list.get(0);
 			} else {
-				throw new BusinessException("行情获取异常，稍后再试");
+				// 行情获取异常，稍后再试
+				throw new BusinessException("Market data acquisition exception, please try again later");
 			}
 			symbol_profit = Arith.div(symbol_profit, realtime.getClose());
 			result.put("symbol_profit", symbol_profit);

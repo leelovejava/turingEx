@@ -54,8 +54,11 @@ export const tableOption = {
     label: '日利率(%)',
     prop: 'show_daily_rate'
   }, {
-    label: '今日利率(%)',
-    prop: 'daily_rate'
+    label: '日利率范围(%)',
+    prop: 'daily_rate_range',
+    formatter: (row, value, label, column) => {
+      return `${row.daily_rate_start || 0} - ${row.daily_rate_end || 0}`
+    }
   }, {
     label: '投资金额区间(USDT)',
     prop: 'investment_min'

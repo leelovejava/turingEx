@@ -410,9 +410,8 @@ public class ApiWalletController {
             mapUsdt.put("usableUsdt", df2.format(Double.parseDouble(mapRet.get("usdt").toString())));
             mapUsdt.put("usable", df2.format(Double.parseDouble(mapRet.get("usdt").toString())));
             mapUsdt.put("frozenAmount", 0);
-            if (StringUtils.isNotEmpty(symbolType) && !symbolType.equals("stocks")) {
-                extendsList.add(0, mapUsdt);
-            }
+            // 始终将USDT添加到extends数组中，确保前端能够找到USDT的可用余额
+            extendsList.add(0, mapUsdt);
         }
         mapRet.put("extends", extendsList);
         return Result.succeed(mapRet);
