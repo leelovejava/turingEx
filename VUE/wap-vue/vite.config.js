@@ -37,7 +37,7 @@ export default defineConfig({
     host: '0.0.0.0',
     proxy: {
       "/api": {
-        target: "https://api.turingex.top",   //填写反向代理8085后的域名
+        target: "https://api.helixcapital.net",   //填写反向代理8085后的域名
         changeOrigin: true,
         secure: false
       },

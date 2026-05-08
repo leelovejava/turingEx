@@ -132,7 +132,18 @@ email:
 
 
 exchange:
-  rate: https://api.frankfurter.dev/v2/rates?base=USD
+  rate: https://api.frankfurter.app/latest?from=USD
+
+twelvedata:
+  base-url: https://api.twelvedata.com
+  api-key: 35445ee5fde748f498cc5feb52760b33
+
+xueqiu:
+  live-url:
+  markets-url:
+  pankou-url:
+  trade-list-url:
+  lease-url:
 
 config:
   timezone:
@@ -144,3 +155,12 @@ config:
 sign:
   encryption-key: d78585e683ed11eaa13f0242ac110003
   version-number: 
+
+tradeview:
+  data-url: https://onjdo.com/stock/api/live/getTradeViewData
+
+huobi:
+  realtime-sync:
+    enabled: true
+    cron: '*/3 * * * * ?'
+    url: https://api.huobi.pro/market/tickers

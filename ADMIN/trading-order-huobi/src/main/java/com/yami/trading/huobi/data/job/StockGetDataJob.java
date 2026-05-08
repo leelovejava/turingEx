@@ -6,6 +6,7 @@ import com.yami.trading.bean.item.domain.Item;
 import com.yami.trading.common.util.*;
 import com.yami.trading.huobi.hobi.HobiDataService;
 import com.yami.trading.huobi.hobi.internal.SpiderService;
+import com.yami.trading.huobi.hobi.internal.XueQiuDataServiceImpl;
 import com.yami.trading.service.MarketOpenChecker;
 import com.yami.trading.service.item.ItemService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,8 @@ public class StockGetDataJob extends AbstractGetDataJob {
     private ItemService itemService;
     @Autowired
     private SpiderService spiderService;
+    @Autowired
+    private XueQiuDataServiceImpl xueQiuDataService;
     @Override
     public void start() {
         new Thread(this, "StockGetDataJob").start();
@@ -142,7 +145,8 @@ public class StockGetDataJob extends AbstractGetDataJob {
             log.error("当前没有行情数据可以采集");
             return;
         }
-        List<Realtime> realtimeList = this.spiderService.fetchRealtimeList(remarks);
+        // 从 Twelve Data API 获取实时数据（替代已失效的 onjdo.com 接口）
+        List<Realtime> realtimeList = this.xueQiuDataService.realtimeSingle(remarks);
         if(stockFirstFetch){
             log.info("首次采集，采集回数据[{}]个", realtimeList.size());
         }
@@ -155,7 +159,8 @@ public class StockGetDataJob extends AbstractGetDataJob {
             log.error("台股当前没有行情数据可以采集");
             return;
         }
-        List<Realtime> realtimeList = this.spiderService.fetchRealtimeList(remarks);
+        // 从 Twelve Data API 获取实时数据（替代已失效的 onjdo.com 接口）
+        List<Realtime> realtimeList = this.xueQiuDataService.realtimeSingle(remarks);
         super.handleRealTimeList(realtimeList);
 
     }
@@ -165,7 +170,8 @@ public class StockGetDataJob extends AbstractGetDataJob {
             log.error("当前没有行情数据可以采集");
             return;
         }
-        List<Realtime> realtimeList = this.spiderService.fetchRealtimeList(remarks);
+        // 从 Twelve Data API 获取实时数据（替代已失效的 onjdo.com 接口）
+        List<Realtime> realtimeList = this.xueQiuDataService.realtimeSingle(remarks);
         super.handleRealTimeList(realtimeList);
     }
 }

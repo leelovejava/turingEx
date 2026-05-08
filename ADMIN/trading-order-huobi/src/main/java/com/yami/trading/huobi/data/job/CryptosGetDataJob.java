@@ -31,28 +31,40 @@ public class CryptosGetDataJob extends AbstractGetDataJob {
 
     @Override
     public void start() {
+        log.info("[CryptoJob] ========== CryptosGetDataJob 启动 ==========");
         new Thread(this, "CryptosGetDataJob").start();
+        log.info("[CryptoJob] ========== CryptosGetDataJob 线程已创建 ==========");
     }
 
     @Override
     public void run() {
+        log.info("[CryptoJob] ========== CryptosGetDataJob.run() 开始执行 ==========");
 
         if (first) {
             /**
              * data数据保存间隔时长(毫秒)
              */
             this.interval = 3000;
-
+            log.info("[CryptoJob] 首次执行, 设置采集间隔: {}ms", this.interval);
             first = false;
         }
+        
+        log.info("[CryptoJob] 进入数据采集循环...");
         while (true) {
+            log.info("[CryptoJob] >>> 循环执行中, 当前时间: {}", System.currentTimeMillis());
             try {
+                log.info("[CryptoJob] --- 查询数据库获取加密货币列表...");
                 List<Item> byType = itemService.findByType(Item.cryptos);
+                log.info("[CryptoJob] --- 查询到 {} 个加密货币", byType.size());
+                
                 String symbols = byType.stream().map(i -> i.getRemarks().replace("usdt", "")).collect(Collectors.joining(","));
+                log.info("[CryptoJob] 开始采集加密货币数据, 币种数量: {}, symbols: {}", byType.size(), symbols);
+                
                 this.realtimeHandle(symbols);
             } catch (Exception e) {
-                logger.error("run fail", e);
+                logger.error("[CryptoJob] 采集加密货币数据失败", e);
             } finally {
+                log.info("[CryptoJob] <<< 等待 {}ms 后继续采集...", this.interval);
                 ThreadUtils.sleep(this.interval);
             }
         }

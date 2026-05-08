@@ -86,7 +86,7 @@ public class FreeForexRateService {
      *   }
      * }
      */
-    private static final String FREE_LIVE_URL = "https://api.frankfurter.dev/latest?from=USD";
+    private static final String FREE_LIVE_URL = "https://api.frankfurter.app/latest?from=USD";
 
     /**
      * Item服务，用于获取货币对的小数位数配置

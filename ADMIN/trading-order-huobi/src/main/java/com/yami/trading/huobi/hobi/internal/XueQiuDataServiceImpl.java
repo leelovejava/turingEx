@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
@@ -137,7 +138,8 @@ public class XueQiuDataServiceImpl {
      *
      * 问题：此接口返回404，需要替换为其他实时行情数据源
      */
-    public final static String live = "https://onjdo.com/stock/api/live/getLiveRates";
+    @Value("${xueqiu.live-url:}")
+    private String liveUrl;
 
     /**
      * 获取市场概要数据
@@ -153,7 +155,8 @@ public class XueQiuDataServiceImpl {
      *
      * 问题：此接口返回404，需要替换为其他市场数据源
      */
-    public final static String markets = "https://onjdo.com/stock/api/live/getMarkets";
+    @Value("${xueqiu.markets-url:}")
+    private String marketsUrl;
 
     /**
      * 获取盘口数据（买卖盘深度）
@@ -169,7 +172,8 @@ public class XueQiuDataServiceImpl {
      *
      * 问题：此接口返回404，需要替换为其他盘口数据源
      */
-    public final static String pankou = "https://onjdo.com/stock/api/live/getPanKou";
+    @Value("${xueqiu.pankou-url:}")
+    private String pankouUrl;
 
     /**
      * 获取逐笔成交数据
@@ -185,7 +189,8 @@ public class XueQiuDataServiceImpl {
      *
      * 问题：此接口返回404，需要替换为其他成交数据源
      */
-    public final static String tradeList = "https://onjdo.com/stock/api/live/getTrade";
+    @Value("${xueqiu.trade-list-url:}")
+    private String tradeListUrl;
 
     /**
      * 续约接口，用于保持数据采集权限
@@ -197,7 +202,8 @@ public class XueQiuDataServiceImpl {
      *
      * 问题：此接口返回404，需要替换
      */
-    public final static String lease = "https://onjdo.com/stock/api/live/lease";
+    @Value("${xueqiu.lease-url:}")
+    private String leaseUrl;
 
     private static Logger logger = LoggerFactory.getLogger(XueQiuDataServiceImpl.class);
 
@@ -205,6 +211,10 @@ public class XueQiuDataServiceImpl {
     private KlineService klineService;
     @Autowired
     private ItemService itemService;
+    @Value("${twelvedata.base-url:https://api.twelvedata.com}")
+    private String twelveDataBaseUrl;
+    @Value("${twelvedata.api-key:}")
+    private String twelveDataApiKey;
 
     /**
      * 获取盘口数据（买卖盘深度）
@@ -221,17 +231,23 @@ public class XueQiuDataServiceImpl {
      *
      * 问题：onjdo.com接口已失效(404)，需要替换为其他盘口数据源
      */
-    public static List<Depth> pankous(String remarks) {
-        Map<String, String> param = new HashMap<>();
-        param.put("currency", remarks);
+    public List<Depth> pankous(String remarks) {
+        if (StrUtil.isBlank(pankouUrl)) {
+            return Lists.newArrayList();
+        }
+        try {
+            Map<String, String> param = new HashMap<>();
+            param.put("currency", remarks);
 
-        String result = HttpHelper.getJSONFromHttpNew(pankou, param, HttpMethodType.GET);
-        JSONObject resultJson = JSON.parseObject(result);
-        String code = resultJson.getString("code");
-        if ("ok".equals(code)) {
-            JSONArray dataArray = resultJson.getJSONArray("data");
-            return dataArray.toJavaList(Depth.class);
-
+            String result = HttpHelper.getJSONFromHttpNew(pankouUrl, param, HttpMethodType.GET);
+            JSONObject resultJson = JSON.parseObject(result);
+            String code = resultJson.getString("code");
+            if ("ok".equals(code)) {
+                JSONArray dataArray = resultJson.getJSONArray("data");
+                return dataArray.toJavaList(Depth.class);
+            }
+        } catch (Exception e) {
+            logger.warn("xueqiu pankou fetch failed, remarks={}, msg={}", remarks, e.getMessage());
         }
         return Lists.newArrayList();
     }
@@ -251,17 +267,23 @@ public class XueQiuDataServiceImpl {
      *
      * 问题：onjdo.com接口已失效(404)，需要替换为其他市场数据源
      */
-    public static List<StockMarket> getMarkets(String symbols) {
-        Map<String, String> param = new HashMap<>();
-        param.put("currency", symbols);
+    public List<StockMarket> getMarkets(String symbols) {
+        if (StrUtil.isBlank(marketsUrl)) {
+            return Lists.newArrayList();
+        }
+        try {
+            Map<String, String> param = new HashMap<>();
+            param.put("currency", symbols);
 
-        String result = HttpHelper.getJSONFromHttpNew(markets, param, HttpMethodType.GET);
-        JSONObject resultJson = JSON.parseObject(result);
-        String code = resultJson.getString("code");
-        if ("ok".equals(code)) {
-            JSONArray dataArray = resultJson.getJSONArray("data");
-            return dataArray.toJavaList(StockMarket.class);
-
+            String result = HttpHelper.getJSONFromHttpNew(marketsUrl, param, HttpMethodType.GET);
+            JSONObject resultJson = JSON.parseObject(result);
+            String code = resultJson.getString("code");
+            if ("ok".equals(code)) {
+                JSONArray dataArray = resultJson.getJSONArray("data");
+                return dataArray.toJavaList(StockMarket.class);
+            }
+        } catch (Exception e) {
+            logger.warn("xueqiu markets fetch failed, symbols={}, msg={}", symbols, e.getMessage());
         }
         return Lists.newArrayList();
     }
@@ -305,7 +327,10 @@ public class XueQiuDataServiceImpl {
         Map<String, String> param = new HashMap<>();
         param.put("currency", symbol);
         param.put("type", bySymbol.getOpenCloseType());
-        String result = HttpHelper.getJSONFromHttpNew(lease, param, HttpMethodType.GET);
+        if (StrUtil.isBlank(leaseUrl)) {
+            return;
+        }
+        String result = HttpHelper.getJSONFromHttpNew(leaseUrl, param, HttpMethodType.GET);
         JSONObject resultJson = JSON.parseObject(result);
         String code = resultJson.getString("code");
         if ("ok".equals(code)) {
@@ -500,7 +525,10 @@ public class XueQiuDataServiceImpl {
         Map<String, String> param = new HashMap<>();
         param.put("currency", remarks);
 
-        String result = HttpHelper.getJSONFromHttpNew(tradeList, param, HttpMethodType.GET);
+        if (StrUtil.isBlank(tradeListUrl)) {
+            return;
+        }
+        String result = HttpHelper.getJSONFromHttpNew(tradeListUrl, param, HttpMethodType.GET);
         JSONObject resultJson = JSON.parseObject(result);
         String code = resultJson.getString("code");
         if ("ok".equals(code)) {
@@ -655,95 +683,89 @@ public class XueQiuDataServiceImpl {
      * 问题：onjdo.com接口已失效(404)，需要替换为其他实时行情数据源
      */
     public List<Realtime> realtimeSingle(String symbol) {
-        List<Realtime> list = new ArrayList<>();
-        try {
-            Map<String, String> param = new HashMap<>();
-            param.put("currency", symbol);
-            String result = HttpHelper.getJSONFromHttpNew(live, param, HttpMethodType.GET);
-            JSONObject resultJson = JSON.parseObject(result);
-            String code = resultJson.getString("code");
-            if ("ok".equals(code)) {
-                JSONArray dataArray = resultJson.getJSONArray("data");
-                for (int i = 0; i < dataArray.size(); i++) {
-                    JSONObject realtimeJson = dataArray.getJSONObject(i);
-                    Realtime realtime = new Realtime();
-                    String currency;
-                    currency = realtimeJson.getString("currency");
-                    int decimal = itemService.getDecimal(currency);
-                    String symbolByRemarks = itemService.getSymbolByRemarks(currency);
-                    realtime.setSymbol(symbolByRemarks);
-                    realtime.setName(symbolByRemarks);
-                    Long timestamp = realtimeJson.getLong("timestamp");
-                    if (timestamp.toString().length() > 13) {
-                        timestamp = timestamp / 1000;
-                    }
-                    realtime.setTs(timestamp);
-                    realtime.setOpen(realtimeJson.getBigDecimal("open").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    if (realtimeJson.getBigDecimal("mid").compareTo(BigDecimal.ZERO) != 0) {
-                        realtime.setClose(realtimeJson.getBigDecimal("mid").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    } else {
-                        realtime.setClose(realtimeJson.getBigDecimal("close").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
+        if (StrUtil.isBlank(twelveDataApiKey)) {
+            logger.warn("twelvedata api-key is empty, skip realtimeSingle. symbol={}", symbol);
+            return Lists.newArrayList();
+        }
+        return realtimeFromTwelveData(symbol);
+    }
 
-                    realtime.setHigh(realtimeJson.getBigDecimal("high").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    realtime.setLow(realtimeJson.getBigDecimal("low").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    realtime.setMarketCapital(realtimeJson.getLong("marketCapital"));
-                    realtime.setFloatMarketCapital(realtimeJson.getLong("floatMarketCapital"));
-                    BigDecimal peForecast = realtimeJson.getBigDecimal("peForecast");
-                    if (peForecast != null) {
-                        realtime.setPeForecast(peForecast.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal volumeRatio = realtimeJson.getBigDecimal("volumeRatio");
-                    if (volumeRatio != null) {
-                        realtime.setVolumeRatio(volumeRatio.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal turnoverRate = realtimeJson.getBigDecimal("turnoverRate");
-                    if (turnoverRate != null) {
-                        realtime.setTurnoverRate(turnoverRate.setScale(2, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal navps = realtimeJson.getBigDecimal("navps");
-                    if (navps != null) {
-                        realtime.setNavps(navps.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal pb = realtimeJson.getBigDecimal("pb");
-                    if (pb != null) {
-                        realtime.setPb(pb.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal amplitude = realtimeJson.getBigDecimal("amplitude");
-                    if (amplitude != null) {
-                        realtime.setAmplitude(amplitude.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal eps = realtimeJson.getBigDecimal("eps");
-                    if (eps != null) {
-                        realtime.setEps(eps.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal chg = realtimeJson.getBigDecimal("chg");
-                    if (chg != null) {
-                        realtime.setChg(chg.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal percent = realtimeJson.getBigDecimal("percent");
-                    if (percent != null) {
-                        realtime.setPercent(percent.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    }
-                    BigDecimal amount = realtimeJson.getBigDecimal("amount");
-                    if (amount == null) {
-                        amount = BigDecimal.ZERO;
-                    }
-                    realtime.setAmount(amount.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    BigDecimal volume = realtimeJson.getBigDecimal("volume");
-                    if (volume == null) {
-                        volume = BigDecimal.ZERO;
-                    }
-                    realtime.setVolume(volume.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    realtime.setAsk(realtimeJson.getBigDecimal("ask").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    realtime.setBid(realtimeJson.getBigDecimal("bid").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-                    list.add(realtime);
-                }
-            } else {
-                logger.error(" realtime()error, resultJson [ " + resultJson.toJSONString() + " ]");
+    private List<Realtime> realtimeFromTwelveData(String symbols) {
+        List<Realtime> list = new ArrayList<>();
+        if (StrUtil.isBlank(symbols) || StrUtil.isBlank(twelveDataApiKey)) {
+            return list;
+        }
+        String[] symbolArr = symbols.split(",");
+        for (String raw : symbolArr) {
+            String one = raw == null ? "" : raw.trim();
+            if (one.isEmpty()) {
+                continue;
             }
-        } catch (Exception e) {
-            logger.error("error", e);
+            try {
+                String url = twelveDataBaseUrl + "/quote";
+                Map<String, String> param = new HashMap<>();
+                param.put("symbol", one);
+                param.put("apikey", twelveDataApiKey);
+                String result = HttpHelper.getJSONFromHttpNew(url, param, HttpMethodType.GET);
+                if (StrUtil.isBlank(result)) {
+                    continue;
+                }
+                JSONObject obj = JSON.parseObject(result);
+                if (obj == null || (obj.containsKey("code") && obj.getInteger("code") >= 400)) {
+                    continue;
+                }
+                String code = obj.getString("code");
+                if ("400".equals(code) || "401".equals(code) || "404".equals(code) || "429".equals(code)) {
+                    continue;
+                }
+
+                String symbolRaw = obj.getString("symbol");
+                if (StrUtil.isBlank(symbolRaw)) {
+                    continue;
+                }
+                String symbolUpper = symbolRaw.toUpperCase(Locale.ROOT);
+                String symbolByRemarks = itemService.getSymbolByRemarks(symbolUpper);
+                if (StrUtil.isBlank(symbolByRemarks)) {
+                    symbolByRemarks = symbolUpper;
+                }
+                int decimal = itemService.getDecimal(symbolByRemarks);
+                if (decimal <= 0) {
+                    decimal = 4;
+                }
+
+                BigDecimal close = obj.getBigDecimal("close");
+                BigDecimal open = obj.getBigDecimal("open");
+                BigDecimal high = obj.getBigDecimal("high");
+                BigDecimal low = obj.getBigDecimal("low");
+                BigDecimal volume = obj.getBigDecimal("volume");
+                BigDecimal change = obj.getBigDecimal("change");
+                BigDecimal percentChange = obj.getBigDecimal("percent_change");
+                if (close == null) {
+                    continue;
+                }
+
+                Realtime realtime = new Realtime();
+                realtime.setSymbol(symbolByRemarks);
+                realtime.setName(symbolByRemarks);
+                realtime.setTs(System.currentTimeMillis());
+                realtime.setOpen((open == null ? close : open).setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                realtime.setClose(close.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                realtime.setHigh((high == null ? close : high).setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                realtime.setLow((low == null ? close : low).setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                realtime.setAsk(close.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                realtime.setBid(close.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                realtime.setVolume((volume == null ? BigDecimal.ZERO : volume).setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                realtime.setAmount(0D);
+                if (change != null) {
+                    realtime.setChg(change.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                }
+                if (percentChange != null) {
+                    realtime.setPercent(percentChange.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                }
+                list.add(realtime);
+            } catch (Exception e) {
+                logger.warn("twelvedata quote error, symbol={}, msg={}", one, e.getMessage());
+            }
         }
         return list;
     }

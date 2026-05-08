@@ -106,10 +106,27 @@ public class SpiderService {
     }
 
     public List<Realtime> fetchRealtimeList(String remarks, String key) {
+        log.info("[Spider] 开始从Redis获取实时数据, key={}, remarks={}", key, remarks);
+        
         List<Realtime> list = new ArrayList<>();
         RMap<String, String> map = redissonClientSpider.getMap(key);
+        
+        if (map == null) {
+            log.error("[Spider] ERROR: Redis Map为空, key={}", key);
+            return list;
+        }
+        
         Set<String> keys = Splitter.on(",").trimResults().splitToStream(remarks).collect(Collectors.toSet());
+        log.info("[Spider] 需要查询的币种数量: {}, key={}", keys.size(), key);
+        
         Map<String, String> values = map.getAll(keys);
+        
+        log.info("[Spider] Redis返回的数据量: {}, key={}", values != null ? values.size() : 0, key);
+        
+        if (values == null || values.isEmpty()) {
+            log.warn("[Spider] WARNING: Redis中没有找到对应数据! key={}, remarks={}", key, remarks);
+            log.warn("[Spider] 可能的原因: 1.爬虫服务未运行 2.爬虫写入失败 3.Redis连接问题");
+        }
         for (String symbol : values.keySet()) {
             JSONObject realtimeJson = JSONObject.parseObject(values.get(symbol).trim());
             realtimeJson.put("mid", realtimeJson.get("current"));

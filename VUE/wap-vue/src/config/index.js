@@ -35,11 +35,11 @@ export const defaultSeconds = 1 * 24 * 60 * 60 * 1000
 
 
 
-const ENV_DEV = 'api.turingex.top' // 填写前端域名网址
+const ENV_DEV = 'api.helixcapital.net' // 填写前端域名网址
 
 // const ENV_DEV = '45.77.173.85:7001' // dev
 
-const ENV_PRO = 'api.turingex.top' // 正式环境固定接口域名
+const ENV_PRO = 'api.helixcapital.net' // 正式环境固定接口域名
 
 // 避免打包出错务必把 app域名的注释要放在在本地ENV_PRO的下面
 // const ENV_PRO = 'foilwm.com' //  app域名
@@ -60,7 +60,7 @@ export const BASE_URL = base_url
 export const WS_URL = ws_url
 export const IMG_PATH = host_url
 export const HOST_URL = host_url
-export const FILE_URL = 'https://file.turingex.top'
+export const FILE_URL = 'https://file.helixcapital.net'
 
 export default {
     sliderOptions: {
