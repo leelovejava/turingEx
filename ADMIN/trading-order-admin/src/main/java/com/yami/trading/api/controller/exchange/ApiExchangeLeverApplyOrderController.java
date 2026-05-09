@@ -187,7 +187,7 @@ public class ApiExchangeLeverApplyOrderController {
     public Result open(String lever_rate, String direction, String session_token,
                        String symbol, String deposit, String price, String order_price_type) {
 
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
         SecurityUtils.getCurrentUserId();

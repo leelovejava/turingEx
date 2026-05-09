@@ -54,7 +54,7 @@ public class ApiChannelBlockchainController {
     @RequestMapping(action + "list.action")
     public Object list() throws IOException {
         List<ChannelBlockchain> data = new ArrayList<ChannelBlockchain>();
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         User party = userService.getById(partyId);
         List<PartyBlockchain> list = partyBlockchainService.findByUserName(party.getUserName());
         if (null != list && !list.isEmpty()) {
@@ -99,7 +99,7 @@ public class ApiChannelBlockchainController {
     public Object getBlockchainName(HttpServletRequest request) throws IOException {
         String coin = request.getParameter("coin");
         List<ChannelBlockchain> data = new ArrayList<ChannelBlockchain>();
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         User party = userService.getById(partyId);
         if (0 == this.sysparaService.find("can_recharge").getInteger()) {
             return Result.failed("请联系客服充值");

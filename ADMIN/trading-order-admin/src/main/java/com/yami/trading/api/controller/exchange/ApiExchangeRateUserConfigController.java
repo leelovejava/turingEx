@@ -45,7 +45,7 @@ public class ApiExchangeRateUserConfigController {
     @GetMapping(action + "userSetRate.action")
     @ApiOperation("设置计价方式")
     public Object userSetRate(@RequestParam String rateId) throws IOException {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (null==rateId || (rateId=rateId.trim()).isEmpty()) {
             throw new YamiShopBindException("rateId is null");
         }

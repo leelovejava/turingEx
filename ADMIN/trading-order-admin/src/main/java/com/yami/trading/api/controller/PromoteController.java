@@ -54,7 +54,7 @@ public class PromoteController {
             page_no = "1";
         }
         int pageNo = Integer.valueOf(page_no);
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         Map<String, Object> data = new HashMap<String, Object>();
         Map<String, Object> data_total = new HashMap<String, Object>();
         List<Map<String, Object>> dataChilds = new ArrayList<Map<String, Object>>();
@@ -91,7 +91,7 @@ public class PromoteController {
      */
     @RequestMapping( "api/promote!getPromoteData.action")
     public Result getPromoteData(HttpServletRequest request) {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         Map<String, String> dataMap = new HashMap<>();
         try {
             Date date = new Date();

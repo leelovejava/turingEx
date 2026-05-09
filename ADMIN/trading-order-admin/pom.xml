@@ -33,6 +33,11 @@
         </dependency>
         <dependency>
             <groupId>com.yami.trading</groupId>
+            <artifactId>trading-order-common</artifactId>
+            <version>${trading-order.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yami.trading</groupId>
             <artifactId>trading-order-huobi</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

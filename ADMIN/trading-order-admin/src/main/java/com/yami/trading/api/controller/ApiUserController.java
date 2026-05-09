@@ -247,7 +247,7 @@ public class ApiUserController {
 // 资金密码不符合设定
             throw new YamiShopBindException("Fund password does not meet requirements");
         }
-        userService.setSafeword(SecurityUtils.getUser().getUserId(), passwordEncoder.encode(model.getSafeword()));
+        userService.setSafeword(SecurityUtils.getCurrentUserId(), passwordEncoder.encode(model.getSafeword()));
         return Result.succeed(null);
     }
 
@@ -315,9 +315,9 @@ public class ApiUserController {
         if (StrUtil.isBlank(accessToken)) {
             return Result.succeed();
         }
-        userService.logout(SecurityUtils.getUser().getUserId());
+        userService.logout(SecurityUtils.getCurrentUserId());
         // 删除该用户在该系统当前的token
-        tokenStore.deleteAllToken(String.valueOf(SysTypeEnum.ORDINARY.value()), String.valueOf(SecurityUtils.getUser().getUserId()));
+        tokenStore.deleteAllToken(String.valueOf(SysTypeEnum.ORDINARY.value()), String.valueOf(SecurityUtils.getCurrentUserId()));
         return Result.succeed();
     }
 
@@ -454,7 +454,7 @@ public class ApiUserController {
     @GetMapping("/getInfo")
     @ApiOperation(value = "查看用户信息")
     public Result<UserDto> getInfo(HttpServletRequest request) {
-        String userId = SecurityUtils.getUser().getUserId();
+        String userId = SecurityUtils.getCurrentUserId();
         User user = userService.getById(userId);
         String token = request.getHeader("token");
         UserDto userDto = new UserDto();
@@ -573,7 +573,7 @@ public class ApiUserController {
 // 请填写正确的电话号码
             throw new YamiShopBindException("Please enter correct phone number");
         }
-        String loginPartyId = SecurityUtils.getUser().getUserId();
+        String loginPartyId = SecurityUtils.getCurrentUserId();
         User party = userService.getById(loginPartyId);
 //        if (null != party.getUserMobile() && party.getUserMobile().equals(phone) && true == party.isUserMobileBind()) {
 //            throw new YamiShopBindException("电话号码已绑定");
@@ -644,7 +644,7 @@ public class ApiUserController {
 // 请填写正确的邮箱地址
             throw new YamiShopBindException("Please enter correct email address");
         }
-        String loginPartyId = SecurityUtils.getUser().getUserId();
+        String loginPartyId = SecurityUtils.getCurrentUserId();
         User party = userService.getById(loginPartyId);
         if (null != party.getUserMail() && party.getUserMail().equals(email) && true == party.isMailBind()) {
 // 邮箱已绑定
@@ -775,7 +775,7 @@ public class ApiUserController {
 // 密码必须6-12位
             throw new YamiShopBindException("Password must be 6-12 characters");
         }
-        User secUser = userService.getById(SecurityUtils.getUser().getUserId());
+        User secUser = userService.getById(SecurityUtils.getCurrentUserId());
         if (!passwordEncoder.matches(old_password, secUser.getLoginPassword())) {
 // 旧密码不正确
             throw new YamiShopBindException("Old password is incorrect");
@@ -812,7 +812,7 @@ public class ApiUserController {
 // 验证码不能为空
             throw new YamiShopBindException("Verification code cannot be empty");
         }
-        String loginPartyId = SecurityUtils.getUser().getUserId();
+        String loginPartyId = SecurityUtils.getCurrentUserId();
         User party = userService.getById(loginPartyId);
         // 根据验证类型获取验证key verifcode_type: 1/手机;2/邮箱;3/谷歌验证器;
         String key = "";
@@ -890,7 +890,7 @@ public class ApiUserController {
             }
         }
         Integer operate_int = Integer.valueOf(operate);
-        this.userSafewordApplyService.saveApply(SecurityUtils.getUser().getUserId(), idcard_path_front, idcard_path_back, idcard_path_hold, safeword, safeword_confirm, operate_int, remark);
+        this.userSafewordApplyService.saveApply(SecurityUtils.getCurrentUserId(), idcard_path_front, idcard_path_back, idcard_path_hold, safeword, safeword_confirm, operate_int, remark);
         return Result.succeed(null);
     }
 
@@ -898,7 +898,7 @@ public class ApiUserController {
     @GetMapping("getSafewordApply")
     public Result getSafewordApply() {
         List<Map<String, Object>> retList = new ArrayList<Map<String, Object>>();
-        List<UserSafewordApply> list = this.userSafewordApplyService.findByUserId(SecurityUtils.getUser().getUserId());
+        List<UserSafewordApply> list = this.userSafewordApplyService.findByUserId(SecurityUtils.getCurrentUserId());
         for (int i = 0; i < list.size(); i++) {
             retList.add(this.userSafewordApplyService.bindOne(list.get(i)));
         }

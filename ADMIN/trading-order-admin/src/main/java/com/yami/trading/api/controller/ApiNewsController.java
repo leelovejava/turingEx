@@ -156,7 +156,7 @@ public class ApiNewsController {
             newsService.page(page, lambdaQueryWrapper);
             list = page.getRecords();
         } else {
-            String partyId = SecurityUtils.getUser().getUserId();
+            String partyId = SecurityUtils.getCurrentUserId();
             LambdaQueryWrapper<News> lambdaQueryWrapper = Wrappers.<News>query().lambda()
                     .eq(News::getLanguage, language)
                     .eq(News::isPopUp,false)
@@ -206,7 +206,7 @@ public class ApiNewsController {
             newsService.page(page, lambdaQueryWrapper);
             list = page.getRecords();
         } else {
-            String partyId = SecurityUtils.getUser().getUserId();
+            String partyId = SecurityUtils.getCurrentUserId();
             LambdaQueryWrapper<News> lambdaQueryWrapper = Wrappers.<News>query().lambda().eq(News::getLanguage, language).eq(News::isPopUp,
                     true).eq(News::getUserId, partyId);
             Page<News> page = new Page<>(1, 1000000);

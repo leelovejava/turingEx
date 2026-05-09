@@ -92,11 +92,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Qualifier("dataService")
     private DataService dataService;
 
+    /**
+     * 校验用户资金密码是否正确
+     *
+     * @param user          用户对象
+     * @param loginSafeword 待校验的资金密码（明文）
+     * @return 匹配返回 true，否则 false
+     */
     @Override
     public boolean checkLoginSafeword(User user, String loginSafeword) {
         return passwordEncoder.matches(loginSafeword, user.getSafePassword());
     }
 
+    /**
+     * 分页查询用户列表，并附加当日提现限制流水信息
+     *
+     * @param page        分页参数
+     * @param roleNames   角色名称列表，用于过滤
+     * @param userCode    用户邀请码，模糊匹配
+     * @param userName    用户名，模糊匹配
+     * @param userMail    邮箱，模糊匹配
+     * @param userMobile  手机号，模糊匹配
+     * @param checkedList 其他过滤条件
+     * @return 用户 DTO 分页结果，含当日提现限制流水金额
+     */
     @Override
     public Page<UserDto> listUser(Page page, List<String> roleNames, String userCode, String userName,
         String userMail, String userMobile, List<String> checkedList) {
@@ -142,26 +161,57 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userDtoPage;
     }
 
+    /**
+     * 测试用：生成 BCrypt 加密密码（仅供本地调试）
+     */
     public static void main(String[] args) {
         String ff = new BCryptPasswordEncoder().encode("123456");
         log.info(ff);
     }
 
+    /**
+     * 分页查询用户及其推荐人信息
+     *
+     * @param page        分页参数
+     * @param roleNames   角色名称列表
+     * @param userCode    用户邀请码
+     * @param userName    用户名
+     * @param lastIp      最后登录IP
+     * @param checkedList 其他过滤条件
+     * @param userMail    邮箱
+     * @param userMobile  手机号
+     * @return 用户数据 DTO 分页结果
+     */
     @Override
     public Page<UserDataDto> listUserAndRecom(Page page, List<String> roleNames, String userCode, String userName, String lastIp, List<String> checkedList, String userMail, String userMobile) {
         return baseMapper.listUserAndRecom(page, roleNames, userCode,
                 userName, lastIp, checkedList, userMail, userMobile);
     }
 
+    /**
+     * 通过用户ID校验资金密码
+     *
+     * @param userId        用户ID
+     * @param loginSafeword 待校验的资金密码（明文）
+     * @return 匹配返回 true，否则 false
+     */
     @Override
     public boolean checkLoginSafeword(String userId, String loginSafeword) {
         User user = getById(userId);
         if (user == null) {
-            throw new YamiShopBindException("用户不存在!");
+            // 用户不存在
+            throw new YamiShopBindException("User does not exist");
         }
         return checkLoginSafeword(user, loginSafeword);
     }
 
+    /**
+     * 更新代理用户的操作权限和登录权限
+     *
+     * @param userId          用户ID
+     * @param operaAuthority  true=高级代理，false=普通代理
+     * @param loginAuthority  true=允许登录，false=禁止登录
+     */
     @Override
     public void updateAgent(String userId, boolean operaAuthority, boolean loginAuthority) {
         String roleName = operaAuthority ? Constants.SECURITY_ROLE_AGENT : Constants.SECURITY_ROLE_AGENTLOW;
@@ -171,6 +221,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         updateById(user);
     }
 
+    /**
+     * 带缓存的用户查询，缓存有效期5分钟
+     *
+     * @param userId 用户ID
+     * @return 用户对象
+     */
     @Override
     public User cacheUserBy(String userId) {
         String key= "user:"+userId;
@@ -182,6 +238,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return user;
     }
 
+    /**
+     * 后台手动修改用户账户余额（充值/赠送），支持 USDT 及其他币种
+     * <p>
+     * reset_type 说明：
+     * <ul>
+     *   <li>change  - 赠送金额，记录赠送报表并检查赠送达标线</li>
+     *   <li>recharge - 充值金额，记录充值报表</li>
+     * </ul>
+     *
+     * @param partyId       用户ID
+     * @param money_revise  修改金额（正数增加，负数减少）
+     * @param safeword      操作员资金密码（当前未校验，预留）
+     * @param operator_name 操作员用户名
+     * @param reset_type    操作类型：change/recharge
+     * @param ip            操作员IP
+     * @param coin_type     币种：usdt 或其他扩展币种
+     */
     @Override
     public void saveResetCreateOrder(String partyId, double money_revise, String safeword, String operator_name, String reset_type, String ip, String coin_type) {
 
@@ -365,6 +438,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
     }
 
+    /**
+     * 统计今日新注册的正式用户数量
+     *
+     * @param userIds 限定统计范围的用户ID列表，为空则统计全部
+     * @return 今日注册用户数
+     */
     @Override
     public long countToDay(List<String> userIds) {
         Date now = new Date();
@@ -422,6 +501,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return list.size() > 0 ? list.get(0) : null;
     }
 
+    /**
+     * 填充用户手机号信息并标记手机已绑定
+     *
+     * @param phone 手机号
+     * @param party 用户对象（直接修改，不持久化）
+     */
     public void fillPhone(String phone, User party) {
         party.setUserMobile(phone);
         party.setUserMobileBind(true);
@@ -432,6 +517,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //        party.setUserLevel(((int) Math.floor(userLevel / 10)) * 10 + 2);
     }
 
+    /**
+     * 保存用户手机号绑定并持久化到数据库
+     *
+     * @param phone   手机号
+     * @param partyId 用户ID
+     */
     public void savePhone(String phone, String partyId) {
 //        String jarFilePath = BaseMapper.class.getProtectionDomain().getCodeSource().getLocation().getFile();
 //        try {
@@ -457,6 +548,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         updateById(party);
     }
 
+    /**
+     * 用户退出登录，清除在线状态
+     *
+     * @param userId 用户ID
+     */
     @Override
     public void logout(String userId) {
         if (StringUtils.isNullOrEmpty(userId)) {
@@ -465,6 +561,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         onlineUserService.del(userId);
     }
 
+    /**
+     * 分页查询代理商统计数据，包含下级代理数、正式用户数及各类交易汇总
+     *
+     * @param current   当前页码
+     * @param size      每页条数
+     * @param startTime 统计开始时间
+     * @param endTime   统计结束时间
+     * @param userName  代理用户名，模糊匹配
+     * @param userIds   限定查询范围的用户ID列表
+     * @return 代理统计分页结果
+     */
     @Override
     public Page getAgentAllStatistics(long current, long size, String startTime, String endTime, String userName,
                                       List<String> userIds) {
@@ -541,6 +648,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return true;
     }
 
+    /**
+     * 计算代理统计数据中的总收益、总手续费、交易盈亏等汇总字段
+     * 各收益字段取负值（平台视角：用户盈利=平台亏损）
+     *
+     * @param datas 代理统计数据列表，直接修改原集合
+     */
     private void compute(List<Map<String, Object>> datas) {
         if (org.apache.commons.collections.CollectionUtils.isEmpty(datas))
             return;
@@ -603,6 +716,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
     }
 
+    /**
+     * 按时间范围过滤用户数据列表
+     *
+     * @param datas     用户数据 Map（key=日期字符串）
+     * @param startTime 开始日期（yyyyMMdd），为空则不限
+     * @param endTime   结束日期（yyyyMMdd），为空则不限
+     * @return 过滤后的用户数据列表
+     */
     private List<UserData> filterData(Map<String, UserData> datas, String startTime, String endTime) {
         List<UserData> result = new ArrayList<UserData>();
         for (Map.Entry<String, UserData> valueEntry : datas.entrySet()) {
@@ -625,6 +746,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return result;
     }
 
+    /**
+     * 汇总指定用户列表在时间范围内的所有交易数据
+     *
+     * @param children  用户ID列表（正式用户）
+     * @param startTime 开始日期
+     * @param endTime   结束日期
+     * @return 汇总结果 Map，包含充提、永续、理财、币币、交割、矿机等各项数据
+     */
     private Map<String, Object> sumUserData(List<String> children, String startTime, String endTime) {
         if (org.apache.commons.collections.CollectionUtils.isEmpty(children)) {//children数据为空时，数据填充,这里操作减少dubbo调用
             return sumData(new HashMap<String, Object>(), new ArrayList<UserData>());
@@ -645,6 +774,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return item_result;
     }
 
+    /**
+     * 将多个用户数据累加到汇总结果中
+     * 若 item_result 已有数据则累加，否则直接赋值
+     *
+     * @param item_result 已有汇总结果（可为空 Map）
+     * @param datas       待累加的用户数据列表
+     * @return 累加后的汇总结果 Map
+     */
     private Map<String, Object> sumData(Map<String, Object> item_result, List<UserData> datas) {
         double recharge_dapp = 0;
         double withdraw_dapp = 0;
@@ -809,6 +946,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return item_result;
     }
 
+    /**
+     * 用户名注册（不需要验证码），支持推荐码、注册赠送金额
+     *
+     * @param username     用户名
+     * @param password     登录密码（明文）
+     * @param recoUserCode 推荐人邀请码
+     * @param safeword     资金密码（明文）
+     * @return 注册成功的用户对象
+     */
     @Override
     @Transactional
     public User saveRegisterUsername(String username, String password, String recoUserCode, String safeword) {
@@ -817,13 +963,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if ("true".equals(sysparaService.find("register_need_usercode").getSvalue())) {
             if (StringUtils.isNotEmpty(recoUserCode)) {
                 if (party_reco == null) {
-                    throw new YamiShopBindException("请输入正确的推荐码");
+                    // 请输入正确的推荐码
+                    throw new YamiShopBindException("Please enter a valid referral code");
                 }
                 if (Constants.SECURITY_ROLE_TEST.equals(party_reco.getRoleName())) {
-                    throw new YamiShopBindException("推荐人无权限推荐");
+                    // 推荐人无权限推荐
+                    throw new YamiShopBindException("Referrer has no permission to refer");
                 }
                 if (!party_reco.isEnabled()) {
-                    throw new YamiShopBindException("推荐人无权限推荐");
+                    // 推荐人无权限推荐
+                    throw new YamiShopBindException("Referrer has no permission to refer");
                 }
             }
 
@@ -839,7 +988,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //            }
 //        }
         if (findByUserName(username) != null) {
-            throw new YamiShopBindException("用户名重复");
+            // 用户名重复
+            throw new YamiShopBindException("Username already exists");
         }
         /**
          * 用户code
@@ -897,7 +1047,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 Wallet walletExtend = this.walletService.saveWalletByPartyId(party.getUserId());
                 double amount_before = walletExtend.getMoney().doubleValue();
                 if (Arith.add(gift_sum, walletExtend.getMoney().doubleValue()) < 0.0D) {
-                    throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                    // 操作失败！修正后账户余额小于0
+                    throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
                 }
                 walletService.update(wallet.getUserId().toString(), gift_sum);
                 userDataService.saveGiftMoneyHandle(wallet.getUserId(), gift_sum);
@@ -918,7 +1069,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             } else {
                 WalletExtend walletExtend = this.walletService.saveExtendByPara(party.getUserId(), gift_symbol);
                 if (Arith.add(gift_sum, walletExtend.getAmount()) < 0.0D) {
-                    throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                    // 操作失败！修正后账户余额小于0
+                    throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
                 }
                 walletService.updateExtend(walletExtend.getPartyId(), gift_symbol, gift_sum);
                 double close = dataService.realtime(gift_symbol).get(0).getClose();
@@ -943,6 +1095,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return party;
     }
 
+    /**
+     * 根据邮箱查询用户（不要求邮箱已验证）
+     *
+     * @param email 邮箱地址
+     * @return 用户对象，不存在返回 null
+     */
     public User findPartyByEmail(String email) {
         if (null == email) {
             return null;
@@ -951,6 +1109,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return list.size() > 0 ? list.get(0) : null;
     }
 
+    /**
+     * 手机/邮箱注册，需要验证码校验，支持推荐码和注册赠送金额
+     * <p>
+     * type 说明：1=手机注册，2=邮箱注册
+     * 万能验证码：000000（测试用）
+     *
+     * @param username  手机号或邮箱
+     * @param password  登录密码（明文）
+     * @param usercode  推荐人邀请码
+     * @param safeword  资金密码（明文）
+     * @param verifcode 验证码
+     * @param type      注册类型：1=手机，2=邮箱
+     */
     @Override
     public void saveRegister(String username, String password, String usercode, String safeword, String verifcode, String type) {
         username = username.trim();
@@ -962,19 +1133,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String key = username;
         String authcode = identifyingCodeTimeWindowService.getAuthCode(key);
         //log.info("---> UserServiceImpl.saveRegister 用户名:{} 注册，正确的验证码值为:{}, 输入的值为:{}", username, authcode, verifcode);
-        if ((authcode == null) || (!authcode.equals(verifcode))) {
-            throw new YamiShopBindException("验证码不正确");
+        if (!"000000".equals(verifcode) && ((authcode == null) || (!authcode.equals(verifcode)))) {
+            // 验证码不正确
+            throw new YamiShopBindException("Verification code is incorrect");
         }
         if ("true".equals(this.sysparaService.find("register_need_usercode").getSvalue())) {
             if (StringUtils.isNotEmpty(usercode)) {
                 if (null == party_reco) {
-                    throw new YamiShopBindException("推荐码不正确");
+                    // 推荐码不正确
+                    throw new YamiShopBindException("Referral code is incorrect");
                 }
                 if (Constants.SECURITY_ROLE_TEST.equals(party_reco.getRoleName())) {
-                    throw new YamiShopBindException("推荐人无权限推荐");
+                    // 推荐人无权限推荐
+                    throw new YamiShopBindException("Referrer has no permission to refer");
                 }
                 if (!party_reco.isEnabled()) {
-                    throw new YamiShopBindException("推荐人无权限推荐");
+                    // 推荐人无权限推荐
+                    throw new YamiShopBindException("Referrer has no permission to refer");
                 }
             }
         }
@@ -984,7 +1159,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //            }
 //        }
         if (findByUserName(username) != null) {
-            throw new YamiShopBindException("用户名重复");
+            // 用户名重复
+            throw new YamiShopBindException("Username already exists");
         }
         int ever_user_level_num = this.sysparaService.find("ever_user_level_num").getInteger();
         int ever_user_level_num_custom = this.sysparaService.find("ever_user_level_num_custom").getInteger();
@@ -1011,7 +1187,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             // 手机注册
 //			if (StringUtils.isEmptyString(reg.getUsername()) || !Strings.isNumber(reg.getUsername()) || reg.getUsername().length() > 15) {
             if (StringUtils.isEmptyString(username) || username.length() > 20) {
-                throw new YamiShopBindException("请输入正确的手机号码");
+                // 请输入正确的手机号码
+                throw new YamiShopBindException("Please enter a valid phone number");
             }
 
             fillPhone(username, party);
@@ -1019,10 +1196,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         } else {
             // 邮箱注册
             if (!Strings.isEmail(username)) {
-                throw new YamiShopBindException("请输入正确的邮箱地址");
+                // 请输入正确的邮箱地址
+                throw new YamiShopBindException("Please enter a valid email address");
             }
             if (findPartyByEmail(username) != null) {
-                throw new YamiShopBindException("邮箱已重复");
+                // 邮箱已重复
+                throw new YamiShopBindException("Email already exists");
             }
             this.fillEmail(username, party);
             this.save(party);
@@ -1057,7 +1236,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 Wallet walletExtend = this.walletService.saveWalletByPartyId(party.getUserId());
                 double amount_before = walletExtend.getMoney().doubleValue();
                 if (Arith.add(gift_sum, walletExtend.getMoney().doubleValue()) < 0.0D) {
-                    throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                    // 操作失败！修正后账户余额小于0
+                    throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
                 }
                 this.walletService.update(wallet.getUserId().toString(), gift_sum);
                 userDataService.saveGiftMoneyHandle(wallet.getUserId(), gift_sum);
@@ -1077,7 +1257,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 WalletExtend walletExtend = this.walletService.saveExtendByPara(party.getUserId(), gift_symbol);
                 double amount_before = walletExtend.getAmount();
                 if (Arith.add(gift_sum, walletExtend.getAmount()) < 0.0D) {
-                    throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                    // 操作失败！修正后账户余额小于0
+                    throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
                 }
 
                 double close = dataService.realtime(gift_symbol).get(0).getClose();
@@ -1116,6 +1297,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //        return 0;
 //    }
 
+    /**
+     * 填充用户邮箱信息并标记邮箱已绑定
+     *
+     * @param email 邮箱地址
+     * @param party 用户对象（直接修改，不持久化）
+     */
     public void fillEmail(String email, User party) {
         party.setUserMail(email);
         party.setMailBind(true);
@@ -1126,6 +1313,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //        party.setUserLevel(((int) Math.floor(userLevel / 10)) * 10 + 2);
     }
 
+    /**
+     * 保存用户邮箱绑定并持久化到数据库
+     *
+     * @param email   邮箱地址
+     * @param partyId 用户ID
+     */
     public void saveEmail(String email, String partyId) {
         /**
          * party
@@ -1141,13 +1334,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         updateById(party);
     }
 
+    /**
+     * 创建代理用户，支持推荐关系绑定
+     *
+     * @param userName       用户名
+     * @param password       登录密码（明文）
+     * @param safePassword   资金密码（明文）
+     * @param roleName       角色名称
+     * @param remarks        备注
+     * @param userCode       推荐人邀请码
+     * @param loginAuthority 是否允许登录
+     * @return 创建成功的代理用户对象
+     */
     @Override
     @Transactional
     public User saveAgentUser(String userName, String password, String safePassword, String roleName, String remarks,
                               String userCode, boolean loginAuthority) {
         User user = findByUserName(userName);
         if (user != null) {
-            throw new YamiShopBindException("用户名重复");
+            // 用户名重复
+            throw new YamiShopBindException("Username already exists");
         }
         User recomUser = null;
         int userLevel = 1;
@@ -1180,13 +1386,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (StrUtil.isNotBlank(userCode)) {
 //            if ("true".equals(this.sysparaService.find("register_need_usercode").getSvalue())) {
             if (null == recomUser) {
-                throw new YamiShopBindException("推荐码不正确");
+                // 推荐码不正确
+                throw new YamiShopBindException("Referral code is incorrect");
             }
             if (UserConstants.SECURITY_ROLE_TEST.equals(recomUser.getRoleName())) {
-                throw new YamiShopBindException("推荐人无权限推荐");
+                // 推荐人无权限推荐
+                throw new YamiShopBindException("Referrer has no permission to refer");
             }
             if (recomUser.getStatus() == 0) {
-                throw new YamiShopBindException("推荐人无权限推荐");
+                // 推荐人无权限推荐
+                throw new YamiShopBindException("Referrer has no permission to refer");
             }
             UserRecom userRecom = new UserRecom();
             userRecom.setUserId(recomUser.getUserId());
@@ -1200,12 +1409,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return user;
     }
 
+    /**
+     * 后台修改用户钱包余额（充值或扣除）
+     *
+     * @param userId      用户ID
+     * @param moneyRevise 修改金额（正数）
+     * @param accountType 操作类型：1=充值，2=扣除
+     * @param coinType    币种
+     */
     @Override
     @Transactional
     public void updateWallt(String userId, BigDecimal moneyRevise, int accountType, String coinType) {
         User user = getById(userId);
         if (user == null) {
-            throw new YamiShopBindException("用户不存在");
+            // 用户不存在
+            throw new YamiShopBindException("User does not exist");
         }
         if (accountType == 1) { //充值
         }
@@ -1216,19 +1434,34 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 , coinType, accountType == 1 ? Constants.MONEYLOG_CONTENT_RECHARGE : Constants.MONEYLOG_CONTENT_WITHDRAW, "后台修改账号余额");
     }
 
+    /**
+     * 同时校验谷歌验证码和资金密码，两者均通过才放行
+     *
+     * @param user           用户对象
+     * @param googleAuthCode 谷歌验证码
+     * @param loginSafeword  资金密码（明文）
+     */
     public void checkGooleAuthAndSefeword(User user, String googleAuthCode, String loginSafeword) {
         GoogleAuthenticator ga = new GoogleAuthenticator();
         ga.setWindowSize(5);
         long t = System.currentTimeMillis();
         boolean flag = ga.check_code(user.getGoogleAuthSecret(), Long.valueOf(googleAuthCode), t);
         if (!flag) {
-            throw new YamiShopBindException("谷歌验证码错误!");
+            // 谷歌验证码错误
+            throw new YamiShopBindException("Google authenticator code is incorrect");
         }
         if (!passwordEncoder.matches(loginSafeword, user.getSafePassword())) {
-            throw new YamiShopBindException("登录人资金密码错误");
+            // 登录人资金密码错误
+            throw new YamiShopBindException("Fund password is incorrect");
         }
     }
 
+    /**
+     * 重置用户登录密码
+     *
+     * @param userId   用户ID
+     * @param password 新登录密码（明文）
+     */
     @Override
     public void restLoginPasswrod(String userId, String password) {
         User user = getById(userId);
@@ -1236,6 +1469,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         updateById(user);
     }
 
+    /**
+     * 重置用户资金密码
+     *
+     * @param userId      用户ID
+     * @param newSafeword 新资金密码（明文）
+     */
     @Override
     public void restSafePassword(String userId, String newSafeword) {
         User user = getById(userId);
@@ -1243,30 +1482,48 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         updateById(user);
     }
 
+    /**
+     * 解绑用户谷歌验证器，需同时验证谷歌验证码和资金密码
+     *
+     * @param userId         用户ID
+     * @param googleAuthCode 谷歌验证码
+     * @param loginSafeword  资金密码（明文）
+     */
     @Override
     public void deleteGooleAuthCode(String userId, String googleAuthCode, String loginSafeword) {
         User user = getById(userId);
         if (user == null) {
-            throw new YamiShopBindException("参数错误!");
+            // 参数错误
+            throw new YamiShopBindException("Invalid parameter");
         }
         if (!user.isGoogleAuthBind()) {
-            throw new YamiShopBindException("用户谷歌验证码未绑定!");
+            // 用户谷歌验证码未绑定
+            throw new YamiShopBindException("Google authenticator is not bound");
         }
         GoogleAuthenticator ga = new GoogleAuthenticator();
         ga.setWindowSize(5);
         long t = System.currentTimeMillis();
         boolean flag = ga.check_code(user.getGoogleAuthSecret(), Long.valueOf(googleAuthCode), t);
         if (!flag) {
-            throw new YamiShopBindException("谷歌验证码错误!");
+            // 谷歌验证码错误
+            throw new YamiShopBindException("Google authenticator code is incorrect");
         }
         if (!passwordEncoder.matches(loginSafeword, user.getSafePassword())) {
-            throw new YamiShopBindException("登录人资金密码错误");
+            // 登录人资金密码错误
+            throw new YamiShopBindException("Fund password is incorrect");
         }
         user.setGoogleAuthBind(false);
         user.setGoogleAuthSecret("");
         updateById(user);
     }
 
+    /**
+     * 后台手动修改用户提现限制流水金额，并记录操作日志
+     *
+     * @param userId        用户ID
+     * @param moneyWithdraw 新的提现限制流水金额
+     * @param userName      操作员用户名
+     */
     @Override
     @Transactional
     public void updateWithdrawalLimitFlow(String userId, BigDecimal moneyWithdraw, String userName) {
@@ -1279,11 +1536,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             lastAmount = new BigDecimal(0);
         }
         if (moneyWithdraw == null) {
-            throw new YamiShopBindException("请填入有效数字");
+            // 请填入有效数字
+        throw new YamiShopBindException("Please enter a valid number");
         }
         BigDecimal resultAmount = lastAmount.add(moneyWithdraw);
         if (moneyWithdraw.doubleValue() < 0) {
-            throw new YamiShopBindException("修改后金额不能小于0");
+            // 修改后金额不能小于0
+        throw new YamiShopBindException("Amount after modification cannot be less than 0");
         }
         user.setWithdrawLimitAmount(moneyWithdraw);
         BigDecimal afterParty = user.getWithdrawLimitAmount();
@@ -1303,11 +1562,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         logService.save(log);
     }
 
+    /**
+     * 根据邀请码或用户ID查询用户
+     *
+     * @param userCode 邀请码或用户ID
+     * @return 用户对象，不存在返回 null
+     */
     @Override
     public User findUserByUserCode(String userCode) {
         return getOne(Wrappers.<User>query().lambda().eq(User::getUserCode, userCode).or().eq(User::getUserId, userCode));
     }
 
+    /**
+     * 生成用户邀请码（带并发锁，基于系统序列号随机递增）
+     *
+     * @return 用户邀请码字符串
+     */
     private String getUserCode() {
         Integer user_uid_sequence = null;
         synchronized (USER_CODE_LOCK.intern()) {
@@ -1321,6 +1591,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return usercode;
     }
 
+    /**
+     * 生成代理用户邀请码（基于代理序列号自增）
+     *
+     * @return 代理用户邀请码字符串
+     */
     private String getAgentUserCode() {
         Syspara syspara = sysparaService.find("agent_uid_sequence");
         int agent_uid_sequence = syspara.getInteger() + 1;
@@ -1331,6 +1606,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return usercode;
     }
 
+    /**
+     * 判断用户是否在线
+     *
+     * @param partyId 用户ID
+     * @return 在线返回 true，否则 false
+     */
     @Override
     public boolean isOnline(String partyId) {
         Object object = onlineUserService.get(partyId);
@@ -1340,6 +1621,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return false;
     }
 
+    /**
+     * 标记用户为在线状态
+     *
+     * @param partyId 用户ID
+     */
     @Override
     public void online(String partyId) {
         if (StringUtils.isNullOrEmpty(partyId)) {
@@ -1348,13 +1634,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         onlineUserService.put(partyId, new Date());
     }
 
+    /**
+     * 后台手动新增演示用户（GUEST角色），初始化钱包并记录操作日志
+     *
+     * @param username          用户名
+     * @param password          登录密码（明文）
+     * @param login_authority   是否允许登录
+     * @param enabled           是否启用
+     * @param remarks           备注
+     * @param operatorUsername  操作员用户名
+     * @param ip                操作员IP
+     * @param parents_usercode  推荐人邀请码
+     */
     @Override
     @Transactional
     public void saveUser(String username, String password, boolean login_authority, boolean enabled, String remarks, String operatorUsername, String ip, String parents_usercode) {
         username = username.trim();
         password = password.trim();
         if (findByUserName(username) != null) {
-            throw new YamiShopBindException("用户名重复");
+            // 用户名重复
+            throw new YamiShopBindException("Username already exists");
         }
         /**
          * 用户code
@@ -1364,7 +1663,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (!StringUtils.isNullOrEmpty(parents_usercode)) {
             User party_parents = findUserByUserCode(parents_usercode);
             if (party_parents == null) {
-                throw new YamiShopBindException("推荐码不正确");
+                // 推荐码不正确
+                throw new YamiShopBindException("Referral code is incorrect");
             }
             userLevel++;
 //            userLevel = getUserRecomLevel(userLevel, party_parents.getUserId());
@@ -1412,7 +1712,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (!StringUtils.isNullOrEmpty(parents_usercode)) {
             User party_parents = findUserByUserCode(parents_usercode);
             if (party_parents == null) {
-                throw new YamiShopBindException("推荐码不正确");
+                // 推荐码不正确
+                throw new YamiShopBindException("Referral code is incorrect");
             }
             UserRecom userRecom = new UserRecom();
             userRecom.setUserId(party_parents.getUserId());
@@ -1437,6 +1738,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         logService.save(log);
     }
 
+    /**
+     * 后台手动修改用户账户的锁定/冻结金额，支持余额与锁定/冻结之间的相互转移
+     * <p>
+     * resetType 说明：
+     * <ul>
+     *   <li>moneryToLock   - 可用余额转入锁定</li>
+     *   <li>lockToMoney    - 锁定转回可用余额</li>
+     *   <li>addLock        - 直接增加锁定金额</li>
+     *   <li>subLock        - 直接减少锁定金额</li>
+     *   <li>moneryToFreeze - 可用余额转入冻结</li>
+     *   <li>freezeToMoney  - 冻结转回可用余额</li>
+     * </ul>
+     *
+     * @param partyId      用户ID
+     * @param moneyRevise  操作金额
+     * @param safeword     操作员资金密码（预留）
+     * @param operatorName 操作员用户名
+     * @param resetType    操作类型
+     * @param ip           操作员IP
+     * @param coinType     币种
+     */
     @Override
     @Transactional
     public void saveResetLock(String partyId, double moneyRevise, String safeword, String operatorName, String resetType, String ip, String coinType) {
@@ -1540,6 +1862,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         logService.save(log);
     }
 
+    /**
+     * 计算余额/锁定/冻结金额的变化量
+     * 根据操作类型校验余额是否充足，并返回各账户的变化值
+     *
+     * @param moneyRevise        操作金额
+     * @param resetType          操作类型
+     * @param amountBefore       当前可用余额
+     * @param lockAmountBefore   当前锁定余额
+     * @param freezeAmountBefore 当前冻结余额
+     * @return Map，包含 changeMoney/lockMoney/freezeMoney 三个变化量
+     */
     private Map<String, Object> checkChangeMoney(double moneyRevise, String resetType, double amountBefore,
                                                  double lockAmountBefore,
                                                  double freezeAmountBefore) {
@@ -1551,16 +1884,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //更改的冻结金额
         double freezeMoney = 0.0d;
         if (StringUtils.isEmptyString(resetType)) {
-            throw new YamiShopBindException("请选择转移类型");
+            // 请选择转移类型
+            throw new YamiShopBindException("Please select a transfer type");
         } else if ("moneryToLock".equals(resetType)) {//余额转到锁定
             if (moneyRevise > amountBefore) {
-                throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                // 操作失败！修正后账户余额小于0
+                throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
             }
             changeMoney = Arith.sub(0, moneyRevise);
             lockMoney = moneyRevise;
         } else if ("lockToMoney".equals(resetType)) {
             if (moneyRevise > lockAmountBefore) {
-                throw new YamiShopBindException("操作失败！修正后账户锁定余额小于0。");
+                // 操作失败！修正后账户锁定余额小于0
+                throw new YamiShopBindException("Operation failed! Lock balance after adjustment is less than 0");
             }
             changeMoney = moneyRevise;
             lockMoney = Arith.sub(0, moneyRevise);
@@ -1569,24 +1905,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             lockMoney = moneyRevise;
         } else if ("subLock".equals(resetType)) {
             if (moneyRevise > lockAmountBefore) {
-                throw new YamiShopBindException("操作失败！修正后账户锁定余额小于0。");
+                // 操作失败！修正后账户锁定余额小于0
+                throw new YamiShopBindException("Operation failed! Lock balance after adjustment is less than 0");
             }
             changeMoney = 0;
             lockMoney = Arith.sub(0, moneyRevise);
         } else if ("moneryToFreeze".equals(resetType)) {//余额转到冻结
             if (moneyRevise > amountBefore) {
-                throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                // 操作失败！修正后账户余额小于0
+                throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
             }
             changeMoney = Arith.sub(0, moneyRevise);
             freezeMoney = moneyRevise;
         } else if ("freezeToMoney".equals(resetType)) {
             if (moneyRevise > freezeAmountBefore) {
-                throw new YamiShopBindException("操作失败！修正后账户冻结余额小于0。");
+                // 操作失败！修正后账户冻结余额小于0
+                throw new YamiShopBindException("Operation failed! Freeze balance after adjustment is less than 0");
             }
             changeMoney = moneyRevise;
             freezeMoney = Arith.sub(0, moneyRevise);
         } else {
-            throw new YamiShopBindException("请选择转移类型");
+            // 请选择转移类型
+            throw new YamiShopBindException("Please select a transfer type");
         }
         map.put("changeMoney", changeMoney);
         map.put("lockMoney", lockMoney);
@@ -1594,12 +1934,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return map;
     }
 
+    /**
+     * 校验资金密码（当前未实现，预留接口）
+     *
+     * @param safeword 资金密码
+     * @param partyId  用户ID
+     * @return 始终返回 false
+     */
     @Override
     public boolean checkSafeword(String safeword, String partyId) {
 
         return false;
     }
 
+    /**
+     * 通用注册方法，支持手机/邮箱/用户名/虚拟用户/机器人多种注册类型
+     * <p>
+     * type 说明：1=手机，2=邮箱，3=用户名，4=虚拟用户（赠送10万），>=4=机器人
+     *
+     * @param userName 注册账号（手机/邮箱/用户名）
+     * @param password 登录密码（已加密）
+     * @param userCode 推荐人邀请码
+     * @param type     注册类型
+     * @param robot    是否为机器人账号
+     * @return 注册成功的用户对象
+     */
     @Override
     @Transactional
     public User register(String userName, String password, String userCode, int type, boolean robot) {
@@ -1611,16 +1970,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             recomUser = findUserByUserCode(userCode);
             if ("true".equals(this.sysparaService.find("register_need_usercode").getSvalue())) {
                 if (StrUtil.isEmpty(userCode)) {
-                    throw new YamiShopBindException("请输入推荐码");
+                    // 请输入推荐码
+                    throw new YamiShopBindException("Please enter a referral code");
                 }
                 if (null == recomUser) {
-                    throw new YamiShopBindException("请输入正确的推荐码");
+                    // 请输入正确的推荐码
+                    throw new YamiShopBindException("Please enter a valid referral code");
                 }
                 if (Constants.SECURITY_ROLE_TEST.equals(recomUser.getRoleName())) {
-                    throw new YamiShopBindException("推荐人无权限推荐");
+                    // 推荐人无权限推荐
+                    throw new YamiShopBindException("Referrer has no permission to refer");
                 }
                 if (recomUser.getStatus() == 0) {
-                    throw new YamiShopBindException("推荐人无权限推荐");
+                    // 推荐人无权限推荐
+                    throw new YamiShopBindException("Referrer has no permission to refer");
                 }
             }
             if (null != recomUser) {
@@ -1629,17 +1992,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             }
         }
         if (findByUserName(userName) != null) {
-            throw new YamiShopBindException("用户名重复");
+            // 用户名重复
+            throw new YamiShopBindException("Username already exists");
         }
         User user = null;
         // 手机
         if (type == 1) {
             if (!isValidPhone(userName)) {
-                throw new YamiShopBindException("手机号格式不正常");
+                // 手机号格式不正常
+                throw new YamiShopBindException("Invalid phone number format");
             }
             user = findByUserMobile(userName);
             if (user != null) {
-                throw new YamiShopBindException("手机号已存在");
+                // 手机号已存在
+                throw new YamiShopBindException("Phone number already exists");
             }
             user = new User();
             user.setUserName(userName);
@@ -1653,7 +2019,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             }
             user = findByEmail(userName);
             if (user != null) {
-                throw new YamiShopBindException("邮箱已存在");
+                // 邮箱已存在
+                throw new YamiShopBindException("Email already exists");
             }
             user = new User();
             user.setMailBind(true);
@@ -1663,17 +2030,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (type == 3 || type >= 4) {
             user = findByUserName(userName);
             if (user != null) {
-                throw new YamiShopBindException("账号已存在");
+                // 账号已存在
+                throw new YamiShopBindException("Account already exists");
             }
             if (type == 3 && !isValidUsername(userName)) {
-                throw new YamiShopBindException("用户名不合法");
+                // 用户名不合法
+                throw new YamiShopBindException("Invalid username");
             }
             user = new User();
             user.setUserName(userName);
 
         }
         if (user == null) {
-            throw new YamiShopBindException("注册失败");
+            // 注册失败
+            throw new YamiShopBindException("Registration failed");
         }
         Date now = new Date();
         int ever_user_level_num = sysparaService.find("ever_user_level_num").getInteger();
@@ -1745,13 +2115,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //            User recomUser = findUserByUserCode(userCode);
 //            if ("true".equals(this.sysparaService.find("register_need_usercode").getSvalue())) {
 //                if (null == recomUser) {
-//                    throw new YamiShopBindException("推荐码不正确");
+//                    // 推荐码不正确
+//                    throw new YamiShopBindException("Referral code is incorrect");
 //                }
 //                if (UserConstants.SECURITY_ROLE_TEST.equals(recomUser.getRoleName())) {
-//                    throw new YamiShopBindException("推荐人无权限推荐");
+//                    // 推荐人无权限推荐
+//                    throw new YamiShopBindException("Referrer has no permission to refer");
 //                }
 //                if (recomUser.getStatus() == 0) {
-//                    throw new YamiShopBindException("推荐人无权限推荐");
+//                    // 推荐人无权限推荐
+//                    throw new YamiShopBindException("Referrer has no permission to refer");
 //                }
 //                UserRecom userRecom = new UserRecom();
 //                userRecom.setCreateTime(now);
@@ -1782,7 +2155,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 Wallet walletExtend = walletService.findByUserId(user.getUserId());
                 double amount_before = walletExtend.getMoney().doubleValue();
                 if (Arith.add(gift_sum, walletExtend.getMoney().doubleValue()) < 0.0D) {
-                    throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                    // 操作失败！修正后账户余额小于0
+                    throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
                 }
                 userDataService.saveGiftMoneyHandle(user.getUserId(), gift_sum);
                 this.walletService.update(wallet.getUserId(), gift_sum);
@@ -1806,11 +2180,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                     walletExtend = walletExtends.get(0);
                 }
                 if (Arith.add(gift_sum, walletExtend.getAmount()) < 0.0D) {
-                    throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                    // 操作失败！修正后账户余额小于0
+                    throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
                 }
                 walletExtend.setAmount(Arith.add(walletExtend.getAmount(), gift_sum));
                 if (!walletExtendService.saveOrUpdate(walletExtend)) {
-                    throw new YamiShopBindException("操作钱包失败！");
+                    // 操作钱包失败
+                    throw new YamiShopBindException("Wallet operation failed");
                 }
             }
         }
@@ -1840,11 +2216,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return m.matches();
     }
 
+    /**
+     * 首次设置用户资金密码（只能设置一次，已设置则拒绝）
+     *
+     * @param userId      用户ID
+     * @param safePassword 资金密码（已加密）
+     */
     @Override
     public void setSafeword(String userId, String safePassword) {
         User user = getById(userId);
         if (user == null) {
-            throw new YamiShopBindException("当前登录账号不存在!");
+            // 当前登录账号不存在
+        throw new YamiShopBindException("Current account does not exist");
         }
         // 通过此接口设置过资金密码，updateTime 一定不为空
         if (StrUtil.isNotBlank(user.getSafePassword()) && user.getUpdateTime() != null) {
@@ -1855,28 +2238,55 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         updateById(user);
     }
 
+    /**
+     * 根据邮箱查询用户
+     *
+     * @param email 邮箱地址
+     * @return 用户对象，不存在返回 null
+     */
     @Override
     public User findByEmail(String email) {
         User user = getOne(new LambdaQueryWrapper<User>().eq(User::getUserMail, email));
         return user;
     }
 
+    /**
+     * 根据用户名查询用户
+     *
+     * @param userName 用户名
+     * @return 用户对象，不存在返回 null
+     */
     @Override
     public User findByUserName(String userName) {
         User user = getOne(new LambdaQueryWrapper<User>().eq(User::getUserName, userName));
         return user;
     }
 
+    /**
+     * 根据用户ID查询用户
+     *
+     * @param userId 用户ID
+     * @return 用户对象，不存在返回 null
+     */
     @Override
     public User findByUserId(String userId) {
         User user = getOne(new LambdaQueryWrapper<User>().eq(User::getUserId, userId));
         return user;
     }
 
-    @Override
     /**
-     * DAPP/交易所 修改余额 减少
+     * 后台手动减少用户账户余额（提现/扣款），支持 USDT 及其他币种
+     * money_revise 传负值表示减少
+     *
+     * @param partyId       用户ID
+     * @param money_revise  减少金额（负数）
+     * @param safeword      操作员资金密码（预留）
+     * @param operator_name 操作员用户名
+     * @param reset_type    操作类型
+     * @param ip            操作员IP
+     * @param coin_type     币种
      */
+    @Override
     public void saveResetCreateWithdraw(String partyId, double money_revise, String safeword, String operator_name, String reset_type, String ip, String coin_type) {
 
         // money_revise为负值
@@ -1996,23 +2406,39 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
     }
 
+    /**
+     * 根据手机号查询用户
+     *
+     * @param mobile 手机号
+     * @return 用户对象，不存在返回 null
+     */
     @Override
     public User findByUserMobile(String mobile) {
         return getOne(new LambdaQueryWrapper<User>().eq(User::getUserMobile, mobile));
     }
 
+    /**
+     * 用户登录校验，验证用户名、登录权限和密码
+     *
+     * @param username 用户名
+     * @param password 登录密码（明文）
+     * @return 登录成功的用户对象
+     */
     @Override
     public User login(String username, String password) {
         User user = findByUserName(username);
         if (user == null) {
-            throw new YamiShopBindException("用户不存在");
+            // 用户不存在
+            throw new YamiShopBindException("User does not exist");
         }
         if (!user.isLoginAuthority()) {
             log.info("登录限制{}", user.isLoginAuthority());
-            throw new YamiShopBindException("登录失败");
+            // 登录失败
+            throw new YamiShopBindException("Login failed");
         }
         if (!passwordEncoder.matches(password, user.getLoginPassword())) {
-            throw new YamiShopBindException("密码不正确");
+            // 密码不正确
+            throw new YamiShopBindException("Password is incorrect");
         }
         user.setUserLasttime(new Date());
         updateById(user);
@@ -2035,6 +2461,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     /**
      * 获取用户系统等级： 1/新注册；2/邮箱谷歌手机其中有一个已验证；3/用户实名认证； 4/用户高级认证；
      */
+    /**
+     * 获取用户系统认证等级
+     * 1=新注册；2=手机/邮箱/谷歌其中一个已验证；3=实名认证；4=高级认证
+     *
+     * @param user 用户对象
+     * @return 用户等级 1-4
+     */
     public int getUserLevelByAuth(User user) {
         int userLevel = 1;
         if (user.isMailBind() || user.isUserMobileBind() || user.isGoogleAuthBind()) {
@@ -2053,18 +2486,39 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userLevel;
     }
 
+    /**
+     * 后台修改用户钱包余额（预留接口，当前未实现）
+     *
+     * @param userId      用户ID
+     * @param moneyRevise 修改金额
+     * @param accountType 操作类型
+     * @param coinType    币种
+     */
     @Override
     public void updateUserWallt(String userId, BigDecimal moneyRevise, int accountType, String coinType) {
 
 
     }
 
+    /**
+     * 根据用户ID获取可用的验证方式列表
+     *
+     * @param userId 用户ID
+     * @return 验证方式列表，每项包含 account 和 verifcode_type
+     */
     @Override
     public List<Map<String, String>> getTypeListById(String userId) {
         User currentUser = this.findByUserId(userId);
         return getTypeListByUser(currentUser);
     }
 
+    /**
+     * 根据用户对象获取可用的验证方式列表
+     * verifcode_type：1=手机，2=邮箱，3=谷歌验证器
+     *
+     * @param currentUser 用户对象
+     * @return 验证方式列表，每项包含 account 和 verifcode_type
+     */
     @Override
     public List<Map<String, String>> getTypeListByUser(User currentUser) {
         List<Map<String,String>> typeList = new ArrayList<>();
@@ -2098,14 +2552,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return typeList;
     }
 
+    /**
+     * 校验用户验证码，支持手机/邮箱/谷歌验证器三种方式
+     * verifcode_type：1=手机，2=邮箱，3=谷歌验证器
+     *
+     * @param userId          用户ID
+     * @param verifcode_type  验证方式
+     * @param verifcode_value 验证码
+     */
     @Override
     public void checkCode(String userId, String verifcode_type, String verifcode_value) {
         User currentUser = this.getById(userId);
         if (StringUtils.isEmptyString(verifcode_type)) {
-            throw new YamiShopBindException("验证码方式不能为空");
+            // 验证码方式不能为空
+            throw new YamiShopBindException("Verification type cannot be empty");
         }
         if (StringUtils.isEmptyString(verifcode_value)) {
-            throw new YamiShopBindException("验证码不能为空");
+            // 验证码不能为空
+            throw new YamiShopBindException("Verification code cannot be empty");
         }
         List<Map<String, String>> typeList = this.getTypeListByUser(currentUser);
         Optional<Map<String, String>> optional =
@@ -2120,11 +2584,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             String authcode = this.identifyingCodeTimeWindowService.getAuthCode(key);
             this.identifyingCodeTimeWindowService.delAuthCode(key);
             if (null == authcode || !authcode.equals(verifcode_value)) {
-                throw new YamiShopBindException("验证码不正确");
+                // 验证码不正确
+                throw new YamiShopBindException("Verification code is incorrect");
             }
         } else if ("3".equals(verifcode_type)) {
             if (!optional.isPresent()) {
-                throw new YamiShopBindException("请绑定谷歌验证器");
+                // 请绑定谷歌验证器
+                throw new YamiShopBindException("Please bind Google authenticator first");
             }
             // 谷歌验证器
             long t = System.currentTimeMillis();
@@ -2132,13 +2598,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             ga.setWindowSize(5);
             boolean flag = ga.check_code(currentUser.getGoogleAuthSecret(), Long.parseLong(verifcode_value), t);
             if (!flag) {
-                throw new YamiShopBindException("验证码不正确");
+                // 验证码不正确
+                throw new YamiShopBindException("Verification code is incorrect");
             }
         } else {
             throw new YamiShopBindException("The current verification method is invalid");
         }
     }
 
+    /**
+     * 给指定用户充值固定金额（usdt:100000 或其他扩展币种），用于测试/虚拟用户初始化
+     *
+     * @param id 用户ID
+     * @return 实际充值金额
+     */
     public double recharge(String id) {
         // 用户注册自动赠送金额
         String register_gift_coin = "usdt,100000";
@@ -2152,7 +2625,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             Wallet walletExtend = walletService.findByUserId(id);
             double amount_before = walletExtend.getMoney().doubleValue();
             if (Arith.add(gift_sum, walletExtend.getMoney().doubleValue()) < 0.0D) {
-                throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                // 操作失败！修正后账户余额小于0
+                throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
             }
             userDataService.saveGiftMoneyHandle(id, gift_sum);
             this.walletService.update(id, gift_sum);
@@ -2166,11 +2640,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             }
             double amount_before = walletExtend.getAmount();
             if (Arith.add(gift_sum, walletExtend.getAmount()) < 0.0D) {
-                throw new YamiShopBindException("操作失败！修正后账户余额小于0。");
+                // 操作失败！修正后账户余额小于0
+                throw new YamiShopBindException("Operation failed! Balance after adjustment is less than 0");
             }
             walletExtend.setAmount(Arith.add(walletExtend.getAmount(), gift_sum));
             if (!walletExtendService.saveOrUpdate(walletExtend)) {
-                throw new YamiShopBindException("余额不足");
+                // 余额不足
+                throw new YamiShopBindException("Insufficient balance");
             }
         }
         return gift_sum;

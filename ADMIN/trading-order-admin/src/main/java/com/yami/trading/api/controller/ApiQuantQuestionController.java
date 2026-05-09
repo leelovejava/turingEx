@@ -34,7 +34,7 @@ public class ApiQuantQuestionController {
     @ApiOperation("是否提交过AI量化问卷")
     @GetMapping("/get")
     public Result<Map<String, Object>> get() {
-        String userId = SecurityUtils.getUser().getUserId();
+        String userId = SecurityUtils.getCurrentUserId();
         QueryWrapper<QuantQuestionnaire> qw = new QueryWrapper<>();
         qw.eq("user_id", userId).orderByDesc("create_time").last("limit 1");
         QuantQuestionnaire one = quantQuestionnaireService.getOne(qw, false);
@@ -47,7 +47,7 @@ public class ApiQuantQuestionController {
     @ApiOperation("提交AI量化问卷")
     @PostMapping("/insert")
     public Result<Void> insert(@Valid QuantQuestionInsertModel model) {
-        String userId = SecurityUtils.getUser().getUserId();
+        String userId = SecurityUtils.getCurrentUserId();
         User user = userService.getById(userId);
 
         QuantQuestionnaire q = new QuantQuestionnaire();

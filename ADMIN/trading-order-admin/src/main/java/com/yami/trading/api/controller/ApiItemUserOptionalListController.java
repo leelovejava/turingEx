@@ -145,7 +145,7 @@ public class ApiItemUserOptionalListController {
     @GetMapping("listItemsByType")
     public Result<List<ItemUserOptionalItemDTO>> listItemsByType(String type) {
         List<ItemUserOptionalItemDTO> list = new ArrayList<>();
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         list = itemUserOptionalListService.findListItemsByPartyIdAndType(partyId, type);
         return Result.succeed(list);
     }
@@ -156,7 +156,7 @@ public class ApiItemUserOptionalListController {
     @ApiOperation(value = "新增自选分组")
     @PostMapping("save")
     public Result<String> save(@Valid ItemUserOptionalListDTO itemUserOptionalListDTO) {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (itemUserOptionalListService.findOne(partyId, itemUserOptionalListDTO.getName()) != null) {
             // 该自选组名称已经使用
             return Result.failed("This optional list name is already in use");
@@ -175,7 +175,7 @@ public class ApiItemUserOptionalListController {
     @ApiOperation(value = "将一个币对加入一个分组")
     @GetMapping("saveItem")
     public Result<String> saveItem(String listId, String symbol) {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (itemUserOptionalItemService.findOne(partyId, listId, symbol) != null) {
             // 已经添加过该分组了
             return Result.failed("Already added to this group");
@@ -195,7 +195,7 @@ public class ApiItemUserOptionalListController {
     @ApiOperation(value = "判断币对是否已经加入分组")
     @GetMapping("isItemHasAdd")
     public Result<Boolean> isItemHasAdd(String listId, String symbol) {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (itemUserOptionalItemService.findOne(partyId, listId, symbol) != null) {
             return Result.succeed(true);
         }
@@ -223,7 +223,7 @@ public class ApiItemUserOptionalListController {
     @ApiOperation(value = "将一个币对从分组移除")
     @GetMapping("removeItem")
     public Result<String> removeItem(String listId, String symbol) {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         ItemUserOptionalItem one = itemUserOptionalItemService.findOne(partyId, listId, symbol);
         if (one == null) {
             // 删除成功
@@ -240,7 +240,7 @@ public class ApiItemUserOptionalListController {
     @ApiOperation(value = "更新自选分组")
     @PostMapping("update")
     public Result<String> update(@Valid ItemUserOptionalListUpdateDTO updateDTO) {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         ItemUserOptionalList one = itemUserOptionalListService.findOne(partyId, updateDTO.getName());
         if (one != null && !one.getUuid().equalsIgnoreCase(updateDTO.getUuid())) {
             // 该自选组名称已经使用

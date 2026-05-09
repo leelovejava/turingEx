@@ -169,7 +169,7 @@ public class ApiNewSharesConfigContorller {
                 .divide(newSharesConfig.getMarketPrice(), 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100)).doubleValue());
         List<ApplyNewSharesOrder> applyNewSharesOrders = applyNewSharesOrderService.list(Wrappers.<ApplyNewSharesOrder>query().lambda()
                 .eq(ApplyNewSharesOrder::getSymbolCode, newSharesConfig.getProductCode()).eq(ApplyNewSharesOrder::getStatus, 2).eq(ApplyNewSharesOrder::getUserId, SecurityUtils.getCurrentUserId()));
-        List<UserPromiseRecord> userPromiseRecords = userPromiseRecordService.findByProductCodeAndUserId(newSharesConfig.getProductCode(), SecurityUtils.getUser().getUserId());
+        List<UserPromiseRecord> userPromiseRecords = userPromiseRecordService.findByProductCodeAndUserId(newSharesConfig.getProductCode(), SecurityUtils.getCurrentUserId());
         if (CollectionUtil.isNotEmpty(applyNewSharesOrders)) {
             dto.setShareStatus(2);
             dto.setRequiredNumber(applyNewSharesOrders.get(0).getRequiredNumber());

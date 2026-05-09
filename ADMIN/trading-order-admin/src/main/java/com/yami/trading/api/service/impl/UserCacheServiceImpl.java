@@ -35,7 +35,7 @@ public class UserCacheServiceImpl implements UserCacheService {
      */
     @Override
     public User currentUser() {
-        String userId = SecurityUtils.getUser().getUserId();
+        String userId = SecurityUtils.getCurrentUserId();
         User user = userService.getById(userId);
         if (!user.isEnabled()) {
             throw new YamiShopBindException("用户已锁定");

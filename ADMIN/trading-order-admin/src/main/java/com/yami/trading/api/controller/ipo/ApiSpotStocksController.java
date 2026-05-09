@@ -74,7 +74,7 @@ public class ApiSpotStocksController {
         //1 抽签记录 2 新股库存  3 现股库存
         if (model.getType() == 1) { //抽签
             list = applyNewSharesOrderService.list(Wrappers.<ApplyNewSharesOrder>
-                    query().lambda().eq(ApplyNewSharesOrder::getUserId, SecurityUtils.getUser().getUserId()));
+                    query().lambda().eq(ApplyNewSharesOrder::getUserId, SecurityUtils.getCurrentUserId()));
         } else if (model.getType() == 2) {// 新股库存
             List<UserPromiseRecord> userPromiseRecords = userPromiseRecordService.list(Wrappers.<UserPromiseRecord>query()
                     .lambda().eq(UserPromiseRecord::getShowFlag, 0).eq(UserPromiseRecord::getUserId,SecurityUtils.getCurrentUserId()));
@@ -142,7 +142,7 @@ public class ApiSpotStocksController {
     @ApiOperation("卖出")
     @PostMapping("sell")
     public Result sell(SellModel model) {
-        userPromiseRecordService.sell(model.getOrderNo(), SecurityUtils.getUser().getUserId());
+        userPromiseRecordService.sell(model.getOrderNo(), SecurityUtils.getCurrentUserId());
         return Result.succeed();
     }
 

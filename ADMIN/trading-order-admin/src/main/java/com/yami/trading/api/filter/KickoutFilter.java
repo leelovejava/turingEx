@@ -70,7 +70,7 @@ public class KickoutFilter implements Filter {
                 if(Arrays.asList(ips).contains(ip.trim())){
                     String token = req.getHeader("token");
                     if (!StrUtil.isBlank(token)) {
-                        userService.logout(SecurityUtils.getUser().getUserId());
+                        userService.logout(SecurityUtils.getCurrentUserId());
                         // 删除该用户在该系统当前的token
                         tokenStore.deleteCurrentToken(token);
                         throw new YamiShopBindException(403,"accessToken已过期");

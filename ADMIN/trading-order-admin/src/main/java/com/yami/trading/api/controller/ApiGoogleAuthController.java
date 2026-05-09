@@ -52,7 +52,7 @@ public class ApiGoogleAuthController {
     @PostMapping("/bind")
     @ApiOperation(value = "谷歌身份绑定")
     public Result bind(@Valid GoogleAuthBindModel model) {
-        String userId = SecurityUtils.getUser().getUserId();
+        String userId = SecurityUtils.getCurrentUserId();
         long t = System.currentTimeMillis();
         GoogleAuthenticator ga = new GoogleAuthenticator();
         ga.setWindowSize(5);

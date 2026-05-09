@@ -60,7 +60,7 @@ public class ApiApplyNewSharesOrderController {
     @ApiOperation(value = "一键抽签")
     @PostMapping("apply")
     public Result apply(ApplyNewSharesOrderModel model) {
-        String userId = SecurityUtils.getUser().getUserId();
+        String userId = SecurityUtils.getCurrentUserId();
         applyNewSharesOrderService.apply(model.getAmount(), userId, model.getCode());
         return Result.succeed();
     }
@@ -203,7 +203,7 @@ public class ApiApplyNewSharesOrderController {
     public Page getApplyOrder(ApplyListModel model, HttpServletRequest request) {
         LambdaQueryWrapper<ApplyNewSharesOrder> lambdaQueryWrapper = Wrappers.<ApplyNewSharesOrder>query().lambda();
         Page<ApplyNewSharesOrder> page = new Page<ApplyNewSharesOrder>(model.getCurrent(), model.getSize());
-        lambdaQueryWrapper.eq(ApplyNewSharesOrder::getUserId, SecurityUtils.getUser().getUserId());
+        lambdaQueryWrapper.eq(ApplyNewSharesOrder::getUserId, SecurityUtils.getCurrentUserId());
         lambdaQueryWrapper.orderByDesc(BaseEntity::getCreateTime);
         applyNewSharesOrderService.page(page, lambdaQueryWrapper);
         String language = request.getParameter("language");

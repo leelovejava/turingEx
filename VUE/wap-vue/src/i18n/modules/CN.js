@@ -366,7 +366,7 @@ export default {
     WithdrawUSDTAddress: "提幣 USDT 到數字貨幣地址",
     Address: "地址",
     WithdrawTime: "·提幣時間為24小時",
-    WithdrawalTitle1: "·現時提幣只支持USDT幣種",
+    WithdrawalTitle1: "·現時提幣只支持數字貨幣",
     WithdrawalTitle2: "·提交提幣申請後，該筆資金屬於凍結狀態是因為提現正在進行中，該筆資金暫時由系統託管，並不代表您損失了這筆資產或資產出現異常。",
     WithdrawalTitle3: "·提交提幣申請後12h內到賬，如預計提幣時間後未到賬請諮詢線上客服。",
     enterAddress: "請輸入地址",

@@ -93,7 +93,7 @@ public class ApiWalletController {
     public Result getUsdt() {
         // usdt余额
         Map<String, Object> data = new HashMap<>();
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         DecimalFormat df2 = new DecimalFormat("#.##");
         // 向下取整
         df2.setRoundingMode(RoundingMode.FLOOR);
@@ -128,7 +128,7 @@ public class ApiWalletController {
     public Result list() {
         Map<String, Object> map = new LinkedHashMap<>();
         Wallet usdt = null;
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (StringUtils.isNotEmpty(partyId)) {
             usdt = this.walletService.saveWalletByPartyId(partyId);
         }
@@ -653,7 +653,7 @@ public class ApiWalletController {
             throw new YamiShopBindException("Page number must be greater than 0");
         }
         int page_no_int = Integer.valueOf(page_no).intValue();
-        List<Map<String, Object>> data = this.walletLogService.pagedQueryRecords(page_no_int, 10, SecurityUtils.getUser().getUserId(), category, start_time, end_time, wallet_type, status_int).getRecords();
+        List<Map<String, Object>> data = this.walletLogService.pagedQueryRecords(page_no_int, 10, SecurityUtils.getCurrentUserId(), category, start_time, end_time, wallet_type, status_int).getRecords();
         for (Map<String, Object> log : data) {
             if (null == log.get("wallet_type") || !StringUtils.isNotEmpty(log.get("wallet_type").toString())) {
                 log.put("wallet_type", Constants.WALLET);

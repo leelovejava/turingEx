@@ -92,7 +92,7 @@ public class ApiExchangeApplyOrderController {
      */
     @RequestMapping(action + "view.action")
     public Result view() {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         Map<String, Object> session = new HashMap<>();
         String session_token = sessionTokenService.savePut(partyId);
         session.put("session_token", session_token);
@@ -189,7 +189,7 @@ public class ApiExchangeApplyOrderController {
     @RequestMapping(action + "openview.action")
     public Result openView(String type) {
         Map<String, Object> data = new HashMap<>();
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         Wallet wallet = walletService.saveWalletByPartyId(partyId);
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.FLOOR);
@@ -206,7 +206,7 @@ public class ApiExchangeApplyOrderController {
     @RequestMapping(action + "closeview.action")
     public Result closeView(HttpServletRequest request) {
         Map<String, Object> data = new HashMap<>();
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         String symbol = request.getParameter("symbol");
         if (!StringUtils.isNullOrEmpty(partyId)) {
             WalletExtend walletExtend = walletService.saveExtendByPara(partyId, symbol);
@@ -233,7 +233,7 @@ public class ApiExchangeApplyOrderController {
         }
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if ((!partyId.equals(object))) {
 // 请稍后再试
             throw new YamiShopBindException("Please try again later");
@@ -289,7 +289,7 @@ public class ApiExchangeApplyOrderController {
         // limit order的交易价格
         String price = request.getParameter("price");
         String order_price_type = request.getParameter("order_price_type");
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (StringUtils.isNullOrEmpty(volume) || !StringUtils.isDouble(volume) || Double.parseDouble(volume) <= 0) {
 // 请输入正确的货币数量
             throw new YamiShopBindException("Please enter correct currency amount");
@@ -336,7 +336,7 @@ public class ApiExchangeApplyOrderController {
         String order_no = request.getParameter("order_no");
 
         // 直接开线程的方式不合适，要放到线程池里去做 TODO
-        CancelDelayThread lockDelayThread = new CancelDelayThread(SecurityUtils.getUser().getUserId(), order_no,
+        CancelDelayThread lockDelayThread = new CancelDelayThread(SecurityUtils.getCurrentUserId(), order_no,
                 exchangeApplyOrderService);
         Thread t = new Thread(lockDelayThread);
         t.start();
@@ -384,7 +384,7 @@ public class ApiExchangeApplyOrderController {
     public Object get(HttpServletRequest request) {
         String order_no = request.getParameter("order_no");
         ExchangeApplyOrder order = this.exchangeApplyOrderService.findByOrderNoAndPartyId(order_no,
-                SecurityUtils.getUser().getUserId());
+                SecurityUtils.getCurrentUserId());
         return Result.succeed(bulidData(order));
     }
 
@@ -430,7 +430,7 @@ public class ApiExchangeApplyOrderController {
             throw new YamiShopBindException("Please select correct currency");
         }
         String session_token = request.getParameter("session_token");
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
         if ((!partyId.equals(object))) {

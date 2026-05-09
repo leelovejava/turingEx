@@ -71,7 +71,7 @@ public class ApiWithdrawController implements InitializingBean {
     @GetMapping("withdrawOpen")
     @ApiOperation("首次进入页面，传递session_token")
     public Result withdrawOpen() {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         String session_token = this.sessionTokenService.savePut(partyId);
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("session_token", session_token);
@@ -97,7 +97,7 @@ public class ApiWithdrawController implements InitializingBean {
     public Result apply(HttpServletRequest request, String session_token, String safeword,
                         String amount, String from, String currency,
                         String channel, String language, String verifcode_type, String verifcode_value) {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         String error = this.verif(amount);
         if (!StringUtils.isNullOrEmpty(error)) {
             throw new YamiShopBindException(error);
@@ -120,7 +120,7 @@ public class ApiWithdrawController implements InitializingBean {
 // 资金密码必须6-12位
                 throw new YamiShopBindException("Fund password must be 6-12 characters");
             }
-            if (!userService.checkLoginSafeword(SecurityUtils.getUser().getUserId(), safeword)) {
+            if (!userService.checkLoginSafeword(SecurityUtils.getCurrentUserId(), safeword)) {
 // 资金密码错误
                 throw new YamiShopBindException("Fund password is incorrect");
             }
@@ -131,7 +131,7 @@ public class ApiWithdrawController implements InitializingBean {
         }
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
-//        if (null == object || !SecurityUtils.getUser().getUserId().equals((String) object)) {
+//        if (null == object || !SecurityUtils.getCurrentUserId().equals((String) object)) {
 //            throw new YamiShopBindException("请稍后再试");
 //        }
         Withdraw withdraw = new Withdraw();
@@ -195,7 +195,7 @@ public class ApiWithdrawController implements InitializingBean {
             throw new YamiShopBindException("Page number must be greater than 0");
         }
         int page_no_int = Integer.valueOf(page_no).intValue();
-        List<Map<String, Object>> data = this.walletLogService.pagedQueryWithdraw(page_no_int, 10, SecurityUtils.getUser().getUserId(), "1").getRecords();
+        List<Map<String, Object>> data = this.walletLogService.pagedQueryWithdraw(page_no_int, 10, SecurityUtils.getCurrentUserId(), "1").getRecords();
         for (Map<String, Object> log : data) {
             if (null == log.get("coin") || !StringUtils.isNotEmpty(log.get("coin").toString())) {
                 log.put("coin", Constants.WALLET);

@@ -130,7 +130,7 @@ public class ApiC2cAdvertController {
             throw new YamiShopBindException("Page number must be greater than 0");
         }
         int page_no_int = Integer.valueOf(page_no).intValue();
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         String c2cUserId = "";
         User party = userService.getById(partyId);
         if (null == party) {

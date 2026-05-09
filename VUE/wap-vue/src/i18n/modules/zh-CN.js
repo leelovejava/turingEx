@@ -367,7 +367,7 @@ export default {
     WithdrawUSDTAddress: "提币 USDT 到数字货币地址",
     Address: "地址",
     WithdrawTime: "·提币时间为24小时",
-    WithdrawalTitle1: "·现时提币只支持USDT币种",
+    WithdrawalTitle1: "·现时提币只支持数字货币",
     WithdrawalTitle2: "·提交提币申请后，该笔资金属于冻结状态是因为提现正在进行中，该笔资金暂时由系统托管，并不代表您损失了这笔资产或资产出现异常。",
     WithdrawalTitle3: "·提交提币申请后12h内到账，如预计提币时间后未到账请咨询线上客服。",
     enterAddress: "请输入地址",

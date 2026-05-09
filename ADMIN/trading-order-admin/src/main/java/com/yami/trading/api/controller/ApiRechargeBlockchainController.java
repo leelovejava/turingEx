@@ -55,7 +55,7 @@ public class ApiRechargeBlockchainController {
     @GetMapping("rechargeOpen")
     @ApiOperation("首次进入页面，传递session_token")
     public Result recharge_open() {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         String session_token = this.sessionTokenService.savePut(partyId);
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("session_token", session_token);
@@ -96,10 +96,10 @@ public class ApiRechargeBlockchainController {
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
         // 请稍后再试
-        if (null == object || !SecurityUtils.getUser().getUserId().equals((String) object)) {
+        if (null == object || !SecurityUtils.getCurrentUserId().equals((String) object)) {
             throw new YamiShopBindException("Please try again later");
         }
-        User party = userService.getById(SecurityUtils.getUser().getUserId());
+        User party = userService.getById(SecurityUtils.getCurrentUserId());
         // 无权限
         if (Constants.SECURITY_ROLE_TEST.equals(party.getRoleName())) {
             throw new YamiShopBindException("No permission");
@@ -107,7 +107,7 @@ public class ApiRechargeBlockchainController {
         // 充值申请中的订单是否只能唯一：1唯一，2不限制
         double recharge_only_one = Double.valueOf(sysparaService.find("recharge_only_one").getSvalue());
         // 用户未结束银行卡订单数量
-        Long nofinishOrderCount = this.c2cOrderService.getNofinishOrderCount(SecurityUtils.getUser().getUserId().toString());
+        Long nofinishOrderCount = this.c2cOrderService.getNofinishOrderCount(SecurityUtils.getCurrentUserId().toString());
         // 提交失败，当前有未处理银行卡订单
         if (null != nofinishOrderCount && 0 != nofinishOrderCount.longValue() && 1 == recharge_only_one) {
             throw new YamiShopBindException("Submission failed, there are unprocessed bank card orders");
@@ -123,7 +123,7 @@ public class ApiRechargeBlockchainController {
         recharge.setVolume(amount_double);
         recharge.setImg(img);
         recharge.setSymbol(coin.toLowerCase());
-        recharge.setPartyId(SecurityUtils.getUser().getUserId());
+        recharge.setPartyId(SecurityUtils.getCurrentUserId());
         recharge.setSucceeded(0);
         recharge.setChannelAddress(channel_address);
         recharge.setTx(StringUtils.isEmptyString(tx) ? "" : tx);
@@ -187,7 +187,7 @@ public class ApiRechargeBlockchainController {
         }
         int page_no_int = Integer.valueOf(page_no).intValue();
         Page<Map> page = new Page<>(page_no_int, 10);
-        List<Map> data = walletLogService.pagedQueryRecharge(SecurityUtils.getUser().getUserId(), "1", page).getRecords();
+        List<Map> data = walletLogService.pagedQueryRecharge(SecurityUtils.getCurrentUserId(), "1", page).getRecords();
         for (Map<String, Object> log : data) {
             System.out.printf(JSONUtil.toJsonStr(log));
             if (null == log.get("coin") || !StringUtils.isNotEmpty(log.get("coin").toString())) {

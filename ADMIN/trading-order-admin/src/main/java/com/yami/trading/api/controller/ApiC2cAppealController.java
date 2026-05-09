@@ -58,7 +58,7 @@ public class ApiC2cAppealController {
 // 请上传申诉凭证
             throw new YamiShopBindException("Please upload appeal evidence");
         }
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         C2cOrder order = this.c2cOrderService.get(order_no);
         if (null == order || !partyId.equals(order.getPartyId())) {
 // 订单不存在

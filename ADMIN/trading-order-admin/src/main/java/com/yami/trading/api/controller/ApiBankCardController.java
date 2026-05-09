@@ -82,7 +82,7 @@ public class ApiBankCardController {
     @ApiOperation("首次进入下单页面，传递session_token")
     @PostMapping("orderOpen")
     public Result<Map<String, Object>> order_open() {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         String session_token = this.sessionTokenService.savePut(partyId);
 //        Map<String, C2cPaymentMethod> cpmMap = this.c2cPaymentMethodService.getByPartyId("2c948a8282920a9f01829270bcac0000");
         Map<String, C2cPaymentMethod> cpmMap = this.c2cPaymentMethodService.getByPartyId(partyId);
@@ -246,14 +246,14 @@ public class ApiBankCardController {
             throw new YamiShopBindException(error);
         }
         double coin_amount_double = Double.valueOf(coin_amount).doubleValue();
-        String userId = SecurityUtils.getUser().getUserId();
+        String userId = SecurityUtils.getCurrentUserId();
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);
         if (null == object || !userId.equals((String) object)) {
 // 请稍后再试
             throw new YamiShopBindException("Please try again later");
         }
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (null == partyId) {
 // 请重新登录
             throw new YamiShopBindException("Please login again");
@@ -505,7 +505,7 @@ public class ApiBankCardController {
     @ApiOperation("取消订单")
     @PostMapping("orderCancel")
     public Result orderCancel(String order_no, String remark) {
-        User party = userService.getById(SecurityUtils.getUser().getUserId());
+        User party = userService.getById(SecurityUtils.getCurrentUserId());
         if (Constants.SECURITY_ROLE_TEST.equals(party.getRoleName())) {
 // 无权限
             throw new YamiShopBindException("No permission");
@@ -516,13 +516,13 @@ public class ApiBankCardController {
         }
 
         C2cOrder order = this.c2cOrderService.get(order_no);
-        if (null == order || !order.getPartyId().equals(SecurityUtils.getUser().getUserId())) {
+        if (null == order || !order.getPartyId().equals(SecurityUtils.getCurrentUserId())) {
 // 订单不存在
             throw new YamiShopBindException("Order does not exist");
         }
         order.setRemark(remark);
         // 用户不能取消提现
-        if (SecurityUtils.getUser().getUserId().equals(order.getPartyId())) {
+        if (SecurityUtils.getCurrentUserId().equals(order.getPartyId())) {
             if ("withdraw".equals(order.getDirection())) {
 // 用户不能取消提现
                 throw new YamiShopBindException("User cannot cancel withdrawal");
@@ -591,7 +591,7 @@ public class ApiBankCardController {
     @GetMapping("list")
     @ApiOperation("获取 银行卡订单 列表")
     public Result list(String page_no, String direction, String state, String language) {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (null == partyId) {
 // 请重新登录
             throw new YamiShopBindException("Please login again");

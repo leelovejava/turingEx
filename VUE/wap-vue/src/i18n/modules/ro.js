@@ -364,7 +364,7 @@ export default {
     WithdrawUSDTAddress: "提币 USDT 到数字货币地址",
     Address: "地址",
     WithdrawTime: "·提币时间为24小时",
-    WithdrawalTitle1: "·现时提币只支持USDT币种",
+    WithdrawalTitle1: "·Retragerea actuală acceptă doar monede digitale",
     WithdrawalTitle2: "·提交提币申请后，该笔资金属于冻结状态是因为提现正在进行中，该笔资金暂时由系统托管，并不代表您损失了这笔资产或资产出现异常。",
     WithdrawalTitle3: "·提交提币申请后12h内到账，如预计提币时间后未到账请咨询线上客服。",
     enterAddress: "请输入地址",
@@ -2646,32 +2646,46 @@ export default {
     "期望借款金额": "期望借款金额",
     "经过平台审核，您可向平台申请一笔借款！": "经过平台审核，您可向平台申请一笔借款！",
     "助力贷": "助力贷",
-   "loanRuleContent12":"为题免错过赏软还款日，客服会在您该还款日期之前反复通知，如果您错过还款日，您的货款将自动延长7天。在这种情况下，您将被收取货款金额的0.025的额外逾期利息。"
-"loanRuleTitle12":"12.如果我短有按时还款会怎么样？"
-"loanRuleContent11":"目前暂不支持自动还款。"
-"loanRuleTitle11":"11.货款到期后会自动还款吗？"
-"loanRuleContent10":"请联系客服人员，客服人员将为你提供专门的还款账户。"
-"loanRuleTitle10":"10.如何偿还本金和利息？"
-"loanRuleContent9":"您可以提前偿还贷款。您可以寻找客服申请提前还款完成此操作。\n\n 如果提前还款，超过3000USDT（或3500USDT或3500欧元)。总还款额（包括费用）不能超过您在原期结束时必须还款的金额。这意味着， 在提前还款的情况下，您必须偿还相同款项。"
-"loanRuleTitle9":"9.可以提前偿还全部或部分贷款吗？"
-"loanRuleContent8":"利息根据实际借贷时间计算得出（不足一个月按一个月进行计算)，月利率0.01。（例如你借款100000USDT，那么你一个月的还款利息是1000USDT) \n\n 每月的最后3天为最后还款日，当然你也可以提前完成还数，如果月末3天遇上周六、周日、或者公休日，还款日将顺推1～3天。"
-"loanRuleTitle8":"8.如何计算货款利息？"
-"loanRuleContent7":"你可以使用等额的BTC、ETH或USDT偿还贷款。"
-"loanRuleTitle7":"7.我用可以什么货币来偿还贷款？"
-"loanRuleContent6":"目前，贷款期设有7天、14天和30天，用户可以随时归还所借资产。如有疑问请联系客服进行详细咨询。"
-"loanRuleTitle6":"6.最低贷款期限是多少？"
-"loanRuleContent5":"借款可以以USDT、BTC、ETH等热门币种进行发放，贷款审核完成后会在24小时内发放到你的总资产中。"
-"loanRuleTitle5":"5.借款以什么形式进行发放？"
-"loanRuleContent4":"可以，你可以提取所借资产，但量请注意您的还款不能从A/D INVESTORS FUND LP账户内扣除，您需要完成还款才能进行提取功能。"
-"loanRuleTitle4":"4.所借资产可以提现吗？"
-"loanRuleContent3":"所借资产可以在A/D INVESTORS FUND LP上进行任何交易。"
-"loanRuleTitle3":"3.所借资产可以在A/D INVESTORS FUND LP上交易哪些产品？"
-"loanRuleContent2":"贷款程序尽可能简单。只要你有一个A/D INVESTORS FUND LP账户。你需要确保你的A/D INVESTORS FUND LP账户中有足够的抵押资产进行贷款，同意条款并申请贷款，然后寻找客服进行确认。"
-"loanRuleTitle2":"2.我怎样才能获得贷款？需要满足什么要求？"
-"loanRuleContent1":"A/D INVESTORS FUND LP贷款是与第三方贷款公司合作的一项金融服务，为您提供贷款以满足短期流动性资金需求。"
-"loanRuleTitle1":"1.什么是A/D INVESTORS FUND LP借贷？",
-    '外汇交割': '外汇交割',
-    '外汇合约': '外汇合约',
+   "loanRuleContent12":"为题免错过赏软还款日，客服会在您该还款日期之前反复通知，如果您错过还款日，您的货款将自动延长7天。在这种情况下，您将被收取货款金额的0.025的额外逾期利息。",
+    "loanRuleTitle12":"12.如果我短有按时还款会怎么样？",
+    "loanRuleContent11":"目前暂不支持自动还款。",
+    "loanRuleTitle11":"11.货款到期后会自动还款吗？",
+    "loanRuleContent10":"请联系客服人员，客服人员将为你提供专门的还款账户。",
+    "loanRuleTitle10":"10.如何偿还本金和利息？",
+    "loanRuleContent9":"您可以提前偿还贷款。您可以寻找客服申请提前还款完成此操作。\n\n 如果提前还款，超过3000USDT（或3500USDT或3500欧元)。总还款额（包括费用）不能超过您在原期结束时必须还款的金额。这意味着， 在提前还款的情况下，您必须偿还相同款项。",
+    "loanRuleTitle9":"9.可以提前偿还全部或部分贷款吗？",
+    "loanRuleContent8":"利息根据实际借贷时间计算得出（不足一个月按一个月进行计算)，月利率0.01。（例如你借款100000USDT，那么你一个月的还款利息是1000USDT) \n\n 每月的最后3天为最后还款日，当然你也可以提前完成还数，如果月末3天遇上周六、周日、或者公休日，还款日将顺推1～3天。",
+    "loanRuleTitle8":"8.如何计算货款利息？",
+    "loanRuleContent7":"你可以使用等额的BTC、ETH或USDT偿还贷款。",
+    "loanRuleTitle7":"7.我用可以什么货币来偿还贷款？",
+    "loanRuleContent6":"目前，贷款期设有7天、14天和30天，用户可以随时归还所借资产。如有疑问请联系客服进行详细咨询。",
+    "loanRuleTitle6":"6.最低贷款期限是多少？",
+    "loanRuleContent5":"借款可以以USDT、BTC、ETH等热门币种进行发放，贷款审核完成后会在24小时内发放到你的总资产中。",
+    "loanRuleTitle5":"5.借款以什么形式进行发放？",
+    "loanRuleContent4":"可以，你可以提取所借资产，但量请注意您的还款不能从A/D INVESTORS FUND LP账户内扣除，您需要完成还款才能进行提取功能。",
+    "loanRuleTitle4":"4.所借资产可以提现吗？",
+    "loanRuleContent3":"所借资产可以在A/D INVESTORS FUND LP上进行任何交易。",
+    "loanRuleTitle3":"3.所借资产可以在A/D INVESTORS FUND LP上交易哪些产品？",
+    "loanRuleContent2":"贷款程序尽可能简单。只要你有一个A/D INVESTORS FUND LP账户。你需要确保你的A/D INVESTORS FUND LP账户中有足够的抵押资产进行贷款，同意条款并申请贷款，然后寻找客服进行确认。",
+    "loanRuleTitle2":"2.我怎样才能获得贷款？需要满足什么要求？",
+    "loanRuleContent1":"A/D INVESTORS FUND LP贷款是与第三方贷款公司合作的一项金融服务，为您提供贷款以满足短期流动性资金需求。",
+    "loanRuleTitle1":"1.什么是A/D INVESTORS FUND LP借贷？",
+    '外汇交割': 'Livrare Forex',
+    '交割': 'Livrare',
+    'delivery': 'Livrare',
+    '全仓': 'Poziție completă',
+    '交割时间': 'Timpul de livrare',
+    '看涨': 'Crestere',
+    '看跌': 'Scadere',
+    '现价': 'Prețul curent',
+    'number': 'Număr',
+    '盈亏': 'Profit/Pierdere',
+    '剩余时间': 'Timp rămas',
+    '操作': 'Operațiune',
+    '到期时间': 'Termenul de expirare',
+    '天': 'Zi',
+    '开空': 'Vânzare la scoperte',
+    '外汇合约': 'Contract Forex',
     '外汇交易': '外汇交易',
     'ETF交割': 'ETF交割',
     'ETF合约': 'ETF合约',

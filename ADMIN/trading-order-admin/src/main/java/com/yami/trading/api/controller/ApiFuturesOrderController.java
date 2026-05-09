@@ -156,7 +156,7 @@ public class ApiFuturesOrderController {
             throw new YamiShopBindException("Market is currently closed");
         }
 
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         boolean lock = false;
         try {
             Map<String, String> data = new HashMap<>();
@@ -237,7 +237,7 @@ public class ApiFuturesOrderController {
             page.setCurrent(Long.parseLong(page_no));
             ;
         }
-        String loginPartyId = SecurityUtils.getUser().getUserId();
+        String loginPartyId = SecurityUtils.getCurrentUserId();
         IPage<FuturesOrder> paged = this.futuresOrderService.getPaged(page, loginPartyId, symbol, type, date, startTime, endTime, symbolType);
         List<FuturesOrder> list = paged.getRecords();
         Result<List<Map<String, Object>>> succeed = Result.succeed(futuresOrderService.bulidData(list));

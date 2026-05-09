@@ -203,7 +203,7 @@ public class ApiPaymentMethodController {
         validateParamLength(language, methodConfig.getParamName1(), model.getParam_value1(), 80, 1);
         validateParamLength(language, methodConfig.getParamName2(), model.getParam_value2(), 80, 2);
 
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (partyId == null) {
             throwLocalized(language, "请重新登录", "please login again");
         }
@@ -303,7 +303,7 @@ public class ApiPaymentMethodController {
             throwLocalized(language, "支付方式不正确", "Payment method is incorrect");
         }
 
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         if (!method.getPartyId().equals(partyId)) {
             throwLocalized(language, "支付方式不匹配该用户", "The payment method does not match this user");
         }
@@ -361,7 +361,7 @@ public class ApiPaymentMethodController {
     @ApiOperation("Get my payment method list")
     public Result<List<C2cPaymentMethod>> list(@RequestParam String language) {
         List<C2cPaymentMethod> list = new ArrayList<>();
-        Map<String, C2cPaymentMethod> map = this.c2cPaymentMethodService.getByC2CPartyId(SecurityUtils.getUser().getUserId());
+        Map<String, C2cPaymentMethod> map = this.c2cPaymentMethodService.getByC2CPartyId(SecurityUtils.getCurrentUserId());
         if (map != null && !map.isEmpty()) {
             for (C2cPaymentMethod method : map.values()) {
                 if (method == null || !isAllowedCryptoMethod(method.getMethodName())) {

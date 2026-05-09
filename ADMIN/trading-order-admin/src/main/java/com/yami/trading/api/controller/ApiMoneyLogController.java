@@ -41,7 +41,7 @@ public class ApiMoneyLogController {
 
     @RequestMapping("api/moneylog!list.action")
     public Result list(HttpServletRequest request) throws IOException {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         String page_no = request.getParameter("page_no");
         String symbolType = request.getParameter("symbolType");
         if (StringUtils.isNullOrEmpty(page_no)

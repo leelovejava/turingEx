@@ -215,7 +215,7 @@ public class ApiContractApplyOrderController {
         RLock rLock = null;
         boolean lockResult = false;
         try {
-        	String partyId = SecurityUtils.getUser().getUserId();
+        	String partyId = SecurityUtils.getCurrentUserId();
             rLock = redissonClient.getLock("contract_open_" + partyId);
             
             lockResult = rLock.tryLock(5, TimeUnit.SECONDS);
@@ -287,7 +287,7 @@ public class ApiContractApplyOrderController {
      */
     @RequestMapping(action + "close.action")
     public Result<String> close(@Valid CloseAction closeAction) throws InterruptedException {
-        String partyId = SecurityUtils.getUser().getUserId();
+        String partyId = SecurityUtils.getCurrentUserId();
         RLock rLock = redissonClient.getLock("contract_close_" + partyId);
         boolean lockResult = rLock.tryLock(5, TimeUnit.SECONDS);
         if (!lockResult) {
@@ -356,7 +356,7 @@ public class ApiContractApplyOrderController {
         }else{
             page.setSize(10);
         }
-        Page<Map<String, Object>> result = contractApplyOrderService.findList(page, SecurityUtils.getUser().getUserId(), symbol, type, startTime, endTime, symbolType);
+        Page<Map<String, Object>> result = contractApplyOrderService.findList(page, SecurityUtils.getCurrentUserId(), symbol, type, startTime, endTime, symbolType);
 
         Result<List<Map<String, Object>>> succeed = Result.succeed(result.getRecords());
         succeed.setTotal(result.getTotal());
@@ -411,7 +411,7 @@ public class ApiContractApplyOrderController {
     @RequestMapping(action + "cancel.action")
     public Result<String> cancel(@RequestParam @NotBlank String order_no) {
         try {
-            CancelDelayThread lockDelayThread = new CancelDelayThread(SecurityUtils.getUser().getUserId(), order_no, this.contractApplyOrderService, false);
+            CancelDelayThread lockDelayThread = new CancelDelayThread(SecurityUtils.getCurrentUserId(), order_no, this.contractApplyOrderService, false);
             Thread t = new Thread(lockDelayThread);
             t.start();
         } catch (Exception e) {
@@ -428,7 +428,7 @@ public class ApiContractApplyOrderController {
     @RequestMapping(action + "cancelAll.action")
     public Result<String> cancelAll() {
         try {
-            CancelDelayThread lockDelayThread = new CancelDelayThread(SecurityUtils.getUser().getUserId(), "", this.contractApplyOrderService, true);
+            CancelDelayThread lockDelayThread = new CancelDelayThread(SecurityUtils.getCurrentUserId(), "", this.contractApplyOrderService, true);
             Thread t = new Thread(lockDelayThread);
             t.start();
         } catch (Exception e) {
@@ -517,7 +517,7 @@ public class ApiContractApplyOrderController {
         }else{
             page.setSize(100);
         }
-        Page<ContractApplyOrder> result = contractApplyOrderService.findList(page, SecurityUtils.getUser().getUserId(), type,  symbolType);
+        Page<ContractApplyOrder> result = contractApplyOrderService.findList(page, SecurityUtils.getCurrentUserId(), type,  symbolType);
         List<ContractApplyOrder> datas = result.getRecords();
         if (!StringUtils.isInteger(page_no)) {
 // 页码不是整数

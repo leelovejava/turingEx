@@ -121,7 +121,7 @@ public class ApiUserPromiseRecordController {
             }
         }
         UserPromiseRecord userPromiseRecord = new UserPromiseRecord();
-        userPromiseRecord.setUserId(SecurityUtils.getUser().getUserId());
+        userPromiseRecord.setUserId(SecurityUtils.getCurrentUserId());
         userPromiseRecord.setDeductNumber(model.getDeductNumber());
         userPromiseRecord.setDeductUsdt(order.getSubPrice().multiply(userPromiseRecord.getDeductNumber()));
         userPromiseRecord.setStatus(1);
