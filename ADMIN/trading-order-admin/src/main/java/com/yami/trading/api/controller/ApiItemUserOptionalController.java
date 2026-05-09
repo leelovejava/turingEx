@@ -24,7 +24,6 @@ import java.util.Map;
  * @author lucas
  * @version 2023-03-10
  */
-
 @Api(tags = "h5用户自选")
 @RestController
 @CrossOrigin
@@ -35,9 +34,6 @@ public class ApiItemUserOptionalController {
     @Autowired
     private ItemUserOptionalService itemUserOptionalService;
 
-    /**
-     * 返回自选币种的行情
-     */
     @ApiOperation("返回用户自选币种的列表")
     @GetMapping("/api/itemUserOptional!list.action")
     public Result<List<ItemUserOptionalDTO>> list(@RequestParam(required = false) String symbol) {
@@ -46,15 +42,11 @@ public class ApiItemUserOptionalController {
         return Result.ok(models);
     }
 
-
-    /**
-     * 加入自选
-     */
     @ApiOperation("加入自选")
     @GetMapping("/api/itemUserOptional!add.action")
     public Result<String> add(@RequestParam String symbol) {
-        boolean lock = false;
         String loginPartyId = SecurityUtils.getCurrentUserId();
+        boolean lock = false;
         try {
             if (ItemLock.add(loginPartyId)) {
                 lock = true;
@@ -63,22 +55,20 @@ public class ApiItemUserOptionalController {
                 queryWrapper.eq("symbol", symbol);
                 long count = itemUserOptionalService.count(queryWrapper);
                 if (count > 0) {
-// 当前已经加入过自选
+                    // 当前已经加入过自选
                     throw new YamiShopBindException("Already added to favorites");
-
                 }
-
                 ItemUserOptional entity = new ItemUserOptional();
                 entity.setPartyId(loginPartyId);
                 entity.setSymbol(symbol);
                 itemUserOptionalService.save(entity);
             } else {
-// 请稍后再试
+                // 请稍后再试
                 throw new YamiShopBindException("Please try again later");
             }
         } catch (Exception e) {
             log.error("保存自选失败", e);
-// 保存自选失败
+            // 保存自选失败
             throw new YamiShopBindException("Failed to save favorite: " + e.getMessage());
         } finally {
             if (lock) {
@@ -89,9 +79,6 @@ public class ApiItemUserOptionalController {
         return Result.succeed("保存成功");
     }
 
-    /**
-     * 删除自选币种
-     */
     @ApiOperation("删除自选币种")
     @GetMapping("/api/itemUserOptional!delete.action")
     public Result<String> delete(@RequestParam String symbol) {
@@ -105,14 +92,13 @@ public class ApiItemUserOptionalController {
                 queryWrapper.eq("symbol", symbol);
                 itemUserOptionalService.remove(queryWrapper);
             } else {
-// 请稍后再试
+                // 请稍后再试
                 throw new YamiShopBindException("Please try again later");
             }
         } catch (Exception e) {
             log.error("删除失败", e);
-// 删除失败
+            // 删除失败
             throw new YamiShopBindException("Failed to delete");
-
         } finally {
             if (lock) {
                 ThreadUtils.sleep(50);
@@ -122,9 +108,6 @@ public class ApiItemUserOptionalController {
         return Result.ok("删除自选币种成功");
     }
 
-    /**
-     * 查询是否已加入自选
-     */
     @ApiOperation("查询是否已加入自选")
     @GetMapping("/api/itemUserOptional!getItemOptionalStatus.action")
     public Result<Map<String, Object>> getItemOptionalStatus(@RequestParam String symbol) {
@@ -134,12 +117,7 @@ public class ApiItemUserOptionalController {
         queryWrapper.eq("symbol", symbol);
         long count = itemUserOptionalService.count(queryWrapper);
         Map<String, Object> data = new HashMap<>();
-
-        if (count <= 0) {
-            data.put("status", "0");
-        } else {
-            data.put("status", "1");
-        }
+        data.put("status", count > 0 ? "1" : "0");
         return Result.ok(data);
     }
 }
