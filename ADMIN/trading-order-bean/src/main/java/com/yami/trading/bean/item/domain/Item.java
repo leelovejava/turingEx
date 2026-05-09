@@ -152,6 +152,10 @@ public class Item extends BaseEntity {
     private double pipsAmount;
 
     private double adjustmentValue;
+    /**
+     * 行情控制持续时间(秒)
+     */
+    private double adjustmentDurationSecond;
 
     /**
      * 每张金额

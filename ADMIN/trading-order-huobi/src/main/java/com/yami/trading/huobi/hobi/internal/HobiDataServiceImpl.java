@@ -769,10 +769,10 @@ public class HobiDataServiceImpl implements HobiDataService {
      */
     @Override
     public List<Realtime> realtimeCryptos(String symbols) {
-        logger.info("[Crypto] 开始获取加密货币实时数据, symbols={}", symbols);
+        logger.debug("[Crypto] 开始获取加密货币实时数据, symbols={}", symbols);
         
         boolean isHuobi = spiderService.isHuobi();
-        logger.info("[Crypto] 数据源类型: {}", isHuobi ? "火币(Huobi)" : "抹茶(MEXC)");
+        logger.debug("[Crypto] 数据源类型: {}", isHuobi ? "火币(Huobi)" : "抹茶(MEXC)");
         
         List<Realtime> realtimeList;
         // 根据数据源配置选择不同的Redis Key
@@ -782,7 +782,7 @@ public class HobiDataServiceImpl implements HobiDataService {
              realtimeList = spiderService.fetchRealtimeList(symbols, REALTIME_HASH_BAK);  // 抹茶数据源使用备用Key
         }
 
-        logger.info("[Crypto] 获取加密货币实时数据完成, 返回数据量: {}, symbols={}",
+        logger.debug("[Crypto] 获取加密货币实时数据完成, 返回数据量: {}, symbols={}",
                  realtimeList != null ? realtimeList.size() : 0, symbols);
         
         // 数据为空时输出警告日志，帮助排查问题

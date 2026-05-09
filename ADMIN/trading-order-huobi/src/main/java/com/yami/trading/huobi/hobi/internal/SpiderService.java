@@ -152,7 +152,7 @@ public class SpiderService {
      * @return 实时行情数据列表
      */
     public List<Realtime> fetchRealtimeList(String remarks, String key) {
-        log.info("[Spider] 开始从Redis获取实时数据, key={}, remarks={}", key, remarks);
+        log.debug("[Spider] 开始从Redis获取实时数据, key={}, remarks={}", key, remarks);
         
         List<Realtime> list = new ArrayList<>();
         RMap<String, String> map = redissonClientSpider.getMap(key);
@@ -163,11 +163,11 @@ public class SpiderService {
         }
         
         Set<String> keys = Splitter.on(",").trimResults().splitToStream(remarks).collect(Collectors.toSet());
-        log.info("[Spider] 需要查询的币种数量: {}, key={}", keys.size(), key);
+        log.debug("[Spider] 需要查询的币种数量: {}, key={}", keys.size(), key);
         
         Map<String, String> values = map.getAll(keys);
         
-        log.info("[Spider] Redis返回的数据量: {}, key={}", values != null ? values.size() : 0, key);
+        log.debug("[Spider] Redis返回的数据量: {}, key={}", values != null ? values.size() : 0, key);
         
         if (values == null || values.isEmpty()) {
             log.warn("[Spider] WARNING: Redis中没有找到对应数据! key={}, remarks={}", key, remarks);
@@ -175,16 +175,6 @@ public class SpiderService {
         }
         for (String symbol : values.keySet()) {
             JSONObject realtimeJson = JSONObject.parseObject(values.get(symbol).trim());
-            if ("eth".equalsIgnoreCase(symbol)) {
-                log.info("[CryptoDebug] Redis raw eth, key={}, current={}, open={}, close={}, percent={}, chg={}, ts={}",
-                        key,
-                        realtimeJson.get("current"),
-                        realtimeJson.get("open"),
-                        realtimeJson.get("close"),
-                        realtimeJson.get("percent"),
-                        realtimeJson.get("chg"),
-                        realtimeJson.get("time"));
-            }
             realtimeJson.put("mid", realtimeJson.get("current"));
             realtimeJson.put("currency", realtimeJson.get("symbol"));
             realtimeJson.put("timestamp", realtimeJson.get("time"));
@@ -255,15 +245,6 @@ public class SpiderService {
             BigDecimal percent = realtimeJson.getBigDecimal("percent");
             if (percent != null) {
                 realtime.setPercent(percent.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-            }
-            if ("eth".equalsIgnoreCase(symbolByRemarks)) {
-                log.info("[CryptoDebug] Parsed eth, key={}, symbol={}, open={}, close={}, chg={}, percent={}",
-                        key,
-                        symbolByRemarks,
-                        realtime.getOpen(),
-                        realtime.getClose(),
-                        realtime.getChg(),
-                        realtime.getPercent());
             }
             BigDecimal amount = realtimeJson.getBigDecimal("amount");
             if (amount == null) {

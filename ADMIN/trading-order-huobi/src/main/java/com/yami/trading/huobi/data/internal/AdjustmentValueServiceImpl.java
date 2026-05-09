@@ -1,4 +1,4 @@
-﻿package com.yami.trading.huobi.data.internal;
+package com.yami.trading.huobi.data.internal;
 
 import com.yami.trading.bean.data.domain.Realtime;
 import com.yami.trading.bean.item.domain.Item;
@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Map;
+import java.util.concurrent.*;
 
 /**
  * 行情调整值服务实现类
@@ -35,6 +37,8 @@ import java.math.RoundingMode;
  */
 @Component
 public class AdjustmentValueServiceImpl implements AdjustmentValueService {
+    private static final ScheduledExecutorService CLEAR_EXECUTOR = Executors.newScheduledThreadPool(1);
+    private static final Map<String, ScheduledFuture<?>> CLEAR_TASKS = new ConcurrentHashMap<>();
 
     /**
      * 数据服务,用于获取实时行情数据
@@ -79,8 +83,9 @@ public class AdjustmentValueServiceImpl implements AdjustmentValueService {
             AdjustmentValueCache.getCurrentValue().put(symbol, 0D);
             AdjustmentValueCache.getDelayValue().remove(symbol);
             Item item = this.itemService.findBySymbol(symbol);
-            if (item != null && item.getAdjustmentValue() != 0D) {
+            if (item != null && (item.getAdjustmentValue() != 0D || item.getAdjustmentDurationSecond() != 0D)) {
                 item.setAdjustmentValue(0D);
+                item.setAdjustmentDurationSecond(0D);
                 itemService.saveOrUpdate(item);
             }
             return;
@@ -99,10 +104,10 @@ public class AdjustmentValueServiceImpl implements AdjustmentValueService {
         if (second <= 0) {
             // ========== 即时生效模式 ==========
             // 获取当前已有的调整值
-            double currentValue = AdjustmentValueCache.getCurrentValue().get(symbol);
+            Double currentValue = AdjustmentValueCache.getCurrentValue().get(symbol);
             
             // 累加新的调整值到缓存
-            if (currentValue == 0) {
+            if (currentValue == null || currentValue == 0) {
                 // 之前没有调整值,直接设置新值
                 AdjustmentValueCache.getCurrentValue().put(symbol, value);
             } else {
@@ -132,14 +137,55 @@ public class AdjustmentValueServiceImpl implements AdjustmentValueService {
         }
     }
 
+    @Override
+    public void adjust(String symbol, double value, double second, Double durationSecond) {
+        adjust(symbol, value, second);
+        Item item = this.itemService.findBySymbol(symbol);
+        if (item != null) {
+            item.setAdjustmentDurationSecond(durationSecond == null ? 0D : durationSecond);
+            itemService.saveOrUpdate(item);
+        }
+        scheduleClear(symbol, durationSecond);
+    }
+
+    private void scheduleClear(String symbol, Double durationSecond) {
+        if (durationSecond == null || durationSecond <= 0) {
+            ScheduledFuture<?> old = CLEAR_TASKS.remove(symbol);
+            if (old != null) {
+                old.cancel(false);
+            }
+            return;
+        }
+        ScheduledFuture<?> old = CLEAR_TASKS.remove(symbol);
+        if (old != null) {
+            old.cancel(false);
+        }
+        long delayMs = (long) (durationSecond * 1000);
+        ScheduledFuture<?> task = CLEAR_EXECUTOR.schedule(() -> {
+            try {
+                AdjustmentValueCache.getCurrentValue().put(symbol, 0D);
+                AdjustmentValueCache.getDelayValue().remove(symbol);
+                Item item = this.itemService.findBySymbol(symbol);
+                if (item != null && (item.getAdjustmentValue() != 0D || item.getAdjustmentDurationSecond() != 0D)) {
+                    item.setAdjustmentValue(0D);
+                    item.setAdjustmentDurationSecond(0D);
+                    itemService.saveOrUpdate(item);
+                }
+            } finally {
+                CLEAR_TASKS.remove(symbol);
+            }
+        }, delayMs, TimeUnit.MILLISECONDS);
+        CLEAR_TASKS.put(symbol, task);
+    }
+
     /**
      * 获取指定品种的当前调整值
-     * 
+     * <p>
      * 该方法用于查询当前已生效的调整值,注意:
      * - 返回值为null表示该品种没有设置调整值
      * - 返回值为0表示调整值已清零
      * - 调整值是累加的,每次调用adjust都会累加新值
-     * 
+     *
      * @param symbol 交易品种代码
      * @return 当前调整值,如果没有设置则返回null
      */
@@ -188,5 +234,3 @@ public class AdjustmentValueServiceImpl implements AdjustmentValueService {
     }
 
 }
-
-

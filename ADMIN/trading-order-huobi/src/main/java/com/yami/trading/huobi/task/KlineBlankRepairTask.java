@@ -206,7 +206,7 @@ public class KlineBlankRepairTask {
 //                        if(item.getSymbol().equalsIgnoreCase("00941") || item.getSymbol().equalsIgnoreCase("IYW")){
 //                            break;
 //                        }
-                        log.info(" {} -> {} k线图为空，正在重新初始化", item.getSymbol(), period);
+                        log.debug(" {} -> {} k线图为空，正在重新初始化", item.getSymbol(), period);
                         needInit = true;
                         break;
                     }

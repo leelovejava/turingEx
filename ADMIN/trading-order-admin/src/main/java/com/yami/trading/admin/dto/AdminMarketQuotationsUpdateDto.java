@@ -18,6 +18,8 @@ public class AdminMarketQuotationsUpdateDto {
     private String symbol;
     @ApiModelProperty("延迟秒")
     private double second;
+    @ApiModelProperty("duration seconds, auto clear when expired")
+    private Double durationSecond;
     @NotNull(message = "调整值必填")
     @ApiModelProperty("调整值")
     private double value;

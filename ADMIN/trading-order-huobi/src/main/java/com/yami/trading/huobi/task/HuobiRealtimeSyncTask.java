@@ -49,7 +49,7 @@ public class HuobiRealtimeSyncTask {
         if (!enabled) {
             return;
         }
-        log.info("[HuobiSyncV2] start sync realtime_hash");
+        log.debug("[HuobiSyncV2] start sync realtime_hash");
         try {
             String result = HttpHelper.getJSONFromHttpNew(huobiTickersUrl, Collections.emptyMap(), HttpMethodType.GET);
             JSONObject json = JSON.parseObject(result);
@@ -71,7 +71,7 @@ public class HuobiRealtimeSyncTask {
                     .collect(Collectors.toMap(o -> o.getString("symbol").toLowerCase(), Function.identity(), (a, b) -> a));
             if (log.isInfoEnabled()) {
                 List<String> samples = byPair.keySet().stream().limit(10).collect(Collectors.toList());
-                log.info("[HuobiSync] fetched tickers={}, sampleSymbols={}", byPair.size(), samples);
+                log.debug("[HuobiSync] fetched tickers={}, sampleSymbols={}", byPair.size(), samples);
             }
 
             Map<String, JSONObject> byBase = new HashMap<>();
@@ -166,10 +166,10 @@ public class HuobiRealtimeSyncTask {
                 success++;
             }
 
-            log.info("[HuobiSync] write realtime_hash done, success={}, miss={}, total={}, missSamples={}",
+            log.debug("[HuobiSync] write realtime_hash done, success={}, miss={}, total={}, missSamples={}",
                     success, miss, cryptos.size(), missSamples);
             try {
-                log.info("[HuobiSync] realtime_hash size now={}", realtimeMap.size());
+                log.debug("[HuobiSync] realtime_hash size now={}", realtimeMap.size());
             } catch (Exception ignore) {
             }
         } catch (Exception e) {
@@ -211,7 +211,7 @@ public class HuobiRealtimeSyncTask {
                 if (tick == null) {
                     continue;
                 }
-                log.info("[HuobiSync] fallback hit base={}, pair={}", base, base + q);
+                log.debug("[HuobiSync] fallback hit base={}, pair={}", base, base + q);
                 JSONObject one = new JSONObject();
                 one.put("symbol", base);
                 one.put("open", safeNum(tick.getBigDecimal("open")));

@@ -53,7 +53,7 @@ public class KlineInitServiceImpl implements KlineInitService {
             if(!bySymbol.isActive()){
                 return;
             }
-            log.info("当前开始初始化币对k线图: {}", symbols);
+            log.debug("当前开始初始化币对k线图: {}", symbols);
             if (Item.cryptos.equalsIgnoreCase(bySymbol.getType())) {
                 cryptosKlineService.saveInit(symbols);
                 // 清理下价格历史数据，避免计算时候影响
@@ -67,7 +67,7 @@ public class KlineInitServiceImpl implements KlineInitService {
             } else {
                 saveInitSelfData(symbols);
             }
-            log.info("当前完成初始化币对k线图: {}", symbols);
+            log.debug("当前完成初始化币对k线图: {}", symbols);
         } else {
             String[] symbolsArrays = symbols.split(",");
             boolean selfData = true;
@@ -76,7 +76,7 @@ public class KlineInitServiceImpl implements KlineInitService {
                 if(!bySymbol.isActive()){
                     return;
                 }
-                log.info("当前开始初始化币对k线图: {}", symbol);
+                log.debug("当前开始初始化币对k线图: {}", symbol);
                 if (Item.cryptos.equalsIgnoreCase(bySymbol.getType())) {
                     cryptosKlineService.saveInit(symbol);
                     // 清理下价格历史数据，避免计算时候影响
@@ -91,7 +91,7 @@ public class KlineInitServiceImpl implements KlineInitService {
                 } else {
                     break;
                 }
-                log.info("当前完成初始化币对k线图: {}", symbol);
+                log.debug("当前完成初始化币对k线图: {}", symbol);
             }
             if (selfData){
                 saveInitSelfData(symbols);
@@ -99,7 +99,7 @@ public class KlineInitServiceImpl implements KlineInitService {
         }
     }
     private void saveInitSelfData(String symbols) {
-        log.info("正在通过自己数据源 初始化k綫圖:{}", symbols);
+        log.debug("正在通过自己数据源 初始化k綫圖:{}", symbols);
         List<Map<String, List<Kline>>> klines = spiderService.getKlines(symbols);
         for(Map<String, List<Kline>> map: klines){
             List<Kline> klines5P = map.get(Kline.PERIOD_5MIN);
@@ -108,10 +108,10 @@ public class KlineInitServiceImpl implements KlineInitService {
                 klineService.saveInit(symbol, map);
                 DataCache.clearLatestRealTime60s(symbol);
               //  dataDBService.delete(symbols);
-                log.info("初始化k线图{} 数量为{}", symbol, map.size());
+                log.debug("初始化k线图{} 数量为{}", symbol, map.size());
             }
         }
 
-        log.info("完成自己数据源 初始化k綫圖:{}", symbols);
+        log.debug("完成自己数据源 初始化k綫圖:{}", symbols);
     }
 }

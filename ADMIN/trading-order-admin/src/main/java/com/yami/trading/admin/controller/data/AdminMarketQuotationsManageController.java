@@ -81,7 +81,7 @@ public class AdminMarketQuotationsManageController {
 //        if(!itemService.isOpen(adminMarketQuotationsUpdateDto.getSymbol())){
 //            throw new YamiShopBindException("当前休市状态");
 //        }
-        marketQuotationsFacade.adjust(adminMarketQuotationsUpdateDto.getSymbol(), adminMarketQuotationsUpdateDto.getSecond(), adminMarketQuotationsUpdateDto.getValue());
+        marketQuotationsFacade.adjust(adminMarketQuotationsUpdateDto.getSymbol(), adminMarketQuotationsUpdateDto.getSecond(), adminMarketQuotationsUpdateDto.getValue(), adminMarketQuotationsUpdateDto.getDurationSecond());
         return Result.succeed("操作成功");
     }
 }

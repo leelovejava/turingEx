@@ -15,6 +15,7 @@
     >
       <el-form-item label="" prop="transName">
         <span>请输入正负调整值</span>
+        <div style="font-size: 12px; color: #909399; margin: 4px 0;">0 means clear adjustment (disable market control)</div>
         <el-input
           v-model="dataForm.transName"
           type="number"
@@ -357,6 +358,15 @@ export default {
     dataFormSubmit: Debounce(function () {
       this.$refs["dataForm"].validate((valid) => {
         if (valid) {
+          const adjustValue = Number(this.dataForm.transName);
+          if (Number.isNaN(adjustValue)) {
+            this.$message({
+              message: "Please input a valid number (0 is allowed)",
+              type: "warning",
+              duration: 1200,
+            });
+            return;
+          }
           this.loading = true;
           this.dataForm.transfees[0].cityList = [];
           this.$http({
@@ -367,12 +377,12 @@ export default {
             data: this.$http.adornData({
               second: this.second,
               symbol: this.title,
-              value: this.dataForm.transName,
+              value: adjustValue,
             }),
           }).then(({ data }) => {
             if (data.code == 0) {
               this.$message({
-                message: "操作成功",
+                message: "Please input a valid number (0 is allowed)",
                 type: "success",
                 duration: 1000,
                 onClose: () => {

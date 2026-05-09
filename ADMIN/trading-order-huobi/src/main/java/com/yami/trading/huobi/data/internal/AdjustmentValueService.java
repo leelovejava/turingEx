@@ -10,6 +10,10 @@ public interface AdjustmentValueService {
 	 */
 	void adjust(String symbol, double value, double second);
 
+	default void adjust(String symbol, double value, double second, Double durationSecond) {
+		adjust(symbol, value, second);
+	}
+
 	double getCurrentValue(String symbol);
 
 	AdjustmentValue getDelayValue2(String symbol);

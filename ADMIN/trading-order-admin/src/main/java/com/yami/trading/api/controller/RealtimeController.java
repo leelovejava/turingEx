@@ -359,14 +359,6 @@ public class RealtimeController {
 							.type(item.getType())
 							.build();
 					list.add(dto);
-					if ("cryptos".equalsIgnoreCase(type) && "eth".equalsIgnoreCase(item.getSymbol())) {
-						log.info("[CryptoDebug] publicRealtimeByType eth, open={}, close={}, chg={}, changeRatio={}, ts={}",
-								dto.getOpen(),
-								dto.getClose(),
-								dto.getChg(),
-								dto.getChangeRatio(),
-								dto.getTs());
-					}
 				} else {
 					log.error("获取行情接口，realtime is null；币种->{}", item.getSymbol());
 				}

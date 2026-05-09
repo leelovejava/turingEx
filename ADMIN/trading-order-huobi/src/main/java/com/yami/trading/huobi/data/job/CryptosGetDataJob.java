@@ -73,9 +73,9 @@ public class CryptosGetDataJob extends AbstractGetDataJob {
      */
     @Override
     public void start() {
-        log.info("[CryptoJob] ========== CryptosGetDataJob 启动 ==========");
+        log.debug("[CryptoJob] ========== CryptosGetDataJob 启动 ==========");
         new Thread(this, "CryptosGetDataJob").start();
-        log.info("[CryptoJob] ========== CryptosGetDataJob 线程已创建 ==========");
+        log.debug("[CryptoJob] ========== CryptosGetDataJob 线程已创建 ==========");
     }
 
     /**
@@ -95,7 +95,7 @@ public class CryptosGetDataJob extends AbstractGetDataJob {
      */
     @Override
     public void run() {
-        log.info("[CryptoJob] ========== CryptosGetDataJob.run() 开始执行 ==========");
+        log.debug("[CryptoJob] ========== CryptosGetDataJob.run() 开始执行 ==========");
 
         // 首次执行时初始化采集间隔
         if (first) {
@@ -104,27 +104,27 @@ public class CryptosGetDataJob extends AbstractGetDataJob {
              * 默认设置为3000毫秒(3秒)
              */
             this.interval = 3000;
-            log.info("[CryptoJob] 首次执行, 设置采集间隔: {}ms", this.interval);
+            log.debug("[CryptoJob] 首次执行, 设置采集间隔: {}ms", this.interval);
             first = false;
         }
         
-        log.info("[CryptoJob] 进入数据采集循环...");
+        log.debug("[CryptoJob] 进入数据采集循环...");
         
         // 无限循环采集数据
         while (true) {
-            log.info("[CryptoJob] >>> 循环执行中, 当前时间: {}", System.currentTimeMillis());
+            log.debug("[CryptoJob] >>> 循环执行中, 当前时间: {}", System.currentTimeMillis());
             try {
-                log.info("[CryptoJob] --- 查询数据库获取加密货币列表...");
+                log.debug("[CryptoJob] --- 查询数据库获取加密货币列表...");
                 // 查询所有虚拟货币品种
                 List<Item> byType = itemService.findByType(Item.cryptos);
-                log.info("[CryptoJob] --- 查询到 {} 个加密货币", byType.size());
+                log.debug("[CryptoJob] --- 查询到 {} 个加密货币", byType.size());
                 
                 // 构建币种符号字符串,去除usdt后缀
                 // 例如: BTCUSDT -> BTC, ETHUSDT -> ETH
                 String symbols = byType.stream()
                         .map(i -> i.getRemarks().replace("usdt", ""))
                         .collect(Collectors.joining(","));
-                log.info("[CryptoJob] 开始采集加密货币数据, 币种数量: {}, symbols: {}", byType.size(), symbols);
+                log.debug("[CryptoJob] 开始采集加密货币数据, 币种数量: {}, symbols: {}", byType.size(), symbols);
                 
                 // 处理实时行情数据
                 this.realtimeHandle(symbols);
@@ -133,7 +133,7 @@ public class CryptosGetDataJob extends AbstractGetDataJob {
                 logger.error("[CryptoJob] 采集加密货币数据失败", e);
             } finally {
                 // 无论是否异常,都等待指定间隔
-                log.info("[CryptoJob] <<< 等待 {}ms 后继续采集...", this.interval);
+                log.debug("[CryptoJob] <<< 等待 {}ms 后继续采集...", this.interval);
                 ThreadUtils.sleep(this.interval);
             }
         }

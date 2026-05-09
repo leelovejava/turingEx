@@ -203,6 +203,10 @@ public abstract class AbstractGetDataJob implements Runnable {
                 currentValue = AdjustmentValueCache.getCurrentValue().get(symbol);
                 
                 if (currentValue != null && currentValue != 0) {
+                    // 行情控制已开启：记录应用前价格，便于核对是否生效
+                    double beforeClose = realtime.getClose();
+                    double beforeAsk = realtime.getAsk();
+                    double beforeBid = realtime.getBid();
                     // 同时调整三个关键价格: 收盘价、买价、卖价
                     realtime.setClose(BigDecimal.valueOf(realtime.getClose() + currentValue)
                             .setScale(decimal, RoundingMode.HALF_UP).doubleValue());
@@ -210,6 +214,15 @@ public abstract class AbstractGetDataJob implements Runnable {
                             .setScale(decimal, RoundingMode.HALF_UP).doubleValue());
                     realtime.setBid(BigDecimal.valueOf(realtime.getBid() + currentValue)
                             .setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                    logger.info("[MarketAdjust] 品种={}, 行情控制=开启, 调整值={}, 收盘价:{}->{}, 卖价:{}->{}, 买价:{}->{}",
+                            symbol, currentValue, beforeClose, realtime.getClose(), beforeAsk, realtime.getAsk(), beforeBid, realtime.getBid());
+                } else {
+                    // 行情控制未开启：输出当前值及是否存在延时生效任务
+                    AdjustmentValue delayValueNow = AdjustmentValueCache.getDelayValue().get(symbol);
+                    if (delayValueNow != null) {
+                        logger.info("[MarketAdjust] 品种={}, 行情控制=未开启, 调整值={}, 存在延时任务={}",
+                                symbol, currentValue, true);
+                    }
                 }
 
                 // ========== 步骤5:保存处理后的行情数据 ==========

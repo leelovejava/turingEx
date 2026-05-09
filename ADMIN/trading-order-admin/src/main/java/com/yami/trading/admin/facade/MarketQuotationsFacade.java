@@ -183,7 +183,7 @@ public class MarketQuotationsFacade {
 
     }
 
-    public void adjust(String symbol, double second, double value) {
+    public void adjust(String symbol, double second, double value, Double durationSecond) {
         double currentValue = this.adjustmentValueService.getCurrentValue(symbol);
         if (currentValue == 0) {
             Realtime realtime = this.dataService.realtime(symbol).get(0);
@@ -192,7 +192,7 @@ public class MarketQuotationsFacade {
         String log = MessageFormat.format("ip:" + IPHelper.getIpAddr() + ",调整行情,币种:{0},原值:{1},调整值:{2},调整时间:{3}",
                 symbol, currentValue, value, second);
 
-        this.adjustmentValueService.adjust(symbol, value, second);
+        this.adjustmentValueService.adjust(symbol, value, second, durationSecond);
         saveLog(log);
         ThreadUtils.sleep(1000);
     }
