@@ -30,20 +30,39 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * 爬虫数据服务类
+ * 
+ * 该类负责从 Redis 中获取爬虫抓取的各种行情数据,主要功能包括:
+ * 1. 获取实时行情数据(Realtime)
+ * 2. 获取市场状态信息(StockMarket)
+ * 3. 获取盘口深度数据(Depth)
+ * 4. 获取交易明细数据(TradeDetails)
+ * 5. 获取K线数据(Kline)
+ * 6. 获取新股数据(XueQiuNewStocks)
+ * 7. 数据源切换(火币/抹茶)
+ * 
+ * 数据来源:
+ * - 爬虫服务抓取外部数据源(火币/抹茶)
+ * - 数据存储在 Redis 中
+ * - 本服务从 Redis 读取数据并转换为 Java 对象
+ * 
+ * @author System
+ */
 @Slf4j
 @Component
 public class SpiderService {
     /**
-     * 实时行情
+     * 实时行情数据Redis Key
      */
     public static final String REALTIME_HASH = "realtime_hash";
     public static final String REALTIME_HASH_BAK = "realtime_hash_bak";
     /**
-     * 时区状态hash
+     * 市场状态数据Redis Key
      */
     public static final String MARKET_HASH = "market_hash";
     /**
-     * 交易明细，A股和美股有
+     * 交易明细数据Redis Key(A股和美股有)
      */
     public static final String TRADER_HASH = "trader_hash";
 
@@ -64,14 +83,16 @@ public class SpiderService {
     private ItemService itemService;
 
     /**
-     *
-     * 如果全局是抹茶，直接返回false
-     *
-     * 如果本地是抹茶返回false
-     *
-     * 其他返回true
-     *
-     * @return
+     * 判断是否使用火币数据源
+     * 
+     * 判断逻辑:
+     * 1. 如果Redis中全局配置为抹茶,直接返回false
+     * 2. 如果本地系统参数配置为抹茶,返回false
+     * 3. 其他情况返回true
+     * 
+     * 优先级: Redis全局配置 > 本地系统参数配置
+     * 
+     * @return true-使用火币数据源, false-使用抹茶数据源
      */
     public boolean isHuobi(){
         Object o = redissonClientSpider.getBucket(SPIDER_SWITCH_CRYPTOS_KEY).get();
@@ -89,6 +110,11 @@ public class SpiderService {
 
     }
 
+    /**
+     * 从Redis获取雪球新股列表(已上市)
+     * 
+     * @return 新股列表,如果Redis中没有数据返回空列表
+     */
     public List<XueQiuNewStocks> fetchNewStocks() {
         Object o = redissonClientSpider.getBucket(XUEQIU_NEW_STOCKS).get();
         if(o == null){
@@ -97,6 +123,11 @@ public class SpiderService {
         return JSONArray.parseArray(o.toString(), XueQiuNewStocks.class);
     }
 
+    /**
+     * 从Redis获取雪球新股列表(未上市)
+     * 
+     * @return 新股列表,如果Redis中没有数据返回空列表
+     */
     public List<XueQiuNewStocks> fetchNewStocksNotList() {
         Object o = redissonClientSpider.getBucket(XUEQIU_NEW_STOCKS_NOT_LISTED).get();
         if(o == null){
@@ -105,6 +136,21 @@ public class SpiderService {
         return JSONArray.parseArray(o.toString(), XueQiuNewStocks.class);
     }
 
+    /**
+     * 从Redis获取实时行情数据(指定Redis Key)
+     * 
+     * 执行流程:
+     * 1. 从Redis获取指定Key的Map数据
+     * 2. 解析币种代码字符串
+     * 3. 批量获取币种对应的行情数据
+     * 4. 将JSON数据转换为Realtime对象
+     * 5. 标准化价格精度(根据币种小数位数)
+     * 6. 处理时间戳格式(16位/13位/10位转换)
+     * 
+     * @param remarks 币种代码字符串,多个币种用逗号分隔
+     * @param key Redis中的数据Key
+     * @return 实时行情数据列表
+     */
     public List<Realtime> fetchRealtimeList(String remarks, String key) {
         log.info("[Spider] 开始从Redis获取实时数据, key={}, remarks={}", key, remarks);
         
@@ -129,6 +175,16 @@ public class SpiderService {
         }
         for (String symbol : values.keySet()) {
             JSONObject realtimeJson = JSONObject.parseObject(values.get(symbol).trim());
+            if ("eth".equalsIgnoreCase(symbol)) {
+                log.info("[CryptoDebug] Redis raw eth, key={}, current={}, open={}, close={}, percent={}, chg={}, ts={}",
+                        key,
+                        realtimeJson.get("current"),
+                        realtimeJson.get("open"),
+                        realtimeJson.get("close"),
+                        realtimeJson.get("percent"),
+                        realtimeJson.get("chg"),
+                        realtimeJson.get("time"));
+            }
             realtimeJson.put("mid", realtimeJson.get("current"));
             realtimeJson.put("currency", realtimeJson.get("symbol"));
             realtimeJson.put("timestamp", realtimeJson.get("time"));
@@ -150,10 +206,14 @@ public class SpiderService {
             }
             realtime.setTs(timestamp);
             realtime.setOpen(realtimeJson.getBigDecimal("open").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
-            if (realtimeJson.getBigDecimal("mid").compareTo(BigDecimal.ZERO) != 0) {
-                realtime.setClose(realtimeJson.getBigDecimal("mid").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+            BigDecimal mid = realtimeJson.getBigDecimal("mid");
+            BigDecimal close = realtimeJson.getBigDecimal("close");
+            if (mid != null && mid.compareTo(BigDecimal.ZERO) > 0) {
+                realtime.setClose(mid.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+            } else if (close != null) {
+                realtime.setClose(close.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
             } else {
-                realtime.setClose(realtimeJson.getBigDecimal("close").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                realtime.setClose(0D);
             }
 
             realtime.setHigh(realtimeJson.getBigDecimal("high").setScale(decimal, RoundingMode.HALF_UP).doubleValue());
@@ -195,6 +255,15 @@ public class SpiderService {
             BigDecimal percent = realtimeJson.getBigDecimal("percent");
             if (percent != null) {
                 realtime.setPercent(percent.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+            }
+            if ("eth".equalsIgnoreCase(symbolByRemarks)) {
+                log.info("[CryptoDebug] Parsed eth, key={}, symbol={}, open={}, close={}, chg={}, percent={}",
+                        key,
+                        symbolByRemarks,
+                        realtime.getOpen(),
+                        realtime.getClose(),
+                        realtime.getChg(),
+                        realtime.getPercent());
             }
             BigDecimal amount = realtimeJson.getBigDecimal("amount");
             if (amount == null) {
@@ -298,10 +367,23 @@ public class SpiderService {
         }
         return list;
     }
+    
+    /**
+     * 从Redis获取实时行情数据(使用默认Key)
+     * 
+     * @param remarks 币种代码字符串,多个币种用逗号分隔
+     * @return 实时行情数据列表
+     */
     public List<Realtime> fetchRealtimeList(String remarks) {
        return fetchRealtimeList(remarks, REALTIME_HASH);
     }
 
+    /**
+     * 从Redis获取市场状态信息
+     * 
+     * @param remaks 市场代码字符串,多个市场用逗号分隔
+     * @return 市场状态信息列表
+     */
     public List<StockMarket> getMarkets(String remaks) {
         List<StockMarket> list = new ArrayList<>();
         RMap<String, String> map = redissonClientSpider.getMap(MARKET_HASH);
@@ -314,6 +396,12 @@ public class SpiderService {
     }
 
 
+    /**
+     * 从Redis获取盘口深度数据
+     * 
+     * @param remaks 币种代码字符串,多个币种用逗号分隔
+     * @return 盘口深度数据列表
+     */
     public List<Depth> pankous(String remaks) {
         List<Depth> list = new ArrayList<>();
         RMap<String, String> map = redissonClientSpider.getMap(PANKOU_HASH);
@@ -326,6 +414,18 @@ public class SpiderService {
     }
 
 
+    /**
+     * 从Redis获取交易明细数据并保存到缓存
+     * 
+     * 执行流程:
+     * 1. 从Redis获取交易明细数据
+     * 2. 将数据保存到DataCache缓存
+     * 3. 转换为TradeEntry格式
+     * 4. 如果是美股,额外转换为深度数据
+     * 
+     * @param remarks 币种代码字符串,多个币种用逗号分隔
+     * @param isUSStock 是否是美股,美股需要额外生成深度数据
+     */
     public void tradeList(String remarks, boolean isUSStock) {
         RMap<String, String> map = redissonClientSpider.getMap(TRADER_HASH);
         Set<String> keys = Splitter.on(",").trimResults().splitToStream(remarks).collect(Collectors.toSet());
@@ -344,6 +444,16 @@ public class SpiderService {
     }
 
 
+    /**
+     * 将交易明细数据转换为深度数据(美股专用)
+     * 
+     * 转换规则:
+     * - side=-1: 卖单,放入asks
+     * - side=1: 买单,放入bids
+     * 
+     * @param symbol 币种代码
+     * @param tradeDetails 交易明细列表
+     */
     public static void setTradeListToDepth(String symbol, List<TradeDetails> tradeDetails) {
         Depth depth = new Depth();
         depth.setTs(tradeDetails.get(0).getTimestamp() / 1000);
@@ -369,6 +479,16 @@ public class SpiderService {
     }
 
 
+    /**
+     * 将交易明细数据转换为TradeEntry格式
+     * 
+     * 转换规则:
+     * - side=1: 卖单, direction="sell"
+     * - side=-1: 买单, direction="buy"
+     * 
+     * @param symbol 币种代码
+     * @param tradeDetails 交易明细列表
+     */
     public static void tradeListToTrade(String symbol, List<TradeDetails> tradeDetails) {
         TradeTimeObject timeObject = DataCache.getTrade(symbol);
         if (timeObject == null) {
@@ -388,6 +508,16 @@ public class SpiderService {
     }
 
 
+    /**
+     * 从Redis获取K线数据
+     * 
+     * 数据结构:
+     * - 外层Map: Key为币种代码, Value为各周期K线
+     * - 内层Map: Key为周期(1min/5min/15min/30min/1hour/1day等), Value为K线列表
+     * 
+     * @param symbols 币种代码字符串,多个币种用逗号分隔
+     * @return K线数据列表,每个元素对应一个币种的各周期K线
+     */
     public List<Map<String, List<Kline>>> getKlines(String symbols) {
         List<String> remarksList = Splitter.on(",").omitEmptyStrings().splitToList(symbols).stream().map(s -> itemService.findBySymbol(s).getRemarks()).collect(Collectors.toList());
         String remarks = remarksList.stream().collect(Collectors.joining(","));
