@@ -14,13 +14,13 @@
       label-width="0px"
     >
       <el-form-item label="" prop="transName">
-        <span>请输入正负调整值</span>
-        <div style="font-size: 12px; color: #909399; margin: 4px 0;">0 means clear adjustment (disable market control)</div>
+        <span>请输入正修正值</span>
+        <div style="font-size: 12px; color: #909399; margin: 4px 0;">0 表示清空修正值（不控制行情）</div>
         <el-input
           v-model="dataForm.transName"
           type="number"
           @change="checkNumber()"
-          placeholder="请输入正负调整值"
+          placeholder="请输入正修正值"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -40,12 +40,21 @@
         >
       </el-form-item>
       <el-form-item label="" prop="second">
-        <span>生效趋势(秒，0秒为即时生效)</span>
+        <span>生效阈值(秒，0为即时生效)</span>
         <el-input
           oninput="value=value.replace('-','')"
           v-model="second"
           type="number"
-          placeholder="0秒为即时生效"
+          placeholder="0为即时生效"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="" prop="durationSecond">
+        <span>持续时间(秒，0 表示不限制)</span>
+        <el-input
+          oninput="value=value.replace('-','')"
+          v-model="durationSecond"
+          type="number"
+          placeholder="0 表示不限制"
         ></el-input>
       </el-form-item>
       <div>调整值</div>
@@ -59,7 +68,7 @@
           header-align="center"
           align="center"
           width="200"
-          label="原值"
+          label="标准值"
         >
           <template slot-scope="scope">
             <!-- <el-input type="number"
@@ -99,7 +108,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <div style="margin-top: 30px">生效趋势</div>
+      <div style="margin-top: 30px">生效阈值</div>
       <el-table
         :data="dataForm.transfeeFrees"
         border
@@ -142,7 +151,7 @@
         >确定</el-button
       >
     </span>
-    <!-- 弹窗, 新增 / 修改 -->
+    <!-- 窗口, 新增 / 修改 -->
     <!-- <add-or-update v-if="addOrUpdateVisible"
                    ref="addOrUpdate"
                    @refreshDataList="getDataList"></add-or-update> -->
@@ -160,12 +169,13 @@ export default {
       title: "",
       pips: "",
       loading: false,
-      adjustValue: "", //累计修正的值
-      afterValue: "", //调整后值
-      delaySecond: "", //生效趋势
-      delayValue: "", // 待生效的值
-      newPrice: "", //原值
+      adjustValue: "",
+      afterValue: "",
+      delaySecond: "",
+      delayValue: "",
+      newPrice: "",
       second: 0,
+      durationSecond: 0,
       mafterValue: 0,
       addOrUpdateVisible: false,
       dataForm: {
@@ -180,9 +190,9 @@ export default {
         transfeeFrees: [{ freeCityList: [], freeType: 0 }],
       },
       page: {
-        total: 0, // 总页数
-        currentPage: 1, // 当前页数
-        pageSize: 10, // 每页显示多少条
+        total: 0,
+        currentPage: 1,
+        pageSize: 10,
       },
       editVisible: false,
     };
@@ -254,6 +264,7 @@ export default {
         JSON.stringify(this.$options.data().dataForm)
       );
       this.second = 0;
+      this.durationSecond = 0;
       this.$nextTick(() => {
         this.$refs["dataForm"].clearValidate(); // 清除表单验证
       });
@@ -298,19 +309,19 @@ export default {
       this.dataForm.transfees.push({ cityList: [], status: 1 });
     },
 
-    // 添加指定包邮条件
+    // 添加指定城市条件
     // addTransfeeFree () {
     //   if (this.dataForm.hasFreeCondition) {
     //     this.dataForm.transfeeFrees.push({ freeCityList: [], freeType: 0 })
     //   }
     // },
-    // 删除指定包邮条件
+    // 删除指定城市条件
     deleteTransfeeFree(rowIndex) {
       this.dataForm.transfeeFrees.splice(rowIndex, 1);
     },
 
     checkNumber() {
-      //正负值计算
+      //正负数计算
       // if(!this.dataForm.transName){
       //     this.afterValue = this.mafterValue
       //   }
@@ -325,7 +336,7 @@ export default {
     },
 
     addOrUpdateHandle(rowIndex) {
-      //正值添加按钮
+      //正数添加按钮
       let m = this.adjustValue;
       let n = this.afterValue;
       let p = this.dataForm.transName;
@@ -337,7 +348,7 @@ export default {
     },
     // 删除运费项
     deleteHandle(rowIndex) {
-      //负值添加按钮
+      //负数添加按钮
       let m = this.adjustValue;
       let n = this.afterValue;
       let p = this.dataForm.transName;
@@ -348,7 +359,7 @@ export default {
       //this.afterValue = (this.afterValue*1000000000 - this.pips*1000000000)/1000000000
     },
     /**
-     * 保留整数并小于零的数设为0
+     * 保留整数并小于零的数计为0
      */
     getNumber(num) {
       num = Math.round(num);
@@ -359,9 +370,18 @@ export default {
       this.$refs["dataForm"].validate((valid) => {
         if (valid) {
           const adjustValue = Number(this.dataForm.transName);
+          const durationSecondValue = Number(this.durationSecond || 0);
           if (Number.isNaN(adjustValue)) {
             this.$message({
-              message: "Please input a valid number (0 is allowed)",
+              message: "请输入有效数字（可为 0）",
+              type: "warning",
+              duration: 1200,
+            });
+            return;
+          }
+          if (Number.isNaN(durationSecondValue) || durationSecondValue < 0) {
+            this.$message({
+              message: "持续时间必须是大于等于 0 的数字",
               type: "warning",
               duration: 1200,
             });
@@ -376,13 +396,14 @@ export default {
             method: "post",
             data: this.$http.adornData({
               second: this.second,
+              durationSecond: durationSecondValue,
               symbol: this.title,
               value: adjustValue,
             }),
           }).then(({ data }) => {
             if (data.code == 0) {
               this.$message({
-                message: "Please input a valid number (0 is allowed)",
+                message: "操作成功",
                 type: "success",
                 duration: 1000,
                 onClose: () => {

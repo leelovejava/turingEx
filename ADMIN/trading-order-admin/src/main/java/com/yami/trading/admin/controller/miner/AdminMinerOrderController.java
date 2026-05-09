@@ -14,11 +14,13 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yami.trading.admin.facade.PermissionFacade;
 import com.yami.trading.common.util.*;
 import com.yami.trading.service.miner.job.MinerOrderProfitJob;
 import com.yami.trading.bean.miner.Miner;
 import com.yami.trading.bean.miner.MinerOrder;
+import com.yami.trading.bean.quant.QuantPreIncome;
 import com.yami.trading.common.domain.Result;
 import com.yami.trading.common.exception.BusinessException;
 import com.yami.trading.security.common.util.SecurityUtils;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yami.trading.service.miner.service.AdminMinerOrderService;
 import com.yami.trading.service.miner.service.MinerOrderService;
 import com.yami.trading.service.miner.service.MinerService;
+import com.yami.trading.service.quant.service.QuantPreIncomeService;
 
 
 /**
@@ -55,6 +58,8 @@ public class AdminMinerOrderController {
 
 	@Autowired
 	private PermissionFacade permissionFacade;
+	@Autowired
+	private QuantPreIncomeService quantPreIncomeService;
 	
 	protected Map<String, Object> session = new HashMap<>();
 	
@@ -102,6 +107,23 @@ public class AdminMinerOrderController {
 //		model.addObject("error", error);
 //		model.setViewName("miner_order_list");
 		return Result.ok(page);
+	}
+
+	/**
+	 * 矿机订单收益分页
+	 */
+	@RequestMapping(action + "incomeList.action")
+	public Result incomeList(HttpServletRequest request) {
+		String quantOrderId = request.getParameter("quantOrderId");
+		int pageNo = Integer.parseInt(request.getParameter("current"));
+		int pageSize = Integer.parseInt(request.getParameter("size"));
+
+		Page<QuantPreIncome> page = new Page<>(pageNo, pageSize);
+		QueryWrapper<QuantPreIncome> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("quant_order_id", quantOrderId);
+		queryWrapper.orderByDesc("start_time");
+		Page<QuantPreIncome> result = quantPreIncomeService.page(page, queryWrapper);
+		return Result.ok(result);
 	}
 
 	/**

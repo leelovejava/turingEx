@@ -8,12 +8,13 @@
 
 /* overwite default */
 :root {
+  --app-shell-max-width: 828px;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   color-scheme: light dark;
   /* color: rgba(0, 0, 0, 0.87); */
   background-color: $mainBgColor;
@@ -30,18 +31,40 @@
   --van-index-anchor-text-color: #fff !important;
 }
 
+html {
+  width: 100%;
+}
+
 html,
 body {
-  // width: 8.28rem;
-  max-width: 828px;
+  max-width: var(--app-shell-max-width);
   margin: 0 auto;
   height: 100%;
   box-sizing: border-box;
 }
 
+#app {
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --app-shell-max-width: 1200px;
+    --van-dialog-width: 420px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --app-shell-max-width: 1320px;
+  }
+}
+
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   color: $mainTextColor;
   background-color: $mainBgColor;
   padding-bottom: constant(safe-area-inset-bottom);

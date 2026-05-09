@@ -158,6 +158,8 @@ sign:
 
 tradeview:
   data-url: https://onjdo.com/stock/api/live/getTradeViewData
+  base-url: https://api.twelvedata.com
+  api-key: 35445ee5fde748f498cc5feb52760b33
 
 huobi:
   realtime-sync:

@@ -74,11 +74,11 @@ export default {
   }
 
   .scan {
-    width: 100vw;
-    border-color: #585858;
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
+    width: auto;
+    height: auto;
+    border-color: #585858;
   }
 
   .qrcode-stream-camera {

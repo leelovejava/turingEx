@@ -183,6 +183,50 @@ const routes = [
         },
         component: () => import('@/views/Layout.vue'),
         children: [
+          {
+            path: 'aiQuant/choose',
+            name: 'aiQuantChoose',
+            meta: { tarbar: false },
+            component: () => import(/* webpackChunkName: "aiQuantChoose" */ '@/views/cryptos/AiQuant/Choose.vue'),
+          },
+          {
+            path: 'aiQuant/questionnaire',
+            name: 'aiQuantQuestionnaire',
+            meta: { tarbar: false },
+            component: () =>
+              import(
+                /* webpackChunkName: "aiQuantQuestionnaire" */ '@/views/cryptos/AiQuant/TraderQuestionnaire.vue'
+              ),
+          },
+          {
+            path: 'aiQuant/traderAgreement',
+            name: 'aiQuantTraderAgreement',
+            meta: { tarbar: false },
+            component: () =>
+              import(
+                /* webpackChunkName: "aiQuantTraderAgreement" */ '@/views/cryptos/AiQuant/TraderAgreement.vue'
+              ),
+          },
+          {
+            path: 'aiQuant/earnings/:id',
+            name: 'aiQuantEarningsDetail',
+            meta: { tarbar: false },
+            component: () =>
+              import(/* webpackChunkName: "aiQuantEarningsDetail" */ '@/views/cryptos/AiQuant/EarningsDetail.vue'),
+          },
+          {
+            path: 'aiQuant/earnings',
+            name: 'aiQuantEarnings',
+            meta: { tarbar: false },
+            component: () =>
+              import(/* webpackChunkName: "aiQuantEarnings" */ '@/views/cryptos/AiQuant/EarningsList.vue'),
+          },
+          {
+            path: 'aiQuant',
+            name: 'aiQuant',
+            meta: { tarbar: false },
+            component: () => import(/* webpackChunkName: "aiQuant" */ '@/views/cryptos/AiQuant/index.vue'),
+          },
           { path: 'announce', meta: { tarbar: false }, component: () => import(/* webpackChunkName: "cryptosannounce" */'@/views/cryptos/Announce/index.vue') },
           { path: 'announceDetail', meta: { tarbar: false }, component: () => import(/* webpackChunkName: "cryptosannounceDetail" */'@/views/cryptos/Announce/announceDetail.vue') },
           { path: 'exchangePage', meta: { tarbar: false }, component: () => import(/* webpackChunkName: "cryptosexchangePage" */'@/views/cryptos/Exchange/exchangePage.vue') },

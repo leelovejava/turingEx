@@ -57,6 +57,12 @@
       <template slot-scope="scope" slot="menu">
         <el-button
           type="primary"
+          size="small"
+          plain
+          @click.stop="showIncomeHandle(scope.row)"
+        >收益</el-button>
+        <el-button
+          type="primary"
           icon="el-icon-edit"
           size="small"
           @click.stop="withdrawHandle(scope.row)"
@@ -72,6 +78,31 @@
       ref="addOrUpdate"
       @refreshDataList="getDataList"
     ></add-or-update>
+
+    <el-dialog title="收益记录" :visible.sync="incomeDialogVisible" width="900px">
+      <el-table :data="incomeList" border v-loading="incomeLoading">
+        <el-table-column prop="id" label="ID" width="80"></el-table-column>
+        <el-table-column prop="number" label="下单金额"></el-table-column>
+        <el-table-column prop="income" label="收益"></el-table-column>
+        <el-table-column prop="status" label="状态">
+          <template slot-scope="scope">
+            <span>{{ scope.row.status === 1 ? "已使用" : "未使用" }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="startTime" label="开始时间"></el-table-column>
+        <el-table-column prop="endTime" label="结束时间"></el-table-column>
+      </el-table>
+      <div style="margin-top: 16px; text-align: right;">
+        <el-pagination
+          @current-change="incomePageChange"
+          :current-page="incomePage.currentPage"
+          :page-size="incomePage.pageSize"
+          layout="total, prev, pager, next"
+          :total="incomePage.total"
+        >
+        </el-pagination>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -90,6 +121,15 @@ export default {
       addOrUpdateVisible: false,
       tableOption: tableOption,
       activeName: "3",
+      incomeDialogVisible: false,
+      incomeLoading: false,
+      incomeList: [],
+      currentIncomeOrderId: "",
+      incomePage: {
+        total: 0,
+        currentPage: 1,
+        pageSize: 10,
+      },
       page: {
         total: 0, // 总页数
         currentPage: 1, // 当前页数
@@ -236,6 +276,39 @@ export default {
     },
     handleClick() {
       this.getDataList();
+    },
+    showIncomeHandle(row) {
+      this.currentIncomeOrderId = row.uuid;
+      this.incomePage.currentPage = 1;
+      this.incomeDialogVisible = true;
+      this.getIncomeList();
+    },
+    incomePageChange(page) {
+      this.incomePage.currentPage = page;
+      this.getIncomeList();
+    },
+    getIncomeList() {
+      if (!this.currentIncomeOrderId) {
+        return;
+      }
+      this.incomeLoading = true;
+      this.$http({
+        url: this.$http.adornUrl("/normal/adminMinerOrderAction!incomeList.action"),
+        method: "get",
+        params: this.$http.adornParams({
+          quantOrderId: this.currentIncomeOrderId,
+          current: this.incomePage.currentPage,
+          size: this.incomePage.pageSize,
+        }),
+      }).then(({ data }) => {
+        if (data.code == 0 && data.data) {
+          this.incomeList = data.data.records || [];
+          this.incomePage.total = data.data.total || 0;
+        }
+        this.incomeLoading = false;
+      }).catch(() => {
+        this.incomeLoading = false;
+      });
     },
     withdrawHandle(row){
       //

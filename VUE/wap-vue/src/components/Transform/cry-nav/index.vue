@@ -1,13 +1,13 @@
 <template>
   <div class="cry-nav-root mt-5">
     <div class="nav nav-row">
-      <div v-for="(item, index) in navList" :key="index" class="list" @click="goPath(item.path, item.isLogin)">
+      <div v-for="(item, index) in navList" :key="index" class="list" @click="handleNavClick(item)">
         <div class="imgBox"><img :src="handleImage(item.icon)" alt=""></div>
         <div class="nav-label">{{ item.name }}</div>
       </div>
     </div>
     <div class="nav nav-row">
-      <div v-for="(item, index) in navList1" :key="index" class="list" @click="goPath(item.path, item.isLogin)">
+      <div v-for="(item, index) in navList1" :key="index" class="list" @click="handleNavClick(item)">
         <div class="imgBox"><img :src="handleImage(item.icon)" alt="" v-if="item.icon"></div>
         <div class="nav-label">{{ item.name }}</div>
       </div>
@@ -81,7 +81,7 @@ export default {
         {
           name: this.$t('AI量化'),
           icon: new URL(`../../../assets/theme/${thStore.theme}/image/nav/SmartKuangchi.png`, import.meta.url),
-          path: '/cryptos/machine'
+          action: 'aiQuantSheet'
         },
         // {
         //   name: this.$t('质押借币'),
@@ -109,6 +109,13 @@ export default {
   methods: {
     handleImage(url) {
       return new URL(url, import.meta.url).href
+    },
+    handleNavClick(item) {
+      if (item.action === 'aiQuantSheet') {
+        this.$emit('open-ai-quant-sheet')
+        return
+      }
+      this.goPath(item.path, item.isLogin)
     },
     goPath(path, isLogin) {
       if (!path) {

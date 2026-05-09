@@ -342,7 +342,7 @@ const getContractOrderAssets = () => {
         justify-content: space-between;
         align-items: center;
         margin-top: 25px;
-        width: calc(100vw - 40px);
+        width: calc(100% - 40px);
         height: 50px;
         line-height: 50px;
         color: $text_color;

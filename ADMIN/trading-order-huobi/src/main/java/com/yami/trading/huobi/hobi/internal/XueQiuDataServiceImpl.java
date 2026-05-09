@@ -385,7 +385,7 @@ public class XueQiuDataServiceImpl {
             infom.setOriginUrl(originUrl);
             String source = getSource(description);
             infom.setSource(source);
-            infom.setLang("zh-CN");
+            infom.setLang("en");
             String key = "infomation" + originUrl;
             if (RedisUtil.get(key) == null) {
                 infomations.add(infom);

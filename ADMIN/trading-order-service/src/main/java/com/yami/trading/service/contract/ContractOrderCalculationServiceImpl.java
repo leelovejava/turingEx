@@ -225,6 +225,21 @@ public class ContractOrderCalculationServiceImpl implements ContractOrderCalcula
     }
 
     /**
+     * 检查订单的最小波动点(pips)是否有效
+     * 
+     * @param order 合约订单
+     * @return true 如果 pips 有效(非空且非零), false 否则
+     */
+    private boolean isValidPips(ContractOrder order) {
+        if (order.getPips() == null || order.getPips().compareTo(BigDecimal.ZERO) == 0) {
+            log.error("Invalid pips: null or zero, orderNo={}, symbol={}",
+                      order.getOrderNo(), order.getSymbol());
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * 计算订单的全部盈亏(从开仓到现在)
      * 
      * 计算公式:
@@ -241,6 +256,12 @@ public class ContractOrderCalculationServiceImpl implements ContractOrderCalcula
             log.error("{} 没有获取到实时价格", order.getSymbol());
             return BigDecimal.ZERO;
         }
+        
+        // 防御性检查：pips不能为零
+        if (!isValidPips(order)) {
+            return BigDecimal.ZERO;
+        }
+        
         Realtime realtime = list.get(0);
         BigDecimal close = BigDecimal.valueOf(realtime.getClose());
         
@@ -276,6 +297,12 @@ public class ContractOrderCalculationServiceImpl implements ContractOrderCalcula
             log.error("{} 没有获取到实时价格", order.getSymbol());
             return BigDecimal.ZERO;
         }
+        
+        // 防御性检查：pips不能为零
+        if (!isValidPips(order)) {
+            return BigDecimal.ZERO;
+        }
+        
         Realtime realtime = list.get(0);
         BigDecimal close = BigDecimal.valueOf(realtime.getClose());
         
@@ -335,6 +362,13 @@ public class ContractOrderCalculationServiceImpl implements ContractOrderCalcula
         /**
          * 计算偏差点数: |当前价格 - 开仓价| / 最小波动点
          */
+        // 防御性检查：pips不能为零，否则会导致除零异常
+        if (order.getPips() == null || order.getPips().compareTo(BigDecimal.ZERO) == 0) {
+            log.error("settle failed: pips is zero or null, orderNo={}, symbol={}",
+                      order.getOrderNo(), order.getSymbol());
+            return;
+        }
+        
         BigDecimal point = currentPrice.subtract(order.getTradeAvgPrice()).abs().divide(order.getPips(), 10, RoundingMode.HALF_UP);
         
         /*

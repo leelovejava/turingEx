@@ -244,4 +244,22 @@ const changeIndex = () => {};
 .footer :deep(.van-tabbar-item--active) .fab-icon {
   stroke: #fff;
 }
+
+@media (min-width: 1024px) {
+  .footer-wave-wrap {
+    left: 50%;
+    right: auto;
+    width: var(--app-shell-max-width);
+    max-width: var(--app-shell-max-width);
+    transform: translateX(-50%);
+  }
+
+  .footer :deep(.dock-tabbar.van-tabbar) {
+    left: 50%;
+    right: auto;
+    width: var(--app-shell-max-width);
+    max-width: var(--app-shell-max-width);
+    transform: translateX(-50%);
+  }
+}
 </style>

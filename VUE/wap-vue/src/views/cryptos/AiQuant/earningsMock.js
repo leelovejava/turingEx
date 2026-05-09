@@ -1,0 +1,63 @@
+/** 演示数据：收益列表 / 详情共用 */
+export const earningsRecords = [
+  {
+    id: '1',
+    name: 'Customization',
+    pair: 'BTC/USDT',
+    quantity: 79.74,
+    pnl: 0.1044,
+    purchaseAmount: '300',
+    startTime: '03/30/2026 12:27:42 PM',
+    endTime: '04/01/2026 12:27:42 PM',
+    tradeCount: 479,
+    avgPrice: '68664.1171',
+    profit: '25.4373',
+    statusKey: 'aiQuantEarningsStatusStopped',
+  },
+  {
+    id: '2',
+    name: 'Customization',
+    pair: 'BTC/USDT',
+    quantity: 71.19,
+    pnl: -0.1511,
+    purchaseAmount: '280',
+    startTime: '03/28/2026 09:15:00 AM',
+    endTime: '03/31/2026 09:15:00 AM',
+    tradeCount: 412,
+    avgPrice: '68201.5520',
+    profit: '-12.8834',
+    statusKey: 'aiQuantEarningsStatusStopped',
+  },
+  {
+    id: '3',
+    name: 'Balanced Strategy',
+    pair: 'ETH/USDT',
+    quantity: 82.92,
+    pnl: 0.1023,
+    purchaseAmount: '500',
+    startTime: '03/25/2026 03:40:22 PM',
+    endTime: '03/29/2026 03:40:22 PM',
+    tradeCount: 356,
+    avgPrice: '3245.8891',
+    profit: '18.2201',
+    statusKey: 'aiQuantEarningsStatusStopped',
+  },
+  {
+    id: '4',
+    name: 'Growth Strategy',
+    pair: 'SOL/USDT',
+    quantity: 65.5,
+    pnl: -0.0892,
+    purchaseAmount: '150',
+    startTime: '03/22/2026 11:00:00 AM',
+    endTime: '03/24/2026 11:00:00 AM',
+    tradeCount: 198,
+    avgPrice: '142.3310',
+    profit: '-5.4410',
+    statusKey: 'aiQuantEarningsStatusStopped',
+  },
+]
+
+export function getEarningsById(id) {
+  return earningsRecords.find((r) => r.id === String(id)) || null
+}

@@ -50,7 +50,7 @@
         </template>
       </van-notice-bar>
     </div>
-    <cry-nav />
+    <cry-nav @open-ai-quant-sheet="showAiQuantSheet = true" />
     <div class="quickly">
       <div class="quickBox chongbi" :class="THEME == 'dark' ? 'dark' : 'white'"
         @click="$router.push('/cryptos/recharge/rechargeList')">
@@ -81,8 +81,77 @@
         </div>
       </div>
     </div>
+    <!-- <div
+      class="ai-quant-entry"
+      :class="THEME == 'dark' ? 'dark' : 'white'"
+      @click="showAiQuantSheet = true"
+    >
+      <div class="ai-quant-entry-inner">
+        <span class="ai-quant-entry-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke-linecap="round" />
+            <circle cx="12" cy="12" r="3.5" />
+          </svg>
+        </span>
+        <span class="ai-quant-entry-label">{{ $t('aiQuantEntry') }}</span>
+        <img
+          v-if="THEME == 'dark'"
+          class="ai-quant-entry-arrow"
+          src="@/assets/theme/dark/image/goto.png"
+          alt=""
+        />
+        <img v-else class="ai-quant-entry-arrow" src="@/assets/theme/white/image/goto.png" alt="" />
+      </div>
+    </div> -->
     <ex-hot :listData="hList"></ex-hot>
     <list-quatation :listData="qList" />
+    <van-popup
+      v-model:show="showAiQuantSheet"
+      position="bottom"
+      round
+      teleport="body"
+      class="ai-quant-bottom-sheet-popup"
+      :safe-area-inset-bottom="true"
+    >
+      <div class="ai-quant-bottom-sheet">
+        <div class="ai-quant-sheet-handle" />
+        <div class="ai-quant-choose-title">{{ $t('aiQuantChooseTitle') }}</div>
+
+        <button type="button" class="ai-quant-choose-card" @click="openSpotQuestionnaire">
+          <span class="ai-quant-choose-icon ai-quant-choose-icon--chart" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none">
+              <path
+                d="M4 18V6m4 12V10m4 8V8m4 10v-6m4 6V4"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+          <span class="ai-quant-choose-body">
+            <span class="ai-quant-choose-card-title">{{ $t('aiQuantSpotCopyTitle') }}</span>
+            <span class="ai-quant-choose-card-desc">{{ $t('aiQuantSpotCopyDesc') }}</span>
+          </span>
+          <span class="ai-quant-choose-chevron" aria-hidden="true">›</span>
+        </button>
+
+        <button type="button" class="ai-quant-choose-card" @click="openBotAiQuant">
+          <span class="ai-quant-choose-icon ai-quant-choose-icon--bot" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none">
+              <rect x="6" y="7" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.9" />
+              <circle cx="10" cy="12" r="1.3" fill="currentColor" />
+              <circle cx="14" cy="12" r="1.3" fill="currentColor" />
+              <path d="M9 4h6l1 3H8l1-3z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span class="ai-quant-choose-body">
+            <span class="ai-quant-choose-card-title">{{ $t('aiQuantBotCopyTitle') }}</span>
+            <span class="ai-quant-choose-card-desc">{{ $t('aiQuantBotCopyDesc') }}</span>
+          </span>
+          <span class="ai-quant-choose-chevron" aria-hidden="true">›</span>
+        </button>
+      </div>
+    </van-popup>
     <van-popup v-model:show="item.showPopUp" style="border-radius:10px;" :close-on-click-overlay="false"
       v-for="item in popupNewsList" :key="item.id">
       <div class="w-350 p-20 box-border">
@@ -173,7 +242,8 @@ export default {
       popupNewsList: [],
       language: '',
       isZh: false,
-      tabActiveIndex: 0
+      tabActiveIndex: 0,
+      showAiQuantSheet: false
     }
   },
   methods: {
@@ -238,6 +308,14 @@ export default {
     },
     onClickLeft() { },
     onClickRight() { },
+    openSpotQuestionnaire() {
+      this.showAiQuantSheet = false
+      this.$router.push('/cryptos/aiQuant/questionnaire')
+    },
+    openBotAiQuant() {
+      this.showAiQuantSheet = false
+      this.$router.push('/cryptos/aiQuant')
+    },
     letMeGo() {
       this.$emit('changeLetMego', () => {
         this.fetchQList()
@@ -514,13 +592,162 @@ export default {
   .tibi {}
 }
 
+#cryptos .ai-quant-entry {
+  width: 100%;
+  margin: 0 0 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 145, 255, 0.28);
+  background: linear-gradient(
+    135deg,
+    rgba(17, 120, 247, 0.22) 0%,
+    rgba(40, 42, 55, 0.95) 50%,
+    rgba(28, 28, 32, 0.98) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
 
+#cryptos .ai-quant-entry-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 96px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+}
 
-.notice-swipe {
-  flex: 1;
+#cryptos .ai-quant-entry-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
   height: 56px;
-  line-height: 56px;
-  margin: 0;
+  flex-shrink: 0;
+  color: #3d8cff;
+}
+
+#cryptos .ai-quant-entry-label {
+  flex: 1;
+  margin-left: 14px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #f3f4f6;
+  text-align: left;
+}
+
+#cryptos .ai-quant-entry-arrow {
+  width: 36px;
+  height: 36px;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+.ai-quant-bottom-sheet-popup.van-popup {
+  background: $main_background;
+}
+
+@media (min-width: 900px) {
+  .ai-quant-bottom-sheet-popup.van-popup.van-popup--bottom {
+    width: 92% !important;
+    max-width: 520px !important;
+    left: 50% !important;
+    right: auto !important;
+    margin: 0 !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+.ai-quant-bottom-sheet {
+  padding: 6px 20px calc(28px + env(safe-area-inset-bottom, 0px));
+  min-height: 280px;
+  box-sizing: border-box;
+}
+
+.ai-quant-sheet-handle {
+  width: 40px;
+  height: 5px;
+  margin: 10px auto 22px;
+  border-radius: 3px;
+  background: $line_color;
+}
+
+.ai-quant-choose-title {
+  margin: 0 0 22px;
+  padding: 0 4px;
+  font-size: 32px;
+  font-weight: 600;
+  color: $text_color;
+  text-align: left;
+}
+
+.ai-quant-choose-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 18px;
+  min-height: 108px;
+  margin-bottom: 14px;
+  border: 1px solid $border_color;
+  border-radius: 16px;
+  background: $tab_background;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  box-sizing: border-box;
+  transition: opacity 0.12s ease;
+}
+
+.ai-quant-choose-card:last-of-type {
+  margin-bottom: 6px;
+}
+
+.ai-quant-choose-card:active {
+  opacity: 0.88;
+}
+
+.ai-quant-choose-icon {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: $btn_main;
+  background: rgba(22, 120, 255, 0.14);
+}
+
+.ai-quant-choose-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ai-quant-choose-card-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: $text_color;
+  line-height: 1.25;
+}
+
+.ai-quant-choose-card-desc {
+  font-size: 24px;
+  color: $text_color1;
+  line-height: 1.35;
+}
+
+.ai-quant-choose-chevron {
+  flex-shrink: 0;
+  font-size: 42px;
+  font-weight: 300;
+  color: $text_color1;
+  line-height: 1;
+  margin-left: 4px;
 }
 
 .notice-swipe-item {
