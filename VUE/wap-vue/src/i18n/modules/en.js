@@ -3048,6 +3048,7 @@ export default {
     traderAgreementLink: 'Trader Agreement',
     traderSubmitInfo: 'Submit information',
     traderSubmitOk: 'Submitted successfully',
+    traderAlreadySubmitted: 'Thank you for your patience. We will review your application shortly.',
     traderAgreementNavTitle: 'Trader Agreement',
     aiQuantEarningsListTitle: 'Profit List',
     aiQuantEarningsDetailTitle: 'Quantification Details',

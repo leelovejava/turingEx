@@ -84,20 +84,21 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import assetsHead from '@/components/Transform/assets-head/index.vue'
+import { _insertQuantQuestion, _getQuantQuestionExist } from '@/service/cryptos.api'
 
 defineOptions({ name: 'TraderQuestionnairePage' })
 
 const router = useRouter()
 const { t } = useI18n()
 
-const q1 = ref('')
-const q2 = ref('')
-const q3 = ref('')
+const q1 = ref('yes')
+const q2 = ref('yes')
+const q3 = ref('yes')
 const q4 = ref('')
 const q5 = ref('')
 const agreed = ref(false)
@@ -105,6 +106,13 @@ const agreed = ref(false)
 const canSubmit = computed(
   () => q1.value && q2.value && q3.value && q4.value.trim() && q5.value.trim() && agreed.value
 )
+
+onMounted(async () => {
+  const res = await _getQuantQuestionExist()
+  if (res?.exist) {
+    showToast({ message: t('traderAlreadySubmitted'), position: 'middle' })
+  }
+})
 
 function goBack() {
   router.push('/quotes/index?tabActive=0')
@@ -114,8 +122,16 @@ function goAgreement() {
   router.push('/cryptos/aiQuant/traderAgreement')
 }
 
-function submit() {
+async function submit() {
+  await _insertQuantQuestion({
+    question1Answer: q1.value,
+    question2Answer: q2.value,
+    question3Answer: q3.value,
+    question4Answer: q4.value,
+    question5Answer: q5.value
+  })
   showToast({ message: t('traderSubmitOk'), position: 'middle' })
+  router.back()
 }
 </script>
 

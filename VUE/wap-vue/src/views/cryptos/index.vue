@@ -24,6 +24,7 @@
         left-icon=""
         :scrollable="false"
         background="transparent"
+        color="#ffffff"
       >
         <template #left-icon>
           <span class="quotes-notice-bell" aria-hidden="true">
@@ -167,7 +168,7 @@
   </div>
 </template>
 <script>
-import { Popup, Swipe, SwipeItem } from "vant";
+import { Popup, Swipe, SwipeItem, showToast } from "vant";
 import ListQuatation from "@/components/Transform/list-quotation/index.vue";
 import { mapGetters, mapActions } from "vuex";
 import { SET_COIN_LIST } from '@/store/const.store'
@@ -179,6 +180,7 @@ import { _getNewsList1, _getPopupNews } from '@/service/user.api'
 import { BASE_URL } from "@/config";
 import { themeStore } from '@/store/theme';
 import { _getRealtimeByType, _publicRealtimeTop } from '@/service/quotes.api'
+import { _getQuantQuestionExist } from '@/service/cryptos.api'
 const thStore = themeStore()
 const THEME = thStore.theme
 
@@ -308,8 +310,13 @@ export default {
     },
     onClickLeft() { },
     onClickRight() { },
-    openSpotQuestionnaire() {
+    async openSpotQuestionnaire() {
       this.showAiQuantSheet = false
+      const res = await _getQuantQuestionExist()
+      if (res?.exist) {
+        showToast({ message: this.$t('traderAlreadySubmitted'), position: 'middle' })
+        return
+      }
       this.$router.push('/cryptos/aiQuant/questionnaire')
     },
     openBotAiQuant() {
@@ -406,7 +413,7 @@ export default {
   align-items: center;
   justify-content: center;
   width: 48px;
-  height: 56px;
+  height: 80px;
   color: rgba(255, 255, 255, 0.85);
   flex-shrink: 0;
 }
@@ -416,17 +423,17 @@ export default {
   align-items: center;
   justify-content: center;
   width: 48px;
-  height: 56px;
+  height: 80px;
   flex-shrink: 0;
   opacity: 0.75;
 }
 
 :deep(.quotes-notice-bar.van-notice-bar) {
   padding: 0 4px 0 8px;
-  height: 56px;
+  height: 80px;
   align-items: center;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 16px;
+  color: #ffffff;
+  font-size: 28px;
 }
 
 :deep(.quotes-notice-bar .van-notice-bar__left-icon) {
@@ -450,9 +457,9 @@ export default {
 
 .notice-swipe {
   flex: 1;
-  height: 82px;
-  line-height: 82px;
-  margin-top: 20px;
+  height: 80px;
+  line-height: 80px;
+  margin-top: 0;
   margin-left: 10px;
 }
 
@@ -751,12 +758,12 @@ export default {
 }
 
 .notice-swipe-item {
-  font-size: 16px;
-  line-height: 56px;
+  font-size: 28px;
+  line-height: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.8);
+  color: #ffffff;
 }
 
 .more-img {

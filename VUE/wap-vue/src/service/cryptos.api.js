@@ -62,6 +62,23 @@ export const _deleteCollect = symbol => {
   })
 }
 
+// 提交AI量化问卷
+export const _insertQuantQuestion = (data) => {
+  return request({
+    url: '/api/quant/question/insert',
+    method: 'POST',
+    data
+  })
+}
+
+// 查询是否提交过AI量化问卷
+export const _getQuantQuestionExist = () => {
+  return request({
+    url: '/api/quant/question/get',
+    method: 'GET'
+  })
+}
+
 // 我的自选
 export const _myCoins = () => {
   return request({

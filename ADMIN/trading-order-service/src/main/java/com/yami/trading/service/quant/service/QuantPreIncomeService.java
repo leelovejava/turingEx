@@ -26,4 +26,10 @@ public interface QuantPreIncomeService extends IService<QuantPreIncome> {
 	 * 标记预收益记录为已使用
 	 */
 	void markAsUsed(Integer id);
+
+	/** 查询今日已结算收益 */
+	double selectDayIncome(String quantOrderId);
+
+	/** 查询累计已结算收益 */
+	double selectTotalIncome(String quantOrderId);
 }

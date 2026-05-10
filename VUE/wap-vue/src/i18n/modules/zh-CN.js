@@ -3050,6 +3050,7 @@ export default {
     traderAgreementLink: '《交易员协议》',
     traderSubmitInfo: '提交信息',
     traderSubmitOk: '提交成功',
+    traderAlreadySubmitted: '感谢您的耐心等待，我们将尽快审核您的申请。',
     traderAgreementNavTitle: '交易员协议',
     aiQuantEarningsListTitle: '收益列表',
     aiQuantEarningsDetailTitle: '量化详情',

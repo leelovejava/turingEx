@@ -43,18 +43,31 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { showToast } from 'vant'
 import assetsHead from '@/components/Transform/assets-head/index.vue'
+import { _getQuantQuestionExist } from '@/service/cryptos.api'
+import { useUserStore } from '@/store/user'
 
 defineOptions({ name: 'AiQuantChoosePage' })
 
 const router = useRouter()
 const { t } = useI18n()
+const userStore = useUserStore()
 
 function goBack() {
   router.push('/quotes/index?tabActive=0')
 }
 
-function goSpot() {
+async function goSpot() {
+  if (!userStore?.userInfo?.token) {
+    router.push('/login')
+    return
+  }
+  const res = await _getQuantQuestionExist()
+  if (res?.exist) {
+    showToast({ message: t('traderAlreadySubmitted'), position: 'middle' })
+    return
+  }
   router.push('/cryptos/aiQuant/questionnaire')
 }
 

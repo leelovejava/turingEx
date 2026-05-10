@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yami.trading.service.miner.service.MinerOrderService;
 import com.yami.trading.service.miner.service.MinerService;
+import com.yami.trading.service.quant.service.QuantPreIncomeService;
 
 
 /**
@@ -53,6 +54,8 @@ public class MinerOrderController {
     protected SessionTokenService sessionTokenService;
     @Autowired
     protected SysparaService sysparaService;
+    @Autowired
+    protected QuantPreIncomeService quantPreIncomeService;
 
     private final String action = "api/minerOrder!";
 
@@ -124,15 +127,23 @@ public class MinerOrderController {
                 } else {
                     double dailyProfitRate = Arith.mul(Double.valueOf(data.get("daily_rate").toString()), 0.01d);
                     double dailyProfitAmount = Arith.mul(dailyProfitRate, Double.valueOf(data.get("amount").toString()));
-                    String dailyProfit = df.format(dailyProfitAmount);
-                    // 当日收益
-                    data.put("daily_profit", dailyProfit);
+                    data.put("daily_profit", df.format(dailyProfitAmount));
                     data.put("daily_rate", data.get("daily_rate"));
-                    // 这里的周期，体验矿机是周期，其他矿机是解锁周期(到期后需手动解锁)
                     data.put("cycle", data.get("cycle_close"));
                     double all_rate = Arith.mul(30, Double.valueOf(data.get("daily_rate").toString()));
                     data.put("all_rate", df.format(all_rate));
                 }
+                // 今日收益 / 总收益（基于预收益记录）
+                String uuid = data.get("uuid") != null ? data.get("uuid").toString() : null;
+                if (uuid != null) {
+                    data.put("day_income", df.format(quantPreIncomeService.selectDayIncome(uuid)));
+                    data.put("total_income", df.format(quantPreIncomeService.selectTotalIncome(uuid)));
+                } else {
+                    data.put("day_income", "0");
+                    data.put("total_income", "0");
+                }
+                // 倒计时天数
+                data.put("countdown", intervalDaysByTwoDate);
             }
             resultObject.setData(datas);
         } catch (BusinessException e) {
@@ -276,6 +287,7 @@ public class MinerOrderController {
             String session_token = request.getParameter("session_token");
             String minerId = request.getParameter("minerId");
             String amount = request.getParameter("amount");
+            String symbol = request.getParameter("symbol");
 
             String object = this.sessionTokenService.cacheGet(session_token);
             this.sessionTokenService.del(session_token);
@@ -298,6 +310,7 @@ public class MinerOrderController {
             order.setAmount(Double.valueOf(amount));
             order.setOrder_no(DateUtil.getToday("yyMMddHHmmss") + RandomUtil.getRandomNum(8));
             order.setState("1");
+            order.setSymbol(symbol);
 
             this.minerOrderService.saveCreateNew(order, false);
 

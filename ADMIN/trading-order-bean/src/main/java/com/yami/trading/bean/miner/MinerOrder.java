@@ -104,6 +104,13 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	@Getter
 	private double default_money;
 
+	/**
+	 * 交易对，如 BTC/USDT、ETH/USDT、SOL/USDT
+	 */
+	@Setter
+	@Getter
+	private String symbol;
+
 	public String getPartyId() {
 		return party_id;
 	}

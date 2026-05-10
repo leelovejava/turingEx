@@ -243,7 +243,8 @@ public class TradeViewDataService {
             List<Item> items = itemService.findByType(type);
             if (!items.isEmpty()) {
                 symbols = items.stream()
-                        .map(item -> convertToTwelveDataSymbol(item.getRemarks(), type))
+                        .filter(item -> "1".equals(item.getEnable()))
+                        .map(item -> convertToTwelveDataSymbol(item.getSymbol(), type))
                         .filter(StrUtil::isNotBlank)
                         .collect(Collectors.toList());
                 log.debug("Fetched {} symbols from database for type: {}", symbols.size(), type);
@@ -339,14 +340,28 @@ public class TradeViewDataService {
         String symbol = remarks.toUpperCase(Locale.ROOT).trim();
         
         switch (type) {
+            case Item.indices:
+                // 指数代码映射到 Twelve Data 格式
+                Map<String, String> indexMap = new HashMap<>();
+                indexMap.put(".IXIC", "COMP:NASDAQ");
+                indexMap.put(".INX", "SPX");
+                indexMap.put(".DJI", "DJI");
+                indexMap.put(".RUT", "RUT");
+                indexMap.put(".VIX", "VIX");
+                String mapped = indexMap.get(symbol);
+                return mapped != null ? mapped : symbol;
             case Item.A_STOCKS:
-                // A股需要添加交易所后缀
+                // 处理 SH/SZ 前缀格式（如 SH600519 -> 600519.SS）
+                if (symbol.startsWith("SH") && symbol.length() == 8) {
+                    return symbol.substring(2) + ".SS";
+                } else if (symbol.startsWith("SZ") && symbol.length() == 8) {
+                    return symbol.substring(2) + ".SZ";
+                }
+                // 处理纯6位数字格式
                 if (symbol.startsWith("6") && symbol.length() == 6) {
-                    return symbol + ".SS";  // 上交所
-                } else if (symbol.startsWith("0") && symbol.length() == 6) {
-                    return symbol + ".SZ";  // 深交所
-                } else if (symbol.startsWith("3") && symbol.length() == 6) {
-                    return symbol + ".SZ";  // 深交所创业板
+                    return symbol + ".SS";
+                } else if ((symbol.startsWith("0") || symbol.startsWith("3")) && symbol.length() == 6) {
+                    return symbol + ".SZ";
                 }
                 break;
             case Item.HK_STOCKS:
@@ -363,7 +378,10 @@ public class TradeViewDataService {
                 break;
             case Item.US_STOCKS:
             default:
-                // 美股直接返回
+                // 指数代码映射
+                if (symbol.equals(".IXIC")) return "COMP:NASDAQ";
+                if (symbol.equals(".INX")) return "SPX";
+                if (symbol.equals(".DJI")) return "DJI";
                 return symbol;
         }
         

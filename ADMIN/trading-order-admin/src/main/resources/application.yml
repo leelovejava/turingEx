@@ -33,7 +33,7 @@ mybatis-plus:
     # 关闭MP3.0自带的banner
     banner: false
     db-config:
-      # 主键类型 0:数据库ID自增 1.未定�?2.用户输入 3 id_worker 4.uuid 5.id_worker字符串表�?      id-type: AUTO
+      # 主键类型 0:数据库ID自增 1.未定�?2.用户输入 3 id_worker 4.uuid 5.id_worker字符串表�?      # id-type: AUTO
       #字段策略 0:"忽略判断",1:"�?NULL 判断"),2:"非空判断"
       field-strategy: NOT_NULL
       # 默认数据库表下划线命�?      table-underline: true

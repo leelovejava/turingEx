@@ -134,8 +134,8 @@ public class ContractOrderCalculationServiceImpl implements ContractOrderCalcula
 
             // 如果Redis中没有，则从数据库查询并重新缓存
             if (order == null) {
-                ContractOrder byOrderNo = contractOrderService.findByOrderNo(order_no);
-                if (byOrderNo != null) {
+                order = contractOrderService.findByOrderNo(order_no);
+                if (order != null) {
                     RedisUtil.set(ContractRedisKeys.CONTRACT_ORDERNO + order.getOrderNo(), order);
                 }
             }

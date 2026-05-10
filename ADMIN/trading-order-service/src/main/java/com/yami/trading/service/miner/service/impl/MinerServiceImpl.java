@@ -116,6 +116,8 @@ public class MinerServiceImpl extends ServiceImpl<MinerMapper, Miner> implements
 		result.put("name_en", miner.getName_en());
 		result.put("name_cn", miner.getName_cn());
 		result.put("daily_rate", miner.getDaily_rate());
+		result.put("show_daily_rate_start", miner.getShow_daily_rate_start());
+		result.put("show_daily_rate_end", miner.getShow_daily_rate_end());
 		result.put("investment_min", miner.getInvestment_min());
 		result.put("investment_max", miner.getInvestment_max());
 		result.put("state", miner.getState());
