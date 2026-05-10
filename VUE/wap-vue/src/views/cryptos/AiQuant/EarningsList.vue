@@ -3,26 +3,22 @@
     <assets-head :title="t('aiQuantEarningsListTitle')" :backFunc="goBack" />
 
     <div class="earnings-list-shell">
-      <div
-        v-for="item in earningsRecords"
-        :key="item.id"
-        class="earnings-card"
-      >
+      <div v-for="item in records" :key="item.id" class="earnings-card">
         <div class="earnings-cell">
-          <span class="earnings-label">{{ t('aiQuantEarningsName') }}</span>
-          <span class="earnings-value">{{ item.name }}</span>
+          <span class="earnings-label">{{ t('aiQuantEarningsStartTime') }}</span>
+          <span class="earnings-value">{{ formatDate(item.startTime) }}</span>
         </div>
         <div class="earnings-cell">
-          <span class="earnings-label">{{ t('aiQuantEarningsPair') }}</span>
-          <span class="earnings-value">{{ item.pair }}</span>
+          <span class="earnings-label">{{ t('aiQuantEarningsEndTime') }}</span>
+          <span class="earnings-value">{{ formatDate(item.endTime) }}</span>
         </div>
         <div class="earnings-cell">
-          <span class="earnings-label">{{ t('aiQuantEarningsQuantity') }}</span>
-          <span class="earnings-value">{{ item.quantity }}</span>
+          <span class="earnings-label">{{ t('aiQuantEarningsProfit') }}</span>
+          <span class="earnings-value" :class="item.income >= 0 ? 'pnl-pos' : 'pnl-neg'">{{ item.income }}</span>
         </div>
         <div class="earnings-cell">
-          <span class="earnings-label">{{ t('aiQuantEarningsPnl') }}</span>
-          <span class="earnings-value" :class="pnlClass(item.pnl)">{{ formatPnl(item.pnl) }}</span>
+          <span class="earnings-label">{{ t('aiQuantEarningsStatus') }}</span>
+          <span class="earnings-value">{{ item.status === 1 ? t('aiQuantEarningsStatusActive') : t('aiQuantEarningsStatusStopped') }}</span>
         </div>
       </div>
     </div>
@@ -30,30 +26,58 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import assetsHead from '@/components/Transform/assets-head/index.vue'
-import { earningsRecords } from './earningsMock'
+import { getMinerIncomeList } from '@/service/financialManagement.api'
 
 defineOptions({ name: 'AiQuantEarningsListPage' })
 
+const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
 
+const records = ref([])
+const page = ref(1)
+const totalPages = ref(1)
+const loading = ref(false)
+
+async function loadPage(pageNo) {
+  if (loading.value) return
+  loading.value = true
+  const res = await getMinerIncomeList(route.params.id, pageNo)
+  const data = res?.records ?? (Array.isArray(res) ? res : [])
+  records.value.push(...data)
+  totalPages.value = res?.pages ?? 1
+  loading.value = false
+}
+
+onMounted(() => {
+  loadPage(1)
+  window.addEventListener('scroll', onScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
+
+function onScroll() {
+  if (loading.value || page.value >= totalPages.value) return
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+  if (scrollTop + clientHeight >= scrollHeight - 100) {
+    page.value++
+    loadPage(page.value)
+  }
+}
+
 function goBack() {
-  router.push({ path: '/cryptos/aiQuant', query: { tab: 'myAi' } })
+  router.back()
 }
 
-function formatPnl(v) {
-  if (typeof v !== 'number') return String(v)
-  return v >= 0 ? `${v}` : `${v}`
-}
-
-function pnlClass(v) {
-  if (typeof v !== 'number') return ''
-  if (v > 0) return 'pnl-pos'
-  if (v < 0) return 'pnl-neg'
-  return ''
+function formatDate(d) {
+  if (!d) return ''
+  return new Date(d).toLocaleString()
 }
 </script>
 

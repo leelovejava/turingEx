@@ -106,6 +106,13 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
         if (recharge.getSucceeded() == 1) {
             throw new YamiShopBindException("已操作过了!");
         }
+        // 还款类型只更新状态，不操作余额
+        if ("repayment".equals(recharge.getOrderType())) {
+            recharge.setReviewTime(new Date());
+            recharge.setSucceeded(1);
+            updateById(recharge);
+            return;
+        }
         recharge.setReviewTime(new Date());
         recharge.setSucceeded(1);
         WalletLog walletLog = walletLogService.find(Constants.MONEYLOG_CATEGORY_RECHARGE, recharge.getOrderNo());

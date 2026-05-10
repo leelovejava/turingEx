@@ -3003,6 +3003,7 @@ export default {
     aiQuantEarningsProfit: 'Lucro',
     aiQuantEarningsStatus: 'Status',
     aiQuantEarningsStatusStopped: 'Parado',
+    aiQuantEarningsStatusActive: 'Em execução',
     aiQuantEarningsRedeem: 'Resgatar',
     aiQuantEarningsRedeemToast: 'Solicitação de resgate enviada',
     aiQuantEarningsNotFound: 'Registro não encontrado',

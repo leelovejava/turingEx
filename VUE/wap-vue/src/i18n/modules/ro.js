@@ -3020,6 +3020,7 @@ export default {
     aiQuantEarningsProfit: 'Profit',
     aiQuantEarningsStatus: 'Stare',
     aiQuantEarningsStatusStopped: 'Oprit',
+    aiQuantEarningsStatusActive: 'În execuție',
     aiQuantEarningsRedeem: 'Răscumpărare',
     aiQuantEarningsRedeemToast: 'Cererea de răscumpărare a fost trimisă',
     aiQuantEarningsNotFound: 'Înregistrarea nu există',

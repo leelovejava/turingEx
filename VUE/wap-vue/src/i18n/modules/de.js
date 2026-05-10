@@ -3061,6 +3061,7 @@ export default {
     aiQuantEarningsProfit: 'Gewinn',
     aiQuantEarningsStatus: 'Status',
     aiQuantEarningsStatusStopped: 'Gestoppt',
+    aiQuantEarningsStatusActive: 'Läuft',
     aiQuantEarningsRedeem: 'Einlösen',
     aiQuantEarningsRedeemToast: 'Einlösungsantrag eingereicht',
     aiQuantEarningsNotFound: 'Datensatz nicht gefunden',

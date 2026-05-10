@@ -2983,6 +2983,7 @@ export default {
     aiQuantEarningsProfit: 'Lợi nhuận',
     aiQuantEarningsStatus: 'Trạng thái',
     aiQuantEarningsStatusStopped: 'Đã dừng',
+    aiQuantEarningsStatusActive: 'Đang chạy',
     aiQuantEarningsRedeem: 'Đổi',
     aiQuantEarningsRedeemToast: 'Đã gửi yêu cầu đổi',
     aiQuantEarningsNotFound: 'Không tìm thấy bản ghi',

@@ -127,21 +127,27 @@ public class LoanController {
 	 */
 	@RequestMapping("/api/loan!getLoanParamList.action")
 	public ResultObject getLoanParamList(HttpServletRequest request) {
-		// 从请求参数中获取配置ID
 		String configId=request.getParameter("configId");
-		// 创建返回结果对象
 		ResultObject resultObject = new ResultObject();
 		try {
-			// 调用服务层获取借贷参数列表
-			List<LoanParam> loanParamList =loanService.getLoanParamList(configId);
-			// 将参数列表设置到返回结果中
-			resultObject.setData(loanParamList);
-		}catch(Throwable e) {
-			// 捕获异常，记录日志并返回错误信息
+			List<LoanParam> loanParamList = loanService.getLoanParamList(configId);
+			String partyId = SecurityUtils.getCurrentUserId();
+			BigDecimal loanCanAmount = BigDecimal.ZERO;
+			if (partyId != null) {
+				User user = userService.findByUserId(partyId);
+				if (user != null && user.getLoanCanAmount() != null) {
+					loanCanAmount = user.getLoanCanAmount();
+				}
+			}
+			HashMap<String, Object> data = new HashMap<>();
+			data.put("list", loanParamList);
+			data.put("loanCanAmount", loanCanAmount);
+			resultObject.setData(data);
+		} catch(Throwable e) {
 			resultObject.setCode("1");
 			resultObject.setMsg("程序错误");
 			logger.error("获取借贷参数列表异常:", e);
-		}		
+		}
 		return resultObject;
 	}
 	

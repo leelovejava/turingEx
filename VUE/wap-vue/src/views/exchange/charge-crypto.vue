@@ -114,7 +114,8 @@ onMounted(() => {
 })
 const initData = () => {
     _getBlock({
-        coin: coin.value
+        coin: coin.value,
+        addressType: 'recharge'
     }).then(res => {
         usdtList.value = res
         usdtObj.value = res[0]

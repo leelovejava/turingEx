@@ -45,7 +45,10 @@ public class KlineInitServiceImpl implements KlineInitService {
 
     @Autowired
     private SpiderService spiderService;
-    
+
+    @Autowired
+    private com.yami.trading.huobi.hobi.internal.XueQiuDataServiceImpl xueQiuDataService;
+
     @Override
     public void klineInit(String symbols) {
         if (!symbols.contains(",")) {
@@ -99,19 +102,25 @@ public class KlineInitServiceImpl implements KlineInitService {
         }
     }
     private void saveInitSelfData(String symbols) {
-        log.debug("正在通过自己数据源 初始化k綫圖:{}", symbols);
-        List<Map<String, List<Kline>>> klines = spiderService.getKlines(symbols);
-        for(Map<String, List<Kline>> map: klines){
-            List<Kline> klines5P = map.get(Kline.PERIOD_5MIN);
-            if(CollectionUtil.isNotEmpty(klines5P)){
-                String symbol = klines5P.get(0).getSymbol();
-                klineService.saveInit(symbol, map);
-                DataCache.clearLatestRealTime60s(symbol);
-              //  dataDBService.delete(symbols);
-                log.debug("初始化k线图{} 数量为{}", symbol, map.size());
+        log.debug("正在通过Twelve Data初始化k线图:{}", symbols);
+        String[] arr = symbols.contains(",") ? symbols.split(",") : new String[]{symbols};
+        for (String symbol : arr) {
+            try {
+                Map<String, List<Kline>> map = xueQiuDataService.getKlineFromTwelveData(symbol.trim());
+                if (map.isEmpty()) {
+                    log.warn("Twelve Data未返回k线数据, symbol={}", symbol);
+                    continue;
+                }
+                List<Kline> klines5P = map.get(Kline.PERIOD_5MIN);
+                if (CollectionUtil.isNotEmpty(klines5P)) {
+                    klineService.saveInit(symbol.trim(), map);
+                    DataCache.clearLatestRealTime60s(symbol.trim());
+                    log.debug("初始化k线图{} 数量为{}", symbol, map.size());
+                }
+            } catch (Exception e) {
+                log.error("Twelve Data初始化k线图失败, symbol={}", symbol, e);
             }
         }
-
-        log.debug("完成自己数据源 初始化k綫圖:{}", symbols);
+        log.debug("完成Twelve Data初始化k线图:{}", symbols);
     }
 }

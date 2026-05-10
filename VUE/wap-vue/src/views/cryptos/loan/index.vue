@@ -25,9 +25,12 @@
               <span class="grayText">{{ $t("期望借款金额") }}</span>
             </div>
             <div class="flex align-center">
-              <!--            <input class="font-semibold textColor border-none text-right mr-14 mainBackground" v-model="loanAmount"  disabled="disabled" @input="inputAmunt" />-->
-              <span class="mr-4 font-semibold textColor">{{ loanData.max_quota || 0 }}</span>
-              <span class="font-semibold textColor"></span>
+              <input
+                class="font-semibold textColor border-none text-right mainBackground"
+                v-model="loanAmount"
+                type="number"
+                :placeholder="loanData.max_quota || 0"
+              />
             </div>
           </div>
           <div class="flex justify-between py-8 border-b-color">
@@ -79,17 +82,9 @@
                 </span>
             </div>
           </div>
-          <div class="flex justify-between py-8 border-b-color">
-            <div>
-              <span class="grayText">{{ $t("放款机构") }}</span>
-            </div>
-            <div class="flex align-center">
-              <span class="font-semibold textColor">{{ loanData.lending_name }}</span>
-            </div>
-          </div>
         </div>
         <!--      上传区域-->
-        <div class="uploadImg">
+        <div class="uploadImg" style="display:none">
           <div class="mb-10 textColor">
             <span>{{ $t("信用放款(请确保图片清晰可见)") }}</span>
           </div>
@@ -146,6 +141,9 @@
         <div class="confirmBtn btnMain w-full py-8 text-center text-white font-normal text-32" @click="submit()">
           <span>{{ $t("确定") }}</span>
         </div>
+        <div class="confirmBtn w-full py-8 text-center text-white font-normal text-32 mt-4" style="background:#a855f7;border-radius:8px;" @click="$router.push('/cryptos/repayCrypto')">
+          <span>{{ $t("还款") }}</span>
+        </div>
       </div>
       <van-popup v-model:show="isSelectDay" position="bottom" :round="true">
         <ul class="main2_background">
@@ -176,24 +174,26 @@ export default {
   methods: {
     getLoan() {
       _getLoan().then((data) => {
-        this.loanDeployList = data;
-        this.loanDeployList.sort((a, b) => {
-          return +a.term - +b.term;
-        });
+        this.loanDeployList = (data.list || data);
+        this.loanDeployList.sort((a, b) => +a.term - +b.term);
         this.loanData = this.loanDeployList[0];
+        this.loanCanAmount = data.loanCanAmount || 0;
+        this.loanAmount = this.loanCanAmount;
       });
     },
     submit() {
-      // console.log('this.frontFile',this.frontFile)
-      if (!this.frontFile.length || !this.reverseFile.length || !this.fileList.length) {
-        showToast(this.$t("请上传完整证件信息"));
+      if (!this.loanAmount || +this.loanAmount <= 0) {
+        showToast(this.$t("请输入借款金额"));
+        return;
+      }
+      if (+this.loanAmount > +this.loanCanAmount) {
+        showToast(this.$t("超出可贷金额"));
         return;
       }
       console.log(this.loanData);
       _loanApply({
-        // ...this.loanData,
         term: this.loanData.term,
-        quota: this.loanData.max_quota, //借贷金额 取max
+        quota: this.loanAmount,
         dailyRate: this.loanData.daily_rate,
         lendingInstitution: this.loanData.lending_institution, //放款机构名字
         lendingName: this.loanData.lending_name,
@@ -260,6 +260,8 @@ export default {
     return {
       loanData: {},
       loanDeployList: [],
+      loanAmount: 0,
+      loanCanAmount: 0,
       frontFile: [],
       reverseFile: [],
       fileList: [],

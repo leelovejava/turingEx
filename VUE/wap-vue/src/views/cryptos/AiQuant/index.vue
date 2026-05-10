@@ -78,38 +78,36 @@
     <!-- 我的AI Tab 内容 -->
     <template v-else>
       <div class="my-ai-wrap">
-        <!-- 持仓概览卡片 -->
-        <div class="dashboard-card">
-          <!-- 策略标签 -->
-          <span class="badge">{{ t('aiQuantStrategyCustomization') }}</span>
-          <!-- 数据指标网格：购买金额 / 今日收益 / 盈利资产 / 量化天数 / 倒计时天数 -->
-          <div class="metrics">
-            <div class="metric">
-              <div class="metric-num">{{ myAiStats.amount_sum }}</div>
-              <div class="metric-label">{{ t('aiQuantPurchaseAmount') }}</div>
+        <div v-for="o in myAiOrders" :key="o.order_no" class="strategy-card">
+          <div class="strategy-card-head">
+            <span class="strategy-name">{{ $i18n.locale === 'zh-CN' ? (o.miner_name_cn || o.miner_name) : (o.miner_name_en || o.miner_name) }}</span>
+            <span :class="['order-state-badge', o.state === '1' ? 'state-active' : 'state-stopped']">
+              {{ o.state === '1' ? t('aiQuantEarningsStatusActive') : t('aiQuantEarningsStatusStopped') }}
+            </span>
+          </div>
+          <div class="strategy-divider" />
+          <div class="strategy-rows">
+            <div class="row">
+              <span class="label">{{ t('aiQuantPurchaseAmount') }}</span>
+              <span class="value">{{ o.amount }}</span>
             </div>
-            <div class="metric">
-              <div class="metric-num">{{ myAiStats.today_profit }}</div>
-              <div class="metric-label">{{ t('aiQuantTodayEarnings') }}</div>
+            <div class="row">
+              <span class="label">{{ t('aiQuantTodayEarnings') }}</span>
+              <span class="value">{{ o.day_income }}</span>
             </div>
-            <div class="metric">
-              <div class="metric-num">{{ myAiStats.aready_profit }}</div>
-              <div class="metric-label">{{ t('aiQuantProfitAssets') }}</div>
+            <div class="row">
+              <span class="label">{{ t('aiQuantProfitAssets') }}</span>
+              <span class="value">{{ o.total_income }}</span>
             </div>
-            <div class="metric">
-              <div class="metric-num">{{ myAiStats.order_sum }}</div>
-              <div class="metric-label">{{ t('aiQuantQuantifiableDays') }}</div>
-            </div>
-            <div class="metric">
-              <div class="metric-num">{{ myAiStats.countdown_days }}</div>
-              <div class="metric-label">{{ t('aiQuantCountdownDays') }}</div>
+            <div class="row">
+              <span class="label">{{ t('aiQuantCountdownDays') }}</span>
+              <span class="value">{{ o.countdown }}</span>
             </div>
           </div>
-        </div>
-        <!-- 操作按钮：收益记录 / 持仓详情 -->
-        <div class="my-ai-actions">
-          <button type="button" class="pill-btn" @click="goEarnings">{{ t('aiQuantIncome') }}</button>
-          <button type="button" class="pill-btn" @click="goMyAiDetail">{{ t('aiQuantDetails') }}</button>
+          <div class="my-ai-actions">
+            <button type="button" class="pill-btn" @click="goEarnings(o.order_no)">{{ t('aiQuantIncome') }}</button>
+            <button type="button" class="pill-btn" @click="goMyAiDetail(o.order_no)">{{ t('aiQuantDetails') }}</button>
+          </div>
         </div>
       </div>
     </template>
@@ -188,14 +186,16 @@ function goBackQuotes() {
   router.push('/quotes/index?tabActive=0')
 }
 
-// 跳转收益列表页
+// 跳转收益列表页（取第一条活跃订单）
 function goEarnings() {
-  router.push('/cryptos/aiQuant/earnings')
+  const first = myAiOrders.value[0]
+  if (first) router.push('/cryptos/aiQuant/earnings/' + first.order_no + '/income')
 }
 
 // 跳转我的AI持仓详情页
-function goMyAiDetail() {
-  router.push('/cryptos/aiQuant/earnings/1')
+function goMyAiDetail(orderNo) {
+  const target = orderNo || myAiOrders.value[0]?.order_no
+  if (target) router.push('/cryptos/aiQuant/earnings/' + target)
 }
 
 // 根据路由参数 tab=myAi 自动切换到「我的AI」tab
@@ -220,16 +220,18 @@ watch(
 
 // 我的AI统计数据
 const myAiStats = ref({ amount_sum: 0, today_profit: 0, aready_profit: 0, order_sum: 0, countdown_days: 0 })
+// 我的AI订单列表
+const myAiOrders = ref([])
 
 async function loadMyAiStats() {
   const res = await getMachineBought()
   const orders = Array.isArray(res) ? res : (res?.data || [])
-  const active = orders.filter(o => o.state === '1')
-  myAiStats.value.amount_sum = active.reduce((s, o) => s + (Number(o.amount) || 0), 0)
-  myAiStats.value.today_profit = active.reduce((s, o) => s + (Number(o.day_income) || 0), 0)
-  myAiStats.value.aready_profit = active.reduce((s, o) => s + (Number(o.total_income) || 0), 0)
-  myAiStats.value.order_sum = active.length
-  const minCountdown = active.reduce((min, o) => {
+  myAiOrders.value = orders
+  myAiStats.value.amount_sum = orders.reduce((s, o) => s + (Number(o.amount) || 0), 0)
+  myAiStats.value.today_profit = orders.reduce((s, o) => s + (Number(o.day_income) || 0), 0)
+  myAiStats.value.aready_profit = orders.reduce((s, o) => s + (Number(o.total_income) || 0), 0)
+  myAiStats.value.order_sum = orders.length
+  const minCountdown = orders.reduce((min, o) => {
     const d = Number(o.countdown)
     return d < min ? d : min
   }, Infinity)
@@ -508,10 +510,27 @@ async function onConfirmDeposit() {
   line-height: 1.3;
 }
 
+.order-state-badge {
+  font-size: 22px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+.state-active {
+  background: rgba(6, 205, 165, 0.15);
+  color: #06cda5;
+}
+
+.state-stopped {
+  background: rgba(150, 150, 150, 0.15);
+  color: $text_color1;
+}
+
 .my-ai-actions {
   display: flex;
   gap: 16px;
-  margin-top: 24px;
+  padding: 0 24px 24px;
 }
 
 .pill-btn {
@@ -524,6 +543,57 @@ async function onConfirmDeposit() {
   font-size: 28px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.order-list {
+  margin-top: 20px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 16px;
+  background: $main2_background;
+  border: 1px solid $border_color;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.order-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-symbol {
+  font-size: 28px;
+  font-weight: 600;
+  color: $text_color;
+}
+
+.order-no {
+  font-size: 22px;
+  color: $text_color1;
+}
+
+.order-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.order-amount {
+  font-size: 28px;
+  font-weight: 600;
+  color: $text_color;
+}
+
+.order-countdown {
+  font-size: 22px;
+  color: $text_color1;
 }
 
 @media (min-width: 1024px) {

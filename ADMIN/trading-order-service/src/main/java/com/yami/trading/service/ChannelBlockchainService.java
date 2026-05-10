@@ -12,4 +12,6 @@ public interface ChannelBlockchainService  extends IService<ChannelBlockchain> {
     public ChannelBlockchain findByNameAndCoinAndAdd(String blockchain_name, String coin,String address);
 
     List<ChannelBlockchain> findByCoin(String coin);
+
+    List<ChannelBlockchain> findByCoinAndType(String coin, String addressType);
 }

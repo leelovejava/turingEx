@@ -214,3 +214,15 @@ export const _getProfitList = () => {
         isLoading: false
     })
 }
+
+// 矿机订单收益记录列表（分页）
+export const getMinerIncomeList = (order_no, page_no = 1) => {
+    return request({
+        url: `${API_PREFIX}/minerOrder!incomeList.action`,
+        method: "POST",
+        loading: false,
+        params: { order_no, page_no }
+    })
+}
+
+// 矿机订单收益记录列表

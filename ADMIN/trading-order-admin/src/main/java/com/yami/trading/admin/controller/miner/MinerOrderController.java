@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yami.trading.service.miner.service.MinerOrderService;
 import com.yami.trading.service.miner.service.MinerService;
 import com.yami.trading.service.quant.service.QuantPreIncomeService;
+import com.yami.trading.bean.quant.QuantPreIncome;
 
 
 /**
@@ -117,6 +119,9 @@ public class MinerOrderController {
 
                 data.put("buyCurrency", "usdt");
                 data.put("outputCurrency", "usdt");
+                if (data.get("symbol") == null || data.get("symbol").toString().isEmpty()) {
+                    data.put("symbol", "BTC/USDT");
+                }
 
                 if ((boolean) data.get("test")) {
                     Double minerTestProfit = sysparaService.find("miner_test_profit").getDouble();
@@ -235,6 +240,43 @@ public class MinerOrderController {
         } catch (BusinessException e) {
             resultObject.setCode("1");
             resultObject.setMsg(e.getMessage());
+        } catch (Exception e) {
+            resultObject.setCode("1");
+            resultObject.setMsg("程序错误");
+            logger.error("error:", e);
+        }
+        return resultObject;
+    }
+
+    /**
+     * 矿机订单收益记录列表（分页）
+     */
+    @RequestMapping(action + "incomeList.action")
+    public Object incomeList(HttpServletRequest request) {
+        ResultObject resultObject = new ResultObject();
+        try {
+            String order_no = request.getParameter("order_no");
+            String pageNoStr = request.getParameter("page_no");
+            int pageNo = pageNoStr != null ? Integer.parseInt(pageNoStr) : 1;
+            int pageSize = 20;
+            MinerOrder order = minerOrderService.findByOrder_no(order_no);
+            if (order == null || order.getUuid() == null) {
+                resultObject.setData(new ArrayList<>());
+                resultObject.setCode("0");
+                return resultObject;
+            }
+            com.baomidou.mybatisplus.extension.plugins.pagination.Page<QuantPreIncome> page =
+                quantPreIncomeService.lambdaQuery()
+                    .eq(QuantPreIncome::getQuantOrderId, order.getUuid())
+                    .orderByDesc(QuantPreIncome::getEndTime)
+                    .page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(pageNo, pageSize));
+            Map<String, Object> result = new HashMap<>();
+            result.put("records", page.getRecords());
+            result.put("total", page.getTotal());
+            result.put("pages", page.getPages());
+            result.put("current", page.getCurrent());
+            resultObject.setData(result);
+            resultObject.setCode("0");
         } catch (Exception e) {
             resultObject.setCode("1");
             resultObject.setMsg("程序错误");
@@ -544,6 +586,20 @@ public class MinerOrderController {
         map.put("test", miner.getTest());
         map.put("buyCurrency", miner.getBuy_currency());
         map.put("outputCurrency", miner.getOutput_currency());
+        String symbol = order.getSymbol();
+        if (symbol == null || symbol.isEmpty()) {
+            symbol = (miner.getBuy_currency() + "/" + miner.getOutput_currency()).toUpperCase();
+        }
+        map.put("symbol", symbol);
+        // 今日收益 / 总收益
+        String uuid = order.getUuid();
+        if (uuid != null) {
+            map.put("day_income", df.format(quantPreIncomeService.selectDayIncome(uuid)));
+            map.put("total_income", df.format(quantPreIncomeService.selectTotalIncome(uuid)));
+        } else {
+            map.put("day_income", "0");
+            map.put("total_income", "0");
+        }
 
         if ("1".equals(order.getState())) {
 

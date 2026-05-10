@@ -76,7 +76,7 @@ public class ApiRechargeBlockchainController {
     @RequestMapping("recharge")
     @ApiOperation("充值申请")
     public Result recharge(String session_token, String amount, String from, String blockchain_name, String img,
-                           String coin, String channel_address, String tx) {
+                           String coin, String channel_address, String tx, String order_type) {
         String error = this.verif(amount, coin, blockchain_name, channel_address);
         if (!StringUtils.isNullOrEmpty(error)) {
             throw new YamiShopBindException(error);
@@ -127,6 +127,7 @@ public class ApiRechargeBlockchainController {
         recharge.setSucceeded(0);
         recharge.setChannelAddress(channel_address);
         recharge.setTx(StringUtils.isEmptyString(tx) ? "" : tx);
+        recharge.setOrderType(StringUtils.isEmptyString(order_type) ? "recharge" : order_type);
         rechargeBlockchainOrderService.saveOrder(recharge);
 
 

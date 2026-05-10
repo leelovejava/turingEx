@@ -2912,6 +2912,7 @@ export default {
     aiQuantEarningsProfit: '利益',
     aiQuantEarningsStatus: 'ステータス',
     aiQuantEarningsStatusStopped: '停止',
+    aiQuantEarningsStatusActive: '運用中',
     aiQuantEarningsRedeem: '償還',
     aiQuantEarningsRedeemToast: '償還リクエストが送信されました',
     aiQuantEarningsNotFound: 'レコードが見つかりません',

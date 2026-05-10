@@ -3064,6 +3064,7 @@ export default {
     aiQuantEarningsProfit: 'Profit',
     aiQuantEarningsStatus: 'Status',
     aiQuantEarningsStatusStopped: 'Stopped',
+    aiQuantEarningsStatusActive: 'Running',
     aiQuantEarningsRedeem: 'Redeem',
     aiQuantEarningsRedeemToast: 'Redeem request submitted',
     aiQuantEarningsNotFound: 'Record not found',

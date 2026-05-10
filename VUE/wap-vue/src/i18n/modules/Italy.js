@@ -3138,6 +3138,7 @@ export default {
     aiQuantEarningsProfit: 'Profitto',
     aiQuantEarningsStatus: 'Stato',
     aiQuantEarningsStatusStopped: 'Fermato',
+    aiQuantEarningsStatusActive: 'In esecuzione',
     aiQuantEarningsRedeem: 'Riscatta',
     aiQuantEarningsRedeemToast: 'Richiesta di riscatto inviata',
     aiQuantEarningsNotFound: 'Record non trovato',

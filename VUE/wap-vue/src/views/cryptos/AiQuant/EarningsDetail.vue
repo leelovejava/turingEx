@@ -11,39 +11,39 @@
               <path d="M12 20h16M20 12v16" stroke-width="2" stroke-linecap="round" />
             </svg>
           </span>
-          <span class="detail-pair">{{ record.pair }}</span>
+          <span class="detail-pair">{{ record.symbol || record.buyCurrency }}</span>
         </div>
-        <button type="button" class="btn-redeem" @click="onRedeem">{{ t('aiQuantEarningsRedeem') }}</button>
+        <button v-if="record.state === '1'" type="button" class="btn-redeem" @click="onRedeem">{{ t('aiQuantEarningsRedeem') }}</button>
       </div>
 
       <div class="detail-panel">
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsPurchaseAmount') }}</span>
-          <span class="detail-value">{{ record.purchaseAmount }}</span>
+          <span class="detail-value">{{ record.amount }}</span>
         </div>
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsStartTime') }}</span>
-          <span class="detail-value">{{ record.startTime }}</span>
+          <span class="detail-value">{{ record.earn_timeStr }}</span>
         </div>
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsEndTime') }}</span>
-          <span class="detail-value">{{ record.endTime }}</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">{{ t('aiQuantEarningsTradeCount') }}</span>
-          <span class="detail-value">{{ record.tradeCount }}</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">{{ t('aiQuantEarningsAvgPrice') }}</span>
-          <span class="detail-value">{{ record.avgPrice }}</span>
+          <span class="detail-value">{{ record.stop_timeStr }}</span>
         </div>
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsProfit') }}</span>
-          <span class="detail-value">{{ record.profit }}</span>
+          <span class="detail-value">{{ record.total_income }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">{{ t('aiQuantTodayEarnings') }}</span>
+          <span class="detail-value">{{ record.day_income }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">{{ t('aiQuantCountdownDays') }}</span>
+          <span class="detail-value">{{ record.days }}</span>
         </div>
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsStatus') }}</span>
-          <span class="detail-value">{{ t(record.statusKey) }}</span>
+          <span class="detail-value">{{ record.state === '1' ? t('aiQuantEarningsStatusActive') : t('aiQuantEarningsStatusStopped') }}</span>
         </div>
       </div>
     </div>
@@ -55,12 +55,12 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import assetsHead from '@/components/Transform/assets-head/index.vue'
-import { getEarningsById } from './earningsMock'
+import { getMinerorder, ransomMachineProduct } from '@/service/financialManagement.api'
 
 defineOptions({ name: 'AiQuantEarningsDetailPage' })
 
@@ -68,14 +68,21 @@ const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
 
-const record = computed(() => getEarningsById(route.params.id))
+const record = ref(null)
+
+onMounted(async () => {
+  const res = await getMinerorder({ order_no: route.params.id })
+  record.value = res || null
+})
 
 function goBack() {
   router.push({ path: '/cryptos/aiQuant', query: { tab: 'myAi' } })
 }
 
-function onRedeem() {
+async function onRedeem() {
+  await ransomMachineProduct({ order_no: route.params.id })
   showToast({ message: t('aiQuantEarningsRedeemToast'), position: 'middle' })
+  router.push({ path: '/cryptos/aiQuant', query: { tab: 'myAi' } })
 }
 </script>
 
@@ -143,6 +150,18 @@ function onRedeem() {
 
 .btn-redeem:active {
   opacity: 0.9;
+}
+
+.btn-income {
+  flex-shrink: 0;
+  padding: 14px 28px;
+  border: 1px solid $btn_main;
+  border-radius: 12px;
+  background: transparent;
+  color: $btn_main;
+  font-size: 26px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .detail-panel {

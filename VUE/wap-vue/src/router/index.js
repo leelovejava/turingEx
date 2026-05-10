@@ -215,7 +215,7 @@ const routes = [
               import(/* webpackChunkName: "aiQuantEarningsDetail" */ '@/views/cryptos/AiQuant/EarningsDetail.vue'),
           },
           {
-            path: 'aiQuant/earnings',
+            path: 'aiQuant/earnings/:id/income',
             name: 'aiQuantEarnings',
             meta: { tarbar: false },
             component: () =>
@@ -507,6 +507,11 @@ const routes = [
             path: 'loan',
             name: 'loan',
             component: () => import(/* webpackChunkName: "loan" */ "@/views/cryptos/loan/index.vue")
+          },
+          {
+            path: 'repayCrypto',
+            name: 'repayCrypto',
+            component: () => import(/* webpackChunkName: "repayCrypto" */ "@/views/cryptos/loan/repay-crypto.vue")
           },
           {//
             path: 'loanHistory',

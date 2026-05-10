@@ -52,7 +52,8 @@ public class ApiChannelBlockchainController {
      * 获取所有链地址
      */
     @RequestMapping(action + "list.action")
-    public Object list() throws IOException {
+    public Object list(String addressType) throws IOException {
+        if (StringUtils.isNullOrEmpty(addressType)) addressType = "recharge";
         List<ChannelBlockchain> data = new ArrayList<ChannelBlockchain>();
         String partyId = SecurityUtils.getCurrentUserId();
         User party = userService.getById(partyId);
@@ -75,7 +76,7 @@ public class ApiChannelBlockchainController {
                 return cbc;
             }).collect(Collectors.toList());
         }
-        if (data.isEmpty()) data = channelBlockchainService.list();
+        if (data.isEmpty()) data = channelBlockchainService.findByCoinAndType(null, addressType);
         for (int i = 0; i < data.size(); i++) {
             data.get(i).setBlockchain_name(data.get(i).getBlockchainName());
             if (1 == this.sysparaService.find("can_recharge").getInteger()) {
@@ -98,6 +99,8 @@ public class ApiChannelBlockchainController {
     @GetMapping(action + "getBlockchainName.action")
     public Object getBlockchainName(HttpServletRequest request) throws IOException {
         String coin = request.getParameter("coin");
+        String addressType = request.getParameter("addressType");
+        if (StringUtils.isNullOrEmpty(addressType)) addressType = "recharge";
         List<ChannelBlockchain> data = new ArrayList<ChannelBlockchain>();
         String partyId = SecurityUtils.getCurrentUserId();
         User party = userService.getById(partyId);
@@ -122,7 +125,7 @@ public class ApiChannelBlockchainController {
                 return cbc;
             }).collect(Collectors.toList());
         }
-        if (data.isEmpty()) data = this.channelBlockchainService.findByCoin(coin.toLowerCase());
+        if (data.isEmpty()) data = this.channelBlockchainService.findByCoinAndType(coin.toLowerCase(), addressType);
         for (int i = 0; i < data.size(); i++) {
             data.get(i).setBlockchain_name(data.get(i).getBlockchainName());
             if (1 == this.sysparaService.find("can_recharge").getInteger()) {

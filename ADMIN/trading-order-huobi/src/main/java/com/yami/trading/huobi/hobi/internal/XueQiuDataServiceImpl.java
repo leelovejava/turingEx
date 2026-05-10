@@ -1302,4 +1302,80 @@ public class XueQiuDataServiceImpl {
     public List<Kline> getTimeseriesByMinute(String currency, int minute, long limitDays, String cookie) {
         return getTimeseriesByPeriod(currency, minute + "m", minute + "min", limitDays, cookie );
     }
+
+    /**
+     * 从 Twelve Data 获取所有周期的K线数据（用于股票/外汇初始化）
+     * 周期映射：1min/5min/15min/30min/60min/4hour/1day/1week/1mon
+     */
+    public Map<String, List<Kline>> getKlineFromTwelveData(String symbol) {
+        Map<String, List<Kline>> result = new HashMap<>();
+        if (StrUtil.isBlank(twelveDataApiKey)) {
+            logger.warn("twelvedata api-key is empty, skip kline. symbol={}", symbol);
+            return result;
+        }
+        // Twelve Data interval -> sysPeriod, outputsize
+        String[][] intervals = {
+            {"1min",  KlineConstant.PERIOD_1MIN,  "500"},
+            {"5min",  KlineConstant.PERIOD_5MIN,  "500"},
+            {"15min", KlineConstant.PERIOD_15MIN, "500"},
+            {"30min", KlineConstant.PERIOD_30MIN, "500"},
+            {"1h",    KlineConstant.PERIOD_60MIN, "500"},
+            {"4h",    KlineConstant.PERIOD_4HOUR, "500"},
+            {"1day",  KlineConstant.PERIOD_1DAY,  "500"},
+            {"1week", KlineConstant.PERIOD_1WEEK, "500"},
+            {"1month",KlineConstant.PERIOD_1MON,  "500"},
+        };
+        String remarks = itemService.findBySymbol(symbol).getRemarks();
+        int decimal = itemService.getDecimal(symbol);
+        if (decimal <= 0) decimal = 4;
+        for (String[] row : intervals) {
+            try {
+                Map<String, String> param = new HashMap<>();
+                param.put("symbol", remarks);
+                param.put("interval", row[0]);
+                param.put("outputsize", row[2]);
+                param.put("apikey", twelveDataApiKey);
+                String json = HttpHelper.getJSONFromHttpNew(twelveDataBaseUrl + "/time_series", param, HttpMethodType.GET);
+                if (StrUtil.isBlank(json)) continue;
+                JSONObject obj = JSON.parseObject(json);
+                if (obj == null || !"ok".equals(obj.getString("status"))) continue;
+                JSONArray values = obj.getJSONArray("values");
+                if (values == null || values.isEmpty()) continue;
+                List<Kline> klines = new ArrayList<>();
+                for (int i = 0; i < values.size(); i++) {
+                    JSONObject v = values.getJSONObject(i);
+                    Kline k = new Kline();
+                    k.setSymbol(symbol);
+                    k.setPeriod(row[1]);
+                    // datetime: "2024-01-02 09:30:00" or "2024-01-02"
+                    String dt = v.getString("datetime");
+                    try {
+                        java.text.SimpleDateFormat sdf = dt.length() > 10
+                            ? new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                            : new java.text.SimpleDateFormat("yyyy-MM-dd");
+                        k.setTs(sdf.parse(dt).getTime());
+                    } catch (Exception e) {
+                        continue;
+                    }
+                    BigDecimal open  = v.getBigDecimal("open");
+                    BigDecimal high  = v.getBigDecimal("high");
+                    BigDecimal low   = v.getBigDecimal("low");
+                    BigDecimal close = v.getBigDecimal("close");
+                    BigDecimal vol   = v.getBigDecimal("volume");
+                    if (open == null || high == null || low == null || close == null) continue;
+                    k.setOpen(open.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                    k.setHigh(high.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                    k.setLow(low.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                    k.setClose(close.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                    k.setVolume(vol == null ? 0 : vol.setScale(decimal, RoundingMode.HALF_UP).doubleValue());
+                    klines.add(k);
+                }
+                Collections.sort(klines);
+                result.put(row[1], klines);
+            } catch (Exception e) {
+                logger.warn("twelvedata kline error, symbol={}, interval={}, msg={}", symbol, row[0], e.getMessage());
+            }
+        }
+        return result;
+    }
 }

@@ -82,4 +82,9 @@ public class RechargeBlockchainOrder extends UUIDEntity {
      * 转账hash
      */
     private String tx;
+
+    /**
+     * 订单类型: recharge-充值, repayment-还款
+     */
+    private String orderType = "recharge";
 }

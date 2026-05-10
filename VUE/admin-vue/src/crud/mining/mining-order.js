@@ -138,6 +138,9 @@ export const tableOption = {
     label: '赎回时间',
     prop: 'close_time'
   }, {
+    label: '交易对',
+    prop: 'symbol'
+  }, {
     label: '状态',
     prop: 'state',
     type: 'select',

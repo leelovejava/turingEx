@@ -3021,6 +3021,7 @@ export default {
     aiQuantEarningsProfit: 'Kâr',
     aiQuantEarningsStatus: 'Durum',
     aiQuantEarningsStatusStopped: 'Durduruldu',
+    aiQuantEarningsStatusActive: 'Çalışıyor',
     aiQuantEarningsRedeem: 'Geri al',
     aiQuantEarningsRedeemToast: 'Geri alma talebi gönderildi',
     aiQuantEarningsNotFound: 'Kayıt bulunamadı',

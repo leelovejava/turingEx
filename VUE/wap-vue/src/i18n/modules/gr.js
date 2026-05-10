@@ -3021,6 +3021,7 @@ export default {
     aiQuantEarningsProfit: 'Κέρδος',
     aiQuantEarningsStatus: 'Κατάσταση',
     aiQuantEarningsStatusStopped: 'Σταματημένο',
+    aiQuantEarningsStatusActive: 'Σε εκτέλεση',
     aiQuantEarningsRedeem: 'Εξαργύρωση',
     aiQuantEarningsRedeemToast: 'Υποβλήθηκε αίτημα εξαργύρωσης',
     aiQuantEarningsNotFound: 'Η εγγραφή δεν βρέθηκε',

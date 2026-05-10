@@ -2986,6 +2986,7 @@ export default {
     aiQuantEarningsProfit: 'Profit',
     aiQuantEarningsStatus: 'Statut',
     aiQuantEarningsStatusStopped: 'Arrêté',
+    aiQuantEarningsStatusActive: 'En cours',
     aiQuantEarningsRedeem: 'Racheter',
     aiQuantEarningsRedeemToast: 'Demande de rachat soumise',
     aiQuantEarningsNotFound: 'Enregistrement non trouvé',

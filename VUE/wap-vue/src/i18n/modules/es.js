@@ -2820,6 +2820,7 @@ export default {
     aiQuantEarningsProfit: 'Beneficio',
     aiQuantEarningsStatus: 'Estado',
     aiQuantEarningsStatusStopped: 'Detenido',
+    aiQuantEarningsStatusActive: 'En ejecución',
     aiQuantEarningsRedeem: 'Canjear',
     aiQuantEarningsRedeemToast: 'Solicitud de canje enviada',
     aiQuantEarningsNotFound: 'Registro no encontrado',

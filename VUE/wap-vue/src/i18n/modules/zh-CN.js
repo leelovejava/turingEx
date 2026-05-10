@@ -3066,6 +3066,8 @@ export default {
     aiQuantEarningsProfit: '收益',
     aiQuantEarningsStatus: '状态',
     aiQuantEarningsStatusStopped: '停止',
+    aiQuantEarningsStatusActive: '托管中',
+    aiQuantEarningsStatusActive: '托管中',
     aiQuantEarningsRedeem: '赎回',
     aiQuantEarningsRedeemToast: '已提交赎回申请',
     aiQuantEarningsNotFound: '记录不存在',

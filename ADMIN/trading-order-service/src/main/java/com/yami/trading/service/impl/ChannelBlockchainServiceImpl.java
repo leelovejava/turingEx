@@ -43,5 +43,16 @@ public class ChannelBlockchainServiceImpl  extends ServiceImpl<ChannelBlockchain
         return list(Wrappers.<ChannelBlockchain>query().lambda().eq(ChannelBlockchain::getCoin,coin));
     }
 
+    @Override
+    public List<ChannelBlockchain> findByCoinAndType(String coin, String addressType) {
+        com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<ChannelBlockchain> wrapper =
+                Wrappers.<ChannelBlockchain>query().lambda()
+                        .eq(ChannelBlockchain::getAddressType, addressType);
+        if (!StringUtils.isEmpty(coin)) {
+            wrapper.eq(ChannelBlockchain::getCoin, coin);
+        }
+        return list(wrapper);
+    }
+
 
 }

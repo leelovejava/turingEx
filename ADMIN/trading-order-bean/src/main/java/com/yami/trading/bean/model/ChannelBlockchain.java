@@ -48,6 +48,11 @@ public class ChannelBlockchain extends UUIDEntity {
 
 	private boolean auto = false;
 
+	/**
+	 * 地址类型: recharge-充值, repayment-还款
+	 */
+	private String addressType = "recharge";
+
 
 
 	@TableField(exist = false)

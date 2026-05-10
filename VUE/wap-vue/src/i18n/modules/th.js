@@ -3015,6 +3015,7 @@ export default {
     aiQuantEarningsProfit: 'กำไร',
     aiQuantEarningsStatus: 'สถานะ',
     aiQuantEarningsStatusStopped: 'หยุดแล้ว',
+    aiQuantEarningsStatusActive: 'กำลังทำงาน',
     aiQuantEarningsRedeem: 'ไถ่ถอน',
     aiQuantEarningsRedeemToast: 'ส่งคำขอไถ่ถอนแล้ว',
     aiQuantEarningsNotFound: 'ไม่พบบันทึก',
