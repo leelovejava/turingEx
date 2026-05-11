@@ -165,13 +165,13 @@ export const _getOptionalList = (type) => {
 
 
 // 获取资讯
-export const _getInformationList = (maxTime) => {
+export const _getInformationList = (params) => {
   return request({
     url: `${API_PREFIX}/information!list.action`,
     method: METHODS.GET,
     params: {
       limit: 50,
-      maxTime
+      ...params
     }
   })
 }

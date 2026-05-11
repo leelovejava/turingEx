@@ -2,6 +2,7 @@ package com.yami.trading.admin.task.cms;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.yami.trading.admin.facade.MachineTranslationService;
 import com.yami.trading.bean.cms.Infomation;
 import com.yami.trading.common.http.HttpHelper;
 import com.yami.trading.common.util.StringUtils;
@@ -19,13 +20,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 金十数据采集
+ */
 @Component
 @Slf4j
 public class Jin10InformationGet {
     @Resource
     private InfomationService infomationService;
+    @Resource
+    private MachineTranslationService translationService;
 
-    @Scheduled(cron = "0 */15 * * * ?")
+    ///@Scheduled(cron = "0 */15 * * * ?")
     public void crawl() {
         try {
             LocalDateTime now = LocalDateTime.now();
@@ -55,25 +61,26 @@ public class Jin10InformationGet {
                 JSONObject data1 = jsonObject.getJSONObject("data");
                 String content = (String) data1.get("content");
                 if (StringUtils.isNotEmpty(content)) {
-                    Infomation infomation = new Infomation();
-                    infomation.setUuid(id);
                     content = content.replace("金十数据", "");
-//                    String title = null;
-//                    if (content.contains("【")) {
-//                        title = content.substring(content.indexOf("【") + 1, content.indexOf("】"));
-//                        content = content.substring(content.indexOf("】") + 1);
-//                    }
                     if (content.contains("金十图示")) {
                         continue;
                     }
-                    infomation.setLang("zh-CN");
-                    infomation.setCreatedAt(time);
-                    infomation.setDescription(content);
-                    infomation.setType("1");
-//                    infomation.setTitle(title);
                     Infomation byId = infomationService.getById(id);
                     if (byId == null) {
-                        infomationService.save(infomation);
+                        try {
+                            String enContent = translationService.translate(content);
+                            if (enContent != null) {
+                                Infomation infomation = new Infomation();
+                                infomation.setUuid(id);
+                                infomation.setLang("en");
+                                infomation.setCreatedAt(time);
+                                infomation.setDescription(enContent);
+                                infomation.setType("1");
+                                infomationService.save(infomation);
+                            }
+                        } catch (Exception e) {
+                            log.warn("金十数据英文翻译失败, id={}", id, e);
+                        }
                     }
 //                    infomations.add(infomation);
                 }

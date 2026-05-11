@@ -100,6 +100,10 @@
               <span class="value">{{ o.total_income }}</span>
             </div>
             <div class="row">
+              <span class="label">{{ t('aiQuantQuantifiableDays') }}</span>
+              <span class="value">{{ o.quantifiable_days }}</span>
+            </div>
+            <div class="row">
               <span class="label">{{ t('aiQuantCountdownDays') }}</span>
               <span class="value">{{ o.countdown }}</span>
             </div>

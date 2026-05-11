@@ -88,7 +88,6 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 		Date dayEnd = Date.from(LocalDate.now().atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
 		QueryWrapper<QuantPreIncome> qw = new QueryWrapper<QuantPreIncome>()
 				.eq("quant_order_id", quantOrderId)
-				.eq("status", 1)
 				.between("end_time", dayStart, dayEnd);
 		return this.list(qw).stream().mapToDouble(o -> o.getIncome() == null ? 0 : o.getIncome()).sum();
 	}
@@ -96,9 +95,7 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 	@Override
 	public double selectTotalIncome(String quantOrderId) {
 		QueryWrapper<QuantPreIncome> qw = new QueryWrapper<QuantPreIncome>()
-				.eq("quant_order_id", quantOrderId)
-				// 已使用
-				.eq("status", 1);
+				.eq("quant_order_id", quantOrderId);
 		return this.list(qw).stream().mapToDouble(o -> o.getIncome() == null ? 0 : o.getIncome()).sum();
 	}
 }

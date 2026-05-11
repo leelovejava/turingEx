@@ -3018,7 +3018,7 @@ export default {
     aiQuantPurchaseAmount: '购买金额',
     aiQuantTodayEarnings: '今日收益',
     aiQuantProfitAssets: '收益资产',
-    aiQuantQuantifiableDays: '量化天数',
+    aiQuantQuantifiableDays: '运行天数',
     aiQuantCountdownDays: '倒计时天数',
     aiQuantIncome: '收益',
     aiQuantDetails: '详情',

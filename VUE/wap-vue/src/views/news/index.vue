@@ -18,7 +18,7 @@
     
 <script setup>
 import { ref, onMounted } from 'vue';
-import { _getNewsList1 } from '@/service/user.api'
+import { _getInformationList } from '@/service/etf.api'
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import { getStorage } from '@/utils/index'
@@ -41,7 +41,7 @@ const onLoadMore = () => {
 const getInformationList = (maxTime) => {
   loading.value = true
   const lang = getStorage('lang') || 'en'
-  _getNewsList1({ language: lang, maxTime }).then(data => {
+  _getInformationList({ lang, type: '1', maxTime }).then(data => {
     loading.value = false
     if (Array.isArray(data)) {
       list.value = [...list.value, ...data]

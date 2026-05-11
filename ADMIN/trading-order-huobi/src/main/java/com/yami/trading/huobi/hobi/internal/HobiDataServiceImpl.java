@@ -896,128 +896,24 @@ public class HobiDataServiceImpl implements HobiDataService {
         if (isTW(symbol)) {
             return twDataService.getDailyWeekMonthHistory(symbol);
         }
-        if (isXinlang(symbol)) {
-            return xinLangDataService.getDailyWeekMonthHistory(symbol);
-        }
-
-        Map<String, List<Kline>> map = new HashMap<>();
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-        f.setTimeZone(TimeZone.getTimeZone(UTCDateUtils.GMT_TIME_ZONE));
-        Date now = new Date();
-        for (int i = 0; i < TraderMadeOptions.weekAndMonthPeriod; i++) {
-            String startDate = UTCDateUtils.addYear(now, -1);
-            String endDate = f.format(now);
-            now = UTCDateUtils.toDate(startDate, "yyyy-MM-dd");
-
-            Map<String, String> param = new HashMap<>();
-            param.put("currency", symbol);
-            param.put("start_date", startDate);
-            param.put("end_date", endDate);
-            param.put("format", "records");
-            param.put("api_key", TraderMadeOptions.apiKey);
-            String json = null;
-            try {
-                json = HttpHelper.getJSONFromHttpNew(TraderMadeOptions.timeseries, param, HttpMethodType.GET);
-            } catch (Exception e) {
-                logger.error("?{} ", param);
-                continue;
-            }
-
-            JSONObject resultJson = JSON.parseObject(json);
-            JSONArray dataArray = resultJson.getJSONArray("quotes");
-            if (dataArray.size() > 0) {
-                List<TimeseriesResult> list = JSONObject.parseArray(JSONObject.toJSONString(dataArray), TimeseriesResult.class);
-                Map<String, List<TimeseriesResult>> monthMap = new LinkedHashMap<>();
-                Map<String, List<TimeseriesResult>> weekMap = new LinkedHashMap<>();
-                for (TimeseriesResult result : list) {
-                    String month = result.getDate().substring(0, 7);
-                    if (monthMap.containsKey(month)) {
-                        monthMap.get(month).add(result);
-                    } else {
-                        List<TimeseriesResult> monthList = new ArrayList<>();
-                        monthList.add(result);
-                        monthMap.put(month, monthList);
-                    }
-
-                    String firstDateOfWeek = UTCDateUtils.getFirstDateOfWeek(UTCDateUtils.toDate(result.getDate(), "yyyy-MM-dd"));
-                    if (weekMap.containsKey(firstDateOfWeek)) {
-                        weekMap.get(firstDateOfWeek).add(result);
-                    } else {
-                        List<TimeseriesResult> weekList = new ArrayList<>();
-                        weekList.add(result);
-                        weekMap.put(firstDateOfWeek, weekList);
-                    }
-                }
-
-                map.put(Kline.PERIOD_1WEEK, buildOneWeekPeriod(weekMap, symbol));
-                map.put(Kline.PERIOD_1MON, buildOneMonthPeriod(monthMap, symbol));
-
-                if (0 == i) {
-                    map.put(Kline.PERIOD_1DAY, buildOneDayPeriod(list, symbol));
-                }
-            }
-        }
-        try {
-            List<Kline> dayList = map.get(Kline.PERIOD_1DAY);
-            if (CollectionUtil.isNotEmpty(dayList)) {
-                map.put(Kline.PERIOD_5DAY, klineService.calculateKline(symbol, 5, Kline.PERIOD_5DAY, dayList));
-            }
-            List<Kline> montList = map.get(Kline.PERIOD_1MON);
-
-            if (CollectionUtil.isNotEmpty(montList)) {
-                map.put(Kline.PERIOD_QUARTER, klineService.calculateKline(symbol, 3, Kline.PERIOD_1MON, montList));
-            }
-
-        } catch (Exception e) {
-            logger.error("calculate forex period data failed", e);
-        }
-
-        //return map;
-        throw new RuntimeException("not supported");
+        return xinLangDataService.getDailyWeekMonthHistory(symbol);
     }
 
 
     @Override
     public Map<String, List<Kline>> getHourlyAndMinuteHistory(String symbol) {
-        if(isTW(symbol)){
+        if (isTW(symbol)) {
             return twDataService.getHourlyAndMinuteHistory(symbol);
         }
         Map<String, List<Kline>> map = new HashMap<>();
-
-        List<Kline> fourHourlyList = getTimeseriesForFourHourly(symbol);
-        map.put(KlineConstant.PERIOD_4HOUR, fourHourlyList);
-
-        List<Kline> oneHourlyList = getTimeseriesForOneHourly(symbol);
-        map.put(KlineConstant.PERIOD_60MIN, oneHourlyList);
-
-        List<Kline> twoHourlyList = getTimeseriesForTwoHourly(symbol);
-        if (CollectionUtil.isEmpty(twoHourlyList)) {
-            try {
-                List<Kline> hourList = map.get(Kline.PERIOD_60MIN);
-                if (CollectionUtil.isNotEmpty(hourList)) {
-                    map.put(Kline.PERIOD_2HOUR, klineService.calculateKline(symbol, 2, Kline.PERIOD_2HOUR, hourList));
-                }
-            } catch (Exception e) {
-                logger.error("                            ?120mink                            ", e);
-            }
-        } else {
-            map.put(KlineConstant.PERIOD_2HOUR, twoHourlyList);
-        }
-
-        List<Kline> thirtyMinuteList = getTimeseriesThirtyMinute(symbol);
-        map.put(KlineConstant.PERIOD_30MIN, thirtyMinuteList);
-
-        List<Kline> fifteenMinuteList = getTimeseriesFifteenMinute(symbol);
-        map.put(KlineConstant.PERIOD_15MIN, fifteenMinuteList);
-
-        List<Kline> fiveMinuteList = getTimeseriesFiveMinute(symbol);
-        map.put(KlineConstant.PERIOD_5MIN, fiveMinuteList);
-
-        List<Kline> oneMinuteList = getTimeseriesOneMinute(symbol);
-        map.put(KlineConstant.PERIOD_1MIN, oneMinuteList);
-
-        //return map;
-        throw new RuntimeException("not supported");
+        map.put(KlineConstant.PERIOD_4HOUR, xinLangDataService.getTimeseriesForFourHourly(symbol));
+        map.put(KlineConstant.PERIOD_2HOUR, xinLangDataService.getTimeseriesForTwoHourly(symbol));
+        map.put(KlineConstant.PERIOD_60MIN, xinLangDataService.getTimeseriesForOneHourly(symbol));
+        map.put(KlineConstant.PERIOD_30MIN, xinLangDataService.getTimeseriesThirtyMinute(symbol));
+        map.put(KlineConstant.PERIOD_15MIN, xinLangDataService.getTimeseriesFifteenMinute(symbol));
+        map.put(KlineConstant.PERIOD_5MIN, xinLangDataService.getTimeseriesFiveMinute(symbol));
+        map.put(KlineConstant.PERIOD_1MIN, xinLangDataService.getTimeseriesOneMinute(symbol));
+        return map;
     }
 
     public List<Kline> buildOneDayPeriod(List<TimeseriesResult> list, String currency) {

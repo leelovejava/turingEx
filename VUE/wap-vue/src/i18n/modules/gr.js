@@ -2974,7 +2974,7 @@ export default {
     aiQuantPurchaseAmount: 'Ποσό αγοράς',
     aiQuantTodayEarnings: 'Σημερινά κέρδη',
     aiQuantProfitAssets: 'Περιουσιακά στοιχεία κέρδους',
-    aiQuantQuantifiableDays: 'Ποσοτικοποιήσιμες ημέρες',
+    aiQuantQuantifiableDays: 'Ημέρες λειτουργίας',
     aiQuantCountdownDays: 'Ημέρες αντίστροφης μέτρησης',
     aiQuantIncome: 'Εισόδημα',
     aiQuantDetails: 'Λεπτομέρειες',

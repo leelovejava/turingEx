@@ -2973,7 +2973,7 @@ export default {
     aiQuantPurchaseAmount: 'Suma de cumpărare',
     aiQuantTodayEarnings: 'Câștigurile de azi',
     aiQuantProfitAssets: 'Active de profit',
-    aiQuantQuantifiableDays: 'Zile cuantificabile',
+    aiQuantQuantifiableDays: 'Zile de funcționare',
     aiQuantCountdownDays: 'Zile de numărătoare inversă',
     aiQuantIncome: 'Venit',
     aiQuantDetails: 'Detalii',

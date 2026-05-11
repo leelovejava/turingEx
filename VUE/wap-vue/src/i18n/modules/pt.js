@@ -2956,7 +2956,7 @@ export default {
     aiQuantPurchaseAmount: 'Valor da compra',
     aiQuantTodayEarnings: 'Ganhos de hoje',
     aiQuantProfitAssets: 'Ativos de lucro',
-    aiQuantQuantifiableDays: 'Dias quantificáveis',
+    aiQuantQuantifiableDays: 'Dias de execução',
     aiQuantCountdownDays: 'Dias de contagem regressiva',
     aiQuantIncome: 'Renda',
     aiQuantDetails: 'Detalhes',

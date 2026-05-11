@@ -37,8 +37,13 @@ public class ApiInformationController {
     @GetMapping("/api/information!list.action")
     public Result<List<Infomation>> list(@RequestParam(required = false) Integer limit,
                                          @RequestParam(required = false) String language,
-                                         @RequestParam(required = false) String maxTime) {
+                                         @RequestParam(required = false) String maxTime,
+                                         @RequestParam(required = false) String lang,
+                                         @RequestParam(required = false) String type) {
         Boolean translate = Boolean.FALSE;
+        if (StringUtils.isEmptyString(language)) {
+            language = lang;
+        }
         if (StringUtils.isEmptyString(language)) {
             language = "en";
         }
@@ -68,6 +73,7 @@ public class ApiInformationController {
 
         QueryWrapper<Infomation> infomationQueryWrapper = new QueryWrapper<>();
         infomationQueryWrapper.eq("lang", language);
+        infomationQueryWrapper.eq(StringUtils.isNotEmpty(type), "type", type);
         infomationQueryWrapper.lt(StringUtils.isNotEmpty(maxTime), "created_at", maxTime);
         infomationQueryWrapper.orderByDesc("created_At");
         infomationQueryWrapper.last("LIMIT " + limit);

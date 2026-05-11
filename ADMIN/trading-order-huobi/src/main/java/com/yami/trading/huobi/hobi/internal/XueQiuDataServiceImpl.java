@@ -26,6 +26,7 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 
+import com.google.common.util.concurrent.RateLimiter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
@@ -215,6 +216,9 @@ public class XueQiuDataServiceImpl {
     private String twelveDataBaseUrl;
     @Value("${twelvedata.api-key:}")
     private String twelveDataApiKey;
+
+    // Twelve Data 免费版限制：8次/分钟，限速为 7次/分钟留有余量
+    private static final RateLimiter TWELVE_DATA_RATE_LIMITER = RateLimiter.create(7.0 / 60.0);
 
     /**
      * 获取盘口数据（买卖盘深度）
@@ -1339,6 +1343,7 @@ public class XueQiuDataServiceImpl {
                 param.put("interval", row[0]);
                 param.put("outputsize", row[2]);
                 param.put("apikey", twelveDataApiKey);
+                TWELVE_DATA_RATE_LIMITER.acquire();
                 String json = HttpHelper.getJSONFromHttpNew(twelveDataBaseUrl + "/time_series", param, HttpMethodType.GET);
                 if (StrUtil.isBlank(json)) continue;
                 JSONObject obj = JSON.parseObject(json);

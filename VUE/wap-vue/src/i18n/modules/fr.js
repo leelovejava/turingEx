@@ -2939,7 +2939,7 @@ export default {
     aiQuantPurchaseAmount: 'Montant d\'achat',
     aiQuantTodayEarnings: 'Gains d\'aujourd\'hui',
     aiQuantProfitAssets: 'Actifs de profit',
-    aiQuantQuantifiableDays: 'Jours quantifiables',
+    aiQuantQuantifiableDays: 'Jours de fonctionnement',
     aiQuantCountdownDays: 'Jours de compte à rebours',
     aiQuantIncome: 'Revenu',
     aiQuantDetails: 'Détails',

@@ -185,7 +185,7 @@ public class KlineBlankRepairTask {
      * @param items 产品列表
      */
     public void checkTask(List<String> periods, List<Item> items){
-        ThreadUtil.execAsync(() ->{
+        ThreadUtil.execAsync(() -> {
             for(Item item : items){
                 if(!item.isActive()){
                     continue;
