@@ -346,7 +346,7 @@ const displayNewsItems = computed(() => (
 const getInformationList = async () => {
   try {
     const lang = getStorage('lang') || 'en'
-    const data = await _getNewsList1({ language: lang })
+    const data = await _getNewsList1({ language: lang, lang, limit: 50, type: 1 })
     newsItems.value = (Array.isArray(data) ? data : [])
       .slice(0, 3)
       .map((item) => normalizeNewsItem(item))

@@ -490,6 +490,7 @@ onBeforeRouteLeave(() => {
     font-size: 13px;
     line-height: 18px;
     color: rgba(255, 255, 255, 0.82);
+    text-align: center;
   }
 }
 </style>

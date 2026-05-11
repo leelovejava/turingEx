@@ -262,7 +262,7 @@ export const _getEntrustOrderAssets = (params) => {
 //获取新闻列表(首页新闻轮播)
 export const _getNewsList1 = (params) => {
     return request({
-        url: `${API_PREFIX}/news!list.action`,
+        url: `${API_PREFIX}/information!list.action`,
         method: METHODS.GET,
         data: params,
     })
