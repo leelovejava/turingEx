@@ -64,6 +64,7 @@ export default {
     bind: "To bind",
     entryVerifyTips: "Please enter the 6-digit verification code",
     forgetPassword: "Forgot password?",
+    rememberAccount: "Remember Account",
     login: "Login",
     noAccount: "No account yet",
     bindSuccess: "Bind successfully",

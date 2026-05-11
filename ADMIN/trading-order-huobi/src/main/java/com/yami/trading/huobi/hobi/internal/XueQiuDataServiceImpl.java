@@ -1326,6 +1326,10 @@ public class XueQiuDataServiceImpl {
             {"1month",KlineConstant.PERIOD_1MON,  "500"},
         };
         String remarks = itemService.findBySymbol(symbol).getRemarks();
+        // Twelve Data forex format: "EURUSD" -> "EUR/USD"
+        if (remarks != null && remarks.matches("[A-Za-z]{6}")) {
+            remarks = remarks.substring(0, 3) + "/" + remarks.substring(3);
+        }
         int decimal = itemService.getDecimal(symbol);
         if (decimal <= 0) decimal = 4;
         for (String[] row : intervals) {

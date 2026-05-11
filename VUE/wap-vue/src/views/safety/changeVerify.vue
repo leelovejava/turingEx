@@ -14,6 +14,7 @@
             <p>{{ currentType == 1 ? $t('phoneVerify') : currentType == 2 ? $t('emailVerify') :
                     $t('googleAuthApp')
             }}{{ $t('protectAccount') }}</p>
+            <p v-if="currentType == 2 && maskedEmail" class="email-text">{{ maskedEmail }}</p>
             <van-button class="w-full" style="margin-top:10px;" type="primary" @click="goChange">
                 {{ currentType == 1 ? $t('changePhoneVertify') : currentType == 2 ? $t('changeEmailVertify')
         : $t('changeGoogleVertify')
@@ -27,15 +28,27 @@
 import { ref, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
+import { _getVerifTarget } from "@/service/user.api.js";
 const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 
 const title = ref('')
 const currentType = ref('')
+const maskedEmail = ref('')
+
+const maskEmail = (email) => {
+    if (!email) return ''
+    const [name, domain] = email.split('@')
+    const [domainName, ...tlds] = domain.split('.')
+    return `${name.slice(0, 2)}***@***.${tlds.join('.')}`
+}
 
 onMounted(() => {
     init()
+    _getVerifTarget({}).then(res => {
+        if (res.email) maskedEmail.value = maskEmail(res.email)
+    })
 })
 
 const init = () => {

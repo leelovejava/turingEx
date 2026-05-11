@@ -6,11 +6,10 @@
             <div class="title textColor">{{ $t('resetLoginPassword') }}</div>
             <div class="flex re-tab text-grey">
                 <div :class="activeIndex == 0 ? 'active' : ''" @click="changeIndex(0)">{{ $t('email') }}</div>
-                <div :class="activeIndex == 1 ? 'active' : ''" @click="changeIndex(1)">{{ $t('phoneNum') }}</div>
                 <div :class="activeIndex == 2 ? 'active' : ''" @click="changeIndex(2)">{{ $t('googleVerify') }}</div>
             </div>
             <ExInput :label="$t('account')" :placeholderText="$t('entryAccount')" v-model="account" :dialCode="dialCode"
-                @selectArea="onSelectArea" :area="isArea" :icon="icon" />
+                @selectArea="onSelectArea" :area="false" :icon="icon" />
             <van-button class="w-full" style="margin-top:10px;" type="primary" @click="next">{{ $t('nextStep') }}
             </van-button>
             <nationality-list ref='controlChildRef' :title="$t('selectArea')" @getName="getName"></nationality-list>
@@ -31,17 +30,11 @@ const router = useRouter()
 
 const account = ref('')
 const activeIndex = ref(0)
-const isArea = ref(false)
 const dialCode = ref(0) //电话号前缀
 let icon = ref('')
 
 const changeIndex = (index) => {
     activeIndex.value = index;
-    if (index == 1) {
-        isArea.value = true
-    } else {
-        isArea.value = false
-    }
 }
 const next = () => {
     if (account.value == "") {
@@ -51,6 +44,13 @@ const next = () => {
     getUserNameVerifTarget()
 
 }
+const maskEmail = (email) => {
+    if (!email) return ''
+    const [name, domain] = email.split('@')
+    const [, ...tlds] = domain.split('.')
+    return `${name.slice(0, 2)}***@***.${tlds.join('.')}`
+}
+
 const getUserNameVerifTarget = () => {
 
     let type;
@@ -75,13 +75,15 @@ const getUserNameVerifTarget = () => {
             showToast(t('noBindGoogleAuth'));
             return false
         }
-        let vertifyAccount;
+        let vertifyAccount, displayAccount;
         if (type == 1) {
             vertifyAccount = res.phone
+            displayAccount = res.phone
         } else if (type == 2) {
             vertifyAccount = res.email
+            displayAccount = maskEmail(res.email)
         }
-        router.push({ name: 'safeVerify', query: { type: type, account: vertifyAccount, username: account.value } })
+        router.push({ name: 'safeVerify', query: { type: type, account: vertifyAccount, displayAccount, username: account.value } })
     })
 }
 

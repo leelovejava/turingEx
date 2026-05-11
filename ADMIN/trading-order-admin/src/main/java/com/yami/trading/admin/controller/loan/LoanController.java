@@ -221,7 +221,8 @@ public class LoanController {
 		// 申请金额不能超过可贷金额
 		if (quotaDecimal.compareTo(loanCanAmount) > 0) {
 			resultObject.setCode("1");
-			resultObject.setMsg("可贷金额不足!");
+			// 可贷金额不足
+			resultObject.setMsg("Insufficient loanable amount!");
 			return resultObject;
 		}
 		

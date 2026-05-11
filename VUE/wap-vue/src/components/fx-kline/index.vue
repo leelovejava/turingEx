@@ -104,10 +104,6 @@ const updateCharts = async (nowData) => {
   if ((nowData.timestamp - lastData.timestamp) >= quotesStore.seconds) {
     data.value = await _getKline(props.symbol, quotesStore.stage === 'timeSharing' ? '1min' : quotesStore.stage)
 
-    // 修改 k 线图价格和 ws 推送价格不一致
-
-    data.value.unshift()
-
     data.value.push({
       high: nowData.high,
       low: nowData.low,

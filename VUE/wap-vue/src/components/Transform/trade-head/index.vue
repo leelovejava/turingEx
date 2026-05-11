@@ -32,7 +32,7 @@
               </template>
             </div>
             <div v-if="range" class="pl-8" :class="{ 'text-green': range > 0, 'text-red': range <= 0 }">{{
-              range > 0 ? '+' : '' }}{{ range || '--' }}%</div>
+              range > 0 ? '+' : '' }}{{ range > 0 ? range : (range < 0 ? range : '--') }}%</div>
           </div>
           <div class="flex items-center" v-if="islevel">
             <img src="../../../assets/image/icon-star_active.png" class="w-8 h-8 mr-2 ml-4" @click="openCurrency"

@@ -16,7 +16,7 @@
                         </div>
                         <div class="pl-4 w-20" :class="{ 'text-green': range > 0, 'text-red': range <= 0 }">{{
                             range > 0 ?
-                            '+' : '' }}{{ range || '--' }}%</div>
+                            '+' : '' }}{{ range > 0 ? range : (range < 0 ? range : '--') }}%</div>
                         <!-- <img src="@/assets/image/kline.png" class="w-22 h-22 right" alt=""
                             @click="$router.push(`/trendDetails/${symbol}?page=${page}`)"> -->
                     </div>

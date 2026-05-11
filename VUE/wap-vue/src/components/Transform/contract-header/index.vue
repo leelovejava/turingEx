@@ -14,7 +14,7 @@
               </div>
               <div class="pl-2 text-28" :class="{ 'text-green': range > 0, 'text-red': range <= 0 }">{{ range > 0
                 ?
-                '+' : '' }}{{ range || '--' }}%</div>
+                '+' : '' }}{{ range > 0 ? range : (range < 0 ? range : '--') }}%</div>
             </div>
             <img src="@/assets/image/kline.png" class="w-11 h-11 right" alt="" @click="klineJump()">
           </div>

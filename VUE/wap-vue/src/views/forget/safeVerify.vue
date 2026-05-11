@@ -9,7 +9,7 @@
                     :
                     $t('googleVerify')
             }}</span>
-            <p v-if="currentType == 2">{{ $t('verifyEmailTips', { 'account': account }) }}</p>
+            <p v-if="currentType == 2">{{ $t('verifyEmailTips', { 'account': displayAccount }) }}</p>
             <p v-if="currentType == 1">{{ $t('verifyPhoneTips', { 'account': account }) }}</p>
             <div class="iptbox inputBackground">
                 <input type="text" class="inputBackground textColor" :placeholder="$t('entryVerifyCode')"
@@ -39,6 +39,7 @@ const route = useRoute()
 const verifycode = ref('')
 const currentType = ref('')
 const account = ref('')
+const displayAccount = ref('')
 const username = ref('')
 const hightLight = ref(false)
 const timer = ref(null)
@@ -48,6 +49,7 @@ onMounted(() => {
     let type = route.query.type;
     currentType.value = type;
     account.value = route.query.account;
+    displayAccount.value = route.query.displayAccount || route.query.account;
     username.value = route.query.username;
     if (currentType.value != 3) {
         clearTimer()

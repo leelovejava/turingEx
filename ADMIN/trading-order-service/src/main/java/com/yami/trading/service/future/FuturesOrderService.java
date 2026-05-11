@@ -495,6 +495,11 @@ public class FuturesOrderService extends ServiceImpl<FuturesOrderMapper, Futures
 
         FuturesOrder futuresOld = (FuturesOrder) RedisUtil.get(FuturesRedisKeys.FUTURES_SUBMITTED_ORDERNO + order.getOrderNo());
 
+        // 从Redis读取最新场控标记，防止saveOrderPorfitOrLoss写入的profitLoss被覆盖
+        if (futuresOld != null && !StringUtils.isEmptyString(futuresOld.getProfitLoss())) {
+            order.setProfitLoss(futuresOld.getProfitLoss());
+        }
+
         RedisUtil.set(FuturesRedisKeys.FUTURES_SUBMITTED_ORDERNO + order.getOrderNo(), order);
         cache.put(order.getOrderNo(), order);
         // 暂时先更新下，有问题再看 todo
