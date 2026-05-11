@@ -1,6 +1,6 @@
 export default {
   privacyText:
-    "©2022 DEMO Markets Limited All rights reserved. Număr de înregistrare a companiei 177174 B SIA-F217 <br><br> Atenționare privind riscurile: Contractele pe diferență (CFD) sunt instrumente complexe și prezintă un risc ridicat de a suferi pierderi rapide din cauza efectului de levier. 85.12% din investitorii de retail suferă pierderi atunci când tranzacționează CFD-uri cu acest furnizor. Ar trebui să vă gândiți dacă înțelegeți cum funcționează contractele pe diferență și dacă vă puteți permite să vă asumați riscul ridicat de a vă pierde fondurile. <br><br> Nu dețineți proprietatea sau drepturile asupra activului subiacent. Performanțele trecute nu reprezintă o garanție a performanțelor viitoare, iar legislația fiscală poate suferi modificări. Informațiile de pe acest site sunt în mod inevitabil informații generale și nu iau în considerare obiectivele personale, situația financiară sau nevoile dvs. sau ale clienților dvs. Vă rugăm să citiți RDN-ul nostru și alte documente legale înainte de a lua orice decizie de tranzacționare și să vă asigurați că înțelegeți pe deplin riscurile. Vă încurajăm să solicitați sfaturi independente. <br><br> DEMO Markets Limited are sediul în Sea Sky Lane, B201, Sandyport, Nassau, New Providence, The Bahamas și este autorizat și reglementat de Comisia de Valori Mobiliare din Bahamas (SIA-F217). <br><br> Dacă informațiile de pe acest site și produsele și serviciile furnizate încalcă orice lege sau reglementare locală în orice țară, informațiile de pe acest site și produsele și serviciile furnizate nu sunt destinate să fie distribuite către orice persoană din acele țări sau regiuni.",
+    "©2022 Helix-Capita Markets Limited All rights reserved. Număr de înregistrare a companiei 177174 B SIA-F217 <br><br> Atenționare privind riscurile: Contractele pe diferență (CFD) sunt instrumente complexe și prezintă un risc ridicat de a suferi pierderi rapide din cauza efectului de levier. 85.12% din investitorii de retail suferă pierderi atunci când tranzacționează CFD-uri cu acest furnizor. Ar trebui să vă gândiți dacă înțelegeți cum funcționează contractele pe diferență și dacă vă puteți permite să vă asumați riscul ridicat de a vă pierde fondurile. <br><br> Nu dețineți proprietatea sau drepturile asupra activului subiacent. Performanțele trecute nu reprezintă o garanție a performanțelor viitoare, iar legislația fiscală poate suferi modificări. Informațiile de pe acest site sunt în mod inevitabil informații generale și nu iau în considerare obiectivele personale, situația financiară sau nevoile dvs. sau ale clienților dvs. Vă rugăm să citiți RDN-ul nostru și alte documente legale înainte de a lua orice decizie de tranzacționare și să vă asigurați că înțelegeți pe deplin riscurile. Vă încurajăm să solicitați sfaturi independente. <br><br> Helix-Capita Markets Limited are sediul în Sea Sky Lane, B201, Sandyport, Nassau, New Providence, The Bahamas și este autorizat și reglementat de Comisia de Valori Mobiliare din Bahamas (SIA-F217). <br><br> Dacă informațiile de pe acest site și produsele și serviciile furnizate încalcă orice lege sau reglementare locală în orice țară, informațiile de pe acest site și produsele și serviciile furnizate nu sunt destinate să fie distribuite către orice persoană din acele țări sau regiuni.",
   //home
   "h-s1-t1": "Posibilități de tranzacționare {TITLE} oriunde",
   "h-s1-d1": "Prețuri competitive, spread redus, executare rapidă",
@@ -15,7 +15,7 @@ export default {
   "h-s2-h3": "Volum",
   "h-s2-h4": "Variație",
   "h-s2-1-d1":
-    "Prețurile în timp real sunt doar în scopuri de referință. Consultați platforma dvs. pentru cele mai recente prețuri. DEMO Markets Limited oferă suport.",
+    "Prețurile în timp real sunt doar în scopuri de referință. Consultați platforma dvs. pentru cele mai recente prețuri. Helix-Capita Markets Limited oferă suport.",
   "h-s2-2-t1": "De ce să alegeți {TITLE}",
   "h-s2-2-t2":
     "Descoperiți oportunități de tranzacționare pe peste 1000 de produse",
@@ -24,7 +24,7 @@ export default {
   "h-s2-2-b1": "Vizualizați spread-urile noastre",
   "h-s3-t1": "Excelență, Tranzacționare",
   "h-s3-d1":
-    "DEMO a fost numit partenerul oficial de tranzacționare online al partenerului principal mondial și al ATP Tour DEMO ATP.",
+    "Helix-Capita a fost numit partenerul oficial de tranzacționare online al partenerului principal mondial și al ATP Tour Helix-Capita ATP.",
   "h-s4-t1": "Nemulțumit de brokerul dvs. actual?",
   "h-s4-t2": "Înțelegem complet.",
   "h-s4-1-t1": "Spread-uri extrem de mici",
@@ -73,7 +73,7 @@ export default {
   "h-s7-t2": "Brokerul TradingView",
   "h-s7-t3": "Brokerul anului 2022",
   "h-s7-d1":
-    "DEMO este onorat să fie numit brokerul anului în cadrul premiilor brokerilor TradingView.",
+    "Helix-Capita este onorat să fie numit brokerul anului în cadrul premiilor brokerilor TradingView.",
   "h-s8-t1": "Premii câștigate în mod repetat",
   "h-s8-t2": "La nivel global, ni s-au acordat",
   "ready-t1": "Sunteți pregătit să tranzacționați?",
@@ -85,7 +85,7 @@ export default {
     "Ușor de utilizat, chiar și cu depozite mici. Completați cererea noastră simplă în câteva minute.",
   "ready-b2": "Începeți acum",
   "ready-d3":
-    "Deschiderea unui cont DEMO este simplă. Durează doar câteva minute să vă începeți călătoria DEMO.",
+    "Deschiderea unui cont Helix-Capita este simplă. Durează doar câteva minute să vă începeți călătoria Helix-Capita.",
   "ready-d4":
     "Puteți începe să tranzacționați oricând cu o sumă mică. Procesul nostru simplu de aplicare se completează în doar câteva minute.",
   "learn-more-info": "Aflați mai multe informații",
@@ -97,7 +97,7 @@ export default {
   xianzaijiaoy: "Tranzacționare acum",
   tuichu: "Ieșire",
   tishi:
-    "DEMO nu implică faptul că materialele furnizate aici sunt precise, actualizate sau complete, prin urmare nu ar trebui să fie considerate ca bază. Orice informație furnizată aici, fie că provine de la terți sau nu, nu ar trebui considerată ca informații recomandate; sau ofertă de vânzare; sau solicitare de cumpărare sau vânzare a oricăror valori mobiliare, produse financiare sau instrumente; sau implicare în orice strategie de tranzacționare specifică. Recomandăm ca orice cititor al acestui conținut să caute propriul său sfat. Nu se permite copierea sau redistribuirea acestei informații fără acordul DEMO.",
+    "Helix-Capita nu implică faptul că materialele furnizate aici sunt precise, actualizate sau complete, prin urmare nu ar trebui să fie considerate ca bază. Orice informație furnizată aici, fie că provine de la terți sau nu, nu ar trebui considerată ca informații recomandate; sau ofertă de vânzare; sau solicitare de cumpărare sau vânzare a oricăror valori mobiliare, produse financiare sau instrumente; sau implicare în orice strategie de tranzacționare specifică. Recomandăm ca orice cititor al acestui conținut să caute propriul său sfat. Nu se permite copierea sau redistribuirea acestei informații fără acordul Helix-Capita.",
   home: "Acasă",
   support: "Suport",
   "refer-friend": "Recomandă un prieten",
@@ -125,7 +125,7 @@ export default {
   "header-s-s1-t1": "Întrebări frecvente",
   "header-s-s1-d1":
     "Iată câteva întrebări frecvente și răspunsurile noastre. Vă rugăm să accesați secțiunea noastră de Întrebări frecvente pentru mai multe întrebări populare sau deschideți discuția online în partea de jos a ecranului pentru a comunica în timp real cu echipa noastră de profesioniști.",
-  "header-s-s1-q1": "Ce tipuri de conturi oferă DEMO?",
+  "header-s-s1-q1": "Ce tipuri de conturi oferă Helix-Capita?",
   "header-s-s1-a1": `<div class="rich-text__container"><h5><strong>Oferim două tipuri de conturi pentru a satisface nevoile comercianților</strong></h5>
 
   <h5><strong>Cont Razor</strong></h5>
@@ -135,7 +135,7 @@ export default {
   <h5>Contul nostru standard este fără comision și include spread-ul nostru brut + 1 punct (de exemplu, spread-ul de 0 puncte + 1 punct = 1 punct [0,5 puncte în fiecare direcție pentru prețul de cumpărare și vânzare]).</h5></div>`,
   "header-s-s1-q2": "Ce este un swap?",
   "header-s-s1-a2": `<div class="rich-text__container"><h5>Rata de swap valutar se referă la dobânda overnight sau la costul rollover-ului în tranzacționarea valutară (adică dobândă câștigată sau plătită). Aceste rate sunt determinate de spread-ul bancar interbancar și de bază valutară încrucișată.<br><br>Costul swap-ului este bidirecțional. Acest lucru înseamnă că comercianții pot câștiga un swap sau ar putea suporta un swap pe pozițiile comerciale corespunzătoare. Acest lucru depinde de instrumentul comercializat, dacă poziția dvs. este lungă sau scurtă și dacă mențineți tranzacția pe o perioadă de rollover. Din cauza faptului că contractele valutare spot se stabilesc pe baza valorii T + 2, swap-ul va fi de trei ori la rollover-ul de miercuri pentru a acoperi dobânda de weekend.</h5></div>`,
-  "header-s-s1-q3": "Este DEMO un trader ECN/STP sau un creator de piață?",
+  "header-s-s1-q3": "Este Helix-Capita un trader ECN/STP sau un creator de piață?",
   "header-s-s1-a3": `<div class="rich-text__container"><h5>Suntem adesea întrebați acest lucru. O parte a dificultății de a răspunde la această întrebare constă în faptul că ECN și STP sunt termeni de marketing preluați din instituțiile de piață și diferiți furnizori din industrie le atribuie semnificații diferite.</h5>
    <h5>Un adevărat broker ECN sau STP este un broker care acționează ca un agent de introducere sau care funcționează pe un sistem al unui alt titular de marcă.</h5>
    <h5>Noi suntem emitentul produselor pe care le oferim și putem controla sistemele pe care le folosim, deoarece preferăm să relaționăm direct cu clienții noștri.</h5>
@@ -306,14 +306,14 @@ export default {
   "m1-vip-s1-2": "Acces la discount-urile noastre ATP",
   "m1-vip-s1-3": "Insight-uri avansate de piață",
   "m1-vip-s1-4":
-    "Dacă sunteți client profesionist al DEMO, veți fi invitat la evenimente VIP, instrumente de tranzacționare avansate și soluții VPS personalizate",
+    "Dacă sunteți client profesionist al Helix-Capita, veți fi invitat la evenimente VIP, instrumente de tranzacționare avansate și soluții VPS personalizate",
   "m1-vip-s2-t1": "Servicii și suport personalizate",
   "m1-vip-s2-d1":
     "Vom aloca unui manager de clienți cu abilități tehnice înalte să lucreze cu dvs., oferind soluții de calitate superioară pentru clienți și suport pentru a se potrivi stilului dvs. de tranzacționare personal.",
 
   "m1-vip-s3-t1": "Cum să obțineți calificarea de client VIP",
   "m1-vip-s3-d1":
-    "Pentru a obține calificarea de client VIP, vă cerem să îndepliniți unul sau mai multe dintre următoarele praguri timp de două trimestre calendaristice consecutive. Atât clienții de retail, cât și cei Pro de la DEMO sunt eligibili pentru a deveni clienți VIP.",
+    "Pentru a obține calificarea de client VIP, vă cerem să îndepliniți unul sau mai multe dintre următoarele praguri timp de două trimestre calendaristice consecutive. Atât clienții de retail, cât și cei Pro de la Helix-Capita sunt eligibili pentru a deveni clienți VIP.",
   "m1-vip-s3-1-t1": "Piața",
   "m1-vip-s3-1-t2": "Volumul de tranzacționare lunar",
   "m1-vip-s3-2-t1": "FX",
@@ -328,10 +328,10 @@ export default {
     "Aveți acces la o serie de resurse de tranzacționare profesionale și perspective exclusive de la echipa noastră de analiști.",
   "m1-vip-s4-2-t1": "Reduceri și rambursări zilnice",
   "m1-vip-s4-2-d1":
-    "Obțineți comisioane reduse și rambursări zilnice atunci când calificați pentru planul ActiveTrader DEMO.",
+    "Obțineți comisioane reduse și rambursări zilnice atunci când calificați pentru planul ActiveTrader Helix-Capita.",
   "m1-vip-s4-3-t1": "Evenimente VIP",
   "m1-vip-s4-3-d1":
-    "Pentru clienții profesioniști ai DEMO, veți beneficia de evenimente exclusive VIP forex, seminarii și ateliere, experiențe de luat masa private și invitații la evenimente sportive.",
+    "Pentru clienții profesioniști ai Helix-Capita, veți beneficia de evenimente exclusive VIP forex, seminarii și ateliere, experiențe de luat masa private și invitații la evenimente sportive.",
   "m1-vip-s5-t1": "Contactați-ne acum",
   "m1-vip-s5-d1":
     "Pentru mai multe informații sau pentru a vă alătura serviciului nostru de client VIP, vă rugăm să trimiteți un e-mail la support{'@'}demo.com",
@@ -386,7 +386,7 @@ export default {
     "Demo are o înțelegere profundă a tranzacționării. Cu o combinație de scala globală a tehnologiei financiare și agilitatea unei întreprinderi nou înființate, ne străduim să vă oferim tot ce aveți nevoie pentru a tranzacționa pe piețele globale.",
   "m1-who-s1-t1": "Istoria noastră",
   "m1-who-s1-d1":
-    "DEMO a fost fondată în 2010 în Melbourne, Australia, de un grup de traderi experimentați, dedicați îmbunătățirii experienței de tranzacționare online. După frustrările generate de întârzierile la tranzacționare, costurile ridicate și suportul client proastă, ne-am concentrat pe furnizarea de tehnologie excelentă, spread-uri scăzute și ajutorarea traderilor din întreaga lume să-și însușească abilitățile de tranzacționare.",
+    "Helix-Capita a fost fondată în 2010 în Melbourne, Australia, de un grup de traderi experimentați, dedicați îmbunătățirii experienței de tranzacționare online. După frustrările generate de întârzierile la tranzacționare, costurile ridicate și suportul client proastă, ne-am concentrat pe furnizarea de tehnologie excelentă, spread-uri scăzute și ajutorarea traderilor din întreaga lume să-și însușească abilitățile de tranzacționare.",
   "m1-who-s2-t1": "Câștigarea încrederii traderilor din întreaga lume",
   "m1-who-s2-d1":
     "Procesăm în medie zilnic tranzacții de 12,55 miliarde de dolari, ceea ce ne plasează printre cei mai mari brokeri de pe piața Forex la nivel mondial*.",
@@ -402,16 +402,16 @@ export default {
   "m1-who-s6-d1":
     "*Între utilizatorii activi care au deschis tranzacții sau dețin conturi între 1 iulie 2019 și 30 noiembrie 2019",
   // m1-why
-  "m1-why-s1-t1": "De ce alegeți un DEMO?",
+  "m1-why-s1-t1": "De ce alegeți un Helix-Capita?",
   "m1-why-s1-d1":
     "Suntem alături de dvs. în fiecare tranzacție, combinând viteza de execuție rapidă, spread-urile originale și comisioanele mici cu o angajare sinceră de a vă ajuta să vă atingeți obiectivele de tranzacționare.",
   "m1-why-s2-t1": "Cine suntem noi",
   "m1-why-s2-d1":
-    "DEMO a fost înființată în 2010 și s-a dezvoltat rapid în unul dintre cei mai mari brokeri de pe piața valutară din lume. Scopul nostru este de a construi o lume de tranzacționare axată pe tehnologie avansată, permițând traderilor pasionați să facă față provocărilor și oportunităților pe piețele globale.",
+    "Helix-Capita a fost înființată în 2010 și s-a dezvoltat rapid în unul dintre cei mai mari brokeri de pe piața valutară din lume. Scopul nostru este de a construi o lume de tranzacționare axată pe tehnologie avansată, permițând traderilor pasionați să facă față provocărilor și oportunităților pe piețele globale.",
   "m1-why-s3-t1": "Tranzacționare cu brokeri recompensați",
   "m1-why-s3-d1":
     "Suntem mândri că am obținut recunoaștere pentru serviciile noastre către clienți, condițiile de tranzacționare și raportul preț-calitate prin premii acordate de Investment Trends, Deloitte și guvernatorul statului Victoria.",
-  "m1-why-s4-t1": "De ce să tranzacționați cu DEMO?",
+  "m1-why-s4-t1": "De ce să tranzacționați cu Helix-Capita?",
   "m1-why-s5-t1": "Raport preț-calitate ridicat",
   "m1-why-s5-t2": "Execuție rapidă",
   "m1-why-s5-t3": "Siguranță financiară",
@@ -449,7 +449,7 @@ export default {
     "Accesați resursele noastre premiate de educație, care vă vor ajuta să ridicați tranzacționarea la un nou nivel.",
   "m1-why-s6-2-l1": '<a href="/education">Aflați mai multe</a>',
   "m1-why-s7-3":
-    "*Majoritatea execuțiilor de comenzi durează mai puțin de 30 de milisecunde (DEMO Group Limited) și 60 de milisecunde (DEMO Limited), calculat în funcție de timpul de procesare primit de puntea DEMO.",
+    "*Majoritatea execuțiilor de comenzi durează mai puțin de 30 de milisecunde (Helix-Capita Group Limited) și 60 de milisecunde (Helix-Capita Limited), calculat în funcție de timpul de procesare primit de puntea Helix-Capita.",
   "m1-why-s7-1":
     "^Nu includ MAM și PAMM, consultați documentele noastre legale pentru mai multe informații.",
   "m1-why-s7-2":
@@ -535,7 +535,7 @@ export default {
   "m2-product-1-s1-t1": "Tranzacționarea Forex pe platformele noastre",
   "m2-product-1-s1-d1":
     "Piața valutară (Forex, FX sau piața valutară) este o piață financiară globală, descentralizată și over-the-counter pentru tranzacționarea valutelor. Este cea mai mare piață financiară din lume, cu un volum de tranzacționare global zilnic de peste 1,5 trilioane de dolari*. Volumul tranzacțiilor Forex este de trei ori mai mare decât volumul combinat al piețelor de acțiuni și de mărfuri.",
-  "m2-product-1-s2-t1": "De ce să tranzacționați Forex cu DEMO?",
+  "m2-product-1-s2-t1": "De ce să tranzacționați Forex cu Helix-Capita?",
   "m2-product-1-s2-d1":
     "Lichiditate profundă, prețuri de la mai multe surse și cele mai mici spread-uri de pe piață",
   "m2-product-1-s2-d2":
@@ -564,7 +564,7 @@ export default {
   "m2-product-2-s1-d1":
     "Tranzacționați pe 14 piețe de acțiuni majore din întreaga lume, inclusiv SUA, Europa, Australia și Asia, fără comisioane și fără birouri de tranzacționare.",
   "m2-product-2-s2-t1":
-    "De ce să tranzacționați DEMO cu contracte pe diferență de indici?",
+    "De ce să tranzacționați Helix-Capita cu contracte pe diferență de indici?",
   "m2-product-2-s2-d1":
     "Contractele noastre pe diferență de indici sunt dezvoltate special pentru traderii de retail, oferindu-vă oportunități de acces la o gamă largă de piețe globale, permițându-vă să diversificați strategiile de tranzacționare pe instrumente nelegate. Puteți profita direct de oportunitățile oferite de piețele globale de acțiuni, fără a fi nevoie de birouri de tranzacționare sau comisioane.",
   "m2-product-2-s2-d2":
@@ -594,7 +594,7 @@ export default {
   "m2-product-3-s1-d1":
     "Tranzacționați aur, argint, petrol, gaze naturale și alte produse cu spread-uri reduse și o viteză rapidă de execuție, fără a vă face griji cu privire la livrare, proprietate și rollover. Atunci când tranzacționați contracte pe diferență de mărfuri, vă alăturați unei piețe incitante. Mulți furnizori, comercianți și cumpărători puternici blochează prețurile actuale pentru a-și proteja livrările fizice viitoare. Începeți să tranzacționați contracte pe diferență de mărfuri. Consultați instrumentele și tabelele de prețuri de mai jos.",
   "m2-product-3-s2-t1":
-    "De ce să tranzacționați DEMO cu contracte pe diferență de mărfuri?",
+    "De ce să tranzacționați Helix-Capita cu contracte pe diferență de mărfuri?",
   "m2-product-3-s2-d1":
     "Lichiditate de top - executăm complet toate comenzile dvs. de CFD-uri pentru mărfuri, fără execuții parțiale sau re-cotări",
   "m2-product-3-s2-d2": "Rata de execuție de 99,72%^ și execuție rapidă",
@@ -625,7 +625,7 @@ export default {
   "m2-product-4-s1-d1":
     "Fondurile tranzacționate la bursă (ETF) sunt instrumente de investiții unice care vă permit să exprimați puncte de vedere cu privire la piețele de acțiuni individuale, la punctele fierbinți ale pieței de acțiuni la nivel mondial, la industrii și chiar la piețele de acțiuni mai largi. Începeți să tranzacționați imediat contracte pentru diferența de preț a ETF-urilor.",
   "m2-product-4-s2-t1":
-    "De ce să tranzacționați cu DEMO contracte pentru diferența de preț a ETF-urilor?",
+    "De ce să tranzacționați cu Helix-Capita contracte pentru diferența de preț a ETF-urilor?",
   "m2-product-4-s2-d1":
     "Oferim peste 100 de ETF-uri care urmăresc performanța industriei, inclusiv mine, energie, tehnologie, piețe obligatare și retail.",
   "m2-product-4-s2-d2":
@@ -649,7 +649,7 @@ export default {
   "m2-product-4-s3-v2": "Simbol",
   "m2-product-4-s4-t1": "Comisioanele noastre",
   "m2-product-4-s4-d1":
-    "Utilizarea DEMO pentru tranzacționarea contractelor pentru diferența de preț a ETF-urilor înseamnă că tranzacționați la prețul direct al activului de bază fără a adăuga spread-ul suplimentar. Cu toate acestea, veți plăti o mică comision pentru fiecare tranzacție. Detalii mai jos:",
+    "Utilizarea Helix-Capita pentru tranzacționarea contractelor pentru diferența de preț a ETF-urilor înseamnă că tranzacționați la prețul direct al activului de bază fără a adăuga spread-ul suplimentar. Cu toate acestea, veți plăti o mică comision pentru fiecare tranzacție. Detalii mai jos:",
   "m2-product-4-s4-1": "0,02 USD (dolari SUA) comision pe tranzacție.",
   "m2-product-4-s4-2": "Spread-ul bursier, fără adaos suplimentar.",
   "m2-product-4-s4-3":
@@ -691,7 +691,7 @@ export default {
   "m2-product-5-s1-d1":
     "Investiți în acțiuni de marcă mare din Australia, cu o taxă competitivă de tranzacționare de 0,07% pe tranzacție (minim 5 dolari australieni). Tranzacționați sezonul de raportare al acțiunilor americane cu orele noastre de tranzacționare după program și o taxă mică de 0,02 USD pe acțiune. Începeți să tranzacționați imediat contractele pentru diferența de preț a acțiunilor.",
   "m2-product-5-s2-t1":
-    "De ce să tranzacționați DEMO contracte pentru diferența de preț a acțiunilor?",
+    "De ce să tranzacționați Helix-Capita contracte pentru diferența de preț a acțiunilor?",
   "m2-product-5-s2-d1":
     "Nu ratați! Suntem printre puținele firme de brokeraj care oferă tranzacționarea după program a pieței de acțiuni din SUA. Deoarece rapoartele financiare ale companiilor sunt de obicei anunțate în acest interval, tranzacționarea după program vă poate ajuta să vă reduceți riscul sau să vă deschideți poziții înainte de deschiderea bursei a doua zi.",
   "m2-product-5-s2-d2":
@@ -730,7 +730,7 @@ export default {
   "m2-product-5-s6-t1":
     "Platforma de tranzacționare pentru contracte pentru diferența de preț a acțiunilor",
   "m2-product-5-s6-d1":
-    "Contractele noastre pentru diferența de preț a acțiunilor pot fi tranzacționate prin levier pe MetaTrader 5. Pentru a adăuga contracte pentru diferența de preț a acțiunilor în portofoliul dvs. de tranzacționare, deschideți un cont DEMO MetaTrader 5 și selectați contractele corespunzătoare din Observațiile pieței.",
+    "Contractele noastre pentru diferența de preț a acțiunilor pot fi tranzacționate prin levier pe MetaTrader 5. Pentru a adăuga contracte pentru diferența de preț a acțiunilor în portofoliul dvs. de tranzacționare, deschideți un cont Helix-Capita MetaTrader 5 și selectați contractele corespunzătoare din Observațiile pieței.",
   "m2-product-5-s6-d2":
     "MT5 oferă timp de procesare mai rapid, o mai bună capacitate de hedging, opțiuni de ordine avansate și cele mai recente instrumente și indicatori. Caracteristicile excelente vă vor ajuta să vă îmbunătățiți nivelul de tranzacționare și să rămâneți în fruntea pieței în orice moment.",
   "m2-product-5-s6-d3":
@@ -739,7 +739,7 @@ export default {
   "m2-product-6-s1-t1": "Criptomonede",
   "m2-product-6-s1-d1":
     "Criptomonedele pot avea fluctuații uriașe de valoare, puteți profita de această volatilitate prin tranzacționarea contractelor pe diferență pentru criptomonede cu noi - fără nevoie de portofel digital sau bursă.",
-  "m2-product-6-s2-t1": "De ce să tranzacționați criptomonede DEMO?",
+  "m2-product-6-s2-t1": "De ce să tranzacționați criptomonede Helix-Capita?",
   "m2-product-6-s2-d1":
     "Puteți face tranzacții în weekend pe Bitcoin, Bitcoin Cash, Litecoin, Ethereum, Ripple, Polkadot și altele.",
   "m2-product-6-s2-d2":
@@ -818,7 +818,7 @@ export default {
       <h4 class="mt-8"><strong>Ce este o rată de swap?</strong></h4>
       <h5>Rata de swap valutar se referă la dobânda de rollover câștigată sau plătită atunci când dețineți o poziție peste noapte în tranzacționarea valutară. Instituțiile financiare cu care colaborăm publică săptămânal ratele de swap, calculate pe baza analizei gestionării riscurilor și a situației de pe piață. Fiecare pereche de valute are propria sa rată de swap, cu o dimensiune standard de 1,0 lot (100.000 de unități de bază).</h5>
       <h5>Pentru mai multe informații despre swap, vă rugăm să faceți clic <a href="/#/educacion/what-is-swap-in-forex">aici</a>.</h5>
-      <h4 class="mt-4"><strong>Unde pot găsi informații despre ratele de swap DEMO?</strong></h4>
+      <h4 class="mt-4"><strong>Unde pot găsi informații despre ratele de swap Helix-Capita?</strong></h4>
       <h5>Informațiile noastre cele mai recente privind ratele de swap pot fi găsite pe platforma noastră de tranzacționare. Ratele de swap publicate pe platforma noastră sunt rate indicative și pot varia în funcție de volatilitatea pieței.</h5>
       <h5><strong>Pentru a vedea ratele pe platforma MetaTrader:</strong></h5>
       <ul><li>Selectați "Vizualizare"</li><li>Faceți clic dreapta pe "Observații de piață" și selectați "Simbol"</li><li>Selectați perechea de valute pe care doriți să o consultați și apoi selectați "Proprietăți" (pe MT5, selectați "Specificatii")</li></ul>
@@ -935,7 +935,7 @@ export default {
   "m2-fw-s0-d1": "Oferim o gamă largă de opțiuni de depunere fără comision.",
   "m2-fw-s1-t1": "Metode de depunere și retragere",
   "m2-fw-s1-d1":
-    "Administrarea contului dvs. este foarte simplă pe platforma noastră. Ca client DEMO, puteți accesa propriul dvs. client criptat, unde puteți efectua în siguranță toate cerințele de depunere și retragere.",
+    "Administrarea contului dvs. este foarte simplă pe platforma noastră. Ca client Helix-Capita, puteți accesa propriul dvs. client criptat, unde puteți efectua în siguranță toate cerințele de depunere și retragere.",
   "m2-fw-s1-t2": "Acceptăm:",
   "m2-fw-s1-t2-1": "Card Visa",
   "m2-fw-s1-t2-2": "MasterCard",
@@ -952,7 +952,7 @@ export default {
   "m2-fw-s2-d1":
     "Retragerile primite înainte de 21:00 (GMT) vor fi procesate în ziua următoare. Dacă sunt primite înainte de 07:00 (Ora standard a Australiei de Est), vor fi procesate în aceeași zi.",
   "m2-fw-s2-d2":
-    "Datorită reglementărilor privind tranzacțiile terților, fondurile pot fi returnate doar în contul bancar cu același nume (sau nume comun) ca și contul dvs. DEMO de tranzacționare.",
+    "Datorită reglementărilor privind tranzacțiile terților, fondurile pot fi returnate doar în contul bancar cu același nume (sau nume comun) ca și contul dvs. Helix-Capita de tranzacționare.",
   "m2-fw-s2-d3":
     "Orice taxe de transfer bancar internațional (TT) percepute de instituția noastră bancară vor fi suportate de către clienți. Taxele de transfer bancar internațional sunt în general de aproximativ 20 de dolari australieni.",
   "m2-fw-s2-d4":
@@ -1053,7 +1053,7 @@ export default {
     "Bucurați-vă de libertatea de a tranzacționa, indiferent unde vă aflați. Platformele noastre sunt disponibile pentru desktop-uri Windows și Mac OS, dispozitive mobile și tablete Android și aplicația noastră web WebTrader.",
   "m3-i-s2-1-t1": "TradingView",
   "m3-i-s2-1-d1":
-    "Conectați-vă direct la contul de tranzacționare DEMO din TradingView, suportat de cTrader. Instrumente puternice de analiză a graficelor.",
+    "Conectați-vă direct la contul de tranzacționare Helix-Capita din TradingView, suportat de cTrader. Instrumente puternice de analiză a graficelor.",
   "m3-i-s2-1-1":
     "Conectați-vă la cea mai mare rețea socială de tranzacționare globală",
   "m3-i-s2-1-2": "Tehnologie de grafică de vârf din industrie",
@@ -1186,7 +1186,7 @@ export default {
   "m3-mt4-s4-7": "Accesați alte 28 instrumente inteligente pentru traderi",
   "m3-mt4-s5-t1": `<div class="rich-text__container"><h2 class="mb-8 fs-32">Ghiduri și videoclipuri pentru utilizatori</h2>
   <h5>Dacă doriți să aflați mai multe despre tranzacționarea prin platforma MT4, pur și simplu descărcați ghidurile de mai jos sau vizionați videoclipurile noastre MT4.</h5>
-  <ul><li><a href="#" >Cartea electronică a utilizatorului demo MetaTrader 4</a></li><li><a href="#" >Ghid de coduri de eroare DEMO MetaTrader 4</a></li></ul></div>`,
+  <ul><li><a href="#" >Cartea electronică a utilizatorului demo MetaTrader 4</a></li><li><a href="#" >Ghid de coduri de eroare Helix-Capita MetaTrader 4</a></li></ul></div>`,
   "m3-mt4-s6-t1": "Limbi suportate",
   "m3-mt4-s6-d1":
     "Arabă, Bulgară, Chineză (simplificată, China), Chineză (tradițională, Taiwan), Croată, Cehă, Daneză, Olandeză, Engleză, Estonă, Persană/Persană, Franceză, Germană, Greacă, Ebraică, Maghiară, Indoneziană, Italiană, Japoneză, Coreeană, Letonă, Lituaniană, Malaeziană, Mongolă, Poloneză, Portugheză, Română, Rusă, Sârbă, Slovacă, Spaniolă, Suedeză, Tadjikă, Thai, Turcă, Ucraineană, Uzbekă, Vietnamiană.",
@@ -1212,7 +1212,7 @@ export default {
   <ol><li>Adăugați orice Expert Advisor (EA) sau indicator pe care doriți să îl afișați pe grafic</li><li>Faceți clic dreapta pe grafic</li><li>Selectați „Proprietăți” (puteți actualiza aici schemele de culori și modificați setările comune)</li><li>După finalizarea modificărilor personalizate, faceți clic dreapta pe grafic</li><li>Selectați „Șablon” și numiți fișierul pe care l-ați editat recent. Puteți configura mai multe șabloane pentru diferite strategii</li></ol>
   <h5><strong>Sfat pentru traderi:</strong> Numește acest șablon „implicit” pentru a utiliza acest șablon pentru toate graficele ca valoare implicită.</h5></div>`,
   "m3-mt4-s7-q5": "Cum pot personaliza un șablon?",
-  "m3-mt4-s7-a5": `<h6>În mod implicit, nu puteți rula simultan două platforme Metatrader 4 (MT4). Cu toate acestea, prin utilizarea căilor de instalare diferite, veți putea rula două software-uri MT4 simultan. Dacă doriți să rulați două platforme MT4 pe un PC/VPS, trebuie să instalați al doilea software în directoare diferite pe PC/VPS.</h6><h5>De exemplu:</h5><h5>Atunci când ați terminat de instalat un software MT4, trebuie să descărcați și să rulați din nou fișierul de instalare. Apoi, veți vedea următorul popup:</h5><h5><br>Pentru a selecta locația de instalare a celui de-al doilea program MT4, faceți clic pe „Setări” pentru a afișa setările directorului de instalare. În mod implicit, acesta se va instala în „C:\Program Files (x86)\DEMO Metatrader 4”, dar va trebui să instalați al doilea software într-un folder cu un nume diferit, cum ar fi „C:\Program Files (x86)\DEMO Metatrader</h5> <h5><br>Vă rugăm să urmați același proces de instalare ca și pentru primul software MT4. După aceasta, veți putea vedea cele două software-uri de platformă în folder și veți putea rula cele două platforme simultan.</h5>`,
+  "m3-mt4-s7-a5": `<h6>În mod implicit, nu puteți rula simultan două platforme Metatrader 4 (MT4). Cu toate acestea, prin utilizarea căilor de instalare diferite, veți putea rula două software-uri MT4 simultan. Dacă doriți să rulați două platforme MT4 pe un PC/VPS, trebuie să instalați al doilea software în directoare diferite pe PC/VPS.</h6><h5>De exemplu:</h5><h5>Atunci când ați terminat de instalat un software MT4, trebuie să descărcați și să rulați din nou fișierul de instalare. Apoi, veți vedea următorul popup:</h5><h5><br>Pentru a selecta locația de instalare a celui de-al doilea program MT4, faceți clic pe „Setări” pentru a afișa setările directorului de instalare. În mod implicit, acesta se va instala în „C:\Program Files (x86)\Helix-Capita Metatrader 4”, dar va trebui să instalați al doilea software într-un folder cu un nume diferit, cum ar fi „C:\Program Files (x86)\Helix-Capita Metatrader</h5> <h5><br>Vă rugăm să urmați același proces de instalare ca și pentru primul software MT4. După aceasta, veți putea vedea cele două software-uri de platformă în folder și veți putea rula cele două platforme simultan.</h5>`,
   "m3-mt4-s7-q6":
     "Înțelegerea volumului de tranzacționare, a levierului și a marjei",
   "m3-mt4-s7-a6": `<div class="rich-text__container"><h6>Înainte de a începe cariera dvs. de tranzacționare, trebuie să vă familiarizați cu cunoștințele de bază relevante. În <a href="#"  rel="noreferrer noopener">Clientul SCA</a> veți găsi o serie de calculatoare utile. Asigurați-vă că consultați aceste calculatoare și înțelegeți pe deplin volumul de tranzacționare, marja pe care doriți să o furnizați pentru tranzacționare și nivelul de levier pe care doriți să îl utilizați.</h6></div>`,
@@ -1221,7 +1221,7 @@ export default {
   <h6><strong>MT4 vs MT5 - Opinia noastră</strong></h6>
   <h6>Suntem unul dintre cei mai mari brokeri MT4 din lume, deci se știe că suntem fani ai acestei platforme populare. MT4 este o platformă de tranzacționare simplă, intuitivă și iubită. Este o capodoperă clasică - datorită funcționalității sale vaste, este foarte potrivită pentru atât începători, cât și traderi avansați.</h6>
   <h6>Un avantaj al comunității mari de utilizatori MT4 din întreaga lume este site-ul lor mql5.com, care are o gamă largă de indicatori, semnale și EA pe care le puteți cumpăra, descărca și adăuga cu ușurință pe platformă.</h6 >
-  <h6>În plus față de aceste servicii adiționale, DEMO din Australia are propriile sale legături cu companii precum myFXBook, Duplitrade și Zulutrade, care oferă soluții de tranzacționare socială ușor de configurat și permit utilizatorilor să-și controleze investițiile în funcție de preferințele lor.</h6>
+  <h6>În plus față de aceste servicii adiționale, Helix-Capita din Australia are propriile sale legături cu companii precum myFXBook, Duplitrade și Zulutrade, care oferă soluții de tranzacționare socială ușor de configurat și permit utilizatorilor să-și controleze investițiile în funcție de preferințele lor.</h6>
   <h6>Deși MT5 vine pentru a schimba jocul. Este o platformă cunoscută pentru gama sa extinsă de intervale de timp, capacități de analiză și o varietate de ordine în așteptare, ceea ce o face foarte populară printre traderii noștri de acțiuni și mărfuri.</h6>
   <h6><strong>Intervale de timp disponibile mai extinse</strong> (21 de intervale de timp, în timp ce MT4 are 9).</h6>
   <h6><strong>Comenzi în așteptare</strong>: MT4 oferă de obicei comenzi de stop și limită cele mai utilizate, iar în MT5, puteți utiliza, de asemenea, funcția de stop-limită, ceea ce reprezintă cea mai bună modalitate de a seta o comandă de limită.</h6>
@@ -1402,9 +1402,9 @@ export default {
   "m3-st-mf-s4-2-a1":
     "1. Următorul pas este să accesați site-ul Myfxbook și să vă conectați contul demo de tranzacționare la AutoTrade Myfxbook<br>2. Conectați-vă contul",
   "m3-st-mf-s5-d1":
-    "Avertisment legal: Sistemul AutoTrade este deținut și operat de Myfxbook Ltd. („Myfxbook”), iar utilizarea acestuia este guvernată de termenii și condițiile specificate pe site-ul său la adresa http://www.myfxbook.com/terms. DEMO Group Limited („DEMO”) nu este responsabil și nu poate controla semnalele generate de utilizarea AutoTrade și tranzacțiile contului DEMO rezultate din aceasta. Semnalele generate de AutoTrade pe contul DEMO nu reprezintă sfaturi faptice, generale sau personale ale DEMO.",
+    "Avertisment legal: Sistemul AutoTrade este deținut și operat de Myfxbook Ltd. („Myfxbook”), iar utilizarea acestuia este guvernată de termenii și condițiile specificate pe site-ul său la adresa http://www.myfxbook.com/terms. Helix-Capita Group Limited („Helix-Capita”) nu este responsabil și nu poate controla semnalele generate de utilizarea AutoTrade și tranzacțiile contului Helix-Capita rezultate din aceasta. Semnalele generate de AutoTrade pe contul Helix-Capita nu reprezintă sfaturi faptice, generale sau personale ale Helix-Capita.",
   "m3-st-mf-s5-d2":
-    "Avertisment important: Informațiile și analizele furnizate aici sunt produse de companiile furnizoare de semnale. DEMO a replicat aceste informații fără a fi modificate sau verificate și nu implică faptul că materialul este precis, actual sau complet și nu trebuie să vă bazați pe aceste informații. Acest material este informativ și nu ține cont de obiectivele individuale de investiții, situația financiară sau necesitățile dvs. de a utiliza produsele și serviciile de semnalizare. DEMO vă sfătuiește să solicitați sfatul unui profesionist înainte de a investi în orice produs și serviciu de semnalizare. În plus, DEMO reiterează că performanțele anterioare nu pot prezice performanțele viitoare. Cititorii trebuie să fie conștienți că, ca orice aplicație tehnică, internetul are vulnerabilități inherente și sistemul de operare depinde de terți pentru gestionarea conexiunii cu serverul DEMO. Utilizarea oricărui software de tranzacționare socială / copiere a tranzacțiilor prin internet poate fi întreruptă, ceea ce poate duce la pierderi accidentale care pot depăși soldul contului clientului. DEMO nu este responsabil pentru performanța acestui program.",
+    "Avertisment important: Informațiile și analizele furnizate aici sunt produse de companiile furnizoare de semnale. Helix-Capita a replicat aceste informații fără a fi modificate sau verificate și nu implică faptul că materialul este precis, actual sau complet și nu trebuie să vă bazați pe aceste informații. Acest material este informativ și nu ține cont de obiectivele individuale de investiții, situația financiară sau necesitățile dvs. de a utiliza produsele și serviciile de semnalizare. Helix-Capita vă sfătuiește să solicitați sfatul unui profesionist înainte de a investi în orice produs și serviciu de semnalizare. În plus, Helix-Capita reiterează că performanțele anterioare nu pot prezice performanțele viitoare. Cititorii trebuie să fie conștienți că, ca orice aplicație tehnică, internetul are vulnerabilități inherente și sistemul de operare depinde de terți pentru gestionarea conexiunii cu serverul Helix-Capita. Utilizarea oricărui software de tranzacționare socială / copiere a tranzacțiilor prin internet poate fi întreruptă, ceea ce poate duce la pierderi accidentale care pot depăși soldul contului clientului. Helix-Capita nu este responsabil pentru performanța acestui program.",
 
   // m3-social-trading MetaTrader信号
   "m3-st-mt-s1-t1": "Semnale MetaTrader",
@@ -1431,11 +1431,11 @@ export default {
     "După ce atingeți suma minimă de depunere de 5.000 de dolari australieni, veți putea beneficia de serviciile puternice de la o varietate de furnizori de strategii principale ale DupliTrade și veți putea efectua automat tranzacții pe propriul dvs. cont MT4. Dacă doriți să explorați piața, puteți practica, de asemenea, strategiile pe contul dvs. de demo.",
   "m3-st-d-s3-t1": "Începeți acum",
   "m3-st-d-s3-d1":
-    "1. Dacă nu ați început încă, puteți deschide un <a>cont de tranzacționare în timp real</a><br>2. Creați un <a>cont Duplitrade</a> prin intermediul DEMO<br/>3. <a>Contactați-ne</a> și solicitați conectarea contului dvs. la Duplitrade.",
+    "1. Dacă nu ați început încă, puteți deschide un <a>cont de tranzacționare în timp real</a><br>2. Creați un <a>cont Duplitrade</a> prin intermediul Helix-Capita<br/>3. <a>Contactați-ne</a> și solicitați conectarea contului dvs. la Duplitrade.",
   "m3-st-d-s4-d1":
-    "Avertisment legal: Duplitrade este o companie înregistrată în Insulele Virgine Britanice, supusă termenilor și condițiilor specificate pe site-ul lor duplitrade.com/terms-and-conditions. DEMO Group Limited ('DEMO') nu este responsabilă și nu poate controla semnalele generate de Duplitrade și tranzacțiile efectuate pe contul DEMO ca urmare a utilizării Duplitrade. Semnalele generate de Duplitrade pe contul DEMO nu constituie sfaturi faptice, generale sau personale ale DEMO.",
+    "Avertisment legal: Duplitrade este o companie înregistrată în Insulele Virgine Britanice, supusă termenilor și condițiilor specificate pe site-ul lor duplitrade.com/terms-and-conditions. Helix-Capita Group Limited ('Helix-Capita') nu este responsabilă și nu poate controla semnalele generate de Duplitrade și tranzacțiile efectuate pe contul Helix-Capita ca urmare a utilizării Duplitrade. Semnalele generate de Duplitrade pe contul Helix-Capita nu constituie sfaturi faptice, generale sau personale ale Helix-Capita.",
   "m3-st-d-s4-d2":
-    "Avertisment important: Informațiile și analizele furnizate aici sunt realizate de companiile furnizorilor de semnale. DEMO a copiat aceste informații fără modificări sau verificări și nu implică faptul că acest material este precis, actualizat sau complet și, prin urmare, nu trebuie să vă bazați pe aceste informații. Această informație este pentru scopuri generale, doar pentru referință și nu ia în considerare obiectivele de investiții personale, soluțiile financiare sau metodele. DEMO recomandă clienților să solicite sfaturi financiare independente înainte de a lua în considerare orice produs și serviciu de semnalizare. De asemenea, DEMO reiterează că performanțele trecute nu reprezintă performanțele viitoare. Cititorii trebuie să ia în considerare că, ca toate aplicațiile tehnice, internetul are vulnerabilități inherente și sistemul de operare depinde de terți pentru a gestiona conexiunea cu serverele DEMO. Utilizarea aplicațiilor de tranzacționare socială/copiere prin internet poate fi întreruptă, ceea ce poate duce la pierderi accidentale care pot depăși soldul contului clientului. DEMO nu își asumă responsabilitatea pentru performanța acestei aplicații.",
+    "Avertisment important: Informațiile și analizele furnizate aici sunt realizate de companiile furnizorilor de semnale. Helix-Capita a copiat aceste informații fără modificări sau verificări și nu implică faptul că acest material este precis, actualizat sau complet și, prin urmare, nu trebuie să vă bazați pe aceste informații. Această informație este pentru scopuri generale, doar pentru referință și nu ia în considerare obiectivele de investiții personale, soluțiile financiare sau metodele. Helix-Capita recomandă clienților să solicite sfaturi financiare independente înainte de a lua în considerare orice produs și serviciu de semnalizare. De asemenea, Helix-Capita reiterează că performanțele trecute nu reprezintă performanțele viitoare. Cititorii trebuie să ia în considerare că, ca toate aplicațiile tehnice, internetul are vulnerabilități inherente și sistemul de operare depinde de terți pentru a gestiona conexiunea cu serverele Helix-Capita. Utilizarea aplicațiilor de tranzacționare socială/copiere prin internet poate fi întreruptă, ceea ce poate duce la pierderi accidentale care pot depăși soldul contului clientului. Helix-Capita nu își asumă responsabilitatea pentru performanța acestei aplicații.",
   // m3-social-trading tools-home
   "m3-st-t-h-s0-t1": "Instrumente de tranzacționare",
   // 第12次copy
@@ -1485,10 +1485,10 @@ export default {
   "m3-st-t-c-s2-5-d1": "Funcții de tranzacționare avansate",
   "m3-st-t-c-s2-5-d2":
     "De la gestionarea tranzacțiilor de zi cu zi până la construirea unor sisteme de automatizare complexe, cu Capitalise.ai puteți sări peste scrierea complicată de cod și să vă automatizați propriile tranzacții.",
-  "m3-st-t-c-s3-t1": "Gratuit pentru clienții DEMO",
+  "m3-st-t-c-s3-t1": "Gratuit pentru clienții Helix-Capita",
   "m3-st-t-c-s3-d1": "Fără înregistrare necesară",
   "m3-st-t-c-s3-d2":
-    "Conectați-vă la Capitalise.ai cu contul dvs. DEMO MT4 și testați și automatizați ușor strategiile dvs. de tranzacționare fără a scrie cod.",
+    "Conectați-vă la Capitalise.ai cu contul dvs. Helix-Capita MT4 și testați și automatizați ușor strategiile dvs. de tranzacționare fără a scrie cod.",
   "m3-st-t-c-s4-t1": "Sfaturi utile în utilizarea platformei Capitalise.ai:",
   "m3-st-t-c-s4-1-t1": "Apăsați pentru a viziona videoclipul Capitalise.ai",
   "m3-st-t-c-s4-1-d1":
@@ -1496,7 +1496,7 @@ export default {
 
   "m3-st-t-c-s4-2-t1": "Conectați-vă",
   "m3-st-t-c-s4-2-d1":
-    "Conectați-vă la Capitalise.ai utilizând contul dvs. de tranzacționare DEMO MetaTrader 4 existent și parola.",
+    "Conectați-vă la Capitalise.ai utilizând contul dvs. de tranzacționare Helix-Capita MetaTrader 4 existent și parola.",
   "m3-st-t-c-s4-2-d2":
     "Dacă întâmpinați probleme la conectare, contactați managerul dvs. de cont sau resetați parola în zona dvs. securizată a clienților SCA.",
   "m3-st-t-c-s4-3-t1": "Centrul de învățare Capitalise",
@@ -1663,14 +1663,14 @@ export default {
   "m3-st-t-ap-s1-t1": "Tranzacționare API",
   "m3-st-t-ap-s1-d1":
     "Susținem tranzacționarea automată prin intermediul API-ului nostru. Această tehnologie, cunoscută și sub numele de tranzacționare prin interfață de programare a aplicațiilor, este excelentă pentru cei care utilizează sisteme de tranzacționare automate sau dezvoltă propriile sisteme personalizate.",
-  "m3-st-t-ap-s2-t1": "Beneficiile tranzacționării DEMO API",
+  "m3-st-t-ap-s2-t1": "Beneficiile tranzacționării Helix-Capita API",
   "m3-st-t-ap-s2-1": "Creșterea înțelegerii profunde a pieței",
   "m3-st-t-ap-s2-2":
     "Punem la dispoziție un cont de client independent pentru capitalul dvs.",
   "m3-st-t-ap-s2-3":
     "Conectăm mai mulți furnizori de lichiditate pentru a vă asigura cele mai bune prețuri",
   "m3-st-t-ap-s2-d1":
-    "Deținătorii de conturi demo DEMO care au un volum minim de tranzacționare de 250 de milioane de dolari australieni pe lună pot solicita un mediu de testare FIX pentru a testa funcțiile noastre FIX.",
+    "Deținătorii de conturi demo Helix-Capita care au un volum minim de tranzacționare de 250 de milioane de dolari australieni pe lună pot solicita un mediu de testare FIX pentru a testa funcțiile noastre FIX.",
   "m3-st-t-ap-s2-d2":
     "Dacă doriți să aflați mai multe despre tranzacționarea API, vă rugăm să trimiteți un e-mail la support{'@'}demo.com.",
   "m3-st-t-vp-s1-t1": "Găzduire VPS",
@@ -1680,14 +1680,14 @@ export default {
     "Beneficiile tranzacționării cu VPS includ minimizarea șanselor de întrerupere a sistemului cauzată de probleme tehnice sau de conexiune.",
   "m3-st-t-vp-s2-t1": "ForexVPS",
   "m3-st-t-vp-s2-d1":
-    "Beneficiați de o latență ultrascăzută de aproximativ 1 milisecundă cu FXVM. Personalul ForexVPS este disponibil 24 de ore pe zi, 7 zile pe săptămână, pentru a vă ajuta cu servicii multilingve, instalarea consultanților experți, a instrumentelor terțe sau pentru a rezolva orice problemă. FXVM dvs. va veni preinstalat cu MetaTrader 4 DEMO, permițându-vă să începeți tranzacționarea imediat.",
-  "m3-st-t-vp-s2-d2": "Obțineți o reducere de 20% pentru ForexVPS DEMO",
+    "Beneficiați de o latență ultrascăzută de aproximativ 1 milisecundă cu FXVM. Personalul ForexVPS este disponibil 24 de ore pe zi, 7 zile pe săptămână, pentru a vă ajuta cu servicii multilingve, instalarea consultanților experți, a instrumentelor terțe sau pentru a rezolva orice problemă. FXVM dvs. va veni preinstalat cu MetaTrader 4 Helix-Capita, permițându-vă să începeți tranzacționarea imediat.",
+  "m3-st-t-vp-s2-d2": "Obțineți o reducere de 20% pentru ForexVPS Helix-Capita",
   "m3-st-t-vp-s2-d3": "Serverul din New York",
   "m3-st-t-vp-s2-d4":
     "Colaborăm cu serverele din New York pentru a oferi traderilor noștri o soluție personalizată de latență redusă. Serverele din New York înțeleg importanța unei conexiuni stabile cu brokerul, a execuției rapide și a unui server de performanță ridicată care rulează 24 de ore pe zi, 7 zile pe săptămână. În plus, toate serviciile din New York sunt disponibile non-stop prin e-mail, tichete de asistență, chat în timp real și telefon.",
   "m3-st-t-vp-s2-d5":
-    "Odată ce v-ați alăturat DEMO, veți obține o reducere de 25% pentru orice plan VPS.",
-  "m3-st-t-vp-s2-d6": "Comandați acum un VPS DEMO personalizat",
+    "Odată ce v-ați alăturat Helix-Capita, veți obține o reducere de 25% pentru orice plan VPS.",
+  "m3-st-t-vp-s2-d6": "Comandați acum un VPS Helix-Capita personalizat",
   "m3-ms-s1-t1": "Program de mentenanță",
   "m3-ms-s2-t1": "Mentenanță viitoare",
   "m3-ms-s2-t2": "Martie 2023",
@@ -1802,7 +1802,7 @@ export default {
   <h5>În schimb, tranzacționarea se concentrează mai mult pe identificarea oportunităților în fluctuațiile intense pe termen scurt de pe piață. Aceasta implică urmărirea știrilor recente (războiul ruso-ucrainean), a evenimentelor financiare (majorarea dobânzii de către RBA), a datelor economice (IPC-ul SUA), a declarațiilor companiilor (desfacerea acțiunilor Tesla), a evenimentelor importante (conferința Apple) etc. La nivel operațional, pe lângă fundamentale, se bazează în principal pe analiza tehnică pentru a identifica momentele de deschidere și închidere a pozițiilor, necesitând respectarea fermă a stop-loss-ului și verificarea frecventă a stării pieței. Pentru un comerciant de succes, disciplina și atitudinea în tranzacționare sunt factori mai importanți decât analiza tehnică.</h5>
   <h5>Avantajul tranzacționării constă în perioadele scurte, cu potențial ridicat de randament. Odată ce se formează o tendință, se poate dezvolta o dinamică foarte puternică și susținută pe termen scurt, Tesla fiind un exemplu tipic. Aceasta este o oportunitate de piață pe care niciun comerciant nu dorește să o rateze, în special datorită tranzacționării automate.</h5>
   <h5>Prin tranzacționarea contractelor pentru diferență (CFD) pe acțiuni, veți obține și mai multă flexibilitate și avantaje, cum ar fi tranzacționarea în ambele sensuri, avantajul levierului, lichiditatea profundă a pieței, tranzacționarea non-stop pe parcursul a 24 de ore, etc. Desigur, va trebui să aveți o anumită capacitate de a vă asuma riscuri pentru a face față fluctuațiilor și situațiilor extreme de pe piață.</h5>
-  <h5>DEMO a fost înființată în 2010 la Melbourne și s-a dezvoltat rapid, devenind unul dintre cei mai mari brokeri de tranzacționare online din lume. În prezent, oferim clienților noștri tranzacționarea a aproape o mie de acțiuni principale americane și sute de contracte pentru diferență pe acțiuni locale din Australia, Marea Britanie și Germania.</h5>
+  <h5>Helix-Capita a fost înființată în 2010 la Melbourne și s-a dezvoltat rapid, devenind unul dintre cei mai mari brokeri de tranzacționare online din lume. În prezent, oferim clienților noștri tranzacționarea a aproape o mie de acțiuni principale americane și sute de contracte pentru diferență pe acțiuni locale din Australia, Marea Britanie și Germania.</h5>
   <h5>Pentru prietenii vorbitori de limba chineză, am lansat recent tranzacționarea de contracte pentru diferență (CFD) pe <a href="javascript:void(0)" ">acțiuni de la Hong Kong</a>, care include atât giganți ai internetului precum Alibaba, Tencent, JD.com, Xiaomi, cât și reprezentanți ai noii economii precum BYD, acoperind în același timp companii de stat de nivel de portavion precum China Petroleum și China Ping An. Adevăratul nostru obiectiv este "tranzacționarea piețelor globale printr-un singur cont"!</h5>
   </div>`,
   "m4-mn-a8-t":
@@ -2336,7 +2336,7 @@ export default {
     "Atunci când condițiile de pe piață sunt favorabile, traderii de obicei mențin active pe monede cu rate corespunzătoare mai ridicate și împrumută monede cu rate mai scăzute, colectând astfel diferența de dobândă pozitivă. Aceasta este tranzacționarea de diferență de dobândă, unde traderul menține pozițiile sale pentru a obține dobânzi și diferența de rulare. Rularea este o componentă importantă a pieței valutare și poate fi o considerație principală pentru mulți fonduri de hedging.",
   "m5-wh-dq-8-d1": "De ce percep brokerii costuri de swap?",
   "m5-wh-dq-9-d1":
-    "La DEMO, le oferim clienților posibilitatea de a tranzacționa prețurile în mișcare pe piețele valutare globale fără a efectua efectiv tranzacții de livrare valutară. Prin urmare, atunci când deschideți o poziție forex cu levier, aceasta este, de fapt, o poziție de ajustare continuă fără termen. Acest lucru înseamnă că, în calitate de trader, decideți când să închideți pozițiile utilizând stop-loss sau alte forme de gestionare a tranzacțiilor, iar în calitate de contraparte, brokerul calculează costurile de rulare utilizând punctul de rulare pentru a compensa lipsa de livrare sau primire a valutei efective.",
+    "La Helix-Capita, le oferim clienților posibilitatea de a tranzacționa prețurile în mișcare pe piețele valutare globale fără a efectua efectiv tranzacții de livrare valutară. Prin urmare, atunci când deschideți o poziție forex cu levier, aceasta este, de fapt, o poziție de ajustare continuă fără termen. Acest lucru înseamnă că, în calitate de trader, decideți când să închideți pozițiile utilizând stop-loss sau alte forme de gestionare a tranzacțiilor, iar în calitate de contraparte, brokerul calculează costurile de rulare utilizând punctul de rulare pentru a compensa lipsa de livrare sau primire a valutei efective.",
   "m5-wh-dq-10-d1": "Cum se face compensarea pe piața spot Forex?",
   "m5-wh-dq-11-d1":
     "Pe piața spot, tranzacțiile forex se stabilizează în mod obișnuit la două zile lucrătoare (T+2) după ziua tranzacției. Dacă o instituție cumpără un contract valutar euro/dolar american, va primi euro la rata convenită după două zile de la tranzacție. Există câteva excepții de la această regulă, cum ar fi dolarul american/dolarul canadian, care se stabilizează a doua zi lucrătoare după tranzacție (T+1).",
@@ -2360,7 +2360,7 @@ export default {
   <h5>Valuta de bază a contului: euro</h5>
   <h5>Rata: 1.1290</h5>
   <h5>Dimensiunea tranzacției: 1 lot (100.000 de euro)</h5>
-  <h5>Rata de swap de mâine pentru pozițiile lungi DEMO: -11.49, rata de swap de mâine pentru pozițiile scurte: +7.02</h5>
+  <h5>Rata de swap de mâine pentru pozițiile lungi Helix-Capita: -11.49, rata de swap de mâine pentru pozițiile scurte: +7.02</h5>
   <h5>Costul de swap va fi dedus din contul dvs.: (0.00001 / 1.1290) * (100.000 * -11.49) = <strong>-10.18 euro</strong></h5>
   <h5>Dacă vindeți un contract euro/dolar american, veți câștiga <strong>6.22 euro</strong> pe zi.</h5></div>`,
   "m5-wh-dq-19-d1":
@@ -2432,7 +2432,7 @@ export default {
   "m5-tg-6-b1": "Intermediar",
   "m5-tg-7-t1": "Cum să tranzacționați aurul în monede non-dolare",
   "m5-tg-7-d1":
-    "În DEMO, aurul a fost întotdeauna una dintre cele mai populare opțiuni de investiții pentru comercianți și am fost întotdeauna dedicați să oferim mai multe produse de tranzacționare cu aur actualizate pentru dvs...",
+    "În Helix-Capita, aurul a fost întotdeauna una dintre cele mai populare opțiuni de investiții pentru comercianți și am fost întotdeauna dedicați să oferim mai multe produse de tranzacționare cu aur actualizate pentru dvs...",
   "m5-tg-7-b1": "Începător",
   // 教育m5-交易指南-提高 Expert Advisor (EA) 性能的 11 个技巧
   "m5-tg-a1-s1-t1":
@@ -2520,7 +2520,7 @@ export default {
   <h5>5. <strong>Lichiditatea este fundamentul totului</strong></h5>
   <ol></ol>
   <h5>În piețele în schimbare rapidă, market maker-ii și furnizorii de lichiditate pot să nu poată oferi lichiditate în aceeași măsură. Mai ales atunci când sunt făcute publice știri importante, lipsa lichidității poate agrava situația pe piață.</h5>
-  <h5>În perioade de volatilitate ridicată, participanții de pe piață sunt dornici să obțină mai multe informații despre situația economică, geopolitică sau criza de lichiditate. În această evoluție dinamică, aceste informații în sine vor duce la modificări semnificative ale prețurilor, ceea ce poate fi o provocare pentru mulți clienți de tranzacționare cu amănuntul. Din fericire, un cont DEMO vă poate oferi informații importante și de încredere.</h5>
+  <h5>În perioade de volatilitate ridicată, participanții de pe piață sunt dornici să obțină mai multe informații despre situația economică, geopolitică sau criza de lichiditate. În această evoluție dinamică, aceste informații în sine vor duce la modificări semnificative ale prețurilor, ceea ce poate fi o provocare pentru mulți clienți de tranzacționare cu amănuntul. Din fericire, un cont Helix-Capita vă poate oferi informații importante și de încredere.</h5>
   <h3><strong>Concluzie</strong></h3>
   <h5>Sperăm că sfaturile de mai sus vă vor ajuta în tranzacționarea dvs. într-un mediu de piață cu volatilitate ridicată. Deși există multe alte indicatori tehnici bazate pe volatilitatea reală, ceea ce contează cel mai mult este modul în care aplicați acești indicatori în mod flexibil pentru a face față schimbărilor imprevizibile ale pieței.</h5>
   <h5>De fapt, regula cea mai importantă în tranzacționare este să învățați să vă adaptați, adică să vă asigurați că direcția tranzacției dvs. se aliniază cu tendința pieței și să acceptați realitatea că nu fiecare tranzacție va fi una profitabilă. Dacă vă concentrați asupra levierului și a volatilității extreme pentru a executa o gestionare mai precisă a riscului și puteți ajusta pozițiile în mod corespunzător, atunci ați învățat deja cum să supraviețuiți într-un mediu de volatilitate extremă pe piață.</h5>
@@ -2529,7 +2529,7 @@ export default {
   // 教育m5-交易指南-为什么点差会扩大
   "m5-tg-a3-s1-t1": "De ce se extind spreadurile",
   "m5-tg-a3-s1-d1":
-    "DEMO este dedicat furnizării de spreaduri competitive clienților prin conectarea cu bănci de investiții și furnizori de lichidități de top. Prin intermediul acestora, vă oferim cele mai bune prețuri de cumpărare/vânzare pentru tranzacțiile dvs.",
+    "Helix-Capita este dedicat furnizării de spreaduri competitive clienților prin conectarea cu bănci de investiții și furnizori de lichidități de top. Prin intermediul acestora, vă oferim cele mai bune prețuri de cumpărare/vânzare pentru tranzacțiile dvs.",
   "m5-tg-a3-s2-c": `<div class="rich-text__container"><!--StartFragment--><h4><strong>Spreadurile</strong></h4>
   <h5>În tranzacționarea valutară și CFD, costul tranzacționării este în general măsurat prin "spread", adică diferența dintre prețul de cumpărare și cel de vânzare în același moment. De exemplu, pentru EURUSD, oferta este 1.06747/52, iar spreadul pentru această pereche valutară este de 0,00005 sau 0,5 pips. În general, cu cât lichiditatea pieței este mai mare, cu atât spreadurile sunt mai mici și costurile de tranzacționare sunt mai mici.</h5>
   <h5>În condiții de piață extrem de volatile, adâncimea pieței și eficiența executării tranzacțiilor sunt semnificativ reduse, ceea ce duce la o extindere a spreadurilor. De asemenea, lichiditatea și viteza schimbărilor de prețuri joacă un rol crucial în determinarea dimensiunii spreadurilor.</h5>
@@ -2555,7 +2555,7 @@ export default {
   <h5>Prin acest sistem, investitorii pot evalua rapid evoluția prețurilor în timpul suspendării tranzacțiilor, iar piața are ocazia să reevalueze dacă prețurile actuale sunt rationale și eficiente.</h5>
   <h4><strong>Mecanismul de creștere și scădere</strong></h4>
   <h5>Deși limitele de creștere și scădere se aplică la mai mulți indici de acțiuni americane diferite (cum ar fi US30, US200, NAS100, etc.), în acest articol vom lua exemplul US500 (adică S&P 500).</h5>
-  <h5>Pe platforma DEMO, prețurile tuturor produselor de indici bursieri, inclusiv US500, provin de pe piața de mărfuri. Modelul de cotare reflectă deja veniturile estimate din dividende și dobânzi în viitor, fiind, de asemenea, afectat de mecanismul de oprire al pieței de referință.</h5>
+  <h5>Pe platforma Helix-Capita, prețurile tuturor produselor de indici bursieri, inclusiv US500, provin de pe piața de mărfuri. Modelul de cotare reflectă deja veniturile estimate din dividende și dobânzi în viitor, fiind, de asemenea, afectat de mecanismul de oprire al pieței de referință.</h5>
   <h5>În diferite intervale de timp ale zilei de tranzacționare există limite de preț, care reflectă lichiditatea pieței. Lichiditatea poate accentua gradul de fluctuație bidirecțională a prețurilor.</h5>
   <h4><strong>Limitările de tranzacționare în perioada de deschidere a pieței pentru contractele futures pe indici de acțiuni</strong></h4>
   <h5>Când piața spot s-a închis deja, iar piața futures a indicelui S&P 500 este încă în intervalul de tranzacționare, limita de creștere și scădere a US500 este de +/-5%. Acest procentaj se calculează pe baza prețului de închidere de la ora 16:00 (ora de est a SUA, în continuare).</h5>
@@ -2607,7 +2607,7 @@ export default {
     <ul><li><strong>Volatilitatea și tranzacționarea cu EA</strong></li></ul>
     <h5>Dacă EA dvs. are un avantaj într-o piață cu volatilitate scăzută și fluctuații bidirecționale, atunci un mediu de piață cu VIX ridicat înseamnă că EA dvs. poate avea performanțe slabe. Prin urmare, puteți alege să reduceți pozițiile sau chiar să închideți temporar toate pozițiile. În schimb, dacă EA dvs. se descurcă bine în perioadele cu volatilitate ridicată, puteți să vă așteptați la profituri mai mari în condiții de piață cu VIX ridicat. Evaluarea condițiilor de piață așteptate prin VIX vă poate da mai multă încredere în funcționarea EA dvs.</h5>
     <h3><strong>Înțelegerea Indicelui Volatilității</strong></h3>
-    <h5>Deși știrile raportează adesea schimbările în Indicele VIX, deoarece acesta este rezultatul agregării mai multor modele de prețuri ale opțiunilor Indicelui S&P 500, de fapt, traderii nu pot tranzacționa direct acest indice. Acum, DEMO oferă clienților contracte viitoare VIX pe luna apropiată (aceste contracte viitoare au lichiditate suficientă, sunt eficiente și au un volum mare de tranzacționare), ajustate prin ponderi de valoare echitabilă.</h5>
+    <h5>Deși știrile raportează adesea schimbările în Indicele VIX, deoarece acesta este rezultatul agregării mai multor modele de prețuri ale opțiunilor Indicelui S&P 500, de fapt, traderii nu pot tranzacționa direct acest indice. Acum, Helix-Capita oferă clienților contracte viitoare VIX pe luna apropiată (aceste contracte viitoare au lichiditate suficientă, sunt eficiente și au un volum mare de tranzacționare), ajustate prin ponderi de valoare echitabilă.</h5>
     <h5><br><!--EndFragment--></h5></div>`,
 
   // 教育m5-交易指南
@@ -2616,15 +2616,15 @@ export default {
   // 第31次copy
   "m5-tg-a6-s1-d1":
     "De la Buzzy Schwartz la Ray Dalio, marile personalități din industria de tranzacționare au trăsături complet diferite. La ce categorie aparțineți?",
-  "m5-tg-a6-s2-c": `<div class="rich-text__container"><blockquote><strong>Campionul traderilor de zi - "Buzzy" Schwartz.</strong><br>Marty Schwartz a reprezentat o dată 10% din volumul zilnic al contractelor futures S&P 500. El este autorul cărții "Pit-bull, Lessons from Wall St’s Champion Trader". Pentru un începător, campionul traderilor de zi pare a fi un actor. În executarea lor, acționează hotărât, dar sunt și răbdători în urmărirea tranzacțiilor lor. Traderii de zi trebuie să aibă grijă la mai multe ecrane, monitorizează zeci de informații și așteaptă apariția oportunităților de tranzacționare. Unii tranzacționează rapid, intrând și ieșind din piață în câteva secunde, câștigând 5 puncte aici, 10 puncte acolo. Alții pot fi mai liniștiți, efectuând doar una sau două tranzacții în fiecare zi de tranzacționare, așteptând cu atenție cel mai bun moment pentru a profita la maxim de schimbările din ziua respectivă. Campionii traderi de zi pot fi gălăgioși, dar au învățat să nu își lase încrederea să influențeze operațiunile de tranzacționare. Dacă piața se îndepărtează de așteptările lor, ei fie ies, fie își caută alte modalități. Pentru traderii de zi, totul se reduce la aceasta. Le pasă dacă reduc pierderile și obțin în mod constant profit, nu dacă au dreptate. Poate că au succes doar în jumătate din tranzacțiile lor, dar cu o gestionare excelentă a riscurilor, ei obțin profituri considerabile în fiecare zi. Stilul de tranzacționare DEMO: pe termen scurt/în timpul zilei</blockquote>
+  "m5-tg-a6-s2-c": `<div class="rich-text__container"><blockquote><strong>Campionul traderilor de zi - "Buzzy" Schwartz.</strong><br>Marty Schwartz a reprezentat o dată 10% din volumul zilnic al contractelor futures S&P 500. El este autorul cărții "Pit-bull, Lessons from Wall St’s Champion Trader". Pentru un începător, campionul traderilor de zi pare a fi un actor. În executarea lor, acționează hotărât, dar sunt și răbdători în urmărirea tranzacțiilor lor. Traderii de zi trebuie să aibă grijă la mai multe ecrane, monitorizează zeci de informații și așteaptă apariția oportunităților de tranzacționare. Unii tranzacționează rapid, intrând și ieșind din piață în câteva secunde, câștigând 5 puncte aici, 10 puncte acolo. Alții pot fi mai liniștiți, efectuând doar una sau două tranzacții în fiecare zi de tranzacționare, așteptând cu atenție cel mai bun moment pentru a profita la maxim de schimbările din ziua respectivă. Campionii traderi de zi pot fi gălăgioși, dar au învățat să nu își lase încrederea să influențeze operațiunile de tranzacționare. Dacă piața se îndepărtează de așteptările lor, ei fie ies, fie își caută alte modalități. Pentru traderii de zi, totul se reduce la aceasta. Le pasă dacă reduc pierderile și obțin în mod constant profit, nu dacă au dreptate. Poate că au succes doar în jumătate din tranzacțiile lor, dar cu o gestionare excelentă a riscurilor, ei obțin profituri considerabile în fiecare zi. Stilul de tranzacționare Helix-Capita: pe termen scurt/în timpul zilei</blockquote>
 
-  <blockquote><strong>Tehnicianul perfect - W.D. Ganns</strong><br>William Delbert Gann este cunoscut pentru abilitatea sa de a utiliza analiza tehnică pentru a prezice tendințele pieței. <br> Graficele țes un povești captivante pentru tehnicieni, care înțeleg că modelele tehnice oferă o fereastră spre sufletul pieței și pot oferi o privire asupra psihologiei acesteia. Prin analiza tehnică, ei înțeleg pe deplin frica și lăcomia participanților de pe piață. Fie că este vorba de teoria lui Fibonacci, de valurile lui Elliott sau de teoria lui Gann, analiștii tehnici dețin instrumente care îi pot ajuta să prevadă tendințele pe termen scurt ale pieței și au abilități pentru a realiza tranzacții de succes conform acestor idei. Capacitățile de citire a graficelor ale tehnicienilor au multe aplicații. Ei pot analiza tendințe pe termen scurt și lung. Unii își vor combina analiza tehnică cu analiza fundamentală, tranzacționând în principal atunci când cele două sunt în concordanță. Alții se bazează doar pe preț. Dacă este necesar, vor tranzacționa mai întâi și apoi vor cerceta motivele. Tehnicienii au pe graficul lor linii de trend, medii mobile, indicatori stocastici și medii mobile exponențiale (MACD). Cu toate acestea, baza lor este o frumoasă simpluțe, care îi ghidează în tranzacții precise și încrezătoare. Stilul de tranzacționare DEMO: analiză tehnică</blockquote>
-  <blockquote><strong>Traderul principal al sistemelor - Ed Seykota</strong><br>Ed Seykota este un trader de sisteme de excepție. El înțelege că tranzacționarea implică în primul rând psihologia, iar apoi sistemele.<br>Traderul principal al sistemelor este zeul mașinilor de tranzacționare. Prin procese stricte de dezvoltare și testare, traderul de sisteme și-a automatizat strategiile de tranzacționare, astfel încât computerul poate tranzacționa pentru el. Disciplina este cheia, traderul principal al sistemelor rămâne calm în perioadele dificile, știind că atunci când apar tendințele, va realiza câștiguri considerabile. El este în mijlocul unui război de cercetare. Piața se schimbă, iar odată cu schimbarea pieței, sistemul său trebuie să se adapteze. Acest lucru înseamnă că își petrece cea mai mare parte a timpului cercetând, nu tranzacționând. Cu excepția cazului în care el călătorește în mod frecvent, ca trader principal al sistemelor. Mașina lui îi oferă mult timp liber. Stilul de tranzacționare DEMO: sistem de tranzacționare inteligent</blockquote>
-  <blockquote><strong>Geniul global al macro-tranzacțiilor - Paul Tudor Jones</strong><br>Miliardarul Paul Tudor Jones este cunoscut pentru faptul că a prezis prăbușirea de luni neagră din 1987 și acum este fondatorul organizației de caritate Robin Hood Foundation.<br> Cei mai buni traderi globali de macro înțeleg că munca grea și disciplina sunt cheia succesului, deși pot părea genii la suprafață, atunci când tranzacționează piețe mari cu abilitate și tenacitate. Ei caută neobosit oportunități pe piețele valutare, de indici și mărfuri și apoi muncesc mai mult pentru a se asigura că raportul risc/recompensă al tranzacțiilor este optim. Ei știu că ideile nu îi vor duce prea departe, ci execuția este cheia. Cei mai buni traderi globali de macro (adevărați genii) pot obține profituri în orice tip de piață, fără a înregistra un an cu pierderi. Stilul de tranzacționare DEMO: Contracte pentru diferență (CFD) (indici și mărfuri) și valute</blockquote>
+  <blockquote><strong>Tehnicianul perfect - W.D. Ganns</strong><br>William Delbert Gann este cunoscut pentru abilitatea sa de a utiliza analiza tehnică pentru a prezice tendințele pieței. <br> Graficele țes un povești captivante pentru tehnicieni, care înțeleg că modelele tehnice oferă o fereastră spre sufletul pieței și pot oferi o privire asupra psihologiei acesteia. Prin analiza tehnică, ei înțeleg pe deplin frica și lăcomia participanților de pe piață. Fie că este vorba de teoria lui Fibonacci, de valurile lui Elliott sau de teoria lui Gann, analiștii tehnici dețin instrumente care îi pot ajuta să prevadă tendințele pe termen scurt ale pieței și au abilități pentru a realiza tranzacții de succes conform acestor idei. Capacitățile de citire a graficelor ale tehnicienilor au multe aplicații. Ei pot analiza tendințe pe termen scurt și lung. Unii își vor combina analiza tehnică cu analiza fundamentală, tranzacționând în principal atunci când cele două sunt în concordanță. Alții se bazează doar pe preț. Dacă este necesar, vor tranzacționa mai întâi și apoi vor cerceta motivele. Tehnicienii au pe graficul lor linii de trend, medii mobile, indicatori stocastici și medii mobile exponențiale (MACD). Cu toate acestea, baza lor este o frumoasă simpluțe, care îi ghidează în tranzacții precise și încrezătoare. Stilul de tranzacționare Helix-Capita: analiză tehnică</blockquote>
+  <blockquote><strong>Traderul principal al sistemelor - Ed Seykota</strong><br>Ed Seykota este un trader de sisteme de excepție. El înțelege că tranzacționarea implică în primul rând psihologia, iar apoi sistemele.<br>Traderul principal al sistemelor este zeul mașinilor de tranzacționare. Prin procese stricte de dezvoltare și testare, traderul de sisteme și-a automatizat strategiile de tranzacționare, astfel încât computerul poate tranzacționa pentru el. Disciplina este cheia, traderul principal al sistemelor rămâne calm în perioadele dificile, știind că atunci când apar tendințele, va realiza câștiguri considerabile. El este în mijlocul unui război de cercetare. Piața se schimbă, iar odată cu schimbarea pieței, sistemul său trebuie să se adapteze. Acest lucru înseamnă că își petrece cea mai mare parte a timpului cercetând, nu tranzacționând. Cu excepția cazului în care el călătorește în mod frecvent, ca trader principal al sistemelor. Mașina lui îi oferă mult timp liber. Stilul de tranzacționare Helix-Capita: sistem de tranzacționare inteligent</blockquote>
+  <blockquote><strong>Geniul global al macro-tranzacțiilor - Paul Tudor Jones</strong><br>Miliardarul Paul Tudor Jones este cunoscut pentru faptul că a prezis prăbușirea de luni neagră din 1987 și acum este fondatorul organizației de caritate Robin Hood Foundation.<br> Cei mai buni traderi globali de macro înțeleg că munca grea și disciplina sunt cheia succesului, deși pot părea genii la suprafață, atunci când tranzacționează piețe mari cu abilitate și tenacitate. Ei caută neobosit oportunități pe piețele valutare, de indici și mărfuri și apoi muncesc mai mult pentru a se asigura că raportul risc/recompensă al tranzacțiilor este optim. Ei știu că ideile nu îi vor duce prea departe, ci execuția este cheia. Cei mai buni traderi globali de macro (adevărați genii) pot obține profituri în orice tip de piață, fără a înregistra un an cu pierderi. Stilul de tranzacționare Helix-Capita: Contracte pentru diferență (CFD) (indici și mărfuri) și valute</blockquote>
   <blockquote><strong>Maestrul tranzacțiilor de hedge - Ray Dalio</strong><br>Ray Dalio este fondatorul celei mai mari fonduri de hedge din lume, Bridgewater Associates. În 2012, Dalio a fost inclus în lista celor 100 cei mai influenți oameni din lume a revistei Time și se spune că valoarea sa depășește 15,2 miliarde de dolari.<br>Numai liderii pot construi fonduri de hedge de succes, dar pentru a avea o afacere umană de succes, este necesar un adevărat leadership. Personajul de nivel maestru este un expert în alegerea traderilor potriviți pentru standardele sale, fie că sunt mecanici, macro sau cantitativi. Ei sunt mai întâi manageri de riscuri, fiecare trader avându-și locul într-un plan mai larg de gestionare a riscurilor. Traderii care se descurcă deosebit de bine primesc mai mult capital, în timp ce capitalul alocat celor care nu se descurcă bine scade. Maestrul fondurilor de hedge știe că, ca echipă, traderii pot produce profituri mult mai mari decât suma componentelor lor individuale.</blockquote></div>`,
   // Educația m5-Ghidul de tranzacționare: Cum să tranzacționați aurul folosind valute non-americane
   "m5-tg-a7-s1-t1": "Cum să tranzacționați aurul folosind valute non-americane",
-  "m5-tg-a7-s2-c": `<div class="rich-text__container"><h5>În DEMO, aurul a fost întotdeauna unul dintre activele preferate ale traderilor, iar noi ne-am străduit întotdeauna să vă oferim mai multe produse de tranzacționare cu aur. Una dintre cele mai populare tranzacții cu aur este cea cotată în dolari americani (XAUUSD). Dar în DEMO, acum puteți tranzacționa aurul cu până la <a href="javascript:void(0)">5 valute</a>. Acest articol vă va prezenta avantajele aurului cotat în valute non-americane.</h5>
+  "m5-tg-a7-s2-c": `<div class="rich-text__container"><h5>În Helix-Capita, aurul a fost întotdeauna unul dintre activele preferate ale traderilor, iar noi ne-am străduit întotdeauna să vă oferim mai multe produse de tranzacționare cu aur. Una dintre cele mai populare tranzacții cu aur este cea cotată în dolari americani (XAUUSD). Dar în Helix-Capita, acum puteți tranzacționa aurul cu până la <a href="javascript:void(0)">5 valute</a>. Acest articol vă va prezenta avantajele aurului cotat în valute non-americane.</h5>
   <h5>În cadrul economiei macro și al piețelor financiare, aurul are o poziție de necontestat. Piața de tranzacționare a aurului are o lichiditate ridicată, permițându-vă să găsiți întotdeauna oportunități de investiții adecvate în diferite medii de piață.</h5>
   <h5>Cel mai obișnuit mod de tranzacționare este cu dolari americani. Cu toate acestea, dacă sunteți pozitiv cu privire la aur și la dolarul american în același timp, strategia de maximizare a profitului din investițiile în aur este de a utiliza o altă valută care credeți că ar putea să se deprecieze pentru a cumpăra aur. Dacă direcția pieței este în concordanță cu așteptările dvs., veți putea obține câștiguri atât din aur (apreciere) cât și din moneda non-americană (depreciere). De exemplu, aurul cotat în lire sterline (XAUGBP) a atins un maxim istoric în mai 2020, datorită faptului că am asistat la consolidarea aurului și la slăbirea lirei sterline în același timp.</h5>
   <h5>Logica aceasta funcționează și în sens invers. Dacă credeți că aurul va scădea și sunteți, totodată, îngrijorat de devalorizarea dolarului, puteți vinde aurul pentru a cumpăra o monedă puternică, pentru a obține astfel cel mai mare profit posibil.</h5>
@@ -2634,21 +2634,21 @@ export default {
   <h5>Cu toate acestea, acum aveți oportunitatea de a tranzacționa aurul cu lire sterline și franci elvețieni. Împreună cu tranzacțiile de aur cotate anterior în dolari americani, dolari australieni și euro, aveți acum la dispoziție 5 opțiuni de tranzacționare aur.</h5>
   <h5>Aurul cotat în dolari australieni (XAUAUD) a atins un maxim istoric de 2765 la începutul pandemiei, pe 24 martie. Ulterior, aurul cotat în euro (XAUEUR) și aurul cotat în lire sterline (XAUGBP) au atins fiecare un nou maxim istoric, în perioada următoare, sub influența sentimentului global de refugiu. Aurul cotat în franci elvețieni (XAUCHF) a avut performanțe remarcabile recent. Deși s-ar putea să credeți că francul elvețian se va întări datorită statutului său de valută de refugiu, în realitate, Banca Națională a Elveției a adoptat o politică similară de a urmări euro. Așadar, în timp ce XAUEUR a atins un nou maxim istoric pe 18 mai, XAUCHF a înregistrat de asemenea un nou maxim istoric.</h5>
   <h3>Prețuri mai bune</h3>
-  <h5>DEMO oferă spread-uri competitive pentru cele mai recente produse de aur. Spread-ul minim pentru XAUGBP și XAUCHF este de 0,08, iar spread-ul mediu este de 0,38, respectiv 0,4.</h5>
+  <h5>Helix-Capita oferă spread-uri competitive pentru cele mai recente produse de aur. Spread-ul minim pentru XAUGBP și XAUCHF este de 0,08, iar spread-ul mediu este de 0,38, respectiv 0,4.</h5>
   <h3>Transformarea interpretării pieței în strategii de tranzacționare</h3>
-  <h5>Cu opțiunile variate de tranzacționare cu aur oferite de DEMO, veți avea ocazia să vă îmbunătățiți și să vă diversificați strategiile de tranzacționare. Odată ce aveți o anumită anticipare pentru direcția prețului aurului, alegerea unei valute care se deplasează în direcție opusă cu tendința aurului vă permite să combinați cele două pentru o tranzacție. Desigur, dacă piața se îndepărtează de ceea ce v-ați așteptat, este posibil să vă crească și pierderile.</h5>
+  <h5>Cu opțiunile variate de tranzacționare cu aur oferite de Helix-Capita, veți avea ocazia să vă îmbunătățiți și să vă diversificați strategiile de tranzacționare. Odată ce aveți o anumită anticipare pentru direcția prețului aurului, alegerea unei valute care se deplasează în direcție opusă cu tendința aurului vă permite să combinați cele două pentru o tranzacție. Desigur, dacă piața se îndepărtează de ceea ce v-ați așteptat, este posibil să vă crească și pierderile.</h5>
   <h5>Pentru a afla mai multe despre oportunitățile de investiții în produse precum aur, valute și indici, vă rugăm să urmăriți cele mai recente <a href="/#/market-analysis/">analize de piață</a> sau să scanați codul QR pentru a urmări contul nostru de publicații WeChat, care vă va ajuta să profitați de oportunitățile de tranzacționare.</h5>
 </div>`,
 
   // tradingview
-  "tv-s1-t1": "Comerț cu DEMO pe TradingView",
+  "tv-s1-t1": "Comerț cu Helix-Capita pe TradingView",
   "tv-s1-d1":
     "Combinația ultimă între condițiile competitive de tranzacționare și graficele avansate, pentru a vă îmbunătăți tranzacționarea",
   "tv-s2-t1": "Conectați-vă la TradingView",
   "tv-s2-d1":
-    "Scoateți-ți analistul tehnic. Tranzacționați peste 1200 de produse pe grafice avansate și foarte personalizabile de pe TradingView. Beneficiați de prețuri transparente DEMO, execuție rapidă și servicii pentru clienți renumite*.",
+    "Scoateți-ți analistul tehnic. Tranzacționați peste 1200 de produse pe grafice avansate și foarte personalizabile de pe TradingView. Beneficiați de prețuri transparente Helix-Capita, execuție rapidă și servicii pentru clienți renumite*.",
   "tv-s2-d2": "Tehnologie de grafică de ultimă generație",
-  "tv-s3-t1": "De ce să alegeți DEMO?",
+  "tv-s3-t1": "De ce să alegeți Helix-Capita?",
   "tv-s3-1-t1": "Spread redus",
   "tv-s3-1-d1":
     "Bucurați-vă de spread-uri reduse de la 0,0 puncte^ în contul nostru Razor, lider de piață în industrie",
@@ -2657,7 +2657,7 @@ export default {
     "Bucurați-vă de spread-uri reduse de la 0,0 puncte^ în contul nostru Razor, lider de piață în industrie",
   "tv-s3-3-t1": "Tranzacționare în siguranță",
   "tv-s3-3-d1":
-    "DEMO este un broker reglementat de ASIC, FCA, DFSA, CMA, CySEC, BaFin și SCB, iar fondurile clienților sunt păstrate în conturi separate",
+    "Helix-Capita este un broker reglementat de ASIC, FCA, DFSA, CMA, CySEC, BaFin și SCB, iar fondurile clienților sunt păstrate în conturi separate",
   "tv-s3-4-t1": "Peste 1000 de produse de tranzacționat",
   "tv-s3-4-d1":
     "Tranzacționați o gamă largă de instrumente de contracte pe diferență, inclusiv valută, criptomonede, indici, acțiuni, mărfuri și altele",
@@ -2669,68 +2669,68 @@ export default {
   "tv-s4-2-d1":
     "Dacă nu aveți un cont pe TradingView.com, puteți să vă înregistrați pentru un cont gratuit pentru a începe să utilizați serviciile.",
   "tv-s4-3-t1":
-    "Sunt client nou DEMO, cum să îmi înregistrez contul și să-l conectez la TradingView?",
+    "Sunt client nou Helix-Capita, cum să îmi înregistrez contul și să-l conectez la TradingView?",
   "tv-s4-3-d1":
-    "Dacă sunteți client nou DEMO, vă rugăm să consultați instrucțiunile noastre pas cu pas.",
+    "Dacă sunteți client nou Helix-Capita, vă rugăm să consultați instrucțiunile noastre pas cu pas.",
   "tv-s4-4-t1":
-    "Sunt client DEMO existent, cum să încep să tranzacționez pe TradingView?",
+    "Sunt client Helix-Capita existent, cum să încep să tranzacționez pe TradingView?",
   "tv-s4-4-d1":
-    "Ca client DEMO existent care dorește să înceapă să tranzacționeze pe TradingView, consultați instrucțiunile aici.",
+    "Ca client Helix-Capita existent care dorește să înceapă să tranzacționeze pe TradingView, consultați instrucțiunile aici.",
   "tv-s4-5-t1":
     "Pot conecta conturile mele MT4, MT5 sau cTrader la TradingView?",
-  "tv-s4-5-d1": "Doar conturile DEMO TradingView sunt acceptate.",
+  "tv-s4-5-d1": "Doar conturile Helix-Capita TradingView sunt acceptate.",
   "tv-s4-6-t1": "Ce este TradingView și cum să-l utilizați?",
   "tv-s4-6-d1":
     "TradingView este o rețea socială bazată pe web pentru comercianți, care le permite să interacționeze și să împărtășească idei de tranzacționare și să analizeze și să tranzacționeze direct cu funcționalitatea avansată de grafice de pe TradingView.",
   "tv-s4-7-t1":
-    "Fondurile din contul meu DEMO TradingView vor fi păstrate la DEMO sau TradingView?",
-  "tv-s4-7-d1": "Toate fondurile sunt păstrate într-un cont DEMO izolat.",
+    "Fondurile din contul meu Helix-Capita TradingView vor fi păstrate la Helix-Capita sau TradingView?",
+  "tv-s4-7-d1": "Toate fondurile sunt păstrate într-un cont Helix-Capita izolat.",
   "tv-s4-8-t1":
-    "Ce înseamnă că „Contul DEMO TradingView este susținut de cTrader”?",
+    "Ce înseamnă că „Contul Helix-Capita TradingView este susținut de cTrader”?",
   "tv-s4-8-d1":
-    "Contul DEMO TradingView este construit pe platforma cTrader, special conceput pentru a susține experiența dvs. de tranzacționare pe TradingView.",
+    "Contul Helix-Capita TradingView este construit pe platforma cTrader, special conceput pentru a susține experiența dvs. de tranzacționare pe TradingView.",
   "tv-tip1":
     "*Deținătorul contului TradingView înregistrat.<br>^Alte taxe pot fi aplicabile.",
 
   // Grup
-  "g-s1-t1": "Bine ați venit la Grupul DEMO",
+  "g-s1-t1": "Bine ați venit la Grupul Helix-Capita",
   "g-s1-d1": "Furnizor de tranzacționare online premiat.",
   "g-s1-d2":
     "Ca unul dintre cei mai mari brokeri MT4 din lume, procesăm în medie peste 11.000 de tranzacții de retail în valoare de 1,25 miliarde de dolari SUA în fiecare zi.",
-  "g-s2-t1": "Aflați mai multe despre Grupul DEMO",
+  "g-s2-t1": "Aflați mai multe despre Grupul Helix-Capita",
   "g-s2-1-t1": "Viziunea noastră",
   "g-s2-1-d1":
     "Este o lume de tranzacționare condusă de tehnologie, în care traderii ambițioși abordează provocările și oportunitățile piețelor globale.",
   "g-s2-2-t1": "Comerț pe platforma noastră",
   "g-s2-2-d1":
-    "Care dintre birourile globale DEMO se potrivește cel mai bine nevoilor dvs. de tranzacționare?",
+    "Care dintre birourile globale Helix-Capita se potrivește cel mai bine nevoilor dvs. de tranzacționare?",
   "g-s3-1-t1": "Despre noi",
   "g-s3-1-d1":
-    "Aflați mai multe despre tehnologia noastră avansată DEMO și determinarea noastră de a ajuta clienții să înțeleagă tranzacționarea.",
+    "Aflați mai multe despre tehnologia noastră avansată Helix-Capita și determinarea noastră de a ajuta clienții să înțeleagă tranzacționarea.",
   "g-s3-2-t1": "Știri și media",
   "g-s3-2-d1": "Cercetare de știri și media",
 
   // Documentație legală
   "ld-s0-t1": "Documentație legală",
   "ld-s0-d1":
-    "Ar trebui să citiți documentația legală relevantă a entității DEMO înainte de a vă deschide un cont pe platforma noastră.",
+    "Ar trebui să citiți documentația legală relevantă a entității Helix-Capita înainte de a vă deschide un cont pe platforma noastră.",
 
   "ld-s1-d1":
-    "Vă rugăm să rețineți că documentele noastre legale variază în funcție de entitatea DEMO cu care dețineți un cont de tranzacționare DEMO și reglementările aplicabile. Documentele legale aplicabile contului dvs. vor fi clare specificate în cererea dvs. și ar trebui să le citiți cu atenție înainte de a finaliza cererea. Pentru mai multe informații cu privire la reglementările aplicabile, vă rugăm să faceți clic pe linkurile relevante de mai jos:",
-  "ld-s1-1-q1": "DEMO Markets Limited (Bahamas)",
-  "ld-s1-1-a1": `<div class="rich-text__container"><p>La deschiderea contului cu DEMO Markets Limited, acest lucru implică faptul că ați citit, înțeles și sunteți de acord cu termenii din următoarele documente:</p>
+    "Vă rugăm să rețineți că documentele noastre legale variază în funcție de entitatea Helix-Capita cu care dețineți un cont de tranzacționare Helix-Capita și reglementările aplicabile. Documentele legale aplicabile contului dvs. vor fi clare specificate în cererea dvs. și ar trebui să le citiți cu atenție înainte de a finaliza cererea. Pentru mai multe informații cu privire la reglementările aplicabile, vă rugăm să faceți clic pe linkurile relevante de mai jos:",
+  "ld-s1-1-q1": "Helix-Capita Markets Limited (Bahamas)",
+  "ld-s1-1-a1": `<div class="rich-text__container"><p>La deschiderea contului cu Helix-Capita Markets Limited, acest lucru implică faptul că ați citit, înțeles și sunteți de acord cu termenii din următoarele documente:</p>
   <ul><li><a target='_blank' href="pdf.js/SCB_Client_TCs_ROW.pdf"  rel="noreferrer noopener">
   Termeni și condiții
   </a> –
-  Acest acord are ca scop reglementarea relației dvs. cu DEMO Markets Limited.
+  Acest acord are ca scop reglementarea relației dvs. cu Helix-Capita Markets Limited.
   </li><li><a target='_blank' href="pdf.js/SCB_Privacy_Policy_ROW.pdf"  rel="noreferrer noopener">
   Politica de confidențialitate
   </a> –
-  Această politică stabilește modul în care colectăm și gestionăm informațiile dvs. personale atunci când tranzacționați cu DEMO Markets Limited.
+  Această politică stabilește modul în care colectăm și gestionăm informațiile dvs. personale atunci când tranzacționați cu Helix-Capita Markets Limited.
   </li><li><a target='_blank' href="pdf.js/SCB_Cookie_Policy_ROW.pdf"  rel="noreferrer noopener">
   Politica privind modulele cookie
   </a> –
-  Această politică descrie tipurile de cookie-uri pe care le utilizăm pe DEMO și modul în care le gestionăm. Utilizarea site-ului nostru implică acordul cu termenii specificați în această politică.
+  Această politică descrie tipurile de cookie-uri pe care le utilizăm pe Helix-Capita și modul în care le gestionăm. Utilizarea site-ului nostru implică acordul cu termenii specificați în această politică.
   </li><li><a href="#">Termeni și condiții pentru platforma de simulare </a></li><li><a target='_blank' href="pdf.js/SCB_Risk_Disclosure_Notice_ROW.pdf">
   Notificare privind riscurile
   </a> –
@@ -2768,7 +2768,7 @@ export default {
   "cu-s1-2-d2": "Media",
 
   //合作伙伴 partners
-  "p-s0-t1": "Deveniți un partener DEMO",
+  "p-s0-t1": "Deveniți un partener Helix-Capita",
   "p-s0-d1":
     "Alăturați-vă unuia dintre cele mai de succes programe de recomandare din industrie și dezvoltați-vă afacerea cu ajutorul reprezentanților noștri dedicați din regiune.",
   "p-s0-1-t1": "Cursuri de diplomă internațională",

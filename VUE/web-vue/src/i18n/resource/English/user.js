@@ -740,7 +740,7 @@ export default {
   zanweikaifang: "Not yet open",
   shanchuchenggong: "Deleted successfully",
   tianjiatixiandizhi: "Add withdrawal address",
-  tip3: "Enter a note of 4-20 characters, for example: Xiao Ming's DEMO account",
+  tip3: "Enter a note of 4-20 characters, for example: Xiao Ming's Helix-Capita account",
   dizhibeizhu: "Address remarks",
   tibidizhi: "Withdrawal address",
   baocun: "Save",

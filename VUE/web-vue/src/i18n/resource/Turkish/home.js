@@ -701,7 +701,7 @@ export default {
 
   yinsibaohu_1: "1. Taraflar",
   yinsibaohu_2:
-    "1.1 DEMO borsası (bundan böyle 'şirket' olarak anılacaktır), New York federal yasalarına göre New York'ta kurulmuş bir şirkettir. Şirket tarafından işletilen www.Demo.com (bundan sonra 'site' veya 'web sitesi' olarak anılacaktır), kullanıcıların dijital varlık ticareti yapmasını sağlamak ve ilgili hizmetleri sağlamak için özel olarak tasarlanmış bir web sitesidir (bundan sonra 'site' veya 'site'). 'Hizmet' veya 'Hizmetler'). Anlaşmanın ifadesi için, şirket ve web sitesi bu anlaşmada birlikte 'biz' veya diğer birinci kişi zamirleri olarak kullanılır.",
+    "1.1 Helix-Capita borsası (bundan böyle 'şirket' olarak anılacaktır), New York federal yasalarına göre New York'ta kurulmuş bir şirkettir. Şirket tarafından işletilen www.Demo.com (bundan sonra 'site' veya 'web sitesi' olarak anılacaktır), kullanıcıların dijital varlık ticareti yapmasını sağlamak ve ilgili hizmetleri sağlamak için özel olarak tasarlanmış bir web sitesidir (bundan sonra 'site' veya 'site'). 'Hizmet' veya 'Hizmetler'). Anlaşmanın ifadesi için, şirket ve web sitesi bu anlaşmada birlikte 'biz' veya diğer birinci kişi zamirleri olarak kullanılır.",
   yinsibaohu_3:
     "1.2 Bu siteye giriş yapan herhangi bir gerçek kişi veya diğer varlık, bu site kullanıcısı olarak kabul edilir ve bu anlaşmada 'siz' veya diğer ikinci kişi zamirleri olarak kullanılır.",
   yinsibaohu_4:

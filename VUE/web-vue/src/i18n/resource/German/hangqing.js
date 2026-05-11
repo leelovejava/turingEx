@@ -21,7 +21,7 @@ export default {
     'bizhong':'Währung',
     'jiagejisuanqi':'Preisrechner',
     'goumai':'Besorgen',
-    'chang1':'Unter den großen Handelsplattformen hat DEMO die niedrigsten Bearbeitungsgebühren.',
+    'chang1':'Unter den großen Handelsplattformen hat Helix-Capita die niedrigsten Bearbeitungsgebühren.',
     'jiagexinxi':'Preisinformationen',
     'chang2':'Minimum und Maximum innerhalb von 24 Stunden',
     'gao':'hoch',

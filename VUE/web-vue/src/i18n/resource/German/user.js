@@ -726,7 +726,7 @@ export default {
   zanweikaifang: "noch nicht geöffnet",
   shanchuchenggong: "Erfolgreich gelöscht",
   tianjiatixiandizhi: "Abhebungsadresse hinzufügen",
-  tip3: "Geben Sie eine Notiz mit 4-20 Zeichen ein, zum Beispiel: Xiao Mings DEMO-Konto",
+  tip3: "Geben Sie eine Notiz mit 4-20 Zeichen ein, zum Beispiel: Xiao Mings Helix-Capita-Konto",
   dizhibeizhu: "Anmerkungen zur Adresse",
   tibidizhi: "Rückzugsadresse",
   baocun: "Speichern",

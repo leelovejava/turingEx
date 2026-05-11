@@ -21,7 +21,7 @@ export default {
     'bizhong':'Moneta',
     'jiagejisuanqi':'calcolatore di prezzo',
     'goumai':'Acquistare',
-    'chang1':'Tra le principali piattaforme di trading, DEMO ha il tasso di commissione di gestione più basso.',
+    'chang1':'Tra le principali piattaforme di trading, Helix-Capita ha il tasso di commissione di gestione più basso.',
     'jiagexinxi':'prezzo informazioni sul prezzo',
     'chang2':'Minimo e massimo entro 24 ore',
     'gao':'alto',

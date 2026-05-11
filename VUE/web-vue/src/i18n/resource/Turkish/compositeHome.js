@@ -1,6 +1,6 @@
 export default {
   privacyText:
-    "©2022 DEMO Markets Limited Tüm Hakları Saklıdır. Şirket Kayıt No 177174 B SIA-F217 <br><br> Risk Uyarısı: Fark Sözleşmeleri (CFD'ler) kaldıraç etkisi nedeniyle hızlı kayıpların yüksek riskini içeren karmaşık araçlardır. 85.12% perakende yatırımcılar bu sağlayıcıyla CFD ticareti yaparken hesap kaybeder. CFD'lerin işleyişini anlayıp yüksek riskli sermaye kayıplarını tolere edebilme yeteneğinizin olup olmadığını düşünmelisiniz.<br><br> Varlık üzerinde herhangi bir mülkiyet veya hakka sahip değilsiniz. Geçmiş performans, gelecekteki performansı garanti etmez ve vergi yasaları değişebilir. Bu web sitesindeki bilgiler temelde genel bilgilerdir ve sizin veya müşterinizin bireysel hedeflerini, finansal durumunu veya ihtiyaçlarını dikkate almaz. Herhangi bir ticari karar vermeden önce RDN ve diğer yasal belgelerimizi okumanız ve riskleri tamamen anlamanız gerektiğini unutmayın. Bağımsız tavsiye almanızı öneririz.<br><br> DEMO Markets Limited, Sea Sky Lane, B201, Sandyport, Nassau, New Providence, The Bahamas'da yer almaktadır ve Bahamalar Menkul Kıymetler Komisyonu (SIA-F217) tarafından lisanslanmış ve düzenlenmektedir.<br><br> Bu web sitesindeki bilgilerin ve sunulan ürünlerin ve hizmetlerin, herhangi bir ülkenin yerel yasalarına aykırı olması durumunda, bu web sitesindeki bilgilerin ve sunulan ürünlerin bu ülkeler veya bölgelerdeki herhangi bir kişiye dağıtılmadığına dikkat edin.",
+    "©2022 Helix-Capita Markets Limited Tüm Hakları Saklıdır. Şirket Kayıt No 177174 B SIA-F217 <br><br> Risk Uyarısı: Fark Sözleşmeleri (CFD'ler) kaldıraç etkisi nedeniyle hızlı kayıpların yüksek riskini içeren karmaşık araçlardır. 85.12% perakende yatırımcılar bu sağlayıcıyla CFD ticareti yaparken hesap kaybeder. CFD'lerin işleyişini anlayıp yüksek riskli sermaye kayıplarını tolere edebilme yeteneğinizin olup olmadığını düşünmelisiniz.<br><br> Varlık üzerinde herhangi bir mülkiyet veya hakka sahip değilsiniz. Geçmiş performans, gelecekteki performansı garanti etmez ve vergi yasaları değişebilir. Bu web sitesindeki bilgiler temelde genel bilgilerdir ve sizin veya müşterinizin bireysel hedeflerini, finansal durumunu veya ihtiyaçlarını dikkate almaz. Herhangi bir ticari karar vermeden önce RDN ve diğer yasal belgelerimizi okumanız ve riskleri tamamen anlamanız gerektiğini unutmayın. Bağımsız tavsiye almanızı öneririz.<br><br> Helix-Capita Markets Limited, Sea Sky Lane, B201, Sandyport, Nassau, New Providence, The Bahamas'da yer almaktadır ve Bahamalar Menkul Kıymetler Komisyonu (SIA-F217) tarafından lisanslanmış ve düzenlenmektedir.<br><br> Bu web sitesindeki bilgilerin ve sunulan ürünlerin ve hizmetlerin, herhangi bir ülkenin yerel yasalarına aykırı olması durumunda, bu web sitesindeki bilgilerin ve sunulan ürünlerin bu ülkeler veya bölgelerdeki herhangi bir kişiye dağıtılmadığına dikkat edin.",
   "h-s1-t1": "{TITLE} ile her yerde ticaret imkanı",
   "h-s1-d1": "Keskin fiyatlandırma, düşük spreadler, hızlı yürütme",
   "h-s2-t1": "Popüler",
@@ -14,7 +14,7 @@ export default {
   "h-s2-h3": "Hacim",
   "h-s2-h4": "Değişim",
   "h-s2-1-d1":
-    "Gerçek zamanlı fiyatlar yalnızca gösterge amaçlıdır. En son fiyatları görmek için platformunuza bakın. DEMO Markets Limited destek sağlar.",
+    "Gerçek zamanlı fiyatlar yalnızca gösterge amaçlıdır. En son fiyatları görmek için platformunuza bakın. Helix-Capita Markets Limited destek sağlar.",
   "h-s2-2-t1": "{TITLE} Seçme Nedenleri",
   "h-s2-2-t2": "1000'den fazla ticaret ürününde fırsatları keşfedin",
   "h-s2-2-d1":
@@ -22,7 +22,7 @@ export default {
   "h-s2-2-b1": "Spreadlerimizi Görüntüle",
   "h-s3-t1": "Üstün, Trader",
   "h-s3-d1":
-    "DEMO ATP, küresel başlıklı ortak ve ATP Turu'nun resmi çevrimiçi ticaret ortağı olarak sıralandı.",
+    "Helix-Capita ATP, küresel başlıklı ortak ve ATP Turu'nun resmi çevrimiçi ticaret ortağı olarak sıralandı.",
   "h-s4-t1": "Mevcut aracı kurumunuzdan memnun değil misiniz?",
   "h-s4-t2": "Biz tam olarak anlarız.",
   "h-s4-1-t1": "Çok düşük spreadler",
@@ -68,7 +68,7 @@ export default {
   "h-s7-t2": "TradingView Brokeri",
   "h-s7-t3": "2022 Yılının Brokeri",
   "h-s7-d1":
-    "DEMO, TradingView Broker Ödüllerinde Yılın Brokeri seçilmenin gururunu yaşıyor.",
+    "Helix-Capita, TradingView Broker Ödüllerinde Yılın Brokeri seçilmenin gururunu yaşıyor.",
   "h-s8-t1": "Ödüllere Layık Görüldü",
   "h-s8-t2": "Dünya çapında bize verildi",
   "ready-t1": "Ticaret için hazır mısınız?",
@@ -80,7 +80,7 @@ export default {
     "Küçük mevduatlar dahil hızlı ve kolay bir şekilde başlayın. Basit başvuru sürecimizle birkaç dakika içinde başvurun.",
   "ready-b2": "Başla",
   "ready-d3":
-    "DEMO hesabı açmak çok kolay. Sadece birkaç dakika içinde DEMO yolculuğunuza başlayın.",
+    "Helix-Capita hesabı açmak çok kolay. Sadece birkaç dakika içinde Helix-Capita yolculuğunuza başlayın.",
   "ready-d4":
     "Sadece küçük bir mevduatla hemen ticarete başlayabilirsiniz. Basit başvuru sürecimizle sadece birkaç dakika sürer.",
   "learn-more-info": "Daha Fazla Bilgi Edinin",
@@ -92,7 +92,7 @@ export default {
   xianzaijiaoy: "Şimdi Ticaret",
   tuichu: "Çıkış",
   tishi:
-    "DEMO, burada sunulan materyallerin doğru, en güncel veya eksiksiz olduğunu garanti etmez ve bu nedenle buna dayanmamalıdır. Burada sunulan bilgiler, üçüncü taraflardan olsun veya olmasın, bir tavsiye olarak kabul edilmemeli; veya satın alma veya satma teklifi; veya herhangi bir güvenlik, finansal ürün veya aracın satın alınmasını veya satılmasını istemek için bir teklif; veya herhangi bir belirli ticaret stratejisine katılmak. Herhangi bir okuyucunun kendi tavsiyesini aramasını öneririz. DEMO'nun izni olmadan bu bilgilerin kopyalanması veya dağıtılması yasaktır.",
+    "Helix-Capita, burada sunulan materyallerin doğru, en güncel veya eksiksiz olduğunu garanti etmez ve bu nedenle buna dayanmamalıdır. Burada sunulan bilgiler, üçüncü taraflardan olsun veya olmasın, bir tavsiye olarak kabul edilmemeli; veya satın alma veya satma teklifi; veya herhangi bir güvenlik, finansal ürün veya aracın satın alınmasını veya satılmasını istemek için bir teklif; veya herhangi bir belirli ticaret stratejisine katılmak. Herhangi bir okuyucunun kendi tavsiyesini aramasını öneririz. Helix-Capita'nun izni olmadan bu bilgilerin kopyalanması veya dağıtılması yasaktır.",
   home: "Anasayfa",
   support: "Müşteri Destek",
   "refer-friend": "Arkadaşını Getir",
@@ -122,7 +122,7 @@ export default {
   "header-s-s1-t1": "Sıkça Sorulan Sorular",
   "header-s-s1-d1":
     "Aşağıda sıkça sorulan sorularımız ve cevapları bulunmaktadır. Daha fazla popüler soru için sıkça sorulan sorular bölümümüzü ziyaret edin veya ekranın altında profesyonel ekibimizle canlı sohbet başlatın.",
-  "header-s-s1-q1": "DEMO hangi hesap türlerini sunuyor?",
+  "header-s-s1-q1": "Helix-Capita hangi hesap türlerini sunuyor?",
   "header-s-s1-a1": `<div class="rich-text__container"><h5><strong>Müşterilerin ihtiyaçlarına yanıt vermek için iki farklı hesap türü sunuyoruz</strong></h5>
   <h5><strong>Razor Hesabı</strong></h5>
   <h5>Razor hesaplarımız orijinal spreadleri içerir, bu da likidite sağlayıcılardan doğrudan alınan spread'in doğrudan müşterilerimize iletilmesi anlamına gelir.</h5>
@@ -131,7 +131,7 @@ export default {
   <h5>Standart hesaplarımız komisyonsuzdur ve orijinal spreadimize + 1 pip ekler (örneğin, 0 spread + 1 pip = 1 pip [her yönde alış ve satış fiyatı için 0.5 pip]).</h5></div>`,
   "header-s-s1-q2": "Swap nedir?",
   "header-s-s1-a2": `<div class="rich-text__container"><h5>Swap oranları, bir döviz işlemi sırasında pozisyonları bir gün tutmanın gecelik veya taşıma maliyetini ifade eder (yani kazanılan veya ödenen faiz). Bu oranlar bankalararası spread ve çapraz döviz temeli tarafından belirlenir.<br><br>Swap maliyeti çift yönlüdür. Bu, tüccarın swap maliyeti kazanabileceği veya ilgili işlem pozisyonlarında swap maliyeti üretebileceği anlamına gelir. Bu, işlemin enstrümanına, pozisyonunuzun uzun mu yoksa kısa mı olduğuna ve işlemin taşınma süresinde olup olmadığına bağlı olacaktır. İş günü döviz işlem sözleşmeleri T + 2 temelinde yerleştirildiği için, hafta ortası taşıma süresi üç kat swap maliyeti alacaktır, hafta sonu faizlerini içerecek şekilde hesaplanacaktır.</h5></div>`,
-  "header-s-s1-q3": "DEMO ECN/STP bir tüccar mı yoksa market maker mı?",
+  "header-s-s1-q3": "Helix-Capita ECN/STP bir tüccar mı yoksa market maker mı?",
   "header-s-s1-a3": `<div class="rich-text__container"><h5>Bu soru sıkça sorulur. Bu sorunun cevaplanması zor kısmı, ECN ve STP'nin borsada pazarlama terimlerinden alınmış olması ve sektörde farklı sağlayıcıların farklı anlamlar vermiş olmasıdır.</h5>
   <h5>Gerçek bir ECN veya STP broker, tanıtıcı broker veya white label planı altında başkalarının sistemlerini kullanan bir brokerdir.</h5>
   <h5>Biz ürünlerimizi sunan kişiyiz ve sistemlerimizi kontrol edebiliriz, çünkü müşterilerle doğrudan ilişki kurmalarını tercih ediyoruz.</h5>
@@ -147,27 +147,27 @@ export default {
   "header-s-s1-a5": `<div class="rich-text__container"><h5>Gerçek hesap açmak istiyorsanız ana sayfamıza gidin ve "Gerçek Hesaplar"ı seçin. Bu işlem çevrimiçi olarak 5-10 dakika sürer. Sizi bir testi tamamlamaya ve başvuru sırasında kimlik belgelerinizi yüklemeye davet edeceğiz. Belgeleriniz onaylandıktan sonra ticaret hesabı giriş bilgilerinizi size ileteceğiz.</h5></div>`,
   "header-rf-s0-t1": "Her biri benzersiz ödül kazanmak için bir arkadaş önerin",
   "header-rf-s0-d1":
-    "Perakende ve DEMO Pro müşterilerine Demo'nun arkadaş önerme programını tanıtın. Bu etkinlikle ilgili şart ve koşullar geçerlidir.",
+    "Perakende ve Helix-Capita Pro müşterilerine Demo'nun arkadaş önerme programını tanıtın. Bu etkinlikle ilgili şart ve koşullar geçerlidir.",
   "header-rf-s1-t1": "Size özel bir arkadaş önerme planı",
   "header-rf-s1-d1":
     "Arkadaşlarınızı ticaret yapmaya davet eden müşterilere yönelik iki farklı tavsiye programı sunuyoruz, hangi programın size uygun olduğuna bağlı olarak değişir.",
   "header-rf-s1-h1": "Perakende Müşteriler İçin",
-  "header-rf-s1-h2": "DEMO Pro Müşterileri İçin",
+  "header-rf-s1-h2": "Helix-Capita Pro Müşterileri İçin",
   "header-rf-s1-r1":
     "Arkadaşınız bir ticaret hesabı açtığında ve bir depozit yaptığında, her ikisi de 20 ücretsiz işlem alır.",
   "header-rf-s1-r2":
     "Arkadaşınız bir ticaret hesabı açtığında ve belirli bir mevduat ve işlem gereksinimini karşıladığında, her ikisi de 1.000 doların üzerinde nakit kazanabilir.",
   "header-rf-s2-t1": "Sıkça Sorulan Sorular",
-  "header-rf-s2-q1": "DEMO Pro nasıl olunur?",
+  "header-rf-s2-q1": "Helix-Capita Pro nasıl olunur?",
   "header-rf-s2-a1":
-    "Henüz DEMO Pro değilseniz ancak profesyonel bir tüccar olmak istiyorsanız, uygunluk kriterleri ve gereksinimler hakkında daha fazla bilgi edinebilirsiniz.",
+    "Henüz Helix-Capita Pro değilseniz ancak profesyonel bir tüccar olmak istiyorsanız, uygunluk kriterleri ve gereksinimler hakkında daha fazla bilgi edinebilirsiniz.",
   "header-rf-s2-q2": "Arkadaşınız nasıl öneri alabilir?",
   "header-rf-s2-a2":
-    "DEMO'yu arkadaşlarınıza önermeye başladığınızda, arkadaşlarınız kayıt sırasında 'Bizi nereden duydunuz?' bölümüne e-posta adresinizi girmelidir.",
+    "Helix-Capita'yu arkadaşlarınıza önermeye başladığınızda, arkadaşlarınız kayıt sırasında 'Bizi nereden duydunuz?' bölümüne e-posta adresinizi girmelidir.",
   "header-rf-s3-tip1": `<div class="disclaimer__content">Komisyonsuz işlem, diğer ücret ve masraflar olabilir. Ücretsiz işlemleri geri alma yükümlülüğü yoktur. Detaylı şartlar ve koşullar için <a target='_blank' href="pdf.js/SCB_Refer-a-Friend-Ts-and-Cs_Retail-ROW_EN_June-2021.pdf" ><strong>Perakende Müşteriler</strong></a> için tıklayınız. Veya bizimle <a href="/#/contact-us" ><strong>iletişime geçebilirsiniz</strong> </a>. <br><br> <a href="pdf.js/SCB_Refer-a-Friend-Ts-and-Cs_Retail-ROW_EN_June-2021.pdf" > Profesyonel Müşteriler (Pro) için ödül, depozito ve işlem gereksinimlerine ilişkin tam şartlar ve koşullar için buraya </a> tıklayabilirsiniz. Veya bizimle <a href="/#/contact-us" "><strong>iletişime geçebilirsiniz.</strong></a><br></div>`,
 
-  "footer-s1-1-t1": "DEMO Piyasaları Ltd.",
-  "footer-s1-1-d1": "Neden DEMO'yu Seçmelisiniz",
+  "footer-s1-1-t1": "Helix-Capita Piyasaları Ltd.",
+  "footer-s1-1-d1": "Neden Helix-Capita'yu Seçmelisiniz",
   "footer-s1-1-d2": "Kariyer",
   "footer-s1-1-d3": "Platformumuzda İşlem Yapın",
   "footer-s1-1-d4": "Platform",
@@ -294,14 +294,14 @@ export default {
   "m1-vip-s1-2": "ATP indirimlerimizden faydalanma",
   "m1-vip-s1-3": "Gelişmiş Piyasa İçgörüsü",
   "m1-vip-s1-4":
-    "DEMO'nun profesyonel müşterisiyseniz, üst düzey etkinlik davetlerine, üst düzey işlem araçlarına ve VPS çözümlerine katılabilirsiniz.",
+    "Helix-Capita'nun profesyonel müşterisiyseniz, üst düzey etkinlik davetlerine, üst düzey işlem araçlarına ve VPS çözümlerine katılabilirsiniz.",
   "m1-vip-s2-t1": "Özelleştirilmiş Hizmet ve Destek",
   "m1-vip-s2-d1":
     "Teknik olarak bilgili bir müşteri yöneticisi atayarak, kişisel ticaret tarzınıza uygun üst düzey müşteri çözümleri ve destek sunuyoruz.",
 
   "m1-vip-s3-t1": "Üst Düzey Müşteri Nitelikleri Nasıl Kazanılır",
   "m1-vip-s3-d1":
-    "Üst düzey müşteri niteliklerimize ulaşmak için, iki ardışık takvim çeyreğinde aşağıdaki bir veya daha fazla eşik gereksinimini karşılamanızı talep ediyoruz. Perakende ve DEMO Pro müşterileri üst düzey müşteri olmaya hak kazanır.",
+    "Üst düzey müşteri niteliklerimize ulaşmak için, iki ardışık takvim çeyreğinde aşağıdaki bir veya daha fazla eşik gereksinimini karşılamanızı talep ediyoruz. Perakende ve Helix-Capita Pro müşterileri üst düzey müşteri olmaya hak kazanır.",
   "m1-vip-s3-1-t1": "Piyasa",
   "m1-vip-s3-1-t2": "Aylık İşlem Hacmi",
   "m1-vip-s3-2-t1": "FX",
@@ -316,10 +316,10 @@ export default {
     "Analiz ekibimizden gelen bir dizi profesyonel ticaret kaynağına ve özel içgörülere erişim sağlayın.",
   "m1-vip-s4-2-t1": "İndirim, Günlük İade",
   "m1-vip-s4-2-d1":
-    "İndirimli komisyon kazanın ve DEMO'nun ActiveTrader programına uygun olduğunuzda günlük olarak iade alın.",
+    "İndirimli komisyon kazanın ve Helix-Capita'nun ActiveTrader programına uygun olduğunuzda günlük olarak iade alın.",
   "m1-vip-s4-3-t1": "Üst Düzey Etkinlikler",
   "m1-vip-s4-3-d1":
-    "DEMO'nun profesyonel müşterileri için VIP üst düzey forex etkinlikleri, seminerler ve atölye çalışmaları, özel yemek deneyimleri ve spor etkinliklerine davet edilme fırsatı.",
+    "Helix-Capita'nun profesyonel müşterileri için VIP üst düzey forex etkinlikleri, seminerler ve atölye çalışmaları, özel yemek deneyimleri ve spor etkinliklerine davet edilme fırsatı.",
   "m1-vip-s5-t1": "Hemen Danışın",
   "m1-vip-s5-d1":
     "Daha fazla bilgi edinmek veya üst düzey müşteri hizmetlerimize katılmak için lütfen support{'@'}demo.com adresine e-posta gönderin.",
@@ -363,20 +363,20 @@ export default {
     "Kişiye özel bir müşteri yöneticisi ile çalışarak, ticaret hedeflerinize ulaşmanıza yardımcı olacak kaliteli müşteri çözümleri ve rehberlik sağlayın.",
   "m1-at-s3-2-t1": "VPS Sunucusu",
   "m1-at-s3-2-d1":
-    "DEMO Pro müşterileri için ücretsiz VPS barındırma çözümleri, otomatik stratejiler çalıştırmak ve düşük gecikme EDGE altyapımızdan yararlanmak için.",
+    "Helix-Capita Pro müşterileri için ücretsiz VPS barındırma çözümleri, otomatik stratejiler çalıştırmak ve düşük gecikme EDGE altyapımızdan yararlanmak için.",
   "m1-at-s3-3-t1": "Gelişmiş Görüş ve Raporlar",
   "m1-at-s3-3-d1":
-    "DEMO pazar analistlerinden özel içgörüler, günlük Autochartist sinyalleri ve ödüllü broker'dan beklediğiniz tüm MT4 ve MT5 özellikleri ve ticaret raporları.",
+    "Helix-Capita pazar analistlerinden özel içgörüler, günlük Autochartist sinyalleri ve ödüllü broker'dan beklediğiniz tüm MT4 ve MT5 özellikleri ve ticaret raporları.",
   "m1-at-s4-t1": "Aktif İşlemci Programına Nasıl Katılırım?",
   "m1-at-s4-d1": `Daha fazla bilgi edinmek veya üst düzey müşteri hizmetlerimize katılmak için lütfen <a href="mailto:support@demo.com">support@demo.com</a> adresine e-posta gönderin.`,
   "m1-at-s4-d2":
     "Hala müşteri değil misiniz? Hemen hesap açın ve üst düzey müşteri olarak katılın, olağanüstü hizmet ve faydaların keyfini çıkarın.",
   "m1-who-s0-t1": "Biz Kimiz",
   "m1-who-s0-d1":
-    "DEMO ticaretin yolunu çok iyi biliyor. Küresel finans teknolojisinin ölçeği ve girişimlerin çevikliği sayesinde, dünya pazarlarında işlem yapmak için ihtiyacınız olan her türlü hizmeti sunmaktan gurur duyuyoruz.",
+    "Helix-Capita ticaretin yolunu çok iyi biliyor. Küresel finans teknolojisinin ölçeği ve girişimlerin çevikliği sayesinde, dünya pazarlarında işlem yapmak için ihtiyacınız olan her türlü hizmeti sunmaktan gurur duyuyoruz.",
   "m1-who-s1-t1": "Tarihçemiz",
   "m1-who-s1-d1":
-    "DEMO, 2010 yılında Avustralya, Melbourne'de kurulan bir grup deneyimli tüccar tarafından kuruldu. Gecikmeli işlemlerden, yüksek maliyetlerden ve kötü müşteri desteğinden bıktıktan sonra, dünya çapındaki tüccarların üstün teknoloji, düşük maliyetli spreadler ve ticaret becerilerini öğrenmelerine yardımcı olmak için çalışmaya başladık.",
+    "Helix-Capita, 2010 yılında Avustralya, Melbourne'de kurulan bir grup deneyimli tüccar tarafından kuruldu. Gecikmeli işlemlerden, yüksek maliyetlerden ve kötü müşteri desteğinden bıktıktan sonra, dünya çapındaki tüccarların üstün teknoloji, düşük maliyetli spreadler ve ticaret becerilerini öğrenmelerine yardımcı olmak için çalışmaya başladık.",
   "m1-who-s2-t1": "Dünya çapında tüccarların güvenini kazanın",
   "m1-who-s2-d1":
     "Günlük 12.55 milyar dolarlık işlem hacmi ile dünyanın en büyük forex aracı kurumlarından biri haline geldik*.",
@@ -390,17 +390,17 @@ export default {
   "m1-who-s4-t1": "Daha fazla bilgi edinmek ister misiniz?",
   "m1-who-s4-d1": `<h5>Lütfen <a href="#" rel="noreferrer noopener">Wikipedia sayfamızı</a> ziyaret edin ve <a href="#" rel="noreferrer noopener">Facebook</a>, <a href="#" rel="noreferrer noopener">YouTube</a>, <a href="#" rel="noreferrer noopener">LinkedIn</a> ve <a href="#" rel="noreferrer noopener">Twitter</a> hesaplarımızı takip edin.</h5>`,
   "m1-who-s6-d1":
-    "*2019 yılı 1 Temmuz ile 30 Kasım tarihleri arasında işlem açan veya açık pozisyon tutan etkin kullanıcılar^ DEMO hesabı sahipleri",
-  "m1-why-s1-t1": "Neden DEMO'yu Seçmelisiniz?",
+    "*2019 yılı 1 Temmuz ile 30 Kasım tarihleri arasında işlem açan veya açık pozisyon tutan etkin kullanıcılar^ Helix-Capita hesabı sahipleri",
+  "m1-why-s1-t1": "Neden Helix-Capita'yu Seçmelisiniz?",
   "m1-why-s1-d1":
     "Her işlemde yanınızdayız, hızlı yürütme hızı, düşük spreadler ve sizin ticaret hedeflerinize ulaşmanıza yardımcı olma samimi taahhüdümüzü birleştiriyoruz.",
   "m1-why-s2-t1": "Biz Kimiz",
   "m1-why-s2-d1":
-    "DEMO, 2010 yılında kuruldu ve hızla dünyanın en büyük forex aracı kurumlarından biri haline geldi. Amacımız, ileri teknolojiye dayalı bir ticaret dünyası inşa etmek ve coşkulu tüccarların küresel piyasanın getirdiği zorluklarla karşı karşıya kalmasına ve fırsatları değerlendirmesine olanak tanımaktır.",
+    "Helix-Capita, 2010 yılında kuruldu ve hızla dünyanın en büyük forex aracı kurumlarından biri haline geldi. Amacımız, ileri teknolojiye dayalı bir ticaret dünyası inşa etmek ve coşkulu tüccarların küresel piyasanın getirdiği zorluklarla karşı karşıya kalmasına ve fırsatları değerlendirmesine olanak tanımaktır.",
   "m1-why-s3-t1": "Ödüllü Aracı Kurumlarla İşlem Yapın",
   "m1-why-s3-d1":
     "Investment Trends, Deloitte ve Victoria Valisi tarafından verilen ödüllerle gurur duyuyoruz ve müşteri hizmetlerimiz, ticaret koşullarımız ve mükemmel fiyat-performans oranımızla bu ödülleri almaktan gurur duyuyoruz.",
-  "m1-why-s4-t1": "Neden DEMO ile Ticaret Yapmalısınız?",
+  "m1-why-s4-t1": "Neden Helix-Capita ile Ticaret Yapmalısınız?",
   "m1-why-s5-t1": "Yüksek Fiyat-Performans Oranı",
   "m1-why-s5-t2": "Hızlı Yürütme",
   "m1-why-s5-t3": "Fon Güvenliği",
@@ -438,7 +438,7 @@ export default {
     "Ödüllü eğitim kaynaklarımıza erişerek işlemlerinizi yeni bir seviyeye taşımanıza yardımcı olun.",
   "m1-why-s6-2-l1": `<a href='/education'>Daha fazlasını öğrenin</a>`,
   "m1-why-s7-3":
-    "*Çoğu emrin yürütme süresi DEMO Group Limited için 30 milisaniye ve DEMO Limited için 60 milisaniyeden azdır, bu süreler DEMO köprüsü tarafından alınan işleme süresine göre hesaplanmıştır.",
+    "*Çoğu emrin yürütme süresi Helix-Capita Group Limited için 30 milisaniye ve Helix-Capita Limited için 60 milisaniyeden azdır, bu süreler Helix-Capita köprüsü tarafından alınan işleme süresine göre hesaplanmıştır.",
   "m1-why-s7-1":
     "^MAM ve PAMM içermez, daha fazla bilgi için yasal belgelerimize bakın.",
   "m1-why-s7-2":
@@ -528,7 +528,7 @@ export default {
   "m2-product-1-s1-t1": "Platformumuz aracılığıyla döviz ticareti yapın",
   "m2-product-1-s1-d1":
     "Döviz piyasası (Forex, FX veya para piyasası), küresel, dağıtık ve tezgahüstü bir para ticaret finans piyasasıdır. Dünyanın en büyük finansal piyasası olup günlük işlem hacmi 1,5 trilyon doların üzerindedir*. Döviz ticaretinin hacmi, hisse senedi ve vadeli piyasaların toplamından üç kat fazladır.",
-  "m2-product-1-s2-t1": "DEMO ile neden döviz ticareti yapmalısınız?",
+  "m2-product-1-s2-t1": "Helix-Capita ile neden döviz ticareti yapmalısınız?",
   "m2-product-1-s2-d1":
     "Çok yönlü likidite, çeşitli kaynaklardan fiyatlandırma ve en düşük alım satım farkları",
   "m2-product-1-s2-d2":
@@ -559,7 +559,7 @@ export default {
   "m2-product-2-s1-d1":
     "ABD, Avrupa, Avustralya ve Asya'nın da aralarında bulunduğu 14 ana hisse senedi piyasasında işlem yapın, komisyon almayın, tezgahüstü işlem yapın.",
   "m2-product-2-s2-t1":
-    "DEMO ile neden endeks fark sözleşmeleri ticareti yapmalısınız?",
+    "Helix-Capita ile neden endeks fark sözleşmeleri ticareti yapmalısınız?",
   "m2-product-2-s2-d1":
     "Endeks fark sözleşmelerimiz perakende tüccarlar için tasarlanmış olup, size çeşitli küresel piyasalara erişim imkanı sunar, böylece ticaret stratejilerinizi çeşitlendirebilirsiniz. Küresel hisse senedi piyasalarının sunduğu fırsatlardan doğrudan faydalanabilirsiniz ve endeks fark sözleşmelerimiz tüm müşterilerimize tezgahüstü veya komisyon gerektirmez.",
   "m2-product-2-s2-d2":
@@ -590,7 +590,7 @@ export default {
   "m2-product-3-s1-t1": "Emtia",
   "m2-product-3-s1-d1":
     "Altın, gümüş, petrol, doğal gaz vb. ürünlerde düşük spread ve hızlı yürütme ile ticaret yapın, fiziksel teslimat, mülkiyet ve vadeli işlemler gibi endişeler olmadan. Emtia CFD'leri ile ticaret yaparken heyecan verici bir piyasaya girersiniz. Fiyatlandırma ve enstrüman tabloları için aşağıdaki finansal araçlara bakın.",
-  "m2-product-3-s2-t1": "DEMO ile neden emtia CFD'leri ticareti yapmalısınız?",
+  "m2-product-3-s2-t1": "Helix-Capita ile neden emtia CFD'leri ticareti yapmalısınız?",
   "m2-product-3-s2-d1":
     "Üstün likidite - Tüm emtia CFD emirlerinizi tamamlar, kısmi yürütme veya yeniden fiyatlandırma olmadan",
   "m2-product-3-s2-d2": "99.72% yürütme oranı^ ve hızlı yürütme",
@@ -619,7 +619,7 @@ export default {
   "m2-product-4-s1-t1": "ETF CFD'leri",
   "m2-product-4-s1-d1":
     "Borsa Yatırım Fonları (ETF'ler), belirli bir ülkenin veya küresel olarak belirli hisse senedi piyasalarının, sektörlerin ve hatta daha geniş borsa trendlerinin performansına yönelik bir bakış açısı sunan benzersiz bir yatırım aracıdır. ETF CFD'leri ticareti yapmaya hemen başlayın.",
-  "m2-product-4-s2-t1": "DEMO ile neden ETF CFD'leri ticareti yapmalısınız?",
+  "m2-product-4-s2-t1": "Helix-Capita ile neden ETF CFD'leri ticareti yapmalısınız?",
   "m2-product-4-s2-d1":
     "Madencilik, enerji, teknoloji, tahvil piyasası ve perakende gibi 100'den fazla sektör performansını takip eden ETF'ler sunuyoruz.",
   "m2-product-4-s2-d2":
@@ -644,7 +644,7 @@ export default {
 
   "m2-product-4-s4-t1": "Komisyonlarımız",
   "m2-product-4-s4-d1":
-    "DEMO ile ETF CFD'leri ile işlem yapmak, alım satım farkı ek bir yayılma eklemeksizin doğrudan dayanak varlığın piyasa fiyatı üzerinden işlem yapmanızı sağlar. Ancak her işlem için küçük bir komisyon ödersiniz. Ayrıntılar aşağıda belirtilmiştir:",
+    "Helix-Capita ile ETF CFD'leri ile işlem yapmak, alım satım farkı ek bir yayılma eklemeksizin doğrudan dayanak varlığın piyasa fiyatı üzerinden işlem yapmanızı sağlar. Ancak her işlem için küçük bir komisyon ödersiniz. Ayrıntılar aşağıda belirtilmiştir:",
   "m2-product-4-s4-1": "Her işlem için 0,02 ABD doları (USD) komisyon.",
   "m2-product-4-s4-2": "Borsa yayılımı, ek bir fiyat eklemeden.",
   "m2-product-4-s4-3":
@@ -723,7 +723,7 @@ export default {
     "Şu anda ücretsiz Avustralya hisse senedi gerçek zamanlı verileri sunuyoruz. Gelecekte herhangi bir değişiklik olduğunda sizi en az 30 gün önceden bilgilendireceğiz.",
   "m2-product-5-s6-t1": "Hisse Fark Sözleşmeleri Ticaret Platformu",
   "m2-product-5-s6-d1":
-    "Hisse fark sözleşmelerimiz MetaTrader 5 üzerinden kaldıraç kullanarak işlem yapmanıza olanak tanır. Hisse fark sözleşmelerini ticari portföyünüze eklemek için DEMO MetaTrader 5 hesabınızı açın ve ilgili hisse fark sözleşmelerini piyasa gözleminden seçin.  ",
+    "Hisse fark sözleşmelerimiz MetaTrader 5 üzerinden kaldıraç kullanarak işlem yapmanıza olanak tanır. Hisse fark sözleşmelerini ticari portföyünüze eklemek için Helix-Capita MetaTrader 5 hesabınızı açın ve ilgili hisse fark sözleşmelerini piyasa gözleminden seçin.  ",
   "m2-product-5-s6-d2":
     "MT5, daha hızlı işleme süresi, daha iyi hedge imkanı, gelişmiş bekleyen emir seçenekleri ve en son araçlar ve göstergelerle gelir. Üstün özelliklerinizle ticaret becerilerinizi geliştirmenize ve her zaman piyasada önde olmanıza yardımcı olur.  ",
   "m2-product-5-s6-d3":
@@ -759,7 +759,7 @@ export default {
   "m2-product-6-s3-h8": "Kısa",
   "m2-product-6-s4-t1": "Risk",
   "m2-product-6-s4-d1":
-    "Bitcoin gibi kripto para birimleri geleneksel para birimlerinden daha büyük volatiliteye sahiptir ve ciddi riskler içerir. Ayrıca, DEMO ile işlem yaparken temel para birimine sahip olmayacağınızı veya bu temel para biriminde herhangi bir hakka sahip olmayacağınızı unutmayın. Kripto para birimi piyasası büyük ölçüde dalgalanır ve fiyatların ani değişimleri büyük miktarlarda para kaybetmenize neden olabilir.",
+    "Bitcoin gibi kripto para birimleri geleneksel para birimlerinden daha büyük volatiliteye sahiptir ve ciddi riskler içerir. Ayrıca, Helix-Capita ile işlem yaparken temel para birimine sahip olmayacağınızı veya bu temel para biriminde herhangi bir hakka sahip olmayacağınızı unutmayın. Kripto para birimi piyasası büyük ölçüde dalgalanır ve fiyatların ani değişimleri büyük miktarlarda para kaybetmenize neden olabilir.",
   "m2-product-6-s4-d2":
     "Bitcoin gibi temel kripto piyasalar hafta sonları açıktır. Ayrı bir 'hafta sonu kodu' sağlamıyoruz, bu nedenle bir pozisyon açtığınızda, aynı sembolü bu hafta işlem yaparken kullandığınızla aynı şekilde kullanacaksınız.",
   "m2-product-6-s4-d3":
@@ -957,7 +957,7 @@ export default {
   "m2-fw-s2-d1":
     "21:00 (GMT) 'den önce alınan para çekme işlemleri ertesi gün işleme konulacaktır. 07:00'den (Avustralya Doğu Standart Zamanı) önce alınırsa aynı gün işleme konulur.",
   "m2-fw-s2-d2":
-    "Üçüncü taraf işlem kuralları gereği, fonlar yalnızca DEMO işlem hesabınızla aynı isme (veya ortak isme) sahip banka hesabınıza geri gönderilebilir.",
+    "Üçüncü taraf işlem kuralları gereği, fonlar yalnızca Helix-Capita işlem hesabınızla aynı isme (veya ortak isme) sahip banka hesabınıza geri gönderilebilir.",
   "m2-fw-s2-d3":
     "Banka kurumumuzun yansıttığı herhangi bir uluslararası havale (TT) ücreti müşterilere yansıtılır. Çoğu uluslararası havale ücreti yaklaşık 20 Avustralya Dolarıdır.",
   "m2-fw-s2-d4":
@@ -1056,7 +1056,7 @@ export default {
     "Nerede olursanız olun ticaretin keyfini çıkarın. Platformlarımız Windows ve Mac OS için masaüstü, Android için mobil cihazlar ve tabletler, ve WebTrader web uygulamamızda mevcuttur.",
   "m3-i-s2-1-t1": "TradingView",
   "m3-i-s2-1-d1":
-    "cTrader tarafından desteklenen entegre platformumuz aracılığıyla DEMO ticaret hesabınızdan doğrudan TradingView'e bağlanın. Güçlü grafik araçları",
+    "cTrader tarafından desteklenen entegre platformumuz aracılığıyla Helix-Capita ticaret hesabınızdan doğrudan TradingView'e bağlanın. Güçlü grafik araçları",
   "m3-i-s2-1-1": "Küresel en büyük sosyal ticaret ağına bağlanın",
   "m3-i-s2-1-2": "Endüstri lideri grafik teknolojisi",
   "m3-i-s2-1-3": "TradingView grafiklerinden doğrudan işlem yapın",
@@ -1181,7 +1181,7 @@ export default {
   "m3-mt4-s4-7": "Diğer 28 Smart Trader aracına erişim",
   "m3-mt4-s5-t1": `<div class="rich-text__container"><h2 class="mb-8 fs-32">Kullanıcı Kılavuzu ve Videoları</h2>
   <h5>MT4 platformu aracılığıyla işlem yapma hakkında daha fazla bilgi edinmek istiyorsanız, aşağıdaki kılavuzları indirin veya MT4 videolarımızı izleyin.</h5>
-  <ul><li><a href="#">DEMO MetaTrader 4 Kullanıcı Kılavuzu E-Kitabı</a></li><li><a href="#">DEMO MetaTrader 4 Hata Kodu Kılavuzu</a></li></ul></div>`,
+  <ul><li><a href="#">Helix-Capita MetaTrader 4 Kullanıcı Kılavuzu E-Kitabı</a></li><li><a href="#">Helix-Capita MetaTrader 4 Hata Kodu Kılavuzu</a></li></ul></div>`,
 
   "m3-mt4-s6-t1": "Desteklenen Diller",
   "m3-mt4-s6-d1":
@@ -1211,7 +1211,7 @@ export default {
   <ol><li>Grafiğinizde göstermek istediğiniz herhangi bir Expert Advisor'ı (EA) veya göstergeleri ekleyin</li><li>Grafiğe sağ tıklayın</li><li>"Özellikler"i seçin (Burada renk düzenlemelerini güncelleyebilir ve genel ayarları değiştirebilirsiniz)</li><li>Özelleştirme değişikliklerini tamamladıktan sonra, grafiğe sağ tıklayın</li><li>"Şablon"u seçin ve düzenlediğiniz dosyayı adlandırın. Farklı stratejiler için birden fazla şablon ayarlayabilirsiniz</li></ol>
   <h5><strong>Tüccar İpucu:</strong> Bu şablonu "Varsayılan" olarak adlandırarak, tüm grafikleri varsayılan olarak bu şablonla açabilirsiniz.</h5></div>`,
   "m3-mt4-s7-q5": "Şablon nasıl özelleştirilir?",
-  "m3-mt4-s7-a5": `<h6>Varsayılan olarak, birçoklu Metatrader 4 (MT4) platformunu aynı anda çalıştıramazsınız. Ancak farklı kurulum yolları kullanarak, iki MT4 yazılımını aynı anda çalıştırabilirsiniz. PC / VPS'de aynı anda iki MT4 platformunu çalıştırmak istiyorsanız, ikinci yazılımı PC / VPS'nizin farklı bir dizinine kurmanız gerekir.<br>Örneğin:<br>Bir MT4 yazılımını yükledikten sonra, kurulum dosyasını tekrar indirin ve çalıştırın. Daha sonra aşağıdaki açılır pencereyi göreceksiniz:<br></h6><h5><br>İkinci MT4 programının kurulum konumunu seçmek için "Ayarlar"a tıklayın. Varsayılan olarak, "C: \ Program Files (x86) \ DEMO Metatrader 4"e kurulacaktır, ancak ikinci yazılımı farklı bir adla klasöre kurmanız gerekecektir, örneğin "C: \ Program Files (x86) \ DEMO Metatrader"<br></h5> <h5><br>Birinci MT4 yazılımı ile aynı kurulum sürecini deneyin. Bundan sonra, iki platform yazılımını klasörde görebileceksiniz ve aşağıdaki gibi her iki platformu aynı anda çalıştırabilirsiniz.<br></h5>`,
+  "m3-mt4-s7-a5": `<h6>Varsayılan olarak, birçoklu Metatrader 4 (MT4) platformunu aynı anda çalıştıramazsınız. Ancak farklı kurulum yolları kullanarak, iki MT4 yazılımını aynı anda çalıştırabilirsiniz. PC / VPS'de aynı anda iki MT4 platformunu çalıştırmak istiyorsanız, ikinci yazılımı PC / VPS'nizin farklı bir dizinine kurmanız gerekir.<br>Örneğin:<br>Bir MT4 yazılımını yükledikten sonra, kurulum dosyasını tekrar indirin ve çalıştırın. Daha sonra aşağıdaki açılır pencereyi göreceksiniz:<br></h6><h5><br>İkinci MT4 programının kurulum konumunu seçmek için "Ayarlar"a tıklayın. Varsayılan olarak, "C: \ Program Files (x86) \ Helix-Capita Metatrader 4"e kurulacaktır, ancak ikinci yazılımı farklı bir adla klasöre kurmanız gerekecektir, örneğin "C: \ Program Files (x86) \ Helix-Capita Metatrader"<br></h5> <h5><br>Birinci MT4 yazılımı ile aynı kurulum sürecini deneyin. Bundan sonra, iki platform yazılımını klasörde görebileceksiniz ve aşağıdaki gibi her iki platformu aynı anda çalıştırabilirsiniz.<br></h5>`,
   "m3-mt4-s7-q6":
     "Pozisyon büyüklüğü, kaldıraç ve teminat hakkında bilgi edinin",
   "m3-mt4-s7-a6": `<div class="rich-text__container"><h6>Ticaret kariyerinize başlamadan önce ilgili temel bilgilere hakim olmanız gerekmektedir. SCA müşteri istemcinizde, bu hesap makinelerini bulabilirsiniz. Pozisyon büyüklüğünüzü, işlemleriniz için teminat sağlamak istediğiniz miktarı ve kabul etmek istediğiniz kaldıraç seviyelerini tam olarak anladığınızdan emin olun.</h6></div>`,
@@ -1220,7 +1220,7 @@ export default {
   <h6><strong>MT4 ve MT5 - Görüşlerimiz</strong></h6>
   <h6>Dünyanın en büyük MT4 aracı kurumlarından biri olduğumuz için popüler bu platformun hayranlarıyız. MT4, basit, sezgisel ve sevilen bir ticaret platformudur. Bu bir klasiktir - geniş işlevselliği nedeniyle hem acemilere hem de gelişmiş tüccarlara çok uygundur.</h6>
   <h6>MT4'ün geniş kullanıcı topluluğuna sahip olmasının bir avantajı, mql5.com adlı web siteleridir, bu site geniş bir gösterge, sinyal ve EA koleksiyonuna sahiptir, bunları satın alabilir, indirebilir ve kolayca platforma ekleyebilirsiniz.</h6>
-  <h6>Bu ek hizmetlerin yanı sıra, Avustralya DEMO'nun kendi bağlantıları olan myFXBook, Duplitrade ve Zulutrade gibi şirketler de vardır, bu şirketler kolay kuruluma sahip sosyal ticaret çözümleri sunar ve kullanıcılara seçtikleri yatırım projelerini kontrol etmelerine izin verir.</h6>
+  <h6>Bu ek hizmetlerin yanı sıra, Avustralya Helix-Capita'nun kendi bağlantıları olan myFXBook, Duplitrade ve Zulutrade gibi şirketler de vardır, bu şirketler kolay kuruluma sahip sosyal ticaret çözümleri sunar ve kullanıcılara seçtikleri yatırım projelerini kontrol etmelerine izin verir.</h6>
   <h6>MT5 oyunun kurallarını değiştirmek için geldi. Bu, geniş zaman aralıkları, analitik yetenekleri ve çeşitli bekleyen emirlerle tanınan bir platformdur ve hisse ve emtia tüccarlarımızın favorisidir.</h6>
   <h6><strong>Daha geniş kullanılabilir zaman aralıkları</strong> (MT4'ün 9'a kıyasla 21 zaman aralığı) sunar.</h6>
   <h6><strong>Bekleyen emirler</strong>: MT4 genellikle en sık kullanılan stop ve limit emirlerini sunarken, MT5'te aynı zamanda stop limit emri kullanabilirsiniz, bu limit emri koymak için en iyi yoldur.</h6>
@@ -1386,21 +1386,21 @@ export default {
     "Anlık istatistiklerle işlem performansınızı hızlı bir şekilde analiz edebilme imkanı",
   "m3-st-mf-s3-3":
     "Sistemi kontrol etme özelliği sayesinde hesaptaki herhangi bir sistemi her zaman ekleyip kaldırabilme",
-  "m3-st-mf-s4-1-t1": "Adım 1 - DEMO Ticaret Hesabı Oluşturun",
-  "m3-st-mf-s4-1-q1": "DEMO Yeni Başlayanlar?",
+  "m3-st-mf-s4-1-t1": "Adım 1 - Helix-Capita Ticaret Hesabı Oluşturun",
+  "m3-st-mf-s4-1-q1": "Helix-Capita Yeni Başlayanlar?",
   "m3-st-mf-s4-1-a1":
-    "1. Online DEMO ticaret hesabı başvuru formunu doldurun <br> 2. AutoTrade'a kaydolun",
+    "1. Online Helix-Capita ticaret hesabı başvuru formunu doldurun <br> 2. AutoTrade'a kaydolun",
   "m3-st-mf-s4-1-q2": "Zaten Müşteri Misiniz?",
   "m3-st-mf-s4-1-a2":
     "1. SCA müşteri panelinize giriş yapın <br> 2. Yeni hesap başvurusu seçeneğine tıklayın <br> 3. AutoTrade talep edin",
   "m3-st-mf-s4-2-t1":
-    "Adım 2 - DEMO Ticaret Hesabınızı Myfxbook AutoTrade ile Bağlayın",
+    "Adım 2 - Helix-Capita Ticaret Hesabınızı Myfxbook AutoTrade ile Bağlayın",
   "m3-st-mf-s4-2-a1":
-    "1. Bir sonraki adım Myfxbook web sitesini ziyaret edip DEMO ticaret hesabınızı Myfxbook AutoTrade'e bağlamaktır <br> 2. Hesabı bağlayın",
+    "1. Bir sonraki adım Myfxbook web sitesini ziyaret edip Helix-Capita ticaret hesabınızı Myfxbook AutoTrade'e bağlamaktır <br> 2. Hesabı bağlayın",
   "m3-st-mf-s5-d1":
-    "Reddi Miras: AutoTrade sistemi Myfxbook Ltd ('Myfxbook') tarafından sahiplenilir ve işletilir ve kullanımı, http://www.myfxbook.com/terms adresinde belirtilen şartlar ve koşullara tabidir. DEMO Group Limited ('DEMO'), AutoTrade kullanımından kaynaklanan sinyalleri veya DEMO hesabındaki işlemleri kontrol edemez veya sorumlu tutulamaz. DEMO hesabında üretilen AutoTrade sinyalleri, DEMO'nun gerçek, genel veya kişisel tavsiyesini oluşturmaz.",
+    "Reddi Miras: AutoTrade sistemi Myfxbook Ltd ('Myfxbook') tarafından sahiplenilir ve işletilir ve kullanımı, http://www.myfxbook.com/terms adresinde belirtilen şartlar ve koşullara tabidir. Helix-Capita Group Limited ('Helix-Capita'), AutoTrade kullanımından kaynaklanan sinyalleri veya Helix-Capita hesabındaki işlemleri kontrol edemez veya sorumlu tutulamaz. Helix-Capita hesabında üretilen AutoTrade sinyalleri, Helix-Capita'nun gerçek, genel veya kişisel tavsiyesini oluşturmaz.",
   "m3-st-mf-s5-d2":
-    "Önemli Beyan: Burada sunulan bilgiler ve analizler, sinyal sağlayıcı şirket tarafından hazırlanmıştır. DEMO, bu bilgileri değiştirmeden veya doğrulamadan çoğaltmış olmasına rağmen, bu materyalin doğru, güncel veya eksiksiz olduğu anlamına gelmez ve bu nedenle bu bilgilere güvenilmemelidir. Bu materyal genel bilgi amaçlı olup herhangi bir kişisel yatırım hedefi, finansal çözüm veya stratejiyi dikkate almaz. DEMO, herhangi bir sinyal ürünü ve hizmetine yatırım yapmadan önce bağımsız finansal danışmanlık alınmasını önerir. Ayrıca, geçmiş getirilerin gelecekteki performansı temsil etmediğini yeniden vurgulamak isteriz. Okuyucular ayrıca, tüm teknoloji uygulamaları gibi, internetin doğasında bulunan zayıflıklara dikkat etmelidir ve işletim sistemlerinin DEMO sunucularıyla bağlantısını yönetmek için üçüncü taraf bağımlıdır. İnternet üzerinden herhangi bir sosyal ağ / kopyalama işlem uygulaması kullanarak işlem yapılması, müşterinin hesap bakiyesinin üzerine çıkabilecek beklenmedik kayıplara neden olabilecek kesintilere yol açabilir. DEMO, bu uygulamanın performansından sorumlu değildir.",
+    "Önemli Beyan: Burada sunulan bilgiler ve analizler, sinyal sağlayıcı şirket tarafından hazırlanmıştır. Helix-Capita, bu bilgileri değiştirmeden veya doğrulamadan çoğaltmış olmasına rağmen, bu materyalin doğru, güncel veya eksiksiz olduğu anlamına gelmez ve bu nedenle bu bilgilere güvenilmemelidir. Bu materyal genel bilgi amaçlı olup herhangi bir kişisel yatırım hedefi, finansal çözüm veya stratejiyi dikkate almaz. Helix-Capita, herhangi bir sinyal ürünü ve hizmetine yatırım yapmadan önce bağımsız finansal danışmanlık alınmasını önerir. Ayrıca, geçmiş getirilerin gelecekteki performansı temsil etmediğini yeniden vurgulamak isteriz. Okuyucular ayrıca, tüm teknoloji uygulamaları gibi, internetin doğasında bulunan zayıflıklara dikkat etmelidir ve işletim sistemlerinin Helix-Capita sunucularıyla bağlantısını yönetmek için üçüncü taraf bağımlıdır. İnternet üzerinden herhangi bir sosyal ağ / kopyalama işlem uygulaması kullanarak işlem yapılması, müşterinin hesap bakiyesinin üzerine çıkabilecek beklenmedik kayıplara neden olabilecek kesintilere yol açabilir. Helix-Capita, bu uygulamanın performansından sorumlu değildir.",
   "m3-st-mt-s1-t1": "MetaTrader Sinyalleri",
   "m3-st-mt-s1-d1":
     "Binlerce işlem stratejisi ve sinyale gerçek zamanlı erişimle ticaretteki tahmin ve duygusallığı ortadan kaldırın.",
@@ -1425,11 +1425,11 @@ export default {
     "5000 Avustralya Doları asgari yatırım tutarına ulaştıktan sonra, kendi MT4 hesabınızda otomatik olarak işlem yapabilmeniz için DupliTrade' in güçlü lider strateji sağlayıcılarından oluşan bir kombinasyondan faydalanabilirsiniz. Piyasayı daha da tanımak istiyorsanız, stratejiyi pratik yapmak için demo hesabınızı kullanabilirsiniz.",
   "m3-st-d-s3-t1": "Hemen Başlayın",
   "m3-st-d-s3-d1":
-    "1. Deneyime başlamadıysanız, bir <a>gerçek ticaret hesabı</a> açabilirsiniz <br> 2. DEMO'da bir <a>Duplitrade hesabı</a> oluşturun <br/> 3. <a>İletişime geçin</a> ve hesabınızı Duplitrade'e bağlanması için talep edin.",
+    "1. Deneyime başlamadıysanız, bir <a>gerçek ticaret hesabı</a> açabilirsiniz <br> 2. Helix-Capita'da bir <a>Duplitrade hesabı</a> oluşturun <br/> 3. <a>İletişime geçin</a> ve hesabınızı Duplitrade'e bağlanması için talep edin.",
   "m3-st-d-s4-d1":
-    "Reddi Miras: Duplitrade, İngiliz Virgin Adaları'nda kayıtlı bir şirkettir ve kullanımı, duplitrade.com/terms-and-conditions web sitesinde belirtilen şartlar ve koşullara tabidir. DEMO Group Limited ('DEMO'), Duplitrade tarafından üretilen sinyalleri veya DEMO hesabındaki işlemleri kontrol edemez veya sorumlu tutulamaz. DEMO hesabında üretilen Duplitrade sinyalleri, DEMO'nun gerçek, genel veya kişisel tavsiyesini oluşturmaz.",
+    "Reddi Miras: Duplitrade, İngiliz Virgin Adaları'nda kayıtlı bir şirkettir ve kullanımı, duplitrade.com/terms-and-conditions web sitesinde belirtilen şartlar ve koşullara tabidir. Helix-Capita Group Limited ('Helix-Capita'), Duplitrade tarafından üretilen sinyalleri veya Helix-Capita hesabındaki işlemleri kontrol edemez veya sorumlu tutulamaz. Helix-Capita hesabında üretilen Duplitrade sinyalleri, Helix-Capita'nun gerçek, genel veya kişisel tavsiyesini oluşturmaz.",
   "m3-st-d-s4-d2":
-    "Önemli Beyan: Burada sunulan bilgiler ve analizler, sinyal sağlayıcı şirket tarafından hazırlanmıştır. DEMO, bu bilgileri değiştirmeden veya doğrulamadan çoğaltmış olmasına rağmen, bu materyalin doğru, güncel veya eksiksiz olduğu anlamına gelmez ve bu nedenle bu bilgilere güvenilmemelidir. Bu materyal genel bilgi amaçlı olup herhangi bir kişisel yatırım hedefi, finansal çözüm veya stratejiyi dikkate almaz. DEMO, herhangi bir sinyal ürünü ve hizmetine yatırım yapmadan önce bağımsız finansal danışmanlık alınmasını önerir. Ayrıca, geçmiş getirilerin gelecekteki performansı temsil etmediğini yeniden vurgulamak isteriz. Okuyucular ayrıca, tüm teknoloji uygulamaları gibi, internetin doğasında bulunan zayıflıklara dikkat etmelidir ve işletim sistemlerinin DEMO sunucularıyla bağlantısını yönetmek için üçüncü taraf bağımlıdır. İnternet üzerinden herhangi bir sosyal ağ / kopyalama işlem uygulaması kullanarak işlem yapılması, müşterinin hesap bakiyesinin üzerine çıkabilecek beklenmedik kayıplara neden olabilecek kesintilere yol açabilir. DEMO, bu uygulamanın performansından sorumlu değildir.",
+    "Önemli Beyan: Burada sunulan bilgiler ve analizler, sinyal sağlayıcı şirket tarafından hazırlanmıştır. Helix-Capita, bu bilgileri değiştirmeden veya doğrulamadan çoğaltmış olmasına rağmen, bu materyalin doğru, güncel veya eksiksiz olduğu anlamına gelmez ve bu nedenle bu bilgilere güvenilmemelidir. Bu materyal genel bilgi amaçlı olup herhangi bir kişisel yatırım hedefi, finansal çözüm veya stratejiyi dikkate almaz. Helix-Capita, herhangi bir sinyal ürünü ve hizmetine yatırım yapmadan önce bağımsız finansal danışmanlık alınmasını önerir. Ayrıca, geçmiş getirilerin gelecekteki performansı temsil etmediğini yeniden vurgulamak isteriz. Okuyucular ayrıca, tüm teknoloji uygulamaları gibi, internetin doğasında bulunan zayıflıklara dikkat etmelidir ve işletim sistemlerinin Helix-Capita sunucularıyla bağlantısını yönetmek için üçüncü taraf bağımlıdır. İnternet üzerinden herhangi bir sosyal ağ / kopyalama işlem uygulaması kullanarak işlem yapılması, müşterinin hesap bakiyesinin üzerine çıkabilecek beklenmedik kayıplara neden olabilecek kesintilere yol açabilir. Helix-Capita, bu uygulamanın performansından sorumlu değildir.",
   "m3-st-t-h-s0-t1": "Ticaret Araçları",
 
   // 第12次copy
@@ -1450,7 +1450,7 @@ export default {
 
   "m3-st-t-c-s1-t1": "Capitalise.ai",
   "m3-st-t-c-s1-t2":
-    "Kod olmadan ticaretinizi otomatikleştirin. DEMO müşterileri ücretsizdir",
+    "Kod olmadan ticaretinizi otomatikleştirin. Helix-Capita müşterileri ücretsizdir",
   "m3-st-t-c-s1-d1":
     "Capitalise.ai ile planlarınızı hızlı, doğru ve duygusal etkilerden bağımsız bir şekilde uygulayın. Zaman kazanın, günün her saatinde ticaret yapın ve duygusal etkileri ortadan kaldırın, ticaretin otomasyonu bilinen avantajlarıdır. Ancak, çoğu tüccar kendi otomatik ticaret programlarını oluşturmak için gerekli kod yazma becerilerine sahip değildir. Bu nedenle Capitalise.ai ile işbirliği yapma nedenimiz, müşterilerimize güçlü ticaret otomasyon araçları sunmaktır!",
   "m3-st-t-c-s1-t3": "Şimdi Başla",
@@ -1478,10 +1478,10 @@ export default {
   "m3-st-t-c-s2-5-d1": "Gelişmiş Ticaret Özellikleri",
   "m3-st-t-c-s2-5-d2":
     "Günlük ticaretinizi yönetmekten karmaşık otomasyon sistemleri oluşturmaya kadar, Capitalise.ai kullanarak kendi ticaretinizi kod yazma karmaşıklığını atlayarak otomatik hale getirebilirsiniz.",
-  "m3-st-t-c-s3-t1": "DEMO Müşterileri İçin Ücretsiz",
+  "m3-st-t-c-s3-t1": "Helix-Capita Müşterileri İçin Ücretsiz",
   "m3-st-t-c-s3-d1": "Kayıt gerekli değil",
   "m3-st-t-c-s3-d2":
-    "DEMO MT4 hesabınızla Capitalise.ai'ya giriş yapın ve kod yazmadan ticaret stratejilerinizi test edin ve otomatikleştirin.",
+    "Helix-Capita MT4 hesabınızla Capitalise.ai'ya giriş yapın ve kod yazmadan ticaret stratejilerinizi test edin ve otomatikleştirin.",
   "m3-st-t-c-s4-t1": "Capitalise.ai Platformunda İpuçları:",
   "m3-st-t-c-s4-1-t1": "Capitalise.ai Videosunu İzleyin",
   "m3-st-t-c-s4-1-d1":
@@ -1489,7 +1489,7 @@ export default {
 
   "m3-st-t-c-s4-2-t1": "Giriş",
   "m3-st-t-c-s4-2-d1":
-    "Mevcut DEMO MetaTrader 4 ticaret hesabınızı ve şifrenizi kullanarak Capitalise.ai'ye giriş yapın.",
+    "Mevcut Helix-Capita MetaTrader 4 ticaret hesabınızı ve şifrenizi kullanarak Capitalise.ai'ye giriş yapın.",
   "m3-st-t-c-s4-2-d2":
     "Giriş yaparken herhangi bir sorunla karşılaşırsanız, lütfen müşteri temsilcinizle iletişime geçin veya SCA Güvenli Müşteri Bölgesi'nden şifrenizi sıfırlayın.",
   "m3-st-t-c-s4-3-t1": "Capitalise Öğrenme Merkezi",
@@ -1616,7 +1616,7 @@ export default {
   "m3-st-t-ca-s2-4":
     "Sembol, hesap, bağlantı ve hata bilgileriyle olabildiğince ayrıntılı bilgileri otomatikleştirilmiş stratejilere dahil edebilirsiniz.",
   "m3-st-t-ca-s3-t1": "Ticaret için hazır mısınız?",
-  "m3-st-t-ca-s3-1-t1": "DEMO Kullanıcısı mısınız?",
+  "m3-st-t-ca-s3-1-t1": "Helix-Capita Kullanıcısı mısınız?",
   "m3-st-t-ca-s3-1-d1": `<h5><a href="javascript:void(0)"  rel="noreferrer noopener">Hesap Açın</a> ve cTrader Automate'e erişin.</h5>`,
   "m3-st-t-ca-s3-2-t1": "Zaten müşteri misiniz?",
   "m3-st-t-ca-s3-2-d1": `<h5>Kripto müşteri istemcinizden <a href="javascript:void(0)"  rel="noreferrer noopener">cTrader Automate.API'yi indirin</a>.</h5>`,
@@ -1656,13 +1656,13 @@ export default {
   "m3-st-t-ap-s1-t1": "API Ticareti",
   "m3-st-t-ap-s1-d1":
     "API ticareti yapmanıza olanak tanıyan teknolojiyi destekliyoruz. Bu teknoloji ayrıca uygulama programlama arayüzü ticareti olarak da bilinir ve otomatik ticaret sistemleri kullanan veya kendi özel sistemlerini geliştirenler için uygundur.",
-  "m3-st-t-ap-s2-t1": "DEMO API Ticaretinin Avantajları",
+  "m3-st-t-ap-s2-t1": "Helix-Capita API Ticaretinin Avantajları",
   "m3-st-t-ap-s2-1": "Piyasayı daha iyi anlama",
   "m3-st-t-ap-s2-2": "Sermayeniz için bağımsız bir müşteri hesabı sağlıyoruz",
   "m3-st-t-ap-s2-3":
     "En iyi fiyatları almanızı sağlamak için birden fazla likidite sağlayıcıya bağlanıyoruz",
   "m3-st-t-ap-s2-d1":
-    "Aylık en az 250 milyon dolarlık işlem hacmine sahip olan DEMO hesap sahipleri, FIX işlevlerimizi test etmek için FIX demo ortamı talebinde bulunabilir.",
+    "Aylık en az 250 milyon dolarlık işlem hacmine sahip olan Helix-Capita hesap sahipleri, FIX işlevlerimizi test etmek için FIX demo ortamı talebinde bulunabilir.",
   "m3-st-t-ap-s2-d2":
     "API ticareti hakkında daha fazla bilgi edinmek isterseniz, lütfen support{'@'}demo.com adresine e-posta gönderin.",
 
@@ -1673,14 +1673,14 @@ export default {
     "VPS barındırma kullanmanın faydaları, teknik ve bağlantı arızalarından kaynaklanan sistem kesintilerini en aza indirmenizi sağlar.",
   "m3-st-t-vp-s2-t1": "ForexVPS",
   "m3-st-t-vp-s2-d1":
-    "FXVM ile yaklaşık 1 milisaniyelik ultra düşük gecikme süresinin keyfini çıkarın. ForexVPS çalışanları, size uzman danışmanları kurmanıza, üçüncü taraf araçları yüklemenize veya herhangi bir sorunu çözmenize yardımcı olmak için 24 saat boyunca çok dilli hizmet sunar. FXVM'niz ayrıca hemen ticarete başlayabilmeniz için DEMO MetaTrader 4'ü önceden yükler.",
-  "m3-st-t-vp-s2-d2": "DEMO ForexVPS'te %20 indirimden yararlanın",
+    "FXVM ile yaklaşık 1 milisaniyelik ultra düşük gecikme süresinin keyfini çıkarın. ForexVPS çalışanları, size uzman danışmanları kurmanıza, üçüncü taraf araçları yüklemenize veya herhangi bir sorunu çözmenize yardımcı olmak için 24 saat boyunca çok dilli hizmet sunar. FXVM'niz ayrıca hemen ticarete başlayabilmeniz için Helix-Capita MetaTrader 4'ü önceden yükler.",
+  "m3-st-t-vp-s2-d2": "Helix-Capita ForexVPS'te %20 indirimden yararlanın",
   "m3-st-t-vp-s2-d3": "New York City sunucuları",
   "m3-st-t-vp-s2-d4":
     "New York City sunucularıyla işbirliği yaparak, tüccarlar için düşük gecikmeli özel çözümler sunuyoruz. NYC sunucuları, tüccarların istikrarlı düşük gecikmeli bağlantı, hızlı yürütme ve haftanın 7 günü 24 saat yüksek performanslı sunuculara güvenmelerinin önemini anlar. Ayrıca, tüm NYC hizmetleri e-posta, destek bileti, canlı sohbet ve telefon aracılığıyla günün her saati destek sunar.",
   "m3-st-t-vp-s2-d5":
-    "DEMO'ya katıldığınızda, VPS planlarında %25 indirimden faydalanırsınız.",
-  "m3-st-t-vp-s2-d6": "Özel DEMO VPS siparişinizi hemen verin",
+    "Helix-Capita'ya katıldığınızda, VPS planlarında %25 indirimden faydalanırsınız.",
+  "m3-st-t-vp-s2-d6": "Özel Helix-Capita VPS siparişinizi hemen verin",
 
   "m3-ms-s1-t1": "Bakım Zamanlaması",
   "m3-ms-s2-t1": "Yaklaşan bakım",
@@ -1798,7 +1798,7 @@ export default {
   <h5> Ticaret, kısa vadeli piyasa oynaklığında fırsat arar, ani haberlere (Rusya ve Ukrayna savaşı), finansal olaylara (RBA faiz artırımı), ekonomik verilere (ABD TÜFE), şirket açıklamalarına (Tesla hisse bölünmesi), önemli etkinliklere (Apple etkinliği) vb. kısa vadeli etkiler. İşlem düzeyinde, temel analizlere dayanarak temel olarak giriş ve çıkış zamanlarını belirlemek için teknik analiz kullanır, sıkı stop-loss uygular ve piyasa durumunu düzenli olarak kontrol eder. Başarılı tüccarlar için ticaret disiplini ve zihinsel durum, teknik analizden daha önemli faktörlerdir.</h5>
   <h5> Ticaretin avantajı kısa dönemde yüksek potansiyel getiridir. Otomatik ticaretin teşvikiyle, bir eğilim oluştuktan sonra kısa sürede çok güçlü ve sürekli bir momentum patlaması olabilir, Tesla bunun çok tipik bir örneğidir. Bu, her tüccarın kaçırmak istemediği bir pazar fırsatıdır.</h5>
   <h5> Hisse senedi ticareti yapmak için fark sözleşmeleri (CFD) yoluyla, daha fazla esneklik ve avantaj elde edebilirsiniz, çift yönlü işlemler, kaldıraç avantajı, derinlikli piyasa likiditesi, 5*24 kesintisiz işlem vb. Dahası, pazarın aşırı dalgalanmaları ve ani durumlarla başa çıkmak için belirli bir risk toleransına sahip olmanız gerekir.</h5>
-  <h5> DEMO, 2010 yılında Melbourne'da kurulmuş olup kısa sürede dünyanın en büyük çevrimiçi ticaret aracı kurumlarından biri haline gelmiştir. Şu anda müşterilere, binlerce ABD önde gelen hisse senedi ve yüzlerce Avustralya yerel, İngiltere ve Almanya'nın hisse senedi fark sözleşmeleri işlemi sunmaktayız.</h5>
+  <h5> Helix-Capita, 2010 yılında Melbourne'da kurulmuş olup kısa sürede dünyanın en büyük çevrimiçi ticaret aracı kurumlarından biri haline gelmiştir. Şu anda müşterilere, binlerce ABD önde gelen hisse senedi ve yüzlerce Avustralya yerel, İngiltere ve Almanya'nın hisse senedi fark sözleşmeleri işlemi sunmaktayız.</h5>
   <h5> Çinli dostlar için, en son çıkan <a href="javascript:void(0)" ">Hong Kong hisse senetleri</a> fark sözleşmeleri ticareti, Alibaba, Tencent, JD.com, Xiaomi gibi internet devlerini ve BYD gibi yeni ekonomi temsilcilerini içerir ve aynı zamanda Çin Petrolü, Çin Ping An gibi uçak gemisi düzeyindeki devlet şirketlerini de kapsar. Gerçekten de "bir hesapla küresel piyasalarda ticaret yapmak" mümkün! <br></h5>
   </div>`,
   "m4-mn-a8-t":
@@ -2359,7 +2359,7 @@ export default {
   "m5-wh-dq-7-d1": `Piyasa koşulları doğru olduğunda, tüccarlar genellikle daha yüksek faiz oranlarına sahip para birimlerinde aktif olarak pozisyon alacaklar ve daha düşük faiz oranlarına sahip para birimlerinde short pozisyon açarak ve ardından pozitif faiz oranı farkını düşerek ticareti "fonlayacaklar". Bu, tüccarların bulunduğu bir taşıma ticaretidir. Faiz ve swap spreadleri kazanmak için pozisyonlarını devreder. Devredenler döviz piyasasının önemli bir parçasıdır ve birçok hedge fonu için öncelikli husus olabilir.`,
   "m5-wh-dq-8-d1": "Neden aracılar swap ücreti alır?",
   "m5-wh-dq-9-d1":
-    "DEMO Hacmi olarak, müşterilere gerçek para birimi ticareti teslimatı yapmadan dünya para piyasalarında fiyat değişiklikleri yapma yeteneği sunarız. Bu nedenle, kaldıraçlı forex pozisyonları açtığımızda, aslında sonsuz bir rulo yerleşim pozisyonu olur. Bu, bir tüccar olarak, ne zaman stop-loss veya diğer ticaret yönetimi türlerini kullanarak pozisyonu kapatmayı seçtiğinizi belirlediğiniz anlamına gelirken, bir ticaret karşı tarafı olarak, aracılar teslimat yapma veya fiziksel para almayı kullanmak yerine finansman maliyetini hesaplamak için uzatma süresini kullanır.",
+    "Helix-Capita Hacmi olarak, müşterilere gerçek para birimi ticareti teslimatı yapmadan dünya para piyasalarında fiyat değişiklikleri yapma yeteneği sunarız. Bu nedenle, kaldıraçlı forex pozisyonları açtığımızda, aslında sonsuz bir rulo yerleşim pozisyonu olur. Bu, bir tüccar olarak, ne zaman stop-loss veya diğer ticaret yönetimi türlerini kullanarak pozisyonu kapatmayı seçtiğinizi belirlediğiniz anlamına gelirken, bir ticaret karşı tarafı olarak, aracılar teslimat yapma veya fiziksel para almayı kullanmak yerine finansman maliyetini hesaplamak için uzatma süresini kullanır.",
   "m5-wh-dq-10-d1": "Spot döviz piyasasında nasıl yerleşim yapılır?",
   "m5-wh-dq-11-d1":
     "Temel piyasada, spot döviz işlemleri genellikle işlem tarihinden sonraki iki iş günü (T+2) içinde yerleşir. Kurumsal yatırımcılar, örneğin, işlem tarihinden sonraki ikinci gün belirli bir döviz kuru ile Euro/USD döviz çiftini alırlarsa, Euro'yu anlaşılan kur ile ikinci iş gününde alırlar. Bu kuralların bazı istisnaları vardır, örneğin USD/CAD, işlem sonrası ilk iş gününde yerleşir (T+1).",
@@ -2381,7 +2381,7 @@ export default {
    <h5>Hesabın temel para birimi: Euro</h5>
    <h5>Faiz oranı: 1,1290</h5>
    <h5>İşlem boyutu: 1 lot (100.000 €)</h5>
-   <h5>DEMO'nun uzun takas oranı: -11,49, kısa takas oranı: +7,02</h5>
+   <h5>Helix-Capita'nun uzun takas oranı: -11,49, kısa takas oranı: +7,02</h5>
    <h5>Takas tutarı hesaptan düşülecektir: (0,00001/1,1290) * (100.000 *-11,49) =&nbsp;<strong>-10,18 euro</strong></h5>
    <h5>EUR/USD sözleşmesi satarsanız bir günde <strong>6,22€</strong> kazanırsınız. </h5></div>`,
   "m5-wh-dq-19-d1":
@@ -2456,7 +2456,7 @@ export default {
   "m5-tg-6-b1": "Orta Düzey",
   "m5-tg-7-t1": "ABD dışı para birimleriyle altın ticareti nasıl yapılır",
   "m5-tg-7-d1":
-    "DEMO'da altın her zaman yatırımcılar arasında en popüler yatırım hedefi olmuştur ve biz de size daha güncel altın alım satım ürünleri sunmaya kendimizi adadık. ...",
+    "Helix-Capita'da altın her zaman yatırımcılar arasında en popüler yatırım hedefi olmuştur ve biz de size daha güncel altın alım satım ürünleri sunmaya kendimizi adadık. ...",
   "m5-tg-7-b1": "Beginner",
   // 教育m5-交易指南-提高 Expert Advisor (EA) 性能的 11 个技巧
   "m5-tg-a1-s1-t1": "Uzman Danışman (EA) Performansını Artırmak için 11 İpucu",
@@ -2543,7 +2543,7 @@ export default {
    <h5>5. <strong>Likidite her şeyin temelidir</strong></h5>
    <ol></ol>
    <h5>Hızla değişen piyasa koşullarında piyasa yapıcılar ve likidite sağlayıcılar aynı ölçekte likidite sağlayamayabilir. Özellikle önemli bir haber açıklandığında yetersiz likidite piyasanın durumunu daha da kötüleştirecektir. </h5>
-   <h5>Yüksek volatilite dönemlerinde piyasa katılımcıları ekonomik, jeopolitik veya likidite krizleri hakkında daha fazla bilgiye ihtiyaç duyar. Bu dinamik süreçte, bilginin kendisi büyük fiyat değişikliklerine neden olacak ve bu da birçok perakende ticaret müşterisi için bir test olabilir. Neyse ki DEMO sizin önemli ve güvenilir bilgi kaynağınız olabilir. </h5>
+   <h5>Yüksek volatilite dönemlerinde piyasa katılımcıları ekonomik, jeopolitik veya likidite krizleri hakkında daha fazla bilgiye ihtiyaç duyar. Bu dinamik süreçte, bilginin kendisi büyük fiyat değişikliklerine neden olacak ve bu da birçok perakende ticaret müşterisi için bir test olabilir. Neyse ki Helix-Capita sizin önemli ve güvenilir bilgi kaynağınız olabilir. </h5>
    <h3><strong>Özet</strong></h3>
    <h5>Yukarıdaki önerilerin, volatilitenin yüksek olduğu bir piyasa ortamında alım satım işlemlerinize biraz yardımcı olabileceğini umuyorum. Gerçekleşen oynaklığa dayalı başka birçok teknik gösterge olmasına rağmen daha önemli olan, bu göstergelerin piyasanın değişkenlikleriyle başa çıkmak için esnek bir şekilde nasıl kullanılacağıdır. </h5>
    <h5>Aslında ticaretteki en önemli kural uyum sağlamayı öğrenmek, yani yalnızca ticaret yönünün piyasa eğilimiyle tutarlı olmasını sağlamak değil, aynı zamanda her ticaretin karlı olmayacağı gerçeğini de kabul etmektir. Daha hassas risk kontrolü gerçekleştirmek için kaldıraca ve aşırı oynaklığa dikkat edebilir ve pozisyonlarınızı makul bir şekilde ayarlayabilirseniz, o zaman son derece değişken bir piyasada hayatta kalmanın yolunu bulmuşsunuz demektir. </h5>
@@ -2552,7 +2552,7 @@ export default {
   // 教育m5-交易指南-为什么点差会扩大
   "m5-tg-a3-s1-t1": "Yayılma neden genişliyor",
   "m5-tg-a3-s1-d1":
-    "DEMO, müşterilerin en çok endişe duyduğu şeyin işlem maliyetleri olduğunu biliyor, bu nedenle müşterilerimize sektördeki rekabetçi spreadleri sağlamaya kararlıyız. Birçok önde gelen yatırım bankası ve likidite sağlayıcısıyla bağlantı kurarak, işlemleriniz için mümkün olan en iyi spreadleri sağlıyoruz. Teklif/Satış fiyatı.",
+    "Helix-Capita, müşterilerin en çok endişe duyduğu şeyin işlem maliyetleri olduğunu biliyor, bu nedenle müşterilerimize sektördeki rekabetçi spreadleri sağlamaya kararlıyız. Birçok önde gelen yatırım bankası ve likidite sağlayıcısıyla bağlantı kurarak, işlemleriniz için mümkün olan en iyi spreadleri sağlıyoruz. Teklif/Satış fiyatı.",
   "m5-tg-a3-s2-c": `<div class="rich-text__container"><!--StartFragment--><h4><strong>Yayılma</strong></h4>
    <h5>Farklı işlemlere ilişkin döviz ve CFD sözleşmelerinde, işlemin maliyeti genellikle "spread" yani aynı anda alış fiyatı ile satış fiyatı arasındaki fark ile ölçülür. Örneğin, EURUSD'nin kotasyonu 1,06747/52 ise bu döviz çiftinin spread'i 1,06752-1,06747=0,00005, yani 0,5 puandır (pip). Genellikle piyasa likiditesinin yüksek olduğu durumlarda spreadler daha düşük ve işlem maliyetleri de daha düşük olur. </h5>
    <h5>Ancak son derece değişken bir piyasa ortamında, piyasa derinliği ve işlem yürütme verimliliği büyük ölçüde zayıflamış olduğundan bu dönemde spreadler genişliyor. Bu yaygın bir olgudur. Bu, ister finansal piyasanın tamamında ortak bir durumdur. kurumsal bir yatırımcı olsun veya olmasın veya perakende müşteriler. </h5>
@@ -2577,7 +2577,7 @@ export default {
    <h5>Bu sistem, yatırımcıların alım satımın askıya alındığı dönemdeki fiyat eğilimlerini hızlı bir şekilde değerlendirmesine olanak tanır ve piyasa aynı zamanda mevcut fiyatın makul ve etkili olup olmadığını yeniden inceleme fırsatına da sahiptir. </h5>
    <h4><strong>Fiyat sınırı mekanizması</strong></h4>
    <h5>Fiyat limiti limitleri birçok farklı ABD hisse senedi endeksi (US30, US200, NAS100 vb. gibi) için geçerli olsa da, bu makalede örnek olarak US500'ü (yani S&P 500) ele alacağız. </h5>
-   <h5> DEMO platformundaki US500 dahil tüm hisse senedi endeksi ürünleri vadeli işlem piyasasından kote edilmektedir. Kotasyon modeli halihazırda beklenen gelecekteki temettüleri ve faiz gelirini yansıtmakta ve aynı zamanda temel piyasadaki devre kesici mekanizmadan da etkilenmektedir. </h5>
+   <h5> Helix-Capita platformundaki US500 dahil tüm hisse senedi endeksi ürünleri vadeli işlem piyasasından kote edilmektedir. Kotasyon modeli halihazırda beklenen gelecekteki temettüleri ve faiz gelirini yansıtmakta ve aynı zamanda temel piyasadaki devre kesici mekanizmadan da etkilenmektedir. </h5>
    <h5>İşlem gününün farklı zaman dilimlerinde, piyasanın likiditesini yansıtan farklı fiyat limitleri vardır. Ve likidite, iki yönlü fiyat dalgalanmalarının derecesini artıracaktır. </h5>
    <h4><strong>Hisse senedi endeksi vadeli işlemlerinin açılış saatlerinde alım satım kısıtlamaları</strong></h4>
    <h5>Spot piyasa kapandığında ancak S&P 500 endeksi vadeli işlem piyasası hala işlem görüyorsa, US500'ün fiyat limiti +/-%5'tir. Bu oranın hesaplanmasında bir önceki gün Doğu Saati ile 16:00 (aynısı aşağıda) kapanış fiyatı esas alınmaktadır. </h5>
@@ -2629,7 +2629,7 @@ export default {
      <ul><li><strong>Volatilite ve EA Ticareti</strong></li></ul>
      <h5>EA'nızın düşük volatiliteli, iki yönlü bir piyasada avantajı varsa, yüksek VIX piyasa ortamı EA'nızın düşük performans gösterebileceği anlamına gelir. Bu nedenle pozisyonlarınızı azaltmayı, hatta tüm pozisyonlarınızı geçici olarak kapatmayı seçebilirsiniz. Tersine, eğer EA'nız yüksek volatilite dönemlerinde iyi performans gösteriyorsa, yüksek VIX dönemlerinde daha fazla kazanç elde etmeyi bekleyebilirsiniz. Beklenen piyasa koşullarını VIX aracılığıyla değerlendirmek, EA'nızın faaliyet göstereceği ortamda size daha fazla güven verebilir. </h5>
      <h3><strong>VIX'i Anlamak</strong></h3>
-     <h5>VIX endeksindeki değişiklikler sıklıkla haberlerde bildirilse de, endeks birden fazla S&P 500 opsiyon fiyat modelinden toplandığı için yatırımcılar aslında endekste doğrudan işlem yapamazlar. Artık DEMO, müşterilere, yakın aya kadar olan VIX vadeli işlem sözleşmelerinin rayiç değer ağırlığını ayarladıktan sonra, alım satımı yapılabilir bir spot endeks ürünü sunuyor (bu vadeli işlem sözleşmeleri tamamen likit, verimli ve yüksek oranda işlem görüyor). </h5>
+     <h5>VIX endeksindeki değişiklikler sıklıkla haberlerde bildirilse de, endeks birden fazla S&P 500 opsiyon fiyat modelinden toplandığı için yatırımcılar aslında endekste doğrudan işlem yapamazlar. Artık Helix-Capita, müşterilere, yakın aya kadar olan VIX vadeli işlem sözleşmelerinin rayiç değer ağırlığını ayarladıktan sonra, alım satımı yapılabilir bir spot endeks ürünü sunuyor (bu vadeli işlem sözleşmeleri tamamen likit, verimli ve yüksek oranda işlem görüyor). </h5>
      <h5><br><!--EndFragment--></h5></div>`,
 
   // Eğitim m5-Ticaret Rehberi
@@ -2638,14 +2638,14 @@ export default {
   // 第31次copy
   "m5-tg-a6-s1-d1":
     "Buzzy Schwartz'tan Ray Dalio'ya kadar ticaret sektörünün büyüklerinin hepsinin farklı özellikleri var. Siz hangisisiniz?",
-  "m5-tg-a6-s2-c": `<div class="rich-text__container"><blockquote><strong>Şampiyon günlük tüccar – “Buzzy” Schwartz. </strong><br>Marty Schwartz'ın işlemleri bir zamanlar S&P 500 vadeli işlem sözleşmelerinin günlük işlem hacminin %10'unu oluşturuyordu. Pit-bull, Wall St's Champion Trader'dan Dersler kitabının yazarıdır. Yeni başlayan biri için Champion Day Trader bir aksiyon adamı gibi görünür. Uygulama sırasında kararlı davranırlar ama aynı zamanda işlerini sabırla takip etmeyi de bilirler. Günlük tüccarların genellikle odaklanacakları birden fazla ekranı vardır.Günlük tüccarlar düzinelerce mesajı izleyerek ticaret fırsatlarının ortaya çıkmasını beklerler. Bazı insanlar hızlı bir şekilde işlem yapar, saniyeler içinde piyasaya girip çıkarlar ve burada 5 pip ve orada 10 pip kazanırlar. Diğerleri daha sakin olabilir, her işlem gününde yalnızca bir veya iki işlem yapabilir ve günün değişikliklerinden yararlanmak için mükemmel anı dikkatle bekleyebilir. Şampiyon günü tacirleri gürültücü ve gürültücü olabilirler, ancak ticaret operasyonlarına egolarını dahil etmemeyi öğrenirler. Peki ya piyasa beklentilerinin tersine giderse? Ya vazgeçerler ya da başka seçeneklerin peşine düşerler. Günlük traderlar için her şey aynıdır. Onların umursadığı şey, haklı olup olmadıkları değil, zararlarını azaltıp kâr etmeye devam edip etmeyecekleridir. Yaptıkları işlemlerin yalnızca yarısında kazanabilirler, ancak mükemmel risk yönetimi sayesinde her gün oldukça kârlıdırlar. DEMO ticaret stili: kısa vadeli/gün içi</blockquote>
-   <blockquote><strong>Mükemmel Teknisyen – W.D. Ganns</strong><br>William Delbert Gann, teknik analiz kullanarak piyasa hareketlerini tahmin etme yeteneğiyle tanınır. <br>Grafikler, teknik kalıpların piyasanın ruhuna açılan bir pencere ve psikolojisine bir bakış açısı sağladığını bilen teknisyenler için ilgi çekici bir hikaye örüyor. Teknik analiz sayesinde piyasa katılımcılarının korkularını ve açgözlülüğünü tam olarak anlarlar. Fibonacci, Elliott Waves veya Gann Theory olsun, teknik analistler kısa vadeli piyasa hareketlerini tahmin etmelerine yardımcı olacak araçlara ve fikirlerine dayalı olarak başarılı bir şekilde ticaret yapma becerisine sahip olurlar. Teknisyenlerin görüntü okuma yeteneklerinin birçok uygulaması vardır. Kısa vadeli ve uzun vadeli eğilimleri analiz edebilirler. Bazı insanlar teknik analizlerini temel bilgilerle birleştirecek ve ikisi uyumlu hale geldiğinde öncelikle ticaret yapacaktır. Diğerleri fiyata inanıyor. Gerekirse önce ticareti yapacaklar, nedenlerini daha sonra araştıracaklar. Teknisyenin tablosu trend çizgileri, hareketli ortalamalar, stokastikler ve Hareketli Ortalama Yakınsama ve Iraksama (MACD) ile süslenmiştir. Ancak temel, onları doğruluk ve güvenle ticaret yapmaya yönlendiren güzel bir basitliktir. DEMO ticaret stili: teknik analiz</blockquote>
-   <blockquote><strong>Usta Sistem Yatırımcısı – Ed Seykota</strong><br>Ed Seykota benzersiz bir sistem yatırımcısıdır. Ticaretin önce psikolojiyle, sonra sistemle ilgili olduğunu anlıyor.<br>Usta sistem tüccarı, ticaret makinelerinin tanrısıdır. Titiz bir geliştirme ve test süreci sayesinde sistem tüccarları, bilgisayarların onlar için ticaret yapabilmesi için otomatik ticaret stratejilerine sahiptir. Disiplinli, usta sistem tüccarı, trend ortaya çıktığında tonlarca para kazanacağını bilerek zor zamanları sakince atlatır. Bir araştırma savaşının ortasındaydı. Pazar değişiyor ve pazar değiştikçe sisteminin de buna uyum sağlaması gerekiyor. Bu, zamanının çoğunu ticaret yapmak yerine araştırmaya harcadığı anlamına gelir. Tabii dünyayı ana sistem tüccarının yaptığı kadar sık ​​dolaşmadıkça. Makinesi ona bol bol boş zaman sağlıyor. DEMO ticaret stili: akıllı ticaret sistemi</blockquote>
-   <blockquote><strong></strong>Küresel Makro Dahi – Paul Tudor Jones<br>1987 Kara Pazartesi çöküşünü tahmin etmesiyle ünlü milyarder Paul Tudor Jones, artık hayırsever bir Robin Hood Vakfı Kurucusu. <br>1987'deki Kara Pazartesi çöküşünü tahmin etmesiyle tanınan milyarder Paul Tudor Jones, şu anda hayırsever Robin Hood Vakfı'nın kurucusudur. Küresel makro dahi, büyük pazarlarda ticaret yapmak için beceri ve azmi kullanan, görünüşte bir dahi gibi görünüyor. Ancak en iyi küresel Forex yatırımcıları, sıkı çalışmanın ve disiplinin başarının sırrı olduğunu biliyor. Para birimlerinde, endekslerde ve emtialarda fırsatlar bulmak için yorulmadan çalışırlar ve ardından işlemleri için mümkün olan en iyi riski/ödülü sağlamak için daha da sıkı çalışırlar. Fikirlerin onları ileri götürmeyeceğini biliyorlar, asıl önemli olan icraattır. En iyi küresel makro traderlar (gerçek dehalar) tüm piyasa türlerinde kar elde edebiliyor ve asla kaybedilen bir yıl yaşamıyor. DEMO ticaret stilleri: Fark Sözleşmeleri (CFD'ler) (hisse senedi endeksleri ve emtialar) ve para birimleri</blockquote>
+  "m5-tg-a6-s2-c": `<div class="rich-text__container"><blockquote><strong>Şampiyon günlük tüccar – “Buzzy” Schwartz. </strong><br>Marty Schwartz'ın işlemleri bir zamanlar S&P 500 vadeli işlem sözleşmelerinin günlük işlem hacminin %10'unu oluşturuyordu. Pit-bull, Wall St's Champion Trader'dan Dersler kitabının yazarıdır. Yeni başlayan biri için Champion Day Trader bir aksiyon adamı gibi görünür. Uygulama sırasında kararlı davranırlar ama aynı zamanda işlerini sabırla takip etmeyi de bilirler. Günlük tüccarların genellikle odaklanacakları birden fazla ekranı vardır.Günlük tüccarlar düzinelerce mesajı izleyerek ticaret fırsatlarının ortaya çıkmasını beklerler. Bazı insanlar hızlı bir şekilde işlem yapar, saniyeler içinde piyasaya girip çıkarlar ve burada 5 pip ve orada 10 pip kazanırlar. Diğerleri daha sakin olabilir, her işlem gününde yalnızca bir veya iki işlem yapabilir ve günün değişikliklerinden yararlanmak için mükemmel anı dikkatle bekleyebilir. Şampiyon günü tacirleri gürültücü ve gürültücü olabilirler, ancak ticaret operasyonlarına egolarını dahil etmemeyi öğrenirler. Peki ya piyasa beklentilerinin tersine giderse? Ya vazgeçerler ya da başka seçeneklerin peşine düşerler. Günlük traderlar için her şey aynıdır. Onların umursadığı şey, haklı olup olmadıkları değil, zararlarını azaltıp kâr etmeye devam edip etmeyecekleridir. Yaptıkları işlemlerin yalnızca yarısında kazanabilirler, ancak mükemmel risk yönetimi sayesinde her gün oldukça kârlıdırlar. Helix-Capita ticaret stili: kısa vadeli/gün içi</blockquote>
+   <blockquote><strong>Mükemmel Teknisyen – W.D. Ganns</strong><br>William Delbert Gann, teknik analiz kullanarak piyasa hareketlerini tahmin etme yeteneğiyle tanınır. <br>Grafikler, teknik kalıpların piyasanın ruhuna açılan bir pencere ve psikolojisine bir bakış açısı sağladığını bilen teknisyenler için ilgi çekici bir hikaye örüyor. Teknik analiz sayesinde piyasa katılımcılarının korkularını ve açgözlülüğünü tam olarak anlarlar. Fibonacci, Elliott Waves veya Gann Theory olsun, teknik analistler kısa vadeli piyasa hareketlerini tahmin etmelerine yardımcı olacak araçlara ve fikirlerine dayalı olarak başarılı bir şekilde ticaret yapma becerisine sahip olurlar. Teknisyenlerin görüntü okuma yeteneklerinin birçok uygulaması vardır. Kısa vadeli ve uzun vadeli eğilimleri analiz edebilirler. Bazı insanlar teknik analizlerini temel bilgilerle birleştirecek ve ikisi uyumlu hale geldiğinde öncelikle ticaret yapacaktır. Diğerleri fiyata inanıyor. Gerekirse önce ticareti yapacaklar, nedenlerini daha sonra araştıracaklar. Teknisyenin tablosu trend çizgileri, hareketli ortalamalar, stokastikler ve Hareketli Ortalama Yakınsama ve Iraksama (MACD) ile süslenmiştir. Ancak temel, onları doğruluk ve güvenle ticaret yapmaya yönlendiren güzel bir basitliktir. Helix-Capita ticaret stili: teknik analiz</blockquote>
+   <blockquote><strong>Usta Sistem Yatırımcısı – Ed Seykota</strong><br>Ed Seykota benzersiz bir sistem yatırımcısıdır. Ticaretin önce psikolojiyle, sonra sistemle ilgili olduğunu anlıyor.<br>Usta sistem tüccarı, ticaret makinelerinin tanrısıdır. Titiz bir geliştirme ve test süreci sayesinde sistem tüccarları, bilgisayarların onlar için ticaret yapabilmesi için otomatik ticaret stratejilerine sahiptir. Disiplinli, usta sistem tüccarı, trend ortaya çıktığında tonlarca para kazanacağını bilerek zor zamanları sakince atlatır. Bir araştırma savaşının ortasındaydı. Pazar değişiyor ve pazar değiştikçe sisteminin de buna uyum sağlaması gerekiyor. Bu, zamanının çoğunu ticaret yapmak yerine araştırmaya harcadığı anlamına gelir. Tabii dünyayı ana sistem tüccarının yaptığı kadar sık ​​dolaşmadıkça. Makinesi ona bol bol boş zaman sağlıyor. Helix-Capita ticaret stili: akıllı ticaret sistemi</blockquote>
+   <blockquote><strong></strong>Küresel Makro Dahi – Paul Tudor Jones<br>1987 Kara Pazartesi çöküşünü tahmin etmesiyle ünlü milyarder Paul Tudor Jones, artık hayırsever bir Robin Hood Vakfı Kurucusu. <br>1987'deki Kara Pazartesi çöküşünü tahmin etmesiyle tanınan milyarder Paul Tudor Jones, şu anda hayırsever Robin Hood Vakfı'nın kurucusudur. Küresel makro dahi, büyük pazarlarda ticaret yapmak için beceri ve azmi kullanan, görünüşte bir dahi gibi görünüyor. Ancak en iyi küresel Forex yatırımcıları, sıkı çalışmanın ve disiplinin başarının sırrı olduğunu biliyor. Para birimlerinde, endekslerde ve emtialarda fırsatlar bulmak için yorulmadan çalışırlar ve ardından işlemleri için mümkün olan en iyi riski/ödülü sağlamak için daha da sıkı çalışırlar. Fikirlerin onları ileri götürmeyeceğini biliyorlar, asıl önemli olan icraattır. En iyi küresel makro traderlar (gerçek dehalar) tüm piyasa türlerinde kar elde edebiliyor ve asla kaybedilen bir yıl yaşamıyor. Helix-Capita ticaret stilleri: Fark Sözleşmeleri (CFD'ler) (hisse senedi endeksleri ve emtialar) ve para birimleri</blockquote>
    <blockquote><strong>Hedge Ticaret Ustası – Ray Dalio</strong><br>Ray Dalio, dünyanın en büyük hedge fonu olan Bridgewater Associates'in kurucusudur. Dalio, 2012 yılında Time 100'ün dünyadaki en etkili 100 kişisi arasında yer aldı ve servetinin 15,2 milyar doların üzerinde olduğu söyleniyor. <br>Yalnızca bir lider başarılı bir hedge fonu kurabilir, ancak insana dayalı bir iş kurmak için gerçek liderlik gerekir. Ustalar, mekanik, makro veya niceliksel olsun, kendi kriterlerine uygun yatırımcıları seçme konusunda uzmandırlar. Onlar öncelikle risk yöneticileridir ve her yatırımcının daha büyük risk yönetimi planında kendi yeri vardır. Özellikle iyi performans gösteren yatırımcılara daha fazla fon tahsis edilirken, kötü performans gösteren yatırımcılara daha az fon tahsis edilir. Hedge fonu uzmanları, yatırımcıların bir ekip olarak kendi parçalarının toplamından çok daha büyük getiriler elde edebileceklerini biliyor. </blockquote></div>`,
   // Eğitim m5-Ticaret Rehberi ABD dışı para birimleriyle altın ticareti nasıl yapılır
   "m5-tg-a7-s1-t1": "ABD dışı para birimleriyle altın ticareti nasıl yapılır",
-  "m5-tg-a7-s2-c": `<div class="rich-text__container"><h5>DEMO'da altın her zaman yatırımcılar arasında en popüler yatırım hedefi olmuştur ve biz de size her zaman bunu sağlamaya kararlıyız. Daha güncel altın ticareti ürünleriyle. En popüler altın ticareti ABD doları (XAUUSD) cinsindendir. Ancak DEMO'da artık <a href="javascript:void(0)">5 para birimine</a> kadar altın ticareti yapabilirsiniz. Bu makale size ABD dışı para birimleri cinsinden altının avantajlarını tanıtacaktır. </h5>
+  "m5-tg-a7-s2-c": `<div class="rich-text__container"><h5>Helix-Capita'da altın her zaman yatırımcılar arasında en popüler yatırım hedefi olmuştur ve biz de size her zaman bunu sağlamaya kararlıyız. Daha güncel altın ticareti ürünleriyle. En popüler altın ticareti ABD doları (XAUUSD) cinsindendir. Ancak Helix-Capita'da artık <a href="javascript:void(0)">5 para birimine</a> kadar altın ticareti yapabilirsiniz. Bu makale size ABD dışı para birimleri cinsinden altının avantajlarını tanıtacaktır. </h5>
    <h5>Makroekonomi ve finans piyasalarında altının tartışılmaz bir konumu var. Altın ticareti piyasası oldukça likittir ve farklı piyasa ortamlarında her zaman uygun yatırım fırsatlarını bulabilirsiniz. </h5>
    <h5>En yaygın olanı ABD doları ile altın ticareti yapmaktır. Bununla birlikte, hem altın hem de ABD doları konusunda yükseliş bekliyorsanız, altın yatırım getirilerini en üst düzeye çıkarma stratejisi, değer kaybedebileceğini düşündüğünüz diğer para birimlerine karşı yükseliş eğilimi gösteren altın satın almaktır. Piyasa beklediğiniz yönde hareket ederse, hem altının (değer kazanması) hem de ABD dışı para biriminin (amortismanı) faydalarını aynı anda elde edebileceksiniz. Örneğin altının İngiliz sterlini (XAUGBP) karşısında Mayıs 2020'de tüm zamanların en yüksek seviyesine ulaştı. Bunun nedeni, altının gücünü ve İngiliz sterlininin zayıflığını aynı anda görmüş olmamızdır. </h5>
    <h5>Böyle bir mantık tersi durumda da geçerlidir. Altının düşeceğini düşünüyorsanız ancak doların değer kaybedeceğinden endişeleniyorsanız, altınınızı daha güçlü bir para birimine satarak kazancınızı en üst düzeye çıkarabilirsiniz. </h5>
@@ -2655,21 +2655,21 @@ export default {
    <h5>Ancak artık GBP ve CHF ile altın ticareti yapma fırsatınız var. ABD doları, Avustralya doları ve euro cinsinden yapılan önceki altın işlemleriyle birlikte şu anda toplam 5 altın alım satım seçeneği bulunmaktadır. </h5>
    <h5>Avustralya doları karşısında altın (XAUAUD), salgının ilk aşamalarında 24 Mart'ta 2765 gibi rekor bir seviyeye ulaştı. Takip eden dönemde, küresel riskten kaçınmanın da etkisiyle, euro karşısında altın (XAUEUR) ve İngiliz sterlini karşısında altın (XAUGBP) sırasıyla yeni tarihi zirvelere ulaştı. Altın/CHF (XAUCHF) son zamanlarda iyi bir performans sergiliyor. İsviçre Frangı'nın güvenli liman statüsü nedeniyle güçleneceğini düşünebilirsiniz, ancak İsviçre Merkez Bankası aslında euro'ya sabitlemeye benzer bir strateji benimsedi. XAUEUR 18 Mayıs'ta yeni bir zirveye ulaştığında XAUCHF de rekor bir seviyeye ulaştı. </h5>
    <h3>Daha iyi fiyatlandırma</h3>
-   <h5>DEMO en yeni altın ürünlerinde rekabetçi spreadler sunuyor. XAUGBP ve XAUCHF'deki en düşük spread 0,08, ortalama spread ise sırasıyla 0,38 ve 0,4'tür. </h5>
+   <h5>Helix-Capita en yeni altın ürünlerinde rekabetçi spreadler sunuyor. XAUGBP ve XAUCHF'deki en düşük spread 0,08, ortalama spread ise sırasıyla 0,38 ve 0,4'tür. </h5>
    <h3>Piyasa yorumunu ticaret stratejilerine dönüştürün</h3>
-   <h5>DEMO'nun zengin altın ticareti seçenekleri sayesinde ticaret stratejilerinizi daha da geliştirme ve zenginleştirme fırsatına sahip olacaksınız. Altının yükselişi ve düşüşüne dair belirli beklentileriniz olduktan sonra, altının trendine en ters olan para birimini seçin ve ikisini birleştirerek bir işlem oluşturun. Elbette piyasa eğilimi beklentilerinizle tutarsız olduğunda kayıplarınızı da artırabilir. </h5>
+   <h5>Helix-Capita'nun zengin altın ticareti seçenekleri sayesinde ticaret stratejilerinizi daha da geliştirme ve zenginleştirme fırsatına sahip olacaksınız. Altının yükselişi ve düşüşüne dair belirli beklentileriniz olduktan sonra, altının trendine en ters olan para birimini seçin ve ikisini birleştirerek bir işlem oluşturun. Elbette piyasa eğilimi beklentilerinizle tutarsız olduğunda kayıplarınızı da artırabilir. </h5>
    <h5>Altın, döviz, hisse senedi endeksi ve diğer ürünlerdeki yatırım fırsatları hakkında daha fazla bilgi edinmek ister misiniz? Lütfen en son <a href="/#/market-analytics/">piyasa analizimizi</a> takip edin veya ticaret fırsatlarını yakalamanıza yardımcı olması için WeChat resmi hesabını takip etmek üzere QR kodunu tarayın. </h5>
 </div>`,
 
   // tradingview
-  "tv-s1-t1": "DEMO kullanarak TradingView'de işlem yapma",
+  "tv-s1-t1": "Helix-Capita kullanarak TradingView'de işlem yapma",
   "tv-s1-d1":
     "Ticaretinizi bir sonraki seviyeye taşımak için rekabetçi ticaret koşulları ve gelişmiş grafiklerin mükemmel birleşimi",
   "tv-s2-t1": "TradingView'e bağlanın",
   "tv-s2-d1":
-    "İçinizdeki teknik analisti ortaya çıkarın. TradingView'in gelişmiş ve son derece özelleştirilebilir grafiklerinde 1.200'ün üzerinde ürünle işlem yapın. DEMO'nun şeffaf fiyatlandırmasından, hızlı uygulamasından ve ödüllü müşteri hizmetlerinden* yararlanın.",
+    "İçinizdeki teknik analisti ortaya çıkarın. TradingView'in gelişmiş ve son derece özelleştirilebilir grafiklerinde 1.200'ün üzerinde ürünle işlem yapın. Helix-Capita'nun şeffaf fiyatlandırmasından, hızlı uygulamasından ve ödüllü müşteri hizmetlerinden* yararlanın.",
   "tv-s2-d2": "Yeni nesil grafik teknolojisi",
-  "tv-s3-t1": "Neden DEMO'yu seçmelisiniz?",
+  "tv-s3-t1": "Neden Helix-Capita'yu seçmelisiniz?",
   "tv-s3-1-t1": "Düşük yayılma",
   "tv-s3-1-d1":
     "Razor hesabımızda 0,0 pipten başlayan sektör lideri düşük spreadlerin keyfini çıkarın^",
@@ -2678,7 +2678,7 @@ export default {
     "Razor hesabımızda 0,0 pipten başlayan sektör lideri düşük spreadlerin keyfini çıkarın^",
   "tv-s3-3-t1": "Güvenle ticaret yapın",
   "tv-s3-3-d1":
-    "DEMO, ASIC, FCA, DFSA, CMA, CySEC, BaFin ve SCB tarafından denetlenen bir komisyoncudur ve müşteri fonları ayrı hesaplarda tutulur",
+    "Helix-Capita, ASIC, FCA, DFSA, CMA, CySEC, BaFin ve SCB tarafından denetlenen bir komisyoncudur ve müşteri fonları ayrı hesaplarda tutulur",
   "tv-s3-4-t1": "1000'den fazla ticari ürün",
   "tv-s3-4-d1":
     "Forex, Kripto Para Birimleri, Endeksler, Hisse Senetleri, Emtialar ve daha fazlasını içeren geniş CFD enstrümanlarımızla işlem yapın",
@@ -2690,65 +2690,65 @@ export default {
   "tv-s4-2-d1":
     "TradingView.com'da bir hesabınız yoksa başlamak için ücretsiz bir hesaba kaydolabilirsiniz.",
   "tv-s4-3-t1":
-    "DEMO'nun yeni müşterisiyim, nasıl hesap kaydedip onu TradingView'e bağlayabilirim?",
+    "Helix-Capita'nun yeni müşterisiyim, nasıl hesap kaydedip onu TradingView'e bağlayabilirim?",
   "tv-s4-3-d1":
-    "Yeni bir DEMO müşterisiyseniz lütfen adım adım talimatlarımızı burada bulabilirsiniz.",
+    "Yeni bir Helix-Capita müşterisiyseniz lütfen adım adım talimatlarımızı burada bulabilirsiniz.",
   "tv-s4-4-t1":
-    "Mevcut bir DEMO müşterisiyim, TradingView'de işlem yapmaya nasıl başlayabilirim?",
+    "Mevcut bir Helix-Capita müşterisiyim, TradingView'de işlem yapmaya nasıl başlayabilirim?",
   "tv-s4-4-d1":
-    "TradingView'de işlem yapmaya başlamak isteyen mevcut bir DEMO müşterisi olarak lütfen talimatları burada bulabilirsiniz.",
+    "TradingView'de işlem yapmaya başlamak isteyen mevcut bir Helix-Capita müşterisi olarak lütfen talimatları burada bulabilirsiniz.",
   "tv-s4-5-t1":
     "MT4, MT5 veya cTrader hesabımı TradingView'e bağlayabilir miyim?",
-  "tv-s4-5-d1": "Yalnızca DEMO TradingView hesapları desteklenir.",
+  "tv-s4-5-d1": "Yalnızca Helix-Capita TradingView hesapları desteklenir.",
   "tv-s4-6-t1": "TradingView nedir ve nasıl kullanılır?",
   "tv-s4-6-d1":
     "TradingView, yatırımcılara yönelik web tabanlı bir sosyal ağdır ve onlara ticaret fikirlerini etkileşimde bulunmalarına ve paylaşmalarına, ayrıca TradingView'in gelişmiş grafik yeteneklerinden doğrudan analiz etmelerine ve ticaret yapmalarına olanak tanır.",
   "tv-s4-7-t1":
-    "DEMO TradingView hesabımdaki fonlar DEMO veya TradingView'de kalacak mı?",
-  "tv-s4-7-d1": "Tüm fonlar DEMO'da ayrı bir hesapta tutulur.",
-  "tv-s4-8-t1": `DEMO TradingView hesaplarının "cTrader tarafından desteklenmesi" ne anlama gelir?`,
+    "Helix-Capita TradingView hesabımdaki fonlar Helix-Capita veya TradingView'de kalacak mı?",
+  "tv-s4-7-d1": "Tüm fonlar Helix-Capita'da ayrı bir hesapta tutulur.",
+  "tv-s4-8-t1": `Helix-Capita TradingView hesaplarının "cTrader tarafından desteklenmesi" ne anlama gelir?`,
   "tv-s4-8-d1":
-    "DEMO TradingView hesapları cTrader platformu üzerine kurulmuştur ve özellikle TradingView'deki ticaret deneyiminizi desteklemek için tasarlanmıştır.",
+    "Helix-Capita TradingView hesapları cTrader platformu üzerine kurulmuştur ve özellikle TradingView'deki ticaret deneyiminizi desteklemek için tasarlanmıştır.",
   "tv-tip1":
     "*Kayıtlı TradingView hesabı sahipleri.<br>^Diğer ücretler geçerli olabilir.",
 
   //grup
-  "g-s1-t1": "DEMO Grubuna Hoş Geldiniz",
+  "g-s1-t1": "Helix-Capita Grubuna Hoş Geldiniz",
   "g-s1-d1": "Ödüllü çevrimiçi ticaret sağlayıcısı.",
   "g-s1-d2":
     "Dünyanın en büyük MT4 brokerlarından biri olarak, 110.000'den fazla perakende ticaret hesabında günde ortalama 12,55 milyar dolar değerinde işlem gerçekleştiriyoruz.",
-  "g-s2-t1": "DEMO Grubu hakkında daha fazla bilgi edinin",
+  "g-s2-t1": "Helix-Capita Grubu hakkında daha fazla bilgi edinin",
   "g-s2-1-t1": "Vizyonumuz",
   "g-s2-1-d1":
     "Bu, hırslı yatırımcıların küresel pazarların zorluklarını ve fırsatlarını kucakladığı, teknoloji odaklı bir ticaret dünyasıdır.",
   "g-s2-2-t1": "Platformumuzda işlem yapın",
-  "g-s2-2-d1": "Ticaret ihtiyaçlarınıza en uygun global DEMO ofisi hangisi?",
+  "g-s2-2-d1": "Ticaret ihtiyaçlarınıza en uygun global Helix-Capita ofisi hangisi?",
   "g-s3-1-t1": "Hakkımızda",
   "g-s3-1-d1":
-    "DEMO'nun gelişmiş teknolojisi ve müşterilerimizin ticarette uzmanlaşmasına yardımcı olma kararlılığımız hakkında daha fazla bilgi edinin.",
+    "Helix-Capita'nun gelişmiş teknolojisi ve müşterilerimizin ticarette uzmanlaşmasına yardımcı olma kararlılığımız hakkında daha fazla bilgi edinin.",
   "g-s3-2-t1": "Haberler ve Medya",
   "g-s3-2-d1": "Haberler ve medyayla ilgili sorular",
 
   //合法文件 legal-documentation
   "ld-s0-t1": "Yasal Belge",
   "ld-s0-d1":
-    "Platformumuzda hesap açmadan önce hesabınızı kaydettiğiniz DEMO kuruluşuna ilişkin yasal belgeleri okumalısınız.",
+    "Platformumuzda hesap açmadan önce hesabınızı kaydettiğiniz Helix-Capita kuruluşuna ilişkin yasal belgeleri okumalısınız.",
   "ld-s1-d1":
-    "Yasal belgelerimizin, ticaret hesabınızı bulundurduğunuz DEMO kuruluşuna ve sizin için geçerli olan düzenlemelere bağlı olarak değişiklik gösterdiğini lütfen unutmayın. Hesabınız için geçerli olan yasal belgeler, Okumadan önce doldurmanız gereken başvuru formunuzda açıkça belirtilecektir. Devam etmeden önce bu belgeyi dikkatle inceleyin.<br>Sizin için geçerli olan düzenlemeler hakkında daha fazla bilgi edinmek için lütfen aşağıdaki ilgili bağlantılara tıklayın:",
-  "ld-s1-1-q1": "DEMO Markets Limited (Bahamalar)",
-  "ld-s1-1-a1": `<div class="rich-text__container"><p>DEMO Markets Limited'de bir hesap açtığınızda, aşağıdaki şartları okuduğunuzu, anladığınızı ve kabul ettiğinizi gösterir. belgeler </p>
+    "Yasal belgelerimizin, ticaret hesabınızı bulundurduğunuz Helix-Capita kuruluşuna ve sizin için geçerli olan düzenlemelere bağlı olarak değişiklik gösterdiğini lütfen unutmayın. Hesabınız için geçerli olan yasal belgeler, Okumadan önce doldurmanız gereken başvuru formunuzda açıkça belirtilecektir. Devam etmeden önce bu belgeyi dikkatle inceleyin.<br>Sizin için geçerli olan düzenlemeler hakkında daha fazla bilgi edinmek için lütfen aşağıdaki ilgili bağlantılara tıklayın:",
+  "ld-s1-1-q1": "Helix-Capita Markets Limited (Bahamalar)",
+  "ld-s1-1-a1": `<div class="rich-text__container"><p>Helix-Capita Markets Limited'de bir hesap açtığınızda, aşağıdaki şartları okuduğunuzu, anladığınızı ve kabul ettiğinizi gösterir. belgeler </p>
    <ul><li><a target='_blank' href = "pdf.js/SCB_Client_TCs_ROW.pdf" rel = "noreferrer noopener">
    Şartlar ve koşullar
    </a> –
-   Bu anlaşmanın sizinle DEMO Markets Limited arasındaki ilişkiyi yönetmesi amaçlanmaktadır.
+   Bu anlaşmanın sizinle Helix-Capita Markets Limited arasındaki ilişkiyi yönetmesi amaçlanmaktadır.
    </li><li><a target='_blank' href = "pdf.js/SCB_Privacy_Policy_ROW.pdf" rel = "noreferrer noopener">
    Gizlilik Politikası
    </a> –
-   Bu politika, DEMO Markets Limited ile işlem yaptığınızda kişisel bilgilerinizi nasıl topladığımızı ve yönettiğimizi açıklamaktadır.
+   Bu politika, Helix-Capita Markets Limited ile işlem yaptığınızda kişisel bilgilerinizi nasıl topladığımızı ve yönettiğimizi açıklamaktadır.
    </li><li><a target='_blank' href = "pdf.js/SCB_Cookie_Policy_ROW.pdf" rel = "noreferrer noopener">
    Çerez politikası
    </a> –
-   Bu politika, DEMO'da kullandığımız çerez türlerini ve bunları nasıl yönettiğimizi açıklamaktadır. Web sitemizi kullanmanız, bu politikada belirtilen şartları kabul ettiğiniz anlamına gelir.
+   Bu politika, Helix-Capita'da kullandığımız çerez türlerini ve bunları nasıl yönettiğimizi açıklamaktadır. Web sitemizi kullanmanız, bu politikada belirtilen şartları kabul ettiğiniz anlamına gelir.
    </li><li><a href="#">Simülasyon Platformunun Şartları ve Koşulları</a></li><li><a target='_blank' href="pdf.js/SCB_Risk_Disclose_Notice_ROW.pdf" >
    Risk Açıklama Bildirimi
    </a> –
@@ -2786,7 +2786,7 @@ export default {
   "cu-s1-2-d2": "Medya",
 
   //合作伙伴 partners
-  "p-s0-t1": "DEMO ortağı olun",
+  "p-s0-t1": "Helix-Capita ortağı olun",
   "p-s0-d1":
     "Sektördeki en başarılı yönlendirme programlarından birine katılın ve özel bölge temsilcilerimizin yardımıyla işinizi büyütün.",
   "p-s0-1-t1": "Uluslararası Bakalorya Programı",

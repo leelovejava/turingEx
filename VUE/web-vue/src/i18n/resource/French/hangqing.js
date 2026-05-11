@@ -21,7 +21,7 @@ export default {
     'bizhong':'Devise',
     'jiagejisuanqi':'calculateur de prix',
     'goumai':'Acheter',
-    'chang1':'Parmi les principales plateformes de trading, DEMO a le taux de frais de gestion le plus bas.',
+    'chang1':'Parmi les principales plateformes de trading, Helix-Capita a le taux de frais de gestion le plus bas.',
     'jiagexinxi':'informations sur les prix',
     'chang2':'Minimum et maximum dans les 24 heures',
     'gao':'haute',

@@ -705,7 +705,7 @@ export default {
   zanweikaifang: "暂未开放",
   shanchuchenggong: "删除成功",
   tianjiatixiandizhi: "添加提现地址",
-  tip3: "输入4-20个字符的备注，例如：小明的DEMO账户",
+  tip3: "输入4-20个字符的备注，例如：小明的Helix-Capita账户",
   dizhibeizhu: "地址备注",
   tibidizhi: "提币地址",
   baocun: "保存",

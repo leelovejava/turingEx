@@ -713,7 +713,7 @@ export default {
   zanweikaifang: "Próximamente",
   shanchuchenggong: "Eliminado con éxito",
   tianjiatixiandizhi: "Agregar dirección de retiro",
-  tip3: "Ingrese una nota de 4-20 caracteres, por ejemplo: cuenta DEMO de Juan",
+  tip3: "Ingrese una nota de 4-20 caracteres, por ejemplo: cuenta Helix-Capita de Juan",
   dizhibeizhu: "Nota de dirección",
   tibidizhi: "Dirección de retiro",
   baocun: "Guardar",

@@ -161,25 +161,25 @@ export default {
     "Scopri come funzionano le criptovalute specifiche e ottieni alcune informazioni su ciascuna per provare tu stesso. ",
   kaishiearn: "Inizia a guadagnare denaro",
   mosttrusted: "La piattaforma di criptovaluta più affidabile",
-  selectReason: "Ecco alcuni motivi per cui dovresti scegliere DEMO",
+  selectReason: "Ecco alcuni motivi per cui dovresti scegliere Helix-Capita",
   reasonTitle1: "Archiviazione sicura",
   reasonTitle1Tips:
     "Conserviamo la maggior parte delle risorse digitali in un archivio offline sicuro. ",
   reasonTitle2: "Soggetto ad assicurazione",
   reasonTitle2Tips:
-    "DEMO mantiene un'assicurazione crittografica e tutti i saldi in contanti in USD sono assicurati FDIC fino a $ 250.000. ",
+    "Helix-Capita mantiene un'assicurazione crittografica e tutti i saldi in contanti in USD sono assicurati FDIC fino a $ 250.000. ",
   reasonTitle3: "Best practice del settore",
-  reasonTitle3Tips: "DEMO supporta molte delle valute digitali più popolari. ",
+  reasonTitle3Tips: "Helix-Capita supporta molte delle valute digitali più popolari. ",
   jiduyaoyiliang: "Volume delle transazioni trimestrali",
   zhichideguoijia: "Paesi supportati",
   yanzhengyonghu: "Utente autenticato",
   suishijiaoyi: "Fai trading sempre e ovunque",
   saoerweima: "Scansiona codice QR",
   changsuo:
-    "DEMO ha una varietà di caratteristiche che lo rendono il posto migliore per iniziare a fare trading",
+    "Helix-Capita ha una varietà di caratteristiche che lo rendono il posto migliore per iniziare a fare trading",
   kaishichuangjian: "Crea subito il tuo portafoglio di criptovalute",
   baomingkaishi:
-    "DEMO è il posto più semplice per acquistare e vendere criptovalute. Iscriviti e inizia oggi. ",
+    "Helix-Capita è il posto più semplice per acquistare e vendere criptovalute. Iscriviti e inizia oggi. ",
   jiamizuhe: "Inizia il tuo portafoglio di criptovalute",
   kaishiqidong: "Inizia il tuo portafoglio di investimenti",
 
@@ -574,7 +574,7 @@ export default {
 
   jiamizhilv: "Inizia il tuo viaggio in criptovaluta",
   jiamizhilv_1:
-    "DEMO, la più grande piattaforma di scambio di criptovalute al mondo, consente agli investitori di condurre transazioni di investimento in modo sicuro e sicuro.",
+    "Helix-Capita, la più grande piattaforma di scambio di criptovalute al mondo, consente agli investitori di condurre transazioni di investimento in modo sicuro e sicuro.",
 
   yijiangoubi: "Acquisto di monete con un clic",
   jinrongyewu: "Guadagna",
@@ -596,7 +596,7 @@ export default {
 
   touzizuhe_1: "Crea subito il tuo portafoglio di criptovalute",
   touzizuhe_2:
-    "DEMO ha molte funzioni, che lo rendono il posto migliore per iniziare a fare trading",
+    "Helix-Capita ha molte funzioni, che lo rendono il posto migliore per iniziare a fare trading",
   touzizuhe_3: "Gestisci il tuo portafoglio",
   touzizuhe_4:
     "Acquista e vendi valute digitali popolari e monitorale in un unico posto.",
@@ -616,15 +616,15 @@ export default {
   jiamihuobi_3: "Inizia a fare soldi",
 
   huobipingtai_1: "La piattaforma di criptovaluta più affidabile",
-  huobipingtai_2: "Ecco alcuni motivi per cui dovresti scegliere DEMO",
+  huobipingtai_2: "Ecco alcuni motivi per cui dovresti scegliere Helix-Capita",
   huobipingtai_3: "Archiviazione sicura",
   huobipingtai_4:
     "Memorizziamo la maggior parte delle nostre risorse digitali in un archivio offline sicuro.",
   huobipingtai_5: "Assicurato",
   huobipingtai_6:
-    "DEMO mantiene un'assicurazione di crittografia e tutti i saldi in dollari sono coperti da un'assicurazione FDIC, fino a 250000 dollari.",
+    "Helix-Capita mantiene un'assicurazione di crittografia e tutti i saldi in dollari sono coperti da un'assicurazione FDIC, fino a 250000 dollari.",
   huobipingtai_7: "Best Practice del settore",
-  huobipingtai_8: "DEMO supporta molte delle valute digitali più popolari.",
+  huobipingtai_8: "Helix-Capita supporta molte delle valute digitali più popolari.",
 
   xnxi_1: "Volume di negoziazione trimestrale",
   xnxi_2: "Paesi sovvenzionati",
@@ -673,9 +673,9 @@ export default {
     "Article 7 For issues not covered in this statement, please refer to relevant local laws and regulations. In case of any conflict between this statement and the relevant laws and regulations of the local country, the relevant laws and regulations of the local country shall prevail.",
 
   wenxintishi_0:
-    "谨防冒用DEMO官方人员的电话、邮箱诈骗： 随着数字货币交易被越来越多的人所知，非法分子也利用它进行诈骗等行为。随着近期非法分子的骗术升级，越来越多的“骗术”层出不穷。我们在此提醒广大用户对于这些防不慎防的骗术需要仔细甄别，避免资金损失。由于区块链转账的不可逆和用户信息的匿名，一旦发生对应的转账或账户信息被攻破，您的资金或将无法追回！ ",
+    "谨防冒用Helix-Capita官方人员的电话、邮箱诈骗： 随着数字货币交易被越来越多的人所知，非法分子也利用它进行诈骗等行为。随着近期非法分子的骗术升级，越来越多的“骗术”层出不穷。我们在此提醒广大用户对于这些防不慎防的骗术需要仔细甄别，避免资金损失。由于区块链转账的不可逆和用户信息的匿名，一旦发生对应的转账或账户信息被攻破，您的资金或将无法追回！ ",
   wenxintishi_1:
-    "Beware of fraudulent use of the phone and email address of DEMO official staff",
+    "Beware of fraudulent use of the phone and email address of Helix-Capita official staff",
   wenxintishi_2: "latest scams：",
   wenxintishi_3:
     "1. There are risks in misleading user accounts through text messages, and guide customers to provide account passwords for verification and unblocking",
@@ -686,35 +686,35 @@ export default {
   wenxintishi_6: "Common Scams",
   wenxintishi_7: "Pretending to be a staff member to contact the user",
   wenxintishi_8:
-    "Such as fraudulent activities in the name of DEMO staff, including calling users in the name of DEMO customer service or DEMO staff, adding contact information, and attracting users to enter fake chat groups. Typical scams also include the following means:",
+    "Such as fraudulent activities in the name of Helix-Capita staff, including calling users in the name of Helix-Capita customer service or Helix-Capita staff, adding contact information, and attracting users to enter fake chat groups. Typical scams also include the following means:",
   wenxintishi_9:
     "Ask for your email, send verification codes, QR codes, and let users click to fill in account information, log in to corresponding accounts and bank accounts, etc., and steal your assets through a series of operations.",
   wenxintishi_10:
     'Ask the user to remotely share with the fake "customer service" and "guidance" to operate your account. In addition, it will also steal account information by asking you for mobile phone verification codes, Google verification codes, or authorizing remote login, etc., on the grounds of verifying whether it is operated by yourself.',
   wenxintishi_11:
-    'Fake DEMO official account to create a group, conduct fraud in the name of replacement, gift, and other activities, and claim to be the so-called "official" DEMO account.',
+    'Fake Helix-Capita official account to create a group, conduct fraud in the name of replacement, gift, and other activities, and claim to be the so-called "official" Helix-Capita account.',
   wenxintishi_12:
-    "Identify fraud methods: DEMO information will be released by DEMO official website. If there is no official website website activity, please do not be deceived. If you have any questions, please contact the online customer service as soon as possible to avoid being cheated!",
+    "Identify fraud methods: Helix-Capita information will be released by Helix-Capita official website. If there is no official website website activity, please do not be deceived. If you have any questions, please contact the online customer service as soon as possible to avoid being cheated!",
   wenxintishi_13:
-    "Security Reminder: Any platform and staff of judicial and public security agencies will not actively contact you on the grounds that your account is at risk, ask you for any password, verification code information, and will not ask you to perform asset transfer operations such as buying coins/transfers . For any DEMO-related information update, please pay attention to the DEMO announcement, carefully screen out fraudulent activities, and avoid loss of funds. In addition, the official customer service of the DEMO platform will not contact users by phone. We only have online customer service and whatspp specialists are communication tools for DEMO to contact users.",
+    "Security Reminder: Any platform and staff of judicial and public security agencies will not actively contact you on the grounds that your account is at risk, ask you for any password, verification code information, and will not ask you to perform asset transfer operations such as buying coins/transfers . For any Helix-Capita-related information update, please pay attention to the Helix-Capita announcement, carefully screen out fraudulent activities, and avoid loss of funds. In addition, the official customer service of the Helix-Capita platform will not contact users by phone. We only have online customer service and whatspp specialists are communication tools for Helix-Capita to contact users.",
   wenxintishi_14:
-    "For specific contact methods, please refer to: How to use DEMO online customer service system to obtain further support. If you are involved in fund-related issues, please consult customer service as soon as possible.",
+    "For specific contact methods, please refer to: How to use Helix-Capita online customer service system to obtain further support. If you are involved in fund-related issues, please consult customer service as soon as possible.",
 
   gouzhizhuanhuan_1: "What is USDT?",
   gouzhizhuanhuan_2: "Price stability, high-level compliance",
   gouzhizhuanhuan_3: "USDT can be purchased or redeemed at any time in USD",
   gouzhizhuanhuan_4: "Zero handling charge for purchase and redemption",
   gouzhizhuanhuan_5:
-    "DEMO will not charge users for purchase and redemption fees. (Wire transfer fees may apply depending on the bank you use)",
+    "Helix-Capita will not charge users for purchase and redemption fees. (Wire transfer fees may apply depending on the bank you use)",
   gouzhizhuanhuan_6: "Convenient storage and transfer",
   gouzhizhuanhuan_7:
-    "Support ERC-20 and BEP-protocols, easy to keep and store in wallets that support ERC-20, or DEMO wallets",
+    "Support ERC-20 and BEP-protocols, easy to keep and store in wallets that support ERC-20, or Helix-Capita wallets",
   gouzhizhuanhuan_8:
     "Support USDT currency transfer and transaction on the following exchanges",
 
   yinsibaohu_1: "1. both sides",
   yinsibaohu_2:
-    '1.1 DEMO Exchange (hereinafter referred to as the "Company") is a company incorporated in New York under the New York federal laws. The website www.demo.com (hereinafter referred to as "this site" or "website") operated by the company is a website dedicated to digital asset transactions and related services for users (hereinafter referred to as "this site"). Service" or "service"). For the convenience of expressing this agreement, the company and this website collectively use "we" or other first-person addresses in this agreement.',
+    '1.1 Helix-Capita Exchange (hereinafter referred to as the "Company") is a company incorporated in New York under the New York federal laws. The website www.demo.com (hereinafter referred to as "this site" or "website") operated by the company is a website dedicated to digital asset transactions and related services for users (hereinafter referred to as "this site"). Service" or "service"). For the convenience of expressing this agreement, the company and this website collectively use "we" or other first-person addresses in this agreement.',
   yinsibaohu_3:
     '1.2 As long as the natural person or other subjects who log in to this website are users of this website, the convenience expressed in this agreement will be used as "you" or other second-person pronouns below.',
   yinsibaohu_4:
@@ -734,7 +734,7 @@ export default {
     "3.4 You agree that our affiliates, subsidiaries and employees may contact you about products and services that may be of interest to you (unless you have indicated that you do not wish to receive such communications).",
   yinsibaohu_12: "4. information collected",
   yinsibaohu_13:
-    "4.1 When you use this website, you agree that we start using DEMO exchange to track your every move, collect and remember all the information you leave, including but not limited to your IP address, geographical location and other information.",
+    "4.1 When you use this website, you agree that we start using Helix-Capita exchange to track your every move, collect and remember all the information you leave, including but not limited to your IP address, geographical location and other information.",
   yinsibaohu_14:
     "4.2 If you are willing to use the services provided by this website, you need to fill in and provide the following two types of information:",
   yinsibaohu_15:
@@ -751,13 +751,13 @@ export default {
     "4.4 When you use this website or the services it provides, we may improve the use of this website, enhance your experience of using this website and the services it provides and its security, or in accordance with courts or applicable laws and regulations. or other government agencies with jurisdiction to collect more necessary information through our dedicated mailbox posted on this website or other methods we deem compliant.",
   yinsibaohu_21:
     "4.5 If you visit other third-party websites on this website or any links of partner third parties, you shall agree to and abide by the separate and independent privacy policy of the third-party network. We are not responsible for the content and activities of these sites or partners.",
-  yinsibaohu_22: "5. DEMO Exchange",
+  yinsibaohu_22: "5. Helix-Capita Exchange",
   yinsibaohu_23:
-    "5.1 We use Google Stats through the DEMO exchange to record our performance and check the effectiveness of online advertising when you visit our website. An DEMO exchange is a small amount of data sent to your browser and stored on your computer's hard drive. DEMO exchanges are only sent to your computer's hard drive when you use a computer to access our website.",
+    "5.1 We use Google Stats through the Helix-Capita exchange to record our performance and check the effectiveness of online advertising when you visit our website. An Helix-Capita exchange is a small amount of data sent to your browser and stored on your computer's hard drive. Helix-Capita exchanges are only sent to your computer's hard drive when you use a computer to access our website.",
   yinsibaohu_24:
-    "5.2 DEMO Exchange is generally used to record the habits and preferences of visitors when browsing various items on our website. The information collected by the DEMO exchange is anonymous collective statistics and does not contain personal information.",
+    "5.2 Helix-Capita Exchange is generally used to record the habits and preferences of visitors when browsing various items on our website. The information collected by the Helix-Capita exchange is anonymous collective statistics and does not contain personal information.",
   yinsibaohu_25:
-    "5.3 DEMO Exchange cannot be used to obtain data on your hard drive, your email address and your private data. They allow this website or service provider's systems to recognize your browser and capture and remember information. Most browsers are preset to accept the DEMO exchange. You can choose to set your browser not to accept DEMO Exchange, or to notify you as soon as DEMO Exchange is installed. However, if you set to block DEMO Exchange, you may not be able to activate or use certain features of our website.",
+    "5.3 Helix-Capita Exchange cannot be used to obtain data on your hard drive, your email address and your private data. They allow this website or service provider's systems to recognize your browser and capture and remember information. Most browsers are preset to accept the Helix-Capita exchange. You can choose to set your browser not to accept Helix-Capita Exchange, or to notify you as soon as Helix-Capita Exchange is installed. However, if you set to block Helix-Capita Exchange, you may not be able to activate or use certain features of our website.",
   yinsibaohu_26: "6. Purpose of information use",
   yinsibaohu_27:
     "6.1 We will use your information collected for the following purposes or in the following ways:",
@@ -809,12 +809,12 @@ export default {
     "We reserve the right to modify this Privacy Policy at any time. We update and post the effective date of the new version to let you know that we have revised our Privacy Policy and to highlight the revisions. From time to time we may issue a notice telling you that the Privacy Policy has been modified, but this is not our obligation. You should periodically review the Privacy Policy and note its revisions. If you do not agree to the modified content, you should immediately stop visiting this website. When an updated version of the Privacy Policy is posted, your continued access to this website will display and indicate your agreement to the updated content and to be bound by the updated Privacy Policy.",
   yinsibaohu_52: "9. Access, correction and deletion of your personal data",
   yinsibaohu_53:
-    "You have the right to obtain a copy of your personal data upon request and to ascertain whether the information we hold about you is accurate and up to date. If any of your personal data is inaccurate, you may request that your information be updated. You can also request erasure of your personal data, but we may deny your erasure request in certain circumstances, for example where required by law or for other legal purposes. For data access, correction or deletion requests, please contact DEMO@demo.com",
+    "You have the right to obtain a copy of your personal data upon request and to ascertain whether the information we hold about you is accurate and up to date. If any of your personal data is inaccurate, you may request that your information be updated. You can also request erasure of your personal data, but we may deny your erasure request in certain circumstances, for example where required by law or for other legal purposes. For data access, correction or deletion requests, please contact Helix-Capita@demo.com",
   yinsibaohu_54:
     "In response to data access, correction or deletion requests, we will verify the identity of the requesting party to ensure that he or she is legally authorized to make such a request. Although we aim to respond to these requests free of charge, we reserve the right to charge you a reasonable fee if your request is repetitive or onerous.",
   yinsibaohu_55: "10. communicate with us",
   yinsibaohu_56:
-    "10.1 If you have any requirements and comments, you can send an email to DEMO@demo.com, this is the only valid official email address we communicate with you, so we do not use effective contact information for you, and we will not be responsible for any actions or failures .",
+    "10.1 If you have any requirements and comments, you can send an email to Helix-Capita@demo.com, this is the only valid official email address we communicate with you, so we do not use effective contact information for you, and we will not be responsible for any actions or failures .",
   yinsibaohu_57:
     "10.2 We only publish announcements and information or publish announcements on this website through effective contact information on this website, so we will not be liable for any loss caused by your trust in information not obtained through the above-mentioned methods.",
   yinsibaohu_58:
@@ -1042,7 +1042,7 @@ export default {
   help_3_2_21:
     "1）Obtained by mining Mining is the earliest way to obtain bitcoins, and it is also the source of bitcoins. Mining requires professional mining equipment, and the bitcoins obtained from mining will be directly entered into the bitcoin wallet. Due to the rise in the price of Bitcoin, the computing power of the entire network continues to increase, and the mining competition is fierce. Therefore, miners have higher and higher requirements for mining machines, and the iteration speed of mining machines is also accelerating. In order to maximize the ratio of computing power and energy consumption, the technical content of mining machines has increased, which has also led to more expensive mining machines. In addition, the purchase of mining machines and mine site selection will also face many risks, so the threshold and cost of mining are relatively high, so ordinary investors generally do not use this method to obtain Bitcoin.",
   help_3_2_22:
-    "2）Direct purchases Direct purchases mostly occur in the secondary market, that is, exchanges. Investors can purchase bitcoins through exchanges, such as Ouyi DEMO. Due to their good liquidity and good market depth, large exchanges are a more friendly way for novice investors to acquire Bitcoin. In addition, users can directly purchase bitcoins off-site, but due to the lack of guarantee, there are greater risks, so choose carefully.",
+    "2）Direct purchases Direct purchases mostly occur in the secondary market, that is, exchanges. Investors can purchase bitcoins through exchanges, such as Ouyi Helix-Capita. Due to their good liquidity and good market depth, large exchanges are a more friendly way for novice investors to acquire Bitcoin. In addition, users can directly purchase bitcoins off-site, but due to the lack of guarantee, there are greater risks, so choose carefully.",
   help_3_2_23:
     "3）Airdrop Rewards Bitcoin has been used as a gift or reward for rare items since its inception. In order to promote products and give back to users, some platforms will hold Bitcoin airdrops, through which users can obtain Bitcoins. 7. Bitcoin bifurcation In the world of blockchain, everyone follows the same set of rules, because there is no absolute authority in the decentralized world, so when encountering differences, there may be a possibility that a unified consensus cannot be reached. And that will lead some to come up with new rules. At this time, there will be a blockchain based on both old and new rules in the network, which is a fork.",
   help_3_2_24:
@@ -1119,7 +1119,7 @@ export default {
   help_3_5_1:
     "The original intention of Bitcoin design is to deal with the shortcomings of the existing financial system. Its generation method based on encryption algorithm solves the trust problem. However, after more than ten years of development, Bitcoin has consolidated its unshakable consensus. Confidence is growing that bitcoin has become a store of value for struggling emerging markets.",
 
-  licai_1: "Gestione fondi DEMO, dedicata a migliorare il reddito degli utenti",
+  licai_1: "Gestione fondi Helix-Capita, dedicata a migliorare il reddito degli utenti",
   licai_2: "Usa valuta digitale inattiva per guadagnare entrate extra",
   kuangchi_1:
     "Demo gestione finanziaria del mining pool, è così semplice aumentare le entrate",

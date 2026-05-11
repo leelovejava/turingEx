@@ -1,6 +1,6 @@
 export default {
   privacyText:
-    "©2022 DEMO Markets Limited Alle Rechte vorbehalten. Firmenregistrierungsnummer 177174 B SIA-F217 <br><br> Risikowarnung: Differenzkontrakte (CFDs) sind komplexe Instrumente und bergen aufgrund der Hebelwirkung ein hohes Risiko, schnell Geld zu verlieren. 85,12 % der Privatanleger haben beim Handel mit CFDs bei diesem Anbieter Geld auf ihren Konten verloren. Sie sollten überlegen, ob Sie die Funktionsweise von CFDs verstehen und ob Sie sich das hohe Risiko leisten können, Ihr Geld zu verlieren.<br><br>Sie besitzen nicht die zugrunde liegende Eigentümerschaft oder Befugnis. Die Wertentwicklung in der Vergangenheit ist kein Rückschluss auf die zukünftige Wertentwicklung und die Steuergesetze können sich ändern. Die Informationen auf dieser Website sind allgemeiner Natur und berücksichtigen nicht die persönlichen Ziele, die finanzielle Situation oder die Bedürfnisse Ihrer Kunden oder Ihrer Kunden. Bitte kontaktieren Sie uns at Lesen Sie unsere RDN und andere rechtliche Dokumente, bevor Sie Handelsentscheidungen treffen, und stellen Sie sicher, dass Sie die Risiken vollständig verstehen. Wir empfehlen Ihnen, unabhängigen Rat einzuholen.<br><br> DEMO Markets Limited befindet sich in Sea Sky Lane, B201, Sandyport, Nassau , New Providence, Bahamas, und ist von der Securities Commission of The Bahamas (SIA-F217) lizenziert und reguliert.<br><br>Wenn die Informationen auf dieser Website und die bereitgestellten Produkte und Dienstleistungen gegen lokale Gesetze und Vorschriften verstoßen Jedes Land, keine Informationen auf dieser Website. Die Informationen sowie die bereitgestellten Produkte und Dienstleistungen sind nicht zur Verbreitung an Personen in diesen Ländern oder Regionen bestimmt.",
+    "©2022 Helix-Capita Markets Limited Alle Rechte vorbehalten. Firmenregistrierungsnummer 177174 B SIA-F217 <br><br> Risikowarnung: Differenzkontrakte (CFDs) sind komplexe Instrumente und bergen aufgrund der Hebelwirkung ein hohes Risiko, schnell Geld zu verlieren. 85,12 % der Privatanleger haben beim Handel mit CFDs bei diesem Anbieter Geld auf ihren Konten verloren. Sie sollten überlegen, ob Sie die Funktionsweise von CFDs verstehen und ob Sie sich das hohe Risiko leisten können, Ihr Geld zu verlieren.<br><br>Sie besitzen nicht die zugrunde liegende Eigentümerschaft oder Befugnis. Die Wertentwicklung in der Vergangenheit ist kein Rückschluss auf die zukünftige Wertentwicklung und die Steuergesetze können sich ändern. Die Informationen auf dieser Website sind allgemeiner Natur und berücksichtigen nicht die persönlichen Ziele, die finanzielle Situation oder die Bedürfnisse Ihrer Kunden oder Ihrer Kunden. Bitte kontaktieren Sie uns at Lesen Sie unsere RDN und andere rechtliche Dokumente, bevor Sie Handelsentscheidungen treffen, und stellen Sie sicher, dass Sie die Risiken vollständig verstehen. Wir empfehlen Ihnen, unabhängigen Rat einzuholen.<br><br> Helix-Capita Markets Limited befindet sich in Sea Sky Lane, B201, Sandyport, Nassau , New Providence, Bahamas, und ist von der Securities Commission of The Bahamas (SIA-F217) lizenziert und reguliert.<br><br>Wenn die Informationen auf dieser Website und die bereitgestellten Produkte und Dienstleistungen gegen lokale Gesetze und Vorschriften verstoßen Jedes Land, keine Informationen auf dieser Website. Die Informationen sowie die bereitgestellten Produkte und Dienstleistungen sind nicht zur Verbreitung an Personen in diesen Ländern oder Regionen bestimmt.",
 
   //heim
   "h-s1-t1": "Handelsmöglichkeit mit {TITLE} überall",
@@ -16,7 +16,7 @@ export default {
   "h-s2-h3": "Handelsvolumen",
   "h-s2-h4": "Erhöhen und verringern",
   "h-s2-1-d1":
-    "Live-Preise dienen nur zur Orientierung. Überprüfen Sie Ihre Plattform auf die neuesten Preise. Unterstützt von DEMO Markets Limited.",
+    "Live-Preise dienen nur zur Orientierung. Überprüfen Sie Ihre Plattform auf die neuesten Preise. Unterstützt von Helix-Capita Markets Limited.",
   "h-s2-2-t1": "Warum {TITLE} wählen",
   "h-s2-2-t2":
     "Entdecken Sie Handelsmöglichkeiten für mehr als 1.000 Handelsprodukte",
@@ -25,7 +25,7 @@ export default {
   "h-s2-2-b1": "Sehen Sie sich unsere Spreads an",
   "h-s3-t1": "Exzellenz, Händler",
   "h-s3-d1":
-    "DEMO ATP Rankings Global Title Partner und offizieller Online-Handelspartner der ATP Tour.",
+    "Helix-Capita ATP Rankings Global Title Partner und offizieller Online-Handelspartner der ATP Tour.",
   "h-s4-t1": "Nicht zufrieden mit Ihrem aktuellen Broker?",
   "h-s4-t2": "Wir haben volles Verständnis.",
   "h-s4-1-t1": "Extrem niedrige Spreads",
@@ -74,7 +74,7 @@ export default {
   "h-s7-t2": "TradingView Broker",
   "h-s7-t3": "Broker des Jahres 2022",
   "h-s7-d1":
-    "DEMO fühlt sich geehrt, bei den TradingView Broker Awards zum Broker des Jahres gekürt zu werden",
+    "Helix-Capita fühlt sich geehrt, bei den TradingView Broker Awards zum Broker des Jahres gekürt zu werden",
   "h-s8-t1": "Preisgekrönt",
   "h-s8-t2": "Weltweit ist uns das gewährt",
   // öffentlich
@@ -87,7 +87,7 @@ export default {
     "Der Einstieg ist schnell und einfach – auch mit einer kleinen Anzahlung. Bewerben Sie sich in wenigen Minuten mit unserem einfachen Bewerbungsprozess.",
   "ready-b2": "Lass uns anfangen",
   "ready-d3":
-    "Ein DEMO-Konto zu eröffnen ist einfach. Es dauert nur ein paar Minuten, um Ihre DEMO-Reise zu beginnen.",
+    "Ein Helix-Capita-Konto zu eröffnen ist einfach. Es dauert nur ein paar Minuten, um Ihre Helix-Capita-Reise zu beginnen.",
   "ready-d4":
     "Sie können jederzeit mit nur einer kleinen Einzahlung mit dem Handel beginnen. Unser einfacher Antragsprozess dauert nur wenige Minuten.",
   "learn-more-info": "Weitere Informationen erhalten",
@@ -99,7 +99,7 @@ export default {
   xianzaijiaoy: "Jetzt handeln",
   tuichu: "Ausgang",
   tishi:
-    "DEMO übernimmt keine Gewähr dafür, dass das hier bereitgestellte Material korrekt, aktuell oder vollständig ist und sollte nicht als solches herangezogen werden. Die hier bereitgestellten Informationen, unabhängig davon, ob sie von Dritten stammen oder nicht, sollten nicht als Empfehlung oder Kauf- oder Verkaufsanweisung betrachtet werden. ein Angebot abgeben oder ein Angebot zum Kauf oder Verkauf eines Wertpapiers, Finanzprodukts oder Instruments einholen oder sich an einer bestimmten Handelsstrategie beteiligen. Wir empfehlen allen Lesern dieses Inhalts, sich selbst beraten zu lassen. Diese Informationen dürfen ohne dies nicht reproduziert oder weitergegeben werden Zustimmung von DEMO.",
+    "Helix-Capita übernimmt keine Gewähr dafür, dass das hier bereitgestellte Material korrekt, aktuell oder vollständig ist und sollte nicht als solches herangezogen werden. Die hier bereitgestellten Informationen, unabhängig davon, ob sie von Dritten stammen oder nicht, sollten nicht als Empfehlung oder Kauf- oder Verkaufsanweisung betrachtet werden. ein Angebot abgeben oder ein Angebot zum Kauf oder Verkauf eines Wertpapiers, Finanzprodukts oder Instruments einholen oder sich an einer bestimmten Handelsstrategie beteiligen. Wir empfehlen allen Lesern dieses Inhalts, sich selbst beraten zu lassen. Diese Informationen dürfen ohne dies nicht reproduziert oder weitergegeben werden Zustimmung von Helix-Capita.",
   home: "zu Hause",
   support: "Kundensupport",
   "refer-friend": "Freunde empfehlen",
@@ -114,7 +114,7 @@ export default {
    "header-s-s0-d1": "Vom Download der Handelsplattform bis zur Verwaltung Ihres Handelsrisikos finden Sie hier alles, was Sie wissen müssen.",
    "header-s-s1-t1": "FAQ",
    "header-s-s1-d1": "Im Folgenden finden Sie unsere häufig gestellten Fragen und Antworten. Bitte besuchen Sie unseren FAQ-Bereich, um weitere häufig gestellte Fragen zu erfahren, oder öffnen Sie unten auf dem Bildschirm eine Online-Beratung, um mit unserem professionellen Team zu kommunizieren Echtzeit. ",
-   "header-s-s1-q1": "Welche Kontotypen bietet DEMO an?",
+   "header-s-s1-q1": "Welche Kontotypen bietet Helix-Capita an?",
    "header-s-s1-a1": `<div class="rich-text__container"><h5><strong>Wir bieten zwei Kontotypen an, um den Bedürfnissen von Händlern gerecht zu werden</strong></h5>
    <h5><strong>Razor-Konto</strong></h5>
    <h5>Unsere Razor-Konten beinhalten Roh-Spreads, was bedeutet, dass wir die Spreads, die wir von Liquiditätsanbietern erhalten, direkt an unsere Kunden weitergeben. </h5>
@@ -123,7 +123,7 @@ export default {
    <h5>Unsere Standardkonten sind provisionsfrei und beinhalten unseren ursprünglichen Spread + 1 Pip-Erhöhung (z. B. 0 Pip Spread plus 1 Pip = 1 Pip [0,5 Pip in jede Richtung auf Geld- und Briefkurse]. </h5></div>`,
    "header-s-s1-q2": "Was ist ein Swap?",
    "header-s-s1-a2": `<div class="rich-text__container"><h5>Der Devisenswapkurs bezieht sich auf die Übernacht- oder Rollover-Zinsen (d. h. verdient oder bezahlt) für das Halten einer Position über Nacht im Devisenhandel . Interesse). Diese Zinssätze werden durch Interbank-Spreads und währungsübergreifende Grundlagen bestimmt. <br><br>Swap-Gebühren funktionieren in beide Richtungen. Dies bedeutet, dass Händler Swap-Gebühren verdienen können oder dass ihnen auch Swap-Gebühren für die zugrunde liegende Handelsposition entstehen können. Dies hängt vom gehandelten Instrument ab, davon, ob Ihre Position Long oder Short ist und ob der Handel während eines Rollovers gehalten wird. Da Kassa-Devisenkontrakte auf T+2-Basis abgewickelt werden, werden bei Rollovers am Mittwoch dreifache Swap-Gebühren erhoben, um Wochenendzinsen Rechnung zu tragen. </h5></div>`,
-   "header-s-s1-q3": "Ist DEMO ein ECN/STP-Händler oder ein Market Maker?",
+   "header-s-s1-q3": "Ist Helix-Capita ein ECN/STP-Händler oder ein Market Maker?",
 
    "header-s-s1-a3": `<div class="rich-text__container"><h5>Diese Frage wird uns oft gestellt. Ein Teil der Schwierigkeit bei der Beantwortung dieser Frage besteht darin, dass ECN und STP Marketingbegriffe sind, die aus börsennotierten Marktsystemen stammen und ihnen verschiedene Anbieter in der Branche unterschiedliche Bedeutungen geben. </h5>
    <h5>Ein echter ECN- oder STP-Broker ist ein Introducing Broker oder ein Broker, der im Rahmen eines White-Label-Programms arbeitet und das System eines anderen nutzt. </h5>
@@ -142,18 +142,18 @@ export default {
    <h5>Unser Backend-Team prüft dann Ihre Bewerbung. Sobald wir Ihre Dokumente überprüft haben, senden wir Ihnen die Anmeldeinformationen für Ihr Handelskonto zu. </h5></div>`,
    // Header-Freunde empfehlen
    "header-rf-s0-t1": "Empfehlen Sie einen Freund, um jeweils einzigartige Belohnungen zu erhalten",
-   "header-rf-s0-d1": "Wir stellen Einzelhandels- und DEMO Pro-Kunden das Empfehlungsprogramm von DEMO vor. Es gelten die Allgemeinen Geschäftsbedingungen.",
+   "header-rf-s0-d1": "Wir stellen Einzelhandels- und Helix-Capita Pro-Kunden das Empfehlungsprogramm von Helix-Capita vor. Es gelten die Allgemeinen Geschäftsbedingungen.",
    "header-rf-s1-t1": "Ein auf Sie zugeschnittenes Freundschaftsempfehlungsprogramm",
-   "header-rf-s1-d1": "Wir bieten zwei Empfehlungsprogramme an, je nachdem, ob Sie ein professioneller Kunde (DEMO Pro) oder ein Privatkunde sind. Unser Empfehlungsprogramm soll diese belohnen.' die Familie oder Freunde einladen, mit uns Kunden von zu handeln.",
+   "header-rf-s1-d1": "Wir bieten zwei Empfehlungsprogramme an, je nachdem, ob Sie ein professioneller Kunde (Helix-Capita Pro) oder ein Privatkunde sind. Unser Empfehlungsprogramm soll diese belohnen.' die Familie oder Freunde einladen, mit uns Kunden von zu handeln.",
    "header-rf-s1-h1": "Für Privatkunden",
-   "header-rf-s1-h2": "Für DEMO Pro-Kunden",
+   "header-rf-s1-h2": "Für Helix-Capita Pro-Kunden",
    "header-rf-s1-r1": "Wenn Ihr Freund ein Handelskonto eröffnet und Geld darauf einzahlt, können Sie und Ihr Freund 20 kostenlose Trades erhalten.",
    "header-rf-s1-r2": "Sie und Ihr Freund können bis zu 1.000 $ in bar erhalten, wenn Ihr Freund ein Handelskonto eröffnet und die Einzahlungs- und Handelsanforderungen erfüllt.",
    "header-rf-s2-t1": "Häufig gestellte Fragen",
-   "header-rf-s2-q1": "Wie werde ich DEMO-Pro?",
-   "header-rf-s2-a1": "Wenn Sie noch kein DEMO Pro sind, aber daran interessiert sind, ein professioneller Trader zu werden, finden Sie hier weitere Informationen zu den Zulassungskriterien und Anforderungen.",
+   "header-rf-s2-q1": "Wie werde ich Helix-Capita-Pro?",
+   "header-rf-s2-a1": "Wenn Sie noch kein Helix-Capita Pro sind, aber daran interessiert sind, ein professioneller Trader zu werden, finden Sie hier weitere Informationen zu den Zulassungskriterien und Anforderungen.",
    "header-rf-s2-q2": "Wie können deine Freunde Empfehlungen erhalten?",
-   "header-rf-s2-a2": "Wenn Sie anfangen, DEMO Ihren Freunden zu empfehlen, müssen Ihre Freunde bei der Registrierung für die Bewerbung 'Wie haben Sie von uns erfahren?' angeben? 'Geben Sie Ihre E-Mail-Adresse ein.",
+   "header-rf-s2-a2": "Wenn Sie anfangen, Helix-Capita Ihren Freunden zu empfehlen, müssen Ihre Freunde bei der Registrierung für die Bewerbung 'Wie haben Sie von uns erfahren?' angeben? 'Geben Sie Ihre E-Mail-Adresse ein.",
    "header-rf-s3-tip1": `<div class="disclaimer__content">Provisionsfreier Handel, es können andere Gebühren und Entgelte anfallen. Es besteht keine Pflicht zur Einlösung von Gratis-Trades. Hier ansehen <a target='_blank' href="pdf.js/SCB_Refer-a-Friend-Ts-and-Cs_Retail-ROW_EN_June-2021.pdf" ><strong>Einzelhandelskunden</strong></a> Vollständige Geschäftsbedingungen und Bedingungen. Alternativ können Sie <a href="/#/contact-us" ><strong>Kontakt</strong> mit uns aufnehmen. &nbsp;</a><br><br><a href="pdf.js/SCB_Refer-a-Friend-Ts-and-Cs_Retail-ROW_EN_June-2021.pdf" >Pro hier ansehen Vollständige Geschäftsbedingungen für Boni, Einlagen und Handelsanforderungen</a>. Alternativ können Sie sich <a href="/#/contact-us" "><strong>mit uns in Verbindung setzen.</strong></a><br></div>`,
 
   // m1-LEI
@@ -227,11 +227,11 @@ export default {
     "m1-vip-s1-1": "Bevorzugter Kundensupport",
     "m1-vip-s1-2": "Exklusive Rabatte auf unsere ATP",
     "m1-vip-s1-3": "Fortgeschrittene Marktanalysen",
-    "m1-vip-s1-4": "Wenn Sie ein professioneller Kunde im DEMO-Modus sind, nehmen Sie an Einladungen zu VIP-Veranstaltungen, erweiterten Handelstools und der VPS-Lösung teil",
+    "m1-vip-s1-4": "Wenn Sie ein professioneller Kunde im Helix-Capita-Modus sind, nehmen Sie an Einladungen zu VIP-Veranstaltungen, erweiterten Handelstools und der VPS-Lösung teil",
     "m1-vip-s2-t1": "Maßgeschneiderter Service und Support",
     "m1-vip-s2-d1": "Wir werden einen erfahrenen technischen Account Manager für die Zusammenarbeit mit Ihnen zuweisen, um hochwertige Kundenlösungen und Support zu bieten, die Ihrem individuellen Handelsstil entsprechen.",
     "m1-vip-s3-t1": "Wie Sie den VIP-Status erhalten",
-    "m1-vip-s3-d1": "Um unseren VIP-Status zu erhalten, müssen Sie während zweier aufeinanderfolgender Kalenderquartale einen oder mehrere der folgenden Schwellenwerte erfüllen. Einzelhandels- und DEMO Pro-Kunden sind berechtigt, VIP-Kunden zu werden.",
+    "m1-vip-s3-d1": "Um unseren VIP-Status zu erhalten, müssen Sie während zweier aufeinanderfolgender Kalenderquartale einen oder mehrere der folgenden Schwellenwerte erfüllen. Einzelhandels- und Helix-Capita Pro-Kunden sind berechtigt, VIP-Kunden zu werden.",
     "m1-vip-s3-1-t1": "Markt",
     "m1-vip-s3-1-t2": "Monatliches Handelsvolumen",
     "m1-vip-s3-2-t1": "Forex",
@@ -244,9 +244,9 @@ export default {
     "m1-vip-s4-1-t1": "Erweiterte Marktanalyse",
     "m1-vip-s4-1-d1": "Zugang zu einer Vielzahl von Ressourcen für professionelles Trading und exklusiven Einblicken unseres Analystenteams.",
     "m1-vip-s4-2-t1": "Rabatte, tägliche Rückerstattung",
-    "m1-vip-s4-2-d1": "Verdienen Sie Rabatte auf die Provisionen, wenn Sie für das ActiveTrader-Programm von DEMO qualifiziert sind, täglich erstattet.",
+    "m1-vip-s4-2-d1": "Verdienen Sie Rabatte auf die Provisionen, wenn Sie für das ActiveTrader-Programm von Helix-Capita qualifiziert sind, täglich erstattet.",
     "m1-vip-s4-3-t1": "VIP-Veranstaltungen",
-    "m1-vip-s4-3-d1": "Für DEMO Pro-Kunden exklusiver Zugang zu VIP-Forex-Veranstaltungen, Seminaren und Workshops, Einladungen zu privaten kulinarischen Erlebnissen und Sportveranstaltungen.",
+    "m1-vip-s4-3-d1": "Für Helix-Capita Pro-Kunden exklusiver Zugang zu VIP-Forex-Veranstaltungen, Seminaren und Workshops, Einladungen zu privaten kulinarischen Erlebnissen und Sportveranstaltungen.",
     "m1-vip-s5-t1": "Jetzt anfragen",
     "m1-vip-s5-d1": "Für weitere Informationen oder um unserem VIP-Kundenservice beizutreten, senden Sie eine E-Mail an support{'@'}demo.com",
     "m1-vip-s5-d2": "Noch kein Kunde? Eröffnen Sie jetzt ein Konto und werden Sie Mitglied im VIP-Service, um erstklassigen Service und Vorteile zu erleben.",
@@ -275,17 +275,17 @@ export default {
     "m1-at-s3-1-t1": "Bevorzugter Kundensupport",
     "m1-at-s3-1-d1": "Ein dedizierter Kontomanager wird mit Ihnen zusammenarbeiten, um qualitativ hochwertige Kundenlösungen und Unterstützung bereitzustellen und Ihnen bei der Verwirklichung Ihrer Handelsziele zu helfen.",
     "m1-at-s3-2-t1": "VPS-Hosting",
-    "m1-at-s3-2-d1": "Für DEMO Pro-Kunden steht eine kostenlose VPS-Hosting-Lösung zur Verfügung, um automatisierte Strategien auszuführen und unsere EDGE-Infrastruktur mit geringer Latenz zu nutzen.",
+    "m1-at-s3-2-d1": "Für Helix-Capita Pro-Kunden steht eine kostenlose VPS-Hosting-Lösung zur Verfügung, um automatisierte Strategien auszuführen und unsere EDGE-Infrastruktur mit geringer Latenz zu nutzen.",
     "m1-at-s3-3-t1": "Erweiterte Einblicke und Berichte",
-    "m1-at-s3-3-d1": "Exklusive Einblicke von DEMO-Marktanalysten, tägliche Autochartist-Signale sowie alle MT4- und MT5-Funktionen und Handelsberichte, die Sie von einem preisgekrönten Broker erwarten.",
+    "m1-at-s3-3-d1": "Exklusive Einblicke von Helix-Capita-Marktanalysten, tägliche Autochartist-Signale sowie alle MT4- und MT5-Funktionen und Handelsberichte, die Sie von einem preisgekrönten Broker erwarten.",
     "m1-at-s4-t1": "Wie trete ich dem Active Trader-Programm bei?",
     "m1-at-s4-d1": "Für weitere Informationen oder um unserem VIP-Kundenservice beizutreten, senden Sie eine E-Mail an <a href=\"mailto: support@demo.com \">support@demo.com</a>.",
     "m1-at-s4-d2": "Noch kein Kunde? Eröffnen Sie jetzt ein Konto und werden Sie Mitglied im VIP-Service, um erstklassigen Service und Vorteile zu erleben.",
   // m1-who
   "m1-who-s0-t1": "Wer wir sind",
-  "m1-who-s0-d1": "DEMO kennt sich im Handel aus. Mit der Skalierbarkeit der globalen Finanztechnologie und der Agilität von Start-ups sind wir bestrebt, Ihnen alles zu bieten, was Sie für den Handel auf den globalen Märkten benötigen.",
+  "m1-who-s0-d1": "Helix-Capita kennt sich im Handel aus. Mit der Skalierbarkeit der globalen Finanztechnologie und der Agilität von Start-ups sind wir bestrebt, Ihnen alles zu bieten, was Sie für den Handel auf den globalen Märkten benötigen.",
   "m1-who-s1-t1": "Unsere Geschichte",
-  "m1-who-s1-d1": "DEMO wurde 2010 von einer Gruppe erfahrener Trader in Melbourne, Australien, gegründet. Sie haben sich gemeinsam darauf konzentriert, die Erfahrung des Online-Handels zu verbessern. Nachdem sie genug hatten von Handelsverzögerungen, hohen Gebühren und schlechtem Kundensupport, haben wir uns darauf konzentriert, Händlern weltweit exzellente Technologie, kostengünstige Spreads und Unterstützung bei der Entwicklung ihrer Handelsfähigkeiten zu bieten.",
+  "m1-who-s1-d1": "Helix-Capita wurde 2010 von einer Gruppe erfahrener Trader in Melbourne, Australien, gegründet. Sie haben sich gemeinsam darauf konzentriert, die Erfahrung des Online-Handels zu verbessern. Nachdem sie genug hatten von Handelsverzögerungen, hohen Gebühren und schlechtem Kundensupport, haben wir uns darauf konzentriert, Händlern weltweit exzellente Technologie, kostengünstige Spreads und Unterstützung bei der Entwicklung ihrer Handelsfähigkeiten zu bieten.",
   "m1-who-s2-t1": "Gewinnen Sie das Vertrauen von Tradern weltweit",
   "m1-who-s2-d1": "Wir verarbeiten im Durchschnitt täglich 12,55 Milliarden US-Dollar Transaktionen und zählen damit zu den größten Forex-Brokern weltweit*.",
   "m1-who-s2-d2": "Wir genießen das Vertrauen von über 300.000 Tradern aus mehr als 150 Ländern^.",
@@ -295,15 +295,15 @@ export default {
   "m1-who-s4-t1": "Möchten Sie mehr erfahren?",
   "m1-who-s4-d1": "<h5>Besuchen Sie unsere <a href=\"#\" rel=\"noreferrer noopener\">Wikipedia-Seite</a> und folgen Sie uns auf <a href=\"#\" rel=\"noreferrer noopener\">Facebook</a>, <a href=\"#\" rel=\"noreferrer noopener\">YouTube</a>, <a href=\"#\" rel=\"noreferrer noopener\">LinkedIn</a> und <a href=\"#\" rel=\"noreferrer noopener\">Twitter</a>.</h5>",
 
-  "m1-who-s6-d1": "*Aktive Benutzer, die zwischen dem 1. Juli 2019 und dem 30. November 2019 Handel betrieben oder offene Positionen hielten^ Registrierte Inhaber eines DEMO-Kontos",
+  "m1-who-s6-d1": "*Aktive Benutzer, die zwischen dem 1. Juli 2019 und dem 30. November 2019 Handel betrieben oder offene Positionen hielten^ Registrierte Inhaber eines Helix-Capita-Kontos",
   // m1-why
-  "m1-why-s1-t1": "Warum DEMO wählen?",
+  "m1-why-s1-t1": "Warum Helix-Capita wählen?",
   "m1-why-s1-d1": "Wir sind bei jedem Handel an Ihrer Seite und kombinieren schnelle Ausführungsgeschwindigkeit, Rohspreads und niedrige Provisionen mit einem aufrichtigen Engagement, um Ihnen bei der Erreichung Ihrer Handelsziele zu helfen.",
   "m1-why-s2-t1": "Wer wir sind",
-  "m1-why-s2-d1": "DEMO wurde 2010 gegründet und hat sich schnell zu einem der weltweit größten Forex-Broker entwickelt. Unser Ziel ist es, eine Handelswelt rund um fortschrittliche Technologie aufzubauen, damit leidenschaftliche Trader den Herausforderungen und Chancen der globalen Märkte gegenüberstehen können.",
+  "m1-why-s2-d1": "Helix-Capita wurde 2010 gegründet und hat sich schnell zu einem der weltweit größten Forex-Broker entwickelt. Unser Ziel ist es, eine Handelswelt rund um fortschrittliche Technologie aufzubauen, damit leidenschaftliche Trader den Herausforderungen und Chancen der globalen Märkte gegenüberstehen können.",
   "m1-why-s3-t1": "Handel mit preisgekrönten Brokern",
   "m1-why-s3-d1": "Mit renommierten Auszeichnungen von Investment Trends, Deloitte und dem Gouverneur des Bundesstaates Victoria ausgezeichnet, sind wir stolz darauf, für unseren Kundenservice, Handelsbedingungen und herausragendes Preis-Leistungs-Verhältnis anerkannt zu werden.",
-  "m1-why-s4-t1": "Warum mit DEMO handeln?",
+  "m1-why-s4-t1": "Warum mit Helix-Capita handeln?",
   "m1-why-s5-t1": "Hoher Wert für Geld",
   "m1-why-s5-t2": "Schnelle Ausführung",
   "m1-why-s5-t3": "Fondssicherheit",
@@ -329,7 +329,7 @@ export default {
   "m1-why-s6-2-t1": "Erreichen Sie Ihre Ziele schneller",
   "m1-why-s6-2-d1": "Nutzen Sie unsere preisgekrönten Bildungsressourcen, um Ihre Trades auf ein neues Niveau zu heben.",
   "m1-why-s6-2-l1": `<a href="/#/education">Erfahren Sie mehr</a>`,
-  "m1-why-s7-3": "* Die meisten Aufträge werden in weniger als 30 Millisekunden (DEMO Group Limited) und 60 Millisekunden (DEMO Limited) ausgeführt, berechnet anhand der Verarbeitungszeit, die von der DEMO Bridge empfangen wurde.",
+  "m1-why-s7-3": "* Die meisten Aufträge werden in weniger als 30 Millisekunden (Helix-Capita Group Limited) und 60 Millisekunden (Helix-Capita Limited) ausgeführt, berechnet anhand der Verarbeitungszeit, die von der Helix-Capita Bridge empfangen wurde.",
   "m1-why-s7-1": "^ Enthält nicht MAM und PAMM, bitte konsultieren Sie unsere rechtlichen Unterlagen für weitere Informationen.",
   "m1-why-s7-2": "Provisionsfreie Trades können zusätzliche Gebühren verursachen. Keine Verpflichtung zum Umtausch kostenloser Trades. Weitere Informationen zu Privatkunden finden Sie in den hier aufgeführten Geschäftsbedingungen.",
 
@@ -402,7 +402,7 @@ export default {
     "m2-product-1-s1-t1": "Forex-Handel über unsere Plattform",
     "m2-product-1-s1-d1": "Der Devisenmarkt (Forex, FX oder Währungsmarkt) ist ein globaler, dezentraler und außerbörslicher Handelsmarkt für Währungen. Es ist der größte Finanzmarkt der Welt, mit einem täglichen Handelsvolumen von über 1,5 Billionen USD*. Das Handelsvolumen im Devisenmarkt übertrifft das Gesamtvolumen der Aktien- und Terminmärkte um das Dreifache.",
   
-    "m2-product-1-s2-t1": "Warum mit DEMO Forex handeln?",
+    "m2-product-1-s2-t1": "Warum mit Helix-Capita Forex handeln?",
     "m2-product-1-s2-d1": "Tiefe Liquidität, Preise von mehreren Quellen und die niedrigsten Spreads auf dem Markt.",
     "m2-product-1-s2-d2": "Rohspreads auf Peak (Razor)-Konten ab 0,0 Pips.",
     "m2-product-1-s2-d3": "61+ Währungspaare.",
@@ -449,7 +449,7 @@ export default {
    "m2-product-2-s4-t1": "Bleiben Sie auf dem Laufenden mit Marktnachrichten, Analysen und Einblicken in Indizes",
    "m2-product-3-s1-t1": "Massenware",
    "m2-product-3-s1-d1": "Handeln Sie mit Gold, Silber, Rohöl, Erdgas und mehr mit niedrigen Spreads und schnellen Ausführungsgeschwindigkeiten, ohne sich um physische Lieferung, Eigentum und Rollovers kümmern zu müssen. Wenn Sie mit Rohstoff-Spreads handeln. Wann Wenn Sie Verträge abschließen, betreten Sie einen spannenden Markt. Eine breite Palette von Lieferanten, Händlern und leistungsstarken Käufern sichern sich heute Preise, um ihre zukünftigen physischen Lieferungen zu schützen. Beginnen Sie noch heute mit dem Handel mit Rohstoff-CFDs. Finanzinstrumente und einen Preisplan finden Sie unten.",
-   "m2-product-3-s2-t1": "Warum Rohstoff-CFDs auf der DEMO handeln?",
+   "m2-product-3-s2-t1": "Warum Rohstoff-CFDs auf der Helix-Capita handeln?",
    "m2-product-3-s2-d1": "Top-Liquidität – Vollständige Ausführung aller Ihrer Rohstoff-CFD-Aufträge, ohne dass Teilausführungen oder Requotes erforderlich sind",
    "m2-product-3-s2-d2": "99,72 % Ausführungsrate^ und schnelle Ausführung",
    "m2-product-3-s2-d3": "Preisgekrönter Kundensupport, verfügbar 24 Stunden am Tag, 5 Tage die Woche und 18 Stunden am Tag am Wochenende**",
@@ -474,7 +474,7 @@ export default {
 
    "m2-product-4-s1-t1": "ETF-CFD",
    "m2-product-4-s1-d1": "Exchange Traded Funds (ETFs) sind einzigartige Anlageinstrumente, die es Ihnen ermöglichen, sich an bestimmten Börsen-Hotspots, Branchen und sogar am breiteren Aktienmarkt in einzelnen Ländern sowie weltweit zu beteiligen . Bringen Sie Ihren Standpunkt zum Ausdruck. Beginnen Sie noch heute mit dem Handel mit ETF-CFDs.",
-   "m2-product-4-s2-t1": "Warum ETF-CFDs mit DEMO handeln?",
+   "m2-product-4-s2-t1": "Warum ETF-CFDs mit Helix-Capita handeln?",
    "m2-product-4-s2-d1": "Wir bieten mehr als 100 ETFs an, die die Leistung von Branchen abbilden, darunter Bergbau, Energie, Technologie, Anleihenmärkte und Einzelhandel.",
    "m2-product-4-s2-d2": "Unsere ETF-CFDs verfolgen die Gesamtperformance der Aktienmärkte in 35 Ländern auf 6 Kontinenten.",
    "m2-product-4-s2-d3": "Ganz gleich, für welchen Teil des Aktienmarktes Sie sich interessieren, es gibt ein ETF-Produkt, das Ihren Handelsanforderungen entspricht.",
@@ -495,7 +495,7 @@ export default {
    "m2-product-4-s3-v2": "Symbol",
 
    "m2-product-4-s4-t1": "Unsere Provision",
-   "m2-product-4-s4-d1": "Der Handel mit ETF-CFDs mit DEMO bedeutet, dass Sie zum direkten zugrunde liegenden Börsenpreis handeln, ohne zusätzliche Pips zur Geld-Brief-Spanne hinzuzufügen. Sie handeln jedoch für jeden Handel mit einer kleinen Provision.' pro Transaktion bezahlt. Details sind wie folgt:",
+   "m2-product-4-s4-d1": "Der Handel mit ETF-CFDs mit Helix-Capita bedeutet, dass Sie zum direkten zugrunde liegenden Börsenpreis handeln, ohne zusätzliche Pips zur Geld-Brief-Spanne hinzuzufügen. Sie handeln jedoch für jeden Handel mit einer kleinen Provision.' pro Transaktion bezahlt. Details sind wie folgt:",
    "m2-product-4-s4-1": "0,02 $ (USD) Provision pro Trade.",
    "m2-product-4-s4-2": "Börsenspanne, kein zusätzlicher Aufschlag.",
    "m2-product-4-s4-3": "Finanzierungskosten über Nacht (wenn Sie eine Position mehrere aufeinanderfolgende Tage halten).",
@@ -522,7 +522,7 @@ export default {
   // 5
   "m2-product-5-s1-t1": "Aktien-CFD",
    "m2-product-5-s1-d1": "Investieren Sie in Australiens große Blue-Chip-Aktien mit einer sehr wettbewerbsfähigen Gebühr von 0,07 % pro Trade (Mindestgebühr von 5 A$). Mit unseren Handelszeiten außerhalb der Geschäftszeiten und 0,02 $ pro Aktie US-Gewinnsaison mit niedrigen Provisionen. Beginnen Sie noch heute mit dem Handel mit Aktien-CFDs.",
-   "m2-product-5-s2-t1": "Warum Aktien-CFDs auf der DEMO handeln?",
+   "m2-product-5-s2-t1": "Warum Aktien-CFDs auf der Helix-Capita handeln?",
    "m2-product-5-s2-d1": "Lassen Sie sich das nicht entgehen! Wir sind einer der wenigen Broker, der den Handel an der US-Börse außerhalb der Geschäftszeiten anbietet. Da Unternehmensgewinne in der Regel in dieser Zeit veröffentlicht werden, sind Nach- Stundenhandel ist Dies kann Ihnen helfen, Ihr Risiko zu reduzieren oder eine Position zu eröffnen, bevor der Markt am nächsten Tag öffnet.",
    "m2-product-5-s2-d2": "Aktien-CFDs sind eine großartige Möglichkeit, andere Positionen abzusichern und den Kapitalverbrauch durch Hebelwirkung zu reduzieren.",
    "m2-product-5-s2-d3": "Aktien-CFDs sind eine relativ einfache Möglichkeit, eine Aktie leerzuverkaufen. In Kombination mit Leverage Trading können sie Ihnen Handelsmöglichkeiten bieten, wenn die Aktienkurse fallen.",
@@ -548,7 +548,7 @@ export default {
    "m2-product-5-s5-t1": "Marktdatengebühren für Aktien-CFDs",
    "m2-product-5-s5-d1": "Derzeit stellen wir kostenlose Echtzeitdaten zu australischen Aktien zur Verfügung. Sollte es in der Zukunft zu Änderungen kommen, werden wir Sie mindestens 30 Tage im Voraus benachrichtigen.",
    "m2-product-5-s6-t1": "Aktien-CFD-Handelsplattform",
-   "m2-product-5-s6-d1": "Unsere Aktien-CFDs können mit Hebelwirkung auf MetaTrader 5 gehandelt werden. Um Aktien-CFDs zu Ihrem Handelsportfolio hinzuzufügen, eröffnen Sie ein DEMO-MetaTrader-5-Konto und wählen Sie aus dem Markt den entsprechenden Aktien-CFD aus aus der Beobachtung.",
+   "m2-product-5-s6-d1": "Unsere Aktien-CFDs können mit Hebelwirkung auf MetaTrader 5 gehandelt werden. Um Aktien-CFDs zu Ihrem Handelsportfolio hinzuzufügen, eröffnen Sie ein Helix-Capita-MetaTrader-5-Konto und wählen Sie aus dem Markt den entsprechenden Aktien-CFD aus aus der Beobachtung.",
    "m2-product-5-s6-d2": "MT5 bietet schnellere Bearbeitungszeiten, bessere Absicherungsmöglichkeiten, erweiterte Pending-Order-Optionen sowie die neuesten Tools und Indikatoren. Hervorragende Funktionen helfen Ihnen, Ihr Handelsniveau zu verbessern und sich vom Markt abzuheben Bleiben Sie immer einen Schritt voraus.",
    "m2-product-5-s6-d3": "Wir halten eine Vielzahl von Ressourcen und Handelsleitfäden für Sie bereit.",
 
@@ -556,7 +556,7 @@ export default {
    // 6
    "m2-product-6-s1-t1": "Kryptowährung",
    "m2-product-6-s1-d1": "Kryptowährungen sind anfällig für große Wertschwankungen und Sie können diese Volatilität ausnutzen, indem Sie mit uns Kryptowährungs-CFDs handeln 1 – keine digitale Geldbörse oder Börse erforderlich.",
-   "m2-product-6-s2-t1": "Warum Kryptowährungen mit DEMO handeln?",
+   "m2-product-6-s2-t1": "Warum Kryptowährungen mit Helix-Capita handeln?",
    "m2-product-6-s2-d1": "Wochenendhandel ist für Bitcoin, Bitcoin Cash, Litecoin, Ethereum, Ripple, Polkadot und mehr verfügbar.",
    "m2-product-6-s2-d2": "Kryptowährungs-CFDs ohne digitale Geldbörse handeln.",
    "m2-product-6-s2-d3": "Gehen Sie auf allen unseren Handelsplattformen Long- oder Short-Bitcoin-CFD-Preisaktionen mit einem Hebel von bis zu 2:1.",
@@ -574,7 +574,7 @@ export default {
    "m2-product-6-s3-h7": "Long gehen",
    "m2-product-6-s3-h8": "Kurz",
    "m2-product-6-s4-t1": "Risiko",
-   "m2-product-6-s4-d1": "Kryptowährungen wie Bitcoin sind volatiler als herkömmliche Währungen und bergen erhebliche Risiken. Bitte beachten Sie auch, dass Sie beim Handel mit DEMO weder die Basiswährung noch Rechte an dieser Basis besitzen Währung. Kryptowährungsmärkte sind sehr volatil und plötzliche Preisschwankungen können dazu führen, dass Sie schnell große Geldbeträge verlieren.",
+   "m2-product-6-s4-d1": "Kryptowährungen wie Bitcoin sind volatiler als herkömmliche Währungen und bergen erhebliche Risiken. Bitte beachten Sie auch, dass Sie beim Handel mit Helix-Capita weder die Basiswährung noch Rechte an dieser Basis besitzen Währung. Kryptowährungsmärkte sind sehr volatil und plötzliche Preisschwankungen können dazu führen, dass Sie schnell große Geldbeträge verlieren.",
    "m2-product-6-s4-d2": "Der zugrunde liegende Kryptomarkt ist an Wochenenden geöffnet. Wir bieten keinen separaten 'Wochenendticker' an. Wenn Sie also eine Position eröffnen, verwenden Sie denselben, mit dem Sie während des Handels gehandelt haben das Wochensymbol.",
    "m2-product-6-s4-d3": "Stop-Loss, Take-Profit und ausstehende offene Orders können für alle Kryptowährungspositionen (außer Dash) während unserer Wochenend-Handelszeiten ausgelöst werden.",
    "m2-product-6-s4-d4": "Bitte beachten Sie, dass Wochenendpositionen mit angehängten Stops/Limits nicht mit bestehenden Wochentagskontrakten verrechnet werden. In diesem Fall werden Wochenendpositionen auf die neuen Wochentagspositionen übertragen und haben die Dieselben Stop-Losses/Limits sind angehängt. Wenn an einen Wochentagskontrakt ein Stop-Loss/Limit angehängt ist, wird die Wochenendposition nicht mit dem bestehenden Wochentagskontrakt verrechnet. In diesem Fall wird die Wochenendposition in den neuen Werktagskontrakt einbezogen. ",
@@ -626,7 +626,7 @@ export default {
    <h4 class="mt-8"><strong>Was ist ein Swap-Satz? </strong></h4>
    <h5>Der Devisenswapsatz bezieht sich auf die Rollover-Zinsen (d. h. die verdienten oder gezahlten Zinsen) für das Halten einer Position über Nacht in einer Devisentransaktion. Die Finanzinstitute, mit denen wir zusammenarbeiten, veröffentlichen wöchentlich Swapsätze, die auf der Grundlage von Risikomanagementanalysen und Marktbedingungen berechnet werden. Jedes Währungspaar hat seinen eigenen Swap-Kurs, wobei die Standardgröße 1,0 Lots (100.000 Basiseinheiten) beträgt. </h5>
    <h5>Um mehr über Swaps zu erfahren, klicken Sie <a href="/#/educacion/what-is-swap-in-forex">hier</a>. </h5>
-   <h4 class="mt-4"><strong>Wo finde ich die Swap-Kursinformationen von DEMO? </strong></h4>
+   <h4 class="mt-4"><strong>Wo finde ich die Swap-Kursinformationen von Helix-Capita? </strong></h4>
    <h5>Unsere neuesten Swap-Kursinformationen finden Sie auf unserer Handelsplattform. Die auf unserer Plattform veröffentlichten Swap-Sätze sind Richtwerte und können sich je nach Marktvolatilität ändern. </h5>
    <h5><strong>So zeigen Sie Zinssätze auf der MetaTrader-Plattform an: </strong></h5>
    <ul><li>Wählen Sie "Ansicht" </li><li>Klicken Sie mit der rechten Maustaste auf "Market Watch" und wählen Sie "Symbole" </li><li>Wählen Sie das Währungspaar aus, das Sie anzeigen möchten, und wählen Sie "Eigenschaften" (Auf MT5 wählen Sie bitte "Spezifikationen") </li></ul>
@@ -725,7 +725,7 @@ export default {
    "m2-fw-s0-t1": "Geld einzahlen und abheben",
    "m2-fw-s0-d1": "Wir bieten eine große Auswahl an gebührenfreien Einzahlungsmöglichkeiten.",
    "m2-fw-s1-t1": "Einzahlungs- und Auszahlungsmethoden",
-   "m2-fw-s1-d1": "Auf unserer Plattform ist die Verwaltung Ihres Kontos sehr einfach. Als DEMO-Kunde haben Sie Zugriff auf Ihren eigenen verschlüsselten Client, in dem Sie alle Ihre Ein- und Auszahlungsanforderungen sicher durchführen können.",
+   "m2-fw-s1-d1": "Auf unserer Plattform ist die Verwaltung Ihres Kontos sehr einfach. Als Helix-Capita-Kunde haben Sie Zugriff auf Ihren eigenen verschlüsselten Client, in dem Sie alle Ihre Ein- und Auszahlungsanforderungen sicher durchführen können.",
    "m2-fw-s1-t2": "Wir akzeptieren:",
    "m2-fw-s1-t2-1": "Visa-Karte",
    "m2-fw-s1-t2-2": "MasterCard",
@@ -739,7 +739,7 @@ export default {
    "m2-fw-s1-d2": "Eröffnen Sie ein Live-Konto auf unserer Plattform und erkunden Sie unser Angebot an Finanzierungsmöglichkeiten in Ihrem Krypto-Client.",
    "m2-fw-s2-t1": "Wichtige Informationen",
    "m2-fw-s2-d1": "Auszahlungen, die vor 21:00 Uhr (GMT) eingehen, werden am nächsten Tag bearbeitet. Wenn sie vor 07:00 Uhr (AEST) eingehen, werden sie an denselben Bearbeitungstagen bearbeitet",
-   "m2-fw-s2-d2": "Aufgrund der Transaktionsbestimmungen Dritter können Gelder nur auf ein Bankkonto mit demselben Namen (oder gemeinsamen Namen) wie Ihr DEMO-Handelskonto zurückerstattet werden",
+   "m2-fw-s2-d2": "Aufgrund der Transaktionsbestimmungen Dritter können Gelder nur auf ein Bankkonto mit demselben Namen (oder gemeinsamen Namen) wie Ihr Helix-Capita-Handelskonto zurückerstattet werden",
    "m2-fw-s2-d3": "Alle von unserem Bankinstitut erhobenen Gebühren für internationale Überweisungen (TT) werden an den Kunden weitergegeben. Die meisten Gebühren für internationale Überweisungen betragen etwa 20 AUD",
    "m2-fw-s2-d4": "Es dauert normalerweise 3–5 Werktage, bis Auszahlungen per Banküberweisung auf Ihrem Konto eingehen",
    "m2-fw-s2-d5": "Es kann unvorhergesehene Umstände geben, unter denen Auszahlungen länger dauern können.",
@@ -815,7 +815,7 @@ export default {
    "m3-i-s1-t1": "Unsere Plattform",
    "m3-i-s1-d1": "Genießen Sie die Freiheit des Handels – egal wo Sie sind. Unsere Plattform ist auf dem Desktop für Windows und Mac OS, auf Mobilgeräten und Tablets auf Android sowie in unserer Web-App WebTrader verfügbar.",
    "m3-i-s2-1-t1": "TradingView",
-   "m3-i-s2-1-d1": "Verbinden Sie sich direkt von Ihrem DEMO-Handelskonto aus mit TradingView mit unserer von cTrader unterstützten Integration. Leistungsstarke Charting-Tools",
+   "m3-i-s2-1-d1": "Verbinden Sie sich direkt von Ihrem Helix-Capita-Handelskonto aus mit TradingView mit unserer von cTrader unterstützten Integration. Leistungsstarke Charting-Tools",
    "m3-i-s2-1-1": "Verbinden Sie sich mit dem weltweit größten Social-Trading-Netzwerk",
    "m3-i-s2-1-2": "Branchenführende Kartentechnologie",
    "m3-i-s2-1-3": "Direkt aus TradingView-Charts handeln",
@@ -914,7 +914,7 @@ export default {
    "m3-mt4-s4-7": "Holen Sie sich 28 weitere Smart Trader-Tools",
    "m3-mt4-s5-t1": `<div class="rich-text__container"><h2 class="mb-8 fs-32">Benutzerhandbuch und Video</h2>
    <h5>Wenn Sie mehr über den Handel mit der MT4-Plattform erfahren möchten, laden Sie einfach den untenstehenden Leitfaden herunter oder schauen Sie sich unser MT4-Video an. </h5>
-   <ul><li><a href="#" >DEMO MetaTrader 4 Benutzerhandbuch E-Book</a></li><li><a href="#" >DEMO MetaTrader 4 Fehlercode-Anleitung</a > </li></ul></div>`,
+   <ul><li><a href="#" >Helix-Capita MetaTrader 4 Benutzerhandbuch E-Book</a></li><li><a href="#" >Helix-Capita MetaTrader 4 Fehlercode-Anleitung</a > </li></ul></div>`,
 
    "m3-mt4-s6-t1": "Unterstützte Sprachen",
    "m3-mt4-s6-d1": "Arabisch, Bulgarisch, Chinesisch (vereinfacht, Festlandchina), Chinesisch (traditionell, Taiwan), Kroatisch, Tschechisch, Dänisch, Niederländisch, Englisch, Estnisch, Persisch/Persisch, Französisch, Deutsch, Griechisch, Hebräisch, Ungarisch, Indonesisch, Italienisch, Japanisch, Koreanisch, Lettisch, Litauisch, Malaiisch, Mongolisch, Polnisch, Portugiesisch, Rumänisch, Englisch, Russisch, Serbisch, Slowakisch, Spanisch, Schwedisch, Tadschikisch, Thailändisch, Türkisch, Ukrainisch, Usbekisch, Vietnamesisch .",
@@ -942,7 +942,7 @@ export default {
    <ol><li>Fügen Sie alle Expert Advisors (EAs) oder Indikatoren hinzu, die Sie im Diagramm anzeigen möchten</li><li>Klicken Sie mit der rechten Maustaste auf das Diagramm</li><li>Wählen Sie "Eigenschaften" (Sie können das Farbschema aktualisieren). und allgemeine Einstellungen ändern) </li><li>Wenn Sie Ihre benutzerdefinierten Änderungen vorgenommen haben, klicken Sie einfach mit der rechten Maustaste auf das Diagramm. </li><li>Wählen Sie "Vorlage" und benennen Sie die Datei, die Sie gerade bearbeitet haben. Sie können mehrere Vorlagen für verschiedene Richtlinien einrichten</li></ol>
    <h5><strong>Trader-Tipp:</strong> Benennen Sie diese Vorlage "Standard", um alle Diagramme mit dieser Vorlage als Standard zu öffnen. </h5></div>`,
    "m3-mt4-s7-q5": "Wie passe ich die Vorlage an?",
-   "m3-mt4-s7-a5": `<h6>Standardmäßig können Sie nicht mehrere Metatrader 4 (MT4)-Plattformen gleichzeitig ausführen. Mit unterschiedlichen Installationspfaden können Sie jedoch zwei MT4-Software gleichzeitig ausführen. Wenn Sie zwei MT4-Plattformen gleichzeitig auf Ihrem PC/VPS ausführen möchten, müssen Sie die zweite Software in einem anderen Verzeichnis auf Ihrem PC/VPS installieren. <br>Beispiel:<br>Nachdem Sie eine MT4-Software installiert haben, müssen Sie das Installationsprogramm erneut herunterladen und die Datei ausführen. Sie sehen dann das folgende Popup-Fenster:<br></h6><h5><br>Um den Installationsort des zweiten MT4-Programms auszuwählen, klicken Sie auf "Einstellungen", um die Einstellungen für das Installationsverzeichnis anzuzeigen. Standardmäßig wird es unter "C:\Programme (x86)\DEMO Metatrader 4" installiert, Sie müssen die zweite Software jedoch in einem Ordner mit einem anderen Namen installieren, z. B. "C:\Programme( x86)\" DEMO Metatrader<br></h5> <h5><br>Bitte versuchen Sie den gleichen Installationsprozess wie bei der ersten MT4-Software. Danach können Sie beide Plattformsoftware im Ordner sehen, wie im Bild unten gezeigt, und Sie können beide Plattformen gleichzeitig ausführen. <br></h5>`,
+   "m3-mt4-s7-a5": `<h6>Standardmäßig können Sie nicht mehrere Metatrader 4 (MT4)-Plattformen gleichzeitig ausführen. Mit unterschiedlichen Installationspfaden können Sie jedoch zwei MT4-Software gleichzeitig ausführen. Wenn Sie zwei MT4-Plattformen gleichzeitig auf Ihrem PC/VPS ausführen möchten, müssen Sie die zweite Software in einem anderen Verzeichnis auf Ihrem PC/VPS installieren. <br>Beispiel:<br>Nachdem Sie eine MT4-Software installiert haben, müssen Sie das Installationsprogramm erneut herunterladen und die Datei ausführen. Sie sehen dann das folgende Popup-Fenster:<br></h6><h5><br>Um den Installationsort des zweiten MT4-Programms auszuwählen, klicken Sie auf "Einstellungen", um die Einstellungen für das Installationsverzeichnis anzuzeigen. Standardmäßig wird es unter "C:\Programme (x86)\Helix-Capita Metatrader 4" installiert, Sie müssen die zweite Software jedoch in einem Ordner mit einem anderen Namen installieren, z. B. "C:\Programme( x86)\" Helix-Capita Metatrader<br></h5> <h5><br>Bitte versuchen Sie den gleichen Installationsprozess wie bei der ersten MT4-Software. Danach können Sie beide Plattformsoftware im Ordner sehen, wie im Bild unten gezeigt, und Sie können beide Plattformen gleichzeitig ausführen. <br></h5>`,
    "m3-mt4-s7-q6": "Positionsgröße, Hebelwirkung und Marge verstehen",
    "m3-mt4-s7-a6": `<div class="rich-text__container"><h6>Bevor Sie Ihre Trading-Karriere starten, müssen Sie sich mit den entsprechenden Grundkenntnissen vertraut machen. In Ihrem <a href="#" rel="noreferrer noopener">SCA-Client</a> finden Sie nützliche Rechner. Schauen Sie sich unbedingt diese Rechner an und machen Sie sich ein gutes Bild von der Größe Ihrer Position, der Marge, die Sie auf Ihren Handel setzen möchten, und der Höhe der Hebelwirkung, die Sie akzeptieren möchten. </h6></div>`,
    "m3-mt4-s7-q7": "MT4 vs. MT5 – Was ist der Unterschied?",
@@ -950,14 +950,14 @@ export default {
    <h6><strong>MT4 vs. MT5 – Unsere Meinung</strong></h6>
    <h6>Wir sind einer der größten MT4-Broker der Welt, daher ist es kein Geheimnis, dass wir Fans dieser beliebten Plattform sind. MT4 ist eine einfache, intuitive und beliebte Handelsplattform. Es ist ein Klassiker – dank seines breiten Funktionsumfangs eignet es sich sowohl für Anfänger als auch für fortgeschrittene Trader. </h6>
    <h6>Ein Vorteil davon, dass MT4 eine so große Benutzergemeinschaft auf der ganzen Welt hat, ist die Website mql5.com, die eine breite Palette an Indikatoren, Signalen und EAs bietet, die Sie kaufen, herunterladen und einfach zur Plattform hinzufügen können. </h6 >
-   <h6>Neben diesen zusätzlichen Dienstleistungen unterhält DEMO Australia eigene Verbindungen zu Unternehmen wie myFXBook, Duplitrade und Zulutrade, die Social-Trading-Lösungen anbieten, die einfach einzurichten sind und es Benutzern ermöglichen, die von ihnen gewählten Investitionen zu kontrollieren, um ihr Geld anzulegen . </h6>
+   <h6>Neben diesen zusätzlichen Dienstleistungen unterhält Helix-Capita Australia eigene Verbindungen zu Unternehmen wie myFXBook, Duplitrade und Zulutrade, die Social-Trading-Lösungen anbieten, die einfach einzurichten sind und es Benutzern ermöglichen, die von ihnen gewählten Investitionen zu kontrollieren, um ihr Geld anzulegen . </h6>
    <h6>Obwohl MT5 hier ist, um das Spiel zu verändern. Es handelt sich um eine Plattform, die für ihre großen Zeitrahmen, Analysefunktionen und die Vielfalt an ausstehenden Aufträgen bekannt ist und bei unseren Aktien- und Rohstoffhändlern beliebt ist. </h6>
    <h6><strong>Größere Zeitrahmen verfügbar</strong> (21 Zeitrahmen im Vergleich zu 9 in MT4) Märkte. </h6>
    <h6><strong>Ausstehende Orders</strong>: MT4 bietet die am häufigsten verwendeten Stop-Loss- und Limit-Orders, und in MT5 können Sie auch die Stop-Limit-Funktion verwenden, die die beste Möglichkeit zum Festlegen von Limit-Orders darstellt. </h6>
    <h6><strong>Die Programmiersprachen für MT4 und MT5 sind MQL4 und MQL5. </strong>Während es aufgrund der Beliebtheit von MT4 möglicherweise mehr Forschung und Anleitung gibt, beginnen Benutzer mit der Migration auf die Programmiersprache MQL5, weil diese effizienter und einfacher zu verwenden ist und Händler Skripte schreiben und ändern können. </h6>
    <h6><strong>MT5 bietet außerdem einen integrierten fundamentalen Wirtschaftskalender, der makroökonomische Nachrichten in Echtzeit liefert. </strong>MT5 umfasst ein integriertes MQL5-Community-Chat- und E-Mail-System. </h6>
    <h6><strong>Es gibt definitiv immer mehr Händler, die auf MT5 umsteigen</strong> und das ist es, was wir hier sehen, wenn wir unseren eigenen Kundenstamm betrachten. Da es sich bei unseren Kunden tendenziell um anspruchsvollere und besser informierte Anleger handelt, wurde die Hinzufügung von MT5 von vielen unserer Kunden begrüßt, die MT4 in der Vergangenheit nur intensiv genutzt haben. </h6>
-   <h6><strong>Obwohl MT5 entgegen der landläufigen Meinung nicht als Ersatz für MT4 konzipiert ist. </strong>Es soll es ergänzen. Bei DEMO nutzen unsere Anleger sowohl MT4 als auch MT5 und erhalten das Beste aus beiden Welten. Wir unterstützen ihren Handelsansatz mit Online-Ressourcen, Zugang zu Webinaren und natürlich Support rund um die Uhr. </h6>
+   <h6><strong>Obwohl MT5 entgegen der landläufigen Meinung nicht als Ersatz für MT4 konzipiert ist. </strong>Es soll es ergänzen. Bei Helix-Capita nutzen unsere Anleger sowohl MT4 als auch MT5 und erhalten das Beste aus beiden Welten. Wir unterstützen ihren Handelsansatz mit Online-Ressourcen, Zugang zu Webinaren und natürlich Support rund um die Uhr. </h6>
    <h6><strong>Im Allgemeinen ist MT4 eine unkomplizierte und effiziente Wahl für unerfahrene Händler oder Kunden, die einfach nur Forex handeln möchten. Für unsere Händler, die eine schönere Software mit einer größeren Auswahl an Zusatzfunktionen und tiefergehenden Analysen suchen, ist MT5 besser geeignet. Wenn Sie außerdem Top-CFDs auf US-Aktien handeln möchten, ist MT5 die richtige Wahl. </strong></h6></div>`,
 
    // m3-MetaTrader5
@@ -1789,7 +1789,7 @@ export default {
   "ld-s0-d1": "Sie sollten rechtliche Dokumente im Zusammenhang mit Demo -Unternehmen lesen, die Ihr Konto registrieren, bevor unsere Plattform auf unserer Plattform eröffnet wird.",
   "ld-s1-d1": "Bitte beachten Sie, dass sich unsere Rechtsdokumente je nach den Demo -Unternehmen unterscheiden, die Sie ein Handelskonto und die für Sie geltenden Regeln besitzen. Die für Ihr Konto geeigneten Rechtsdokumente werden in Ihrem Antragsformular klar angegeben, dass Sie die Datei vor dem Ausfüllen des Antrags sorgfältig lesen sollten. <br> Um weitere Informationen zu Ihren Vorschriften zu verstehen, klicken Sie bitte auf den entsprechenden Link unten:",
   "ld-s1-1-q1": "Demo Markets Limited (Bahamas)",
-  "ld-s1-1-a1": "<div class=\"rich-text__container\"><p>Indem Sie ein Konto bei DEMO Markets Limited eröffnen, geben Sie bereits an, die Bedingungen in den folgenden Dokumenten gelesen, verstanden und akzeptiert zu haben:</p>\n  <ul><li><a target='_blank' href=\"pdf.js/SCB_Client_TCs_ROW.pdf\"  rel=\"noreferrer noopener\">\n  Geschäftsbedingungen\n  </a> –\n  Diese Vereinbarung soll Ihre Beziehung zu DEMO Markets Limited regeln.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Privacy_Policy_ROW.pdf\"  rel=\"noreferrer noopener\">\n  Datenschutzrichtlinie\n  </a> –\n  Diese Richtlinie legt dar, wie wir Ihre persönlichen Informationen sammeln und verwalten, wenn Sie Transaktionen mit DEMO Markets Limited durchführen.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Cookie_Policy_ROW.pdf\"  rel=\"noreferrer noopener\">\n  Cookie-Richtlinie\n  </a> –\n  Diese Richtlinie beschreibt die Arten von Cookies, die wir auf DEMO verwenden, und wie wir sie verwalten. Durch die Nutzung unserer Website erklären Sie sich mit den in dieser Richtlinie festgelegten Bedingungen einverstanden.\n  </li><li><a href=\"#\">Bedingungen für die Simulationsplattform</a></li><li><a target='_blank' href=\"pdf.js/SCB_Risk_Disclosure_Notice_ROW.pdf\" >\n  Risikohinweis\n  </a> –\n  Dieser Hinweis enthält wichtige Informationen zu den mit unseren Produkten verbundenen Risiken.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Order_Execution_Policy_ROW.pdf\">\n  Ausführungsrichtlinie für Aufträge\n  </a> –\n  Diese Richtlinie erläutert, wie wir sicherstellen, dass wir angemessene Schritte unternehmen, um die besten Ergebnisse für unsere Kunden zu erzielen.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Conflicts_of_Interest_Policy_ROW.pdf\">\n  Politik zu Interessenkonflikten\n  </a> –\n  Diese Politik legt fest, wie wir potenzielle oder tatsächliche Interessenkonflikte während unserer Geschäftsbeziehung behandeln.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Complaints_Notice_ROW.pdf\">\n  Beschwerdenhinweis\n  </a> –\n  Dieser Hinweis erläutert unser Beschwerdeverfahren.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Client_TCs_ROW.pdf\">\n  Website-Geschäftsbedingungen\n  </a> –\n  Durch die Nutzung unserer Website erklären Sie sich damit einverstanden, diese Bedingungen zu befolgen.\n  </li><li><a href=\"#\">\n  Unsere regulierten Büros\n  </a> –\n  Die rechtlichen Dokumente unserer anderen lizenzierten Einrichtungen finden Sie hier.\n  </li></ul></div>",
+  "ld-s1-1-a1": "<div class=\"rich-text__container\"><p>Indem Sie ein Konto bei Helix-Capita Markets Limited eröffnen, geben Sie bereits an, die Bedingungen in den folgenden Dokumenten gelesen, verstanden und akzeptiert zu haben:</p>\n  <ul><li><a target='_blank' href=\"pdf.js/SCB_Client_TCs_ROW.pdf\"  rel=\"noreferrer noopener\">\n  Geschäftsbedingungen\n  </a> –\n  Diese Vereinbarung soll Ihre Beziehung zu Helix-Capita Markets Limited regeln.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Privacy_Policy_ROW.pdf\"  rel=\"noreferrer noopener\">\n  Datenschutzrichtlinie\n  </a> –\n  Diese Richtlinie legt dar, wie wir Ihre persönlichen Informationen sammeln und verwalten, wenn Sie Transaktionen mit Helix-Capita Markets Limited durchführen.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Cookie_Policy_ROW.pdf\"  rel=\"noreferrer noopener\">\n  Cookie-Richtlinie\n  </a> –\n  Diese Richtlinie beschreibt die Arten von Cookies, die wir auf Helix-Capita verwenden, und wie wir sie verwalten. Durch die Nutzung unserer Website erklären Sie sich mit den in dieser Richtlinie festgelegten Bedingungen einverstanden.\n  </li><li><a href=\"#\">Bedingungen für die Simulationsplattform</a></li><li><a target='_blank' href=\"pdf.js/SCB_Risk_Disclosure_Notice_ROW.pdf\" >\n  Risikohinweis\n  </a> –\n  Dieser Hinweis enthält wichtige Informationen zu den mit unseren Produkten verbundenen Risiken.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Order_Execution_Policy_ROW.pdf\">\n  Ausführungsrichtlinie für Aufträge\n  </a> –\n  Diese Richtlinie erläutert, wie wir sicherstellen, dass wir angemessene Schritte unternehmen, um die besten Ergebnisse für unsere Kunden zu erzielen.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Conflicts_of_Interest_Policy_ROW.pdf\">\n  Politik zu Interessenkonflikten\n  </a> –\n  Diese Politik legt fest, wie wir potenzielle oder tatsächliche Interessenkonflikte während unserer Geschäftsbeziehung behandeln.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Complaints_Notice_ROW.pdf\">\n  Beschwerdenhinweis\n  </a> –\n  Dieser Hinweis erläutert unser Beschwerdeverfahren.\n  </li><li><a target='_blank' href=\"pdf.js/SCB_Client_TCs_ROW.pdf\">\n  Website-Geschäftsbedingungen\n  </a> –\n  Durch die Nutzung unserer Website erklären Sie sich damit einverstanden, diese Bedingungen zu befolgen.\n  </li><li><a href=\"#\">\n  Unsere regulierten Büros\n  </a> –\n  Die rechtlichen Dokumente unserer anderen lizenzierten Einrichtungen finden Sie hier.\n  </li></ul></div>",
   "ld-s1-d2": "Wenn Sie Fragen zum Dokument oder zu den Informationen haben, die andere Sprachen benötigen, senden Sie eine Anfrage an den Support {'@'} Demo.com, wir treffen für Sie Vorkehrungen.",
   //Contact us contact-us
   "cu-s0-t1": "kontaktiere uns",
@@ -1852,7 +1852,7 @@ export default {
   "m5-4": "Online-Vorlesung",
 
   "footer-s1-1-t1": "{TITLE} Market Co., Ltd.",
-  "footer-s1-1-d1": "Warum DEMO wählen",
+  "footer-s1-1-d1": "Warum Helix-Capita wählen",
   "footer-s1-1-d2": "Rekrutierung",
   "footer-s1-1-d3": "Auf unserer Plattform handeln",
   "footer-s1-1-d4": "Plattform",

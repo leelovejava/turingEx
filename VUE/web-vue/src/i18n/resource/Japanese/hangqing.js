@@ -21,7 +21,7 @@ export default {
     'bizhong':'通貨',
     'jiagejisuanqi':'価格計算機',
     'goumai':'購入',
-    'chang1':'各主要な取引プラットフォームの中で、DEMOの手数料比率は最も低いです。',
+    'chang1':'各主要な取引プラットフォームの中で、Helix-Capitaの手数料比率は最も低いです。',
     'jiagexinxi':'価格情報',
     'chang2':'24時間以内の最低と最高',
     'gao':'高い',

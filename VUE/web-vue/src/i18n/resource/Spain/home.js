@@ -739,7 +739,7 @@ export default {
 
   yinsibaohu_1: "1. Ambas Partes",
   yinsibaohu_2:
-    '1.1 DEMO Exchange (en adelante referido como la "Compañía") es una compañía registrada en Nueva York bajo la Ley Federal de Nueva York. El sitio web operado por la compañía www.Demo.com (en adelante referido como "este sitio" o "el sitio web") es un sitio web dedicado a los usuarios para la negociación de activos digitales y servicios relacionados (en adelante referido como "este sitio" o "el sitio web"). "Servicios" o "Servicio"). Para la conveniencia de expresión en este acuerdo, la compañía y el sitio web se utilizan colectivamente como "nosotros" u otras direcciones en primera persona.',
+    '1.1 Helix-Capita Exchange (en adelante referido como la "Compañía") es una compañía registrada en Nueva York bajo la Ley Federal de Nueva York. El sitio web operado por la compañía www.Demo.com (en adelante referido como "este sitio" o "el sitio web") es un sitio web dedicado a los usuarios para la negociación de activos digitales y servicios relacionados (en adelante referido como "este sitio" o "el sitio web"). "Servicios" o "Servicio"). Para la conveniencia de expresión en este acuerdo, la compañía y el sitio web se utilizan colectivamente como "nosotros" u otras direcciones en primera persona.',
   yinsibaohu_3:
     '1.2 Siempre que la persona natural u otra entidad que inicie sesión en este sitio web sea un usuario de este sitio web, para la conveniencia de la expresión en este acuerdo, se utilizará lo siguiente como "usted" u otros pronombres en segunda persona.',
   yinsibaohu_4:

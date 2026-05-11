@@ -683,7 +683,7 @@ export default {
   zanweikaifang: "Henüz Açık Değil",
   shanchuchenggong: "Başarıyla Silindi",
   tianjiatixiandizhi: "Çekim Adresi Ekle",
-  tip3: "4-20 karakter arası bir not girin, örneğin: Ali'nin DEMO hesabı",
+  tip3: "4-20 karakter arası bir not girin, örneğin: Ali'nin Helix-Capita hesabı",
   dizhibeizhu: "Adres Notu",
   tibidizhi: "Çekim Adresi",
   baocun: "Kaydet",

@@ -1,6 +1,6 @@
 export default {
   privacyText:
-    "© 2022 DEMO Markets Limited. Todos los derechos reservados. Número de registro de la empresa 177174 B SIA-F217 <br><br> Advertencia de riesgo: los Contratos por Diferencia (CFD) son instrumentos complejos y conllevan un alto riesgo de perder dinero rápidamente debido al apalancamiento. El 85,12 % de las cuentas de inversores minoristas pierden dinero cuando operan con CFD con este proveedor. Debe considerar si comprende cómo funcionan los CFD y si puede permitirse el alto riesgo de perder su dinero.<br><br> Usted no posee ni tiene derechos sobre los activos subyacentes. El rendimiento pasado no es indicativo de resultados futuros y las leyes fiscales pueden estar sujetas a cambios. La información en este sitio web es esencialmente de carácter general y no ha tenido en cuenta sus objetivos, situación financiera o necesidades personales ni las de sus clientes. Lea nuestros documentos de RDN y otros documentos legales antes de tomar decisiones de operación y asegúrese de comprender completamente los riesgos. Le recomendamos buscar asesoramiento independiente.<br><br> DEMO Markets Limited se encuentra en Sea Sky Lane, B201, Sandyport, Nassau, Nueva Providencia, Bahamas, y está autorizada y regulada por la Comisión de Valores de las Bahamas (SIA-F217).<br><br> Si la información en este sitio web y los productos y servicios ofrecidos infringen las leyes y regulaciones locales en cualquier país, la información en este sitio web y los productos y servicios ofrecidos no están destinados a su distribución a ninguna persona en esos países o regiones.",
+    "© 2022 Helix-Capita Markets Limited. Todos los derechos reservados. Número de registro de la empresa 177174 B SIA-F217 <br><br> Advertencia de riesgo: los Contratos por Diferencia (CFD) son instrumentos complejos y conllevan un alto riesgo de perder dinero rápidamente debido al apalancamiento. El 85,12 % de las cuentas de inversores minoristas pierden dinero cuando operan con CFD con este proveedor. Debe considerar si comprende cómo funcionan los CFD y si puede permitirse el alto riesgo de perder su dinero.<br><br> Usted no posee ni tiene derechos sobre los activos subyacentes. El rendimiento pasado no es indicativo de resultados futuros y las leyes fiscales pueden estar sujetas a cambios. La información en este sitio web es esencialmente de carácter general y no ha tenido en cuenta sus objetivos, situación financiera o necesidades personales ni las de sus clientes. Lea nuestros documentos de RDN y otros documentos legales antes de tomar decisiones de operación y asegúrese de comprender completamente los riesgos. Le recomendamos buscar asesoramiento independiente.<br><br> Helix-Capita Markets Limited se encuentra en Sea Sky Lane, B201, Sandyport, Nassau, Nueva Providencia, Bahamas, y está autorizada y regulada por la Comisión de Valores de las Bahamas (SIA-F217).<br><br> Si la información en este sitio web y los productos y servicios ofrecidos infringen las leyes y regulaciones locales en cualquier país, la información en este sitio web y los productos y servicios ofrecidos no están destinados a su distribución a ninguna persona en esos países o regiones.",
   //home
   "h-s1-t1": "Posibilidades de comercio en {TITLE} en cualquier lugar",
   "h-s1-d1": "Precios ajustados, spreads bajos, ejecución rápida",
@@ -15,7 +15,7 @@ export default {
   "h-s2-h3": "Volumen",
   "h-s2-h4": "Variación porcentual",
   "h-s2-1-d1":
-    "Los precios en tiempo real son solo con fines indicativos. Consulte su plataforma para conocer los precios más recientes. DEMO Markets Limited ofrece soporte.",
+    "Los precios en tiempo real son solo con fines indicativos. Consulte su plataforma para conocer los precios más recientes. Helix-Capita Markets Limited ofrece soporte.",
   "h-s2-2-t1": "¿Por qué elegir {TITLE}",
   "h-s2-2-t2":
     "Explore oportunidades comerciales en más de 1000 productos negociables",
@@ -24,7 +24,7 @@ export default {
   "h-s2-2-b1": "Ver nuestros spreads",
   "h-s3-t1": "Excelente, Comerciante",
   "h-s3-d1":
-    "DEMO ATP es el socio oficial de comercio en línea del ATP Tour y el socio principal de título global.",
+    "Helix-Capita ATP es el socio oficial de comercio en línea del ATP Tour y el socio principal de título global.",
   "h-s4-t1": "¿No está satisfecho con su corredor actual?",
   "h-s4-t2": "Lo entendemos por completo.",
   "h-s4-1-t1": "Spreads muy bajos",
@@ -72,7 +72,7 @@ export default {
   "h-s7-t2": "Broker de TradingView",
   "h-s7-t3": "Broker del Año 2022",
   "h-s7-d1":
-    "DEMO se enorgullece de ser nombrado Broker del Año en los Premios del Broker de TradingView.",
+    "Helix-Capita se enorgullece de ser nombrado Broker del Año en los Premios del Broker de TradingView.",
   "h-s8-t1": "Galardonado",
   "h-s8-t2": "Somos galardonados en todo el mundo con",
   // 公共
@@ -85,7 +85,7 @@ export default {
     "Fácil y rápido de empezar, incluso con depósitos pequeños. Complete la solicitud en minutos a través de nuestro sencillo proceso de solicitud.",
   "ready-b2": "Empezar",
   "ready-d3":
-    "Es fácil abrir una cuenta de DEMO. Solo toma unos minutos para comenzar su viaje con DEMO.",
+    "Es fácil abrir una cuenta de Helix-Capita. Solo toma unos minutos para comenzar su viaje con Helix-Capita.",
   "ready-d4":
     "Comience a operar con un depósito mínimo. Nuestro sencillo proceso de solicitud solo toma unos minutos para completarse.",
   "learn-more-info": "Más información",
@@ -97,7 +97,7 @@ export default {
   xianzaijiaoy: "Comience a operar ahora",
   tuichu: "Cerrar sesión",
   tishi:
-    "DEMO no implica que los materiales proporcionados aquí sean precisos, actuales o completos y no deben considerarse como base para ello. La información proporcionada aquí, ya sea proveniente de terceros o no, no debe considerarse como información recomendada; o una oferta de compra o venta; o una solicitud de una oferta para comprar o vender cualquier valor, producto financiero o instrumento; o para participar en cualquier estrategia de negociación específica. Se recomienda que cualquier lector de este contenido busque su propio asesoramiento. No se debe copiar ni redistribuir esta información sin el consentimiento de DEMO.",
+    "Helix-Capita no implica que los materiales proporcionados aquí sean precisos, actuales o completos y no deben considerarse como base para ello. La información proporcionada aquí, ya sea proveniente de terceros o no, no debe considerarse como información recomendada; o una oferta de compra o venta; o una solicitud de una oferta para comprar o vender cualquier valor, producto financiero o instrumento; o para participar en cualquier estrategia de negociación específica. Se recomienda que cualquier lector de este contenido busque su propio asesoramiento. No se debe copiar ni redistribuir esta información sin el consentimiento de Helix-Capita.",
   // 导航栏
   home: "Inicio",
   support: "Soporte al cliente",
@@ -128,7 +128,7 @@ export default {
   "header-s-s1-t1": "Preguntas frecuentes",
   "header-s-s1-d1":
     "A continuación se encuentran nuestras preguntas frecuentes y sus respuestas. Visite nuestra sección de preguntas frecuentes para obtener más preguntas populares o abra el chat en línea en la parte inferior de la pantalla para comunicarse con nuestro equipo profesional en tiempo real.",
-  "header-s-s1-q1": "¿Qué tipos de cuentas ofrece DEMO?",
+  "header-s-s1-q1": "¿Qué tipos de cuentas ofrece Helix-Capita?",
   "header-s-s1-a1": `<div class="rich-text__container"><h5><strong>Ofrecemos dos tipos de cuentas para satisfacer las necesidades de los traders</strong></h5>
   <h5><strong>Cuenta Razor</strong></h5>
   <h5>Nuestra cuenta Razor incluye spreads brutos, lo que significa que transmitimos los spreads que recibimos de los proveedores de liquidez directamente a nuestros clientes.</h5>
@@ -137,7 +137,7 @@ export default {
   <h5>Nuestra cuenta estándar no tiene comisiones e incluye nuestros spreads brutos + 1 punto de incremento (por ejemplo, un spread de 0 + 1 punto = 1 punto [0.5 puntos en cada dirección de compra y venta]).</h5></div>`,
   "header-s-s1-q2": "¿Qué es un swap?",
   "header-s-s1-a2": `<div class="rich-text__container"><h5>La tasa de swap de divisas se refiere a los intereses nocturnos o de roll-over ganados o pagados en posiciones nocturnas en operaciones de divisas. Estas tasas están determinadas por el spread interbancario y la base de la moneda cruzada.<br><br>Los costos de swap son bidireccionales. Esto significa que los traders pueden ganar swaps, o también podrían incurrir en swaps en posiciones comerciales relevantes. Esto dependerá del instrumento comercial, si su posición es larga o corta, y si mantiene la operación durante un periodo de roll-over. Dado que los contratos de divisas al contado se liquidan sobre la base de T + 2, se cobrará el triple de swaps en el roll-over del miércoles para incorporar los intereses del fin de semana.</h5></div>`,
-  "header-s-s1-q3": "¿DEMO es un trader ECN/STP o un creador de mercado?",
+  "header-s-s1-q3": "¿Helix-Capita es un trader ECN/STP o un creador de mercado?",
   // 第一次copy
   "header-s-s1-a3": `<div class="rich-text__container"><h5>Frecuentemente se nos pregunta esto. Parte de la dificultad en responder a esta pregunta es que ECN y STP son términos de marketing sacados del sistema de cotización bursátil y diferentes proveedores en la industria tienen diferentes interpretaciones.</h5>
   <h5>Los verdaderos brokers ECN o STP son intermediarios o brokers que operan utilizando los sistemas de otros bajo un programa de etiqueta blanca.</h5>
@@ -158,27 +158,27 @@ export default {
   "header-rf-s0-t1":
     "Recomienda a un amigo y ambos obtendrán recompensas únicas",
   "header-rf-s0-d1":
-    "Introduce el programa de referidos de DEMO a amigos y clientes minoristas y Pro de DEMO. Esta oferta viene con términos y condiciones.",
+    "Introduce el programa de referidos de Helix-Capita a amigos y clientes minoristas y Pro de Helix-Capita. Esta oferta viene con términos y condiciones.",
   "header-rf-s1-t1": "Un programa de referidos a medida para ti",
   "header-rf-s1-d1":
-    "Ofrecemos dos programas de referidos de amigos, dependiendo de si eres un cliente Pro de DEMO o un cliente minorista. Nuestro programa de referidos de amigos tiene como objetivo recompensar a aquellos clientes que invitan a familiares o amigos a operar con nosotros.",
+    "Ofrecemos dos programas de referidos de amigos, dependiendo de si eres un cliente Pro de Helix-Capita o un cliente minorista. Nuestro programa de referidos de amigos tiene como objetivo recompensar a aquellos clientes que invitan a familiares o amigos a operar con nosotros.",
   "header-rf-s1-h1": "Para clientes minoristas",
-  "header-rf-s1-h2": "Para clientes Pro de DEMO",
+  "header-rf-s1-h2": "Para clientes Pro de Helix-Capita",
   "header-rf-s1-r1":
     "Cuando tu amigo abre una cuenta de trading y realiza un depósito, ambos pueden obtener 20 operaciones gratuitas.",
   "header-rf-s1-r2":
     "Cuando tu amigo abre una cuenta de trading y cumple con los requisitos de depósito y trading, ambos pueden obtener hasta 1,000 dólares en efectivo.",
   "header-rf-s2-t1": "Preguntas frecuentes",
-  "header-rf-s2-q1": "¿Cómo me convierto en un cliente Pro de DEMO?",
+  "header-rf-s2-q1": "¿Cómo me convierto en un cliente Pro de Helix-Capita?",
   "header-rf-s2-a1":
-    "Si aún no eres un cliente Pro de DEMO pero estás interesado en convertirte en un trader profesional, puedes encontrar más información sobre los criterios de elegibilidad y requisitos aquí.",
+    "Si aún no eres un cliente Pro de Helix-Capita pero estás interesado en convertirte en un trader profesional, puedes encontrar más información sobre los criterios de elegibilidad y requisitos aquí.",
   "header-rf-s2-q2": "¿Cómo puede tu amigo obtener la recomendación?",
   "header-rf-s2-a2":
-    "Cuando empieces a recomendar a DEMO a tus amigos, tu amigo deberá ingresar tu correo electrónico en '¿Cómo nos conociste?' al registrarse.",
+    "Cuando empieces a recomendar a Helix-Capita a tus amigos, tu amigo deberá ingresar tu correo electrónico en '¿Cómo nos conociste?' al registrarse.",
   "header-rf-s3-tip1": `<div class="disclaimer__content">Trading sin comisiones, pueden aplicarse otros cargos y tarifas. No hay obligación de canjear operaciones gratuitas. Consulta los <a target='_blank' href="pdf.js/SCB_Refer-a-Friend-Ts-and-Cs_Retail-ROW_EN_June-2021.pdf" ><strong>términos y condiciones completos</strong></a> aquí para clientes minoristas. O puedes <a href="/#/contact-us" ><strong>ponerte en contacto</strong></a> con nosotros.&nbsp;<br><br>Consulta los <a href="pdf.js/SCB_Refer-a-Friend-Ts-and-Cs_Retail-ROW_EN_June-2021.pdf" ><strong>términos y condiciones completos</strong></a> aquí para bonificaciones, depósitos y requisitos de trading para clientes Pro. O puedes <a href="/#/contact-us" ><strong>ponerte en contacto</strong></a> con nosotros.</div>`,
   // footer
-  "footer-s1-1-t1": "DEMO Market Limited",
-  "footer-s1-1-d1": "¿Por qué elegir DEMO?",
+  "footer-s1-1-t1": "Helix-Capita Market Limited",
+  "footer-s1-1-d1": "¿Por qué elegir Helix-Capita?",
   "footer-s1-1-d2": "Oportunidades de trabajo",
   "footer-s1-1-d3": "Operar en nuestra plataforma",
   "footer-s1-1-d4": "Plataforma",
@@ -311,13 +311,13 @@ export default {
   "m1-vip-s1-2": "Acceso a nuestros descuentos VIP",
   "m1-vip-s1-3": "Una visión de mercado avanzada",
   "m1-vip-s1-4":
-    "Si eres un cliente profesional de DEMO, participa en invitaciones a eventos exclusivos, herramientas de trading avanzadas y soluciones VPS",
+    "Si eres un cliente profesional de Helix-Capita, participa en invitaciones a eventos exclusivos, herramientas de trading avanzadas y soluciones VPS",
   "m1-vip-s2-t1": "Servicios y asistencia personalizados",
   "m1-vip-s2-d1":
     "Asignaremos un gerente de cuentas técnico calificado para trabajar contigo y proporcionarte soluciones y asistencia de clientes de alta calidad para satisfacer tu estilo de trading personal.",
   "m1-vip-s3-t1": "Cómo calificar para ser un cliente VIP",
   "m1-vip-s3-d1":
-    "Para calificar como cliente VIP, requerimos que cumplas con uno o más de los siguientes umbrales durante dos trimestres calendario consecutivos. Los clientes minoristas y profesionales de DEMO son elegibles para convertirse en clientes VIP.",
+    "Para calificar como cliente VIP, requerimos que cumplas con uno o más de los siguientes umbrales durante dos trimestres calendario consecutivos. Los clientes minoristas y profesionales de Helix-Capita son elegibles para convertirse en clientes VIP.",
   "m1-vip-s3-1-t1": "Mercado",
   "m1-vip-s3-1-t2": "Volumen de trading mensual",
   "m1-vip-s3-2-t1": "FX",
@@ -332,10 +332,10 @@ export default {
     "Accede a una variedad de recursos de trading profesional y perspectivas exclusivas de nuestro equipo de analistas.",
   "m1-vip-s4-2-t1": "Descuentos y reembolsos diarios",
   "m1-vip-s4-2-d1":
-    "Gana comisiones de descuento y recibe reembolsos diarios cuando califiques para el programa ActiveTrader de DEMO.",
+    "Gana comisiones de descuento y recibe reembolsos diarios cuando califiques para el programa ActiveTrader de Helix-Capita.",
   "m1-vip-s4-3-t1": "Eventos exclusivos",
   "m1-vip-s4-3-d1":
-    "Para clientes profesionales de DEMO, obtén acceso exclusivo a eventos VIP de trading, seminarios y talleres, experiencias de comidas privadas y invitaciones a eventos deportivos.",
+    "Para clientes profesionales de Helix-Capita, obtén acceso exclusivo a eventos VIP de trading, seminarios y talleres, experiencias de comidas privadas y invitaciones a eventos deportivos.",
   "m1-vip-s5-t1": "Consulta ahora",
   "m1-vip-s5-d1":
     "Para obtener más información o unirte a nuestro servicio de clientes VIP, envía un correo electrónico a support{'@'}demo.com",
@@ -371,20 +371,20 @@ export default {
     "Un gerente de cuenta exclusivo trabajará contigo para proporcionar soluciones y orientación de clientes de alta calidad para ayudarte a alcanzar tus objetivos de trading.",
   "m1-at-s3-2-t1": "Hospedaje VPS",
   "m1-at-s3-2-d1":
-    "Para clientes de DEMO Pro, ofrecemos soluciones de hospedaje VPS gratuitas que pueden ejecutar estrategias automatizadas y aprovechar nuestra infraestructura EDGE de baja latencia.",
+    "Para clientes de Helix-Capita Pro, ofrecemos soluciones de hospedaje VPS gratuitas que pueden ejecutar estrategias automatizadas y aprovechar nuestra infraestructura EDGE de baja latencia.",
   "m1-at-s3-3-t1": "Informes y análisis avanzados",
   "m1-at-s3-3-d1":
-    "Accede a ideas exclusivas de analistas de mercado de DEMO, señales Autochartist diarias y todas las funcionalidades y reportes de trading de MT4 y MT5 que esperas de un broker galardonado.",
+    "Accede a ideas exclusivas de analistas de mercado de Helix-Capita, señales Autochartist diarias y todas las funcionalidades y reportes de trading de MT4 y MT5 que esperas de un broker galardonado.",
   "m1-at-s4-t1": "¿Cómo me uno al programa Active Trader?",
   "m1-at-s4-d1": `Para obtener más información o unirte a nuestro servicio de clientes VIP, envía un correo electrónico a <a href="mailto:support@demo.com">support@demo.com</a>`,
   "m1-at-s4-d2":
     "¿Todavía no eres cliente? Abre una cuenta ahora y únete como cliente VIP para experimentar un servicio y beneficios excepcionales.",
   "m1-who-s0-t1": "¿Quiénes somos?",
   "m1-who-s0-d1":
-    "DEMO comprende el arte del trading. Con la escala de la tecnología financiera global y la agilidad de una startup, nos esforzamos por brindarte todo lo que necesitas para operar en los mercados globales.",
+    "Helix-Capita comprende el arte del trading. Con la escala de la tecnología financiera global y la agilidad de una startup, nos esforzamos por brindarte todo lo que necesitas para operar en los mercados globales.",
   "m1-who-s1-t1": "Nuestra historia",
   "m1-who-s1-d1":
-    "DEMO fue fundada en Melbourne, Australia, en 2010 por un grupo de experimentados traders que se comprometieron a mejorar la experiencia de trading en línea. Hartos de la demora en las operaciones, los altos costos y el mal soporte al cliente, nos dedicamos a brindar tecnología superior, spreads bajos y ayudar a los traders de todo el mundo a dominar sus habilidades de trading.",
+    "Helix-Capita fue fundada en Melbourne, Australia, en 2010 por un grupo de experimentados traders que se comprometieron a mejorar la experiencia de trading en línea. Hartos de la demora en las operaciones, los altos costos y el mal soporte al cliente, nos dedicamos a brindar tecnología superior, spreads bajos y ayudar a los traders de todo el mundo a dominar sus habilidades de trading.",
   "m1-who-s2-t1": "Ganando la confianza de traders de todo el mundo",
   "m1-who-s2-d1":
     "Procesamos un promedio de $12.55 billones de dólares en operaciones diarias, lo que nos convierte en uno de los brokers de forex más grandes del mundo*.",
@@ -398,17 +398,17 @@ export default {
   "m1-who-s4-t1": "¿Quieres saber más?",
   "m1-who-s4-d1": `<h5>Consulta nuestra página de <a href="#" rel="noreferrer noopener">Wikipedia</a> y síguenos en <a href="#" rel="noreferrer noopener">Facebook</a>, <a href="#" rel="noreferrer noopener">YouTube</a>, <a href="#" rel="noreferrer noopener">LinkedIn</a> y <a href="#" rel="noreferrer noopener">Twitter</a>.</h5>`,
   "m1-who-s6-d1":
-    "*Usuarios activos que realizaron operaciones abiertas o tenían posiciones entre el 1 de julio de 2019 y el 30 de noviembre de 2019^ Titulares de cuentas DEMO registradas",
-  "m1-why-s1-t1": "¿Por qué elegir DEMO?",
+    "*Usuarios activos que realizaron operaciones abiertas o tenían posiciones entre el 1 de julio de 2019 y el 30 de noviembre de 2019^ Titulares de cuentas Helix-Capita registradas",
+  "m1-why-s1-t1": "¿Por qué elegir Helix-Capita?",
   "m1-why-s1-d1":
     "Estamos a tu lado en cada operación, combinando una ejecución rápida, spreads crudos y comisiones bajas con un compromiso genuino para ayudarte a lograr tus objetivos de trading.",
   "m1-why-s2-t1": "Quiénes somos",
   "m1-why-s2-d1":
-    "DEMO se estableció en 2010 y rápidamente se convirtió en uno de los brokers de forex más grandes del mundo. Nuestro objetivo es construir un mundo de trading centrado en la tecnología avanzada para que los traders apasionados puedan enfrentar los desafíos y oportunidades del mercado global.",
+    "Helix-Capita se estableció en 2010 y rápidamente se convirtió en uno de los brokers de forex más grandes del mundo. Nuestro objetivo es construir un mundo de trading centrado en la tecnología avanzada para que los traders apasionados puedan enfrentar los desafíos y oportunidades del mercado global.",
   "m1-why-s3-t1": "Operando con un broker premiado",
   "m1-why-s3-d1":
     "Con premios otorgados por Investment Trends, Deloitte y el gobernador del estado de Victoria, estamos orgullosos de ser reconocidos por nuestro servicio al cliente, condiciones de trading y relación calidad-precio.",
-  "m1-why-s4-t1": "¿Por qué operar con DEMO?",
+  "m1-why-s4-t1": "¿Por qué operar con Helix-Capita?",
   "m1-why-s5-t1": "Excelente relación calidad-precio",
   "m1-why-s5-t2": "Ejecución rápida",
   "m1-why-s5-t3": "Seguridad de fondos",
@@ -443,7 +443,7 @@ export default {
     "Accede a nuestros galardonados recursos educativos que te ayudarán a llevar tus operaciones a un nuevo nivel.",
   "m1-why-s6-2-l1": `<a href="/#/education">Más información</a>`,
   "m1-why-s7-3":
-    "*El tiempo de ejecución de la mayoría de las órdenes es inferior a 30 milisegundos (DEMO Group Limited) y 60 milisegundos (DEMO Limited), calculado según el tiempo de procesamiento recibido por el puente de DEMO.",
+    "*El tiempo de ejecución de la mayoría de las órdenes es inferior a 30 milisegundos (Helix-Capita Group Limited) y 60 milisegundos (Helix-Capita Limited), calculado según el tiempo de procesamiento recibido por el puente de Helix-Capita.",
   "m1-why-s7-1":
     "^No incluye MAM y PAMM, consulte nuestros documentos legales para obtener más información.",
   "m1-why-s7-2":
@@ -535,7 +535,7 @@ export default {
     "Opere en el mercado de divisas a través de nuestra plataforma",
   "m2-product-1-s1-d1":
     "El mercado de divisas (Forex, FX o mercado de divisas) es un mercado financiero de negociación de divisas a nivel mundial, descentralizado y extrabursátil. Es el mercado financiero más grande del mundo, con un volumen diario de operaciones que supera los 1,5 billones de dólares*. El volumen de negociación de divisas supera en gran medida al de los mercados de acciones y futuros.",
-  "m2-product-1-s2-t1": "¿Por qué operar en DEMO en el mercado de divisas?",
+  "m2-product-1-s2-t1": "¿Por qué operar en Helix-Capita en el mercado de divisas?",
   "m2-product-1-s2-d1":
     "Liquidez profunda, precios provenientes de múltiples fuentes y spreads más bajos del mercado.",
   "m2-product-1-s2-d2":
@@ -564,7 +564,7 @@ export default {
   "m2-product-2-s1-d1":
     "Opere en 14 mercados bursátiles principales de todo el mundo, que incluyen índices de EE. UU., Europa, Australia y Asia, sin comisiones ni mesa de operaciones.",
   "m2-product-2-s2-t1":
-    "¿Por qué operar en DEMO con contratos por diferencia de índices?",
+    "¿Por qué operar en Helix-Capita con contratos por diferencia de índices?",
   "m2-product-2-s2-d1":
     "Nuestros contratos por diferencia de índices están diseñados específicamente para operadores minoristas, ofreciéndole una amplia gama de oportunidades de acceso al mercado global para diversificar sus estrategias comerciales en una variedad de instrumentos. Puede aprovechar directamente las oportunidades que ofrecen los mercados bursátiles mundiales, ya que los contratos por diferencia de índices están abiertos a todos nuestros clientes sin mesa de operaciones ni comisiones.",
   "m2-product-2-s2-d2":
@@ -593,7 +593,7 @@ export default {
   "m2-product-3-s1-d1":
     "Opere oro, plata, petróleo, gas natural y otros productos con spreads bajos y ejecución rápida, sin preocupaciones por la entrega física, la propiedad y los vencimientos. Al operar con contratos de diferencia de productos básicos, ingresa a un mercado emocionante donde numerosos proveedores, comerciantes y compradores con gran poder adquisitivo bloquean los precios actuales para proteger sus entregas físicas futuras. Comience a operar con contratos de diferencia de productos básicos. Consulte la tabla de instrumentos financieros y precios a continuación.",
   "m2-product-3-s2-t1":
-    "¿Por qué operar en DEMO con contratos de diferencia de productos básicos?",
+    "¿Por qué operar en Helix-Capita con contratos de diferencia de productos básicos?",
   "m2-product-3-s2-d1":
     "Liquidez de primera categoría: ejecute todas sus órdenes de contratos de diferencia de productos básicos sin ejecuciones parciales ni recotizaciones",
   "m2-product-3-s2-d2": "Tasa de ejecución del 99.72%^ y ejecución rápida",
@@ -622,7 +622,7 @@ export default {
   "m2-product-4-s1-d1":
     "Los fondos cotizados en bolsa (ETF) son una herramienta de inversión única que le permite expresar puntos de vista sobre mercados de acciones específicos en un país individual, así como en todo el mundo, sectores e incluso mercados de valores más amplios. Comience a operar con contratos de diferencia de ETF ahora.",
   "m2-product-4-s2-t1":
-    "¿Por qué operar en DEMO con contratos de diferencia de ETF?",
+    "¿Por qué operar en Helix-Capita con contratos de diferencia de ETF?",
   "m2-product-4-s2-d1":
     "Ofrecemos más de 100 ETF que siguen el rendimiento de varios sectores, incluidos minería, energía, tecnología, mercado de bonos y minorista.",
   "m2-product-4-s2-d2":
@@ -646,7 +646,7 @@ export default {
   "m2-product-4-s3-v2": "Símbolo",
   "m2-product-4-s4-t1": "Nuestras Comisiones",
   "m2-product-4-s4-d1":
-    "Operar con CFDs de ETF en DEMO significa que opera a precios directos de intercambio subyacentes sin agregar márgenes adicionales en el spread de compra-venta. Sin embargo, pagará una pequeña comisión por cada operación. Los detalles son los siguientes:",
+    "Operar con CFDs de ETF en Helix-Capita significa que opera a precios directos de intercambio subyacentes sin agregar márgenes adicionales en el spread de compra-venta. Sin embargo, pagará una pequeña comisión por cada operación. Los detalles son los siguientes:",
   "m2-product-4-s4-1":
     "Comisión de 0,02 dólares estadounidenses por operación por acción.",
   "m2-product-4-s4-2": "Spreads de intercambio sin recargos adicionales.",
@@ -690,7 +690,7 @@ export default {
   "m2-product-5-s1-d1":
     "Invierta en acciones de gran capitalización de Australia con una tarifa competitiva del 0,07% por operación (mínimo de 5 dólares australianos). Negocie la temporada de informes de ganancias de acciones estadounidenses con nuestras operaciones fuera del horario comercial y comisiones bajas a partir de 0,02 USD por acción. Comience a operar contratos por diferencias de acciones ahora mismo.",
   "m2-product-5-s2-t1":
-    "¿Por qué operar en una DEMO de contratos por diferencias de acciones?",
+    "¿Por qué operar en una Helix-Capita de contratos por diferencias de acciones?",
   "m2-product-5-s2-d1":
     "¡No se pierda! Somos uno de los pocos brókeres que ofrece operaciones fuera del horario comercial en el mercado de valores de EE. UU. Dado que los informes financieros de las empresas suelen realizarse durante este período, las operaciones fuera del horario comercial pueden ayudarlo a reducir el riesgo o completar las posiciones antes de la apertura del día siguiente.",
   "m2-product-5-s2-d2":
@@ -727,7 +727,7 @@ export default {
     "Actualmente, ofrecemos datos de mercado en tiempo real de acciones australianas de forma gratuita. Si hay cambios en el futuro, se lo notificaremos al menos con 30 días de anticipación.",
   "m2-product-5-s6-t1": "Plataforma de trading de CFD de acciones",
   "m2-product-5-s6-d1":
-    "Nuestros CFD de acciones se pueden negociar con apalancamiento en MetaTrader 5. Para agregar CFD de acciones a su cartera, abra una cuenta DEMO de MetaTrader 5 y seleccione los CFD de acciones correspondientes desde el Observatorio del Mercado.",
+    "Nuestros CFD de acciones se pueden negociar con apalancamiento en MetaTrader 5. Para agregar CFD de acciones a su cartera, abra una cuenta Helix-Capita de MetaTrader 5 y seleccione los CFD de acciones correspondientes desde el Observatorio del Mercado.",
   "m2-product-5-s6-d2":
     "MT5 ofrece un tiempo de procesamiento más rápido, una mejor capacidad de cobertura, opciones avanzadas de órdenes pendientes y las últimas herramientas e indicadores. Sus excelentes características lo ayudarán a mejorar su nivel de trading y mantenerse siempre por delante en el mercado.",
   "m2-product-5-s6-d3":
@@ -737,7 +737,7 @@ export default {
   "m2-product-6-s1-t1": "Criptomonedas",
   "m2-product-6-s1-d1":
     "Las criptomonedas pueden experimentar grandes fluctuaciones de valor, y puede aprovechar esta volatilidad operando con nuestros CFD de criptomonedas sin necesidad de una billetera digital o intercambio.",
-  "m2-product-6-s2-t1": "¿Por qué operar en DEMO con criptomonedas?",
+  "m2-product-6-s2-t1": "¿Por qué operar en Helix-Capita con criptomonedas?",
   "m2-product-6-s2-d1":
     "Puede operar durante los fines de semana en criptomonedas como Bitcoin, Bitcoin Cash, Litecoin, Ethereum, Ripple, Polkadot, y más.",
   "m2-product-6-s2-d2":
@@ -762,7 +762,7 @@ export default {
   "m2-product-6-s3-h8": "Corto",
   "m2-product-6-s4-t1": "Riesgos",
   "m2-product-6-s4-d1":
-    "Las criptomonedas como Bitcoin tienen una volatilidad mucho mayor que las monedas tradicionales y conllevan un gran riesgo. Además, tenga en cuenta que al operar en DEMO, no posee la moneda subyacente ni ningún derecho sobre ella. El mercado de criptomonedas es volátil y los cambios repentinos en los precios pueden resultar en pérdidas significativas rápidamente.",
+    "Las criptomonedas como Bitcoin tienen una volatilidad mucho mayor que las monedas tradicionales y conllevan un gran riesgo. Además, tenga en cuenta que al operar en Helix-Capita, no posee la moneda subyacente ni ningún derecho sobre ella. El mercado de criptomonedas es volátil y los cambios repentinos en los precios pueden resultar en pérdidas significativas rápidamente.",
   "m2-product-6-s4-d2":
     "Los mercados subyacentes de criptomonedas están abiertos durante los fines de semana. No ofrecemos un código separado para el fin de semana, por lo que cuando abre una posición, utiliza el mismo símbolo que usó durante la semana.",
   "m2-product-6-s4-d3":
@@ -823,7 +823,7 @@ export default {
   <h4 class="mt-8"><strong>¿Qué es una tasa de swap?</strong></h4>
   <h5>La tasa de swap de divisas se refiere al interés de rollover de posiciones overnight en operaciones de divisas (es decir, el interés ganado o pagado). Las instituciones financieras con las que colaboramos publican tasas de swap semanalmente, calculadas según análisis de gestión de riesgos y condiciones del mercado. Cada par de divisas tiene su propia tasa de swap, con un tamaño estándar de 1.0 lote (100,000 unidades base).</h5>
   <h5>Para obtener más información sobre los swaps, haga clic <a href="/#/educacion/what-is-swap-in-forex">aquí</a>.</h5>
-  <h4 class="mt-4"><strong>¿Dónde puedo encontrar información sobre las tasas de swap en la cuenta DEMO?</strong></h4>
+  <h4 class="mt-4"><strong>¿Dónde puedo encontrar información sobre las tasas de swap en la cuenta Helix-Capita?</strong></h4>
   <h5>Puede encontrar la información más reciente sobre las tasas de swap en nuestra plataforma de trading. Las tasas de swap que se publican en nuestra plataforma son indicativas y pueden variar según la volatilidad del mercado.</h5>
   <h5><strong>Para ver las tasas en la plataforma MetaTrader:</strong></h5>
   <ul><li>Seleccione "Ver"</li><li>Haga clic derecho en "Observación del mercado" y elija "Símbolos"</li><li>Seleccione el par de divisas que desea ver y luego seleccione "Propiedades" (en MT5, elija "Especificaciones")</li></ul>
@@ -942,7 +942,7 @@ export default {
     "Ofrecemos una amplia gama de opciones de depósito sin comisiones.",
   "m2-fw-s1-t1": "Métodos de depósito y retiro",
   "m2-fw-s1-d1":
-    "Administrar su cuenta en nuestra plataforma es muy sencillo. Como cliente DEMO, puede acceder a su propio portal cifrado, donde puede realizar todas sus solicitudes de depósito y retiro de manera segura.",
+    "Administrar su cuenta en nuestra plataforma es muy sencillo. Como cliente Helix-Capita, puede acceder a su propio portal cifrado, donde puede realizar todas sus solicitudes de depósito y retiro de manera segura.",
   "m2-fw-s1-t2": "Aceptamos:",
   "m2-fw-s1-t2-1": "Tarjeta Visa",
   "m2-fw-s1-t2-2": "Tarjeta Mastercard",
@@ -1186,7 +1186,7 @@ export default {
   "m3-mt4-s5-t1": `<div class="rich-text__container"><h2 class="mb-8 fs-32">Guías y videos para usuarios</h2>
 
   <h5>Si desea obtener más información sobre cómo operar a través de la plataforma MT4, simplemente descargue la siguiente guía o vea nuestro video de MT4.</h5>
-  <ul><li><a href="#" >Guía electrónica de usuario de MetaTrader 4 DEMO</a></li><li><a href="#" >Guía de códigos de error de MetaTrader 4 DEMO</a></li></ul></div>`,
+  <ul><li><a href="#" >Guía electrónica de usuario de MetaTrader 4 Helix-Capita</a></li><li><a href="#" >Guía de códigos de error de MetaTrader 4 Helix-Capita</a></li></ul></div>`,
 
   "m3-mt4-s6-t1": "Idiomas admitidos",
   "m3-mt4-s6-d1":
@@ -1219,7 +1219,7 @@ export default {
   <ol><li>Agregar cualquier Asesor Experto (EA) o indicador que desee que se muestre en el gráfico</li><li>Haga clic derecho en el gráfico</li><li>Seleccione "Propiedades" (puede actualizar esquemas de color y realizar cambios en la configuración común aquí)</li><li>Una vez que haya realizado los cambios personalizados, simplemente haga clic derecho en el gráfico</li><li>Seleccione "Plantillas" y nombre el archivo que acaba de editar. Puede configurar múltiples plantillas para diferentes estrategias</li></ol>
   <h5><strong>Consejo para traders:</strong> Nombre esta plantilla como "default" para que se abra con esta plantilla por defecto en todos los gráficos.</h5></div>`,
   "m3-mt4-s7-q5": "¿Cómo personalizar plantillas?",
-  "m3-mt4-s7-a5": `<h6>Por defecto, no puede ejecutar simultáneamente dos plataformas Metatrader 4 (MT4). Sin embargo, mediante diferentes rutas de instalación, podrá ejecutar dos softwares MT4 al mismo tiempo. Si desea ejecutar simultáneamente dos plataformas MT4 en su PC / VPS, deberá instalar el segundo software en directorios diferentes en su PC / VPS.<br>Por ejemplo:<br>Después de instalar un software MT4, deberá descargar y ejecutar nuevamente el instalador. Luego verá la siguiente ventana emergente:<br></h6><h5><br>Para elegir la ubicación de instalación del segundo programa MT4, haga clic en "Configuración" para mostrar la configuración del directorio de instalación. Por defecto, se instalará en 'C:\Program Files (x86)\DEMO Metatrader 4', pero necesitará instalar el segundo software en una carpeta con un nombre diferente, como 'C:\Program Files (x86)\DEMO Metatrader<br></h5> <h5><br>Por favor, siga el mismo proceso de instalación que hizo con el primer software MT4. Después de esto, podrá ver dos softwares de plataforma en su carpeta, como se muestra a continuación, y podrá ejecutar ambos al mismo tiempo.<br></h5>`,
+  "m3-mt4-s7-a5": `<h6>Por defecto, no puede ejecutar simultáneamente dos plataformas Metatrader 4 (MT4). Sin embargo, mediante diferentes rutas de instalación, podrá ejecutar dos softwares MT4 al mismo tiempo. Si desea ejecutar simultáneamente dos plataformas MT4 en su PC / VPS, deberá instalar el segundo software en directorios diferentes en su PC / VPS.<br>Por ejemplo:<br>Después de instalar un software MT4, deberá descargar y ejecutar nuevamente el instalador. Luego verá la siguiente ventana emergente:<br></h6><h5><br>Para elegir la ubicación de instalación del segundo programa MT4, haga clic en "Configuración" para mostrar la configuración del directorio de instalación. Por defecto, se instalará en 'C:\Program Files (x86)\Helix-Capita Metatrader 4', pero necesitará instalar el segundo software en una carpeta con un nombre diferente, como 'C:\Program Files (x86)\Helix-Capita Metatrader<br></h5> <h5><br>Por favor, siga el mismo proceso de instalación que hizo con el primer software MT4. Después de esto, podrá ver dos softwares de plataforma en su carpeta, como se muestra a continuación, y podrá ejecutar ambos al mismo tiempo.<br></h5>`,
   "m3-mt4-s7-q6":
     "Entender el tamaño de la posición, el apalancamiento y el margen",
   "m3-mt4-s7-a6": `<div class="rich-text__container"><h6>Antes de comenzar su carrera comercial, es importante que esté familiarizado con los conceptos básicos relevantes. En su <a href="#"  rel="noreferrer noopener">cliente SCA</a> puede encontrar calculadoras útiles. Asegúrese de revisar estas calculadoras y comprender completamente el tamaño de su posición, el margen que desea proporcionar para sus operaciones y el nivel de apalancamiento que está dispuesto a aceptar.</h6></div>`,
@@ -1423,9 +1423,9 @@ export default {
   "m3-st-mf-s4-2-a1":
     "1. El siguiente paso es visitar el sitio web de Myfxbook y conectar su cuenta de demostración a Myfxbook AutoTrade<br>2. Conectar cuenta",
   "m3-st-mf-s5-d1":
-    "Descargo de responsabilidad: El sistema AutoTrade es propiedad y está operado por Myfxbook Ltd ('Myfxbook'), y su uso está sujeto a los términos y condiciones que se encuentran en su sitio web en http://www.myfxbook.com/terms. DEMO Group Limited ('DEMO') no es responsable y no puede controlar las señales generadas por el uso de AutoTrade y las operaciones resultantes en la cuenta DEMO. Las señales generadas por AutoTrade en la cuenta DEMO no constituyen asesoramiento factual, general o personal por parte de DEMO.",
+    "Descargo de responsabilidad: El sistema AutoTrade es propiedad y está operado por Myfxbook Ltd ('Myfxbook'), y su uso está sujeto a los términos y condiciones que se encuentran en su sitio web en http://www.myfxbook.com/terms. Helix-Capita Group Limited ('Helix-Capita') no es responsable y no puede controlar las señales generadas por el uso de AutoTrade y las operaciones resultantes en la cuenta Helix-Capita. Las señales generadas por AutoTrade en la cuenta Helix-Capita no constituyen asesoramiento factual, general o personal por parte de Helix-Capita.",
   "m3-st-mf-s5-d2":
-    "Aviso importante: La información y el análisis proporcionados aquí son realizados por la empresa proveedora de señales. DEMO ha replicado esta información sin alteraciones ni verificaciones y no significa que este material sea preciso, actualizado o completo, por lo que no se debe confiar en esta información. Este material es de naturaleza general y se proporciona solo como referencia, sin tener en cuenta los objetivos de inversión, la solución financiera o el método de ninguna persona. DEMO recomienda a los clientes que busquen asesoramiento financiero independiente antes de considerar la inversión en cualquier producto o servicio de señales. Además, DEMO reitera que los rendimientos pasados no son indicativos de resultados futuros. El lector también debe tener en cuenta que al igual que con todas las aplicaciones técnicas, Internet tiene sus propias vulnerabilidades y los sistemas operativos dependen de terceros para administrar la conexión con los servidores de DEMO. El uso de cualquier aplicación de trading social/copiado a través de Internet puede sufrir interrupciones, lo que puede resultar en pérdidas no deseadas que superen el saldo de la cuenta del cliente. DEMO no asume ninguna responsabilidad por el rendimiento de dicha aplicación.",
+    "Aviso importante: La información y el análisis proporcionados aquí son realizados por la empresa proveedora de señales. Helix-Capita ha replicado esta información sin alteraciones ni verificaciones y no significa que este material sea preciso, actualizado o completo, por lo que no se debe confiar en esta información. Este material es de naturaleza general y se proporciona solo como referencia, sin tener en cuenta los objetivos de inversión, la solución financiera o el método de ninguna persona. Helix-Capita recomienda a los clientes que busquen asesoramiento financiero independiente antes de considerar la inversión en cualquier producto o servicio de señales. Además, Helix-Capita reitera que los rendimientos pasados no son indicativos de resultados futuros. El lector también debe tener en cuenta que al igual que con todas las aplicaciones técnicas, Internet tiene sus propias vulnerabilidades y los sistemas operativos dependen de terceros para administrar la conexión con los servidores de Helix-Capita. El uso de cualquier aplicación de trading social/copiado a través de Internet puede sufrir interrupciones, lo que puede resultar en pérdidas no deseadas que superen el saldo de la cuenta del cliente. Helix-Capita no asume ninguna responsabilidad por el rendimiento de dicha aplicación.",
   "m3-st-mt-s1-t1": "Señales de MetaTrader",
   "m3-st-mt-s1-d1":
     "Al acceder en tiempo real a miles de estrategias y señales de traders exitosos, elimine conjeturas y emociones en sus operaciones.",
@@ -1449,11 +1449,11 @@ export default {
     "Una vez que alcance el depósito mínimo de 5,000 AUD, podrá disfrutar de los servicios ofrecidos por una potente combinación de proveedores líderes de estrategias de DupliTrade y operar automáticamente en su propia cuenta de MT4. Si aún está interesado en explorar el mercado, también puede practicar estrategias en su cuenta de demostración.",
   "m3-st-d-s3-t1": "Comience ahora",
   "m3-st-d-s3-d1":
-    "1. Si aún no ha comenzado, puede abrir una <a>cuenta de trading en vivo</a><br>2. Cree una <a>cuenta de Duplitrade</a> a través de DEMO<br/>3. <a>Contacte con nosotros</a> y solicite conectar su cuenta a Duplitrade.",
+    "1. Si aún no ha comenzado, puede abrir una <a>cuenta de trading en vivo</a><br>2. Cree una <a>cuenta de Duplitrade</a> a través de Helix-Capita<br/>3. <a>Contacte con nosotros</a> y solicite conectar su cuenta a Duplitrade.",
   "m3-st-d-s4-d1":
-    "Descargo de responsabilidad: Duplitrade es una empresa registrada en las Islas Vírgenes Británicas y su uso está sujeto a los términos y condiciones que se encuentran en su sitio web duplitrade.com/terms-and-conditions. DEMO Group Limited ('DEMO') no es responsable y no puede controlar las señales generadas por el uso de Duplitrade y las operaciones resultantes en la cuenta DEMO. Las señales generadas por Duplitrade en la cuenta DEMO no constituyen asesoramiento factual, general o personal por parte de DEMO.",
+    "Descargo de responsabilidad: Duplitrade es una empresa registrada en las Islas Vírgenes Británicas y su uso está sujeto a los términos y condiciones que se encuentran en su sitio web duplitrade.com/terms-and-conditions. Helix-Capita Group Limited ('Helix-Capita') no es responsable y no puede controlar las señales generadas por el uso de Duplitrade y las operaciones resultantes en la cuenta Helix-Capita. Las señales generadas por Duplitrade en la cuenta Helix-Capita no constituyen asesoramiento factual, general o personal por parte de Helix-Capita.",
   "m3-st-d-s4-d2":
-    "Aviso importante: La información y el análisis proporcionados aquí son realizados por la empresa proveedora de señales. DEMO ha replicado esta información sin alteraciones ni verificaciones y no significa que este material sea preciso, actualizado o completo, por lo que no se debe confiar en esta información. Este material es de naturaleza general y se proporciona solo como referencia, sin tener en cuenta los objetivos de inversión, la solución financiera o el método de ninguna persona. DEMO recomienda a los clientes que busquen asesoramiento financiero independiente antes de considerar la inversión en cualquier producto o servicio de señales. Además, DEMO reitera que los rendimientos pasados no son indicativos de resultados futuros. El lector también debe tener en cuenta que al igual que con todas las aplicaciones técnicas, Internet tiene sus propias vulnerabilidades y los sistemas operativos dependen de terceros para administrar la conexión con los servidores de DEMO. El uso de cualquier aplicación de trading social/copiado a través de Internet puede sufrir interrupciones, lo que puede resultar en pérdidas no deseadas que superen el saldo de la cuenta del cliente. DEMO no asume ninguna responsabilidad por el rendimiento de dicha aplicación.",
+    "Aviso importante: La información y el análisis proporcionados aquí son realizados por la empresa proveedora de señales. Helix-Capita ha replicado esta información sin alteraciones ni verificaciones y no significa que este material sea preciso, actualizado o completo, por lo que no se debe confiar en esta información. Este material es de naturaleza general y se proporciona solo como referencia, sin tener en cuenta los objetivos de inversión, la solución financiera o el método de ninguna persona. Helix-Capita recomienda a los clientes que busquen asesoramiento financiero independiente antes de considerar la inversión en cualquier producto o servicio de señales. Además, Helix-Capita reitera que los rendimientos pasados no son indicativos de resultados futuros. El lector también debe tener en cuenta que al igual que con todas las aplicaciones técnicas, Internet tiene sus propias vulnerabilidades y los sistemas operativos dependen de terceros para administrar la conexión con los servidores de Helix-Capita. El uso de cualquier aplicación de trading social/copiado a través de Internet puede sufrir interrupciones, lo que puede resultar en pérdidas no deseadas que superen el saldo de la cuenta del cliente. Helix-Capita no asume ninguna responsabilidad por el rendimiento de dicha aplicación.",
   "m3-st-t-h-s0-t1": "Herramientas de trading",
 
   // 第12次copy
@@ -1474,7 +1474,7 @@ export default {
     "¿Tiene su propio sistema de trading personalizado? Nuestra tecnología de API le permite acceder fácilmente a nuestro flujo de liquidez en su propia plataforma.",
   "m3-st-t-c-s1-t1": "Capitalise.ai",
   "m3-st-t-c-s1-t2":
-    "Mejore su trading con automatización sin código. Gratis para clientes DEMO",
+    "Mejore su trading con automatización sin código. Gratis para clientes Helix-Capita",
   "m3-st-t-c-s1-d1":
     "Ejecute sus planes de trading de manera rápida, precisa y sin emociones con Capitalise.ai. Ahorre tiempo, opere las 24 horas del día y elimine la influencia de las emociones, beneficios ampliamente reconocidos de la automatización del trading. Sin embargo, la mayoría de los traders carecen de las habilidades de codificación necesarias para construir sus propios programas de trading automatizado. Es por eso que nos hemos asociado con Capitalise.ai para proporcionar herramientas de trading automatizado poderosas de forma gratuita a nuestros clientes.",
   "m3-st-t-c-s1-t3": "Comience ahora",
@@ -1502,17 +1502,17 @@ export default {
   "m3-st-t-c-s2-5-d1": "Funciones de trading avanzadas",
   "m3-st-t-c-s2-5-d2":
     "Desde la gestión diaria de sus operaciones hasta la construcción de sistemas de automatización complejos, con Capitalise.ai, puede automatizar sus propias operaciones sin tener que escribir código complejo.",
-  "m3-st-t-c-s3-t1": "Gratis para clientes DEMO",
+  "m3-st-t-c-s3-t1": "Gratis para clientes Helix-Capita",
   "m3-st-t-c-s3-d1": "Sin necesidad de registrarse",
   "m3-st-t-c-s3-d2":
-    "Acceda a Capitalise.ai con su cuenta DEMO de MT4 y pruebe y automatice sus estrategias de trading fácilmente sin necesidad de código.",
+    "Acceda a Capitalise.ai con su cuenta Helix-Capita de MT4 y pruebe y automatice sus estrategias de trading fácilmente sin necesidad de código.",
   "m3-st-t-c-s4-t1": "Consejos útiles al usar la plataforma Capitalise.ai:",
   "m3-st-t-c-s4-1-t1": "Ver el video de Capitalise.ai",
   "m3-st-t-c-s4-1-d1":
     "Antes de comenzar, hay un breve video de introducción que le ayudará a familiarizarse con las funciones de la plataforma.",
   "m3-st-t-c-s4-2-t1": "Iniciar sesión",
   "m3-st-t-c-s4-2-d1":
-    "Inicie sesión en Capitalise.ai con su cuenta de trading existente de MetaTrader 4 DEMO y su contraseña.",
+    "Inicie sesión en Capitalise.ai con su cuenta de trading existente de MetaTrader 4 Helix-Capita y su contraseña.",
   "m3-st-t-c-s4-2-d2":
     "Si tiene algún problema al iniciar sesión, póngase en contacto con su gerente de cuenta o restablezca su contraseña a través del Área de Clientes Segura (SCA).",
   "m3-st-t-c-s4-3-t1": "Centro de Aprendizaje de Capitalise",
@@ -1643,7 +1643,7 @@ export default {
 
   "m3-st-t-ca-s3-t1": "¿Está listo para operar?",
 
-  "m3-st-t-ca-s3-1-t1": "¿Es un principiante en DEMO?",
+  "m3-st-t-ca-s3-1-t1": "¿Es un principiante en Helix-Capita?",
   "m3-st-t-ca-s3-1-d1": `<h5><a href="javascript:void(0)"  rel="noreferrer noopener">Abra una cuenta de inmediato</a> para acceder a cTrader Automate.</h5>`,
 
   "m3-st-t-ca-s3-2-t1": "¿Ya es cliente?",
@@ -1696,14 +1696,14 @@ export default {
   "m3-st-t-ap-s1-d1":
     "Apoyamos el trading automatizado a través de nuestra API. Esta tecnología, también conocida como trading de interfaz de programación de aplicaciones (API), es ideal para aquellos que utilizan sistemas de trading automático o desarrollan sus propios sistemas personalizados.",
 
-  "m3-st-t-ap-s2-t1": "Beneficios de operar con una API DEMO",
+  "m3-st-t-ap-s2-t1": "Beneficios de operar con una API Helix-Capita",
   "m3-st-t-ap-s2-1": "Mejora la comprensión profunda del mercado",
   "m3-st-t-ap-s2-2":
     "Ofrecemos una cuenta de cliente independiente para su capital",
   "m3-st-t-ap-s2-3":
     "Conectamos con múltiples proveedores de liquidez para garantizar que obtenga los mejores precios",
   "m3-st-t-ap-s2-d1":
-    "Los titulares de cuentas DEMO activas con un volumen de trading mínimo de 250 millones de dólares australianos al mes pueden solicitar un entorno DEMO de FIX para probar nuestras capacidades FIX.",
+    "Los titulares de cuentas Helix-Capita activas con un volumen de trading mínimo de 250 millones de dólares australianos al mes pueden solicitar un entorno Helix-Capita de FIX para probar nuestras capacidades FIX.",
   "m3-st-t-ap-s2-d2":
     "Si está interesado en el trading mediante API, envíe un correo electrónico a support{'@'}demo.com.",
 
@@ -1718,14 +1718,14 @@ export default {
   "m3-st-t-vp-s2-d1":
     "Disfrute de tiempos de latencia ultrabaja de aproximadamente 1 milisegundo con FXVM. El personal de ForexVPS está disponible las 24 horas del día, los 7 días de la semana, para ofrecerle servicio en varios idiomas y ayudarlo con la instalación de asesores expertos, herramientas de terceros o para resolver cualquier problema. Su FXVM también vendrá preinstalado con MetaTrader 4 para que pueda comenzar a operar de inmediato.",
 
-  "m3-st-t-vp-s2-d2": "Obtenga un descuento del 20% en ForexVPS de DEMO",
+  "m3-st-t-vp-s2-d2": "Obtenga un descuento del 20% en ForexVPS de Helix-Capita",
   "m3-st-t-vp-s2-d3": "Servidor de Nueva York",
   "m3-st-t-vp-s2-d4":
     "Nos asociamos con servidores de Nueva York para ofrecer soluciones personalizadas de baja latencia a sus traders. NYC Servers entiende la importancia para los traders de una conexión estable de baja latencia con sus corredores, una ejecución rápida y servidores de alto rendimiento que funcionan las 24 horas del día, los 7 días de la semana. Además, todo el servicio de NYC está disponible las 24 horas del día, los 7 días de la semana a través de correo electrónico, tickets de soporte, chat en vivo y teléfono.",
 
   "m3-st-t-vp-s2-d5":
-    "Cuando se una a DEMO, obtendrá un 25% de descuento en cualquier plan VPS.",
-  "m3-st-t-vp-s2-d6": "Ordene su VPS personalizado de DEMO ahora mismo.",
+    "Cuando se una a Helix-Capita, obtendrá un 25% de descuento en cualquier plan VPS.",
+  "m3-st-t-vp-s2-d6": "Ordene su VPS personalizado de Helix-Capita ahora mismo.",
 
   // m3-maintenance-schedule
   "m3-ms-s1-t1": "Horario de mantenimiento",
@@ -1826,7 +1826,7 @@ export default {
   <h5>Por otro lado, el comercio tiende a buscar oportunidades en las fuertes fluctuaciones a corto plazo del mercado, prestando más atención a noticias repentinas (como el conflicto entre Rusia y Ucrania), eventos financieros (aumento de tasas del RBA), datos económicos (IPC de Estados Unidos), declaraciones corporativas (desdoblamiento de acciones de Tesla), eventos importantes (conferencias de Apple), etc. A nivel operativo, se basa en el análisis técnico para encontrar momentos de apertura y cierre, y requiere ejecución firme de la estrategia de stop-loss y un monitoreo constante del mercado. Para los traders exitosos, la disciplina y la mentalidad son factores más importantes que el análisis técnico.</h5>
   <h5>La ventaja del comercio radica en su período más corto y en el alto potencial de rendimiento. Con el impulso del comercio automatizado, una vez que se forma una tendencia, puede haber un impulso muy fuerte y sostenido a corto plazo, como lo ha sido el caso de Tesla. Esta es una oportunidad de mercado que ningún trader quiere perder.</h5>
   <h5>Además, al negociar acciones a través de contratos por diferencia (CFD), también puede obtener más flexibilidad y ventajas, como operaciones bidireccionales, apalancamiento, liquidez profunda del mercado y operaciones ininterrumpidas las 24 horas del día, los 5 días de la semana. Por supuesto, también necesita tener cierta capacidad para soportar riesgos para hacer frente a las fluctuaciones extremas y situaciones imprevistas del mercado.</h5>
-  <h5>DEMO se estableció en Melbourne en 2010 y rápidamente se convirtió en uno de los corredores de comercio en línea más grandes del mundo. Actualmente, ofrecemos a nuestros clientes casi mil acciones principales de Estados Unidos y cientos de contratos por diferencia de acciones locales de Australia, Reino Unido y Alemania.</h5>
+  <h5>Helix-Capita se estableció en Melbourne en 2010 y rápidamente se convirtió en uno de los corredores de comercio en línea más grandes del mundo. Actualmente, ofrecemos a nuestros clientes casi mil acciones principales de Estados Unidos y cientos de contratos por diferencia de acciones locales de Australia, Reino Unido y Alemania.</h5>
   <h5>Para nuestros amigos chinos, hemos lanzado recientemente el <a href="javascript:void(0)" ">comercio de contratos por diferencia de acciones de Hong Kong</a>, que incluye gigantes de Internet como Alibaba, Tencent, JD.com, Xiaomi, así como representantes de la nueva economía como BYD, y también cubre empresas estatales de primera línea como Sinopec y Ping An de China. ¡Realmente logramos "comerciar en los mercados globales con una cuenta"!</h5>
   </div>`,
   "m4-mn-a8-t":
@@ -2488,7 +2488,7 @@ export default {
   "m5-tg-6-b1": "Intermediate",
   "m5-tg-7-t1": "How to trade gold with non-USD currencies",
   "m5-tg-7-d1":
-    "In DEMO, gold has always been the most popular investment target for a large number of traders, and we have also been committed to providing you with more updated gold trading products...",
+    "In Helix-Capita, gold has always been the most popular investment target for a large number of traders, and we have also been committed to providing you with more updated gold trading products...",
   "m5-tg-7-b1": "Beginner",
   "m5-tg-a1-s1-t1":
     "11 tips for improving the performance of your Expert Advisor (EA)",
@@ -2573,7 +2573,7 @@ export default {
   <h5>5. <strong>La liquidez es fundamental</strong></h5>
   <ol></ol>
   <h5>En mercados que cambian rápidamente, los creadores de mercado y proveedores de liquidez pueden no poder proporcionar la misma cantidad de liquidez. Esto es especialmente cierto cuando se anuncian noticias importantes, ya que la falta de liquidez puede empeorar la situación del mercado.</h5>
-  <h5>En períodos de alta volatilidad, los participantes del mercado anhelan obtener más información sobre la economía, la geopolítica o crisis de liquidez. En este proceso dinámico, esta información en sí misma puede provocar cambios significativos en los precios, lo que puede ser una prueba para muchos clientes minoristas. Afortunadamente, una cuenta DEMO puede convertirse en una fuente importante y confiable de información para ti.</h5>
+  <h5>En períodos de alta volatilidad, los participantes del mercado anhelan obtener más información sobre la economía, la geopolítica o crisis de liquidez. En este proceso dinámico, esta información en sí misma puede provocar cambios significativos en los precios, lo que puede ser una prueba para muchos clientes minoristas. Afortunadamente, una cuenta Helix-Capita puede convertirse en una fuente importante y confiable de información para ti.</h5>
   <h3><strong>Conclusión</strong></h3>
   <h5>Espero que los consejos anteriores te ayuden en tus operaciones en un entorno de mercado con alta volatilidad. Aunque existen muchos otros indicadores técnicos basados en la volatilidad real, lo más importante es cómo aplicar estos indicadores de manera flexible para adaptarte a los cambios impredecibles del mercado.</h5>
   <h5>De hecho, la regla más importante en el trading es aprender a adaptarse, lo que implica asegurarse de que la dirección de la operación esté en línea con la tendencia del mercado y aceptar la realidad de que no todas las operaciones serán rentables. Si puedes prestar atención al apalancamiento y la extrema volatilidad para una gestión de riesgos más precisa y ajustar la posición de manera razonable, entonces ya has dominado la forma de sobrevivir en un mercado con una volatilidad extrema.</h5>
@@ -2582,7 +2582,7 @@ export default {
   // 教育m5-交易指南-为什么点差会扩大
   "m5-tg-a3-s1-t1": "Por qué se amplían los spreads",
   "m5-tg-a3-s1-d1":
-    "DEMO comprende que los costos de operación son una preocupación principal para los clientes, y nos hemos esforzado constantemente por ofrecer spreads competitivos dentro de la industria. Al asociarnos con numerosos bancos de primer nivel y proveedores de liquidez, le ofrecemos las mejores precios de compra/venta para sus operaciones.",
+    "Helix-Capita comprende que los costos de operación son una preocupación principal para los clientes, y nos hemos esforzado constantemente por ofrecer spreads competitivos dentro de la industria. Al asociarnos con numerosos bancos de primer nivel y proveedores de liquidez, le ofrecemos las mejores precios de compra/venta para sus operaciones.",
   "m5-tg-a3-s2-c": `<div class="rich-text__container"><!--StartFragment--><h4><strong>Spreads</strong></h4>
   <h5>En el trading de divisas y CFD (Contrato por Diferencia), el costo de operación se mide generalmente en "spreads", que es la diferencia entre los precios de compra y venta en un mismo momento. Por ejemplo, si la cotización de EURUSD es 1.06747/52, el spread de este par de divisas es 0.06752-1.06747=0.00005, lo que equivale a 0.5 pips (puntos). En general, a mayor liquidez del mercado, menor será el spread y, por consiguiente, menor será el costo de operación.</h5>
   <h5>Sin embargo, en condiciones de mercado extremadamente volátiles, la profundidad del mercado y la eficiencia en la ejecución de operaciones se reducen significativamente, lo que resulta en un fenómeno común de ampliación de los spreads. Este fenómeno es común en todo el mercado financiero, ya sea que usted sea un inversor institucional o un cliente minorista.</h5>
@@ -2607,7 +2607,7 @@ export default {
   <h5>Este sistema permite a los inversores evaluar rápidamente las tendencias de precios durante el tiempo de suspensión del trading, y brinda la oportunidad al mercado de revisar si los precios actuales son razonables y efectivos.</h5>
   <h4><strong>Mecanismo de límites de subida y bajada</strong></h4>
   <h5>Aunque los límites de subida y bajada se aplican a varios índices bursátiles de EE. UU. (como US30, US200, NAS100, etc.), aquí nos enfocaremos en el US500 (es decir, S&P 500) para fines de esta discusión.</h5>
-  <h5>Todos los precios de los productos de índices, incluido el US500 en la plataforma DEMO, se derivan del mercado de futuros. El modelo de precios refleja las expectativas futuras de dividendos y rendimientos de intereses, y también se ve afectado por el mecanismo de circuit breaker en el mercado subyacente.</h5>
+  <h5>Todos los precios de los productos de índices, incluido el US500 en la plataforma Helix-Capita, se derivan del mercado de futuros. El modelo de precios refleja las expectativas futuras de dividendos y rendimientos de intereses, y también se ve afectado por el mecanismo de circuit breaker en el mercado subyacente.</h5>
   <h5>Existen diferentes límites de precios durante diferentes períodos de tiempo en días de trading, lo que refleja la liquidez del mercado. La liquidez intensifica la magnitud de las fluctuaciones de precios en ambas direcciones.</h5>
   <h4><strong>Restricciones de trading durante la sesión de futuros de índices bursátiles</strong></h4>
   <h5>Cuando el mercado spot está cerrado pero la sesión de futuros de índices S&P 500 aún está activa, el límite de subida y bajada para el US500 es del +/- 5%. Este cálculo se basa en el precio de cierre de las 4:00 p.m. del día anterior (hora del este de EE. UU., en adelante).</h5>
@@ -2627,20 +2627,20 @@ export default {
   "m5-tg-a5-s1-t1": "Índice de volatilidad (VIX)",
   "m5-tg-a5-s1-d1":
     "La volatilidad desempeña un papel muy importante en el mercado. Ya sea que los traders estén utilizando estrategias de trading manuales o ejecutando operaciones a través de algoritmos de trading automáticos, la volatilidad es un elemento central en los mercados financieros.",
-  "m5-tg-a5-s2-c": `<div class="rich-text__container"><!--StartFragment--><h5>Uno de los indicadores más destacados que mide la volatilidad implícita es el índice de volatilidad (VIX) de la Bolsa de Opciones de Chicago (CBOE). Ahora ofrecemos a nuestros clientes el comercio de este índice en las plataformas MT4/5.</h5> <h3>¿Qué es el índice de volatilidad (VIX)?</h3> <h5>El índice VIX es esencialmente una medida de la amplitud de la volatilidad esperada del índice S&P 500. Al igual que cualquier otra volatilidad implícita de opciones, el VIX se presenta en forma de desviación estándar anualizada (porcentual). Se calcula ponderando la volatilidad en los modelos de precios de opciones del S&P 500 para diferentes opciones con fechas de vencimiento entre 23 y 37 días, lo que resulta en la volatilidad implícita de 30 días, es decir, el índice VIX.</h5> <h5>El VIX que ve en realidad muestra la volatilidad esperada del S&P 500 en el próximo mes, presentada en un valor porcentual anualizado. Además, el índice de mercado se moverá dentro de este rango en un 68.2% de los casos.</h5> <h5>En pocas palabras, si el VIX está en un nivel del 20%, significa que se espera que el S&P 500 suba o baje un 20% en los próximos 12 meses.</h5> <h5>Los traders pueden hacer algunos cálculos simples basados en este valor anualizado para obtener la volatilidad esperada del S&P 500 en cualquier período de tiempo (por ejemplo, un día o una semana). Para el mercado de opciones, la volatilidad es un parámetro muy importante que cuantifica las tendencias esperadas en un rango de probabilidades basado en fórmulas matemáticas.</h5> <h3><strong>Ejemplo de cálculo de volatilidad</strong></h3> <h5>La volatilidad es esencialmente la desviación estándar anualizada. Si queremos saber la volatilidad esperada diaria, primero necesitamos saber cuántos días de negociación hay en un año y luego multiplicarlo por la raíz cuadrada de la volatilidad anualizada. Si queremos saber la volatilidad semanal esperada, debemos calcular la raíz cuadrada del número de semanas en un año y luego multiplicarlo por la volatilidad anualizada. Supongamos que el índice VIX es del 20% en este momento.</h5> <h5><em><u>¿Cómo se calcula la volatilidad diaria esperada?</u></em></h5> <h5>Raíz cuadrada de los días totales de negociación en un año: √252 = 15.9</h5> <h5>Volatilidad esperada diaria = 1.25% (20/15.9 = 1.25)</h5> <h5><u><em>¿Cómo se calcula la volatilidad semanal esperada?</em></u></h5> <h5>Raíz cuadrada de las semanas totales de negociación en un año: √50 = 7.07</h5> <h5>Volatilidad esperada semanal = 2.8% (20/7.07 = 2.8)</h5> <h5>Supongamos que el índice S&P 500 está en 3300 puntos y el índice VIX está en 20. Debido a que la volatilidad diaria esperada es del 1.25%, esto significa que se espera que el índice se mueva hacia arriba o hacia abajo en 41.3 puntos en un día (3300*1.25%), y la volatilidad implícita alcanza 82.6 puntos, que representa un rango de un desviación estándar (68.2% de los casos) desde el nivel actual.</h5> <h5>A veces, la tendencia del mercado y la dirección esperada no son consistentes. Sin embargo, ya sea que esté operando opciones sobre el índice S&P 500, el índice de acciones S&P 500 en efectivo, otros índices estadounidenses (US30 o NAS100), o cualquier otro tipo de activo, cuantificar las expectativas del mercado sobre la volatilidad de precios puede ser muy útil para el trading.</h5> <h5>Es importante tener en cuenta que la volatilidad no está relacionada con la dirección, por lo que no se puede utilizar para predecir la dirección de las futuras tendencias de precios. Teóricamente, cuando el índice S&P 500 sube o baja rápidamente, el VIX puede aumentar. Sin embargo, mediante el estudio de casos en situaciones de pánico en el mercado, se puede observar que durante la incertidumbre del mercado y las caídas del índice S&P 500, a menudo se observa un aumento en el VIX, lo que explica por qué muchas personas lo llaman el "índice del miedo".<br><br></h5> <h5>Alta volatilidad y sus causas</h5> <h5><img src="https://lh5.googleusercontent.com/lRZcoK3-htdFl1-OPxC1lCMYBkfwEUy0WfEwvoyMIFTnBlIxNqQydsXlau1wLznNFyGn9vgTgV15ZnNdUQZf_LEWMTDGRNupR06rS6x8yYzJWiyZZY_A8EymKY4_8qe3Er_lP1Fr" width="624" height="311" data-image="efbh4wn7hedo"></h5> <h5>Fuente: Bloomberg VIX Index</h5> <h3><strong><br></strong></h3> <h3><strong>Mejora de la eficiencia del trading a través del índice de volatilidad</strong></h3> <ul><li><strong>Operar directamente con el índice VIX</strong></li></ul> <h5>Una vez que comprenda el significado del VIX y pueda calcular la volatilidad esperada del S&P 500, puede evaluar si este nivel de volatilidad es alto o bajo. Si compra el índice VIX, está indicando que espera una mayor volatilidad en el S&P 500 (es decir, los traders están dispuestos a pagar un precio más alto por las opciones de este índice). Si vende el índice VIX, está prediciendo que la volatilidad disminuirá y el mercado será más tranquilo.</h5> <ul><li><strong>Gestión de riesgos a través del VIX</strong></li></ul> <h5>Si podemos comprender el rango de volatilidad esperado del índice S&P 500, podemos ayudarnos a establecer stops y ajustar posiciones de manera más efectiva. Por ejemplo, si estoy operando en un gráfico diario y tiendo a mantener posiciones durante uno o dos semanas, y el VIX muestra una volatilidad diaria del 1.25%, un stop cerca del 0.3% por debajo del precio de mercado se activará fácilmente. En este caso, sería prudente establecer un stop más bajo y reducir la posición.</h5> <ul><li><strong>Cómo la volatilidad afecta a las estrategias de trading</strong></li></ul> <h5>En períodos de baja volatilidad, el arbitraje se vuelve muy efectivo, ya que es difícil lograr altos rendimientos a través del movimiento de las monedas por sí solas. En el mercado de divisas, si la volatilidad es baja, las monedas de alto rendimiento (como el MXN) tienden a tener un buen desempeño, y hay más compradores para las acciones de alto rendimiento. En momentos de alta volatilidad, los inversores deshacen posiciones de arbitraje, y las monedas de financiación (como el yen, el franco suizo e incluso el euro) muestran un buen rendimiento.</h5> <h5>En períodos de alta volatilidad, los traders tienden a comprar activos de calidad y defensivos, como bonos del Tesoro de EE. UU., oro, y prefieren compañías que proporcionan ingresos estables, como las acciones de servicios públicos. Al mismo tiempo, las acciones de crecimiento y cíclicas presentarán mejores oportunidades para vender en corto.</h5> <ul><li><strong>Volatilidad y trading de EA</strong></li></ul> <h5>Si su EA tiene ventaja en un mercado de baja volatilidad y fluctuación bidireccional, un entorno de mercado VIX alto podría significar que su EA no funcionará bien. Por lo tanto, puede optar por reducir la exposición, o incluso cerrar temporalmente todas las posiciones. Por otro lado, si su EA tiene un buen desempeño en períodos de alta volatilidad, puede esperar obtener mayores ganancias en un mercado VIX alto. Evaluar las condiciones de funcionamiento de su EA después de analizar el VIX puede aumentar su confianza en su entorno de operaciones.</h5> <h3><strong>Comprender el índice de volatilidad</strong></h3> <h5>A pesar de que a menudo se informa sobre los cambios en el índice VIX en las noticias, los traders en realidad no pueden operar directamente con este índice, ya que se deriva de la combinación de múltiples modelos de precios de opciones del S&P 500. Ahora, DEMO ofrece a los clientes contratos de futuros VIX de próximo mes (estos contratos de futuros tienen una alta liquidez, eficiencia y volumen de negociación) ajustados por un valor justo ponderado, lo que les proporciona un producto de índice de spot negociable.</h5> <h5><br><!--EndFragment--></h5></div>`,
+  "m5-tg-a5-s2-c": `<div class="rich-text__container"><!--StartFragment--><h5>Uno de los indicadores más destacados que mide la volatilidad implícita es el índice de volatilidad (VIX) de la Bolsa de Opciones de Chicago (CBOE). Ahora ofrecemos a nuestros clientes el comercio de este índice en las plataformas MT4/5.</h5> <h3>¿Qué es el índice de volatilidad (VIX)?</h3> <h5>El índice VIX es esencialmente una medida de la amplitud de la volatilidad esperada del índice S&P 500. Al igual que cualquier otra volatilidad implícita de opciones, el VIX se presenta en forma de desviación estándar anualizada (porcentual). Se calcula ponderando la volatilidad en los modelos de precios de opciones del S&P 500 para diferentes opciones con fechas de vencimiento entre 23 y 37 días, lo que resulta en la volatilidad implícita de 30 días, es decir, el índice VIX.</h5> <h5>El VIX que ve en realidad muestra la volatilidad esperada del S&P 500 en el próximo mes, presentada en un valor porcentual anualizado. Además, el índice de mercado se moverá dentro de este rango en un 68.2% de los casos.</h5> <h5>En pocas palabras, si el VIX está en un nivel del 20%, significa que se espera que el S&P 500 suba o baje un 20% en los próximos 12 meses.</h5> <h5>Los traders pueden hacer algunos cálculos simples basados en este valor anualizado para obtener la volatilidad esperada del S&P 500 en cualquier período de tiempo (por ejemplo, un día o una semana). Para el mercado de opciones, la volatilidad es un parámetro muy importante que cuantifica las tendencias esperadas en un rango de probabilidades basado en fórmulas matemáticas.</h5> <h3><strong>Ejemplo de cálculo de volatilidad</strong></h3> <h5>La volatilidad es esencialmente la desviación estándar anualizada. Si queremos saber la volatilidad esperada diaria, primero necesitamos saber cuántos días de negociación hay en un año y luego multiplicarlo por la raíz cuadrada de la volatilidad anualizada. Si queremos saber la volatilidad semanal esperada, debemos calcular la raíz cuadrada del número de semanas en un año y luego multiplicarlo por la volatilidad anualizada. Supongamos que el índice VIX es del 20% en este momento.</h5> <h5><em><u>¿Cómo se calcula la volatilidad diaria esperada?</u></em></h5> <h5>Raíz cuadrada de los días totales de negociación en un año: √252 = 15.9</h5> <h5>Volatilidad esperada diaria = 1.25% (20/15.9 = 1.25)</h5> <h5><u><em>¿Cómo se calcula la volatilidad semanal esperada?</em></u></h5> <h5>Raíz cuadrada de las semanas totales de negociación en un año: √50 = 7.07</h5> <h5>Volatilidad esperada semanal = 2.8% (20/7.07 = 2.8)</h5> <h5>Supongamos que el índice S&P 500 está en 3300 puntos y el índice VIX está en 20. Debido a que la volatilidad diaria esperada es del 1.25%, esto significa que se espera que el índice se mueva hacia arriba o hacia abajo en 41.3 puntos en un día (3300*1.25%), y la volatilidad implícita alcanza 82.6 puntos, que representa un rango de un desviación estándar (68.2% de los casos) desde el nivel actual.</h5> <h5>A veces, la tendencia del mercado y la dirección esperada no son consistentes. Sin embargo, ya sea que esté operando opciones sobre el índice S&P 500, el índice de acciones S&P 500 en efectivo, otros índices estadounidenses (US30 o NAS100), o cualquier otro tipo de activo, cuantificar las expectativas del mercado sobre la volatilidad de precios puede ser muy útil para el trading.</h5> <h5>Es importante tener en cuenta que la volatilidad no está relacionada con la dirección, por lo que no se puede utilizar para predecir la dirección de las futuras tendencias de precios. Teóricamente, cuando el índice S&P 500 sube o baja rápidamente, el VIX puede aumentar. Sin embargo, mediante el estudio de casos en situaciones de pánico en el mercado, se puede observar que durante la incertidumbre del mercado y las caídas del índice S&P 500, a menudo se observa un aumento en el VIX, lo que explica por qué muchas personas lo llaman el "índice del miedo".<br><br></h5> <h5>Alta volatilidad y sus causas</h5> <h5><img src="https://lh5.googleusercontent.com/lRZcoK3-htdFl1-OPxC1lCMYBkfwEUy0WfEwvoyMIFTnBlIxNqQydsXlau1wLznNFyGn9vgTgV15ZnNdUQZf_LEWMTDGRNupR06rS6x8yYzJWiyZZY_A8EymKY4_8qe3Er_lP1Fr" width="624" height="311" data-image="efbh4wn7hedo"></h5> <h5>Fuente: Bloomberg VIX Index</h5> <h3><strong><br></strong></h3> <h3><strong>Mejora de la eficiencia del trading a través del índice de volatilidad</strong></h3> <ul><li><strong>Operar directamente con el índice VIX</strong></li></ul> <h5>Una vez que comprenda el significado del VIX y pueda calcular la volatilidad esperada del S&P 500, puede evaluar si este nivel de volatilidad es alto o bajo. Si compra el índice VIX, está indicando que espera una mayor volatilidad en el S&P 500 (es decir, los traders están dispuestos a pagar un precio más alto por las opciones de este índice). Si vende el índice VIX, está prediciendo que la volatilidad disminuirá y el mercado será más tranquilo.</h5> <ul><li><strong>Gestión de riesgos a través del VIX</strong></li></ul> <h5>Si podemos comprender el rango de volatilidad esperado del índice S&P 500, podemos ayudarnos a establecer stops y ajustar posiciones de manera más efectiva. Por ejemplo, si estoy operando en un gráfico diario y tiendo a mantener posiciones durante uno o dos semanas, y el VIX muestra una volatilidad diaria del 1.25%, un stop cerca del 0.3% por debajo del precio de mercado se activará fácilmente. En este caso, sería prudente establecer un stop más bajo y reducir la posición.</h5> <ul><li><strong>Cómo la volatilidad afecta a las estrategias de trading</strong></li></ul> <h5>En períodos de baja volatilidad, el arbitraje se vuelve muy efectivo, ya que es difícil lograr altos rendimientos a través del movimiento de las monedas por sí solas. En el mercado de divisas, si la volatilidad es baja, las monedas de alto rendimiento (como el MXN) tienden a tener un buen desempeño, y hay más compradores para las acciones de alto rendimiento. En momentos de alta volatilidad, los inversores deshacen posiciones de arbitraje, y las monedas de financiación (como el yen, el franco suizo e incluso el euro) muestran un buen rendimiento.</h5> <h5>En períodos de alta volatilidad, los traders tienden a comprar activos de calidad y defensivos, como bonos del Tesoro de EE. UU., oro, y prefieren compañías que proporcionan ingresos estables, como las acciones de servicios públicos. Al mismo tiempo, las acciones de crecimiento y cíclicas presentarán mejores oportunidades para vender en corto.</h5> <ul><li><strong>Volatilidad y trading de EA</strong></li></ul> <h5>Si su EA tiene ventaja en un mercado de baja volatilidad y fluctuación bidireccional, un entorno de mercado VIX alto podría significar que su EA no funcionará bien. Por lo tanto, puede optar por reducir la exposición, o incluso cerrar temporalmente todas las posiciones. Por otro lado, si su EA tiene un buen desempeño en períodos de alta volatilidad, puede esperar obtener mayores ganancias en un mercado VIX alto. Evaluar las condiciones de funcionamiento de su EA después de analizar el VIX puede aumentar su confianza en su entorno de operaciones.</h5> <h3><strong>Comprender el índice de volatilidad</strong></h3> <h5>A pesar de que a menudo se informa sobre los cambios en el índice VIX en las noticias, los traders en realidad no pueden operar directamente con este índice, ya que se deriva de la combinación de múltiples modelos de precios de opciones del S&P 500. Ahora, Helix-Capita ofrece a los clientes contratos de futuros VIX de próximo mes (estos contratos de futuros tienen una alta liquidez, eficiencia y volumen de negociación) ajustados por un valor justo ponderado, lo que les proporciona un producto de índice de spot negociable.</h5> <h5><br><!--EndFragment--></h5></div>`,
 
   // 教育m5-交易指南
   "m5-tg-a6-s1-t1": "¿A qué tipo de operador pertenece usted?",
   "m5-tg-a6-s1-d1":
     "Desde Buzzy Schwartz hasta Ray Dalio, las grandes figuras de la industria de trading tienen características muy diferentes. ¿A qué tipo pertenece usted?",
-  "m5-tg-a6-s2-c": `<div class="rich-text__container"><blockquote><strong>El comerciante diurno campeón - "Buzzy" Schwartz.</strong><br>Las operaciones de Marty Schwartz representaron una vez el 10% del volumen diario de contratos de futuros del S&P 500. Es el autor del libro "Pit-bull, Lessons from Wall St's Champion Trader". Para los recién llegados, los comerciantes diurnos campeones parecen ser actores. Actúan con determinación, pero también son pacientes al rastrear sus operaciones. Los comerciantes diurnos suelen tener que vigilar múltiples pantallas, monitoreando docenas de señales y esperando oportunidades de negociación. Algunos operan rápidamente, entrando y saliendo del mercado en cuestión de segundos, ganando aquí 5 puntos, allí 10 puntos. Otros pueden ser más tranquilos, realizando solo una o dos operaciones al día, esperando pacientemente el momento adecuado para aprovechar los cambios del día. Los comerciantes diurnos campeones pueden ser ruidosos y bulliciosos, pero han aprendido a no dejar que la arrogancia afecte sus operaciones. ¿Qué sucede si el mercado va en contra de sus expectativas? O se retiran o buscan otra estrategia. Lo mismo para los comerciantes diurnos: les importa si reducen las pérdidas y continúan obteniendo ganancias, no si tienen la razón. Pueden ganar solo en la mitad de sus operaciones, pero gracias a una excelente gestión del riesgo, obtienen ganancias sustanciales todos los días. Estilo de operaciones DEMO: corto plazo / intradía</blockquote>
-  <blockquote><strong>El técnico perfecto - W.D. Ganns</strong><br>William Delbert Gann era conocido por su habilidad para predecir tendencias del mercado utilizando análisis técnico.<br>Los gráficos tejen una historia fascinante para los técnicos, que comprenden que los patrones técnicos brindan una ventana para comprender el alma del mercado y pueden vislumbrar su psicología. A través del análisis técnico, entienden plenamente los miedos y deseos de los participantes del mercado. Ya sea con la teoría de Fibonacci, las Ondas de Elliott o la teoría de Gann, los analistas técnicos tienen herramientas para predecir tendencias a corto plazo y habilidades para operar con éxito según sus ideas. La capacidad de interpretación de los técnicos tiene muchas aplicaciones. Pueden analizar tendencias a corto y largo plazo. Algunos combinan su análisis técnico con el análisis fundamental, operando principalmente cuando ambos están alineados. Otros confían en el precio. Si es necesario, operan primero y luego investigan el motivo. Los técnicos decoran sus gráficos con líneas de tendencia, promedios móviles, indicadores estocásticos y medias móviles convergencia/divergencia suavizadas (MACD). Pero su base es una hermosa simplicidad que los guía hacia operaciones precisas y seguras. Estilo de operaciones DEMO: análisis técnico</blockquote>
-  <blockquote><strong>El operador principal del sistema - Ed Seykota</strong><br>Ed Seykota es un excepcional operador de sistemas. Entiende que el trading se trata principalmente de psicología y luego de sistemas.<br>Los operadores principales del sistema son los dioses de las máquinas de trading. A través de un riguroso proceso de desarrollo y pruebas, han automatizado las estrategias de trading para que las computadoras operen por ellos. Disciplinados, los operadores principales del sistema se sientan tranquilamente en tiempos difíciles, sabiendo que ganarán mucho cuando haya tendencias. Están en medio de una guerra de investigación. El mercado está cambiando y con esos cambios, sus sistemas deben adaptarse. Esto significa que pasan la mayor parte de su tiempo investigando en lugar de operando, a menos que sean como los operadores principales del sistema y viajen por el mundo con frecuencia. Sus máquinas les brindan mucho tiempo libre. Estilo de operaciones DEMO: sistemas de trading inteligentes</blockquote>
-  <blockquote><strong></strong>El prodigio macroeconómico global - Paul Tudor Jones<br>El multimillonario Paul Tudor Jones es conocido por predecir el colapso del Lunes Negro en 1987 y es el fundador de la Robin Hood Foundation, una organización benéfica.<br>Los mejores operadores de divisas globales parecen ser genios en la superficie, negociando los grandes mercados con habilidad y tenacidad. Pero los mejores operadores globales de divisas saben que el trabajo duro y la disciplina son la clave del éxito. Buscan incansablemente oportunidades en monedas, índices y productos básicos y luego se esfuerzan aún más para asegurar la mejor relación riesgo/beneficio en sus operaciones. Saben que las ideas no los llevarán muy lejos, la ejecución es la clave. Los mejores operadores macroeconómicos globales (verdaderos prodigios) pueden obtener ganancias en todos los tipos de mercado, sin tener un año de pérdidas. Estilo de operaciones DEMO: contratos por diferencia (CFD) (índices y productos básicos) y divisas</blockquote>
+  "m5-tg-a6-s2-c": `<div class="rich-text__container"><blockquote><strong>El comerciante diurno campeón - "Buzzy" Schwartz.</strong><br>Las operaciones de Marty Schwartz representaron una vez el 10% del volumen diario de contratos de futuros del S&P 500. Es el autor del libro "Pit-bull, Lessons from Wall St's Champion Trader". Para los recién llegados, los comerciantes diurnos campeones parecen ser actores. Actúan con determinación, pero también son pacientes al rastrear sus operaciones. Los comerciantes diurnos suelen tener que vigilar múltiples pantallas, monitoreando docenas de señales y esperando oportunidades de negociación. Algunos operan rápidamente, entrando y saliendo del mercado en cuestión de segundos, ganando aquí 5 puntos, allí 10 puntos. Otros pueden ser más tranquilos, realizando solo una o dos operaciones al día, esperando pacientemente el momento adecuado para aprovechar los cambios del día. Los comerciantes diurnos campeones pueden ser ruidosos y bulliciosos, pero han aprendido a no dejar que la arrogancia afecte sus operaciones. ¿Qué sucede si el mercado va en contra de sus expectativas? O se retiran o buscan otra estrategia. Lo mismo para los comerciantes diurnos: les importa si reducen las pérdidas y continúan obteniendo ganancias, no si tienen la razón. Pueden ganar solo en la mitad de sus operaciones, pero gracias a una excelente gestión del riesgo, obtienen ganancias sustanciales todos los días. Estilo de operaciones Helix-Capita: corto plazo / intradía</blockquote>
+  <blockquote><strong>El técnico perfecto - W.D. Ganns</strong><br>William Delbert Gann era conocido por su habilidad para predecir tendencias del mercado utilizando análisis técnico.<br>Los gráficos tejen una historia fascinante para los técnicos, que comprenden que los patrones técnicos brindan una ventana para comprender el alma del mercado y pueden vislumbrar su psicología. A través del análisis técnico, entienden plenamente los miedos y deseos de los participantes del mercado. Ya sea con la teoría de Fibonacci, las Ondas de Elliott o la teoría de Gann, los analistas técnicos tienen herramientas para predecir tendencias a corto plazo y habilidades para operar con éxito según sus ideas. La capacidad de interpretación de los técnicos tiene muchas aplicaciones. Pueden analizar tendencias a corto y largo plazo. Algunos combinan su análisis técnico con el análisis fundamental, operando principalmente cuando ambos están alineados. Otros confían en el precio. Si es necesario, operan primero y luego investigan el motivo. Los técnicos decoran sus gráficos con líneas de tendencia, promedios móviles, indicadores estocásticos y medias móviles convergencia/divergencia suavizadas (MACD). Pero su base es una hermosa simplicidad que los guía hacia operaciones precisas y seguras. Estilo de operaciones Helix-Capita: análisis técnico</blockquote>
+  <blockquote><strong>El operador principal del sistema - Ed Seykota</strong><br>Ed Seykota es un excepcional operador de sistemas. Entiende que el trading se trata principalmente de psicología y luego de sistemas.<br>Los operadores principales del sistema son los dioses de las máquinas de trading. A través de un riguroso proceso de desarrollo y pruebas, han automatizado las estrategias de trading para que las computadoras operen por ellos. Disciplinados, los operadores principales del sistema se sientan tranquilamente en tiempos difíciles, sabiendo que ganarán mucho cuando haya tendencias. Están en medio de una guerra de investigación. El mercado está cambiando y con esos cambios, sus sistemas deben adaptarse. Esto significa que pasan la mayor parte de su tiempo investigando en lugar de operando, a menos que sean como los operadores principales del sistema y viajen por el mundo con frecuencia. Sus máquinas les brindan mucho tiempo libre. Estilo de operaciones Helix-Capita: sistemas de trading inteligentes</blockquote>
+  <blockquote><strong></strong>El prodigio macroeconómico global - Paul Tudor Jones<br>El multimillonario Paul Tudor Jones es conocido por predecir el colapso del Lunes Negro en 1987 y es el fundador de la Robin Hood Foundation, una organización benéfica.<br>Los mejores operadores de divisas globales parecen ser genios en la superficie, negociando los grandes mercados con habilidad y tenacidad. Pero los mejores operadores globales de divisas saben que el trabajo duro y la disciplina son la clave del éxito. Buscan incansablemente oportunidades en monedas, índices y productos básicos y luego se esfuerzan aún más para asegurar la mejor relación riesgo/beneficio en sus operaciones. Saben que las ideas no los llevarán muy lejos, la ejecución es la clave. Los mejores operadores macroeconómicos globales (verdaderos prodigios) pueden obtener ganancias en todos los tipos de mercado, sin tener un año de pérdidas. Estilo de operaciones Helix-Capita: contratos por diferencia (CFD) (índices y productos básicos) y divisas</blockquote>
   <blockquote><strong>El maestro de trading de cobertura - Ray Dalio</strong><br>Ray Dalio es el fundador del fondo de cobertura más grande del mundo, Bridgewater Associates. En 2012, Dalio fue incluido en la lista Time 100 de las personas más influyentes del mundo y se dice que tiene un patrimonio neto de más de 15.200 millones de dólares.<br>Solo un líder puede construir un exitoso fondo de cobertura, pero se necesita un verdadero liderazgo para construir un negocio basado en personas. Los maestros son expertos en elegir a los operadores que se ajustan a sus estándares, ya sean mecánicos, macro o cuantitativos. Son administradores de riesgos en primer lugar, cada operador tiene su lugar en un plan de gestión de riesgos más amplio. A los operadores con un rendimiento excepcional se les asigna más capital, mientras que se reduce el capital asignado a aquellos con un rendimiento deficiente. Los maestros de fondos de cobertura saben que como equipo, los operadores pueden generar rendimientos mucho mayores que la suma de sus partes.</blockquote></div>`,
   "m5-tg-a7-s1-t1":
     "Cómo operar oro con monedas que no sean el dólar estadounidense",
-  "m5-tg-a7-s2-c": `<div class="rich-text__container"><h5>En DEMO, el oro siempre ha sido uno de los activos de inversión más populares para los operadores, y nos hemos esforzado por ofrecerle más productos de trading de oro actualizados. La operación de oro más popular se realiza en dólares estadounidenses (XAUUSD). Pero en DEMO, ahora puede operar oro con hasta <a href="javascript:void(0)">5 monedas diferentes</a>. Este artículo le presentará las ventajas de operar oro valorado en monedas que no sean el dólar estadounidense.</h5>
+  "m5-tg-a7-s2-c": `<div class="rich-text__container"><h5>En Helix-Capita, el oro siempre ha sido uno de los activos de inversión más populares para los operadores, y nos hemos esforzado por ofrecerle más productos de trading de oro actualizados. La operación de oro más popular se realiza en dólares estadounidenses (XAUUSD). Pero en Helix-Capita, ahora puede operar oro con hasta <a href="javascript:void(0)">5 monedas diferentes</a>. Este artículo le presentará las ventajas de operar oro valorado en monedas que no sean el dólar estadounidense.</h5>
   <h5>En la macroeconomía y los mercados financieros, el oro tiene una posición inquebrantable. El mercado de trading de oro tiene una alta liquidez, lo que le permite encontrar oportunidades de inversión adecuadas en diferentes entornos de mercado.</h5>
   <h5>Lo más común es operar oro en dólares. Sin embargo, si cree que tanto el oro como el dólar van a subir, la estrategia para maximizar las ganancias de la inversión en oro es comprar oro valorado en otras monedas que usted considere que pueden depreciarse. Si el mercado va en la dirección que espera, podrá obtener ganancias tanto del oro (que se aprecia) como de la moneda no estadounidense (que se deprecia). Por ejemplo, el oro frente a la libra esterlina (XAUGBP) alcanzó un máximo histórico en mayo de 2020, debido a la fortaleza del oro y la debilidad de la libra esterlina al mismo tiempo.</h5>
   <h5>Esta lógica también se aplica en sentido contrario. Si cree que el oro va a bajar y también está preocupado por la depreciación del dólar, puede vender oro y obtener una moneda fuerte a cambio para obtener el máximo rendimiento.</h5>
@@ -2650,21 +2650,21 @@ export default {
   <h5>Sin embargo, ahora tiene la oportunidad de operar oro con libras esterlinas y francos suizos. Junto con las operaciones de oro denominadas previamente en dólares, dólares australianos y euros, ahora hay un total de 5 opciones de trading de oro.</h5>
   <h5>El oro frente al dólar australiano (XAUAUD) alcanzó un máximo histórico de 2765 en el inicio de la pandemia el 24 de marzo. Durante un tiempo después, el oro frente al euro (XAUEUR) y el oro frente a la libra esterlina (XAUGBP) alcanzaron máximos históricos debido al sentimiento de refugio seguro global. El oro frente al franco suizo (XAUCHF) ha tenido un rendimiento destacado recientemente. Aunque podría pensar que el franco suizo se fortalecería debido a su posición de refugio seguro, el Banco Nacional Suizo ha adoptado una estrategia similar a la de vincularse al euro. Por lo tanto, cuando XAUEUR alcanzó un nuevo máximo el 18 de mayo, XAUCHF también registró un máximo histórico.</h5>
   <h3>Mejor fijación de precios</h3>
-  <h5>DEMO ofrece spreads competitivos para los nuevos productos de oro. Los spreads más bajos para XAUGBP y XAUCHF son 0.08 y los spreads promedio son 0.38 y 0.4, respectivamente.</h5>
+  <h5>Helix-Capita ofrece spreads competitivos para los nuevos productos de oro. Los spreads más bajos para XAUGBP y XAUCHF son 0.08 y los spreads promedio son 0.38 y 0.4, respectivamente.</h5>
   <h3>Convertir la interpretación del mercado en estrategias de trading</h3>
-  <h5>Con la amplia selección de opciones de trading de oro en DEMO, tendrá la oportunidad de mejorar y enriquecer aún más su estrategia de trading. Una vez que tenga ciertas expectativas sobre los movimientos del oro, elija una moneda que tenga una tendencia opuesta al oro y combine ambas en una operación. Por supuesto, si el mercado se mueve en una dirección diferente a la que esperaba, también podría aumentar sus pérdidas.</h5>
+  <h5>Con la amplia selección de opciones de trading de oro en Helix-Capita, tendrá la oportunidad de mejorar y enriquecer aún más su estrategia de trading. Una vez que tenga ciertas expectativas sobre los movimientos del oro, elija una moneda que tenga una tendencia opuesta al oro y combine ambas en una operación. Por supuesto, si el mercado se mueve en una dirección diferente a la que esperaba, también podría aumentar sus pérdidas.</h5>
   <h5>¿Desea obtener más información sobre oportunidades de inversión en productos como oro, divisas, índices, etc.? Siga nuestra última <a href="/#/market-analysis/">análisis de mercado</a> o escanee el código QR para seguirnos en WeChat y aprovechar las oportunidades de trading.</h5>
 </div>`,
 
   // tradingview
-  "tv-s1-t1": "Operar en TradingView con DEMO",
+  "tv-s1-t1": "Operar en TradingView con Helix-Capita",
   "tv-s1-d1":
     "La combinación definitiva de condiciones comerciales competitivas y gráficos avanzados para llevar sus operaciones al siguiente nivel.",
   "tv-s2-t1": "Conéctese a TradingView",
   "tv-s2-d1":
-    "Saque a relucir su analista técnico interior. Opere en más de 1200 productos en los avanzados y altamente personalizables gráficos de TradingView. Aproveche la transparencia de precios de DEMO, la ejecución rápida y el galardonado servicio al cliente*.",
+    "Saque a relucir su analista técnico interior. Opere en más de 1200 productos en los avanzados y altamente personalizables gráficos de TradingView. Aproveche la transparencia de precios de Helix-Capita, la ejecución rápida y el galardonado servicio al cliente*.",
   "tv-s2-d2": "La próxima generación de tecnología de gráficos",
-  "tv-s3-t1": "¿Por qué elegir DEMO?",
+  "tv-s3-t1": "¿Por qué elegir Helix-Capita?",
   "tv-s3-1-t1": "Spreads bajos",
   "tv-s3-1-d1":
     "Disfrute de spreads bajos líderes en la industria en nuestra cuenta Razor, desde 0.0 pips^.",
@@ -2673,7 +2673,7 @@ export default {
     "Disfrute de spreads bajos líderes en la industria en nuestra cuenta Razor, desde 0.0 pips^.",
   "tv-s3-3-t1": "Operaciones seguras",
   "tv-s3-3-d1":
-    "DEMO es un corredor regulado por ASIC, FCA, DFSA, CMA, CySEC, BaFin y SCB, y los fondos de los clientes se mantienen en cuentas segregadas.",
+    "Helix-Capita es un corredor regulado por ASIC, FCA, DFSA, CMA, CySEC, BaFin y SCB, y los fondos de los clientes se mantienen en cuentas segregadas.",
   "tv-s3-4-t1": "Más de 1000 productos comerciales",
   "tv-s3-4-d1":
     "Opere con nuestra amplia gama de instrumentos de CFD, que incluyen divisas, criptomonedas, índices, acciones, materias primas, entre otros.",
@@ -2685,68 +2685,68 @@ export default {
   "tv-s4-2-d1":
     "Si no tiene una cuenta en TradingView.com, puede registrarse para obtener una cuenta gratuita y comenzar a usarla.",
   "tv-s4-3-t1":
-    "Soy un nuevo cliente de DEMO, ¿cómo registro una cuenta y la conecto a TradingView?",
+    "Soy un nuevo cliente de Helix-Capita, ¿cómo registro una cuenta y la conecto a TradingView?",
   "tv-s4-3-d1":
-    "Si es un nuevo cliente de DEMO, consulte nuestras instrucciones paso a paso.",
+    "Si es un nuevo cliente de Helix-Capita, consulte nuestras instrucciones paso a paso.",
   "tv-s4-4-t1":
-    "Soy un cliente existente de DEMO, ¿cómo empiezo a operar en TradingView?",
+    "Soy un cliente existente de Helix-Capita, ¿cómo empiezo a operar en TradingView?",
   "tv-s4-4-d1":
-    "Si es un cliente existente de DEMO que desea comenzar a operar en TradingView, consulte las instrucciones aquí.",
+    "Si es un cliente existente de Helix-Capita que desea comenzar a operar en TradingView, consulte las instrucciones aquí.",
   "tv-s4-5-t1":
     "¿Puedo conectar mi cuenta de MT4, MT5 o cTrader a TradingView?",
-  "tv-s4-5-d1": "Solo se admite la cuenta de TradingView de DEMO.",
+  "tv-s4-5-d1": "Solo se admite la cuenta de TradingView de Helix-Capita.",
   "tv-s4-6-t1": "¿Qué es TradingView y cómo se utiliza?",
   "tv-s4-6-d1":
     "TradingView es una red social basada en web para operadores que les permite interactuar y compartir ideas comerciales, así como realizar análisis y operaciones directamente desde las funciones avanzadas de gráficos de TradingView.",
   "tv-s4-7-t1":
-    "¿Los fondos de mi cuenta de TradingView de DEMO se mantendrán en DEMO o TradingView?",
+    "¿Los fondos de mi cuenta de TradingView de Helix-Capita se mantendrán en Helix-Capita o TradingView?",
   "tv-s4-7-d1":
-    "Todos los fondos se mantienen en una cuenta segregada de DEMO.",
+    "Todos los fondos se mantienen en una cuenta segregada de Helix-Capita.",
   "tv-s4-8-t1":
-    "¿Qué significa que la cuenta de TradingView de DEMO está 'respaldada por cTrader'?",
+    "¿Qué significa que la cuenta de TradingView de Helix-Capita está 'respaldada por cTrader'?",
   "tv-s4-8-d1":
-    "La cuenta de TradingView de DEMO se basa en la plataforma cTrader y está diseñada para admitir su experiencia de trading en TradingView.",
+    "La cuenta de TradingView de Helix-Capita se basa en la plataforma cTrader y está diseñada para admitir su experiencia de trading en TradingView.",
   "tv-tip1":
     "* Titular de la cuenta de TradingView registrada.<br>^ Se pueden aplicar otros cargos.",
 
   //集团
-  "g-s1-t1": "Bienvenido a DEMO Group",
+  "g-s1-t1": "Bienvenido a Helix-Capita Group",
   "g-s1-d1": "Proveedor galardonado de operaciones en línea.",
   "g-s1-d2":
     "Como uno de los mayores corredores de MT4 del mundo, manejamos un promedio de más de 110,000 cuentas de trading minorista con un valor de operaciones de $12.55 mil millones al día.",
-  "g-s2-t1": "Obtenga más información sobre DEMO Group",
+  "g-s2-t1": "Obtenga más información sobre Helix-Capita Group",
   "g-s2-1-t1": "Nuestra visión",
   "g-s2-1-d1":
     "Es un mundo de operaciones impulsado por la tecnología, donde los operadores ambiciosos abrazan los desafíos y oportunidades de los mercados globales.",
   "g-s2-2-t1": "Operar en nuestra plataforma",
   "g-s2-2-d1":
-    "¿Cuál de nuestras oficinas globales de DEMO es la más adecuada para sus necesidades comerciales?",
+    "¿Cuál de nuestras oficinas globales de Helix-Capita es la más adecuada para sus necesidades comerciales?",
   "g-s3-1-t1": "Sobre nosotros",
   "g-s3-1-d1":
-    "Obtenga más información sobre la tecnología avanzada de DEMO y nuestra determinación para ayudar a los clientes a dominar el comercio.",
+    "Obtenga más información sobre la tecnología avanzada de Helix-Capita y nuestra determinación para ayudar a los clientes a dominar el comercio.",
   "g-s3-2-t1": "Noticias y medios",
   "g-s3-2-d1": "Consultas de noticias y medios",
 
   //合法文件 legal-documentation
   "ld-s0-t1": "Documentación legal",
   "ld-s0-d1":
-    "Antes de abrir una cuenta en nuestra plataforma, debe leer la documentación legal relacionada con la entidad de DEMO con la que se está registrando.",
+    "Antes de abrir una cuenta en nuestra plataforma, debe leer la documentación legal relacionada con la entidad de Helix-Capita con la que se está registrando.",
   "ld-s1-d1":
-    "Tenga en cuenta que nuestra documentación legal varía según la entidad de DEMO con la que tenga su cuenta de operaciones y las regulaciones que le apliquen. La documentación legal aplicable a su cuenta se especificará claramente en su formulario de solicitud, y debe leer este documento detenidamente antes de completar la solicitud. Para obtener más información sobre las regulaciones que le aplican, haga clic en los enlaces relevantes a continuación:",
-  "ld-s1-1-q1": "DEMO Markets Limited (Bahamas)",
-  "ld-s1-1-a1": `<div class="rich-text__container"><p>Al abrir una cuenta con DEMO Markets Limited, usted confirma que ha leído, comprendido y aceptado los términos de los siguientes documentos:</p>
+    "Tenga en cuenta que nuestra documentación legal varía según la entidad de Helix-Capita con la que tenga su cuenta de operaciones y las regulaciones que le apliquen. La documentación legal aplicable a su cuenta se especificará claramente en su formulario de solicitud, y debe leer este documento detenidamente antes de completar la solicitud. Para obtener más información sobre las regulaciones que le aplican, haga clic en los enlaces relevantes a continuación:",
+  "ld-s1-1-q1": "Helix-Capita Markets Limited (Bahamas)",
+  "ld-s1-1-a1": `<div class="rich-text__container"><p>Al abrir una cuenta con Helix-Capita Markets Limited, usted confirma que ha leído, comprendido y aceptado los términos de los siguientes documentos:</p>
   <ul><li><a target='_blank' href="pdf.js/SCB_Client_TCs_ROW.pdf"  rel="noreferrer noopener">
   Términos y condiciones
   </a> –
-  Este acuerdo tiene como objetivo regir su relación con DEMO Markets Limited.
+  Este acuerdo tiene como objetivo regir su relación con Helix-Capita Markets Limited.
   </li><li><a target='_blank' href="pdf.js/SCB_Privacy_Policy_ROW.pdf"  rel="noreferrer noopener">
   Política de privacidad
   </a> –
-  Esta política establece cómo recopilamos y gestionamos su información personal cuando realiza operaciones con DEMO Markets Limited.
+  Esta política establece cómo recopilamos y gestionamos su información personal cuando realiza operaciones con Helix-Capita Markets Limited.
   </li><li><a target='_blank' href="pdf.js/SCB_Cookie_Policy_ROW.pdf"  rel="noreferrer noopener">
   Política de cookies
   </a> –
-  Esta política describe los tipos de cookies que utilizamos en DEMO y cómo las gestionamos. Al usar nuestro sitio web, acepta los términos establecidos en esta política.
+  Esta política describe los tipos de cookies que utilizamos en Helix-Capita y cómo las gestionamos. Al usar nuestro sitio web, acepta los términos establecidos en esta política.
   </li><li><a href="#">Términos y condiciones de la plataforma de demostración</a></li><li><a target='_blank' href="pdf.js/SCB_Risk_Disclosure_Notice_ROW.pdf">
   Aviso de divulgación de riesgos
   </a> –
@@ -2782,7 +2782,7 @@ export default {
   "cu-s1-2-d1": "Soporte",
   "cu-s1-2-d2": "Medios de comunicación",
 
-  "p-s0-t1": "Conviértase en socio de DEMO",
+  "p-s0-t1": "Conviértase en socio de Helix-Capita",
   "p-s0-d1":
     "Únase a uno de los programas de referencia más exitosos de la industria y desarrolle su negocio con la ayuda de nuestros representantes dedicados en la región.",
   "p-s0-1-t1": "Programa de afiliados",

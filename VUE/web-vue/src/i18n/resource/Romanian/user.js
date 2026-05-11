@@ -715,7 +715,7 @@ export default {
   zanweikaifang: "Indisponibil momentan",
   shanchuchenggong: "Șters cu succes",
   tianjiatixiandizhi: "Adăugare adresă de retragere",
-  tip3: "Introduceți o remarcă de 4-20 de caractere, de exemplu: contul DEMO al lui Xiaoming",
+  tip3: "Introduceți o remarcă de 4-20 de caractere, de exemplu: contul Helix-Capita al lui Xiaoming",
   dizhibeizhu: "Remarcă adresă",
   tibidizhi: "Adresă de retragere",
   baocun: "Salvare",

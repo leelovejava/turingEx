@@ -54,10 +54,10 @@ export default {
   shushoushuzihuobi: "Digitale Währung verkaufen",
   xiadingdan: "Bestellung aufgeben",
   tip10:
-    "Nach Aufgabe einer Bestellung werden die Vermögenswerte des Verkäufers für diese Commercio von DEMO C2C treuhänderisch hinterlegt.",
+    "Nach Aufgabe einer Bestellung werden die Vermögenswerte des Verkäufers für diese Commercio von Helix-Capita C2C treuhänderisch hinterlegt.",
   xiangmaijiafukuan: "Bezahle an den Verkäufer",
   tip11:
-    "Überweisen Sie dem Verkäufer Geld über die Zahlungsmethode in den Transaktionsinformationen. Klicken Sie nach Abschluss der Überweisung auf 'Bezahlt, Verkäufer benachrichtigen' auf DEMO C2C.",
+    "Überweisen Sie dem Verkäufer Geld über die Zahlungsmethode in den Transaktionsinformationen. Klicken Sie nach Abschluss der Überweisung auf 'Bezahlt, Verkäufer benachrichtigen' auf Helix-Capita C2C.",
   tip12: "Holen Sie sich Ihre digitale Währung",
   tip13:
     "Sobald der Verkäufer den Eingang der Zahlung bestätigt, wird Ihnen die treuhänderisch hinterlegte Währung freigegeben.",
@@ -235,7 +235,7 @@ export default {
   tip115:
     "Wenn Sie Fragen haben, wenden Sie sich bitte zuerst an die andere Partei.",
   tip116:
-    "Bitte beachten Sie, dass nach Abschluss oder Stornierung der Bestellung die digitale Währung nicht mehr auf dem Treuhandkonto von DEMO gesperrt ist. Nachdem der Kundendienst eingegriffen hat, wird er Sie bei der Lösung des Streits unterstützen, aber nicht garantieren Rückforderung von Geldern.",
+    "Bitte beachten Sie, dass nach Abschluss oder Stornierung der Bestellung die digitale Währung nicht mehr auf dem Treuhandkonto von Helix-Capita gesperrt ist. Nachdem der Kundendienst eingegriffen hat, wird er Sie bei der Lösung des Streits unterstützen, aber nicht garantieren Rückforderung von Geldern.",
   tip117:
     "Böswillige Beschwerden sind Verhaltensweisen, die den normalen Betrieb der Plattform stören, und wenn die Umstände schwerwiegend sind, wird das Konto gesperrt.",
   tijiaoshenshu: "Einspruch einreichen",
@@ -341,12 +341,12 @@ export default {
   tip160:
     "Als Transaktionsvermittler bietet die C2C-Plattform Käufern und Verkäufern einen Kanal zur Abgabe von Angeboten. Gleichzeitig stellen Online-Verwahrungsdienste für digitale Vermögenswerte sicher, dass digitale Vermögenswerte während der Transaktionsausführung sicher und rechtzeitig geliefert werden können.",
   tip161:
-    "2. Werden die im C2C-Markt angezeigten Notierungen von DEMO bereitgestellt?",
+    "2. Werden die im C2C-Markt angezeigten Notierungen von Helix-Capita bereitgestellt?",
   tip162:
-    "Die auf dem C2C-Markt angezeigten Kurse werden nicht von DEMO bereitgestellt. DEMO ist nur eine Plattform zur Erleichterung von C2C-Transaktionen, und die Kurse werden von einzelnen Benutzern bereitgestellt.",
+    "Die auf dem C2C-Markt angezeigten Kurse werden nicht von Helix-Capita bereitgestellt. Helix-Capita ist nur eine Plattform zur Erleichterung von C2C-Transaktionen, und die Kurse werden von einzelnen Benutzern bereitgestellt.",
   tip163: "3. Wie schützt die Plattform C2C-Händler wie mich",
   tip164:
-    "4.1. Alle DEMO-Benutzer müssen die Identitätsauthentifizierung abschließen, bevor sie die Produkte und Dienste von DEMO verwenden, einschließlich C2C-Transaktionen. Sie können auf [User Center] - Identity Authentication (Identitätsauthentifizierung) klicken",
+    "4.1. Alle Helix-Capita-Benutzer müssen die Identitätsauthentifizierung abschließen, bevor sie die Produkte und Dienste von Helix-Capita verwenden, einschließlich C2C-Transaktionen. Sie können auf [User Center] - Identity Authentication (Identitätsauthentifizierung) klicken",
   tip165: "4.2. Bevorzugte Zahlungsmethode hinzufügen.",
   tip166:
     "Klicken Sie weiter auf [Zahlungsmethode hinzufügen] - [Alle Zahlungsmethoden], um die gewünschte Zahlungsmethode auszuwählen.",
@@ -358,12 +358,12 @@ export default {
     "C2C-Transaktionen werden direkt zwischen zwei Benutzern durchgeführt. Nachdem die Bestellungen von Käufer und Verkäufer abgeglichen wurden, müssen beide Parteien das Real-Name-System 'Identity Verification' (KYC) passieren, um ihre Authentizität zu überprüfen, d.h. sie müssen bestätigen die Überweisung der legalen Währung auf Ihr Konto ist tatsächlich dieselbe Person, mit der Sie auf der Plattform abgeglichen wurden.",
   tip171: "5. Kann C2C auf Webseiten oder Apps verwendet werden?",
   tip172:
-    "Über die offizielle DEMO-Website und die DEMO-App können Sie Kryptowährungen und Fiat-Währungsguthaben auf DEMO C2C kaufen und verkaufen. Bitte gehen Sie zum C2C-Markt, um mehr über die derzeit unterstützten Währungen zu erfahren",
+    "Über die offizielle Helix-Capita-Website und die Helix-Capita-App können Sie Kryptowährungen und Fiat-Währungsguthaben auf Helix-Capita C2C kaufen und verkaufen. Bitte gehen Sie zum C2C-Markt, um mehr über die derzeit unterstützten Währungen zu erfahren",
   tip173:
     "Android 1.17.0 und höher/iOS 2.6.0 und höher haben die C2C-Transaktionsfunktion gestartet.",
-  tip174: "6. Wie hoch ist die Transaktionsgebühr für DEMO C2C?",
+  tip174: "6. Wie hoch ist die Transaktionsgebühr für Helix-Capita C2C?",
   tip175:
-    "DEMO C2C berechnet dem Hersteller für jede abgeschlossene Bestellung eine Bearbeitungsgebühr. Die spezifischen Gebührensätze sind wie folgt:",
+    "Helix-Capita C2C berechnet dem Hersteller für jede abgeschlossene Bestellung eine Bearbeitungsgebühr. Die spezifischen Gebührensätze sind wie folgt:",
   tip176: "Nehmen Sie eine Seite",
   tip177: "Ausstehende Bestellung",
   tip178: "0 - 0,35 % (abhängig vom Fiat-Währungshandelspaar)",

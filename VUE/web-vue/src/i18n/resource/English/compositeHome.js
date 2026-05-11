@@ -1,6 +1,6 @@
 export default {
   privacyText:
-    "© 2022 DEMO Markets Limited All Rights Reserved. Company Registration Number 177174 B SIA-F217 </br></br> Risk Warning: Contracts for Difference (CFDs) are complex instruments and carry a high risk of losing money quickly due to leverage. 85.12% of Retail investors lose money in their accounts when trading CFDs with this provider. You should consider whether you understand the principles of CFDs and whether you can afford the high risk of losing your funds.</br></br>You do not own the underlying Ownership or power. Past performance is not indicative of future performance, and tax laws may change. The information on this site is general in nature and does not take into account your or your client's personal objectives, financial situation or needs. Please refer to the Read our RDN and other legal documents before making any trading decisions and ensure you fully understand the risks. We encourage you to seek independent advice.</br></br> DEMO Markets Limited is located at Sea Sky Lane, B201, Sandyport, Nassau, New Providence, The Bahamas, and is licensed and regulated by the Bahamas Securities Commission (SIA-F217).</br></br>If the information on this website and the products and services offered violate any country's local laws and regulations, the Neither the information nor the products and services offered are intended for distribution to anyone in these countries.",
+    "© 2022 Helix-Capita Markets Limited All Rights Reserved. Company Registration Number 177174 B SIA-F217 </br></br> Risk Warning: Contracts for Difference (CFDs) are complex instruments and carry a high risk of losing money quickly due to leverage. 85.12% of Retail investors lose money in their accounts when trading CFDs with this provider. You should consider whether you understand the principles of CFDs and whether you can afford the high risk of losing your funds.</br></br>You do not own the underlying Ownership or power. Past performance is not indicative of future performance, and tax laws may change. The information on this site is general in nature and does not take into account your or your client's personal objectives, financial situation or needs. Please refer to the Read our RDN and other legal documents before making any trading decisions and ensure you fully understand the risks. We encourage you to seek independent advice.</br></br> Helix-Capita Markets Limited is located at Sea Sky Lane, B201, Sandyport, Nassau, New Providence, The Bahamas, and is licensed and regulated by the Bahamas Securities Commission (SIA-F217).</br></br>If the information on this website and the products and services offered violate any country's local laws and regulations, the Neither the information nor the products and services offered are intended for distribution to anyone in these countries.",
 
   //home
   "h-s1-t1": "Trading possibility with {TITLE} anywhere",
@@ -16,7 +16,7 @@ export default {
   "h-s2-h3": "Trading volume",
   "h-s2-h4": "Increase and decrease",
   "h-s2-1-d1":
-    "Live prices are for indicative purposes only. Check your platform for the latest prices. Powered by DEMO Markets Limited.",
+    "Live prices are for indicative purposes only. Check your platform for the latest prices. Powered by Helix-Capita Markets Limited.",
   "h-s2-2-t1": "Why choose {TITLE}",
   "h-s2-2-t2":
     "Discover trading opportunities on more than 1,000 trading products",
@@ -25,7 +25,7 @@ export default {
   "h-s2-2-b1": "View our spreads",
   "h-s3-t1": "Excellence, trader",
   "h-s3-d1":
-    "DEMO ATP Rankings Global Title Partner and Official Online Trading Partner of the ATP Tour.",
+    "Helix-Capita ATP Rankings Global Title Partner and Official Online Trading Partner of the ATP Tour.",
   "h-s4-t1": "Not satisfied with your current broker?",
   "h-s4-t2": "We fully understand.",
   "h-s4-1-t1": "Extremely low spreads",
@@ -74,7 +74,7 @@ export default {
   "h-s7-t2": "TradingView Broker",
   "h-s7-t3": "Broker of the Year 2022",
   "h-s7-d1":
-    "DEMO is honored to be named Broker of the Year at the TradingView Broker Awards",
+    "Helix-Capita is honored to be named Broker of the Year at the TradingView Broker Awards",
   "h-s8-t1": "Award-winning",
   "h-s8-t2": "Globally, we are granted",
   // public
@@ -87,7 +87,7 @@ export default {
     "Getting started is quick and easy – even with a small deposit. Apply in minutes with our simple application process.",
   "ready-b2": "Let's get started",
   "ready-d3":
-    "Opening a DEMO account is easy. It only takes a few minutes to start your DEMO journey.",
+    "Opening a Helix-Capita account is easy. It only takes a few minutes to start your Helix-Capita journey.",
   "ready-d4":
     "You can start trading anytime with just a small deposit. Our simple application process only takes a few minutes to complete.",
   "learn-more-info": "Learn more information",
@@ -99,7 +99,7 @@ export default {
   xianzaijiaoy: "Trade Now",
   tuichu: "exit",
   tishi:
-    "DEMO makes no representation that the material provided here is accurate, current or complete and should not be relied upon as such. The information provided here, whether or not from a third party, should not be considered a recommendation; or buying or selling make an offer; or solicit an offer to buy or sell any security, financial product or instrument; or engage in any particular trading strategy. We advise any readers of this content to seek their own advice. This information may not be reproduced or redistributed without the consent of DEMO. ",
+    "Helix-Capita makes no representation that the material provided here is accurate, current or complete and should not be relied upon as such. The information provided here, whether or not from a third party, should not be considered a recommendation; or buying or selling make an offer; or solicit an offer to buy or sell any security, financial product or instrument; or engage in any particular trading strategy. We advise any readers of this content to seek their own advice. This information may not be reproduced or redistributed without the consent of Helix-Capita. ",
   home: "Home",
   support: "Customer Support",
   "refer-friend": "recommend friends",
@@ -128,7 +128,7 @@ export default {
   "header-s-s1-t1": "FAQ",
   "header-s-s1-d1":
     "The following are our frequently asked questions and answers. Please visit our FAQ area to learn more popular questions, or open the online consultation at the bottom of the screen to communicate with our professional team in real time.",
-  "header-s-s1-q1": "What account types does DEMO offer?",
+  "header-s-s1-q1": "What account types does Helix-Capita offer?",
   "header-s-s1-a1": `<div class="rich-text__container"><h5><strong>We provide two account types to meet the needs of traders</strong></h5>
     <h5><strong>Razor Account</strong></h5>
     <h5>Our Razor accounts include raw spreads, which means we pass on the spreads we receive from our liquidity providers directly to our clients. </h5>
@@ -137,7 +137,7 @@ export default {
     <h5>Our standard account is commission-free and includes our original spread + 1 pip increase (eg 0 pip spread plus 1 pip = 1 pip [0.5 pips in each direction for bid and ask prices). </h5></div>`,
   "header-s-s1-q2": "What is a swap?",
   "header-s-s1-a2": `<div class="rich-text__container"><h5>FX swap rate refers to the overnight or rollover interest (i.e. earned or paid Interest). These rates are determined by interbank spreads and cross currency basis. </br></br>Swap charges go both ways. This means that traders can earn swap fees, or they may also incur swap fees on related trading positions. This will depend on the instrument being traded, whether your position is long or short, and whether the trade was held during the rollover. Since spot FX contracts are settled on a T+2 basis, triple swap charges will be charged to account for weekend interest when rolled over on Wednesday. </h5></div>`,
-  "header-s-s1-q3": "Is DEMO an ECN/STP trader or a market maker?",
+  "header-s-s1-q3": "Is Helix-Capita an ECN/STP trader or a market maker?",
 
   "header-s-s1-a3": `<div class="rich-text__container"><h5>We get asked this question a lot. Part of the difficulty in answering this question is that ECN and STP are marketing terms taken from the listing market regime, and are given different meanings by different providers in the industry. </h5>
    <h5>A true ECN or STP broker is an introducing broker or a broker that operates under a white label program using someone else's system. </h5>
@@ -157,28 +157,28 @@ export default {
   // header-recommended friends
   "header-rf-s0-t1": "Refer a friend and each get a unique reward",
   "header-rf-s0-d1":
-    "Introducing DEMO's Friend Referral Program to retail and DEMO Pro customers. Terms and conditions apply to this offer.",
+    "Introducing Helix-Capita's Friend Referral Program to retail and Helix-Capita Pro customers. Terms and conditions apply to this offer.",
   "header-rf-s1-t1": "A friend referral program tailored for you",
   "header-rf-s1-d1":
-    "We offer two refer-a-friend programs, depending on whether you are a professional client (DEMO Pro) or a retail client. Our refer-a-friend program is designed to reward clients who invite family or friends to trade with us.",
+    "We offer two refer-a-friend programs, depending on whether you are a professional client (Helix-Capita Pro) or a retail client. Our refer-a-friend program is designed to reward clients who invite family or friends to trade with us.",
   "header-rf-s1-h1": "For retail customers",
-  "header-rf-s1-h2": "For DEMO Pro customers",
+  "header-rf-s1-h2": "For Helix-Capita Pro customers",
   "header-rf-s1-r1":
     "When your friends open and fund their trading accounts, you and your friends get 20 free trades^. Learn more..",
   "header-rf-s1-r2":
     "You and your friend can receive up to $1,000* in cash when your friend opens a trading account and meets the deposit and trading requirements. Learn more.",
   "header-rf-s2-t1": "Frequently Asked Questions",
-  "header-rf-s2-q1": "How do I become a DEMO Pro?",
+  "header-rf-s2-q1": "How do I become a Helix-Capita Pro?",
   "header-rf-s2-a1":
-    "If you are not yet a DEMO Pro but are interested in becoming a professional trader, you can find more information on eligibility criteria and requirements here.",
+    "If you are not yet a Helix-Capita Pro but are interested in becoming a professional trader, you can find more information on eligibility criteria and requirements here.",
   "header-rf-s2-q2": "How can your friends get recommendations?",
   "header-rf-s2-a2":
-    "When you start recommending DEMO to your friends, your friends have to be in 'How did you hear about us?' when they sign up for the application?  Fill in your email.",
+    "When you start recommending Helix-Capita to your friends, your friends have to be in 'How did you hear about us?' when they sign up for the application?  Fill in your email.",
   "header-rf-s3-tip1": `<div class="disclaimer__content">^Commission-free transactions, other fees and charges may apply. There is no obligation to redeem free trades. View here <a href="pdf.js/SCB_Refer-a-Friend-Ts-and-Cs_Retail-ROW_EN_June-2021.pdf" target="_blank"><strong> Full terms and conditions for retail customers</strong></a>. Alternatively, you can <a href="/#/contact-us" target="_self"><strong>get in touch</strong> with us. &nbsp;</a></br></br>*<a href="https://eu-assets.contentstack.com/v3/assets/bltaec35894448c7261/blt1c5f8b2ce8e4370f/Bahamas_Refer_a_Friend_Ts_and_Cs_-_Pro_ROW_-_EN.pdf" target="_blank ">Please view the full terms and conditions of the Professional Client (Pro) regarding bonuses</a>, deposits and trading requirements here. Or, you can get in touch with us <a href="/#/contact-us" "target="_self"><strong>.</strong></a></br></div>`,
   // "header-rf-s3-tip2":``,
   // footer
-  "footer-s1-1-t1": "DEMO Markets Ltd",
-  "footer-s1-1-d1": "Why choose DEMO",
+  "footer-s1-1-t1": "Helix-Capita Markets Ltd",
+  "footer-s1-1-d1": "Why choose Helix-Capita",
   "footer-s1-1-d2": "Recruitment",
   "footer-s1-1-d3": "Trade on our platform",
   "footer-s1-1-d4": "Platform",
@@ -306,14 +306,14 @@ export default {
   "m1-vip-s1-2": "Get our ATP discount",
   "m1-vip-s1-3": "Advanced Market Insights",
   "m1-vip-s1-4":
-    "If you are a DEMO professional client, get access to premium event invitations, advanced trading tools and VPS solutions",
+    "If you are a Helix-Capita professional client, get access to premium event invitations, advanced trading tools and VPS solutions",
   "m1-vip-s2-t1": "Tailored service and support",
   "m1-vip-s2-d1":
     "We will assign a skilled account manager to work with you to provide quality client solutions and support to suit your individual trading style.",
 
   "m1-vip-s3-t1": "How to obtain senior customer qualification",
   "m1-vip-s3-d1":
-    "To qualify as our Premium Client, we require that you meet one or more of the following thresholds for two consecutive calendar quarters. Retail and DEMO Pro customers qualify as Premium Clients.",
+    "To qualify as our Premium Client, we require that you meet one or more of the following thresholds for two consecutive calendar quarters. Retail and Helix-Capita Pro customers qualify as Premium Clients.",
   "m1-vip-s3-1-t1": "Market",
   "m1-vip-s3-1-t2": "Monthly transaction volume",
   "m1-vip-s3-2-t1": "FX",
@@ -328,10 +328,10 @@ export default {
     "Access a range of professional trading resources and exclusive insights from our team of analysts.",
   "m1-vip-s4-2-t1": "Discount, refunded every day",
   "m1-vip-s4-2-d1":
-    "Earn discounted commissions that are paid back daily when you qualify for DEMO's ActiveTrader program.",
+    "Earn discounted commissions that are paid back daily when you qualify for Helix-Capita's ActiveTrader program.",
   "m1-vip-s4-3-t1": "Advanced Event",
   "m1-vip-s4-3-d1":
-    "For professional clients of DEMO, exclusive access to VIP premium FX events, seminars and workshops, private dining experiences and invitations to sporting events.",
+    "For professional clients of Helix-Capita, exclusive access to VIP premium FX events, seminars and workshops, private dining experiences and invitations to sporting events.",
   "m1-vip-s5-t1": "Consult Now",
   "m1-vip-s5-d1":
     "For more information or to join our Premium Client Service  email support{'@'}demo.com.",
@@ -373,10 +373,10 @@ export default {
     "A dedicated account manager will work with you to provide quality client solutions and guidance to help you achieve your trading goals.",
   "m1-at-s3-2-t1": "VPS hosting",
   "m1-at-s3-2-d1":
-    "For DEMO Pro customers, a free VPS hosting solution to run automated policies and leverage our low-latency EDGE infrastructure.",
+    "For Helix-Capita Pro customers, a free VPS hosting solution to run automated policies and leverage our low-latency EDGE infrastructure.",
   "m1-at-s3-3-t1": "Advanced Insights and Reports",
   "m1-at-s3-3-d1":
-    "Exclusive insights from DEMO market analysts, daily Autochartist signals and all the MT4 and MT5 features and trade reports you'd expect from an award-winning broker.",
+    "Exclusive insights from Helix-Capita market analysts, daily Autochartist signals and all the MT4 and MT5 features and trade reports you'd expect from an award-winning broker.",
   "m1-at-s4-t1": "How do I join the Active Trader program?",
   "m1-at-s4-d1":
     "For more information or to join our Premium Client Service email support{'@'}demo.com.",
@@ -385,10 +385,10 @@ export default {
   // m1-who
   "m1-who-s0-t1": "Who are we",
   "m1-who-s0-d1":
-    "DEMO knows how to trade. With the scale of a global fintech and the agility of a start-up, we are here to provide you with everything you need to trade in global markets.",
+    "Helix-Capita knows how to trade. With the scale of a global fintech and the agility of a start-up, we are here to provide you with everything you need to trade in global markets.",
   "m1-who-s1-t1": "Our History",
   "m1-who-s1-d1":
-    "DEMO was founded in Melbourne, Australia in 2010 by a group of veteran traders who worked together to improve the online trading experience. After getting fed up with transaction delays, high fees, and poor customer support, we dived in and dedicated ourselves to trading around the world. Provide investors with superior technology, low-cost spreads and help them master trading skills.",
+    "Helix-Capita was founded in Melbourne, Australia in 2010 by a group of veteran traders who worked together to improve the online trading experience. After getting fed up with transaction delays, high fees, and poor customer support, we dived in and dedicated ourselves to trading around the world. Provide investors with superior technology, low-cost spreads and help them master trading skills.",
   "m1-who-s2-t1": "Win the trust of traders around the world",
   "m1-who-s2-d1":
     "We process an average of $12.55 billion in trades per day, making us one of the largest Forex brokers in the world*.",
@@ -403,18 +403,18 @@ export default {
   "m1-who-s4-d1": `Check out our <a href="#"  rel="noreferrer noopener">Wikipedia</a> page and follow us on <a href="#"  rel="noreferrer noopener">Facebook</a>, <a href="#"  rel="noreferrer noopener">YouTube</a>, <a href="#" rel="noreferrer noopener">LinkedIn</a> and <a href="#"  rel="noreferrer noopener">Twitter</a>.`,
 
   "m1-who-s6-d1":
-    "*Active users^registered DEMO account holders who opened trades or held positions between July 1, 2019 and November 30, 2019",
+    "*Active users^registered Helix-Capita account holders who opened trades or held positions between July 1, 2019 and November 30, 2019",
   // m1-why
-  "m1-why-s1-t1": "Why choose DEMO?",
+  "m1-why-s1-t1": "Why choose Helix-Capita?",
   "m1-why-s1-d1":
     "We are by your side on every trade, combining fast execution speeds, raw spreads and low commissions with a genuine commitment to helping you achieve your trading goals.",
   "m1-why-s2-t1": "Who are we",
   "m1-why-s2-d1":
-    "DEMO was founded in 2010 and has rapidly grown into one of the world's largest foreign exchange brokers. Our goal is to build a trading world with advanced technology at its core, so that passionate traders can face the challenges brought by the global market and opportunities",
+    "Helix-Capita was founded in 2010 and has rapidly grown into one of the world's largest foreign exchange brokers. Our goal is to build a trading world with advanced technology at its core, so that passionate traders can face the challenges brought by the global market and opportunities",
   "m1-why-s3-t1": "Trade with an award-winning broker",
   "m1-why-s3-d1":
     "With prestigious awards from Investment Trends, Deloitte and the Premier of Victoria, we are proud to be recognized for our client service, trading conditions and excellent value for money.",
-  "m1-why-s4-t1": "Why trade with DEMO?",
+  "m1-why-s4-t1": "Why trade with Helix-Capita?",
   "m1-why-s5-t1": "High cost performance",
   "m1-why-s5-t2": "Quick Execution",
   "m1-why-s5-t3": "Fund Safety",
@@ -450,7 +450,7 @@ export default {
     "Access our award-winning educational resources to help you take your trading to the next level.",
   "m1-why-s6-2-l1": `<a href="/#/education">Learn more</a>`,
   "m1-why-s7-3":
-    "*Most orders were executed in less than 30 ms (DEMO Group Limited) and 60 ms (DEMO Limited) based on the processing time received by the DEMO bridge.",
+    "*Most orders were executed in less than 30 ms (Helix-Capita Group Limited) and 60 ms (Helix-Capita Limited) based on the processing time received by the Helix-Capita bridge.",
   "m1-why-s7-1":
     "^Excludes MAM and PAMM, please see our legal documents for more information.",
   "m1-why-s7-2":
@@ -537,7 +537,7 @@ export default {
   "m2-product-1-s1-t1": "Forex trading through our platform",
   "m2-product-1-s1-d1":
     "The foreign exchange market (Forex, FX, or currency market) is a global, decentralized, and over-the-counter financial market for currency trading. It is the largest financial market in the world, with a global daily transaction volume of more than $1.5 trillion*. Forex The total volume of transactions is far more than three times the total volume of the stock and futures markets.",
-  "m2-product-1-s2-t1": "Why trade forex with DEMO?",
+  "m2-product-1-s2-t1": "Why trade forex with Helix-Capita?",
   "m2-product-1-s2-d1":
     "Deep liquidity, pricing from multiple sources and the lowest spreads on the market",
   "m2-product-1-s2-d2": "Raw spreads for Razor accounts as low as 0.0 pips",
@@ -564,7 +564,7 @@ export default {
   "m2-product-2-s1-t1": "Index CFD",
   "m2-product-2-s1-d1":
     "Trade on 14 major global stock markets, including US, European, Australian, and Asian indices, with no commissions and no trading desks.",
-  "m2-product-2-s2-t1": "Why trade index CFDs at DEMO?",
+  "m2-product-2-s2-t1": "Why trade index CFDs at Helix-Capita?",
   "m2-product-2-s2-d1":
     "Our index CFDs have been developed specifically for retail traders, providing you with extensive global market access, allowing you to diversify your trading strategy on uncorrelated instruments. You can directly take advantage of the global stock market has to offer opportunity, while Index CFDs are open to all of our clients with no dealing desk or commission.",
   "m2-product-2-s2-d2":
@@ -592,7 +592,7 @@ export default {
   "m2-product-3-s1-t1": "Commodity",
   "m2-product-3-s1-d1":
     "Trade gold, silver, crude oil, natural gas and other products with low spreads and fast execution speeds without worrying about physical delivery, ownership and rollover issues. When you trade commodity CFDs, you enter an exciting market .Many suppliers, merchants and powerful buyers lock in prices now to protect their future physical delivery. Start trading commodity CFDs today. See financial instruments and pricing table below.",
-  "m2-product-3-s2-t1": "Why trade commodity CFDs at DEMO?",
+  "m2-product-3-s2-t1": "Why trade commodity CFDs at Helix-Capita?",
   "m2-product-3-s2-d1":
     "Top Liquidity - Full execution of all your commodity CFD orders without partial execution or requotes",
   "m2-product-3-s2-d2": "99.72% execution rate^ and fast execution",
@@ -624,7 +624,7 @@ export default {
   "m2-product-4-s1-t1": "ETF CFD",
   "m2-product-4-s1-d1":
     "Exchange Traded Funds (ETFs) are a unique investment vehicle that allow you to express a view on specific stock market hotspots, sectors or even the broader stock market within a single country as well as globally. Start trading ETF CFDs today.",
-  "m2-product-4-s2-t1": "Why trade ETF CFDs with DEMO?",
+  "m2-product-4-s2-t1": "Why trade ETF CFDs with Helix-Capita?",
   "m2-product-4-s2-d1":
     "We offer over 100 ETFs that track the performance of sectors including mining, energy, technology, bond markets and retail.",
   "m2-product-4-s2-d2":
@@ -649,7 +649,7 @@ export default {
 
   "m2-product-4-s4-t1": "Our commission",
   "m2-product-4-s4-d1":
-    "Trading ETF CFDs with DEMO means you trade at the direct underlying exchange price without adding additional spreads to the bid-ask spread. However, you will pay a small commission per trade. Details are as follows:",
+    "Trading ETF CFDs with Helix-Capita means you trade at the direct underlying exchange price without adding additional spreads to the bid-ask spread. However, you will pay a small commission per trade. Details are as follows:",
   "m2-product-4-s4-1": "$0.02 commission per transaction per transaction.",
   "m2-product-4-s4-2": "Exchange spread, no additional markup.",
   "m2-product-4-s4-3":
@@ -691,7 +691,7 @@ export default {
   "m2-product-5-s1-t1": "Stock CFD",
   "m2-product-5-s1-d1":
     "Invest in Australia's large cap blue chips with a very competitive 0.07% per trade fee (minimum A$5). Trade US stock earnings season with our after-hours trading hours and low commissions starting at $0.02 per share. Start now Trade CFDs on stocks.",
-  "m2-product-5-s2-t1": "Why trade stock CFDs with DEMO?",
+  "m2-product-5-s2-t1": "Why trade stock CFDs with Helix-Capita?",
   "m2-product-5-s2-d1":
     "Don't miss out! We are one of the few brokers that offers after-hours trading in US stocks. Since corporate earnings are usually released during this time, after-hours trading can help you reduce your risk, or open the market the next day The opening of the position is completed before.",
   "m2-product-5-s2-d2":
@@ -724,7 +724,7 @@ export default {
     "Currently we provide free real-time data on Australian stocks. We will notify you at least 30 days in advance of any changes in the future.",
   "m2-product-5-s6-t1": "Stock CFD trading platform",
   "m2-product-5-s6-d1":
-    "Our share CFDs can be traded with leverage on MetaTrader 5. To add a share CFD to your trading portfolio, please open a DEMO MetaTrader 5 account and select the corresponding share CFD from Market Watch.",
+    "Our share CFDs can be traded with leverage on MetaTrader 5. To add a share CFD to your trading portfolio, please open a Helix-Capita MetaTrader 5 account and select the corresponding share CFD from Market Watch.",
   "m2-product-5-s6-d2":
     "MT5 has faster processing time, better hedging capabilities, advanced pending order options, and the latest tools and indicators. Excellent features will help you improve your trading level and stay ahead of the market at all times.",
   "m2-product-5-s6-d3":
@@ -732,7 +732,7 @@ export default {
   "m2-product-6-s1-t1": "Cryptocurrency",
   "m2-product-6-s1-d1":
     "Cryptocurrencies are prone to huge swings in value, and you can take advantage of this volatility by trading cryptocurrency CFDs with us 1 - no digital wallet or exchange required.",
-  "m2-product-6-s2-t1": "Why trade cryptocurrencies with DEMO?",
+  "m2-product-6-s2-t1": "Why trade cryptocurrencies with Helix-Capita?",
   "m2-product-6-s2-d1":
     "Weekend trading available on Bitcoin, Bitcoin Cash, Litecoin, Ethereum, Ripple, Polkadot and more.",
   "m2-product-6-s2-d2": "Trade cryptocurrency CFDs without a digital wallet.",
@@ -755,7 +755,7 @@ export default {
   "m2-product-6-s3-h8": "Short",
   "m2-product-6-s4-t1": "Risk",
   "m2-product-6-s4-d1":
-    "Cryptocurrencies such as Bitcoin are more volatile than traditional currencies and carry significant risk. Please also note that when you trade with DEMO, you will not own the underlying currency or have any rights in that base currency. The cryptocurrency market is volatile and sudden price movements can cost you a lot of money very quickly.",
+    "Cryptocurrencies such as Bitcoin are more volatile than traditional currencies and carry significant risk. Please also note that when you trade with Helix-Capita, you will not own the underlying currency or have any rights in that base currency. The cryptocurrency market is volatile and sudden price movements can cost you a lot of money very quickly.",
   "m2-product-6-s4-d2":
     "The underlying crypto markets are open on weekends2. We do not provide a separate 'weekend symbol', so when you open a position, you will use the same symbol that you used to trade this week.",
   "m2-product-6-s4-d3":
@@ -815,7 +815,7 @@ export default {
   <h4 class="mt-8"><strong>What is a swap rate? </strong></h4>
   <h5>Foreign exchange swap rate is the rollover interest (i.e. the interest earned or paid) on positions held overnight in foreign exchange transactions. The financial institutions we work with publish swap rates weekly, which are calculated based on risk management analysis and market conditions. Each currency pair has its own swap rate, with a standard size of 1.0 lots (100,000 base units). </h5>
   <h5>For more information on swaps, click <a href="/#/educacion/what-is-swap-in-forex">here</a>. </h5>
-  <h4 class="mt-4"><strong>Where can I find DEMO's swap rate information? </strong></h4>
+  <h4 class="mt-4"><strong>Where can I find Helix-Capita's swap rate information? </strong></h4>
   <h5>You can find our latest swap rate information on our trading platform. The swap rates published on our platform are indicative rates and may change according to market volatility. </h5>
   <h5><strong>To view interest rates on the MetaTrader platform:</strong></h5>
   <ul><li>Select "View"</li><li>Right click on "Market Watch" and select "Symbols"</li><li>Select the currency pair you want to view and select "Properties" ( On MT5, please select "Specification")</li></ul>
@@ -941,7 +941,7 @@ This extra trading session over the weekend not only means you have more time to
   "m2-fw-s0-d1": "We offer a wide range of fee-free deposit options.",
   "m2-fw-s1-t1": "Deposit and withdrawal methods",
   "m2-fw-s1-d1":
-    "Managing your account on our platform is very simple. As a DEMO client, you have access to your own encrypted client where you can perform all deposit and withdrawal needs securely.",
+    "Managing your account on our platform is very simple. As a Helix-Capita client, you have access to your own encrypted client where you can perform all deposit and withdrawal needs securely.",
   "m2-fw-s1-t2": "We accept:",
   "m2-fw-s1-t2-1": "Visa card",
   "m2-fw-s1-t2-2": "MasterCard",
@@ -958,7 +958,7 @@ This extra trading session over the weekend not only means you have more time to
   "m2-fw-s2-d1":
     "Withdrawals received before 21:00 (GMT) will be processed the next day. If received before 07:00 (AEST), they will be processed the same day",
   "m2-fw-s2-d2":
-    "Due to third-party trading regulations, funds can only be returned to a bank account in the same name (or joint name) as your DEMO trading account",
+    "Due to third-party trading regulations, funds can only be returned to a bank account in the same name (or joint name) as your Helix-Capita trading account",
   "m2-fw-s2-d3":
     "Any international wire transfer (TT) fees charged by our banking institutions are passed on to the customer. Most international wire transfers are approximately AUD 20",
   "m2-fw-s2-d4":
@@ -1057,7 +1057,7 @@ This extra trading session over the weekend not only means you have more time to
     "Enjoy the freedom of trading - no matter where you are. Our platform is available for Windows and Mac OS desktops, Android mobile devices and tablets, and our web application WebTrader.",
   "m3-i-s2-1-t1": "TradingView",
   "m3-i-s2-1-d1":
-    "Connect to TradingView directly from your DEMO trading account with our cTrader powered integration. A powerful charting tool",
+    "Connect to TradingView directly from your Helix-Capita trading account with our cTrader powered integration. A powerful charting tool",
   "m3-i-s2-1-1": "Connect to the world's largest social trading network",
   "m3-i-s2-1-2": "Industry-leading charting technology",
   "m3-i-s2-1-3": "Trade directly from TradingView charts",
@@ -1179,11 +1179,11 @@ This extra trading session over the weekend not only means you have more time to
   "m3-mt4-s4-7": "Get 28 other Smart Trader tools",
   "m3-mt4-s5-t1": `<div class="rich-text__container"><h2 class="mb-8 fs-32">User Guide and Video</h2>
   <h5>If you want to learn more about trading through the MT4 platform, just download the guide below or watch our MT4 video. </h5>
-  <ul><li><a href="javascript:void(0)">DEMO MetaTrader 4 User Guide eBook</a></li><li><a href="javascript:void(0)" ">DEMO MetaTrader 4 Error Codes Guide</a></li></ul></div>`,
+  <ul><li><a href="javascript:void(0)">Helix-Capita MetaTrader 4 User Guide eBook</a></li><li><a href="javascript:void(0)" ">Helix-Capita MetaTrader 4 Error Codes Guide</a></li></ul></div>`,
   "m3-mt4-s5-d1":
     "If you want to learn more about trading via the MT4 platform, simply download the guide below or watch our MT4 video.",
-  "m3-mt4-s5-l1": "DEMO MetaTrader 4 User Guide eBook",
-  "m3-mt4-s5-l2": "DEMO MetaTrader 4 Error Code Guide",
+  "m3-mt4-s5-l1": "Helix-Capita MetaTrader 4 User Guide eBook",
+  "m3-mt4-s5-l2": "Helix-Capita MetaTrader 4 Error Code Guide",
   "m3-mt4-s6-t1": "Supported languages",
   "m3-mt4-s6-d1":
     "Arabic, Bulgarian, Chinese (Simplified, Mainland China), Chinese (Traditional, Taiwan), Croatian, Czech, Danish, Dutch, English, Estonian, Persian/Farsi, French, German, Greek Chinese, Hebrew, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Malay, Mongolian, Polish, Portuguese, Romanian, Russian, Serbian, Slovak, Spanish, Swedish, Tajik, Thai, Turkish, Ukrainian, Uzbek, Vietnamese.",
@@ -1210,7 +1210,7 @@ This extra trading session over the weekend not only means you have more time to
   <ol><li>Add any expert advisors (EAs) or indicators you wish to display on the chart</li><li>Right click on the chart</li><li>Select "Properties" (you can Update the color scheme and change common settings)</li><li>When you've made your custom changes, simply right-click on the diagram</li><li>Select Template and name the file you just edited. You can set multiple templates for different strategies</li></ol>
   <h5><strong>Trader Tip:</strong> Name this template "Default" to use this template to open all charts as default. </h5></div>`,
   "m3-mt4-s7-q5": "How to customize the template?",
-  "m3-mt4-s7-a5": `<h6>By default, you cannot run multiple Metatrader 4 (MT4) platforms simultaneously. But through different installation paths, you will be able to run two MT4 software at the same time. If you want to run two MT4 platforms simultaneously on your PC/VPS, you will need to install the second software in a different directory on your PC/VPS. </br>Example:</br>After you have installed an MT4 software, you need to download the installation program again and run the file. You will then see the following popup:</br></h6><h5></br>To choose where to install the second MT4 program, click "Settings" to display the settings for the installation directory. By default it will install to 'C:\Program Files (x86)\DEMO Metatrader 4', but you will need to install the second software into a folder with a different name, for example 'C:\Program Files ( x86)\DEMO Metatrader</br></h5> <h5></br>Please try the same installation process as the first MT4 software. After that, you will be able to see the two platform software in the folder as shown in the image below, and you will be able to run both platforms at the same time. </br></h5>`,
+  "m3-mt4-s7-a5": `<h6>By default, you cannot run multiple Metatrader 4 (MT4) platforms simultaneously. But through different installation paths, you will be able to run two MT4 software at the same time. If you want to run two MT4 platforms simultaneously on your PC/VPS, you will need to install the second software in a different directory on your PC/VPS. </br>Example:</br>After you have installed an MT4 software, you need to download the installation program again and run the file. You will then see the following popup:</br></h6><h5></br>To choose where to install the second MT4 program, click "Settings" to display the settings for the installation directory. By default it will install to 'C:\Program Files (x86)\Helix-Capita Metatrader 4', but you will need to install the second software into a folder with a different name, for example 'C:\Program Files ( x86)\Helix-Capita Metatrader</br></h5> <h5></br>Please try the same installation process as the first MT4 software. After that, you will be able to see the two platform software in the folder as shown in the image below, and you will be able to run both platforms at the same time. </br></h5>`,
   "m3-mt4-s7-q6": "Understand position size, leverage and margin",
   "m3-mt4-s7-a6": `<div class="rich-text__container"><h6>Before you start your trading career, you must be familiar with the relevant basics. You can find useful calculations in your <a href="javascript:void(0)"  rel="noreferrer noopener">SCA client</a> device. Be sure to check out these calculators and get a good idea of your position size, the margin you want to put on your trade, and the level of leverage you want to accept. </h6></div>`,
   "m3-mt4-s7-q7": "MT4 vs MT5 - what's the difference?",
@@ -1218,14 +1218,14 @@ This extra trading session over the weekend not only means you have more time to
     <h6><strong>MT4 vs. MT5 - our opinion</strong></h6>
     <h6>We’re one of the world’s largest MT4 brokers so it’s no secret we’re fans of this popular platform. MT4 is a straightforward, intuitive and loved trading platform. It’s a classic - it’s perfect for both beginners and advanced traders because of its broad functionality.</h6>
     <h6>A benefit to MT4 having such a vast community of users globally is their site, mql5.com, which holds an extensive range of indicators, signals, EAs you can buy and download and add in easily to the platform.</h6>
-    <h6>In addition to these add ons, DEMO here in Australia has its own affiliations with companies such as myFXBook, Duplitrade and Zulutrade who offer social trading solutions that are easy to set up, and give the users control over what they choose to invest their money in.</h6>
+    <h6>In addition to these add ons, Helix-Capita here in Australia has its own affiliations with companies such as myFXBook, Duplitrade and Zulutrade who offer social trading solutions that are easy to set up, and give the users control over what they choose to invest their money in.</h6>
     <h6>MT5 though, is here to change the game. It’s a platform known for its wide range of time frames, analytical prowess and variety of pending orders, loved most by our share and commodity traders.</h6>
     <h6><strong>The wider range of time frames available</strong> (21 time frames as opposed to MT4, which has 9) This is also extremely attractive for scalpers and for advanced traders who are looking to do in depth analysis of the market.</h6>
     <h6><strong>Pending Orders:</strong> MT4 offers stop and limit orders which are generally the most commonly used ones, whereas with MT5 you have the functionality to use stop limits too, which is a superior way of setting a limit order.</h6>
     <h6><strong>The programming languages for MT4 and MT5 are MQL4 and MQL5.</strong> Although there is more likely to be a larger amount of research and guidance for MT4 due to its popularity, users are starting to migrate to the MQL5 programming language as it’s more efficient and easier to use, and traders can write and alter scripts.</h6>
     <h6><strong>MT5 also offers a built in fundamental economic calendar delivering live macroeconomic news. </strong>MT5 contains an inbuilt MQL5 Community Chat and email system.</h6>
     <h6><strong>There’s certainly been more of a move towards MT5 from the trading communit</strong>y, which is what we’re seeing here when we look at our own client base. Our clients tend to be more sophisticated and informed investors, so the inclusion of MT5 is welcomed by many of our clients who have been heavier users of MT4 only in the past.</h6>
-    <h6><strong>Contrary to popular belief though, MT5 has not been built to replace MT4.</strong> It’s here to supplement it. Here at DEMO, our investors use both MT4 and MT5 and get the best of both worlds and we support their trading approaches with online resources, access to webinars and of course, 24/5 support.</h6>
+    <h6><strong>Contrary to popular belief though, MT5 has not been built to replace MT4.</strong> It’s here to supplement it. Here at Helix-Capita, our investors use both MT4 and MT5 and get the best of both worlds and we support their trading approaches with online resources, access to webinars and of course, 24/5 support.</h6>
     <h6><strong>Generally, for beginner traders or clients who are looking to just trade forex, MT4 is a straightforward and efficient choice. For our traders looking for a niftier software, with a broader range of additional features, and more in-depth analysis then MT5 is more suitable. Furthermore, if you’re looking to trade the top US Share CFDs, then look no further than MT5.</strong></h6></div>`,
 
   // m3-MetaTrader5
@@ -1384,21 +1384,21 @@ This extra trading session over the weekend not only means you have more time to
     "Accurate statistics allow you to quickly analyze and improve your trading performance anytime, anywhere",
   "m3-st-mf-s3-3":
     "Features system controls, enabling you to add and remove any system from your account at any time",
-  "m3-st-mf-s4-1-t1": "Step 1 - Create your DEMO trading account",
-  "m3-st-mf-s4-1-q1": "New to DEMO?",
+  "m3-st-mf-s4-1-t1": "Step 1 - Create your Helix-Capita trading account",
+  "m3-st-mf-s4-1-q1": "New to Helix-Capita?",
   "m3-st-mf-s4-1-a1":
-    "1. Fill out the online DEMO trading account application</br> 2. Register for AutoTrade",
+    "1. Fill out the online Helix-Capita trading account application</br> 2. Register for AutoTrade",
   "m3-st-mf-s4-1-q2": "Already a customer?",
   "m3-st-mf-s4-1-a2":
     "1. Log in to your SCA client</br>2. Click to apply for a new account</br>3. Request AutoTrade",
   "m3-st-mf-s4-2-t1":
-    "Step 2 - Connect your DEMO trading account to Myfxbook AutoTrade",
+    "Step 2 - Connect your Helix-Capita trading account to Myfxbook AutoTrade",
   "m3-st-mf-s4-2-a1":
-    "1. The next stage is to visit the Myfxbook website and connect your DEMO trading account to Myfxbook AutoTrade</br>2. Connect the account",
+    "1. The next stage is to visit the Myfxbook website and connect your Helix-Capita trading account to Myfxbook AutoTrade</br>2. Connect the account",
   "m3-st-mf-s5-d1":
-    "Disclaimer: The AutoTrade system is owned and operated by Myfxbook Ltd (Myfxbook) and its use is subject to the terms and conditions stated on its website http://www.myfxbook.com/terms. DEMO Group Limited (DEMO) is not responsible for, and has no control over, the use of signals generated by AutoTrade and resulting DEMO account transactions. Signals generated by AutoTrade on DEMO accounts do not constitute factual, general or personal advice by DEMO.",
+    "Disclaimer: The AutoTrade system is owned and operated by Myfxbook Ltd (Myfxbook) and its use is subject to the terms and conditions stated on its website http://www.myfxbook.com/terms. Helix-Capita Group Limited (Helix-Capita) is not responsible for, and has no control over, the use of signals generated by AutoTrade and resulting Helix-Capita account transactions. Signals generated by AutoTrade on Helix-Capita accounts do not constitute factual, general or personal advice by Helix-Capita.",
   "m3-st-mf-s5-d2":
-    "Important Disclaimer: The information and analysis presented here has been produced by Signal Provider, Inc. DEMO has reproduced this information without alteration or verification and does not represent that this material is accurate, current or complete and should not be relied upon This information. This material is general information and is for informational purposes only and does not take into account any individual's investment objectives, financial solutions or approaches. DEMO advises clients to seek independent financial advice before considering investing in any signal products and services. In addition, DEMO reiterates that, Past returns are not indicative of future performance. Readers should also be aware that, like all technological applications, the Internet has inherent weaknesses and operating systems rely on third parties to manage connections to DEMO servers. Using any social network/copy trade Application for transactions over the Internet may be interrupted, resulting in unexpected losses that may exceed the customer's account balance. DEMO is not responsible for the performance of the application.",
+    "Important Disclaimer: The information and analysis presented here has been produced by Signal Provider, Inc. Helix-Capita has reproduced this information without alteration or verification and does not represent that this material is accurate, current or complete and should not be relied upon This information. This material is general information and is for informational purposes only and does not take into account any individual's investment objectives, financial solutions or approaches. Helix-Capita advises clients to seek independent financial advice before considering investing in any signal products and services. In addition, Helix-Capita reiterates that, Past returns are not indicative of future performance. Readers should also be aware that, like all technological applications, the Internet has inherent weaknesses and operating systems rely on third parties to manage connections to Helix-Capita servers. Using any social network/copy trade Application for transactions over the Internet may be interrupted, resulting in unexpected losses that may exceed the customer's account balance. Helix-Capita is not responsible for the performance of the application.",
 
   // m3-social-trading MetaTrader signals
   "m3-st-mt-s1-t1": "MetaTrader Signals",
@@ -1425,11 +1425,11 @@ This extra trading session over the weekend not only means you have more time to
     "After reaching the minimum deposit amount of AUD 5,000, you will be able to enjoy the services provided by DupliTrade's powerful portfolio of leading strategic providers, and will be able to automatically trade on your own MT4 account. If you still want to understand the market, you can also in Practice strategies on your demo account.",
   "m3-st-d-s3-t1": "Start now",
   "m3-st-d-s3-d1":
-    "1. If you haven't started the experience, you can open a live trading account</br>2. Create a Duplitrade account through DEMO<br/>3. Contact us and ask to connect your account to Duplitrade.",
+    "1. If you haven't started the experience, you can open a live trading account</br>2. Create a Duplitrade account through Helix-Capita<br/>3. Contact us and ask to connect your account to Duplitrade.",
   "m3-st-d-s4-d1":
-    "Disclaimer: Duplitrade is a British Virgin Islands registered company and use is subject to the terms and conditions set forth on its website duplitrade.com/terms-and-conditions. DEMO Group Limited (DEMO) is not responsible for and has no control over Use signals generated by Duplitrade and trade DEMO accounts derived therefrom. Signals generated by Duplitrade on DEMO accounts do not constitute factual, general or personal advice by DEMO.",
+    "Disclaimer: Duplitrade is a British Virgin Islands registered company and use is subject to the terms and conditions set forth on its website duplitrade.com/terms-and-conditions. Helix-Capita Group Limited (Helix-Capita) is not responsible for and has no control over Use signals generated by Duplitrade and trade Helix-Capita accounts derived therefrom. Signals generated by Duplitrade on Helix-Capita accounts do not constitute factual, general or personal advice by Helix-Capita.",
   "m3-st-d-s4-d2":
-    "Important Disclaimer: The information and analysis presented here has been produced by Signal Provider, Inc. DEMO has reproduced this information without alteration or verification and does not represent that this material is accurate, current or complete and should not be relied upon This information. This material is general information and is for informational purposes only and does not take into account any individual's investment objectives, financial solutions or approaches. DEMO advises clients to seek independent financial advice before considering investing in any signal products and services. In addition, DEMO reiterates that, Past returns are not indicative of future performance. Readers should also be aware that, like all technological applications, the Internet has inherent weaknesses and operating systems rely on third parties to manage connections to DEMO servers. Using any social network/copy trade Application for transactions over the Internet may be interrupted, resulting in unexpected losses that may exceed the customer's account balance. DEMO is not responsible for the performance of the application.",
+    "Important Disclaimer: The information and analysis presented here has been produced by Signal Provider, Inc. Helix-Capita has reproduced this information without alteration or verification and does not represent that this material is accurate, current or complete and should not be relied upon This information. This material is general information and is for informational purposes only and does not take into account any individual's investment objectives, financial solutions or approaches. Helix-Capita advises clients to seek independent financial advice before considering investing in any signal products and services. In addition, Helix-Capita reiterates that, Past returns are not indicative of future performance. Readers should also be aware that, like all technological applications, the Internet has inherent weaknesses and operating systems rely on third parties to manage connections to Helix-Capita servers. Using any social network/copy trade Application for transactions over the Internet may be interrupted, resulting in unexpected losses that may exceed the customer's account balance. Helix-Capita is not responsible for the performance of the application.",
 
   // m3-social-trading tools-home
   "m3-st-t-h-s0-t1": "Trading Instrument",
@@ -1451,7 +1451,7 @@ This extra trading session over the weekend not only means you have more time to
   // m3-social-trading tools-Capitalise.ai
   "m3-st-t-c-s1-t1": "Capitalise.ai",
   "m3-st-t-c-s1-t2":
-    "Enhance your trading with no-code automation. Free for DEMO customers",
+    "Enhance your trading with no-code automation. Free for Helix-Capita customers",
   "m3-st-t-c-s1-d1":
     "Let Capitalise.ai execute your plan quickly, accurately and without emotion.<br/>Saving time, trading 24/7, and eliminating emotion are well-known benefits of trading automation. However, most traders lack the automation to build their own Coding skills required for trading programs. That's why we partnered with Capitalise.ai to provide our clients with powerful trading automation tools for free!",
   "m3-st-t-c-s1-t3": "Start now",
@@ -1478,10 +1478,10 @@ This extra trading session over the weekend not only means you have more time to
   "m3-st-t-c-s2-5-d1": "Advanced Trading Features",
   "m3-st-t-c-s2-5-d2":
     "From managing your day-to-day transactions to building complex automation systems, with Capitalise.ai, you can automate your own transactions without complex coding.",
-  "m3-st-t-c-s3-t1": "Free for DEMO customers",
+  "m3-st-t-c-s3-t1": "Free for Helix-Capita customers",
   "m3-st-t-c-s3-d1": "No registration required",
   "m3-st-t-c-s3-d2":
-    "Sign in to Capitalise.ai with your DEMO MT4 account and you can easily test and automate your trading strategies, no code required.",
+    "Sign in to Capitalise.ai with your Helix-Capita MT4 account and you can easily test and automate your trading strategies, no code required.",
   "m3-st-t-c-s4-t1": "Tips when using the Capitalise.ai platform:",
   "m3-st-t-c-s4-1-t1": "Click to watch the video Capitalise.ai",
   "m3-st-t-c-s4-1-d1":
@@ -1489,7 +1489,7 @@ This extra trading session over the weekend not only means you have more time to
 
   "m3-st-t-c-s4-2-t1": "Login",
   "m3-st-t-c-s4-2-d1":
-    "Log in to Capitalise.ai using your existing DEMO MetaTrader 4 trading account and password.",
+    "Log in to Capitalise.ai using your existing Helix-Capita MetaTrader 4 trading account and password.",
   "m3-st-t-c-s4-2-d2":
     "If you have any problems logging in, please contact your Account Manager or reset your password through the SCA Secure Client Area.",
   "m3-st-t-c-s4-3-t1": "Capitalise Learning Center",
@@ -1613,7 +1613,7 @@ This extra trading session over the weekend not only means you have more time to
   "m3-st-t-ca-s2-4":
     "Symbols, accounts, connections, and error messages can be used to incorporate as much detail as possible into automation strategies.",
   "m3-st-t-ca-s3-t1": "Are you ready to trade?",
-  "m3-st-t-ca-s3-1-t1": "New to DEMO?",
+  "m3-st-t-ca-s3-1-t1": "New to Helix-Capita?",
   "m3-st-t-ca-s3-1-d1": `<h5><a href="#" rel="noreferrer noopener">Open an account</a> today to access cTrader Automate.</h5>`,
   "m3-st-t-ca-s3-2-t1": "Already a client?",
   "m3-st-t-ca-s3-2-d1": `<h5><a href="#" target="_blank" rel="noreferrer noopener">Download cTrader Automate.API</a> from your secure client area today.</h5>`,
@@ -1655,13 +1655,13 @@ This extra trading session over the weekend not only means you have more time to
   "m3-st-t-ap-s1-t1": "API transaction",
   "m3-st-t-ap-s1-d1":
     "We support automated trading through our API. This technology, also known as application programming interface trading, is ideal for those using automated trading systems or developing their own custom systems.",
-  "m3-st-t-ap-s2-t1": "Benefits of using the DEMO API for transactions",
+  "m3-st-t-ap-s2-t1": "Benefits of using the Helix-Capita API for transactions",
   "m3-st-t-ap-s2-1": "Enhance the ability to deeply understand the market",
   "m3-st-t-ap-s2-2": "We provide separate client accounts for your capital",
   "m3-st-t-ap-s2-3":
     "Connect to multiple liquidity providers to ensure you get the best price",
   "m3-st-t-ap-s2-d1":
-    "DEMO current account holders with a minimum monthly trading volume of A$250 million can apply for the FIX demo environment to test our FIX functionality.",
+    "Helix-Capita current account holders with a minimum monthly trading volume of A$250 million can apply for the FIX demo environment to test our FIX functionality.",
   "m3-st-t-ap-s2-d2":
     "If you'd like to discuss API trading, please email support{'@'}demo.com.",
   // "If you'd like to discuss API trading, please email&nbsp;<a href='mailto:support@demo.com'>premium{'@'}demo.com</a>.",
@@ -1674,13 +1674,13 @@ This extra trading session over the weekend not only means you have more time to
     "Benefits of using VPS hosting for trading include minimizing the possibility of system downtime due to technical and connection failures.",
   "m3-st-t-vp-s2-t1": "ForexVPS",
   "m3-st-t-vp-s2-d1":
-    "Enjoy ultra-low latency around 1 millisecond with FXVM. ForexVPS staff is available 24 hours a day in multiple languages to help you install expert advisors, third-party tools, or troubleshoot any issues. Your FXVM will also come pre-installed with DEMO MetaTrader 4 so you can trade instantly.",
-  "m3-st-t-vp-s2-d2": "Get 20% off DEMO ForexVPS",
+    "Enjoy ultra-low latency around 1 millisecond with FXVM. ForexVPS staff is available 24 hours a day in multiple languages to help you install expert advisors, third-party tools, or troubleshoot any issues. Your FXVM will also come pre-installed with Helix-Capita MetaTrader 4 so you can trade instantly.",
+  "m3-st-t-vp-s2-d2": "Get 20% off Helix-Capita ForexVPS",
   "m3-st-t-vp-s2-d3": "New York City Server",
   "m3-st-t-vp-s2-d4":
     "We have partnered with New York City Server to provide its traders with a custom low-latency solution. NYC Server understands that traders can rely on a stable low-latency connection to their broker, fast execution, and high availability 24 hours a day, 7 days a week The importance of performance servers. Plus, all NYC services offer 24/7 support via email, support tickets, live chat, and phone.",
-  "m3-st-t-vp-s2-d5": "When you join DEMO, you will get 25% off any VPS plan.",
-  "m3-st-t-vp-s2-d6": "Order your custom DEMO VPS now",
+  "m3-st-t-vp-s2-d5": "When you join Helix-Capita, you will get 25% off any VPS plan.",
+  "m3-st-t-vp-s2-d6": "Order your custom Helix-Capita VPS now",
 
   // m3-maintenance-schedule
   "m3-ms-s1-t1": "Maintenance Schedule",
@@ -1795,7 +1795,7 @@ This extra trading session over the weekend not only means you have more time to
    <h5>The transaction tends to look for opportunities in short-term violent market fluctuations, and will pay more attention to breaking news (Russia-Ukraine war), financial events (RBA interest rate hike), economic data (US CPI), company statements (Tess The short-term impact of stock splits), important events (Apple conferences), etc. At the operational level, on the basis of referring to the fundamentals, mainly through technical analysis to find the time point of opening and closing positions, it is necessary to resolutely implement stop losses and check the market conditions frequently. Trading discipline and mentality are more important factors than technical analysis to a successful trader. </h5>
    <h5>The advantage of trading is that the cycle is short and the potential return rate is high. Driven by automated trading, once a trend is formed, it may explode with very strong and sustained kinetic energy in the short term. Tesla is a very typical representative. This is a market opportunity that every trader does not want to miss. </h5>
    <h5>You can also gain more flexibility and advantages by trading stocks through contracts for difference (CFD), such as long-short two-way operations, leverage advantages, deep market liquidity, 5*24 non-stop trading, etc. Of course, you also need to have a certain risk tolerance to deal with extreme fluctuations and emergencies in the market. </h5>
-   <h5>DEMO was founded in Melbourne in 2010 and quickly grew to become one of the largest online trading brokers in the world. At present, we provide customers with nearly a thousand mainstream stocks in the United States, and hundreds of stock CFD transactions in Australia, the United Kingdom and Germany. </h5>
+   <h5>Helix-Capita was founded in Melbourne in 2010 and quickly grew to become one of the largest online trading brokers in the world. At present, we provide customers with nearly a thousand mainstream stocks in the United States, and hundreds of stock CFD transactions in Australia, the United Kingdom and Germany. </h5>
    <h5>For Chinese friends, we recently launched <a href="/#/market-analysis/-five-reason-to-trade-hong-kong-share-cfd/" "target="_blank"> CFD transactions on Hong Kong stocks</a>, including Internet giants such as Alibaba, Tencent, JD.com, and Xiaomi, as well as new economic representatives such as BYD, as well as aircraft carrier-level state-owned enterprises such as PetroChina and Ping An of China. The real realization of "one Account trading global markets"!</br></h5>
    </div>`,
 
@@ -2358,7 +2358,7 @@ This extra trading session over the weekend not only means you have more time to
     "When market conditions are right, traders will often actively take a position in a currency with a higher corresponding interest rate and 'fund' the trade by shorting the currency with a lower interest rate, then netting out the positive spread. This is Carry trades, where traders roll over their positions for interest and swap spreads. Rollovers are an important part of the forex market and can be a top consideration for many hedge funds.",
   "m5-wh-dq-8-d1": "Why do brokers charge swap fees?",
   "m5-wh-dq-9-d1":
-    "At DEMO, we offer our clients the ability to actively trade price changes in global currency markets without physically delivering the currency traded. So when we open a leveraged FX position, it is effectively an indefinite rolling settlement This means that, as a trader, you decide when to close your position using a stop loss or other form of trade management, while as a counterparty, a broker uses rollover times to calculate financing charges in lieu of delivery or receipt of physical currency .",
+    "At Helix-Capita, we offer our clients the ability to actively trade price changes in global currency markets without physically delivering the currency traded. So when we open a leveraged FX position, it is effectively an indefinite rolling settlement This means that, as a trader, you decide when to close your position using a stop loss or other form of trade management, while as a counterparty, a broker uses rollover times to calculate financing charges in lieu of delivery or receipt of physical currency .",
   "m5-wh-dq-10-d1":
     "How to settle in the underlying foreign exchange spot market?",
   "m5-wh-dq-11-d1":
@@ -2382,7 +2382,7 @@ This extra trading session over the weekend not only means you have more time to
     <h5>Account base currency: EUR</h5>
     <h5>Interest rate: 1.1290</h5>
     <h5>Trade size: 1 lot (100,000 EUR)</h5>
-    <h5>DEMO's long swap rate: -11.49, short swap rate: +7.02</h5>
+    <h5>Helix-Capita's long swap rate: -11.49, short swap rate: +7.02</h5>
     <h5>The swap amount will be debited from the account: (0.00001/1.1290)*(100,000 *-11.49)=&nbsp;<strong>-10.18 EUR</strong></h5>
     <h5>If you sell one EUR/USD contract, you will earn <strong>6.22€</strong> a day. </h5></div>`,
   "m5-wh-dq-19-d1":
@@ -2451,7 +2451,7 @@ This extra trading session over the weekend not only means you have more time to
   "m5-tg-6-b1": "Intermediate",
   "m5-tg-7-t1": "How to trade gold with non-US currencies",
   "m5-tg-7-d1":
-    "At DEMO, gold has always been the most popular investment target for traders, and we have been committed to providing you with more updated gold trading products...",
+    "At Helix-Capita, gold has always been the most popular investment target for traders, and we have been committed to providing you with more updated gold trading products...",
   "m5-tg-7-b1": "Beginner",
   // Educational m5-Trading Guide-11 Tips to Improve Expert Advisor (EA) Performance
   "m5-tg-a1-s1-t1": "11 tips to improve Expert Advisor (EA) performance",
@@ -2534,7 +2534,7 @@ This extra trading session over the weekend not only means you have more time to
    <h5>5. <strong>Liquidity is the foundation of everything</strong></h5>
    <ol></ol>
    <h5>In a rapidly changing market, market makers and liquidity providers may not be able to provide the same scale of liquidity. Especially when important news is announced, the lack of liquidity will make the market worse. </h5>
-   <h5>In times of high volatility, market participants are eager for more information about economic, geopolitical or liquidity crises. In this dynamic process, the information itself will cause large price changes, which may be a test for many retail trading customers. Fortunately, DEMO can be your important and reliable source of information. </h5>
+   <h5>In times of high volatility, market participants are eager for more information about economic, geopolitical or liquidity crises. In this dynamic process, the information itself will cause large price changes, which may be a test for many retail trading customers. Fortunately, Helix-Capita can be your important and reliable source of information. </h5>
    <h3><strong>Summary</strong></h3>
    <h5>I hope the above suggestions can provide some help for your transactions in a market environment with high volatility. Although there are many other technical indicators based on realized volatility, what is more important is how to use these indicators flexibly to deal with the vagaries of the market. </h5>
    <h5>In fact, the most important rule in trading is to learn to adapt, that is, not only to ensure that the direction of the transaction is consistent with the market trend, but also to accept the reality that not every transaction will be profitable. If you can pay attention to leverage and extreme volatility to implement more precise risk control, and adjust your positions reasonably, then you have mastered the way to survive in an extremely volatile market. </h5>
@@ -2543,7 +2543,7 @@ This extra trading session over the weekend not only means you have more time to
   // Educational m5-Trading Guide-Why spreads widen
   "m5-tg-a3-s1-t1": "Why the spread will expand",
   "m5-tg-a3-s1-d1":
-    "DEMO knows that transaction costs are the most important concern of customers, so we have been committed to providing customers with competitive spreads in the industry. By connecting with many top investment banks and liquidity providers, we provide you with the best trading Bid/Ask price.",
+    "Helix-Capita knows that transaction costs are the most important concern of customers, so we have been committed to providing customers with competitive spreads in the industry. By connecting with many top investment banks and liquidity providers, we provide you with the best trading Bid/Ask price.",
   "m5-tg-a3-s2-c": `<div class="rich-text__container"><!--StartFragment--><h4><strong>Spread</strong></h4>
    <h5>In foreign exchange and CFD CFD trading, the cost of the transaction is generally measured by "spread", that is, the difference between the buying price and the selling price at the same time. For example, if the quotation of EURUSD is 1.06747/52, then the spread of the currency pair is 1.06752-1.06747=0.00005, which is 0.5 points (pip). Generally, when the market liquidity is higher, the spread is lower, and the transaction cost is lower. </h5>
    <h5>However, in an extremely volatile market environment, market depth and transaction execution efficiency are greatly weakened, so spread expansion is a common phenomenon at this time, which is common in the entire financial market, whether you are an institutional investment or retail customers. </h5>
@@ -2568,7 +2568,7 @@ This extra trading session over the weekend not only means you have more time to
    <h5>Through this system, investors can quickly evaluate the price trend during the trading suspension period, and the market also has the opportunity to re-examine whether the current price is reasonable and effective. </h5>
    <h4><strong>The mechanism of price limit</strong></h4>
    <h5>Although the price limit applies to many different US stock indexes (such as US30, US200, NAS100, etc.), in this article we will take US500 (ie S&amp;P 500) as an example for introduction. </h5>
-   <h5>The quotations of all stock index products including US500 on the DEMO platform come from the futures market. The expected future dividend and interest income has been reflected in the quotation model, which is also affected by the circuit breaker mechanism in the underlying market. </h5>
+   <h5>The quotations of all stock index products including US500 on the Helix-Capita platform come from the futures market. The expected future dividend and interest income has been reflected in the quotation model, which is also affected by the circuit breaker mechanism in the underlying market. </h5>
    <h5>There are different price limits at different times of the trading day, reflecting the liquidity of the market. And liquidity will exacerbate the degree of two-way price fluctuations. </h5>
    <h4><strong>Trading restrictions for stock index futures during the opening session</strong></h4>
    <h5>When the spot market has closed but the S&P 500 index futures market is still trading, the US500 price limit is +/-5%. The calculation of this ratio is based on the closing price at 4:00 pm (US Eastern Time, the same below) of the previous day. </h5>
@@ -2620,7 +2620,7 @@ This extra trading session over the weekend not only means you have more time to
      <ul><li><strong>Volatility and EA trading</strong></li></ul>
      <h5>If your EA has an advantage in a low-volatility, two-way market, a high VIX market environment means your EA may not perform well. So you may choose to reduce your positions, or even temporarily close all positions. Conversely, if your EA outperforms during periods of higher volatility, you can expect greater gains in high VIX markets. Assessing expected market conditions with the VIX can give you more confidence in the environment in which your EA is operating. </h5>
      <h3><strong>Understanding the VIX</strong></h3>
-     <h5>Although changes in the VIX index are often reported in the news, because the index is aggregated from multiple S&P 500 index option price models, traders cannot actually trade the index directly. Now, DEMO offers clients a tradable spot index product with front-month VIX futures contracts (which are liquid, efficient and heavily traded) adjusted for fair value weights. </h5>
+     <h5>Although changes in the VIX index are often reported in the news, because the index is aggregated from multiple S&P 500 index option price models, traders cannot actually trade the index directly. Now, Helix-Capita offers clients a tradable spot index product with front-month VIX futures contracts (which are liquid, efficient and heavily traded) adjusted for fair value weights. </h5>
      <h5></br><!--EndFragment--></h5></div>`,
 
   // Educational m5-Trading Guide-Which trading type are you?
@@ -2628,14 +2628,14 @@ This extra trading session over the weekend not only means you have more time to
 
   "m5-tg-a6-s1-d1":
     "From Buzzy Schwartz to Ray Dalio, greats in the trading industry have very different profiles. Which one are you?",
-  "m5-tg-a6-s2-c": `<div class="rich-text__container"><blockquote><strong>Champion Day Trader – “Buzzy” Schwartz. </strong></br>Marty Schwartz's trades at one point accounted for 10% of the daily trading volume of the S&P 500 futures contract. He is the author of Pit-bull, Lessons from Wall St’s Champion Trader. To the uninitiated, the champion day trader may seem like a man of action. They act decisively when it comes to execution, but they are also able to patiently track their transactions. Often having to keep their eyes on multiple screens, day traders monitor dozens of messages, waiting for trading opportunities to arise. Some trade quickly, get in and out of the market in seconds, make five points here, ten points there. Others may be calmer, taking just one or two trades per trading day, carefully waiting for the perfect moment to take advantage of the day's changes. Champion day traders can be boisterous and rowdy, but they learn not to bring ego into their trading operations. What if the market goes against its expectations? They either quit or pursue other ways. For day traders, it's all the same. What they care about is whether they cut their losses and keep making profits, not whether they are right. They may only win on half of their trades, but through excellent risk management, they are profitable every day. DEMO trading style: short-term/intraday</blockquote>
-   <blockquote><strong>The Perfect Technician – W.D. Ganns</strong></br>William Delbert Gann is known for his ability to predict market movements using technical analysis. </br>Charts weave a fascinating story for technicians who know that technical patterns provide a window into the soul and psychology of markets. Through technical analysis, they fully understand the fear and greed of market participants. Whether it's Fibonacci, Elliott Wave, or Gunn Theory, technical analysts have the tools to help them predict short-term market movements and the skills to trade successfully based on their ideas. The technician's ability to read images has many applications. They are able to analyze short-term and long-term trends. Some people will combine their technical analysis with fundamentals and primarily trade when the two align. Others believe in price. If they need to, they trade first, and then explore why. The technician's chart is adorned with trendlines, moving averages, stochastics and the Moving Average Convergence Divergence (MACD). However, its foundation is a beautiful simplicity that guides them to accurate and confident trading. DEMO Trading Style: Technical Analysis</blockquote>
-   <blockquote><strong>Master System Trader – Ed Seykota</strong></br>Ed Seykota is a system trader like no other. He understands that trading is first about psychology and then about the system</br>The master system trader is the god of the trading machine. Through a rigorous development and testing process, System Trader has automated a trading strategy so the computer can trade for it. The disciplined, master system trader sits calmly through tough times, knowing that when the trend is there, he will make a fortune. He is in a research war. The market changes, and as the market changes, his system needs to adapt. This means he spends most of his time researching rather than trading. Unless he's wandering the world as often as the master system trader. His machine affords him a lot of free time. DEMO Trading Style: Intelligent Trading System</blockquote>
-   <blockquote><strong></strong>Global macro wunderkind – Paul Tudor Jones</br>Billionaire Paul Tudor Jones famously predicted the 1987 Black Monday crash and is now a philanthropic Robin Hood Founder of the foundation. </br>Billionaire Paul Tudor Jones, famous for predicting the Black Monday crash of 1987, is now the founder of the charity Robin Hood Foundation. The global macro prodigy seems to be a genius on the surface, trading the big markets with skill and tenacity. However, the best global forex traders know that hard work and discipline are the keys to success. They work tirelessly to find opportunities in currencies, indices and commodities, and then they work even harder to ensure the best risk/reward trade. They know that ideas won't get them far, and execution is the key. The best global macro traders (true wunderkinds) are able to profit in all market types and never have a losing year. DEMO Trading Styles: Contracts for Difference (CFDs) (Stock Indices and Commodities) and Currencies</blockquote>
+  "m5-tg-a6-s2-c": `<div class="rich-text__container"><blockquote><strong>Champion Day Trader – “Buzzy” Schwartz. </strong></br>Marty Schwartz's trades at one point accounted for 10% of the daily trading volume of the S&P 500 futures contract. He is the author of Pit-bull, Lessons from Wall St’s Champion Trader. To the uninitiated, the champion day trader may seem like a man of action. They act decisively when it comes to execution, but they are also able to patiently track their transactions. Often having to keep their eyes on multiple screens, day traders monitor dozens of messages, waiting for trading opportunities to arise. Some trade quickly, get in and out of the market in seconds, make five points here, ten points there. Others may be calmer, taking just one or two trades per trading day, carefully waiting for the perfect moment to take advantage of the day's changes. Champion day traders can be boisterous and rowdy, but they learn not to bring ego into their trading operations. What if the market goes against its expectations? They either quit or pursue other ways. For day traders, it's all the same. What they care about is whether they cut their losses and keep making profits, not whether they are right. They may only win on half of their trades, but through excellent risk management, they are profitable every day. Helix-Capita trading style: short-term/intraday</blockquote>
+   <blockquote><strong>The Perfect Technician – W.D. Ganns</strong></br>William Delbert Gann is known for his ability to predict market movements using technical analysis. </br>Charts weave a fascinating story for technicians who know that technical patterns provide a window into the soul and psychology of markets. Through technical analysis, they fully understand the fear and greed of market participants. Whether it's Fibonacci, Elliott Wave, or Gunn Theory, technical analysts have the tools to help them predict short-term market movements and the skills to trade successfully based on their ideas. The technician's ability to read images has many applications. They are able to analyze short-term and long-term trends. Some people will combine their technical analysis with fundamentals and primarily trade when the two align. Others believe in price. If they need to, they trade first, and then explore why. The technician's chart is adorned with trendlines, moving averages, stochastics and the Moving Average Convergence Divergence (MACD). However, its foundation is a beautiful simplicity that guides them to accurate and confident trading. Helix-Capita Trading Style: Technical Analysis</blockquote>
+   <blockquote><strong>Master System Trader – Ed Seykota</strong></br>Ed Seykota is a system trader like no other. He understands that trading is first about psychology and then about the system</br>The master system trader is the god of the trading machine. Through a rigorous development and testing process, System Trader has automated a trading strategy so the computer can trade for it. The disciplined, master system trader sits calmly through tough times, knowing that when the trend is there, he will make a fortune. He is in a research war. The market changes, and as the market changes, his system needs to adapt. This means he spends most of his time researching rather than trading. Unless he's wandering the world as often as the master system trader. His machine affords him a lot of free time. Helix-Capita Trading Style: Intelligent Trading System</blockquote>
+   <blockquote><strong></strong>Global macro wunderkind – Paul Tudor Jones</br>Billionaire Paul Tudor Jones famously predicted the 1987 Black Monday crash and is now a philanthropic Robin Hood Founder of the foundation. </br>Billionaire Paul Tudor Jones, famous for predicting the Black Monday crash of 1987, is now the founder of the charity Robin Hood Foundation. The global macro prodigy seems to be a genius on the surface, trading the big markets with skill and tenacity. However, the best global forex traders know that hard work and discipline are the keys to success. They work tirelessly to find opportunities in currencies, indices and commodities, and then they work even harder to ensure the best risk/reward trade. They know that ideas won't get them far, and execution is the key. The best global macro traders (true wunderkinds) are able to profit in all market types and never have a losing year. Helix-Capita Trading Styles: Contracts for Difference (CFDs) (Stock Indices and Commodities) and Currencies</blockquote>
    <blockquote><strong>Master of Hedge Trading – Ray Dalio</strong></br>Ray Dalio (Ray Dalio) is the founder of Bridgewater Associates, the largest hedge fund in the world. In 2012, Dalio was named among Time 100's 100 most influential people in the world and is said to be worth over $15.2 billion. </br>It takes a leader to build a successful hedge fund, but it takes real leadership to build a people-based business. A guru is an expert in selecting traders who fit their criteria, whether they be mechanical, macro or quantitative. They are risk managers first and foremost, and each trader has his or her own place in the larger risk management plan. Traders who perform exceptionally well are allocated more capital, while underperforming traders are allocated less capital. Hedge fund gurus know that as a team, traders can generate returns far greater than the sum of their parts. </blockquote></div>`,
   // Educational m5-trading guide how to trade gold with non-US currencies
   "m5-tg-a7-s1-t1": "How to trade gold with non-US currencies",
-  "m5-tg-a7-s2-c": `<div class="rich-text__container"><h5>At DEMO, gold has always been the most popular investment target for traders, and we have been committed to providing you with More updated gold trading products. The most popular gold trade is denominated in US dollars (XAUUSD). But at DEMO, you can now trade gold in up to <a href="#">5 currencies</a>. This article will introduce you to the advantages of gold denominated in non-US currencies. </h5>
+  "m5-tg-a7-s2-c": `<div class="rich-text__container"><h5>At Helix-Capita, gold has always been the most popular investment target for traders, and we have been committed to providing you with More updated gold trading products. The most popular gold trade is denominated in US dollars (XAUUSD). But at Helix-Capita, you can now trade gold in up to <a href="#">5 currencies</a>. This article will introduce you to the advantages of gold denominated in non-US currencies. </h5>
    <h5>Gold has an unassailable position in the macroeconomic and financial markets. The gold trading market is highly liquid, and you can always find suitable investment opportunities in different market environments. </h5>
    <h5>Most commonly, gold is traded in U.S. dollars. However, if you are bullish on both gold and the U.S. dollar, the strategy for maximizing your investment in gold is to buy bullish gold with other currencies that you think are likely to depreciate. If the market moves in the same direction as you expect, you will be able to obtain both gold (value-added) and non-US currency (depreciation) income. For example, Gold/GBP (XAUGBP) made new all-time highs in May 2020 because we saw strength in gold and weakness in the pound at the same time. </h5>
    <h5> This logic works in reverse as well. If you think gold is going to fall and you are worried about the dollar depreciating, you can sell gold for a strong currency to get the most out of it. </h5>
@@ -2645,18 +2645,18 @@ This extra trading session over the weekend not only means you have more time to
    <h5>However, you can now trade gold opportunities in GBP and CHF. Combining the previous gold transactions denominated in US dollars, Australian dollars and euros, there are currently as many as 5 options for gold transactions. </h5>
    <h5>Gold against the Australian dollar (XAUAUD) broke out of the all-time high of 2765 on March 24 in the early days of the outbreak. In the following period of time, under the influence of global risk aversion, gold against the euro (XAUEUR) and gold against the British pound (XAUGBP) set new record highs respectively. Gold/CHF (XAUCHF) has had a great run lately. While you might think that the Swiss franc would strengthen because of its safe-haven status, the SNB is actually adopting a strategy similar to pegging to the euro. So when XAUEUR set a new high on May 18, XAUCHF also recorded a historical high. </h5>
    <h3>Better pricing</h3>
-   <h5>DEMO offers competitive spreads on the latest gold product launch. The lowest point difference of XAUGBP and XAUCHF is 0.08, and the average point difference is 0.38 and 0.4 respectively. </h5>
+   <h5>Helix-Capita offers competitive spreads on the latest gold product launch. The lowest point difference of XAUGBP and XAUCHF is 0.08, and the average point difference is 0.38 and 0.4 respectively. </h5>
    <h3>Translate market readings into trading strategies</h3>
-   <h5>Through DEMO's rich gold trading options, you will have the opportunity to further improve and enrich your trading strategies. When you have a certain expectation on the rise and fall of gold, choose a currency that is most opposite to the trend of gold, and combine the two to form a transaction. Of course, once the market trend is inconsistent with your expectations, it may also increase your losses. </h5>
+   <h5>Through Helix-Capita's rich gold trading options, you will have the opportunity to further improve and enrich your trading strategies. When you have a certain expectation on the rise and fall of gold, choose a currency that is most opposite to the trend of gold, and combine the two to form a transaction. Of course, once the market trend is inconsistent with your expectations, it may also increase your losses. </h5>
    <h5>Want to learn more about investment opportunities in gold, foreign exchange, stock index and other products? Please pay attention to our latest <a href="/#/market-analysis/">market analysis</a> or scan the QR code to follow our WeChat official account to help you seize trading opportunities. </h5>`,
-  "tv-s1-t1": "Trading on TradingView with DEMO",
+  "tv-s1-t1": "Trading on TradingView with Helix-Capita",
   "tv-s1-d1":
     "The ultimate combination of competitive trading conditions and advanced charts to take your trading to the next level",
   "tv-s2-t1": "Connect to TradingView",
   "tv-s2-d1":
-    "Bring out your technical analyst. Trade over 1,200 instruments on TradingView's advanced and highly customizable charts. Take advantage of DEMO's transparent pricing, fast execution, and award-winning customer service*.",
+    "Bring out your technical analyst. Trade over 1,200 instruments on TradingView's advanced and highly customizable charts. Take advantage of Helix-Capita's transparent pricing, fast execution, and award-winning customer service*.",
   "tv-s2-d2": "Next Generation Chart Technology",
-  "tv-s3-t1": "Why choose DEMO?",
+  "tv-s3-t1": "Why choose Helix-Capita?",
   "tv-s3-1-t1": "Low spread",
   "tv-s3-1-d1":
     "Enjoy industry-leading low spreads in our Razor accounts, starting from 0.0 pips^",
@@ -2665,7 +2665,7 @@ This extra trading session over the weekend not only means you have more time to
     "Enjoy industry-leading low spreads in our Razor accounts, starting from 0.0 pips^",
   "tv-s3-3-t1": "Trade with confidence",
   "tv-s3-3-d1":
-    " DEMO is an ASIC, FCA, DFSA, CMA, CySEC, BaFin and SCB regulated broker with client funds held in segregated accounts",
+    " Helix-Capita is an ASIC, FCA, DFSA, CMA, CySEC, BaFin and SCB regulated broker with client funds held in segregated accounts",
   "tv-s3-4-t1": "1000+ trading products",
   "tv-s3-4-d1":
     "Trade our wide range of CFD instruments including Forex, Cryptocurrencies, Indices. Shares, Commodities and more",
@@ -2677,60 +2677,60 @@ This extra trading session over the weekend not only means you have more time to
   "tv-s4-2-d1":
     "If you don't have an account with TradingView.com, you can sign up for a free account to get started.",
   "tv-s4-3-t1":
-    "I'm new to DEMO, how do I register an account and connect it to TradingView?",
+    "I'm new to Helix-Capita, how do I register an account and connect it to TradingView?",
   "tv-s4-3-d1":
-    "If you're new to DEMO, find our step-by-step instructions here.",
+    "If you're new to Helix-Capita, find our step-by-step instructions here.",
   "tv-s4-4-t1":
-    "I am an existing DEMO client, how do I start trading on TradingView?",
+    "I am an existing Helix-Capita client, how do I start trading on TradingView?",
   "tv-s4-4-d1":
-    "As an existing DEMO client wishing to start trading on TradingView, please find instructions here.",
+    "As an existing Helix-Capita client wishing to start trading on TradingView, please find instructions here.",
   "tv-s4-5-t1": "Can I connect my MT4, MT5 or cTrader account to TradingView?",
-  "tv-s4-5-d1": "Only supports DEMO TradingView accounts.",
+  "tv-s4-5-d1": "Only supports Helix-Capita TradingView accounts.",
   "tv-s4-6-t1": "What is TradingView and how to use it?",
   "tv-s4-6-d1":
     "TradingView is a web-based social network for traders, allowing them to interact and share trading ideas, as well as analyze and trade directly from TradingView's advanced charting capabilities.",
   "tv-s4-7-t1":
-    "Will the funds in my DEMO TradingView account stay with DEMO or TradingView?",
-  "tv-s4-7-d1": "All funds are held in a segregated account at DEMO.",
-  "tv-s4-8-t1": "What does DEMO TradingView account 'Powered by cTrader' mean?",
+    "Will the funds in my Helix-Capita TradingView account stay with Helix-Capita or TradingView?",
+  "tv-s4-7-d1": "All funds are held in a segregated account at Helix-Capita.",
+  "tv-s4-8-t1": "What does Helix-Capita TradingView account 'Powered by cTrader' mean?",
   "tv-s4-8-d1":
-    "DEMO TradingView accounts are built on the cTrader platform and are designed specifically to support your trading experience on TradingView.",
+    "Helix-Capita TradingView accounts are built on the cTrader platform and are designed specifically to support your trading experience on TradingView.",
   "tv-tip1":
     "*Registered TradingView account holder.</br>^Other fees may apply.",
 
   //group
-  "g-s1-t1": "Welcome to DEMO Group",
+  "g-s1-t1": "Welcome to Helix-Capita Group",
   "g-s1-d1": "Award-winning online transaction provider.",
   "g-s1-d2":
     "As one of the world's largest MT4 brokers, we process an average of $12.55 billion worth of trades per day across more than 110,000 retail trading accounts.",
-  "g-s2-t1": "Learn more about the DEMO Group",
+  "g-s2-t1": "Learn more about the Helix-Capita Group",
   "g-s2-1-t1": "Our Vision",
   "g-s2-1-d1":
     "A world of tech-enabled trading where ambitious traders embrace the challenge and opportunity of global markets.",
   "g-s2-2-t1": "Trade on our platform",
-  "g-s2-2-d1": "Which global DEMO office best suits your trading needs?",
+  "g-s2-2-d1": "Which global Helix-Capita office best suits your trading needs?",
   "g-s3-1-t1": "About us",
   "g-s3-1-d1":
-    "Learn more about DEMO's advanced technology and our determination to help customers master the transaction.",
+    "Learn more about Helix-Capita's advanced technology and our determination to help customers master the transaction.",
   "g-s3-2-t1": "News and Media",
   "g-s3-2-d1": "News and media inquiries",
 
   //Legal document legal-documentation
   "ld-s0-t1": "Legal Documents",
   "ld-s0-d1":
-    "Before you open an account with our platform, you should read the legal documents related to the DEMO entity with which you register your account.",
+    "Before you open an account with our platform, you should read the legal documents related to the Helix-Capita entity with which you register your account.",
   "ld-s1-d1":
-    "Please note that our legal documentation varies based on the DEMO entity with which you hold your trading account and which regulations apply to you. The legal documentation applicable to your account will be clearly stated on your application form and you should Read this document carefully before.To learn more about the regulations that apply to you, please click on the relevant link below:",
-  "ld-s1-1-q1": "DEMO Markets Limited (Bahamas)",
-  "ld-s1-1-a1": `<div class="rich-text__container"><p>When you open an account with DEMO Markets Limited, this means that you have read, understood and agreed to the terms in the following documents </p>
+    "Please note that our legal documentation varies based on the Helix-Capita entity with which you hold your trading account and which regulations apply to you. The legal documentation applicable to your account will be clearly stated on your application form and you should Read this document carefully before.To learn more about the regulations that apply to you, please click on the relevant link below:",
+  "ld-s1-1-q1": "Helix-Capita Markets Limited (Bahamas)",
+  "ld-s1-1-a1": `<div class="rich-text__container"><p>When you open an account with Helix-Capita Markets Limited, this means that you have read, understood and agreed to the terms in the following documents </p>
   <ul><li><a href="pdf.js/SCB_Client_TCs_ROW.pdf" target="_blank" rel="noreferrer noopener">
   terms and conditions
   </a> –
-  This Agreement is intended to govern the relationship between you and DEMO Markets Limited.
+  This Agreement is intended to govern the relationship between you and Helix-Capita Markets Limited.
   </li><li><a href="pdf.js/SCB_Privacy_Policy_ROW.pdf" target="_blank" rel="noreferrer noopener">
   Privacy Policy
   </a> –
-  This policy sets out how we collect and manage your personal information when you trade with DEMO Markets Limited.
+  This policy sets out how we collect and manage your personal information when you trade with Helix-Capita Markets Limited.
   </li><li><a href="pdf.js/SCB_Cookie_Policy_ROW.pdf" target="_blank" rel="noreferrer noopener">
   Cookie Policy
   </a> –
@@ -2772,7 +2772,7 @@ This extra trading session over the weekend not only means you have more time to
   "cu-s1-2-d2": "Media",
 
   //partner partners
-  "p-s0-t1": "Become a DEMO partner",
+  "p-s0-t1": "Become a Helix-Capita partner",
   "p-s0-d1":
     "Join one of the most successful referral programs in the industry and grow your business with the help of our dedicated regional representatives.",
   "p-s0-1-t1": "International Baccalaureate",

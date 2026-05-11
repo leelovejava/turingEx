@@ -716,7 +716,7 @@ export default {
   zanweikaifang: "non ancora aperto",
   shanchuchenggong: "Eliminato con successo",
   tianjiatixiandizhi: "Aggiungi indirizzo di prelievo",
-  tip3: "Inserisci una nota di 4-20 caratteri, ad esempio: account DEMO di Xiao Ming",
+  tip3: "Inserisci una nota di 4-20 caratteri, ad esempio: account Helix-Capita di Xiao Ming",
   dizhibeizhu: "Osservazioni sull'indirizzo",
   tibidizhi: "indirizzo di ritiro",
   baocun: "Salva",
