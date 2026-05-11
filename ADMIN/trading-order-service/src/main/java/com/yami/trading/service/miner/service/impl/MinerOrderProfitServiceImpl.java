@@ -252,10 +252,9 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 					continue;
 				}
 
-				// 从预收益表中读取收益（全局未使用的预收益记录）
-				// 限制每天最多使用220条预收益记录
-				List<com.yami.trading.bean.quant.QuantPreIncome> preIncomes = 
-					quantPreIncomeService.findUnusedByQuantOrderId(null);
+				// 从预收益表中读取收益（属于该订单的预收益记录）
+				List<com.yami.trading.bean.quant.QuantPreIncome> preIncomes =
+					quantPreIncomeService.findUnusedByQuantOrderId(order.getUuid());
 				
 				if (preIncomes != null && !preIncomes.isEmpty()) {
 					// 累计当天220条预收益记录的收益
@@ -601,7 +600,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 
 		// 如果没有关联的预收益订单ID，直接返回
 		String quantBotOrderId = order.getUuid();
-		if (StringUtils.isNotEmpty(quantBotOrderId)) {
+		if (StringUtils.isEmpty(quantBotOrderId)) {
 			log.info("no quantBotOrderId found for order:{}", order.getOrder_no());
 			return;
 		}

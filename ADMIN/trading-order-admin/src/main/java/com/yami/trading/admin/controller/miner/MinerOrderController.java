@@ -330,6 +330,7 @@ public class MinerOrderController {
             String minerId = request.getParameter("minerId");
             String amount = request.getParameter("amount");
             String symbol = request.getParameter("symbol");
+            String cycleParam = request.getParameter("cycle");
 
             String object = this.sessionTokenService.cacheGet(session_token);
             this.sessionTokenService.del(session_token);
@@ -353,6 +354,9 @@ public class MinerOrderController {
             order.setOrder_no(DateUtil.getToday("yyMMddHHmmss") + RandomUtil.getRandomNum(8));
             order.setState("1");
             order.setSymbol(symbol);
+            if (cycleParam != null && !cycleParam.isEmpty()) {
+                order.setCycle(Integer.parseInt(cycleParam));
+            }
 
             this.minerOrderService.saveCreateNew(order, false);
 

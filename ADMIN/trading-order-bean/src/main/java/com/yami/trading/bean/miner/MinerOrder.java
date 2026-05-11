@@ -111,6 +111,14 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	@Getter
 	private String symbol;
 
+	/**
+	 * 购买时传入的周期天数（不持久化，仅用于创建时计算stop_time）
+	 */
+	@Setter
+	@Getter
+	@TableField(exist = false)
+	private int cycle;
+
 	public String getPartyId() {
 		return party_id;
 	}

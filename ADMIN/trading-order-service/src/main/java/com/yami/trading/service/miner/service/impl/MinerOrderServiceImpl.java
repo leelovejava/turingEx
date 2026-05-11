@@ -207,12 +207,12 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             LocalDateTime stopTime = entity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusDays((int) miner.getCycle());
             entity.setStop_time(Date.from(stopTime.atZone(ZoneId.systemDefault()).toInstant()));
         } else {
-            // 非体验矿机：起息时间 = 确认时间加1天
-            LocalDateTime earnTime = LocalDateTime.now().plusDays(1);
-            entity.setEarn_time(Date.from(earnTime.atZone(ZoneId.systemDefault()).toInstant()));
+            // 非体验矿机：起息时间 = 创建时间
+            entity.setEarn_time(entity.getCreate_time());
 
-            // 非体验矿机截止时间 = 购买时间 + 周期天数
-            LocalDateTime stopTime = entity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusDays((int) miner.getCycle());
+            // 非体验矿机截止时间 = 购买时间 + 传入周期天数（优先用传入cycle，否则用矿机配置cycle）
+            int cycleDays = entity.getCycle() > 0 ? entity.getCycle() : (int) miner.getCycle();
+            LocalDateTime stopTime = entity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusDays(cycleDays);
             entity.setStop_time(Date.from(stopTime.atZone(ZoneId.systemDefault()).toInstant()));
         }
 
@@ -265,7 +265,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + entity.getOrder_no(), entity);
 
             // 异步生成预收益记录（220次/天 × 周期天数，80%盈利，20%亏损，总和符合日收益）
-            int cycleDays = (int) miner.getCycle();
+            int cycleDays = entity.getCycle() > 0 ? entity.getCycle() : (int) miner.getCycle();
             double dailyRate = entity.getRandom_daily_rate(); // 使用购买时随机生成的日利率
             quantPreIncomeJob.generatePreIncomeRecordsAsync(quantBotOrderId, entity.getAmount(), cycleDays, dailyRate);
         }
