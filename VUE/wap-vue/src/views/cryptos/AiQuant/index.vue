@@ -221,6 +221,11 @@ watch(
   () => { syncMyAiTab() }
 )
 
+// 切换到「我的AI」时刷新订单数据
+watch(mainTab, (val) => {
+  if (val === 'myAi') loadMyAiStats()
+})
+
 // 我的AI统计数据
 const myAiStats = ref({ amount_sum: 0, today_profit: 0, aready_profit: 0, order_sum: 0, countdown_days: 0 })
 // 我的AI订单列表

@@ -2968,7 +2968,7 @@ export default {
     aiQuantAdd: 'Προσθήκη',
     aiQuantEstimatedDaily: 'Εκτιμώμενα ημερήσια κέρδη',
     aiQuantCycle: 'Κύκλος',
-    aiQuantServiceFee: 'Προμήθεια υπηρεσίας',
+    aiQuantServiceFee: 'Ποσό',
     aiQuantUsageCount: 'Αριθμός χρήσεων',
     aiQuantUnlimitedPurchase: 'Απεριόριστη αγορά',
     aiQuantPurchaseAmount: 'Ποσό αγοράς',

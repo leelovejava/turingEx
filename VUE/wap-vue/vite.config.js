@@ -26,6 +26,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        api: 'modern-compiler',
         additionalData: `@use "@/assets/css/variables.scss" as *;`
       },
     }
@@ -57,6 +58,8 @@ export default defineConfig({
     target: 'esnext',
     assetsDir: "static",
     reportCompressedSize: false,
+    sourcemap: false,
+    minify: 'esbuild',
     rollupOptions: {
       input: {
         index: path.resolve(__dirname, "index.html"),
@@ -64,7 +67,11 @@ export default defineConfig({
       output: {
         chunkFileNames: 'js/[name]-[hash].js',
         entryFileNames: "js/[name]-[hash].js",
-        assetFileNames: "[ext]/[name]-[hash].[ext]"
+        assetFileNames: "[ext]/[name]-[hash].[ext]",
+        manualChunks: {
+          'vendor-vue': ['vue', 'vue-router', 'pinia'],
+          'vendor-vant': ['vant'],
+        },
       },
     },
   },

@@ -2962,7 +2962,7 @@ export default {
     aiQuantAdd: 'เพิ่ม',
     aiQuantEstimatedDaily: 'รายได้รายวันโดยประมาณ',
     aiQuantCycle: 'รอบ',
-    aiQuantServiceFee: 'ค่าธรรมเนียมบริการ',
+    aiQuantServiceFee: 'จำนวนเงิน',
     aiQuantUsageCount: 'จำนวนครั้งที่ใช้',
     aiQuantUnlimitedPurchase: 'ซื้อไม่จำกัด',
     aiQuantPurchaseAmount: 'จำนวนเงินที่ซื้อ',

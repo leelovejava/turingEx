@@ -3008,7 +3008,7 @@ export default {
     aiQuantAdd: 'Hinzufügen',
     aiQuantEstimatedDaily: 'Geschätzte tägliche Einnahmen',
     aiQuantCycle: 'Zyklus',
-    aiQuantServiceFee: 'Servicegebühr',
+    aiQuantServiceFee: 'Betrag',
     aiQuantUsageCount: 'Verwendungsanzahl',
     aiQuantUnlimitedPurchase: 'Unbegrenzter Kauf',
     aiQuantPurchaseAmount: 'Kaufbetrag',

@@ -2859,7 +2859,7 @@ export default {
     aiQuantAdd: '追加',
     aiQuantEstimatedDaily: '推定日次収益',
     aiQuantCycle: 'サイクル',
-    aiQuantServiceFee: 'サービス手数料',
+    aiQuantServiceFee: '金額',
     aiQuantUsageCount: '使用回数',
     aiQuantUnlimitedPurchase: '無制限購入',
     aiQuantPurchaseAmount: '購入金額',

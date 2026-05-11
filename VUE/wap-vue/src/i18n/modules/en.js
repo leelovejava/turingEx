@@ -3010,7 +3010,7 @@ export default {
     aiQuantAdd: 'Add',
     aiQuantEstimatedDaily: 'Estimated Daily Earnings',
     aiQuantCycle: 'Cycle',
-    aiQuantServiceFee: 'Service Fee',
+    aiQuantServiceFee: 'Amount',
     aiQuantUsageCount: 'Usage Count',
     aiQuantUnlimitedPurchase: 'Unlimited Purchase',
     aiQuantPurchaseAmount: 'Purchase Amount',

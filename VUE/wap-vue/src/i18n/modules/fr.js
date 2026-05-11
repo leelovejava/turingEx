@@ -2933,7 +2933,7 @@ export default {
     aiQuantAdd: 'Ajouter',
     aiQuantEstimatedDaily: 'Gains quotidiens estimés',
     aiQuantCycle: 'Cycle',
-    aiQuantServiceFee: 'Frais de service',
+    aiQuantServiceFee: 'Montant',
     aiQuantUsageCount: 'Nombre d\'utilisations',
     aiQuantUnlimitedPurchase: 'Achat illimité',
     aiQuantPurchaseAmount: 'Montant d\'achat',

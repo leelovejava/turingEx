@@ -2767,7 +2767,7 @@ export default {
     aiQuantAdd: 'Añadir',
     aiQuantEstimatedDaily: 'Ganancias diarias estimadas',
     aiQuantCycle: 'Ciclo',
-    aiQuantServiceFee: 'Tarifa de servicio',
+    aiQuantServiceFee: 'Cantidad',
     aiQuantUsageCount: 'Contador de uso',
     aiQuantUnlimitedPurchase: 'Compra ilimitada',
     aiQuantPurchaseAmount: 'Cantidad de compra',

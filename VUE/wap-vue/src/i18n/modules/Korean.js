@@ -2972,7 +2972,7 @@ export default {
     aiQuantAdd: '추가',
     aiQuantEstimatedDaily: '예상 일일 수익',
     aiQuantCycle: '주기',
-    aiQuantServiceFee: '서비스 수수료',
+    aiQuantServiceFee: '금액',
     aiQuantUsageCount: '사용 횟수',
     aiQuantUnlimitedPurchase: '무제한 구매',
     aiQuantPurchaseAmount: '구매 금액',

@@ -2930,7 +2930,7 @@ export default {
     aiQuantAdd: 'Thêm',
     aiQuantEstimatedDaily: 'Thu nhập hàng ngày dự kiến',
     aiQuantCycle: 'Chu kỳ',
-    aiQuantServiceFee: 'Phí dịch vụ',
+    aiQuantServiceFee: 'Số tiền',
     aiQuantUsageCount: 'Số lần sử dụng',
     aiQuantUnlimitedPurchase: 'Mua không giới hạn',
     aiQuantPurchaseAmount: 'Số tiền mua',

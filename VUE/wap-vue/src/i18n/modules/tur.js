@@ -2968,7 +2968,7 @@ export default {
     aiQuantAdd: 'Ekle',
     aiQuantEstimatedDaily: 'Tahmini günlük kazanç',
     aiQuantCycle: 'Döngü',
-    aiQuantServiceFee: 'Hizmet ücreti',
+    aiQuantServiceFee: 'Miktar',
     aiQuantUsageCount: 'Kullanım sayısı',
     aiQuantUnlimitedPurchase: 'Sınırsız satın alma',
     aiQuantPurchaseAmount: 'Satın alma tutarı',

@@ -3085,7 +3085,7 @@ export default {
     aiQuantAdd: 'Aggiungi',
     aiQuantEstimatedDaily: 'Guadagni giornalieri stimati',
     aiQuantCycle: 'Ciclo',
-    aiQuantServiceFee: 'Commissione di servizio',
+    aiQuantServiceFee: 'Importo',
     aiQuantUsageCount: 'Conteggio utilizzi',
     aiQuantUnlimitedPurchase: 'Acquisto illimitato',
     aiQuantPurchaseAmount: 'Importo acquisto',

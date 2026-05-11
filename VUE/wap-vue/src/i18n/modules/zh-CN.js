@@ -3012,7 +3012,7 @@ export default {
     aiQuantAdd: '添加',
     aiQuantEstimatedDaily: '预计日收益',
     aiQuantCycle: '周期',
-    aiQuantServiceFee: '服务费',
+    aiQuantServiceFee: '金额',
     aiQuantUsageCount: '使用次数',
     aiQuantUnlimitedPurchase: '无限购买',
     aiQuantPurchaseAmount: '购买金额',

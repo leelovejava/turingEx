@@ -2967,7 +2967,7 @@ export default {
     aiQuantAdd: 'Adăugare',
     aiQuantEstimatedDaily: 'Profit zilnic estimat',
     aiQuantCycle: 'Ciclu',
-    aiQuantServiceFee: 'Taxă de serviciu',
+    aiQuantServiceFee: 'Sumă',
     aiQuantUsageCount: 'Număr de utilizări',
     aiQuantUnlimitedPurchase: 'Cumpărare nelimitată',
     aiQuantPurchaseAmount: 'Suma de cumpărare',
