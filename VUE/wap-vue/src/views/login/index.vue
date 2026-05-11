@@ -14,7 +14,13 @@
         <ExInput :label="getRegType(activeIndex, true)" :placeholderText="getRegType(activeIndex, false)" v-model="username" />
         <ExInput style="padding-bottom:0!important;" :label="$t('password')" :placeholderText="$t('entryPassword')"
             v-model="password" typeText="password" />
-        <div class="forget colorMain" @click="$router.push('/forget')">{{ $t('forgetPassword') }}</div>
+        <div class="flex items-center justify-between" style="margin-top:30px;">
+            <label class="flex items-center textColor" style="font-size:12px;gap:6px;">
+                <input type="checkbox" v-model="rememberAccount" />
+                {{ $t('rememberAccount') }}
+            </label>
+            <div class="forget colorMain" @click="$router.push('/forget')">{{ $t('forgetPassword') }}</div>
+        </div>
         <van-button class="w-full" style="margin-top:50px;" type="primary" @click="verifyLogin">{{ $t('login') }}
         </van-button>
         <div class="noTips textColor">{{ $t('noAccount') }}<span class="colorMain" @click="$router.push('/register')">
@@ -30,7 +36,7 @@ import { _exchangerateuserconfig } from "@/service/trade.api";
 import { GET_USERINFO } from '@/store/types.store'
 import { useUserStore } from '@/store/user';
 import { useI18n } from 'vue-i18n'
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { showToast } from "vant";
 import store from '@/store/store'
@@ -49,6 +55,15 @@ let username = ref('')
 let password = ref('')
 let activeIndex = ref(0)
 let isLoading = ref(false)
+let rememberAccount = ref(false)
+
+onMounted(() => {
+    const saved = localStorage.getItem('rememberedAccount')
+    if (saved) {
+        username.value = saved
+        rememberAccount.value = true
+    }
+})
 const type = ref(3)
 
 const getRegType = (activeIndex, bFlag) => {
@@ -107,6 +122,11 @@ const loginUser = () => {
         passWord: password.value,
         type: type.value
     }).then((res) => {
+        if (rememberAccount.value) {
+            localStorage.setItem('rememberedAccount', username.value)
+        } else {
+            localStorage.removeItem('rememberedAccount')
+        }
         userStore[GET_USERINFO](res)
         store.commit('user/SET_USERINFO', res)
         router.push('/')
@@ -171,7 +191,6 @@ const loginUser = () => {
 .forget {
     font-size: 12px;
     line-height: 14px;
-    margin-top: 30px;
 }
 
 .noTips {

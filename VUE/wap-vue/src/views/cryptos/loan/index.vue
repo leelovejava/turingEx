@@ -141,7 +141,7 @@
         <div class="confirmBtn btnMain w-full py-8 text-center text-white font-normal text-32" @click="submit()">
           <span>{{ $t("确定") }}</span>
         </div>
-        <div class="confirmBtn w-full py-8 text-center text-white font-normal text-32 mt-4" style="background:#a855f7;border-radius:8px;" @click="$router.push('/cryptos/repayCrypto')">
+        <div class="confirmBtn w-full py-8 text-center text-white font-normal text-32 mt-4" style="background:#a855f7;border-radius:8px;" @click="$router.push('/cryptos/repayList')">
           <span>{{ $t("还款") }}</span>
         </div>
       </div>

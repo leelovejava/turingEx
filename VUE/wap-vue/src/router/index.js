@@ -513,6 +513,11 @@ const routes = [
             name: 'repayCrypto',
             component: () => import(/* webpackChunkName: "repayCrypto" */ "@/views/cryptos/loan/repay-crypto.vue")
           },
+          {
+            path: 'repayList',
+            name: 'repayList',
+            component: () => import(/* webpackChunkName: "repayList" */ "@/views/cryptos/loan/repay-list.vue")
+          },
           {//
             path: 'loanHistory',
             name: 'loanHistory',
