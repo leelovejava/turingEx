@@ -111,25 +111,6 @@
                 </div>
               </div>
             </div>
-            <div class="footer-view-download" style="margin-top: 0px">
-              {{ $t("message.home.xiazai") }}
-            </div>
-            <div style="margin-top: 10px">
-              <img
-                src="@/assets/images/exchangeHome/footer/download2.png"
-                alt=""
-                style="width: 169px; height: 60px"
-                class="mouse-cursor"
-              />
-            </div>
-            <div style="margin-top: 10px">
-              <img
-                src="@/assets/images/exchangeHome/footer/download1.png"
-                alt=""
-                style="width: 168px; height: 60px"
-                class="mouse-cursor"
-              />
-            </div>
           </div>
         </div>
       </div>

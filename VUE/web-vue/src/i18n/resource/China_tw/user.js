@@ -266,6 +266,7 @@ export default {
   "chang13-1": "通過平臺參與現貨、合約、理財等項目交易，即可獲得對應規則收益。",
   zhanghuanquan: "賬戶安全",
   tongyong: "通用",
+  gongdanzhongxin: "工單中心",
   bangzhuzhongxin: "幫助中心",
   gaojirenzheng: "高級認證",
   duochongrenzheng: "多重驗證",

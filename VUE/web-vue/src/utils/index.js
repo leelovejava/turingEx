@@ -161,10 +161,6 @@ function merge(left, right) {
 //
 export const langOptions = [
   {
-    value: "zh-CN",
-    label: "简体中文",
-  },
-  {
     value: "en",
     label: "English",
   },
@@ -211,6 +207,10 @@ export const langOptions = [
   {
     value: "el", // 希腊语
     label: "Ελληνικά",
+  },
+  {
+    value: "zh-CN",
+    label: "简体中文",
   },
 ];
 

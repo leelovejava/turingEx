@@ -34,10 +34,6 @@
         {{ $t("message.home.announcement") }}
       </span>
       <span>
-        <i class="el-icon-download"></i>
-        {{ $t("message.home.xiazai") }}
-      </span>
-      <span>
         <i class="el-icon-chat-dot-square"></i>
         {{ $t("message.home.service") }}
       </span>

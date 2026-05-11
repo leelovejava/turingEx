@@ -54,9 +54,6 @@
             :isRight="true"
           >
           </menu-item>
-          <div @click="goApp" class="downText">
-            {{ $t("message.home.xiazai") }}
-          </div>
           <!-- 选择的语言 -->
           <div @click="handleChangeLang('lang')" style="margin-left: 16px">
             {{ $t("message.home.language") }}
@@ -257,6 +254,11 @@ const rightMenuList = [
       {
         urlPath: "/my/helpCenter",
         title: "bangzhuzhongxin",
+        iconPath: getImages("headIcon/personal-menu/help-center.png"),
+      },
+      {
+        urlPath: "/my/workerOrder",
+        title: "gongdanzhongxin",
         iconPath: getImages("headIcon/personal-menu/help-center.png"),
       },
       {

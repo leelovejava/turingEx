@@ -282,6 +282,7 @@ export default {
     "プラットフォームを通じて現物,契約,資産管理,およびその他のプロジェクト取引に参加すると,対応する収入のルールを取得できます。 ",
   zhanghuanquan: "アカウント",
   tongyong: "一般",
+  gongdanzhongxin: "チケットセンター",
   bangzhuzhongxin: "ヘルプセンター",
   gaojirenzheng: "二次認証",
   duochongrenzheng: "複数の検証",

@@ -257,6 +257,7 @@ export default {
     "Puede obtener beneficios según las reglas correspondientes al participar en proyectos de trading de spot, contratos, inversiones, etc., en la plataforma.",
   zhanghuanquan: "Seguridad de la cuenta",
   tongyong: "General",
+  gongdanzhongxin: "Centro de tickets",
   bangzhuzhongxin: "Centro de ayuda",
   gaojirenzheng: "Verificación avanzada",
   duochongrenzheng: "Verificación multifactorial",

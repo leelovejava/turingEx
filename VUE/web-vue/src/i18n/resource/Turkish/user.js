@@ -233,6 +233,7 @@ export default {
     "Platform üzerinde gerçekleştirilen spot, sözleşme ve yatırım gibi işlemler, ilgili kurala göre gelir elde etmenizi sağlar.",
   zhanghuanquan: "Hesap Güvenliği",
   tongyong: "Genel",
+  gongdanzhongxin: "Bilet Merkezi",
   bangzhuzhongxin: "Yardım Merkezi",
   gaojirenzheng: "Gelişmiş Kimlik Doğrulama",
   duochongrenzheng: "Çift Faktörlü Kimlik Doğrulama",

@@ -471,7 +471,7 @@ export default {
         { icon: "usdt", name: "USDT" },
         { icon: "btc", name: "BTC" },
         { icon: "eth", name: "ETH" },
-        // { icon: "usdc", name: "USDC" },
+        { icon: "usdc", name: "USDC" },
       ],
       coinIndex: 0,
       showNetList: false,

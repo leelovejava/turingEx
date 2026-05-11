@@ -280,6 +280,7 @@ export default {
     "By participating in spot, contract, financial management and other project transactions through the platform, you can obtain corresponding rule income.",
   zhanghuanquan: "Sicurezza dell 'Account",
   tongyong: "universale",
+  gongdanzhongxin: "Centro ticket",
   bangzhuzhongxin: "centro assistenza",
   gaojirenzheng: "Certificazione Avanzata",
   duochongrenzheng: "autenticazione a più fattori",

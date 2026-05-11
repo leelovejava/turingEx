@@ -5,7 +5,7 @@ function workerOrderList(data) {
 }
 
 function workerOrderCreate(data) {
-  return Axios.fetch("/api/workerOrder!create.action", data);
+  return Axios.postFormData("/api/workerOrder!create.action", data);
 }
 
 function workerOrderDetail(data) {
@@ -13,7 +13,7 @@ function workerOrderDetail(data) {
 }
 
 function workerOrderReply(data) {
-  return Axios.fetch("/api/workerOrder!reply.action", data);
+  return Axios.postFormData("/api/workerOrder!reply.action", data);
 }
 
 export default {

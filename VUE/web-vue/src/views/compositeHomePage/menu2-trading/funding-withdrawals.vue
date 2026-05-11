@@ -10,11 +10,6 @@
         <section>
           <h2>{{ t("m2-fw-s1-t1") }}</h2>
           <p class="text-lg mb-4">{{ t("m2-fw-s1-d1") }}</p>
-          <!-- 二级标题 -->
-          <p class="text-second-title my-4">{{ t("m2-fw-s1-t2") }}</p>
-          <li v-for="(_, i) in list9" :key="i">
-            {{ t(`m2-fw-s1-t2-${i + 1}`) }}
-          </li>
           <h5 class="my-4">{{ t("m2-fw-s1-d2") }}</h5>
           <!-- 重要信息 -->
           <h2 class="my-4">{{ t("m2-fw-s2-t1") }}</h2>
@@ -51,7 +46,6 @@ const { t } = useI18n();
 const questionActive = ref();
 const list3 = Array(3);
 const list5 = Array(5);
-const list9 = Array(9);
 const gotoPage = () => {};
 </script>
 <style lang="scss" scoped>

@@ -41,13 +41,13 @@ export const qianbaoList = [
   //   iconPath: getImages("headIcon/account/cn.png"),
   //   key: "cn",
   // },
-  // 港股
-  {
-    urlPath: "/wallet/hkStocksAccounts",
-    title: "gangguZhanghu",
-    iconPath: getImages("headIcon/account/hk.png"),
-    key: "hk",
-  },
+  // // 港股
+  // {
+  //   urlPath: "/wallet/hkStocksAccounts",
+  //   title: "gangguZhanghu",
+  //   iconPath: getImages("headIcon/account/hk.png"),
+  //   key: "hk",
+  // },
   // // 台股
   // {
   //   urlPath: "/wallet/twStocksAccounts",
@@ -95,11 +95,11 @@ export const dingdanList = [
   //   title: "Agulishi",
   //   iconPath: getImages("headIcon/wallet-menu/cn.png"),
   // },
-  {
-    urlPath: "/order/hkStocksOrder",
-    title: "ganggulishi",
-    iconPath: getImages("headIcon/wallet-menu/hk.png"),
-  },
+  // {
+  //   urlPath: "/order/hkStocksOrder",
+  //   title: "ganggulishi",
+  //   iconPath: getImages("headIcon/wallet-menu/hk.png"),
+  // },
   // {
   //   urlPath: "/order/twStocksOrder",
   //   title: "taigulishi",

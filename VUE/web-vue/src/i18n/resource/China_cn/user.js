@@ -267,6 +267,7 @@ export default {
   "chang13-1": "通过平台参与现货、合约、理财等项目交易，即可获得对应规则收益。",
   zhanghuanquan: "账户安全",
   tongyong: "通用",
+  gongdanzhongxin: "工单中心",
   bangzhuzhongxin: "帮助中心",
   gaojirenzheng: "高级认证",
   duochongrenzheng: "多重验证",

@@ -14,19 +14,11 @@
       <div class="flex">
         <div
           class="item"
-          :class="activeType == 'bank' ? 'item-active' : ''"
-          @click="handleBank"
-        >
-          <img src="@/assets/images/wallet/recharge/bank.png" />
-          <div>{{ t("message.user.yinhangkachongzhi") }}</div>
-        </div>
-        <div
-          class="item"
           :class="activeType == 'usdt' ? 'item-active' : ''"
           @click="handleUsdt"
         >
           <img src="@/assets/images/wallet/recharge/usdt.png" />
-          <div>{{ t("message.user.usdtchongzhi") }}</div>
+          <div>{{ t("message.user.shuzihuobichongzhi") }}</div>
         </div>
       </div>
       <div class="btn-wrapper">
@@ -47,11 +39,8 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 const router = useRouter();
-const activeType = ref("bank");
+const activeType = ref("usdt");
 
-const handleBank = () => {
-  activeType.value = "bank";
-};
 const handleUsdt = () => {
   activeType.value = "usdt";
 };
@@ -70,7 +59,6 @@ const goBack = ()=>{
 <style lang="scss" scoped>
 .page {
   width: 100vw;
-  position: relative;
   .headbg {
     padding: 24px 360px;
     margin: 0 auto;
@@ -79,10 +67,8 @@ const goBack = ()=>{
     font-size: 24px;
   }
   .xcenter {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0 auto;
+    width: fit-content;
+    margin: 24px auto 0;
     .tipbg {
       background: #eff7ff;
       border-radius: 5px;
@@ -114,7 +100,7 @@ const goBack = ()=>{
       color: #000;
     }
     .btn-wrapper {
-      margin-top: 240px;
+      margin-top: 40px;
       .el-button {
         width: 186px;
         height: 48px;

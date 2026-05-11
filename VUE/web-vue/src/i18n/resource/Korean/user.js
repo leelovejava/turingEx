@@ -276,6 +276,7 @@
     "플랫폼을 통해 현물, 계약, 재테크 등 항목의 거래에 참여하면 대응규칙수익을 얻을수 있다.",
   zhanghuanquan: "계정 보안",
   tongyong: "만능인",
+  gongdanzhongxin: "티켓 센터",
   bangzhuzhongxin: "지원 센터",
   gaojirenzheng: "고급 인증",
   duochongrenzheng: "다단계 인증",

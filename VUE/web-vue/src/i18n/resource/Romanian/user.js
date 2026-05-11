@@ -258,6 +258,7 @@ export default {
     "Prin participarea la tranzacționarea proiectelor de numerar, contracte și finanțare de pe platformă, puteți obține venituri conform regulilor corespunzătoare.",
   zhanghuanquan: "Securitatea contului",
   tongyong: "General",
+  gongdanzhongxin: "Centru de tichete",
   bangzhuzhongxin: "Centru de asistență",
   gaojirenzheng: "Verificare avansată",
   duochongrenzheng: "Verificare multiplă",

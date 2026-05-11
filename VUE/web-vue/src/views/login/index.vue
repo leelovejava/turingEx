@@ -34,31 +34,10 @@
           <!-- 登录方式-展示 -->
           <div class="css-15651n7">
             <div class="css-xjlny9">
-              {{
-                changeType == 0
-                  ? t("youxiang")
-                  : changeType == 1
-                  ? t("shoujihao")
-                  : t("zhanghao")
-              }}
-            </div>
-            <!-- 手机号 -->
-            <div class="css-hiy16i" v-if="changeType == 1">
-              <div class="css-4cffwv">
-                <div class="border-countrycode" @click="tansferSelecCoun">
-                  + {{ countryCodeStore.code }}
-                </div>
-                <el-input
-                  autocomplete="off"
-                  class="css-uesmnb"
-                  :placeholder="t('qsr_shoujihao')"
-                  v-model.number="emailPd.account"
-                  clearable
-                />
-              </div>
+              {{ changeType == 0 ? t("youxiang") : t("zhanghao") }}
             </div>
             <!-- 邮箱 -->
-            <div class="css-hiy16i" v-else-if="changeType == 0">
+            <div class="css-hiy16i" v-if="changeType == 0">
               <el-input
                 autocomplete="off"
                 type="email"
@@ -71,7 +50,7 @@
               </el-input>
             </div>
             <!-- 账号 -->
-            <div class="css-hiy16i" v-else-if="changeType == 2">
+            <div class="css-hiy16i" v-else>
               <el-input
                 autocomplete="off"
                 type="email"
@@ -131,7 +110,6 @@
           </div>
 
           <Forgot />
-          <selector-country ref="selectCountryRef" />
         </div>
       </div>
     </div>
@@ -140,22 +118,18 @@
 <script setup>
 import Axios from "@/api/login.js";
 import Forgot from "./components/Forgotpwd.vue";
-import selectorCountry from "./components/selecterPup.vue";
 import { ElMessage } from "element-plus";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
 import { useUserStore } from "@/store/user";
-import { useCountryCodeStore } from "@/store/countryCode";
 import { setStorage } from "@/utils/index";
 
 const { t } = useI18n();
 const userStore = useUserStore();
-const countryCodeStore = useCountryCodeStore();
 const router = useRouter();
-const arrType = [t("youxiang"), t("shoujihao"), t("zhanghao")];
-const changeType = ref(2);
+const arrType = [t("youxiang"), t("zhanghao")];
+const changeType = ref(1);
 const showverify = ref(false);
-const selectCountryRef = ref(null);
 const emailPd = ref({
   email: "",
   pwd: "",
@@ -164,9 +138,6 @@ const emailPd = ref({
 
 const goRouter = (parmas) => {
   router.push(parmas);
-};
-const tansferSelecCoun = () => {
-  selectCountryRef.value.isShow();
 };
 const forgotPwd = () => {
   router.push({
@@ -177,24 +148,13 @@ const forgotPwd = () => {
 const changeTypeCk = (val) => {
   changeType.value = val;
   showverify.value = false;
-  countryCodeStore.resetCountry();
-  emailPd.value = {
-    email: "",
-    pwd: "",
-    account: "",
-  };
+  emailPd.value = { email: "", pwd: "", account: "" };
 };
 // 登录
 const loginForm = () => {
   const { account, pwd } = emailPd.value;
-  let data = {
-    username: account,
-    password: pwd,
-  };
+  const data = { username: account, password: pwd };
   showverify.value = true;
-  if (changeType.value == 1) {
-    data = { username: countryCodeStore.code + account, password: pwd };
-  }
   if (data.username && data.password) {
     Axios.login({
       ...data,

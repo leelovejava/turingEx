@@ -257,6 +257,7 @@ export default {
     "Participando das negociações de projetos como spot, contratos e investimentos, os usuários podem obter retornos de acordo com as regras correspondentes.",
   zhanghuanquan: "Segurança da Conta",
   tongyong: "Geral",
+  gongdanzhongxin: "Central de tickets",
   bangzhuzhongxin: "Centro de Ajuda",
   gaojirenzheng: "Verificação Avançada",
   duochongrenzheng: "Verificação Múltipla",

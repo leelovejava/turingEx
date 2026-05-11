@@ -2,66 +2,6 @@
   <div>
     <common-header v-if="route.meta.commonHeader"></common-header>
     <router-view />
-    <!-- 客服 -->
-    <div v-if="!show_kefu" class="service-box">
-      <img
-        src="@/assets/images/exchangeHome/service1.png"
-        alt=""
-        width="60"
-        height="60"
-        @click="changeChatShow(true)"
-      />
-    </div>
-    <!-- serviceUrl客服接口返回的地址 如果没有就用Chat组件默认客服 有就使用iframe嵌套serviceUrl地址 -->
-    <div v-if="serviceUrl"> 
-      <div v-if="show_kefu" class="kefu" style="z-index: 999999">
-        <VueDragResize
-          :isActive="true"
-          :w="500"
-          :h="620"
-          v-on:resizing="resize"
-          class="kefu-tuozhuai"
-          @click="activateEv"
-          :isResizable="false"
-          v-on:dragging="resize"
-        >
-          <div class="kefu-title">
-            <span>{{ $t("message.home.home43") }}</span>
-            <img
-              src="@/assets/images/exchangeHome/Group609.png"
-              @click="() => changeChatShow(false)"
-            />
-          </div>
-          <iframe :src="serviceUrl" width="500" height="600" frameborder="0"></iframe>
-        </VueDragResize>
-      </div>
-    </div>
-    <div v-else>
-      <div v-if="show_kefu" class="kefu" style="z-index: 999999">
-        <VueDragResize
-          :isActive="true"
-          :w="432"
-          :h="620"
-          v-on:resizing="resize"
-          class="kefu-tuozhuai"
-          @click="activateEv"
-          :isResizable="false"
-          v-on:dragging="resize"
-        >
-          <div class="kefu-title">
-            <span>{{ $t("message.home.home43") }}</span>
-            <img
-              src="@/assets/images/exchangeHome/Group609.png"
-              @click="() => changeChatShow(false)"
-            />
-          </div>
-          <iframe src="" frameborder="0"></iframe>
-          <div class="kegu-nrkegu-nr">
-            <Chat ref="chatRef" />
-          </div>
-        </VueDragResize>
-      </div>
-    </div>
   </div>
 </template>
 

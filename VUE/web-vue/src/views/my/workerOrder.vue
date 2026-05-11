@@ -18,7 +18,7 @@
       </el-table-column>
       <el-table-column label="操作" width="120">
         <template #default="{ row }">
-          <el-button link type="primary" @click="openDetail(row)">详情</el-button>
+          <span class="detail-link" @click="openDetail(row)">详情</span>
         </template>
       </el-table-column>
     </el-table>
@@ -145,7 +145,11 @@ export default {
     },
     openDetail(row) {
       workerOrderApi.workerOrderDetail({ order_id: row.id }).then((res) => {
-        this.detail = res.data || { order: null, contents: [] };
+        const data = res.data || res || {};
+        this.detail = {
+          order: data.order || row,
+          contents: data.contents || data.records || [],
+        };
         this.replyContent = "";
         this.detailVisible = true;
       });
@@ -172,8 +176,12 @@ export default {
 </script>
 
 <style scoped>
+.right-padding {
+  padding: 32px 40px;
+}
 .toolbar {
-  margin-bottom: 16px;
+  margin-top: 16px;
+  margin-bottom: 24px;
 }
 .pager {
   margin-top: 16px;
@@ -206,6 +214,13 @@ export default {
 }
 .reply-form {
   margin-top: 8px;
+}
+.detail-link {
+  color: #2465f1;
+  cursor: pointer;
+}
+.detail-link:hover {
+  text-decoration: underline;
 }
 </style>
 

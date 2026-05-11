@@ -9,7 +9,7 @@
         {{
           type === "bank"
             ? $t("message.user.BankCarddeposit")
-            : $t("message.user.usdtchongzhi")
+            : $t("message.user.shuzihuobichongzhi")
         }}
       </div>
       <div class="service" v-if="!chatShow">
@@ -30,7 +30,7 @@
           />
           <div class="main-info">
             <p class="font-semibold mb-4">
-              {{ $t("message.user.usdtchongzhi") }}
+              {{ $t("message.user.shuzihuobichongzhi") }}
             </p>
             <div class="total">
               <div class="t-box">

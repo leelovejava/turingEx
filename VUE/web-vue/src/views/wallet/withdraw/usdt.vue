@@ -509,8 +509,9 @@ export default {
       listTitle: this.$t("message.user.xian30"),
       coinList: [
         { icon: "usdt", name: "USDT", min: 10 },
-        // { icon: "btc", name: "BTC", min: 0.0000094 },
-        // { icon: "eth", name: "ETH", min: 0.000094 },
+        { icon: "btc", name: "BTC", min: 0.0000094 },
+        { icon: "eth", name: "ETH", min: 0.000094 },
+        { icon: "usdc", name: "USDC", min: 10 },
       ], //币种
       biChooseIndex: 0,
       m_menuchoose: 0,
