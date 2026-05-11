@@ -95,12 +95,11 @@ public class UserDataServiceImpl extends ServiceImpl<UserDataMapper, UserData> i
     }
 
     private UserData findBydate(String userId, Date date) {
-
         Date startDate = DateUtil.minDate(date);
-        ;
         Date endDate = DateUtil.maxDate(date);
-        return getOne(Wrappers.<UserData>query().lambda().between(UserData::getCreateTime, startDate, endDate)
+        List<UserData> list = list(Wrappers.<UserData>query().lambda().between(UserData::getCreateTime, startDate, endDate)
                 .eq(UserData::getUserId, userId));
+        return list.isEmpty() ? null : list.get(0);
     }
 
     @Override
