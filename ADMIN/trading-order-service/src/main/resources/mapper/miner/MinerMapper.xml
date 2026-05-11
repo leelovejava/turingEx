@@ -4,7 +4,7 @@
 
     <select id="pagedQuery" resultType="java.util.HashMap">
         SELECT miner.uuid id,miner.name name,miner.name_en name_en,miner.name_cn name_cn,
-            miner.img img,miner.cycle cycle,miner.cycle_close cycle_close,miner.show_daily_rate show_daily_rate  ,
+            miner.img img,miner.cycle cycle,miner.cycle_close cycle_close,miner.show_daily_rate show_daily_rate,miner.show_daily_rate_start show_daily_rate_start,miner.show_daily_rate_end show_daily_rate_end,
             miner.daily_rate daily_rate  ,miner.state state,miner.on_sale on_sale,miner.test test,miner.investment_min investment_min,
             miner.investment_max investment_max, miner.buy_currency, miner.output_currency FROM t_miner miner WHERE 1 = 1
         <if test="name_para!=null and name_para!=''">

@@ -26,32 +26,21 @@
           </div>
 
           <div class="css-vurnku">
-            <!-- 1. 输入手机/邮箱/账户 -->
+            <!-- 1. 输入邮箱/账户 -->
             <div value="" class="css-15651n7">
               <div class="css-xjlny9">
                 {{
                   recordActive == 0
-                    ? t("shoujihao")
-                    : recordActive == 1
                     ? t("youxiang")
                     : t("zhanghao")
                 }}
               </div>
               <!-- 选择区号 -->
               <div class="css-hiy16i">
-                <div
-                  v-if="recordActive == 0"
-                  class="border-countrycode"
-                  @click="tansferSelecCoun"
-                >
-                  + {{ countryCodeStore.code }}
-                </div>
 
                 <el-input
                   :placeholder="
                     recordActive == 0
-                      ? t('qsr_shoujihao')
-                      : recordActive == 1
                       ? t('qsr_youxiang')
                       : t('qsr_zhanghao6wei')
                   "
@@ -124,7 +113,7 @@
             <!-- 6.验证码 Verification code -->
             <div
               class="css-15651n7"
-              v-if="recordActive == 0 || recordActive == 1"
+              v-if="recordActive == 0"
             >
               <div class="css-xjlny9">
                 {{ t("yanzhengma") }}
@@ -160,7 +149,6 @@
           </div>
         </div>
       </div>
-      <selector-country ref="selectCountryRef" />
       <verificat ref="ImageVerRef" />
     </main>
   </div>
@@ -173,31 +161,26 @@ import { ElMessage } from "element-plus";
 import verificat from "./components/ImageVerificat.vue";
 import Steps from "./components/steps.vue";
 import { useUserStore } from "@/store/user";
-import selectorCountry from "./components/selecterPup.vue";
-
 import { useRouter } from "vue-router";
-import { useCountryCodeStore } from "@/store/countryCode";
 import { setStorage,getStorage } from "@/utils/index";
 import {onMounted,onUnmounted} from "vue"
 
 const router = useRouter();
-const countryCodeStore = useCountryCodeStore();
 const userStore = useUserStore();
 const { t } = useI18n();
-const funcArr = [t("shoujihao"), t("youxiang"), t("zhanghao")];
+const funcArr = [t("youxiang"), t("zhanghao")];
 const register = ref({
   username: "",
   password: "",
   verifcode: "",
   usercode: "",
   safeword: "",
-  type: "1", //手机1，邮箱2,传接口用的
+  type: "2", //邮箱2,传接口用的
 });
-const selectCountryRef = ref(null);
 const ImageVerRef = ref(null);
 const isDisabaled = ref(false);
-const type = ref("");
-const recordActive = ref(2); //注册方式
+const type = ref("2");
+const recordActive = ref(1); //注册方式 0=邮箱 1=账户
 const VeriCode = ref(t("message.user.huoquyanzhengma"));
 const subPwd = ref("");
 
@@ -210,9 +193,7 @@ onMounted(() => {
 const clickChange = (index) => {
   recordActive.value = index;
   if (index == 0) {
-    type.value = 1;
-  } else if (index == 1) {
-    type.value = 2;
+    type.value = 2; // 邮箱
   }
   register.value = {
     username: "",
@@ -223,24 +204,10 @@ const clickChange = (index) => {
   };
   subPwd.value = "";
 };
-// 获取手机号前缀
-const tansferSelecCoun = () => {
-  selectCountryRef.value.isShow();
-};
 const verifyEmailNoPass = () => {
   let emailReg = /[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/;
-  // 验证邮箱
-  if (recordActive.value == 1 && !emailReg.test(register.value.username)) {
+  if (recordActive.value == 0 && !emailReg.test(register.value.username)) {
     ElMessage.error(t("qsr_zhengquedeyouxiang"));
-    return true;
-  }
-  return false;
-};
-const verifyPhoneNoPass = () => {
-  let numReg = /^([0-9]\d*)$/;
-  // 验证手机号
-  if (recordActive.value == 0 && !numReg.test(register.value.username)) {
-    ElMessage.error(t("shoujihaozhinengshurushuzi"));
     return true;
   }
   return false;
@@ -251,16 +218,11 @@ const handleRegisters = () => {
   const { username, password, verifcode, safeword, usercode } = register.value;
 
   if (recordActive.value === 0 && !username) {
-    ElMessage.error(t("qsr_shoujihao"));
-    return;
-  }
-
-  if (recordActive.value === 1 && !username) {
     ElMessage.error(t("qsr_youxiang"));
     return;
   }
 
-  if (recordActive.value === 2 && !username) {
+  if (recordActive.value === 1 && !username) {
     ElMessage.error(t("qsr_zhanghao"));
     return;
   }
@@ -275,19 +237,17 @@ const handleRegisters = () => {
     return;
   }
 
-  if ([0, 1].includes(recordActive.value) && !verifcode) {
+  if (recordActive.value === 0 && !verifcode) {
     ElMessage.error(t("qsr_yanzhengma"));
     return;
   }
 
-  // 以上为验证不为空
   // 以下验证数据对不对
-  // 此处还要验证一下邮箱和手机号，因为有可能用户随便输入的验证码
-  if (verifyPhoneNoPass() || verifyEmailNoPass()) {
+  if (verifyEmailNoPass()) {
     return;
   }
   // 验证账户长度
-  if (recordActive.value == 2 && username.length < 6) {
+  if (recordActive.value == 1 && username.length < 6) {
     ElMessage.error(t("qsr_zhanghao6wei"));
     return;
   }
@@ -304,11 +264,9 @@ const handleRegisters = () => {
   }
 
   if (subPwd.value == password) {
-    const account =
-      recordActive.value == 0 ? countryCodeStore.code + username : username;
-    if ([0, 1].includes(recordActive.value)) {
+    if (recordActive.value === 0) {
       Axios.resgister({
-        username: account,
+        username,
         password,
         verifcode,
         usercode,
@@ -324,7 +282,7 @@ const handleRegisters = () => {
           router.push("/idSet"); //去实名认证
         }
       });
-    } else if (recordActive.value == 2) {
+    } else if (recordActive.value == 1) {
       Axios.imageVerifica().then((res) => {
         if (res.code == "0") {
           ImageVerRef.value.isShowFunc(res.data, {
@@ -345,11 +303,11 @@ const goLogin = () => {
 };
 
 const timer = ref(null);
-// 获取验证码，做手机号和邮箱验证
+// 获取验证码，邮箱验证
 const getVerifcode = () => {
   const { username } = register.value;
   if (username != "") {
-    if (verifyPhoneNoPass() || verifyEmailNoPass()) {
+    if (verifyEmailNoPass()) {
       return;
     }
 
@@ -365,10 +323,8 @@ const getVerifcode = () => {
       }
     }, 1000);
 
-    const target =
-      recordActive.value == 0 ? countryCodeStore.code + username : username;
     Axios.getVeriCode({
-      target,
+      target: username,
       areacode: "",
     }).then((res) => {
       if (res.code == "0") {
@@ -376,12 +332,7 @@ const getVerifcode = () => {
       }
     });
   } else {
-    const tip =
-      recordActive.value == 0
-        ? t("shoujihaobunengweikong")
-        : t("youxiangbunengweikong");
-
-    ElMessage.error(tip);
+    ElMessage.error(t("youxiangbunengweikong"));
   }
 };
 

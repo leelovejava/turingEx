@@ -88,23 +88,6 @@ const langSelectRef = ref(null);
 
 let leftMenuList = computed(()=>[
   {
-    title: "yijianmaibi", // 一键买币
-    menuList: [
-      {
-        iconPath: getImages("headIcon/left-menu/fast-maimai.png"),
-        urlPath: "/c2c/fastBuy",
-        title: "dibu11",
-        desc: "yijianmaimai_1",
-      },
-      {
-        iconPath: getImages("headIcon/left-menu/free-maimai.png"),
-        urlPath: "/c2c/wantBuy",
-        title: "ziyoujiaoyi",
-        desc: "ziyoujiaoyi_1",
-      },
-    ],
-  },
-  {
     title: "shichang", //市场
     url: "/market",
   },
@@ -156,18 +139,6 @@ let leftMenuList = computed(()=>[
   //     ),
   //   ],
   // },
-  {
-    title: "ganggu", // 港股和美股一样
-    menuList: [
-      ...contractList(
-        `/hkStocks/constract/${currencyStore.hkStocksCurrency[0]?.symbol}`
-      ),
-      ...spotList(
-        `/hkStocks/spot/${currencyStore.hkStocksCurrency[0]?.symbol}`,
-        "ganggujiaoyi"
-      ),
-    ],
-  },
   // {
   //   title: "taigu", // 台股和美股一样
   //   menuList: [

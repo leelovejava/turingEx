@@ -9,7 +9,7 @@ import java.util.Map;
  * <p>Description: 邮件消息类 </p>
  */
 public class EmailMessage implements Serializable{
-	private static final long serialVersionUID = 3402051115688556553L;
+	private static final long serialVersionUID = 1L;
 
 	/**
      * 目标邮件地址

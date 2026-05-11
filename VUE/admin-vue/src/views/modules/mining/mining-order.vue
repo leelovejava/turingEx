@@ -91,6 +91,11 @@
         </el-table-column>
         <el-table-column prop="startTime" label="开始时间"></el-table-column>
         <el-table-column prop="endTime" label="结束时间"></el-table-column>
+        <el-table-column label="操作" width="120">
+          <template slot-scope="scope">
+            <el-button type="text" size="small" @click="editIncomeHandle(scope.row)">修改收益</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <div style="margin-top: 16px; text-align: right;">
         <el-pagination
@@ -102,6 +107,17 @@
         >
         </el-pagination>
       </div>
+    </el-dialog>
+    <el-dialog title="修改收益" :visible.sync="editIncomeVisible" width="400px">
+      <el-form>
+        <el-form-item label="收益">
+          <el-input v-model="editIncomeValue" type="number"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer">
+        <el-button @click="editIncomeVisible = false">取消</el-button>
+        <el-button type="primary" @click="submitEditIncome">确定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
@@ -125,6 +141,9 @@ export default {
       incomeLoading: false,
       incomeList: [],
       currentIncomeOrderId: "",
+      editIncomeVisible: false,
+      editIncomeValue: "",
+      editIncomeRow: null,
       incomePage: {
         total: 0,
         currentPage: 1,
@@ -386,6 +405,26 @@ export default {
           });
         })
         .catch(() => {});
+    },
+    editIncomeHandle(row) {
+      this.editIncomeRow = row;
+      this.editIncomeValue = row.income;
+      this.editIncomeVisible = true;
+    },
+    submitEditIncome() {
+      this.$http({
+        url: this.$http.adornUrl("/normal/adminMinerOrderAction!updateIncome.action"),
+        method: "get",
+        params: this.$http.adornParams({ id: this.editIncomeRow.id, income: this.editIncomeValue }),
+      }).then(({ data }) => {
+        if (data.code == 0) {
+          this.editIncomeVisible = false;
+          this.$message({ message: "操作成功", type: "success", duration: 1500 });
+          this.getIncomeList();
+        } else {
+          this.$message({ message: data.msg, type: "error", duration: 1500 });
+        }
+      });
     },
     // 刷新回调用
     refreshChange () {

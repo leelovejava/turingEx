@@ -297,6 +297,30 @@ public class AdminMinerOrderController {
 		return null;
 	}
 	
+	/**
+	 * 修改单条收益记录
+	 */
+	@RequestMapping(action + "updateIncome.action")
+	public Result updateIncome(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String income = request.getParameter("income");
+		try {
+			if (StringUtils.isEmptyString(id) || StringUtils.isEmptyString(income)) {
+				return Result.failed("参数错误");
+			}
+			QuantPreIncome record = quantPreIncomeService.getById(Integer.parseInt(id));
+			if (record == null) {
+				return Result.failed("记录不存在");
+			}
+			record.setIncome(Double.parseDouble(income));
+			quantPreIncomeService.updateById(record);
+			return Result.ok("操作成功");
+		} catch (Exception e) {
+			logger.error("updateIncome error", e);
+			return Result.failed("程序错误");
+		}
+	}
+
 	@RequestMapping(action + "addProfit.action")
 	public Result addProfit(HttpServletRequest request) {
 		String message = "";
