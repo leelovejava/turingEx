@@ -8,6 +8,7 @@ import com.yami.trading.huobi.data.AdjustmentValueCache;
 import com.yami.trading.huobi.data.model.AdjustmentValue;
 import com.yami.trading.service.data.DataService;
 import com.yami.trading.service.item.ItemService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,7 @@ import java.util.concurrent.*;
  * 
  * @author System
  */
+@Slf4j
 @Component
 public class AdjustmentValueServiceImpl implements AdjustmentValueService {
     private static final ScheduledExecutorService CLEAR_EXECUTOR = Executors.newScheduledThreadPool(1);
@@ -145,10 +147,15 @@ public class AdjustmentValueServiceImpl implements AdjustmentValueService {
             item.setAdjustmentDurationSecond(durationSecond == null ? 0D : durationSecond);
             itemService.saveOrUpdate(item);
         }
-        scheduleClear(symbol, durationSecond);
+        if (second > 0 && durationSecond != null && durationSecond > 0) {
+            // 插针模式：等插针分批应用完毕后再开始计时，由 handleRealTimeList 触发
+            AdjustmentValueCache.getPendingDurationSecond().put(symbol, durationSecond);
+        } else {
+            scheduleClear(symbol, durationSecond);
+        }
     }
 
-    private void scheduleClear(String symbol, Double durationSecond) {
+    public void scheduleClear(String symbol, Double durationSecond) {
         if (durationSecond == null || durationSecond <= 0) {
             ScheduledFuture<?> old = CLEAR_TASKS.remove(symbol);
             if (old != null) {
@@ -161,16 +168,21 @@ public class AdjustmentValueServiceImpl implements AdjustmentValueService {
             old.cancel(false);
         }
         long delayMs = (long) (durationSecond * 1000);
+        log.info("[scheduleClear] 品种={}, 持续时间={}秒, 将在{}ms后清除调整值", symbol, durationSecond, delayMs);
         ScheduledFuture<?> task = CLEAR_EXECUTOR.schedule(() -> {
             try {
+                log.info("[scheduleClear] 品种={}, 定时器触发, 开始清除调整值", symbol);
                 AdjustmentValueCache.getCurrentValue().put(symbol, 0D);
                 AdjustmentValueCache.getDelayValue().remove(symbol);
                 Item item = this.itemService.findBySymbol(symbol);
-                if (item != null && (item.getAdjustmentValue() != 0D || item.getAdjustmentDurationSecond() != 0D)) {
+                if (item != null) {
                     item.setAdjustmentValue(0D);
                     item.setAdjustmentDurationSecond(0D);
                     itemService.saveOrUpdate(item);
                 }
+                log.info("[scheduleClear] 品种={}, 调整值已清除", symbol);
+            } catch (Exception e) {
+                log.error("[scheduleClear] 品种={}, 清除调整值异常", symbol, e);
             } finally {
                 CLEAR_TASKS.remove(symbol);
             }

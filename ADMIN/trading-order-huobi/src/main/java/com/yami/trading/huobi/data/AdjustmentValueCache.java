@@ -44,21 +44,22 @@ public class AdjustmentValueCache {
     private static volatile Map<String, AdjustmentValue> delayValue = new ConcurrentHashMap();
 
     /**
-     * 获取当前生效的调整值缓存
-     * 
-     * @return 当前调整值缓存Map
+     * 插针应用完毕后需要执行的持续时间（秒）缓存
+     * Key: 交易品种代码
+     * Value: 持续时间（秒），插针分批应用完成后开始计时
      */
+    private static volatile Map<String, Double> pendingDurationSecond = new ConcurrentHashMap();
+
     public static Map<String, Double> getCurrentValue() {
         return currentValue;
     }
 
-    /**
-     * 获取延时生效的调整值缓存
-     * 
-     * @return 延时调整值缓存Map
-     */
     public static Map<String, AdjustmentValue> getDelayValue() {
         return delayValue;
+    }
+
+    public static Map<String, Double> getPendingDurationSecond() {
+        return pendingDurationSecond;
     }
 
 }

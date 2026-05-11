@@ -7,6 +7,7 @@ import com.yami.trading.bean.item.domain.Item;
 import com.yami.trading.common.util.Arith;
 import com.yami.trading.huobi.data.AdjustmentValueCache;
 import com.yami.trading.huobi.data.DataCache;
+import com.yami.trading.huobi.data.internal.AdjustmentValueService;
 import com.yami.trading.huobi.data.internal.DataDBService;
 import com.yami.trading.huobi.data.model.AdjustmentValue;
 import com.yami.trading.huobi.hobi.HobiDataService;
@@ -79,6 +80,9 @@ public abstract class AbstractGetDataJob implements Runnable {
      */
     @Autowired
     protected ItemService itemService;
+
+    @Autowired
+    protected AdjustmentValueService adjustmentValueService;
 
     /**
      * 启动数据采集任务
@@ -172,6 +176,11 @@ public abstract class AbstractGetDataJob implements Runnable {
                         
                         // 从延时缓存中移除该调整值,表示已完成
                         AdjustmentValueCache.getDelayValue().remove(symbol);
+                        // 插针应用完毕，若有待触发的持续时间，现在开始计时
+                        Double pendingDuration = AdjustmentValueCache.getPendingDurationSecond().remove(symbol);
+                        if (pendingDuration != null && pendingDuration > 0) {
+                            adjustmentValueService.scheduleClear(symbol, pendingDuration);
+                        }
                     } else {
                         // ========== 分批调整:计算本次应应用的调整值 ==========
                         double currentValueFrequency = BigDecimal.valueOf(delayValue.getValue() / frequency)
