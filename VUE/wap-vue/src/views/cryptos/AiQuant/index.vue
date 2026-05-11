@@ -190,10 +190,9 @@ function goBackQuotes() {
   router.push('/quotes/index?tabActive=0')
 }
 
-// 跳转收益列表页（取第一条活跃订单）
-function goEarnings() {
-  const first = myAiOrders.value[0]
-  if (first) router.push('/cryptos/aiQuant/earnings/' + first.order_no + '/income')
+// 跳转收益列表页
+function goEarnings(orderNo) {
+  if (orderNo) router.push('/cryptos/aiQuant/earnings/' + orderNo + '/income')
 }
 
 // 跳转我的AI持仓详情页
@@ -316,12 +315,13 @@ async function openDeposit(strategy) {
 
 // 确认认购：先调 getOpen 获取 session_token，再调 open 实际下单
 async function onConfirmDeposit() {
-  const preview = await machineMakeOrder({ minerId: currentMinerId.value, amount: amount.value })
+  const preview = await machineMakeOrder({ minerId: currentMinerId.value, amount: amount.value, cycle: periodDays.value })
   await confirmMichineOrder({
     session_token: preview?.session_token,
     minerId: currentMinerId.value,
     amount: amount.value,
     symbol: currentSymbol.value,
+    cycle: periodDays.value,
   })
   depositOpen.value = false
   showToast({ message: t('aiQuantSubmitOk'), position: 'middle' })
