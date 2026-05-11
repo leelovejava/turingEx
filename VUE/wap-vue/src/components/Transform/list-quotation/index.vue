@@ -55,7 +55,7 @@
                 <p class="text-24 text-grey">{{ currency.currency_symbol }} {{ item.close && symbolUpper(item.symbol) == 'SHIB' ? (item.close * currency.rate).toFixed(8) : (item.close * currency.rate).toFixed(2) || '--' }}</p>
               </li>
               <li class="right flex items-center justify-end text-right">
-                <div v-if="active == 3" class="textColor w-162 font-bold text-24">{{ (item.volume * 1).toFixed(2) }}</div>
+                <div v-if="active == 3" class="textColor font-bold text-24" style="white-space:nowrap">{{ formatVolume(item.volume) }}</div>
                 <template v-else>
                   <p class="text-32 text-right pct-up" v-if="item.changeRatio > 0">▲ +{{ item.changeRatio }}%</p>
                   <p class="text-32 text-right pct-down" v-else>▼ {{ item.changeRatio || (item.changeRatio === 0 ? 0 : '--') }}%</p>
@@ -109,6 +109,13 @@ export default {
       return symbol ? String(symbol).toUpperCase() : '--'
     },
     handleImage(url) { return new URL(url, import.meta.url).href },
+    formatVolume(val) {
+      const n = val * 1
+      if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B'
+      if (n >= 1e6) return (n / 1e6).toFixed(2) + 'M'
+      if (n >= 1e3) return (n / 1e3).toFixed(2) + 'K'
+      return n.toFixed(2)
+    },
     onTabs(val) {
       this.type = this.active < val ? 'right' : 'left'
       this.active = val
@@ -151,8 +158,8 @@ export default {
   }
 
   .left { width: 52%; min-width: 0; }
-  .mid { width: 26%; min-width: 92px; }
-  .right { width: 22%; min-width: 100px; text-align: right; }
+  .mid { width: 26%; min-width: 92px; overflow: hidden; }
+  .right { width: 22%; min-width: 100px; text-align: right; overflow: hidden; }
 
   .row-card {
     background: rgba(29, 36, 55, 0.92);
