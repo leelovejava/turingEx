@@ -151,7 +151,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         // 检查用户是否已购买过体验矿机（体验矿机每人仅能购买一次）
         if (miner.getTest().equals("Y") && this.findByTest(partyId)) {
             // 您已购买过体验矿机,不得重复购买
-            throw new BusinessException("You have already purchased the experience mining machine, cannot purchase again");
+            throw new BusinessException("You have already purchased the experience AI quant, cannot purchase again");
         }
 
         // 买入金额需要在区间内（非体验矿机）
@@ -333,7 +333,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 //		entity.setCycle(miner.getCycle());
 
         if (miner.getTest().equals("Y") && this.findByTest(entity.getPartyId().toString())) {// 买过体验机则
-            throw new BusinessException("您已购买过体验矿机,不得重复购买");
+            throw new BusinessException("您已购买过体验AI量化,不得重复购买");
         }
         /**
          * 买入金额需要在区间内
