@@ -22,6 +22,10 @@ import software.amazon.awssdk.services.s3.waiters.S3Waiter;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -30,6 +34,12 @@ import java.util.*;
 public class AwsS3OSSFileServiceImpl implements AwsS3OSSFileService {
     @Value("${oss.aws.s3.bucketName}")
     private String bucketName;
+
+    @Value("${oss.file.base-path}")
+    private String fileBasePath;
+
+    @Value("${oss.file.domain}")
+    private String fileDomain;
 
     private final S3Client s3;
 
@@ -125,22 +135,7 @@ public class AwsS3OSSFileServiceImpl implements AwsS3OSSFileService {
         if (keyName.startsWith("https")){
             return  keyName;
         }
-        log.debug("AwsS3OSSFileService getURL bucketName:{},keyName:{}", bucketName, keyName);
-        try {
-            S3Client s3Client = getS3Client();
-            GetUrlRequest request = GetUrlRequest.builder()
-                    .bucket(bucketName)
-                    .key(keyName)
-                    .build();
-            URL url = s3Client.utilities().getUrl(request);
-            if (url != null) {
-                return url.toString();
-            }
-            log.info("The URL for  " + keyName + " is " + url);
-        } catch (S3Exception e) {
-            log.error("AwsS3OSSFileService getURL Exception", e.getMessage(), e.awsErrorDetails().errorMessage(), e);
-        }
-        return "";
+        return fileDomain + "/" + keyName;
     }
 
     /**
@@ -150,34 +145,47 @@ public class AwsS3OSSFileServiceImpl implements AwsS3OSSFileService {
      */
     @Override
     public String uploadFile(String moduleName, MultipartFile file) {
-        // 兼容c端组件上传原理
         String fileType = file.getOriginalFilename();
         if (StrUtil.isEmpty(fileType) || fileType.contains("blob")) {
             fileType = "blob.png";
         }
         String id = UUID.randomUUID().toString();
         String path = moduleName + "/" + LocalDate.now() + "/" + id + fileType;
-        log.info("AwsS3OSSFileService putS3Object bucketName:{},objectKey:{},objectPath:{}", bucketName, path, file.getName());
+        String fullPath = fileBasePath + "/" + path;
+        log.info("Local file upload base-path:{}, path:{}, fullPath:{}", fileBasePath, path, fullPath);
         try {
-            Map<String, String> metadata = new HashMap<>();
-            metadata.put("x-amz-meta-myVal", "test");
-            PutObjectRequest putOb = PutObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(path)
-                    .metadata(metadata)
-                    .build();
-            S3Client s3Client = getS3Client();
-            long start = System.currentTimeMillis();
-            s3Client.putObject(putOb, RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
-            long end = System.currentTimeMillis();
-            log.info("s3 上传文件耗时:{}", end-start);
+            Path dirPath = Paths.get(fileBasePath, moduleName, LocalDate.now().toString());
+            if (!Files.exists(dirPath)) {
+                log.info("Creating directory: {}", dirPath);
+                Files.createDirectories(dirPath);
+                // 设置权限（仅在Linux/Unix环境下）
+                setPosixPermissions(dirPath);
+            }
+            Path filePath = Paths.get(fullPath);
+            file.transferTo(filePath.toFile());
+            // 设置文件权限（仅在Linux/Unix环境下）
+            setPosixPermissions(filePath);
+            log.info("Local file upload success, file size:{}, path:{}", file.getSize(), fullPath);
             return path;
-        } catch (S3Exception e) {
-            log.error("AwsS3OSSFileService putS3Object S3Exception: {}, {}", e.getMessage(), e.awsErrorDetails().errorMessage(), e);
-            throw new YamiShopBindException("文件上传失败");
         } catch (Exception e) {
-            log.error("AwsS3OSSFileService putS3Object Exception", e);
-            throw new YamiShopBindException("文件上传失败");
+            log.error("Local file upload failed", e);
+            throw new YamiShopBindException("文件上传失败: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 设置Posix文件权限（仅Linux/Unix环境）
+     */
+    private void setPosixPermissions(Path path) {
+        try {
+            // 检测是否支持Posix
+            String osName = System.getProperty("os.name").toLowerCase();
+            if (!osName.contains("win")) {
+                log.info("Setting Posix permissions for: {}", path);
+                Files.setPosixFilePermissions(path, PosixFilePermissions.fromString("rwxr-xr-x"));
+            }
+        } catch (Exception e) {
+            log.warn("Failed to set Posix permissions: {}", e.getMessage());
         }
     }
 //    /**
