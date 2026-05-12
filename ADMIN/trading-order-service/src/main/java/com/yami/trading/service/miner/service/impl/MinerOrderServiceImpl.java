@@ -196,8 +196,8 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
                 }
             }
 
-            // 体验矿机固定金额为100U
-            entity.setAmount(100.0);
+            // 体验矿机固定金额为300U
+            entity.setAmount(300.0);
 
             // 体验矿机当天即可开始计息（不需要等第二天）
             entity.setEarn_time(DateUtils.getDayStart(new Date()));
