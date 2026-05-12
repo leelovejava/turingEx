@@ -93,6 +93,15 @@ export const _getUserNameVerifTarget = (params) => {
     })
 };
 
+//发送验证码
+export const _sendVerifCode = (params) => {
+    return request({
+        url: `${API_PREFIX}/user/sendCode`,
+        method: METHODS.POST,
+        data: params
+    })
+};
+
 
 //获取谷歌验证器绑定信息
 export const _getGoogleauth = (params) => {

@@ -150,6 +150,7 @@ public class AwsS3OSSFileServiceImpl implements AwsS3OSSFileService {
             fileType = "blob.png";
         }
         String id = UUID.randomUUID().toString();
+        if (StrUtil.isEmpty(moduleName)) moduleName = "common";
         String path = moduleName + "/" + LocalDate.now() + "/" + id + fileType;
         String fullPath = fileBasePath + "/" + path;
         log.info("Local file upload base-path:{}, path:{}, fullPath:{}", fileBasePath, path, fullPath);

@@ -733,11 +733,6 @@ const routes = [
         name: 'verify',
         component: () => import(/* webpackChunkName: "verify" */ '@/views/register/verify.vue')
       },
-      { //设置资金密码
-        path: '/setFond',
-        name: 'setFond',
-        component: () => import(/* webpackChunkName: "setFond" */ '@/views/register/setFond.vue')
-      },
       { //注册身份认证
         path: '/identity',
         name: 'identity',

@@ -97,6 +97,8 @@ public class ApiUserController {
     LogService logService;
     @Autowired
     QRGenerateService qrGenerateService;
+    @Autowired
+    com.yami.trading.service.IdentifyingCodeService identifyingCodeService;
 
     /**
      * 用户名登录接口
@@ -199,11 +201,12 @@ public class ApiUserController {
             throw new YamiShopBindException(error);
         }
         if (StringUtils.isEmptyString(safeword)) {
-// 资金密码不能为空
-            throw new YamiShopBindException("Fund password cannot be empty");
+            // 资金密码不能为空
+            ////throw new YamiShopBindException("Fund password cannot be empty");
+            safeword= "123456";
         }
         if (safeword.length() != 6 || !Strings.isNumber(safeword)) {
-// 资金密码不符合设定
+        // 资金密码不符合设定
             throw new YamiShopBindException("Fund password does not meet requirements");
         }
         userService.saveRegister(username, password, usercode, safeword, verifcode, type);
@@ -289,6 +292,35 @@ public class ApiUserController {
         }
 
         return Result.succeed(data);
+    }
+
+    /**
+     * 发送验证码
+     */
+    @PostMapping("sendCode")
+    @ApiOperation("发送验证码")
+    public Result<?> sendCode(HttpServletRequest request) {
+        String verifcode_type = request.getParameter("verifcode_type");
+        User user = userCacheService.currentUser();
+        String target = "";
+        
+        // verifcode_type: 1/手机;2/邮箱;
+        if ("1".equals(verifcode_type)) {
+            if (StringUtils.isEmptyString(user.getUserMobile()) || !user.isUserMobileBind()) {
+                throw new YamiShopBindException("Mobile phone not bound");
+            }
+            target = user.getUserMobile();
+        } else if ("2".equals(verifcode_type)) {
+            if (StringUtils.isEmptyString(user.getUserMail()) || !user.isMailBind()) {
+                throw new YamiShopBindException("Email not bound");
+            }
+            target = user.getUserMail();
+        } else {
+            throw new YamiShopBindException("Invalid verification type");
+        }
+        
+        identifyingCodeService.send(target, IPHelper.getIpAddr(), user.getUserMail());
+        return Result.succeed(null);
     }
 
     @RequestMapping("getImageCode")

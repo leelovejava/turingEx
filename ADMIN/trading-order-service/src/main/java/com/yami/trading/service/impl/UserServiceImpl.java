@@ -118,7 +118,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public Page<UserDto> listUser(Page page, List<String> roleNames, String userCode, String userName,
-        String userMail, String userMobile, List<String> checkedList) {
+                                  String userMail, String userMobile, List<String> checkedList) {
 
         Page<UserDto> userDtoPage = baseMapper.listUser(page, roleNames, userCode, userName, userMail, userMobile, checkedList);
 
@@ -208,9 +208,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     /**
      * 更新代理用户的操作权限和登录权限
      *
-     * @param userId          用户ID
-     * @param operaAuthority  true=高级代理，false=普通代理
-     * @param loginAuthority  true=允许登录，false=禁止登录
+     * @param userId         用户ID
+     * @param operaAuthority true=高级代理，false=普通代理
+     * @param loginAuthority true=允许登录，false=禁止登录
      */
     @Override
     public void updateAgent(String userId, boolean operaAuthority, boolean loginAuthority) {
@@ -229,11 +229,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public User cacheUserBy(String userId) {
-        String key= "user:"+userId;
-        User user=  RedisUtil.get(key);
-        if (user==null){
+        String key = "user:" + userId;
+        User user = RedisUtil.get(key);
+        if (user == null) {
             user = getOne(new LambdaQueryWrapper<User>().eq(User::getUserId, userId));
-            RedisUtil.set(key,user,5*60);
+            RedisUtil.set(key, user, 5 * 60);
         }
         return user;
     }
@@ -296,7 +296,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             moneyLog.setWalletType(Constants.WALLET);
             moneyLog.setContent_type(Constants.MONEYLOG_CONTENT_RECHARGE);
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_RECHARGE);
-            moneyLog.setCreateTime(new Date());
             moneyLog.setUpdateTime(new Date());
 
             // 钱包日志
@@ -376,7 +375,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             moneyLog.setUserId(partyId);
             moneyLog.setWalletType(coin_type.toUpperCase());
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_RECHARGE);
-            moneyLog.setCreateTime(new Date());
             moneyLog.setUpdateTime(new Date());
 
             // 钱包日志
@@ -1041,8 +1039,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String register_gift_coin = sysparaService.find("register_gift_coin").getSvalue();
         if (!"".equals(register_gift_coin) && register_gift_coin != null) {
             String[] register_gift_coins = register_gift_coin.split(",");
+            if (register_gift_coins.length < 2 || StringUtils.isEmptyString(register_gift_coins[0])) {
+                log.warn("Invalid syspara register_gift_coin config: [{}]", register_gift_coin);
+                return party;
+            }
             String gift_symbol = register_gift_coins[0];
-            double gift_sum = Double.valueOf(register_gift_coins[1]);
+            double gift_sum;
+            try {
+                gift_sum = Double.parseDouble(register_gift_coins[1]);
+            } catch (Exception e) {
+                log.warn("Invalid register_gift_coin amount: [{}]", register_gift_coin);
+                return party;
+            }
             if ("usdt".equals(gift_symbol)) {
                 Wallet walletExtend = this.walletService.saveWalletByPartyId(party.getUserId());
                 double amount_before = walletExtend.getMoney().doubleValue();
@@ -1174,11 +1182,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         party.setUserCode(getUserCode());
         party.setLoginPassword(passwordEncoder.encode(password));
         party.setUserLevel(ever_user_level_num_custom * 10 + ever_user_level_num);
-    //   if(ever_user_level_num_custom>0){
-    //         party.setUserLevel(ever_user_level_num_custom * 10 + ever_user_level_num);
-    //     }else{
-    //         party.setUserLevel(userLevel);
-    //     }
+        //   if(ever_user_level_num_custom>0){
+        //         party.setUserLevel(ever_user_level_num_custom * 10 + ever_user_level_num);
+        //     }else{
+        //         party.setUserLevel(userLevel);
+        //     }
         party.setSafePassword(this.passwordEncoder.encode(safeword));
         party.setRoleName(Constants.SECURITY_ROLE_MEMBER);
 
@@ -1230,8 +1238,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String register_gift_coin = this.sysparaService.find("register_gift_coin").getSvalue();
         if (!"".equals(register_gift_coin) && register_gift_coin != null) {
             String[] register_gift_coins = register_gift_coin.split(",");
+            if (register_gift_coins.length < 2 || StringUtils.isEmptyString(register_gift_coins[0])) {
+                log.warn("Invalid syspara register_gift_coin config: [{}]", register_gift_coin);
+                this.identifyingCodeTimeWindowService.delAuthCode(key);
+                return;
+            }
             String gift_symbol = register_gift_coins[0];
-            double gift_sum = Double.valueOf(register_gift_coins[1]);
+            double gift_sum;
+            try {
+                gift_sum = Double.parseDouble(register_gift_coins[1]);
+            } catch (Exception e) {
+                log.warn("Invalid register_gift_coin amount: [{}]", register_gift_coin);
+                this.identifyingCodeTimeWindowService.delAuthCode(key);
+                return;
+            }
             if ("usdt".equals(gift_symbol)) {
                 Wallet walletExtend = this.walletService.saveWalletByPartyId(party.getUserId());
                 double amount_before = walletExtend.getMoney().doubleValue();
@@ -1288,7 +1308,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //     * @return
 //     */
 //    private int getUserRecomLevel(int userLevel, String userId) {
-        // 查询上级用户
+    // 查询上级用户
 //        UserRecom userRecom = userRecomService.getOne(Wrappers.<UserRecom>lambdaQuery().eq(UserRecom::getUserId, userId));
 //        if(null != userRecom) {
 //            userLevel ++;
@@ -1537,12 +1557,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         if (moneyWithdraw == null) {
             // 请填入有效数字
-        throw new YamiShopBindException("Please enter a valid number");
+            throw new YamiShopBindException("Please enter a valid number");
         }
         BigDecimal resultAmount = lastAmount.add(moneyWithdraw);
         if (moneyWithdraw.doubleValue() < 0) {
             // 修改后金额不能小于0
-        throw new YamiShopBindException("Amount after modification cannot be less than 0");
+            throw new YamiShopBindException("Amount after modification cannot be less than 0");
         }
         user.setWithdrawLimitAmount(moneyWithdraw);
         BigDecimal afterParty = user.getWithdrawLimitAmount();
@@ -1637,14 +1657,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     /**
      * 后台手动新增演示用户（GUEST角色），初始化钱包并记录操作日志
      *
-     * @param username          用户名
-     * @param password          登录密码（明文）
-     * @param login_authority   是否允许登录
-     * @param enabled           是否启用
-     * @param remarks           备注
-     * @param operatorUsername  操作员用户名
-     * @param ip                操作员IP
-     * @param parents_usercode  推荐人邀请码
+     * @param username         用户名
+     * @param password         登录密码（明文）
+     * @param login_authority  是否允许登录
+     * @param enabled          是否启用
+     * @param remarks          备注
+     * @param operatorUsername 操作员用户名
+     * @param ip               操作员IP
+     * @param parents_usercode 推荐人邀请码
      */
     @Override
     @Transactional
@@ -1682,23 +1702,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         party.setUserCode(usercode);
         party.setUserLevel(ever_user_level_num_custom * 10 + ever_user_level_num);
         // if(ever_user_level_num_custom>0){
-            
+
         // }else{
         //     party.setUserLevel(userLevel);
         // }
         party.setSafePassword(passwordEncoder.encode("000000"));
         party.setLoginPassword(passwordEncoder.encode(password));
         party.setRoleName(Constants.SECURITY_ROLE_GUEST);
-        
+
         // 借贷状态 1正常 2禁止
         party.setLoanStatus(1);
         // 已贷金额(借贷)
         party.setLoanAlreadyAmount(BigDecimal.ZERO);
         // 可贷金额(借贷) - 从系统配置获取
         Syspara loanMaxAmount = this.sysparaService.find("loan_max_amount");
-        party.setLoanCanAmount(loanMaxAmount != null && loanMaxAmount.getBigDecimal() != null 
-            ? loanMaxAmount.getBigDecimal() 
-            : BigDecimal.ZERO);
+        party.setLoanCanAmount(loanMaxAmount != null && loanMaxAmount.getBigDecimal() != null
+                ? loanMaxAmount.getBigDecimal()
+                : BigDecimal.ZERO);
         // 是否老客户 1老客户 2新客户 - 默认新客户
         party.setIsOldUser(2);
         // 购买量化机器状态 1正常 2禁止
@@ -1707,7 +1727,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         party.setTxState(1);
         // 期权预设结果 - 未设置
         party.setOptionPreResult(0);
-        
+
         save(party);
         if (!StringUtils.isNullOrEmpty(parents_usercode)) {
             User party_parents = findUserByUserCode(parents_usercode);
@@ -2063,16 +2083,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUserLastip(user.getUserRegip());
         user.setUserCode(getUserCode());
         user.setCreateTime(now);
-        
+
         // 借贷状态 1正常 2禁止
         user.setLoanStatus(1);
         // 已贷金额(借贷)
         user.setLoanAlreadyAmount(BigDecimal.ZERO);
         // 可贷金额(借贷) - 从系统配置获取
         Syspara loanMaxAmount = this.sysparaService.find("LOAN_MAX_AMOUNT");
-        user.setLoanCanAmount(loanMaxAmount != null && loanMaxAmount.getBigDecimal() != null 
-            ? loanMaxAmount.getBigDecimal() 
-            : BigDecimal.ZERO);
+        user.setLoanCanAmount(loanMaxAmount != null && loanMaxAmount.getBigDecimal() != null
+                ? loanMaxAmount.getBigDecimal()
+                : BigDecimal.ZERO);
         // 是否老客户 1老客户 2新客户
         // 查询老客户表，如果邮箱或手机号存在则标记为老客户
         String email = user.getUserMail();
@@ -2085,7 +2105,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setTxState(1);
         // 期权预设结果 - 未设置
         user.setOptionPreResult(0);
-        
+
         save(user);
 
         //1.保存钱包记录
@@ -2094,12 +2114,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         wallet.setCreateTime(now);
         walletService.save(wallet);
         //
-        Log log = new Log();
-        log.setCategory(Constants.LOG_CATEGORY_SECURITY);
-        log.setLog("用户注册,ip[" + user.getUserRegip() + "]");
-        log.setUserId(user.getUserId());
-        log.setUsername(user.getUserName());
-        logService.save(log);
+        Log logEntity = new Log();
+        logEntity.setCategory(Constants.LOG_CATEGORY_SECURITY);
+        logEntity.setLog("用户注册,ip[" + user.getUserRegip() + "]");
+        logEntity.setUserId(user.getUserId());
+        logEntity.setUsername(user.getUserName());
+        logService.save(logEntity);
         if (recomUser != null) {
             //推荐人
             UserRecom userRecom = new UserRecom();
@@ -2137,20 +2157,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //        }
         userDataService.saveRegister(user.getUserId());
         // 用户注册自动赠送金额
-        String register_gift_coin = this.sysparaService.find("register_gift_coin").getSvalue();
-        if(type == 4){
+        ///String register_gift_coin = this.sysparaService.find("register_gift_coin").getSvalue();
+        String register_gift_coin = "";
+        if (type == 4) {
             double gift_sum = 100000;
             Syspara virtual_register_gift_coin_sys = this.sysparaService.find("virtual_register_gift_coin");
-            if(virtual_register_gift_coin_sys != null){
+            if (virtual_register_gift_coin_sys != null) {
                 gift_sum = virtual_register_gift_coin_sys.getDouble();
             }
             userDataService.saveGiftMoneyHandle(user.getUserId(), gift_sum);
             this.walletService.update(wallet.getUserId(), gift_sum);
-        }
-        else if (!"".equals(register_gift_coin) && register_gift_coin != null) {
+        } else if (!"".equals(register_gift_coin) && register_gift_coin != null) {
             String[] register_gift_coins = register_gift_coin.split(",");
+            if (register_gift_coins.length < 2 || StringUtils.isEmptyString(register_gift_coins[0])) {
+                log.warn("Invalid syspara register_gift_coin config: [{}]", register_gift_coin);
+                return user;
+            }
             String gift_symbol = register_gift_coins[0];
-            double gift_sum = Double.valueOf(register_gift_coins[1]);
+            double gift_sum;
+            try {
+                gift_sum = Double.parseDouble(register_gift_coins[1]);
+            } catch (Exception e) {
+                log.warn("Invalid register_gift_coin amount: [{}]", register_gift_coin);
+                return user;
+            }
             if ("usdt".equals(gift_symbol)) {
                 Wallet walletExtend = walletService.findByUserId(user.getUserId());
                 double amount_before = walletExtend.getMoney().doubleValue();
@@ -2219,7 +2249,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     /**
      * 首次设置用户资金密码（只能设置一次，已设置则拒绝）
      *
-     * @param userId      用户ID
+     * @param userId       用户ID
      * @param safePassword 资金密码（已加密）
      */
     @Override
@@ -2227,7 +2257,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = getById(userId);
         if (user == null) {
             // 当前登录账号不存在
-        throw new YamiShopBindException("Current account does not exist");
+            throw new YamiShopBindException("Current account does not exist");
         }
         // 通过此接口设置过资金密码，updateTime 一定不为空
         if (StrUtil.isNotBlank(user.getSafePassword()) && user.getUpdateTime() != null) {
@@ -2521,13 +2551,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public List<Map<String, String>> getTypeListByUser(User currentUser) {
-        List<Map<String,String>> typeList = new ArrayList<>();
+        List<Map<String, String>> typeList = new ArrayList<>();
         if (currentUser == null) {
             return typeList;
         }
-        Map<String,String> verifcodeTypeMap = null;
+        Map<String, String> verifcodeTypeMap = null;
         // 短信类型
-        if(StringUtils.isNotEmpty(currentUser.getUserMobile()) && currentUser.isUserMobileBind()) {
+        if (StringUtils.isNotEmpty(currentUser.getUserMobile()) && currentUser.isUserMobileBind()) {
             verifcodeTypeMap = new HashMap<>();
             verifcodeTypeMap.put("account", currentUser.getUserMobile());
             verifcodeTypeMap.put("verifcode_type", "1");
@@ -2535,7 +2565,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         // 邮箱类型
-        if(StringUtils.isNotEmpty(currentUser.getUserMail()) && currentUser.isMailBind()) {
+        if (StringUtils.isNotEmpty(currentUser.getUserMail()) && currentUser.isMailBind()) {
             verifcodeTypeMap = new HashMap<>();
             verifcodeTypeMap.put("account", currentUser.getUserMail());
             verifcodeTypeMap.put("verifcode_type", "2");
@@ -2543,7 +2573,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         // 谷歌类型
-        if(StringUtils.isNotEmpty(currentUser.getGoogleAuthSecret()) && currentUser.isGoogleAuthBind()) {
+        if (StringUtils.isNotEmpty(currentUser.getGoogleAuthSecret()) && currentUser.isGoogleAuthBind()) {
             verifcodeTypeMap = new HashMap<>();
             verifcodeTypeMap.put("account", "");
             verifcodeTypeMap.put("verifcode_type", "3");
@@ -2573,7 +2603,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         List<Map<String, String>> typeList = this.getTypeListByUser(currentUser);
         Optional<Map<String, String>> optional =
-            typeList.stream().filter(map -> verifcode_type.equals(map.get("verifcode_type"))).findFirst();
+                typeList.stream().filter(map -> verifcode_type.equals(map.get("verifcode_type"))).findFirst();
         // 手机、邮件验证
         if ("1".equals(verifcode_type) || "2".equals(verifcode_type)) {
             if (!optional.isPresent()) {

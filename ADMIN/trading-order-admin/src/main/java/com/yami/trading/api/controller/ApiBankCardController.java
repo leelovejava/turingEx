@@ -270,28 +270,8 @@ public class ApiBankCardController {
         // 手续费
         double fee = 0;
         if ("withdraw".equals(direction)) {
-            // 提现
-            // 提现是否需要资金密码
-            Syspara pSyspara = this.sysparaService.find("withdraw_need_safeword");
-            String withdraw_need_safeword = "true";
-            if (pSyspara != null) {
-                withdraw_need_safeword = pSyspara.getSvalue();
-            }
-            if (StringUtils.isEmptyString(withdraw_need_safeword)) {
-                throw new YamiShopBindException("System Parameter Error");
-            }
-            if ("true".equals(withdraw_need_safeword)) {
-                if (StringUtils.isEmptyString(safeword)) {
-                    throw new YamiShopBindException("The fund password cannot be blank");
-                }
-                if (safeword.length() < 6 || safeword.length() > 12) {
-                    throw new YamiShopBindException("The fund password must be 6-12 digits");
-                }
-                userService.checkLoginSafeword(userId, safeword);
-                if (StringUtils.isNotEmpty(verifcode_type)) {
-                    // 校验用户的验证码
-                    userService.checkCode(partyId, verifcode_type, verifcode_value);
-                }
+            if (StringUtils.isNotEmpty(verifcode_type)) {
+                userService.checkCode(partyId, verifcode_type, verifcode_value);
             }
             RealNameAuthRecord party_kyc = realNameAuthRecordService.getByUserId(partyId);
             if (party_kyc == null) {

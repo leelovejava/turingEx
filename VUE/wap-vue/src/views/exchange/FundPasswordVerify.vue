@@ -40,13 +40,8 @@ onMounted(async () => {
     }
 })
 const submitBind = () => {
-    if (password.value.length < 6) {
-        showToast(t('funpasswordTips'))
-        return false
-    }
     if (route.query.type === 'bank') {
-        // router.push('/order/submit')
-        payInfo.value.safeword = password.value
+        payInfo.value.safeword = ''
         c2cOrder(payInfo.value).then((res) => {
             if (banType.value == 'recharge') {
                 router.push('/order/submit?orderNo=' + res.order_no)
@@ -64,7 +59,6 @@ const submitBind = () => {
             session_token: route.query.session_token,
             amount: route.query.amount,
             from: route.query.from,
-            safeword: password.value,
             channel: route.query.channel,
             token: userStore.userInfo && userStore.userInfo.token
         }).then((res) => {

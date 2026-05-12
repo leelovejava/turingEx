@@ -14,7 +14,7 @@ public class Log  extends BaseEntity {
      * Member Description
      */
 
-    private static final long serialVersionUID = 1837652077217320806L;
+    private static final long serialVersionUID = 1L;
     /**
      * 日志归属
      */

@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @TableName("t_money_log")
 public class MoneyLog extends BaseEntity {
-    private static final long serialVersionUID = -5914896022101327097L;
+    private static final long serialVersionUID = 1L;
     /**
      * 账号类型
      */

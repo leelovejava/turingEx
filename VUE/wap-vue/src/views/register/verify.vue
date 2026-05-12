@@ -3,7 +3,7 @@
         <div class="header">
             <div class="flex items-center" @click="$router.go(-1)"><img
                     src="../../assets/image/assets-center/left-arrow.png" alt="" class="leftReturn" /></div>
-            <div class="textColor" @click="$router.push('/setFond')">{{ $t('skip') }}</div>
+            <div class="textColor" @click="$router.push('/identity')">{{ $t('skip') }}</div>
         </div>
         <div class="content">
             <div class="title textColor" v-if="type == 1">{{ $t('emailVerify') }}</div>
@@ -77,7 +77,7 @@ const bindEmail = () => {
     }).then((res) => {
         showToast(t('bindSuccess'));
         console.log(123)
-        router.push('/setFond')
+        router.push('/identity')
     })
 }
 const bindPhone = () => {
@@ -86,7 +86,7 @@ const bindPhone = () => {
         verifcode: verifyCode.value
     }).then((res) => {
         showToast(t('bindSuccess'));
-        router.push('/setFond')
+        router.push('/identity')
     }).catch((error) => {
         showToast(t(error.msg));
     });

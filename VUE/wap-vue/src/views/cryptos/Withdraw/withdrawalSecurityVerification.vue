@@ -16,6 +16,16 @@
             <input class="inputBackground textColor" type="password" :placeholder="$t('请输入谷歌验证码')" v-model="googleCode">
           </div>
         </div>
+        <!-- 邮箱验证码 -->
+        <div class="mt-40">
+          <p>{{ $t('请输入邮箱验证码') }}</p>
+          <div class="iptbox inputBackground flex items-center">
+            <input class="inputBackground textColor flex-1" type="text" :placeholder="$t('请输入邮箱验证码')" v-model="emailCode">
+            <button class="send-btn" :disabled="sendDisabled" @click="sendEmailCode">
+              {{ sendText }}
+            </button>
+          </div>
+        </div>
         <div class="btn btnMain" @click="confirm">{{ $t('提交') }}</div>
         <div style="color:$btn_main; margin-top:10px;"><span @click="$router.push('/resetVerify?type=0')">{{
           $t('资金密码不可用?')
@@ -30,7 +40,7 @@
 import assetsHead from "@/components/Transform/assets-head/index.vue";
 import { Form, Field, CellGroup, showToast } from 'vant';
 import { _widtGetSessionToken, _withdrawApply, _ctcOrderPass, _ctcOrderPayFinish } from "@/service/withdraw.api.js"
-import { _getIsGoogleAuth } from "@/service/user.api.js"
+import { _getIsGoogleAuth, _sendVerifCode } from "@/service/user.api.js"
 
 export default {
   name: "withdrawalSecurityVerification",
@@ -47,7 +57,12 @@ export default {
       sessionToken: '',
       googleCode: '',
       isGoogleInput: false,
-      type: ''
+      type: '',
+      // 邮箱验证码相关
+      emailCode: '',
+      sendDisabled: false,
+      sendText: '发送验证码',
+      countdown: 60
     }
   },
   created() {
@@ -65,6 +80,34 @@ export default {
       _widtGetSessionToken().then((res) => {
         this.sessionToken = res.session_token;
       });
+    },
+    // 发送邮箱验证码
+    sendEmailCode() {
+      this.sendDisabled = true
+      _sendVerifCode({ verifcode_type: '2' }).then((res) => {
+        showToast(this.$t('验证码发送成功'))
+        this.startCountdown()
+      }).catch(err => {
+        this.sendDisabled = false
+        if (err.msg !== undefined) {
+          showToast(this.$t(err.msg))
+        }
+      })
+    },
+    // 倒计时
+    startCountdown() {
+      this.countdown = 60
+      this.sendText = `${this.countdown}s`
+      const timer = setInterval(() => {
+        this.countdown--
+        if (this.countdown <= 0) {
+          clearInterval(timer)
+          this.sendDisabled = false
+          this.sendText = '发送验证码'
+        } else {
+          this.sendText = `${this.countdown}s`
+        }
+      }, 1000)
     },
     onSubmit(values) {
       console.log('submit', values);
@@ -98,12 +141,18 @@ export default {
           showToast(this.$t('请输入资金密码'));
           return
         }
+        if (!this.emailCode) {
+          showToast(this.$t('请输入邮箱验证码'));
+          return
+        }
         _withdrawApply({
           session_token: this.sessionToken,
           amount: this.data.amount,
           from: this.data.from,
           safeword: this.password,
-          channel: this.data.channel
+          channel: this.data.channel,
+          verifcode_type: '2',
+          verifcode_value: this.emailCode
         }).then((res) => {
 
           this.$router.push({
@@ -174,6 +223,22 @@ export default {
 
       span {
         color: $color_main;
+      }
+
+      .send-btn {
+        padding: 0 20px;
+        height: 56px;
+        line-height: 56px;
+        background: $btn_main;
+        color: white;
+        border-radius: 8px;
+        font-size: 26px;
+        border: none;
+        
+        &:disabled {
+          background: #ccc;
+          color: #999;
+        }
       }
     }
   }

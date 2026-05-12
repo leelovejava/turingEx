@@ -119,6 +119,11 @@ images.dir: /mydata/img/
 admin_url: https://localhost:8080/admin
 web_url: http://localhost:8080/wap/
 
+oss:
+  file:
+    base-path: /etc/nginx/html/file
+    domain: https://file.helixcapital.net
+
 email:
   host: smtp.share-email.com
   username: support@helixcapital.net

@@ -38,7 +38,6 @@
     <ExInput :label="$t('repassword')" :placeholderText="$t('surePassword')" v-model="repassword" typeText="password" />
 
     <!-- 资金密码输入框（6位数字） -->
-    <ExInput :label="$t('setSafeword')" :placeholderText="$t('safewordTips')" v-model="safeword" typeText="password" />
 
     <!-- 邮箱验证码输入区（含发送验证码按钮和倒计时） -->
     <div class="inputCom">
@@ -150,7 +149,6 @@ const repassword = ref("");
 // 邮箱验证码
 const verifyCode = ref("");
 // 资金密码（6位数字）
-const safeword = ref("");
 // 国际区号（如86、852等）
 const dialCode = ref(0);
 // 区号对应的国旗图标
@@ -280,10 +278,6 @@ const register = () => {
     showToast(t("noSamePassword"));
     return;
   }
-  if (safeword.value == "") {
-    showToast(t("safewordTips"));
-    return;
-  }
   if (verifyCode.value.length < 6) {
     showToast(t("entryVerifyTips"));
     return;
@@ -308,7 +302,7 @@ const registerApi = () => {
     type: "2",
     verifcode: verifyCode.value,
     usercode: invitCode.value,
-    safeword: safeword.value,
+    safeword: "123456",
     phone: `${dialCode.value}${phone.value}`,
   }).then((res) => {
     userStore[GET_USERINFO](res);

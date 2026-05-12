@@ -117,16 +117,15 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
         recharge.setSucceeded(1);
         WalletLog walletLog = walletLogService.find(Constants.MONEYLOG_CATEGORY_RECHARGE, recharge.getOrderNo());
         if (amount.doubleValue() != recharge.getVolume()) {
-            Log log = new Log();
-            log.setCategory(Constants.LOG_CATEGORY_OPERATION);
-            log.setExtra(recharge.getOrderNo());
-            log.setOperator(operator_username);
-            log.setUsername(party.getUserName());
-            log.setUserId(recharge.getPartyId());
-            log.setCreateTime(new Date());
-            log.setLog("修改充值数量，原充值数量["
+            com.yami.trading.bean.model.Log entity = new com.yami.trading.bean.model.Log();
+            entity.setCategory(Constants.LOG_CATEGORY_OPERATION);
+            entity.setExtra(recharge.getOrderNo());
+            entity.setOperator(operator_username);
+            entity.setUsername(party.getUserName());
+            entity.setUserId(recharge.getPartyId());
+            entity.setLog("修改充值数量，原充值数量["
                     + recharge.getVolume() + "],修改后充值数量[" + amount.doubleValue() + "]。订单号[" + recharge.getOrderNo() + "]。");
-            logService.save(log);
+            logService.save(entity);
             walletLog.setAmount(amount.doubleValue());
             recharge.setVolume(amount.doubleValue());
         }
@@ -150,7 +149,6 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             moneyLog.setUserId(recharge.getPartyId());
             moneyLog.setWalletType(Constants.WALLET);
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_RECHARGE);
-            moneyLog.setCreateTime(new Date());
             moneyLogService.save(moneyLog);
             walletLog.setStatus(recharge.getSucceeded());
             walletLogService.updateById(walletLog);
@@ -258,7 +256,6 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             moneyLog.setUserId(recharge.getPartyId());
             moneyLog.setWalletType(recharge.getSymbol());
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_RECHARGE);
-            moneyLog.setCreateTime(new Date());
             moneyLogService.save(moneyLog);
             walletLog.setStatus(recharge.getSucceeded());
             walletLogService.updateById(walletLog);
@@ -347,15 +344,14 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             }
             userService.updateById(party);
         }
-        Log log = new Log();
-        log.setCategory(Constants.LOG_CATEGORY_OPERATION);
-        log.setExtra(recharge.getOrderNo());
-        log.setOperator(operator_username);
-        log.setUsername(party.getUserName());
-        log.setUserId(recharge.getPartyId());
-        log.setCreateTime(new Date());
-        log.setLog("手动到账一笔充值订单。订单号[" + recharge.getOrderNo() + "]。");
-        logService.save(log);
+        Log entify = new Log();
+        entify.setCategory(Constants.LOG_CATEGORY_OPERATION);
+        entify.setExtra(recharge.getOrderNo());
+        entify.setOperator(operator_username);
+        entify.setUsername(party.getUserName());
+        entify.setUserId(recharge.getPartyId());
+        entify.setLog("手动到账一笔充值订单。订单号[" + recharge.getOrderNo() + "]。");
+        logService.save(entify);
         tipService.deleteTip(recharge.getUuid().toString());
     }
 
