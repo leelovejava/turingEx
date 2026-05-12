@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service("dataService")
@@ -25,6 +26,8 @@ public class DataServiceImpl implements DataService {
 	ItemService itemService;
 	@Autowired
 	KlineService klineService;
+	@Autowired
+	com.yami.trading.huobi.hobi.internal.XueQiuDataServiceImpl xueQiuDataService;
 
 	/**
 	 * 根据币种分类 获取实时价格数据
@@ -93,6 +96,10 @@ public class DataServiceImpl implements DataService {
 		List<Kline> list = new ArrayList<Kline>();
 		if (timeObject != null) {
 			list = timeObject.getKline();
+		}
+		if (list.isEmpty()) {
+			Map<String, List<Kline>> all = xueQiuDataService.getKlineFromTwelveData(symbol);
+			list = all.getOrDefault(line, new ArrayList<>());
 		}
 		List<Kline> list_clone = new ArrayList<Kline>();
 		try {

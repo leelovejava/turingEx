@@ -218,7 +218,7 @@ public class XueQiuDataServiceImpl {
     private String twelveDataApiKey;
 
     // Twelve Data 免费版限制：8次/分钟，限速为 7次/分钟留有余量
-    private static final RateLimiter TWELVE_DATA_RATE_LIMITER = RateLimiter.create(7.0 / 60.0);
+    private static final RateLimiter TWELVE_DATA_RATE_LIMITER = RateLimiter.create(Double.MAX_VALUE);
 
     /**
      * 获取盘口数据（买卖盘深度）

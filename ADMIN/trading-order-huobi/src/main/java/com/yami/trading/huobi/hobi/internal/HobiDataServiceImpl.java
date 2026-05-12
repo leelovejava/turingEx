@@ -726,13 +726,7 @@ public class HobiDataServiceImpl implements HobiDataService {
      * @return true-新浪外汇数据；false-非新浪外汇数据
      */
     public boolean isXinlang(String symbol) {
-        // 特殊处理：XAUUSD(黄金)、XAGUSD(白银)、OIL(原油)不使用新浪数据源
-        if("XAUUSD,XAGUSD,OIL".contains(symbol)){
-            return false;
-        }
-        Item bySymbol = itemService.findBySymbol(symbol);
-        String type = bySymbol.getType();
-        return Item.forex.contains(type) && Item.forex.equals(bySymbol.getCategory());
+        return false;
     }
 
     /**
