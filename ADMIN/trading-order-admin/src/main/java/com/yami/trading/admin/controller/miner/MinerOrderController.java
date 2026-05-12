@@ -111,7 +111,20 @@ public class MinerOrderController {
                 if (intervalDaysByTwoDate < 0) {
                     intervalDaysByTwoDate = 0;
                 }
-                data.put("days", intervalDaysByTwoDate);
+                int runningDays = 0;
+                Date runStartDate = null;
+                if (data.get("earn_time") != null) {
+                    runStartDate = DateUtils.toDate(data.get("earn_time").toString());
+                } else if (data.get("create_time") != null) {
+                    runStartDate = DateUtils.toDate(data.get("create_time").toString());
+                }
+                if (runStartDate != null) {
+                    runningDays = Math.max(daysBetween(runStartDate, new Date()), 0);
+                }
+                // 运行天数
+                data.put("days", runningDays);
+                data.put("runningDays", runningDays);
+
                 DecimalFormat df = new DecimalFormat("#.##");
                 data.put("profit", df.format(data.get("profit")));
                 data.put("test", null != data.get("test") && "Y".equals(data.get("test").toString()));
@@ -139,10 +152,11 @@ public class MinerOrderController {
                     data.put("all_rate", df.format(all_rate));
                 }
                 // 今日收益 / 总收益（基于预收益记录）
-                String uuid = data.get("uuid") != null ? data.get("uuid").toString() : null;
-                if (uuid != null) {
-                    data.put("day_income", df.format(quantPreIncomeService.selectDayIncome(uuid)));
-                    data.put("total_income", df.format(quantPreIncomeService.selectTotalIncome(uuid)));
+                String quantOrderId = data.get("id") != null ? data.get("id").toString()
+                        : (data.get("uuid") != null ? data.get("uuid").toString() : null);
+                if (quantOrderId != null) {
+                    data.put("day_income", df.format(quantPreIncomeService.selectDayIncome(quantOrderId)));
+                    data.put("total_income", df.format(quantPreIncomeService.selectTotalIncome(quantOrderId)));
                 } else {
                     data.put("day_income", "0");
                     data.put("total_income", "0");

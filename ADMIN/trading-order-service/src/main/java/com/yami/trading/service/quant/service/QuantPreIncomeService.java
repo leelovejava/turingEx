@@ -12,6 +12,8 @@ public interface QuantPreIncomeService extends IService<QuantPreIncome> {
 	 */
 	List<QuantPreIncome> findUnusedByQuantOrderId(String quantOrderId);
 
+	QuantPreIncome findTodayRandomUnusedByQuantOrderId(String quantOrderId);
+
 	/**
 	 * 生成预收益记录
 	 * @param quantOrderId 机器人订单ID
@@ -26,6 +28,8 @@ public interface QuantPreIncomeService extends IService<QuantPreIncome> {
 	 * 标记预收益记录为已使用
 	 */
 	void markAsUsed(Integer id);
+
+	boolean markAsUsedFromUnused(Integer id);
 
 	/** 查询今日已结算收益 */
 	double selectDayIncome(String quantOrderId);

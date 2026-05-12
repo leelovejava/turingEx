@@ -155,24 +155,12 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 				}
 
 				// 从预收益表中读取收益（属于该订单的预收益记录）
-				List<com.yami.trading.bean.quant.QuantPreIncome> preIncomes = 
-					quantPreIncomeService.findUnusedByQuantOrderId(order.getUuid());
-				
-				if (preIncomes != null && !preIncomes.isEmpty()) {
-					// 累计当天220条预收益记录的收益
-					double dailyTotalProfit = 0;
-					int count = 0;
-					Integer lastPreIncomeId = null;
+					com.yami.trading.bean.quant.QuantPreIncome preIncome =
+						quantPreIncomeService.findTodayRandomUnusedByQuantOrderId(order.getUuid());
 					
-					for (com.yami.trading.bean.quant.QuantPreIncome preIncome : preIncomes) {
-						if (count >= 220) { // 每天最多处理220条
-							break;
-						}
-						dailyTotalProfit = Arith.add(dailyTotalProfit, preIncome.getIncome());
-						quantPreIncomeService.markAsUsed(preIncome.getId());
-						lastPreIncomeId = preIncome.getId();
-						count++;
-					}
+					if (preIncome != null && quantPreIncomeService.markAsUsedFromUnused(preIncome.getId())) {
+						double dailyTotalProfit = preIncome.getIncome() == null ? 0D : preIncome.getIncome();
+						Integer lastPreIncomeId = preIncome.getId();
 					
 					order.setCompute_day(systemTime);// 记息日期
 					order.setProfit(Arith.add(order.getProfit(), dailyTotalProfit));// 累计收益（不发放，赎回时一起发放）
@@ -253,24 +241,12 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
 				}
 
 				// 从预收益表中读取收益（属于该订单的预收益记录）
-				List<com.yami.trading.bean.quant.QuantPreIncome> preIncomes =
-					quantPreIncomeService.findUnusedByQuantOrderId(order.getUuid());
-				
-				if (preIncomes != null && !preIncomes.isEmpty()) {
-					// 累计当天220条预收益记录的收益
-					double dailyTotalProfit = 0;
-					int count = 0;
-					Integer lastPreIncomeId = null;
+					com.yami.trading.bean.quant.QuantPreIncome preIncome =
+						quantPreIncomeService.findTodayRandomUnusedByQuantOrderId(order.getUuid());
 					
-					for (com.yami.trading.bean.quant.QuantPreIncome preIncome : preIncomes) {
-						if (count >= 220) { // 每天最多处理220条
-							break;
-						}
-						dailyTotalProfit = Arith.add(dailyTotalProfit, preIncome.getIncome());
-						quantPreIncomeService.markAsUsed(preIncome.getId());
-						lastPreIncomeId = preIncome.getId();
-						count++;
-					}
+					if (preIncome != null && quantPreIncomeService.markAsUsedFromUnused(preIncome.getId())) {
+						double dailyTotalProfit = preIncome.getIncome() == null ? 0D : preIncome.getIncome();
+						Integer lastPreIncomeId = preIncome.getId();
 					
 					order.setCompute_day(new Date());// 记息日期
 					order.setProfit(Arith.add(order.getProfit(), dailyTotalProfit));// 累计收益（不发放，赎回时一起发放）

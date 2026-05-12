@@ -74,8 +74,6 @@ public class MinerOrderProfitJob {
 	 * 
 	 * <p>该方法是收益计算的核心入口，执行以下步骤：
 	 * <ol>
-	 *   <li>清空推荐人收益缓存</li>
-	 *   <li>获取推荐人收益参数配置</li>
 	 *   <li>获取收益币种配置及行情数据</li>
 	 *   <li>分页查询所有计息中的矿机订单</li>
 	 *   <li>遍历订单计算收益</li>
@@ -88,12 +86,7 @@ public class MinerOrderProfitJob {
 			int pageNo = 1;
 			int pageSize = 300;
 			
-			// 第一步：清空推荐人收益缓存，准备新一轮计算
-			minerOrderProfitService.cacheRecomProfitClear();
-
-			// 第二步：获取系统配置参数
-			// 推荐人收益参数，格式如：0.005,0.003,0.002（各级推荐人分成比例）
-			String miner_bonus_parameters = sysparaService.find("miner_bonus_parameters").getSvalue();
+			// 获取系统配置参数
 			// 收益币种配置，为空表示USDT，非空表示指定币种
 			String miner_profit_symbol = sysparaService.find("miner_profit_symbol").getSvalue();
 			
@@ -124,7 +117,7 @@ public class MinerOrderProfitJob {
 				try {
 					// 计算当前页订单的收益
 					this.minerOrderProfitService.saveComputeOrderProfit(minerOrders, miner_profit_symbol, realtime,
-							miner_bonus_parameters);
+							null);
 				} catch (Throwable e) {
 					// 单个订单计算失败不影响其他订单处理
 					logger.error("矿机收益计算异常:", e);
@@ -133,9 +126,6 @@ public class MinerOrderProfitJob {
 				logger.info("矿机收益计算完成，当前页处理订单数:{}", minerOrders.size());
 				pageNo++;
 			}
-			
-			// 第五步：计算并持久化推荐人收益
-			minerOrderProfitService.saveRecomProfit();
 			
 		} catch (Throwable e) {
 			logger.error("矿机收益定时任务执行失败", e);
@@ -156,11 +146,7 @@ public class MinerOrderProfitJob {
 			int pageNo = 1;
 			int pageSize = 300;
 			
-			// 清空推荐人收益缓存
-			minerOrderProfitService.cacheRecomProfitClear();
-
 			// 获取系统配置参数
-			String miner_bonus_parameters = sysparaService.find("miner_bonus_parameters").getSvalue();
 			String miner_profit_symbol = sysparaService.find("miner_profit_symbol").getSvalue();
 			
 			// 获取收益币种的实时行情
@@ -186,7 +172,7 @@ public class MinerOrderProfitJob {
 				try {
 					// 使用指定的系统时间计算收益
 					this.minerOrderProfitService.saveComputeOrderProfit(minerOrders, miner_profit_symbol, realtime,
-							miner_bonus_parameters, systemTime);
+							null, systemTime);
 				} catch (Throwable e) {
 					logger.error("矿机收益计算异常:", e);
 				}
@@ -194,9 +180,6 @@ public class MinerOrderProfitJob {
 				logger.info("矿机收益计算完成，当前页处理订单数:{}", minerOrders.size());
 				pageNo++;
 			}
-			
-			// 计算并持久化推荐人收益（使用指定时间）
-			minerOrderProfitService.saveRecomProfit(systemTime);
 			
 		} catch (Throwable e) {
 			logger.error("矿机收益定时任务执行失败", e);
@@ -256,9 +239,9 @@ public class MinerOrderProfitJob {
 	 *   <li>处理失败的订单会被跳过，不影响其他订单</li>
 	 * </ul>
 	 */
-	@Scheduled(cron = "0 */12 * * * ?")
+	@Scheduled(fixedDelay = 386000, initialDelay = 5000)
 	public void twelveMinuteJobHandle() {
-		logger.info("========== 矿机收益定时任务开始执行（每12分钟）==========");
+		logger.info("========== 矿机收益定时任务开始执行（每6分26秒）==========");
 		this.taskJob();
 		logger.info("========== 矿机收益定时任务执行结束 ==========");
 	}

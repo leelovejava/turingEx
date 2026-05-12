@@ -34,6 +34,20 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 	}
 
 	@Override
+	public QuantPreIncome findTodayRandomUnusedByQuantOrderId(String quantOrderId) {
+		LocalDate today = LocalDate.now();
+		Date dayStart = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		Date nextDayStart = Date.from(today.plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
+		QueryWrapper<QuantPreIncome> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("quant_order_id", quantOrderId)
+				.eq("status", 1)
+				.ge("end_time", dayStart)
+				.lt("end_time", nextDayStart)
+				.last("ORDER BY RAND() LIMIT 1");
+		return this.getOne(queryWrapper, false);
+	}
+
+	@Override
 	public void generatePreIncome(String quantOrderId, int totalCount, int profitCount, int lossCount, Double amount) {
 		List<QuantPreIncome> incomeList = new ArrayList<>();
 
@@ -80,6 +94,15 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 			income.setStatus(1);
 			this.updateById(income);
 		}
+	}
+
+	@Override
+	public boolean markAsUsedFromUnused(Integer id) {
+		QuantPreIncome updateEntity = new QuantPreIncome();
+		updateEntity.setStatus(2);
+		QueryWrapper<QuantPreIncome> updateWrapper = new QueryWrapper<>();
+		updateWrapper.eq("id", id).eq("status", 1);
+		return this.update(updateEntity, updateWrapper);
 	}
 
 	@Override
