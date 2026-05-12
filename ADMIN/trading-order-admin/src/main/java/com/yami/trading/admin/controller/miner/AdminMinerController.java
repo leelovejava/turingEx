@@ -348,6 +348,8 @@ public class AdminMinerController {
 		double investment_min = miner.getInvestment_min();
 		double investment_max = (miner.getTest() == "N") && miner.getInvestment_max() == 0 ? null : miner.getInvestment_max();
 		double show_daily_rate = miner.getShow_daily_rate();
+		double show_daily_rate_start = miner.getShow_daily_rate_start();
+		double show_daily_rate_end = miner.getShow_daily_rate_end();
 //		this.state = miner.getState();
 		String test = miner.getTest();
 		String on_sale = miner.getOn_sale();
@@ -380,6 +382,8 @@ public class AdminMinerController {
 		map.put("investment_min", investment_min);
 		map.put("investment_max", investment_max);
 		map.put("show_daily_rate", show_daily_rate);
+		map.put("show_daily_rate_start", show_daily_rate_start);
+		map.put("show_daily_rate_end", show_daily_rate_end);
 		map.put("test", test);
 		map.put("on_sale", on_sale);
 		// 体验矿机日利率范围
@@ -425,6 +429,12 @@ public class AdminMinerController {
 		String internet = request.getParameter("internet");
 		String buyCurrency = request.getParameter("buyCurrency");
 		String outputCurrency = request.getParameter("outputCurrency");
+		if(StringUtils.isNullOrEmpty(buyCurrency)){
+			buyCurrency = request.getParameter("buy_currency");
+		}
+		if(StringUtils.isNullOrEmpty(outputCurrency)){
+			outputCurrency = request.getParameter("output_currency");
+		}
 
 		if(StringUtils.isNullOrEmpty(buyCurrency)){
 			buyCurrency = "usdt";
@@ -440,6 +450,8 @@ public class AdminMinerController {
 		String on_sale = request.getParameter("on_sale");
 		String login_safeword = request.getParameter("login_safeword");
 		String computing_power_unit = request.getParameter("computing_power_unit");
+		String show_daily_rate_start = request.getParameter("show_daily_rate_start");
+		String show_daily_rate_end = request.getParameter("show_daily_rate_end");
 		// 体验矿机日利率范围
 		String daily_rate_start = request.getParameter("daily_rate_start");
 		String daily_rate_end = request.getParameter("daily_rate_end");
@@ -495,6 +507,12 @@ public class AdminMinerController {
 			miner.setInvestment_max(investment_max == null ? 0 : Double.valueOf(investment_max));
 			miner.setOn_sale(on_sale);
 			miner.setShow_daily_rate(Double.valueOf(show_daily_rate));
+			if(show_daily_rate_start != null && !show_daily_rate_start.isEmpty()) {
+				miner.setShow_daily_rate_start(Double.valueOf(show_daily_rate_start));
+			}
+			if(show_daily_rate_end != null && !show_daily_rate_end.isEmpty()) {
+				miner.setShow_daily_rate_end(Double.valueOf(show_daily_rate_end));
+			}
 //			miner.setState(this.state);
 			
 			// 设置体验矿机日利率范围
