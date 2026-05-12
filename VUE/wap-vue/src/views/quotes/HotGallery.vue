@@ -1,5 +1,5 @@
 <template>
-  <section class="pb-fix hot-gallery">
+  <section class="pb-fix hot-gallery" :class="`hot-gallery--theme-${galleryTheme}`">
     <div class="hot-scroll">
       <div class="hero-card">
         <div class="hero-glow" />
@@ -232,6 +232,7 @@ import { _getNewsList1 } from '@/service/user.api'
 import { _getRealtimeByType } from '@/service/quotes.api'
 import { FILE_URL } from '@/config'
 import { getStorage } from '@/utils/index'
+import { themeStore } from '@/store/theme'
 
 const userStore = useUserStore()
 const { t } = useI18n()
@@ -240,6 +241,8 @@ const router = useRouter()
 const rankActive = ref(0)
 const newsItems = ref([])
 const rankList = ref([])
+
+const galleryTheme = computed(() => themeStore().theme)
 
 const rankDisplayList = computed(() => {
   const list = [...rankList.value]
@@ -400,10 +403,7 @@ function goTrade(item) {
 .hot-gallery {
   min-height: 100vh;
   box-sizing: border-box;
-  background:
-    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(106, 90, 205, 0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 50% at 80% 40%, rgba(75, 0, 130, 0.12) 0%, transparent 45%),
-    linear-gradient(180deg, #0a0b1a 0%, #070814 45%, #05060f 100%);
+  background: $main_background;
 }
 
 .hot-scroll {
@@ -420,16 +420,14 @@ function goTrade(item) {
   overflow: hidden;
   background: linear-gradient(
     165deg,
-    rgba(12, 14, 28, 0.97) 0%,
-    rgba(18, 16, 40, 0.95) 38%,
-    rgba(26, 20, 48, 0.92) 68%,
-    rgba(10, 11, 26, 0.98) 100%
+    $main2_background 0%,
+    $main_background 42%,
+    $main2_background 100%
   );
-  border: 1px solid rgba(106, 90, 205, 0.4);
+  border: 1px solid $line_color;
   box-shadow:
-    0 24px 56px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(139, 92, 246, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 16px 40px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   margin-bottom: 12px;
 }
 
@@ -504,7 +502,7 @@ function goTrade(item) {
 .hero-title {
   font-size: 20px;
   font-weight: 700;
-  color: #f8fafc;
+  color: $text_color;
 }
 
 .hero-service {
@@ -512,7 +510,7 @@ function goTrade(item) {
   height: 40px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: $tab_background;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -524,7 +522,7 @@ function goTrade(item) {
   width: 22px;
   height: 22px;
   fill: none;
-  stroke: #f1f5f9;
+  stroke: $text_color;
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -548,18 +546,18 @@ function goTrade(item) {
   font-family: Georgia, 'Times New Roman', ui-serif, serif;
   font-size: 27px;
   font-weight: 700;
-  color: #fff;
+  color: $text_color;
   letter-spacing: 0.03em;
   text-shadow:
-    0 0 20px rgba(0, 242, 255, 0.45),
-    0 0 40px rgba(106, 90, 205, 0.35);
+    0 0 16px rgba(22, 120, 255, 0.35),
+    0 0 28px rgba(22, 120, 255, 0.18);
 }
 
 .hero-title-rest {
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 16px;
   font-weight: 500;
-  color: rgba(248, 250, 252, 0.95);
+  color: $text_color1;
   letter-spacing: 0.02em;
 }
 
@@ -571,8 +569,8 @@ function goTrade(item) {
   margin-bottom: 16px;
   padding: 16px 10px;
   border-radius: 16px;
-  background: rgba(8, 10, 22, 0.55);
-  border: 1px solid rgba(106, 90, 205, 0.15);
+  background: $tab_background;
+  border: 1px solid $line_color;
   backdrop-filter: blur(6px);
 }
 
@@ -590,24 +588,24 @@ function goTrade(item) {
   width: 1px;
   align-self: stretch;
   margin: 4px 0;
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  background: linear-gradient(180deg, transparent, $line_color, transparent);
 }
 
 .hero-stat-label {
   display: block;
   font-size: 13px;
-  color: rgba(203, 213, 225, 0.75);
+  color: $text_color1;
   margin-bottom: 8px;
 }
 
 .hero-stat-num {
   font-size: 24px;
   font-weight: 800;
-  color: #00f2ff;
+  color: $color_main;
   letter-spacing: 0.02em;
   text-shadow:
-    0 0 12px rgba(0, 242, 255, 0.75),
-    0 0 28px rgba(0, 242, 255, 0.35);
+    0 0 10px rgba(22, 120, 255, 0.45),
+    0 0 20px rgba(22, 120, 255, 0.2);
 }
 
 .plus {
@@ -631,8 +629,8 @@ function goTrade(item) {
 .grid-card {
   position: relative;
   overflow: hidden;
-  background: rgba(10, 11, 28, 0.82);
-  border-color: rgba(106, 90, 205, 0.32);
+  background: $main2_background;
+  border-color: $line_color;
 
   &::before {
     content: '';
@@ -643,8 +641,7 @@ function goTrade(item) {
     height: 72px;
     background: radial-gradient(
       ellipse 100% 130% at 50% 0%,
-      rgba(106, 90, 205, 0.38) 0%,
-      rgba(75, 0, 130, 0.15) 42%,
+      rgba(22, 120, 255, 0.12) 0%,
       transparent 70%
     );
     pointer-events: none;
@@ -658,8 +655,8 @@ function goTrade(item) {
 }
 
 .card-block {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(106, 90, 205, 0.14);
+  background: $main2_background;
+  border: 1px solid $line_color;
   border-radius: 18px;
   padding: 16px 14px;
   margin-bottom: 14px;
@@ -695,12 +692,12 @@ function goTrade(item) {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(167, 139, 250, 0.2);
+  background: $tab_background;
+  border: 1px solid $line_color;
   box-shadow:
-    0 4px 14px rgba(0, 0, 0, 0.35),
+    0 4px 12px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  color: #f8fafc;
+  color: $text_color;
 }
 
 .grid-ico-svg {
@@ -711,7 +708,7 @@ function goTrade(item) {
 
 .round-label {
   font-size: 12px;
-  color: #e2e8f0;
+  color: $text_color1;
   line-height: 1.3;
   max-width: 82px;
 }
@@ -726,9 +723,9 @@ function goTrade(item) {
 .leader-block {
   padding: 14px 10px 18px;
   background:
-    radial-gradient(120% 80% at 50% 0%, rgba(82, 103, 182, 0.25) 0%, rgba(20, 29, 56, 0) 60%),
-    linear-gradient(180deg, #263152 0%, #202942 56%, #1c2237 100%);
-  border: 1px solid rgba(153, 169, 216, 0.16);
+    radial-gradient(120% 80% at 50% 0%, rgba(22, 120, 255, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, $main2_background 0%, $tab_background 56%, $main2_background 100%);
+  border: 1px solid $line_color;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -745,7 +742,7 @@ function goTrade(item) {
   gap: 10px;
   font-size: 15px;
   font-weight: 600;
-  color: #fff;
+  color: $text_color;
 }
 
 .leader-head-txt {
@@ -786,14 +783,14 @@ function goTrade(item) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #252d46;
+  background: $tab_background;
   border-radius: 20px 20px 16px 16px;
   padding: 46px 8px 14px;
-  border: 1px solid rgba(173, 186, 220, 0.16);
+  border: 1px solid $line_color;
   position: relative;
   overflow: visible;
   box-shadow:
-    0 16px 30px rgba(8, 12, 24, 0.35),
+    0 12px 24px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
@@ -806,15 +803,16 @@ function goTrade(item) {
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.06em;
-  color: rgba(255, 255, 255, 0.04);
+  color: $text_color;
+  opacity: 0.06;
   pointer-events: none;
   user-select: none;
 }
 
 .pr-1 .podium-pillar {
   min-height: 218px;
-  border-color: rgba(251, 221, 142, 0.28);
-  background: #2a324d;
+  border-color: $active_line;
+  background: $main2_background;
 }
 
 .pr-2 .podium-pillar {
@@ -883,7 +881,7 @@ function goTrade(item) {
   font-weight: 800;
   line-height: 20px;
   text-align: center;
-  border: 2px solid #1a1c24;
+  border: 2px solid $main_background;
 }
 
 .medal-1 .badge-rank {
@@ -901,7 +899,7 @@ function goTrade(item) {
   padding: 0 4px;
   border-radius: 0;
   font-size: 11px;
-  color: #d9ddea;
+  color: $text_color1;
   text-align: center;
   line-height: 1.2;
   max-width: 100%;
@@ -918,7 +916,7 @@ function goTrade(item) {
   margin-top: 10px;
   font-size: 18px;
   font-weight: 500;
-  color: #fff;
+  color: $text_color;
   line-height: 1.15;
   text-align: center;
   letter-spacing: 0;
@@ -948,8 +946,8 @@ function goTrade(item) {
   gap: 10px;
   padding: 12px 14px;
   border-radius: 18px;
-  background: rgba(47, 58, 89, 0.45);
-  border: 1px solid rgba(173, 186, 220, 0.22);
+  background: $tab_background;
+  border: 1px solid $line_color;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
@@ -957,7 +955,7 @@ function goTrade(item) {
   width: 22px;
   font-size: 20px;
   font-weight: 500;
-  color: #d4dae9;
+  color: $text_color1;
   flex-shrink: 0;
 }
 
@@ -981,7 +979,7 @@ function goTrade(item) {
   flex: 1;
   min-width: 0;
   font-size: 14px;
-  color: #dfe5f2;
+  color: $text_color;
   line-height: 1.3;
   word-break: break-word;
   white-space: nowrap;
@@ -998,7 +996,7 @@ function goTrade(item) {
   display: block;
   font-size: 14px;
   font-weight: 500;
-  color: #e7ecf8;
+  color: $text_color;
 }
 
 .inv-pct {
@@ -1023,7 +1021,7 @@ function goTrade(item) {
 .news-title {
   font-size: 17px;
   font-weight: 700;
-  color: #fff;
+  color: $text_color;
 }
 
 .news-more {
@@ -1031,7 +1029,7 @@ function goTrade(item) {
   background: transparent;
   padding: 4px 0;
   font-size: 14px;
-  color: #888;
+  color: $text_color1;
   cursor: pointer;
 }
 
@@ -1044,13 +1042,13 @@ function goTrade(item) {
 .news-card {
   padding: 16px 16px 14px;
   border-radius: 16px;
-  background: #1e1e26;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: $main2_background;
+  border: 1px solid $line_color;
   cursor: pointer;
   transition: background 0.15s ease;
 
   &:active {
-    background: #252530;
+    background: $tab_background;
   }
 }
 
@@ -1058,7 +1056,7 @@ function goTrade(item) {
   margin: 0 0 14px;
   font-size: 15px;
   line-height: 1.55;
-  color: #fff;
+  color: $text_color;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -1074,7 +1072,7 @@ function goTrade(item) {
 
 .news-time {
   font-size: 13px;
-  color: #888;
+  color: $text_color1;
 }
 
 .rank-board {
@@ -1082,8 +1080,8 @@ function goTrade(item) {
   margin-bottom: 8px;
   padding: 8px 10px 12px;
   border-radius: 14px;
-  background: #0f1d46;
-  border: 1px solid rgba(106, 126, 176, 0.28);
+  background: $main2_background;
+  border: 1px solid $line_color;
 }
 
 .rank-board-head {
@@ -1096,7 +1094,7 @@ function goTrade(item) {
 .rank-board-title {
   font-size: 30px;
   font-weight: 600;
-  color: #f4f7ff;
+  color: $text_color;
 }
 
 .rank-board-more {
@@ -1104,7 +1102,7 @@ function goTrade(item) {
   background: transparent;
   padding: 4px 0;
   font-size: 14px;
-  color: #a2adbf;
+  color: $text_color1;
   cursor: pointer;
 }
 
@@ -1123,20 +1121,20 @@ function goTrade(item) {
 .rank-pill {
   flex: 1;
   min-width: 74px;
-  border: 1px solid rgba(166, 181, 220, 0.24);
+  border: 1px solid $line_color;
   border-radius: 14px;
   padding: 6px 8px;
   font-size: 12px;
-  color: #9aabc9;
-  background: rgba(255, 255, 255, 0.08);
+  color: $text_color1;
+  background: $tab_background;
   cursor: pointer;
 }
 
 .rank-pill--on {
-  background: #f2f4f7;
-  color: #171f31;
+  background: $second-bg;
+  color: $text_color;
   font-weight: 600;
-  border-color: #f2f4f7;
+  border-color: $line_color;
 }
 
 .rank-col-h {
@@ -1146,7 +1144,7 @@ function goTrade(item) {
   column-gap: 10px;
   padding: 4px 6px 8px;
   font-size: 12px;
-  color: #8e9db9;
+  color: $text_color1;
 }
 
 .rank-col-mid {
@@ -1171,15 +1169,15 @@ function goTrade(item) {
   column-gap: 12px;
   padding: 10px 8px;
   border-radius: 12px;
-  background: rgba(30, 45, 88, 0.55);
-  border: 1px solid rgba(124, 146, 198, 0.24);
+  background: $tab_background;
+  border: 1px solid $line_color;
   cursor: pointer;
   transition: background 0.12s ease;
   margin: 0;
   list-style: none;
 
   &:active {
-    background: rgba(60, 70, 98, 0.8);
+    background: $second-bg;
   }
 }
 
@@ -1225,7 +1223,7 @@ function goTrade(item) {
 .rq-pair {
   margin: 0;
   font-size: 15px;
-  color: #f7f9fd;
+  color: $text_color;
   font-weight: 600;
   line-height: 1.2;
 
@@ -1237,7 +1235,7 @@ function goTrade(item) {
 .rq-vol {
   margin: 4px 0 0;
   font-size: 12px;
-  color: #8e9db9;
+  color: $text_color1;
 }
 
 .rq-mid {
@@ -1249,14 +1247,14 @@ function goTrade(item) {
   margin: 0;
   font-size: 15px;
   font-weight: 700;
-  color: #f5f7fc;
+  color: $text_color;
   line-height: 1.2;
 }
 
 .rq-usd {
   margin: 4px 0 0;
   font-size: 12px;
-  color: #8e9db9;
+  color: $text_color1;
 }
 
 .rq-right {
@@ -1285,9 +1283,32 @@ function goTrade(item) {
 }
 
 .rq-vol-tag {
-  color: #d7deed;
-  background: rgba(255, 255, 255, 0.08);
+  color: $text_color1;
+  background: $second-bg;
 }
 
+/* 日间模式：减弱紫色霓虹背景层，避免在浅色底上发糊 */
+.hot-gallery.hot-gallery--theme-white {
+  .hero-glow,
+  .hero-beam {
+    opacity: 0.2;
+  }
+
+  .hero-starfield {
+    opacity: 0.05;
+  }
+
+  .hero-grid-bg {
+    opacity: 0.04;
+  }
+
+  .hero-brand {
+    text-shadow: none;
+  }
+
+  .hero-stat-num {
+    text-shadow: none;
+  }
+}
 </style>
 

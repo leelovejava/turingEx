@@ -183,26 +183,25 @@ export default {
     },
     submit() {
       if (!this.loanAmount || +this.loanAmount <= 0) {
-        showToast(this.$t("请输入借款金额"));
+        showToast("Please enter the loan amount");
         return;
       }
       if (+this.loanAmount > +this.loanCanAmount) {
-        showToast(this.$t("超出可贷金额"));
+        showToast("Exceeds the available loan amount");
         return;
       }
-      console.log(this.loanData);
       _loanApply({
         term: this.loanData.term,
         quota: this.loanAmount,
         dailyRate: this.loanData.daily_rate,
-        lendingInstitution: this.loanData.lending_institution, //放款机构名字
+        lendingInstitution: this.loanData.lending_institution,
         lendingName: this.loanData.lending_name,
-        repayment: this.loanData.repayment, //还款方式
-        repayCycle: this.loanData.repay_cycle, //还款日期
+        repayment: this.loanData.repayment,
+        repayCycle: this.loanData.repay_cycle,
         symbol: "USDT",
-        frontFile: this.frontFile[0].resURL,
-        reverseFile: this.reverseFile[0].resURL,
-        fileList: this.fileList[0].resURL,
+        frontFile: this.frontFile[0]?.resURL,
+        reverseFile: this.reverseFile[0]?.resURL,
+        fileList: this.fileList[0]?.resURL,
       })
         .then((res) => {
           // console.log('res',res)
@@ -304,8 +303,8 @@ export default {
   .selectDay {
     position: absolute;
     left: -70px;
-    background: #f5f5f5;
-    color: #333;
+    background: $second-bg;
+    color: $text_color;
     box-sizing: border-box;
 
     div {

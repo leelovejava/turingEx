@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="list-quatation">
     <ex-tabs @tabs="onTabs"></ex-tabs>
     <van-list>
@@ -144,7 +144,7 @@ export default {
     margin-bottom: 12px;
   }
 
-  :deep(.van-cell__value) { color: #d6deef; }
+  :deep(.van-cell__value) { color: $text_color; }
 
   .list-head {
     display: grid;
@@ -152,7 +152,7 @@ export default {
     column-gap: 8px;
     align-items: center;
     padding: 6px 2px 8px;
-    color: #8f96a8;
+    color: $text_color1;
     font-size: 30px;
     white-space: nowrap;
   }
@@ -162,14 +162,14 @@ export default {
   .right { width: 22%; min-width: 100px; text-align: right; overflow: hidden; }
 
   .row-card {
-    background: rgba(29, 36, 55, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: $main2_background;
+    border: 1px solid $line_color;
     border-radius: 22px;
     padding: 20px 18px;
   }
 
-  .text-grey { color: #8f96a8 !important; }
-  .textColor { color: #eef1f7 !important; }
+  .text-grey { color: $text_color1 !important; }
+  .textColor { color: $text_color !important; }
 
   .pct-up, .pct-down {
     min-width: 130px;

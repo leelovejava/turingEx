@@ -404,7 +404,7 @@ async function onConfirmDeposit() {
 
 .pair-item.active {
   background: $btn_main;
-  color: $white;
+  color: $main-btn-color;
   font-weight: 600;
 }
 
@@ -415,12 +415,13 @@ async function onConfirmDeposit() {
 }
 
 .strategy-card {
-  border: 1px solid $border_color;
-  border-radius: 12px;
+  border: 1px solid $line_color;
+  border-radius: 14px;
   padding: 0;
   margin-bottom: 20px;
   background: $main2_background;
   overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .strategy-card-head {
@@ -438,13 +439,14 @@ async function onConfirmDeposit() {
 
 .btn-add {
   padding: 12px 28px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   background: $btn_main;
-  color: $white;
+  color: $main-btn-color;
   font-size: 26px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(22, 120, 255, 0.22);
 }
 
 .strategy-divider {
@@ -480,18 +482,21 @@ async function onConfirmDeposit() {
 
 .dashboard-card {
   position: relative;
-  border-radius: 24px;
+  border-radius: 16px;
   padding: 48px 24px 32px;
-  background: linear-gradient(145deg, #48b38e 0%, #3a9a78 100%);
-  color: $white;
+  background: $main2_background;
+  border: 1px solid $line_color;
+  color: $text_color;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .badge {
   position: absolute;
   top: 20px;
   left: 20px;
-  background: #e8c547;
-  color: $black;
+  background: $tab_background;
+  color: $text_color;
+  border: 1px solid $line_color;
   font-size: 22px;
   font-weight: 700;
   padding: 8px 20px;
@@ -510,11 +515,12 @@ async function onConfirmDeposit() {
   font-size: 36px;
   font-weight: 700;
   line-height: 1.2;
+  color: $text_color;
 }
 
 .metric-label {
   font-size: 22px;
-  opacity: 0.92;
+  color: $text_color1;
   margin-top: 8px;
   line-height: 1.3;
 }
@@ -527,8 +533,8 @@ async function onConfirmDeposit() {
 }
 
 .state-active {
-  background: rgba(6, 205, 165, 0.15);
-  color: #06cda5;
+  background: rgba(6, 205, 165, 0.12);
+  color: $green;
 }
 
 .state-stopped {
@@ -547,11 +553,12 @@ async function onConfirmDeposit() {
   padding: 22px 16px;
   border-radius: 999px;
   border: none;
-  background: linear-gradient(145deg, #48b38e 0%, #3a9a78 100%);
-  color: $white;
+  background: $btn_main;
+  color: $main-btn-color;
   font-size: 28px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(22, 120, 255, 0.22);
 }
 
 .order-list {
@@ -564,10 +571,11 @@ async function onConfirmDeposit() {
   align-items: center;
   padding: 24px 16px;
   background: $main2_background;
-  border: 1px solid $border_color;
-  border-radius: 12px;
+  border: 1px solid $line_color;
+  border-radius: 14px;
   margin-bottom: 12px;
   cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .order-item-left {
@@ -639,10 +647,10 @@ async function onConfirmDeposit() {
 
 .deposit-sheet {
   background: $main_background;
-  border: 1px solid $border_color;
+  border: 1px solid $line_color;
   border-radius: 16px;
   padding: 32px 28px 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
 }
 
 .deposit-title {
@@ -737,7 +745,7 @@ async function onConfirmDeposit() {
   padding: 10px 20px;
   border-radius: 8px;
   border: none;
-  background: #06cda5;
+  background: $green;
   color: $white;
   font-size: 24px;
   font-weight: 700;
@@ -763,7 +771,7 @@ async function onConfirmDeposit() {
 .link-confirm {
   background: none;
   border: none;
-  color: $red;
+  color: $btn_main;
   font-size: 30px;
   font-weight: 600;
   cursor: pointer;

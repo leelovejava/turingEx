@@ -177,7 +177,7 @@ const changeType = () => {
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 200px $light-grey inset;
+  -webkit-box-shadow: 0 0 0 200px $input_background inset !important;
 }
 
 input::-webkit-input-placeholder {

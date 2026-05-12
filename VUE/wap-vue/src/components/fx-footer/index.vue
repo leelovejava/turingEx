@@ -4,7 +4,7 @@
     <div class="footer-wave-wrap" aria-hidden="true">
       <svg class="footer-wave-svg" viewBox="0 0 400 22" preserveAspectRatio="none">
         <path
-          fill="#000000"
+          class="footer-wave-fill"
           d="M0,22 L0,6 C28,6 55,8 85,11 C115,14 155,18 175,19.5 C188,20.5 200,21 212,19.5 C232,17 265,13 295,10 C335,6 368,4 400,6 L400,22 Z"
         />
       </svg>
@@ -14,8 +14,8 @@
       route
       v-model="active"
       :border="false"
-      active-color="#3d8cff"
-      inactive-color="#ebebf5"
+      active-color="var(--color_main)"
+      inactive-color="var(--footer_color)"
       @change="changeIndex"
       fixed
       safe-area-inset-bottom
@@ -131,6 +131,10 @@ const changeIndex = () => {};
   height: 100%;
 }
 
+.footer-wave-fill {
+  fill: var(--footer_bg);
+}
+
 .footer :deep(.dock-tabbar.van-tabbar) {
   z-index: 10;
   position: fixed;
@@ -140,15 +144,15 @@ const changeIndex = () => {};
   height: 62px;
   padding: 6px 4px calc(6px + constant(safe-area-inset-bottom));
   padding-bottom: calc(6px + env(safe-area-inset-bottom));
-  background: #000000;
+  background: var(--footer_bg);
   border: none !important;
   border-top: none !important;
   outline: none;
   border-radius: 24px 24px 0 0;
   /* 仅保留向上柔和阴影，不要顶边亮线 */
-  box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.22);
   overflow: visible;
-  --van-tabbar-background: #000000;
+  --van-tabbar-background: var(--footer_bg);
   /* 选中项不要浅色底，只保留主题色用于文字（图标用自定义 SVG stroke） */
   --van-tabbar-item-active-background: transparent;
 }
@@ -180,7 +184,7 @@ const changeIndex = () => {};
   margin-bottom: 0;
   border-radius: 50%;
   background: linear-gradient(180deg, #3d8cff 0%, #1a6cff 40%, #0d5aed 100%);
-  border: 5px solid #000000;
+  border: 5px solid var(--footer_bg);
   box-shadow: 0 10px 26px rgba(13, 90, 237, 0.45);
   outline: none;
   display: flex;
@@ -194,17 +198,19 @@ const changeIndex = () => {};
 
 .tab-label {
   font-size: 11px;
-  color: rgba(235, 235, 245, 0.82) !important;
+  color: var(--footer_color) !important;
   font-weight: 500;
+  opacity: 0.92;
 }
 
 .tab-label.active {
-  color: #3d8cff !important;
+  color: var(--color_main) !important;
+  opacity: 1;
   font-weight: 600;
 }
 
 .tab-label--fab.active {
-  color: #3d8cff !important;
+  color: var(--color_main) !important;
 }
 
 .fab-wrap {
@@ -219,10 +225,11 @@ const changeIndex = () => {};
   width: 22px;
   height: 22px;
   fill: none;
-  stroke: rgba(235, 235, 245, 0.88);
+  stroke: var(--footer_color);
   stroke-width: 1.55;
   stroke-linecap: round;
   stroke-linejoin: round;
+  opacity: 0.9;
 }
 
 .tab-icon--coins {
@@ -230,7 +237,8 @@ const changeIndex = () => {};
 }
 
 .footer :deep(.van-tabbar-item--active) .tab-icon:not(.fab-icon) {
-  stroke: #3d8cff;
+  stroke: var(--color_main);
+  opacity: 1;
 }
 
 .fab-icon {

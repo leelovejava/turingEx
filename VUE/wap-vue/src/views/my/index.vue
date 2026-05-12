@@ -37,6 +37,15 @@
       </div>
     </div>
     <!-- <div class="divider"></div> -->
+    <div class="mt-4">
+      <van-cell-group :border="false">
+        <van-cell center :title="t('darkMode')" :border="false">
+          <template #right-icon>
+            <van-switch :model-value="isDarkTheme" @update:model-value="onDarkModeChange" />
+          </template>
+        </van-cell>
+      </van-cell-group>
+    </div>
     <div v-if="userStore.userInfo && userStore.userInfo.token">
       <van-cell-group :title="t('快捷入口')" :border="false"></van-cell-group>
       <van-grid class="van-grid-main" :column-num="4" :border="false">
@@ -124,10 +133,19 @@ import kycHighStatusIcon from "@/assets/image/userCenter/kycHighStatus.png";
 import store from "@/store/store";
 import { _getUnreadMsg } from '@/service/im.api';
 import { themeStore } from "@/store/theme";
+import { SET_THEME } from "@/store/types.store";
 const { t } = useI18n();
 const { toClipboard } = useClipboard();
 
 const thStore = themeStore();
+
+const isDarkTheme = computed(() => thStore.theme === "dark");
+
+const onDarkModeChange = (dark) => {
+  const next = dark ? "dark" : "white";
+  if (next === thStore.theme) return;
+  thStore[SET_THEME](next, true);
+};
 
 const router = useRouter();
 const userStore = useUserStore();

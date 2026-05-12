@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <section class="worker-order-detail">
     <fx-header :title="t('workerOrder.detail')" />
     <div class="head" v-if="order">
@@ -83,13 +83,13 @@ onMounted(() => {
 .title {
   font-size: 30px;
   font-weight: 600;
-  color: #ffffff;
+  color: $text_color;
   line-height: 42px;
 }
 
 .meta {
   margin-top: 8px;
-  color: #7c8ea5;
+  color: $text_color1;
   font-size: 16px;
   line-height: 22px;
 }
@@ -102,18 +102,18 @@ onMounted(() => {
   padding: 12px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: #282d49;
+  background: $main2_background;
 }
 
 .msg-role {
-  color: #7c8ea5;
+  color: $text_color1;
   font-size: 16px;
   line-height: 22px;
 }
 
 .msg-content {
   margin-top: 8px;
-  color: #ffffff;
+  color: $text_color;
   white-space: pre-wrap;
   font-size: 16px;
   line-height: 22px;
@@ -121,7 +121,7 @@ onMounted(() => {
 
 .msg-time {
   margin-top: 8px;
-  color: #7c8ea5;
+  color: $text_color1;
   font-size: 16px;
   line-height: 22px;
 }
@@ -139,16 +139,16 @@ onMounted(() => {
 
 :deep(.reply-box .van-cell),
 :deep(.reply-box .van-field) {
-  background: #282d49;
+  background: $input_background;
   border-radius: 4px;
 }
 
 :deep(.reply-box .van-field__control) {
-  color: #ffffff;
+  color: $text_color;
 }
 
 :deep(.reply-box .van-field__control::placeholder) {
-  color: #7c8ea5;
+  color: $text_color3;
 }
 
 :deep(.reply-box .van-cell::after),

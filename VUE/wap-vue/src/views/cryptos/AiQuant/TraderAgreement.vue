@@ -138,8 +138,10 @@ function goBack() {
   max-width: 920px;
   margin: 0 auto;
   padding: 20px 18px 40px;
-  background: #ffffff;
-  color: #111827;
+  background: $main2_background;
+  color: $text_color;
+  border: 1px solid $line_color;
+  border-radius: 12px;
   box-sizing: border-box;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 }
@@ -150,7 +152,7 @@ function goBack() {
   font-weight: 700;
   line-height: 1.35;
   text-align: center;
-  color: #000000;
+  color: $text_color;
 }
 
 .section {
@@ -166,7 +168,7 @@ function goBack() {
   font-size: 26px;
   font-weight: 700;
   line-height: 1.4;
-  color: #000000;
+  color: $text_color;
 }
 
 .paragraph {
@@ -174,7 +176,7 @@ function goBack() {
   font-size: 24px;
   font-weight: 400;
   line-height: 1.5;
-  color: #374151;
+  color: $text_color1;
 }
 
 .list,
@@ -183,7 +185,7 @@ function goBack() {
   padding-left: 28px;
   font-size: 24px;
   line-height: 1.5;
-  color: #374151;
+  color: $text_color1;
 }
 
 .list-item,
@@ -208,7 +210,7 @@ function goBack() {
   font-size: 24px;
   font-weight: 700;
   line-height: 1.4;
-  color: #000000;
+  color: $text_color;
 }
 
 @media (min-width: 1024px) {

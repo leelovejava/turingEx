@@ -1,4 +1,4 @@
-﻿<template>
+<template>
     <div class="ex-tabs">
         <div class="ex-tab" v-for="(item, index) in listArr" :key="index" @click="changeTab(index)"
             :class="active == index ? 'active' : ''">
@@ -49,9 +49,9 @@ export default {
     line-height: 58px;
     text-align: center;
     border-radius: 29px;
-    color: #8f96a8;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: $text_color1;
+    background: $tab_background;
+    border: 1px solid $line_color;
     font-size: 28px;
     font-weight: 600;
     white-space: nowrap;
@@ -59,9 +59,9 @@ export default {
 }
 
 .ex-tabs .active {
-    background: #f4f5f7;
-    border-color: #f4f5f7;
-    color: #191f2b;
+    background: $second-bg;
+    border-color: $line_color;
+    color: $text_color;
     font-weight: 700;
 }
 </style>

@@ -108,6 +108,7 @@ export default {
     agreeAdderssCompet: "我已同意授权访问地址簿",
     wangtRecharge: "我想要充值",
     torecharge: "去充值",
+    darkMode: "深色模式",
     language: "语言",
     safe: "安全",
     changePassword: "修改密码",

@@ -9,8 +9,8 @@ import legacy from '@vitejs/plugin-legacy';
 
 const isVisualizer = process.env.VISUALIZER === 'show'
 const useLegacy = process.env.BUILD_LEGACY === 'true'
-export default defineConfig({
-  base: '/', 
+export default defineConfig(({ mode }) => ({
+  base: '/',
   plugins: [
     vue(),
     Components({
@@ -71,9 +71,18 @@ export default defineConfig({
         manualChunks: {
           'vendor-vue': ['vue', 'vue-router', 'pinia'],
           'vendor-vant': ['vant'],
+          /* 大图表库单独成 chunk：减小单次 esbuild 压缩体积，利于并行与缓存 */
+          'vendor-echarts': ['echarts'],
+          'vendor-kline': ['klinecharts'],
+          'vendor-html2canvas': ['html2canvas'],
         },
       },
     },
   },
-  externals: ['vue']
-})
+  esbuild: {
+    legalComments: 'none',
+    ...(mode === 'production'
+      ? { drop: ['debugger'] }
+      : {}),
+  },
+}))

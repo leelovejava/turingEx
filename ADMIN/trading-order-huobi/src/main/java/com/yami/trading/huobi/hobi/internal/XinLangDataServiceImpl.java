@@ -92,7 +92,7 @@ public class XinLangDataServiceImpl {
         if (!json.contains("(")) {
             throw new IllegalArgumentException("forex minute kline parse error");
         }
-        json = json.split("\\(")[1].replace(");", "");
+        json = json.split("\\(")[1].replaceAll("\\);$", "").replaceAll("]);$", "").replaceAll("]\\);$", "");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         JSONArray dataArray = JSONObject.parseArray(json);

@@ -111,6 +111,7 @@ export default {
     language: "語言",
     safe: "安全",
     changePassword: "修改密碼",
+    darkMode: "深色主題",
     universal: "通用",
     onLineService: "在線客服",
     historyMessage: "歷史消息",

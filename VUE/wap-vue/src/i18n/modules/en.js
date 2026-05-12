@@ -109,6 +109,7 @@ export default {
     agreeAdderssCompet: "I have agreed to authorize access to the address book",
     wangtRecharge: "I want to top up",
     torecharge: "To Deposit",
+    darkMode: "Dark mode",
     language: "Language",
     safe: "Safe",
     changePassword: "Change Password",

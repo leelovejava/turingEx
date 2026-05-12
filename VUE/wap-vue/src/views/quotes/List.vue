@@ -317,17 +317,17 @@ onBeforeRouteLeave(() => {
 
 .quotes-page {
   min-height: 100vh;
-  background: #121212;
+  background: $main_background;
   box-sizing: border-box;
 }
 
 :deep(.van-tabs__nav) {
-  background: #1f1f1f;
+  background: $tab_background;
   border-radius: 16px;
   padding: 8px;
   display: flex;
   gap: 8px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.06);
 }
 
 :deep(.van-tab) {
@@ -336,15 +336,15 @@ onBeforeRouteLeave(() => {
   height: 36px;
   padding: 0 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.55);
+  background: $second-bg;
+  color: $text_color1;
   font-size: 13px;
   font-weight: 500;
 }
 
 :deep(.van-tab.van-tab--active) {
-  background: #ffffff;
-  color: #121212;
+  background: $mainBgColor;
+  color: $text_color;
   font-weight: 700;
 }
 
@@ -354,7 +354,7 @@ onBeforeRouteLeave(() => {
 
 .soon-container {
   padding: 0 16px;
-  color: #ccc;
+  color: $text_color1;
   font-size: 14px;
   display: flex;
   justify-content: center;
@@ -405,7 +405,7 @@ onBeforeRouteLeave(() => {
       font-weight: 700;
       font-size: 22px;
       line-height: 30px;
-      color: #ffffff;
+      color: $text_color;
       letter-spacing: 0.02em;
     }
 
@@ -420,7 +420,7 @@ onBeforeRouteLeave(() => {
         justify-content: center;
         align-items: center;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.06);
+        background: $second-bg;
 
         &.search img {
           width: 20px;

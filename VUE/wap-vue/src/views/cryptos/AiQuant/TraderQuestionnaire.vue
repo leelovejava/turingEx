@@ -9,7 +9,7 @@
         <span class="tq-banner-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
             <circle cx="12" cy="12" r="10" fill="currentColor" />
-            <path d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 12l2.5 2.5L16 9" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </span>
         <div class="tq-banner-text">
@@ -165,8 +165,8 @@ async function submit() {
   gap: 16px;
   padding: 20px 18px;
   border-radius: 14px;
-  background: $cont_background1;
-  border: 1px solid $border_color;
+  background: $tab_background;
+  border: 1px solid $line_color;
   margin-bottom: 28px;
 }
 
@@ -291,17 +291,19 @@ async function submit() {
   padding: 22px 24px;
   border-radius: 14px;
   border: none;
-  background: #ffffff;
-  color: #111827;
+  background: $btn_main;
+  color: $main-btn-color;
   font-size: 30px;
   font-weight: 700;
   cursor: pointer;
   box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(22, 120, 255, 0.22);
 }
 
 .tq-submit:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 @media (min-width: 1024px) {

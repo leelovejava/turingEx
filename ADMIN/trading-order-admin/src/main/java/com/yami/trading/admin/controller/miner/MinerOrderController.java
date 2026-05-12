@@ -268,6 +268,7 @@ public class MinerOrderController {
             com.baomidou.mybatisplus.extension.plugins.pagination.Page<QuantPreIncome> page =
                 quantPreIncomeService.lambdaQuery()
                     .eq(QuantPreIncome::getQuantOrderId, order.getUuid())
+                    .eq(QuantPreIncome::getStatus, 1)
                     .orderByDesc(QuantPreIncome::getEndTime)
                     .page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(pageNo, pageSize));
             Map<String, Object> result = new HashMap<>();

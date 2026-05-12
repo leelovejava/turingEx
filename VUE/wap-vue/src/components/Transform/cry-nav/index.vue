@@ -160,7 +160,7 @@ export default {
     min-width: 0;
     width: auto;
     max-width: none;
-    color: rgba(255, 255, 255, 0.92);
+    color: $text_color;
   }
 
   .imgBox {
@@ -170,9 +170,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    background: $tab_background;
+    border: 1px solid $line_color;
+    box-shadow: none;
 
     img {
       width: 98px;
@@ -188,7 +188,7 @@ export default {
     font-size: 26px;
     line-height: 1.4;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.88);
+    color: $text_color;
     word-break: break-word;
     white-space: normal;
     padding: 0 2px;

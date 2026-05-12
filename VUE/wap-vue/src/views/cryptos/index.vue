@@ -1,7 +1,7 @@
 <template>
   <div class="home" id="cryptos">
     <section class="news-banner-container">
-      <van-swipe class="swipe-box" :autoplay="5000" indicator-color="white" v-if="!isZh">
+      <van-swipe class="swipe-box" :autoplay="5000" :indicator-color="swipeIndicatorColor" v-if="!isZh">
         <van-swipe-item>
           <img src="@/assets/image/usStock/enbanner1.png" alt="">
         </van-swipe-item>
@@ -9,7 +9,7 @@
           <img src="@/assets/image/usStock/enbanner2.png" alt="">
         </van-swipe-item>
       </van-swipe>
-      <van-swipe class="swipe-box" :autoplay="5000" indicator-color="white" v-else>
+      <van-swipe class="swipe-box" :autoplay="5000" :indicator-color="swipeIndicatorColor" v-else>
         <van-swipe-item>
           <img src="@/assets/image/usStock/cnbanner1.png" alt="">
         </van-swipe-item>
@@ -24,7 +24,7 @@
         left-icon=""
         :scrollable="false"
         background="transparent"
-        color="#ffffff"
+        :color="noticeBarColor"
       >
         <template #left-icon>
           <span class="quotes-notice-bell" aria-hidden="true">
@@ -53,22 +53,22 @@
     </div>
     <cry-nav @open-ai-quant-sheet="showAiQuantSheet = true" />
     <div class="quickly">
-      <div class="quickBox chongbi" :class="THEME == 'dark' ? 'dark' : 'white'"
+      <div class="quickBox chongbi" :class="currentTheme === 'dark' ? 'dark' : 'white'"
         @click="$router.push('/cryptos/recharge/rechargeList')">
         <div class="left">
           <div class="leftBox">
             <img src="@/assets/theme/dark/image/chongicon.png" alt="">
           </div>
           <div class="leftCont">
-            <p style="max-width:100px;" class="color-white">{{ $t("快捷充币") }}</p>
+            <p style="max-width:100px;">{{ $t("快捷充币") }}</p>
           </div>
         </div>
         <div class="right">
-          <img v-if="THEME == 'dark'" src="@/assets/theme/dark/image/goto.png" alt="">
+          <img v-if="currentTheme === 'dark'" src="@/assets/theme/dark/image/goto.png" alt="">
           <img v-else src="@/assets/theme/white/image/goto.png" alt="">
         </div>
       </div>
-      <div class="quickBox tibi" :class="THEME == 'dark' ? 'dark' : 'white'"
+      <div class="quickBox tibi" :class="currentTheme === 'dark' ? 'dark' : 'white'"
         @click="$router.push('/cryptos/withdraw/withdrawPage')">
         <div class="left">
           <div class="leftBox"><img src="@/assets/theme/dark/image/tiicon.png" alt=""></div>
@@ -77,14 +77,14 @@
           </div>
         </div>
         <div class="right">
-          <img v-if="THEME == 'dark'" src="@/assets/theme/dark/image/goto.png" alt="">
+          <img v-if="currentTheme === 'dark'" src="@/assets/theme/dark/image/goto.png" alt="">
           <img v-else src="@/assets/theme/white/image/goto.png" alt="">
         </div>
       </div>
     </div>
     <!-- <div
       class="ai-quant-entry"
-      :class="THEME == 'dark' ? 'dark' : 'white'"
+      :class="currentTheme === 'dark' ? 'dark' : 'white'"
       @click="showAiQuantSheet = true"
     >
       <div class="ai-quant-entry-inner">
@@ -96,7 +96,7 @@
         </span>
         <span class="ai-quant-entry-label">{{ $t('aiQuantEntry') }}</span>
         <img
-          v-if="THEME == 'dark'"
+          v-if="currentTheme === 'dark'"
           class="ai-quant-entry-arrow"
           src="@/assets/theme/dark/image/goto.png"
           alt=""
@@ -181,8 +181,6 @@ import { BASE_URL } from "@/config";
 import { themeStore } from '@/store/theme';
 import { _getRealtimeByType, _publicRealtimeTop } from '@/service/quotes.api'
 import { _getQuantQuestionExist } from '@/service/cryptos.api'
-const thStore = themeStore()
-const THEME = thStore.theme
 
 export default {
   name: "HomePage",
@@ -222,6 +220,15 @@ export default {
       hotArr: 'home/hotArr',
       userInfo: 'user/userInfo'
     }),
+    currentTheme() {
+      return themeStore().theme
+    },
+    noticeBarColor() {
+      return this.currentTheme === 'dark' ? '#ffffff' : '#333333'
+    },
+    swipeIndicatorColor() {
+      return this.currentTheme === 'dark' ? '#ffffff' : '#1678FF'
+    },
   },
   data() {
     const arr = [] // 初始化数据
@@ -230,7 +237,6 @@ export default {
     }
     return {
       BASE_URL,
-      THEME,
       account: "",
       hList: arr.slice(0, 3), // 热门
       qList: arr, // 行情列表
@@ -369,7 +375,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   padding: 8px 12px 108px;
-  background: #121212;
+  background: $main_background;
 }
 
 .news-banner-container {
@@ -388,7 +394,7 @@ export default {
     font-size: 20px;
     line-height: 204px;
     text-align: center;
-    background: linear-gradient(135deg, #1e3a5f 0%, #3d2b6e 100%);
+    background: $tab_background;
 
     img {
       display: block;
@@ -403,8 +409,8 @@ export default {
   margin-bottom: 8px;
   padding: 0;
   border-radius: 16px;
-  background: #1f1f1f;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: $main2_background;
+  border: 1px solid $line_color;
   overflow: hidden;
 }
 
@@ -414,7 +420,7 @@ export default {
   justify-content: center;
   width: 48px;
   height: 80px;
-  color: rgba(255, 255, 255, 0.85);
+  color: $text_color;
   flex-shrink: 0;
 }
 
@@ -432,7 +438,7 @@ export default {
   padding: 0 4px 0 8px;
   height: 80px;
   align-items: center;
-  color: #ffffff;
+  color: $text_color;
   font-size: 28px;
 }
 
@@ -497,7 +503,7 @@ export default {
 
     p {
       font-size: 30px;
-      color: #21262F;
+      color: $text_color;
       font-weight: 600;
       line-height: 14px;
     }
@@ -538,15 +544,7 @@ export default {
     align-items: center;
     padding: 16px 18px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: linear-gradient(
-      145deg,
-      rgba(40, 42, 55, 0.95) 0%,
-      rgba(28, 28, 32, 0.98) 100%
-    );
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 4px 16px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
 
     .left {
       display: flex;
@@ -575,7 +573,6 @@ export default {
 
       p {
         font-size: 30px;
-        color: #f3f4f6;
         font-weight: 600;
         line-height: 1.3;
       }
@@ -590,6 +587,32 @@ export default {
       img {
         width: 100%;
         height: 100%;
+      }
+    }
+
+    &.dark {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(
+        145deg,
+        rgba(40, 42, 55, 0.95) 0%,
+        rgba(28, 28, 32, 0.98) 100%
+      );
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 4px 16px rgba(0, 0, 0, 0.25);
+
+      .leftCont p {
+        color: #f3f4f6;
+      }
+    }
+
+    &.white {
+      border: 1px solid $line_color;
+      background: linear-gradient(145deg, $mainBgColor 0%, $tab_background 100%);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+
+      .leftCont p {
+        color: $text_color;
       }
     }
   }
@@ -632,7 +655,7 @@ export default {
   width: 56px;
   height: 56px;
   flex-shrink: 0;
-  color: #3d8cff;
+  color: $btn_main;
 }
 
 #cryptos .ai-quant-entry-label {
@@ -640,7 +663,7 @@ export default {
   margin-left: 14px;
   font-size: 30px;
   font-weight: 600;
-  color: #f3f4f6;
+  color: $text_color;
   text-align: left;
 }
 
@@ -763,7 +786,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #ffffff;
+  color: $text_color;
 }
 
 .more-img {

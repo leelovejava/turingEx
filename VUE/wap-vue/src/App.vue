@@ -14,7 +14,7 @@
 import { onMounted } from 'vue'
 import fxFooter from "@/components/fx-footer/index.vue";
 import { useRoute } from "vue-router";
-import { setStorage, getStorage } from "@/utils/index.js";
+import { setStorage } from "@/utils/index.js";
 import { SET_THEME } from "@/store/types.store";
 import { themeStore } from "@/store/theme";
 
@@ -35,13 +35,8 @@ let usercode = geturlkey("usercode");
 if (usercode) {
   setStorage("usercode", usercode);
 }
-// thStore[SET_THEME]("dark", false); // dark white
-//设置主题
-if (!getStorage("theme")) {
-  thStore[SET_THEME]("dark", true);
-} else {
-  thStore[SET_THEME](thStore.theme, false);
-}
+// 同步本地 / Pinia 持久化主题到 DOM（不再首次强制 reload）
+thStore[SET_THEME](thStore.theme, false);
 
 const timeConvert = () => {
   _timeConvert().then(res => {
@@ -305,7 +300,7 @@ onMounted(() => {
     }
 
     .van-cell__value {
-      color: $black;
+      color: $text_color;
     }
   }
 

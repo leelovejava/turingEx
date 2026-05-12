@@ -98,13 +98,14 @@ function goBot() {
   gap: 16px;
   padding: 22px 18px;
   margin-bottom: 16px;
-  border: 1px solid $border_color;
+  border: 1px solid $line_color;
   border-radius: 16px;
-  background: $tab_background;
+  background: $main2_background;
   cursor: pointer;
   text-align: left;
   box-sizing: border-box;
   transition: opacity 0.15s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .choose-card:active {
@@ -121,6 +122,7 @@ function goBot() {
   border-radius: 12px;
   color: $btn_main;
   background: rgba(22, 120, 255, 0.12);
+  border: 1px solid rgba(22, 120, 255, 0.2);
 }
 
 .choose-card-body {

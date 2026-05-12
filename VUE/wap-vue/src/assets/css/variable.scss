@@ -95,6 +95,42 @@ html[theme="white"]:root {
     --van-step-b: #ffffff;
     --van-step-s: #cdcdcd;
     --van-step-g: #ffffff;
+
+    /* Vant 组件与主题变量对齐（输入框 / Cell / 搜索栏 / 弹层等） */
+    --van-primary-color: var(--color_main);
+    --van-text-color: var(--text_color);
+    --van-text-color-2: var(--text_color1);
+    --van-text-color-3: var(--text_color3);
+    --van-border-color: var(--line_color);
+    --van-active-color: var(--tab_background);
+    --van-background: var(--second-bg);
+    --van-background-2: var(--main_background);
+    --van-background-3: var(--main2_background);
+    --van-cell-group-background: var(--main_background);
+    --van-cell-group-title-color: var(--text_color1);
+    --van-field-label-color: var(--text_color);
+    --van-field-input-text-color: var(--text_color);
+    --van-field-placeholder-text-color: var(--text_color3);
+    --van-field-word-limit-color: var(--text_color1);
+    --van-field-clear-icon-color: var(--text_color3);
+    --van-field-right-icon-color: var(--text_color1);
+    --van-cell-text-color: var(--text_color);
+    --van-cell-background: var(--main_background);
+    --van-cell-label-color: var(--text_color1);
+    --van-cell-value-color: var(--text_color);
+    --van-cell-border-color: var(--line_color);
+    --van-cell-active-color: var(--tab_background);
+    --van-cell-right-icon-color: var(--text_color1);
+    --van-search-background: var(--main_background);
+    --van-search-content-background: var(--input_background);
+    --van-search-label-color: var(--text_color);
+    --van-search-left-icon-color: var(--text_color1);
+    --van-search-action-text-color: var(--text_color);
+    --van-tabbar-background: var(--footer_bg);
+    --van-popup-background: var(--popup-bg);
+    --van-popup-close-icon-color: var(--text_color3);
+    --van-dialog-background: var(--main_background);
+    --van-overlay-background: rgba(0, 0, 0, 0.65);
 }
 
 html[theme="dark"]:root {
@@ -194,6 +230,42 @@ html[theme="dark"]:root {
     --van-step-b: #202840;
     --van-step-s: #15284F;
     --van-step-g: #131A2E;
+
+    /* Vant 组件与主题变量对齐（输入框 / Cell / 搜索栏 / 弹层等） */
+    --van-primary-color: var(--color_main);
+    --van-text-color: var(--text_color);
+    --van-text-color-2: var(--text_color1);
+    --van-text-color-3: var(--text_color3);
+    --van-border-color: var(--line_color);
+    --van-active-color: var(--tab_background);
+    --van-background: var(--second-bg);
+    --van-background-2: var(--main_background);
+    --van-background-3: var(--main2_background);
+    --van-cell-group-background: var(--main_background);
+    --van-cell-group-title-color: var(--text_color1);
+    --van-field-label-color: var(--text_color);
+    --van-field-input-text-color: var(--text_color);
+    --van-field-placeholder-text-color: var(--text_color3);
+    --van-field-word-limit-color: var(--text_color1);
+    --van-field-clear-icon-color: var(--text_color3);
+    --van-field-right-icon-color: var(--text_color1);
+    --van-cell-text-color: var(--text_color);
+    --van-cell-background: var(--main_background);
+    --van-cell-label-color: var(--text_color1);
+    --van-cell-value-color: var(--text_color);
+    --van-cell-border-color: var(--line_color);
+    --van-cell-active-color: var(--tab_background);
+    --van-cell-right-icon-color: var(--text_color1);
+    --van-search-background: var(--main_background);
+    --van-search-content-background: var(--input_background);
+    --van-search-label-color: var(--text_color);
+    --van-search-left-icon-color: var(--text_color1);
+    --van-search-action-text-color: var(--text_color);
+    --van-tabbar-background: var(--footer_bg);
+    --van-popup-background: var(--popup-bg);
+    --van-popup-close-icon-color: var(--text_color3);
+    --van-dialog-background: var(--main_background);
+    --van-overlay-background: rgba(0, 0, 0, 0.75);
 }
 
 $mainBgColor: var(--mainBgColor);

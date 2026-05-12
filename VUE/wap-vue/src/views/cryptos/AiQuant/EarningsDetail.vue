@@ -166,12 +166,10 @@ async function onRedeem() {
 
 .detail-panel {
   background: $main2_background;
-  border: 1px solid $border_color;
+  border: 1px solid $line_color;
   border-radius: 14px;
   padding: 8px 18px 16px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .detail-row {

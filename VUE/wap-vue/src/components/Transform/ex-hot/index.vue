@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="list-hot ex-hot-cards">
     <div class="hotBox">
       <div
@@ -76,16 +76,16 @@ export default {
     min-height: 236px;
     padding: 22px 16px 18px;
     border-radius: 24px;
-    background: #1f2540;
-    border: 2px solid rgba(177, 189, 222, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    background: $main2_background;
+    border: 1px solid $line_color;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   }
 
   .hot-pair {
     margin: 0 0 14px;
     font-size: 24px;
     line-height: 1.2;
-    color: #eef1f7;
+    color: $text_color;
 
     strong {
       font-weight: 600;
@@ -93,7 +93,7 @@ export default {
   }
 
   .hot-quote {
-    color: #d7dcea;
+    color: $text_color1;
     font-weight: 500;
   }
 
@@ -113,7 +113,7 @@ export default {
 
   .hot-fiat {
     display: block;
-    color: #8f96a8;
+    color: $text_color1;
   }
 
   .hot-pct {

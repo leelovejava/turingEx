@@ -31,6 +31,14 @@
   --van-index-anchor-text-color: #fff !important;
 }
 
+html[theme='white'] {
+  color-scheme: light;
+}
+
+html[theme='dark'] {
+  color-scheme: dark;
+}
+
 html {
   width: 100%;
 }
@@ -93,7 +101,23 @@ input {
 }
 
 input::-webkit-input-placeholder {
-  color: #c0c4cc;
+  color: $text_color3;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: $text_color3;
+}
+
+textarea::-webkit-input-placeholder {
+  color: $text_color3;
+}
+
+/* 裸露的原生输入（未使用 van-field 时） */
+#app input:not([type="checkbox"]):not([type="radio"]),
+#app textarea {
+  color: $text_color;
+  caret-color: $color_main;
 }
 
 ul,
@@ -132,7 +156,7 @@ p {
 
 
 .inputBackground {
-  background: #1B233B;
+  background: $input_background;
 }
 
 .colorMain {

@@ -104,11 +104,12 @@ function formatDate(d) {
   gap: 16px 12px;
   padding: 20px 18px;
   margin-bottom: 14px;
-  border: 1px solid $border_color;
+  border: 1px solid $line_color;
   border-radius: 14px;
   background: $main2_background;
   text-align: left;
   box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .earnings-cell {
