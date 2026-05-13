@@ -268,7 +268,7 @@ const homeGridItems = computed(() => [
   { key: 'news', label: t('news'), path: '/news', isLogin: false },
       { key: 'service', label: t('客服'), path: '/workerOrder', isLogin: false },
   { key: 'ieo', label: 'IEO', path: '/more', isLogin: false },
-  { key: 'quant', label: t('AI量化'), path: '/cryptos/fm-home', isLogin: false },
+  { key: 'quant', label: t('挖矿'), path: '/cryptos/fm-home', isLogin: false },
   { key: 'loan', label: t('助力贷'), path: '/cryptos/loan', isLogin: true },
   { key: 'ipo', label: 'IPO', path: '/ipo/index', isLogin: false },
 ])
@@ -1311,4 +1311,3 @@ function goTrade(item) {
   }
 }
 </style>
-

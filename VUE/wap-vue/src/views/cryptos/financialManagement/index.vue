@@ -17,7 +17,7 @@
         <div @click="$router.push('/cryptos/machine')"
           class="financial pool-lock-bg mt-8 flex justify-between items-center">
           <div class="flex flex-col items-start">
-            <span class="text-50 font-bold mb-5">{{ $t('AI量化') }}</span>
+            <span class="text-50 font-bold mb-5">{{ $t('挖矿') }}</span>
             <span class="text-26">{{ $t('真实矿机租赁，套餐选择灵活') }}</span>
             <span class="mt-2 text-28">{{ $t('值得信赖的矿机共享平台') }}</span>
           </div>

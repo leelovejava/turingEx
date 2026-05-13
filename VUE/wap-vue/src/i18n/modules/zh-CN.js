@@ -1654,8 +1654,10 @@ export default {
     "请输入数字": "请输入数字",
     "下一步": "下一步",
     "请选择充值币种": "请选择充值币种",
+    "请选择还款币种": "请选择还款币种",
     "充提记录": "充提记录",
     "充值通道": "充值通道",
+    "还款通道": "还款通道",
     "USDT充值": "USDT充值",
     "BTC充值": "BTC充值",
     "ETH充值": "ETH充值",
@@ -3052,6 +3054,9 @@ export default {
     traderSubmitInfo: '提交信息',
     traderSubmitOk: '提交成功',
     traderAlreadySubmitted: '感谢您的耐心等待，我们将尽快审核您的申请。',
+    traderStatusPending: '您的申请正在审核中，请耐心等待。',
+    traderStatusPass: '恭喜！您的申请已通过审核。',
+    traderStatusNoPass: '您的申请未通过，可以重新修改后提交。',
     traderAgreementNavTitle: '交易员协议',
     aiQuantEarningsListTitle: '收益列表',
     aiQuantEarningsDetailTitle: '量化详情',
@@ -3074,4 +3079,3 @@ export default {
     aiQuantEarningsNotFound: '记录不存在',
     '首日涨幅': '首日涨幅',
 }
-

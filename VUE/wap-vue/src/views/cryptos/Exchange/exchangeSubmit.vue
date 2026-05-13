@@ -23,10 +23,10 @@
                         <img src="../../../assets/image/exchange/icon_6.png" class="w-8 h-5" style="margin-top:-28px" />
 
                         <div class="flex-1 textColor text-right">
-                            <div class="text-grey text-28 mt-14">{{ $t('至') }}</div>
-                            <div class="text-30 mt-7" v-if="detail.volume">{{ (detail.volume * detail.rate).toFixed(5) }}
-                                {{ detail.symbol_to && detail.symbol_to.toUpperCase() }}</div>
-                        </div>
+                <div class="text-grey text-28 mt-14">{{ $t('至') }}</div>
+                <div class="text-30 mt-7" v-if="detail.volume">{{ calculatedAmount }}
+                    {{ detail.symbol_to && detail.symbol_to.toUpperCase() }}</div>
+            </div>
                     </li>
                     <!-- <li class="flex justify-between text-28 pt-10  mt-40  textColor">
                         <span class="text-grey">{{ $t('交易手续费') }}</span>
@@ -75,6 +75,42 @@ export default {
             isLoading: true
         }
     },
+    computed: {
+        // 计算实际获得的数量
+        calculatedAmount() {
+            if (!this.detail.volume) return ''
+            // 优先使用已经计算好的 get_volume
+            if (this.detail.get_volume) return this.detail.get_volume
+            
+            // 如果没有 get_volume，则自己计算
+            const volume = Number(this.detail.volume)
+            const rate = Number(this.detail.rate)
+            const isFromStableCoin = this.isStableCoin(this.detail.symbol)
+            const isToStableCoin = this.isStableCoin(this.detail.symbol_to)
+            
+            if (isFromStableCoin && !isToStableCoin) {
+                return (volume / rate).toFixed(8)
+            } else {
+                return (volume * rate).toFixed(5)
+            }
+        },
+        // 计算显示的汇率
+        displayRate() {
+            if (!this.detail.rate) return 0
+            // 优先使用已经计算好的 display_rate
+            if (this.detail.display_rate !== undefined) return this.detail.display_rate
+            
+            const rate = Number(this.detail.rate)
+            const isFromStableCoin = this.isStableCoin(this.detail.symbol)
+            const isToStableCoin = this.isStableCoin(this.detail.symbol_to)
+            
+            if (isFromStableCoin && !isToStableCoin) {
+                return 1 / rate
+            } else {
+                return rate
+            }
+        }
+    },
     components: {
         assetsHead,
     },
@@ -83,7 +119,48 @@ export default {
             this.isLoading = false
         }, 2000);
     },
+    beforeRouteEnter(to, from, next) {
+        const { query: { data } } = to
+        next(vm => {
+            vm.detail = JSON.parse(data)
+            vm.updateRateDisplay()
+        })
+    },
+    mounted() {
+        this.updateRateDisplay()
+    },
+    watch: {
+        detail: {
+            handler() {
+                this.updateRateDisplay()
+            },
+            deep: true
+        }
+    },
     methods: {
+        // 判断是否是稳定币
+        isStableCoin(symbol) {
+            if (!symbol) return false
+            const stableCoins = ['USDT', 'USDC', 'BUSD', 'DAI']
+            return stableCoins.includes(symbol.toUpperCase())
+        },
+        updateRateDisplay() {
+            if (!this.detail || !this.detail.rate) return
+            let displayRate = Number(this.detail.rate)
+            // 优先使用子组件传递过来的 display_rate
+            if (this.detail.display_rate !== undefined) {
+                displayRate = this.detail.display_rate
+            } else {
+                // 自己计算
+                const isFromStableCoin = this.isStableCoin(this.detail.symbol)
+                const isToStableCoin = this.isStableCoin(this.detail.symbol_to)
+                if (isFromStableCoin && !isToStableCoin) {
+                    displayRate = 1 / Number(this.detail.rate)
+                }
+            }
+            this.toValue = 1 + this.detail.symbol.toUpperCase()
+            this.formValue = displayRate.toFixed(8) + this.detail.symbol_to.toUpperCase()
+        },
         onClickLeft() {
             this.$router.go(-1)
         },
@@ -93,14 +170,6 @@ export default {
         convert() {
             [this.toValue, this.formValue] = [this.formValue, this.toValue]
         }
-    },
-    beforeRouteEnter(to, from, next) {
-        const { query: { data } } = to
-        next(vm => {
-            vm.detail = JSON.parse(data)
-            vm.toValue = 1 + vm.detail.symbol.toUpperCase()
-            vm.formValue = vm.detail.rate + vm.detail.symbol_to.toUpperCase()
-        })
     }
 }
 </script>

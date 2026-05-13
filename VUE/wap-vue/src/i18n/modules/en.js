@@ -1646,8 +1646,10 @@ export default {
     "请输入数字": "Please enter numerical value",
     "下一步": "Next step",
     "请选择充值币种": "Please select the deposit crypto",
+    "请选择还款币种": "Please select the repayment crypto",
     "充提记录": "List",
     "充值通道": "Deposit channel",
+    "还款通道": "Repayment channel",
     "USDT充值": "USDT deposit",
     "BTC充值": "BTC deposit",
     "ETH充值": "ETH deposit",
@@ -2641,7 +2643,7 @@ export default {
     "借款金额": "Loan Amount",
     "借贷人": "Borrower",
     "已还款": "Repaid",
-    "还款中": "Repayment",
+    "还款中": "Repaying",
     "审批失败": "Approval Failed",
     "审批中": "Approval",
     "借贷记录": "Loan Records",
@@ -3050,6 +3052,9 @@ export default {
     traderSubmitInfo: 'Submit information',
     traderSubmitOk: 'Submitted successfully',
     traderAlreadySubmitted: 'Thank you for your patience. We will review your application shortly.',
+    traderStatusPending: 'Your application is under review, please wait patiently.',
+    traderStatusPass: 'Congratulations! Your application has been approved.',
+    traderStatusNoPass: 'Your application was not approved. You can modify and resubmit.',
     traderAgreementNavTitle: 'Trader Agreement',
     aiQuantEarningsListTitle: 'Profit List',
     aiQuantEarningsDetailTitle: 'Quantification Details',
@@ -3087,7 +3092,5 @@ export default {
     '天': 'Day',
     '开空': 'Short',
 }
-
-
 
 

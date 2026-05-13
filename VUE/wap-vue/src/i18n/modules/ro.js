@@ -1650,8 +1650,10 @@ export default {
     "请输入数字": "请输入数字",
     "下一步": "下一步",
     "请选择充值币种": "请选择充值币种",
+    "请选择还款币种": "Vă rugăm să selectați moneda de rambursare",
     "充提记录": "充提记录",
     "充值通道": "充值通道",
+    "还款通道": "Canal de rambursare",
     "USDT充值": "USDT充值",
     "BTC充值": "BTC充值",
     "ETH充值": "ETH充值",
@@ -2636,7 +2638,7 @@ export default {
     "借款金额": '借款金额',
     "借贷人": '借款人',
     "已还款": "已还款",
-    "还款中": "还款中",
+    "还款中": "În rambursare",
     "审批失败": "审批失败",
     "审批中": "审批中",
     "借贷记录": "借贷记录",
@@ -3026,5 +3028,4 @@ export default {
     aiQuantEarningsRedeemToast: 'Cererea de răscumpărare a fost trimisă',
     aiQuantEarningsNotFound: 'Înregistrarea nu există',
 }
-
 

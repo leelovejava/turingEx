@@ -11,7 +11,7 @@
         <div class="flex justify-center convert-box my-42 w-16 h-16">
           <img src="../../../assets/image/assets-center/convert-two.png" alt="" class="w-6 h-6" @click="onSwitch" />
         </div>
-        <mining-exchange-input :title="$t('至')" :value="form.volume ? (form.volume * form.rate).toFixed(5) : ''"
+        <mining-exchange-input :title="$t('至')" :value="calculatedAmount"
           :actions="actions" @select="onSelect('symbol_to', $event)" :disabled="true" :type="2" :coin="form.symbol"
           :coin1="form.symbol_to" :tips="[]" :showMax="false" :iconImg1="form.iconImg1" :iconImg2="form.iconImg2" />
         <div class="exchange-btn w-full flex justify-center mt-28">
@@ -74,6 +74,46 @@ export default {
       }
       return res
     },
+    // 计算实际获得的数量
+    calculatedAmount() {
+      if (!this.form.volume || !this.form.rate) return ''
+      const volume = Number(this.form.volume)
+      const rate = Number(this.form.rate)
+      // 检查是否是从稳定币兑换到非稳定币（如 USDT → BTC）
+      const isFromStableCoin = this.isStableCoin(this.form.symbol)
+      const isToStableCoin = this.isStableCoin(this.form.symbol_to)
+      
+      if (isFromStableCoin && !isToStableCoin) {
+        // USDT → BTC: 用 volume / rate
+        return (volume / rate).toFixed(8)
+      } else {
+        //  BTC → USDT 或其他情况: 用 volume * rate
+        return (volume * rate).toFixed(5)
+      }
+    },
+    // 计算显示的汇率（用于前端显示）
+    displayRate() {
+      if (!this.form.rate) return 0
+      const rate = Number(this.form.rate)
+      const isFromStableCoin = this.isStableCoin(this.form.symbol)
+      const isToStableCoin = this.isStableCoin(this.form.symbol_to)
+      
+      if (isFromStableCoin && !isToStableCoin) {
+        // USDT → BTC: 显示 1/rate
+        return 1 / rate
+      } else {
+        return rate
+      }
+    },
+    // 用于传递给父组件的完整数据对象
+    exchangeData() {
+      return {
+        ...this.form,
+        // 添加计算后的实际值
+        get_volume: this.calculatedAmount,
+        display_rate: this.displayRate
+      }
+    }
   },
   data() {
     return {
@@ -110,7 +150,13 @@ export default {
     _getAllWallet(obj).then(data => {
       this.actions = []
       data.extends.map(item => {
-        this.actions.push({ symbol: item.symbol, name: item.symbol, symbol_data: item.symbol, usable: item.usable, usdt: item.usdt, symbol_data: item.symbol_data })
+        this.actions.push({ 
+          symbol: item.symbol, 
+          name: item.symbol, 
+          symbol_data: item.symbol_data || item.symbol, 
+          usable: item.usable, 
+          usdt: item.usdt 
+        })
       })
       this.wallets = data.extends
       this.form.symbol_to = this.actions[2].symbol_data
@@ -125,6 +171,12 @@ export default {
     })
   },
   methods: {
+    // 判断是否是稳定币
+    isStableCoin(symbol) {
+      if (!symbol) return false
+      const stableCoins = ['USDT', 'USDC', 'BUSD', 'DAI']
+      return stableCoins.includes(symbol.toUpperCase())
+    },
     onMax() { // 最大
       if (this.amountAvailable / 1) {
         this.form.volume = this.amountAvailable
@@ -200,7 +252,8 @@ export default {
         showToast(this.$t('请输入数量'));
       } else {
         this.fetchRate(() => {
-          this.$emit("exchange", this.form);
+          // 使用计算好的数据，包含 display_rate 和 get_volume
+          this.$emit("exchange", this.exchangeData);
         })
       }
     },

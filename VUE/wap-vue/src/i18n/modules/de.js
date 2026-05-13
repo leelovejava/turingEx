@@ -1682,8 +1682,10 @@ export default {
     "请输入数字": "Bitte Zahlen eingeben",
     "下一步": "Nächster Schritt",
     "请选择充值币种": "Bitte wählen Sie eine Aufladewährung aus",
+    "请选择还款币种": "Bitte wählen Sie die Rückzahlungswährung aus",
     "充提记录": "Einzahlungs-und Auszahlungsaufzeichnungen",
     "充值通道": "Aufladekanal",
+    "还款通道": "Rückzahlungskanal",
     "USDT充值": "USDT Aufladen",
     "BTC充值": "BTC Aufladen",
     "ETH充值": "ETH Aufladen",
@@ -3067,5 +3069,4 @@ export default {
     aiQuantEarningsRedeemToast: 'Einlösungsantrag eingereicht',
     aiQuantEarningsNotFound: 'Datensatz nicht gefunden',
 }
-
 

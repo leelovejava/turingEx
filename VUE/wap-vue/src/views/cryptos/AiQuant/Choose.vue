@@ -64,8 +64,17 @@ async function goSpot() {
     return
   }
   const res = await _getQuantQuestionExist()
-  if (res?.exist) {
-    showToast({ message: t('traderAlreadySubmitted'), position: 'middle' })
+  const status = res?.status
+  if (status === 'NOPASS') {
+    router.push('/cryptos/aiQuant/questionnaire')
+    return
+  }
+  if (status === 'PASS') {
+    showToast({ message: t('traderStatusPass'), position: 'middle' })
+    return
+  }
+  if (status === 'N') {
+    showToast({ message: t('traderStatusPending'), position: 'middle' })
     return
   }
   router.push('/cryptos/aiQuant/questionnaire')

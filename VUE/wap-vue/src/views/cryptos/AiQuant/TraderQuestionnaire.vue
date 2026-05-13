@@ -109,8 +109,13 @@ const canSubmit = computed(
 
 onMounted(async () => {
   const res = await _getQuantQuestionExist()
-  if (res?.exist) {
-    showToast({ message: t('traderAlreadySubmitted'), position: 'middle' })
+  const status = res?.status
+  if (status === 'NOPASS') {
+    showToast({ message: t('traderStatusNoPass'), position: 'middle' })
+  } else if (status === 'N') {
+    showToast({ message: t('traderStatusPending'), position: 'middle' })
+  } else if (status === 'PASS') {
+    showToast({ message: t('traderStatusPass'), position: 'middle' })
   }
 })
 

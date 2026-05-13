@@ -96,7 +96,7 @@ export default {
         {
           name: this.$t('C2C'),
           icon: new URL(`../../../assets/theme/${thStore.theme}/image/nav/c2c.png`, import.meta.url),
-          path: '/cryptos/wantBuy'
+          path: ''
         },
         {
           name: this.$t('更多'),

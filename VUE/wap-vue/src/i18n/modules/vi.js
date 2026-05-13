@@ -1680,8 +1680,10 @@ export default {
     "请输入数字": "Vui lòng nhập số lượng",
     "下一步": "Bước tiếp theo",
     "请选择充值币种": "Vui lòng chọn tiền điện tử tiền gửi",
+    "请选择还款币种": "Vui lòng chọn tiền điện tử hoàn trả",
     "充提记录": "Danh sách",
     "充值通道": "Kênh gửi tiền",
+    "还款通道": "Kênh hoàn trả",
     "USDT充值": "Tiền gửi USDT",
     "BTC充值": "Tiền gửi BTC",
     "ETH充值": "Tiền gửi ETH",
@@ -2989,6 +2991,5 @@ export default {
     aiQuantEarningsRedeemToast: 'Đã gửi yêu cầu đổi',
     aiQuantEarningsNotFound: 'Không tìm thấy bản ghi',
 }
-
 
 

@@ -20,6 +20,11 @@
             <img src="../../../assets/image/symbol/eth.png" class="w-24 h-92" />
             <div class="text-grey text-26 mt-8">ETH</div>
           </div>
+          <div class="item-view flex flex-col items-center justify-center text-center w-48 h-56 box-border"
+            @click="selectSymbol('usdc')">
+            <img src="../../../assets/image/symbol/usdc.png" class="w-24 h-92" />
+            <div class="text-grey text-26 mt-8">USDC</div>
+          </div>
         </div>
       </div>
     </div>

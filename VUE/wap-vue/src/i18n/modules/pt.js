@@ -1627,8 +1627,10 @@ export default {
     "请输入数字": "Por favor, insira um número",
     "下一步": "Próximo",
     "请选择充值币种": "Por favor, selecione a moeda de depósito",
+    "请选择还款币种": "Por favor, selecione a moeda de reembolso",
     "充提记录": "Histórico de depósitos e retiradas",
     "充值通道": "Canal de depósito",
+    "还款通道": "Canal de reembolso",
     "USDT充值": "Depósito USDT",
     "BTC充值": "Depósito BTC",
     "ETH充值": "Depósito ETH",
@@ -3009,6 +3011,5 @@ export default {
     aiQuantEarningsRedeemToast: 'Solicitação de resgate enviada',
     aiQuantEarningsNotFound: 'Registro não encontrado',
 }
-
 
 

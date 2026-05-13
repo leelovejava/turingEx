@@ -319,8 +319,17 @@ export default {
     async openSpotQuestionnaire() {
       this.showAiQuantSheet = false
       const res = await _getQuantQuestionExist()
-      if (res?.exist) {
-        showToast({ message: this.$t('traderAlreadySubmitted'), position: 'middle' })
+      const status = res?.status
+      if (status === 'NOPASS') {
+        this.$router.push('/cryptos/aiQuant/questionnaire')
+        return
+      }
+      if (status === 'PASS') {
+        showToast({ message: this.$t('traderStatusPass'), position: 'middle' })
+        return
+      }
+      if (status === 'N') {
+        showToast({ message: this.$t('traderStatusPending'), position: 'middle' })
         return
       }
       this.$router.push('/cryptos/aiQuant/questionnaire')

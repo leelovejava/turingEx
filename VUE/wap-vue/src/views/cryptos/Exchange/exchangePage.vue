@@ -41,7 +41,7 @@
                   class="w-16 h-16 rounded-full" />
               </div>
               <div class="text-grey text-28 mt-5">{{ $t('至') }}</div>
-              <div class="text-30 mt-8" v-if="detail.volume">{{ (detail.volume * detail.rate).toFixed(5) }}
+              <div class="text-30 mt-8" v-if="detail.volume">{{ calculatedAmount }}
                 {{ detail.symbol_to }}</div>
             </div>
           </div>
@@ -63,7 +63,7 @@
             <li class="flex justify-between text-28 mt-6">
               <span class="text-grey">{{ $t('汇率') }}</span>
               <span class="textColor">1 {{ detail.symbol &&
-                detail.symbol.toUpperCase() }}≈{{ (detail.rate * 1).toFixed(5) }} {{ detail.symbol_to &&
+                detail.symbol.toUpperCase() }}≈{{ displayRate.toFixed(8) }} {{ detail.symbol_to &&
     detail.symbol_to.toUpperCase() }}</span>
             </li>
           </ul>
@@ -102,10 +102,52 @@ export default {
       FILE_URL,
     }
   },
+  computed: {
+    // 计算实际获得的数量
+    calculatedAmount() {
+      if (!this.detail.volume) return ''
+      // 优先使用子组件已经计算好的 get_volume
+      if (this.detail.get_volume) return this.detail.get_volume
+      
+      // 如果没有 get_volume，则自己计算
+      const volume = Number(this.detail.volume)
+      const rate = Number(this.detail.rate)
+      const isFromStableCoin = this.isStableCoin(this.detail.symbol)
+      const isToStableCoin = this.isStableCoin(this.detail.symbol_to)
+      
+      if (isFromStableCoin && !isToStableCoin) {
+        return (volume / rate).toFixed(8)
+      } else {
+        return (volume * rate).toFixed(5)
+      }
+    },
+    // 计算显示的汇率
+    displayRate() {
+      if (!this.detail.rate) return 0
+      // 优先使用子组件已经计算好的 display_rate
+      if (this.detail.display_rate !== undefined) return this.detail.display_rate
+      
+      const rate = Number(this.detail.rate)
+      const isFromStableCoin = this.isStableCoin(this.detail.symbol)
+      const isToStableCoin = this.isStableCoin(this.detail.symbol_to)
+      
+      if (isFromStableCoin && !isToStableCoin) {
+        return 1 / rate
+      } else {
+        return rate
+      }
+    }
+  },
   created() {
     this.getSessionToken()
   },
   methods: {
+    // 判断是否是稳定币
+    isStableCoin(symbol) {
+      if (!symbol) return false
+      const stableCoins = ['USDT', 'USDC', 'BUSD', 'DAI']
+      return stableCoins.includes(symbol.toUpperCase())
+    },
     getSessionToken() { // 获取凭证
       _initExchange().then(data => {
         const { session_token } = data

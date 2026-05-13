@@ -1595,8 +1595,10 @@ export default {
     "请输入数字": "Veuillez entrer une valeur numérique",
     "下一步": "Étape suivante",
     "请选择充值币种": "Veuillez sélectionner la cryptographie de dépôt",
+    "请选择还款币种": "Veuillez sélectionner la cryptomonnaie de remboursement",
     "充提记录": "Liste",
     "充值通道": "Canal de dépôt",
+    "还款通道": "Canal de remboursement",
     "USDT充值": "Dépôt en USDT",
     "BTC充值": "Dépôt en BTC",
     "ETH充值": "Dépôt en ETH",
@@ -2992,6 +2994,5 @@ export default {
     aiQuantEarningsRedeemToast: 'Demande de rachat soumise',
     aiQuantEarningsNotFound: 'Enregistrement non trouvé',
 }
-
 
 

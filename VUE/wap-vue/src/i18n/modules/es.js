@@ -1669,8 +1669,10 @@ export default {
     "请输入数字": "Por favor, introduzca el número",
     "下一步": "Siguiente paso",
     "请选择充值币种": "Seleccione el tipo de moneda",
+    "请选择还款币种": "Seleccione la moneda de reembolso",
     "充提记录": "Registros de cobros y retiros",
     "充值通道": "Canal de recarga",
+    "还款通道": "Canal de reembolso",
     "USDT充值": "USDT Recarga",
     "BTC充值": "BTC Recarga",
     "ETH充值": "ETH Recarga",
@@ -2840,6 +2842,5 @@ export default {
     '到期时间': 'Fecha de vencimiento',
     '天': 'D铆a',
     '开空': 'Venta al descubierto',
+    "还款中": "Reembolso en curso",
 }
-
-
