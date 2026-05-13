@@ -2682,4 +2682,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         return gift_sum;
     }
+
+    @Override
+    public List<User> listExpiredKycBonus(Date expireTime) {
+        return baseMapper.listExpiredKycBonus(expireTime);
+    }
 }

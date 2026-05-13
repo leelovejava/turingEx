@@ -18,6 +18,7 @@ import com.yami.trading.bean.miner.Miner;
 import com.yami.trading.bean.miner.MinerOrder;
 import com.yami.trading.bean.model.*;
 import com.yami.trading.common.constants.Constants;
+import com.yami.trading.bean.constans.WalletConstants;
 import com.yami.trading.common.util.Arith;
 import com.yami.trading.common.util.DateUtils;
 import com.yami.trading.common.util.StringUtils;
@@ -324,22 +325,21 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneylog.setCreateTime(new Date());
             moneyLogService.save(moneylog);
         }
-        // 此为收益为USDT
+        // 此为收益为USDT，收益进入冻结余额（赎回时再转为可用余额）
         else {
-            Wallet wallet = this.walletService.saveWalletByPartyId(order.getPartyId());
-            double amountBefore = wallet.getMoney().doubleValue();
-            this.walletService.update(wallet.getUserId(), day_profit);
+            WalletExtend walletExtend = walletService.saveExtendByPara(order.getPartyId(), WalletConstants.WALLET_USDT);
+            double amountBefore = walletExtend.getFreezeAmount();
+            this.walletService.updateExtend(order.getPartyId(), WalletConstants.WALLET_USDT, 0, day_profit);
 
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
             moneylog.setAmount(BigDecimal.valueOf(day_profit));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, day_profit)));
-            moneylog.setLog("矿机收益，订单号[" + order.getOrder_no() + "]");
+            moneylog.setLog("矿机收益（冻结），订单号[" + order.getOrder_no() + "]");
             moneylog.setUserId(order.getPartyId());
-            moneylog.setWalletType(Constants.WALLET);
+            moneylog.setWalletType(WalletConstants.WALLET_USDT);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_PROFIT);
-            moneylog.setCreateTime(new Date());
             moneyLogService.save(moneylog);
         }
     }
@@ -387,22 +387,21 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneylog.setCreateTime(systemTime);
             moneyLogService.save(moneylog);
         }
-        // 此为收益为usdt
+        // 此为收益为usdt，收益进入冻结余额（赎回时再转为可用余额）
         else {
-            Wallet wallet = this.walletService.saveWalletByPartyId(order.getPartyId());
-            double amountBefore = wallet.getMoney().doubleValue();
-            this.walletService.update(wallet.getUserId(), day_profit);
+            WalletExtend walletExtend = walletService.saveExtendByPara(order.getPartyId(), WalletConstants.WALLET_USDT);
+            double amountBefore = walletExtend.getFreezeAmount();
+            this.walletService.updateExtend(order.getPartyId(), WalletConstants.WALLET_USDT, 0, day_profit);
 
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
             moneylog.setAmount(BigDecimal.valueOf(day_profit));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, day_profit)));
-            moneylog.setLog("矿机收益，订单号[" + order.getOrder_no() + "]");
+            moneylog.setLog("矿机收益（冻结），订单号[" + order.getOrder_no() + "]");
             moneylog.setUserId(order.getPartyId());
-            moneylog.setWalletType(Constants.WALLET);
+            moneylog.setWalletType(WalletConstants.WALLET_USDT);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_PROFIT);
-            moneylog.setCreateTime(systemTime);
             moneyLogService.save(moneylog);
         }
     }

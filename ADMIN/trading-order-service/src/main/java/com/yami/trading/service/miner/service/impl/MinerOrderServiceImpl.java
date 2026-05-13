@@ -19,6 +19,7 @@ import com.yami.trading.bean.miner.MinerOrder;
 import com.yami.trading.bean.model.*;
 import com.yami.trading.bean.syspara.domain.Syspara;
 import com.yami.trading.common.constants.Constants;
+import com.yami.trading.bean.constans.WalletConstants;
 import com.yami.trading.common.exception.BusinessException;
 import com.yami.trading.common.util.Arith;
 import com.yami.trading.common.util.DateUtils;
@@ -368,6 +369,24 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             close = realtimes.get(0).getClose();
 
             saveMinerBuyOtherCoin(entity, minerBuySymbol);
+        } else if (miner.getTest().equals("Y")) {
+            // 体验矿机：从KYC体验金冻结余额扣除300U
+            User user = partyService.getById(entity.getPartyId());
+            if (user.getKycBonusAmount() == null || user.getKycBonusAmount() < 300) {
+                throw new BusinessException("无体验金资格");
+            }
+            walletService.updateExtend(String.valueOf(entity.getPartyId()), WalletConstants.WALLET_USDT, 0, -300);
+            MoneyLog bonusUseLog = new MoneyLog();
+            bonusUseLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
+            bonusUseLog.setAmount(BigDecimal.valueOf(-300));
+            bonusUseLog.setLog("购买体验矿机，消费300U体验金，订单号[" + entity.getOrder_no() + "]");
+            bonusUseLog.setUserId(entity.getPartyId());
+            bonusUseLog.setWalletType(WalletConstants.WALLET_USDT);
+            bonusUseLog.setContentType(WalletConstants.MONEYLOG_CONTENT_KYC_BONUS_USE);
+            moneyLogService.save(bonusUseLog);
+            user.setKycBonusAmount(0.0);
+            user.setKycBonusTime(null);
+            partyService.updateById(user);
         } else {
             /**
              * 查看余额
@@ -412,7 +431,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
              */
             LocalDateTime stopTime = entity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusDays((int) miner.getCycle());
             entity.setStop_time(Date.from(stopTime.atZone(ZoneId.systemDefault()).toInstant()));
-            entity.setAmount(100.0);// 体验矿机固定100U
+            entity.setAmount(300.0);// 体验矿机固定300U
         }
         if (findByFist(entity.getPartyId().toString())) {
             entity.setFirst_buy("1");// 标识首次购买
@@ -521,21 +540,21 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
     }
 
     protected void saveMinerCloseUsdt(MinerOrder entity) {
-        Wallet wallet = this.walletService.saveWalletByPartyId(entity.getPartyId());
-        double amount_before = wallet.getMoney().doubleValue();
-        // 赎回时一次性发放本金+收益
+        // 赎回：将冻结余额（本金+收益）转到可用余额
         double back_money = Arith.add(entity.getAmount(), entity.getProfit());
-        walletService.update(wallet.getUserId().toString(), back_money);
+        WalletExtend walletExtend = walletService.saveExtendByPara(entity.getPartyId(), WalletConstants.WALLET_USDT);
+        double freezeBefore = walletExtend.getFreezeAmount();
+        // amount=+back_money（可用余额增加），frozenAmount=-back_money（冻结余额减少）
+        walletService.updateExtend(entity.getPartyId(), WalletConstants.WALLET_USDT, back_money, -back_money);
 
         MoneyLog moneylog = new MoneyLog();
         moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
-        moneylog.setAmountBefore(BigDecimal.valueOf(amount_before));
-        moneylog.setAmount(BigDecimal.valueOf(Arith.add(0, back_money)));
-        moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amount_before, back_money)));
+        moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
+        moneylog.setAmount(BigDecimal.valueOf(back_money));
+        moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, back_money)));
         moneylog.setUserId(entity.getPartyId());
-        moneylog.setWalletType(Constants.WALLET);
-        // 矿机赎回，本金+收益退回，订单号[" + entity.getOrder_no() + "]
-        moneylog.setLog("Mining machine redemption, principal + profit returned, orderNo[" + entity.getOrder_no() + "]");
+        moneylog.setWalletType(WalletConstants.WALLET_USDT);
+        moneylog.setLog("矿机赎回，本金+收益从冻结转入余额，订单号[" + entity.getOrder_no() + "]");
         moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BACK);
         moneyLogService.save(moneylog);
     }
@@ -660,22 +679,23 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
             saveMinerCloseOtherCoin(entity, minerBuySymbol);
         } else if (entity.getAmount() != 0 && !isTestMiner) {// 体验矿机不退还本金
-            Wallet wallet = this.walletService.saveWalletByPartyId(entity.getPartyId().toString());
-            double amount_before = wallet.getMoney().doubleValue();
-            // 赎回时发放本金+收益
+            // 赎回：将冻结余额（本金+收益）转到可用余额
             double back_money = Arith.add(entity.getAmount(), entity.getProfit());
-            this.walletService.update(wallet.getUserId(), back_money);
+            WalletExtend walletExtend = walletService.saveExtendByPara(entity.getPartyId().toString(), WalletConstants.WALLET_USDT);
+            double freezeBefore = walletExtend.getFreezeAmount();
+            // amount=+back_money（可用余额增加），frozenAmount=-back_money（冻结余额减少）
+            walletService.updateExtend(entity.getPartyId().toString(), WalletConstants.WALLET_USDT, back_money, -back_money);
             /**
              * 保存资金日志
              */
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
-            moneylog.setAmountBefore(BigDecimal.valueOf(amount_before));
-            moneylog.setAmount(BigDecimal.valueOf(Arith.add(0, back_money)));
-            moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amount_before, back_money)));
+            moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
+            moneylog.setAmount(BigDecimal.valueOf(back_money));
+            moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, back_money)));
             moneylog.setUserId(entity.getUuid());
-            moneylog.setWalletType(Constants.WALLET);
-            moneylog.setLog("矿机赎回，本金+收益退回，订单号[" + entity.getOrder_no() + "]");
+            moneylog.setWalletType(WalletConstants.WALLET_USDT);
+            moneylog.setLog("矿机赎回，本金+收益从冻结转入余额，订单号[" + entity.getOrder_no() + "]");
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BACK);
             moneyLogService.save(moneylog);
         }

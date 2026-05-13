@@ -227,6 +227,12 @@ public class User implements Serializable {
      */
     private Integer optionPreResult;
 
+    /** 实名体验金发放时间（null=未发放或已处理） */
+    private Date kycBonusTime;
+
+    /** 实名体验金剩余金额（300=未使用，0=已消费/已过期） */
+    private Double kycBonusAmount;
+
     public BigDecimal getWithdrawLimitAmount() {
         return withdrawLimitAmount == null ? new BigDecimal(0) : withdrawLimitAmount;
     }

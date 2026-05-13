@@ -101,6 +101,10 @@ public class WalletConstants {
      */
     public static final String MONEYLOG_CONTENT_LOAN_ADD = "loan_add";
 
+    public static final String MONEYLOG_CONTENT_KYC_BONUS = "kyc_bonus";
+    public static final String MONEYLOG_CONTENT_KYC_BONUS_EXPIRE = "kyc_bonus_expire";
+    public static final String MONEYLOG_CONTENT_KYC_BONUS_USE = "kyc_bonus_use";
+
     /**
      * 质押借币 - 还款
      */

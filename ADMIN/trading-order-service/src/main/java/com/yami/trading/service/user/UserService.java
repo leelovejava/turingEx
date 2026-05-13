@@ -7,6 +7,7 @@ import com.yami.trading.bean.user.dto.UserDataDto;
 import com.yami.trading.bean.user.dto.UserDto;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -192,4 +193,6 @@ public interface UserService   extends IService<User> {
      * @param verifcode_value 验证码code
      */
     void checkCode(String userId, String verifcode_type, String verifcode_value);
+
+    List<User> listExpiredKycBonus(Date expireTime);
 }

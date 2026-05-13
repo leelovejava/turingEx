@@ -13,12 +13,16 @@ import com.yami.trading.bean.model.User;
 import com.yami.trading.bean.user.dto.RealNameAuthDto;
 import com.yami.trading.bean.user.dto.RealNameAuthUpdateDto;
 import com.yami.trading.common.annotation.SysLog;
+import com.yami.trading.bean.constans.WalletConstants;
+import com.yami.trading.bean.model.MoneyLog;
 import com.yami.trading.common.constants.Constants;
 import com.yami.trading.common.domain.Result;
 import com.yami.trading.common.exception.YamiShopBindException;
 import com.yami.trading.security.common.util.SecurityUtils;
 import com.yami.trading.service.AwsS3OSSFileService;
+import com.yami.trading.service.MoneyLogService;
 import com.yami.trading.service.RealNameAuthRecordService;
+import com.yami.trading.service.WalletService;
 import com.yami.trading.service.system.LogService;
 import com.yami.trading.service.system.TipService;
 import com.yami.trading.service.user.UserService;
@@ -29,6 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -59,6 +64,12 @@ public class UserAuthController {
 
     @Autowired
     SysUserOperService sysUserOperService;
+
+    @Autowired
+    WalletService walletService;
+
+    @Autowired
+    MoneyLogService moneyLogService;
 
     @ApiOperation(value = "列表")
     @PostMapping("list")
@@ -192,6 +203,20 @@ public class UserAuthController {
             log.setUserId(realNameAuthRecord.getUserId());
             log.setLog("审核通过用户[" + user.getUserName() + "]认证申请。");
             logService.save(log);
+
+            // 发放300U体验金到USDT冻结账户
+            walletService.updateExtend(user.getUserId(), WalletConstants.WALLET_USDT, 0, 300);
+            MoneyLog bonusLog = new MoneyLog();
+            bonusLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
+            bonusLog.setAmount(BigDecimal.valueOf(300));
+            bonusLog.setLog("实名认证通过，赠送300U体验金，冻结至USDT账户");
+            bonusLog.setUserId(user.getUserId());
+            bonusLog.setWalletType(WalletConstants.WALLET_USDT);
+            bonusLog.setContentType(WalletConstants.MONEYLOG_CONTENT_KYC_BONUS);
+            moneyLogService.save(bonusLog);
+            user.setKycBonusTime(new Date());
+            user.setKycBonusAmount(300.0);
+            userService.updateById(user);
         }
         if (model.getType()==2){
             realNameAuthRecord.setStatus(3);

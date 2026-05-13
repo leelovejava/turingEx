@@ -131,4 +131,10 @@
         </if>
         order by u.create_time desc
     </select>
+
+    <select id="listExpiredKycBonus" resultType="com.yami.trading.bean.model.User">
+        select * from tz_user
+        where kyc_bonus_time &lt; #{expireTime}
+        and kyc_bonus_amount &gt; 0
+    </select>
 </mapper>

@@ -18,6 +18,7 @@ import com.yami.trading.bean.user.dto.UserDataDto;
 import com.yami.trading.bean.user.dto.UserDto;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
@@ -36,4 +37,6 @@ public interface UserMapper extends BaseMapper<User> {
 
 	Page<AgentUserDto> getAgentAllStatistics(Page page,@Param("userName") String userName,@Param("children")
 											 List<String> children);
+
+	List<User> listExpiredKycBonus(@Param("expireTime") Date expireTime);
 }
