@@ -27,5 +27,12 @@ export const tableOption = {
   },{
     label: '地址',
     prop: 'address',
+  },{
+    label: '地址类型',
+    prop: 'addressType',
+    dicData: [
+      { label: '充值', value: 'recharge' },
+      { label: '还款', value: 'repayment' }
+    ]
   }]
 }
