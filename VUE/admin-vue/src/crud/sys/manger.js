@@ -2,7 +2,6 @@ export const tableOption = {
   searchMenuSpan: 6,
   columnBtn: false,
   border: true,
-  selection: true,
   selection: false, //开启勾选功能
   searchLabelWidth:130,
   index: false,
@@ -80,5 +79,11 @@ export const tableOption = {
   }, {
     label: '用户当前流水',
     prop: 'withdrawLimitNowAmount'
+  }, {
+    label: '体验金发放时间',
+    prop: 'kycBonusTime'
+  }, {
+    label: '体验金剩余金额',
+    prop: 'kycBonusAmount'
   }]
 }
