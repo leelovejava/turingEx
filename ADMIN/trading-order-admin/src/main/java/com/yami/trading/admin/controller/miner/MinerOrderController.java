@@ -602,6 +602,7 @@ public class MinerOrderController {
         double all_rate = Arith.mul(30, miner.getDaily_rate());
         map.put("all_rate", miner.getTest().equals("Y") ? Arith.mul(miner_test_profit, miner.getCycle()) : df.format(all_rate));
 
+        map.put("expected_total_income", order.getExpected_total_income());
         map.put("test", miner.getTest());
         map.put("buyCurrency", miner.getBuy_currency());
         map.put("outputCurrency", miner.getOutput_currency());

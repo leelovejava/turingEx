@@ -105,6 +105,11 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	private double default_money;
 
 	/**
+	 * 预计总收益（整数，创建时根据随机日收益×周期天数生成）
+	 */
+	private long expected_total_income;
+
+	/**
 	 * 交易对，如 BTC/USDT、ETH/USDT、SOL/USDT
 	 */
 	@Setter
@@ -234,6 +239,14 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	 */
 	public void setRandom_daily_rate(double random_daily_rate) {
 		this.random_daily_rate = random_daily_rate;
+	}
+
+	public long getExpected_total_income() {
+		return expected_total_income;
+	}
+
+	public void setExpected_total_income(long expected_total_income) {
+		this.expected_total_income = expected_total_income;
 	}
 
 	@Override

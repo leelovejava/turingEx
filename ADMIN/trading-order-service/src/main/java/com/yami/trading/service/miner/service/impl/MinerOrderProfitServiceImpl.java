@@ -159,7 +159,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                 com.yami.trading.bean.quant.QuantPreIncome preIncome =
                         quantPreIncomeService.findTodayRandomUnusedByQuantOrderId(order.getUuid());
 
-                if (preIncome != null && quantPreIncomeService.markAsUsedFromUnused(preIncome.getId())) {
+                if (preIncome != null) {
                     double dailyTotalProfit = preIncome.getIncome() == null ? 0D : preIncome.getIncome();
                     Integer lastPreIncomeId = preIncome.getId();
 
@@ -183,7 +183,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                     botOrder.setProfitRatio(BigDecimal.valueOf(order.getRandom_daily_rate())); // 设置收益率（日利率）
                     quantBotOrderService.createBotOrder(botOrder);
 
-                    // 修改收益
+                    // 修改收益为已使用
                     preIncome.setStatus(1);
                     quantPreIncomeService.updateById(preIncome);
 

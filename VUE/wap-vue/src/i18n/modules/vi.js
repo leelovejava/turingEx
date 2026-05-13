@@ -2981,6 +2981,7 @@ export default {
     aiQuantEarningsTradeCount: 'Số lần giao dịch',
     aiQuantEarningsAvgPrice: 'Giá thực hiện trung bình',
     aiQuantEarningsProfit: 'Lợi nhuận',
+    aiQuantEarningsExpectedIncome: 'Tổng thu nhập dự kiến',
     aiQuantEarningsStatus: 'Trạng thái',
     aiQuantEarningsStatusStopped: 'Đã dừng',
     aiQuantEarningsStatusActive: 'Đang chạy',

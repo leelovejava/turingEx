@@ -179,6 +179,18 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         double randomRate = generateRandomDailyRate(miner.getDaily_rate_start(), miner.getDaily_rate_end());
         entity.setRandom_daily_rate(randomRate);
 
+        // 预计总收益：随机整数日收益 × 周期天数，且不等于实际日收益取整
+        long actualDailyIncome = (long) (entity.getAmount() * randomRate / 100);
+        long expectedDailyIncome;
+        do {
+            // 在实际日收益 ±(1~5) 范围内随机取整数
+            long offset = 1 + (long) (Math.random() * 5);
+            expectedDailyIncome = actualDailyIncome + (Math.random() < 0.5 ? offset : -offset);
+            if (expectedDailyIncome < 1) expectedDailyIncome = actualDailyIncome + offset;
+        } while (expectedDailyIncome == actualDailyIncome);
+        int cycleDaysForExpected = entity.getCycle() > 0 ? entity.getCycle() : (int) miner.getCycle();
+        entity.setExpected_total_income(expectedDailyIncome * cycleDaysForExpected);
+
         if (miner.getTest().equals("Y")) {
             // 检查用户实名认证状态
             RealNameAuthRecord realNameAuth = realNameAuthRecordService.getByUserId(partyId);

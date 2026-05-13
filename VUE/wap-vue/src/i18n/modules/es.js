@@ -2818,6 +2818,7 @@ export default {
     aiQuantEarningsTradeCount: 'Número de operaciones',
     aiQuantEarningsAvgPrice: 'Precio promedio de ejecución',
     aiQuantEarningsProfit: 'Beneficio',
+    aiQuantEarningsExpectedIncome: 'Beneficio total esperado',
     aiQuantEarningsStatus: 'Estado',
     aiQuantEarningsStatusStopped: 'Detenido',
     aiQuantEarningsStatusActive: 'En ejecución',

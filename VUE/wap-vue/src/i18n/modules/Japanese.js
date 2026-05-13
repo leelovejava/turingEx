@@ -2910,6 +2910,7 @@ export default {
     aiQuantEarningsTradeCount: '取引回数',
     aiQuantEarningsAvgPrice: '平均執行価格',
     aiQuantEarningsProfit: '利益',
+    aiQuantEarningsExpectedIncome: '予想総収益',
     aiQuantEarningsStatus: 'ステータス',
     aiQuantEarningsStatusStopped: '停止',
     aiQuantEarningsStatusActive: '運用中',

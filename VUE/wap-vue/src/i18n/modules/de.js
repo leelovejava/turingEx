@@ -3059,6 +3059,7 @@ export default {
     aiQuantEarningsTradeCount: 'Anzahl der Trades',
     aiQuantEarningsAvgPrice: 'Durchschnittlicher Ausführungspreis',
     aiQuantEarningsProfit: 'Gewinn',
+    aiQuantEarningsExpectedIncome: 'Erwarteter Gesamtgewinn',
     aiQuantEarningsStatus: 'Status',
     aiQuantEarningsStatusStopped: 'Gestoppt',
     aiQuantEarningsStatusActive: 'Läuft',

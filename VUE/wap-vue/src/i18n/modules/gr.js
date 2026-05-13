@@ -3019,6 +3019,7 @@ export default {
     aiQuantEarningsTradeCount: 'Αριθμός συναλλαγών',
     aiQuantEarningsAvgPrice: 'Μέση τιμή εκτέλεσης',
     aiQuantEarningsProfit: 'Κέρδος',
+    aiQuantEarningsExpectedIncome: 'Αναμενόμενα συνολικά κέρδη',
     aiQuantEarningsStatus: 'Κατάσταση',
     aiQuantEarningsStatusStopped: 'Σταματημένο',
     aiQuantEarningsStatusActive: 'Σε εκτέλεση',

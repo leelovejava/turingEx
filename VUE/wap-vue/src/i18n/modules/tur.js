@@ -3019,6 +3019,7 @@ export default {
     aiQuantEarningsTradeCount: 'İşlem sayısı',
     aiQuantEarningsAvgPrice: 'Ortalama işlem fiyatı',
     aiQuantEarningsProfit: 'Kâr',
+    aiQuantEarningsExpectedIncome: 'Beklenen Toplam Kazanç',
     aiQuantEarningsStatus: 'Durum',
     aiQuantEarningsStatusStopped: 'Durduruldu',
     aiQuantEarningsStatusActive: 'Çalışıyor',

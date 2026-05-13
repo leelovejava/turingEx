@@ -3013,6 +3013,7 @@ export default {
     aiQuantEarningsTradeCount: 'จำนวนครั้งที่ซื้อขาย',
     aiQuantEarningsAvgPrice: 'ราคาดำเนินการเฉลี่ย',
     aiQuantEarningsProfit: 'กำไร',
+    aiQuantEarningsExpectedIncome: 'กำไรรวมที่คาดหวัง',
     aiQuantEarningsStatus: 'สถานะ',
     aiQuantEarningsStatusStopped: 'หยุดแล้ว',
     aiQuantEarningsStatusActive: 'กำลังทำงาน',

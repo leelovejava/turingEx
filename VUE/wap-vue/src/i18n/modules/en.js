@@ -3063,6 +3063,7 @@ export default {
     aiQuantEarningsTradeCount: 'Number of Trades',
     aiQuantEarningsAvgPrice: 'Average Execution Price',
     aiQuantEarningsProfit: 'Profit',
+    aiQuantEarningsExpectedIncome: 'Expected Total Earnings',
     aiQuantEarningsStatus: 'Status',
     aiQuantEarningsStatusStopped: 'Stopped',
     aiQuantEarningsStatusActive: 'Running',

@@ -45,6 +45,11 @@
           <span class="detail-label">{{ t('aiQuantEarningsProfit') }}</span>
           <span class="detail-value">{{ record.total_income }}</span>
         </div>
+        <!-- 预计总收益 -->
+        <div class="detail-row">
+          <span class="detail-label">{{ t('aiQuantEarningsExpectedIncome') }}</span>
+          <span class="detail-value">{{ record.expected_total_income }}</span>
+        </div>
         <!-- 今日收益 -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantTodayEarnings') }}</span>

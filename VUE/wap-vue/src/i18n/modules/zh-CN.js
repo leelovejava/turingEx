@@ -3065,6 +3065,7 @@ export default {
     aiQuantEarningsTradeCount: '做单次数',
     aiQuantEarningsAvgPrice: '成交均价',
     aiQuantEarningsProfit: '收益',
+    aiQuantEarningsExpectedIncome: '预计总收益',
     aiQuantEarningsStatus: '状态',
     aiQuantEarningsStatusStopped: '停止',
     aiQuantEarningsStatusActive: '托管中',

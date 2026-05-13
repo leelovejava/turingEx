@@ -3023,6 +3023,7 @@ export default {
     aiQuantEarningsTradeCount: '거래 횟수',
     aiQuantEarningsAvgPrice: '평균 실행 가격',
     aiQuantEarningsProfit: '수익',
+    aiQuantEarningsExpectedIncome: '예상 총 수익',
     aiQuantEarningsStatus: '상태',
     aiQuantEarningsStatusStopped: '중지됨',
     aiQuantEarningsStatusActive: '운영 중',

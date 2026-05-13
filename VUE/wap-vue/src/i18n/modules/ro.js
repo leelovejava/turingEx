@@ -3018,6 +3018,7 @@ export default {
     aiQuantEarningsTradeCount: 'Număr de tranzacții',
     aiQuantEarningsAvgPrice: 'Preț mediu de executare',
     aiQuantEarningsProfit: 'Profit',
+    aiQuantEarningsExpectedIncome: 'Profit total estimat',
     aiQuantEarningsStatus: 'Stare',
     aiQuantEarningsStatusStopped: 'Oprit',
     aiQuantEarningsStatusActive: 'În execuție',
