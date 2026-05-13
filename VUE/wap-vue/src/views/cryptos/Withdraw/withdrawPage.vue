@@ -283,10 +283,26 @@ export default {
     getAvailable(symbol) {
       _getAllWallet({ symbolType: 'cryptos' }).then((res) => {
         let walletList = res.extends;
-        let initObj = walletList.find(item => {
-          return item.symbol.toLowerCase() == symbol.toLowerCase()
-        })
-        this.usdtBalance = initObj.volume
+        const stableCoins = ['USDT', 'USDC'];
+        const isStableCoin = stableCoins.includes(symbol.toUpperCase());
+        
+        if (isStableCoin) {
+          // 如果是稳定币（USDT/USDC），计算所有稳定币的余额总和
+          let totalBalance = 0;
+          stableCoins.forEach(coin => {
+            let coinObj = walletList.find(item => item.symbol.toLowerCase() == coin.toLowerCase());
+            if (coinObj && coinObj.volume) {
+              totalBalance += Number(coinObj.volume);
+            }
+          });
+          this.usdtBalance = totalBalance;
+        } else {
+          // 如果是非稳定币，只获取当前币种的余额
+          let initObj = walletList.find(item => {
+            return item.symbol.toLowerCase() == symbol.toLowerCase()
+          })
+          this.usdtBalance = initObj ? initObj.volume : 0;
+        }
       });
     },
     //点全部
