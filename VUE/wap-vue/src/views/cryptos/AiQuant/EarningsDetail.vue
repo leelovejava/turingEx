@@ -1,46 +1,61 @@
 <template>
+  <!-- AI量化收益详情页面 -->
   <div id="cryptos" class="earnings-detail-page">
+    <!-- 头部组件：显示标题和返回按钮 -->
     <assets-head :title="t('aiQuantEarningsDetailTitle')" :backFunc="goBack" />
 
+    <!-- 收益详情内容（有数据时显示） -->
     <div v-if="record" class="earnings-detail-shell">
+      <!-- 顶部区域：品牌标识和赎回按钮 -->
       <div class="detail-top">
         <div class="detail-brand">
+          <!-- 品牌Logo图标 -->
           <span class="detail-logo" aria-hidden="true">
             <svg viewBox="0 0 40 40" width="40" height="40" fill="none" stroke="currentColor">
               <circle cx="20" cy="20" r="18" stroke-width="2" />
               <path d="M12 20h16M20 12v16" stroke-width="2" stroke-linecap="round" />
             </svg>
           </span>
+          <!-- 交易对/购买币种 -->
           <span class="detail-pair">{{ record.symbol || record.buyCurrency }}</span>
         </div>
+        <!-- 赎回按钮（仅状态为进行中时显示） -->
         <button v-if="record.state === '1'" type="button" class="btn-redeem" @click="onRedeem">{{ t('aiQuantEarningsRedeem') }}</button>
       </div>
 
+      <!-- 详情信息面板 -->
       <div class="detail-panel">
+        <!-- 购买金额 -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsPurchaseAmount') }}</span>
           <span class="detail-value">{{ record.amount }}</span>
         </div>
+        <!-- 开始时间 -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsStartTime') }}</span>
           <span class="detail-value">{{ record.earn_timeStr }}</span>
         </div>
+        <!-- 结束时间 -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsEndTime') }}</span>
           <span class="detail-value">{{ record.stop_timeStr }}</span>
         </div>
+        <!-- 累计收益 -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsProfit') }}</span>
           <span class="detail-value">{{ record.total_income }}</span>
         </div>
+        <!-- 今日收益 -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantTodayEarnings') }}</span>
           <span class="detail-value">{{ record.day_income }}</span>
         </div>
+        <!-- 倒计时天数 -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantCountdownDays') }}</span>
           <span class="detail-value">{{ record.days }}</span>
         </div>
+        <!-- 收益状态（1=进行中，其他=已结束） -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsStatus') }}</span>
           <span class="detail-value">{{ record.state === '1' ? t('aiQuantEarningsStatusActive') : t('aiQuantEarningsStatusStopped') }}</span>
@@ -48,6 +63,7 @@
       </div>
     </div>
 
+    <!-- 空状态（无数据时显示） -->
     <div v-else class="earnings-detail-empty">
       <p class="empty-text">{{ t('aiQuantEarningsNotFound') }}</p>
     </div>
@@ -55,33 +71,57 @@
 </template>
 
 <script setup>
+// 导入Vue组合式API
 import { ref, onMounted } from 'vue'
+// 导入路由相关
 import { useRoute, useRouter } from 'vue-router'
+// 导入国际化
 import { useI18n } from 'vue-i18n'
+// 导入vant提示组件
 import { showToast } from 'vant'
+// 导入头部组件
 import assetsHead from '@/components/Transform/assets-head/index.vue'
+// 导入矿机订单API
 import { getMinerorder, ransomMachineProduct } from '@/service/financialManagement.api'
 
+// 定义组件名称
 defineOptions({ name: 'AiQuantEarningsDetailPage' })
 
+// 获取路由实例
 const route = useRoute()
+// 获取路由导航实例
 const router = useRouter()
+// 获取国际化翻译函数
 const { t } = useI18n()
 
+// 收益订单详情记录
 const record = ref(null)
 
+/**
+ * 组件挂载时执行
+ */
 onMounted(async () => {
+  // 根据订单号获取矿机订单详情
   const res = await getMinerorder({ order_no: route.params.id })
   record.value = res || null
 })
 
+/**
+ * 返回上一级页面（我的AI量化页面）
+ */
 function goBack() {
   router.push({ path: '/cryptos/aiQuant', query: { tab: 'myAi' } })
 }
 
+/**
+ * 赎回收益
+ */
 async function onRedeem() {
+  // 调用赎回API
   await ransomMachineProduct({ order_no: route.params.id })
+  // 显示赎回成功提示
   showToast({ message: t('aiQuantEarningsRedeemToast'), position: 'middle' })
+  // 返回我的AI量化页面
   router.push({ path: '/cryptos/aiQuant', query: { tab: 'myAi' } })
 }
 </script>

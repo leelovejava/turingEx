@@ -85,10 +85,6 @@ const list = ref([
     url: "/changePassword"
   },
   {
-    name: t('changeFunsPassword'),
-    url: "/changeFundsPassword"
-  },
-  {
     name: t('manualReset'),
     url: "/resetVerify?type=0"
   }

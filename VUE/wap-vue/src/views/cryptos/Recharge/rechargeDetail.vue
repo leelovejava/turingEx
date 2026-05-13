@@ -22,21 +22,21 @@
             </div>
         </div>
         <div class="border-light-grey mt42"></div>
-        <div class="text-30 pl-30 pr-30 mt53">
+        <div class="text-30 mt53" style="padding: 0 40px;">
             <div class="flex justify-between mb74">
-                <div class="text-grey">{{ $t('确认数') }}</div>
-                <div class="textColor">12/12</div>
+                <div class="text-grey flex-shrink-0">{{ $t('确认数') }}</div>
+                <div class="textColor text-right">12/12</div>
             </div>
             <div class="flex justify-between mb74">
-                <div class="text-grey">{{ type2 }}{{ $t('account') }}</div>
-                <div class="textColor">{{ $t('钱包账户') }}</div>
+                <div class="text-grey flex-shrink-0">{{ type2 }}{{ $t('account') }}</div>
+                <div class="textColor text-right">{{ $t('钱包账户') }}</div>
             </div>
             <div class="flex justify-between mb74">
-                <div class="text-grey">{{ $t('转账网络') }}</div>
-                <div class="textColor">{{ info.coin_blockchain }}</div>
+                <div class="text-grey flex-shrink-0">{{ $t('转账网络') }}</div>
+                <div class="textColor text-right">{{ info.coin_blockchain }}</div>
             </div>
             <div class="flex justify-between mb74">
-                <div class="text-grey">{{ $t('地址') }}</div>
+                <div class="text-grey flex-shrink-0">{{ $t('地址') }}</div>
                 <div class="flex items-center">
                     <div class="text-30 text-underline textColor">{{ info.from || info.to }}</div>
                     <img src="../../../assets/image/assets-center/copy.png" width="15" height="15" class="ml10 ml-20"
@@ -51,12 +51,12 @@
             <!--                </div>-->
             <!--             </div>-->
             <div class="flex justify-between mb74">
-                <div class="text-grey">{{ $t('日期') }}</div>
-                <div class="textColor">{{ info.create_time }}</div>
+                <div class="text-grey flex-shrink-0">{{ $t('日期') }}</div>
+                <div class="textColor text-right">{{ info.create_time }}</div>
             </div>
             <div class="flex justify-between mb74">
-                <div class="text-grey">{{ $t('备注') }}</div>
-                <div class="textColor">{{ info.failure_msg || '-' }}</div>
+                <div class="text-grey flex-shrink-0">{{ $t('备注') }}</div>
+                <div class="textColor text-right">{{ info.failure_msg || '-' }}</div>
             </div>
         </div>
 
@@ -188,7 +188,7 @@ export default {
 }
 
 .text-underline {
-    width: 400px;
+    max-width: 300px;
     overflow: hidden;
     word-break: break-all;
     word-wrap: break-word;

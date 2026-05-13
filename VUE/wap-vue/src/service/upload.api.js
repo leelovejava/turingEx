@@ -36,7 +36,7 @@ export const _uploadImage = (file, callback) => {
                 }).then(res => {
                     const { code, data } = res.data
                     if (code / 1 === 0) {
-                        resolve(data.path)
+                        resolve(data)
                     } else {
                         reject(res.data)
                     }

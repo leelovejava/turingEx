@@ -209,7 +209,7 @@ export const _applyIdentify = data => {
         method: 'POST',
         loading: true,
         duration: 0,
-        params: {
+        data: {
             nationality: data.countryName, // 国籍
             idName: data.idname || 'id/passpost', // 证件名称
             idNumber: data.idnumber, // 证件号码

@@ -40,7 +40,8 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 		Date nextDayStart = Date.from(today.plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
 		QueryWrapper<QuantPreIncome> queryWrapper = new QueryWrapper<>();
 		queryWrapper.eq("quant_order_id", quantOrderId)
-				.eq("status", 1)
+				// 未使用
+				.eq("status", 0)
 				.ge("end_time", dayStart)
 				.lt("end_time", nextDayStart)
 				.last("ORDER BY RAND() LIMIT 1");

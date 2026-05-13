@@ -4,12 +4,6 @@
       <assets-head />
       <div class="content">
         <div class="title textColor">{{ $t('安全验证') }}</div>
-        <div>
-          <p>{{ $t('请输入资金密码') }}</p>
-          <div class="iptbox inputBackground">
-            <input class="inputBackground textColor" type="password" :placeholder="$t('请输入密码')" v-model="password">
-          </div>
-        </div>
         <div class="mt-40" v-if="this.isGoogleInput">
           <p>{{ $t('请输入谷歌验证码') }}</p>
           <div class="iptbox inputBackground">
@@ -27,10 +21,6 @@
           </div>
         </div>
         <div class="btn btnMain" @click="confirm">{{ $t('提交') }}</div>
-        <div style="color:$btn_main; margin-top:10px;"><span @click="$router.push('/resetVerify?type=0')">{{
-          $t('资金密码不可用?')
-        }}</span>
-        </div>
       </div>
     </div>
   </div>
@@ -137,10 +127,6 @@ export default {
 
         }
       } else {
-        if (!this.password) {
-          showToast(this.$t('请输入资金密码'));
-          return
-        }
         if (!this.emailCode) {
           showToast(this.$t('请输入邮箱验证码'));
           return
@@ -149,7 +135,6 @@ export default {
           session_token: this.sessionToken,
           amount: this.data.amount,
           from: this.data.from,
-          safeword: this.password,
           channel: this.data.channel,
           verifcode_type: '2',
           verifcode_value: this.emailCode

@@ -17,19 +17,6 @@
           :dialCode="dialCode"
           :icon="icon"
         />
-        <p class="label mt-2 textColor">{{ $t("verificationCode") }}</p>
-        <div class="iptbox inputBackground">
-          <input
-            class="inputBackground textColor"
-            type="text"
-            :placeholder="$t('entryVerifyCode')"
-            v-model="verifyCode"
-          />
-          <span v-if="type != 3" @click="senCode"
-            >{{ $t("sendVerifyCode")
-            }}<template v-if="time"> ({{ time }})s</template></span
-          >
-        </div>
       </div>
       <!-- 谷歌验证 -->
       <div v-if="type == 3">
@@ -87,7 +74,6 @@
 
 <script setup>
 import ExInput from "@/components/ex-input/index.vue";
-import { _sendVerifyCode } from "@/service/login.api";
 import {
   _bindEmail,
   _bindPhone,
@@ -109,21 +95,16 @@ const title = ref("");
 const account = ref("");
 const isArea = ref(false);
 const type = ref(0);
-const verifyCode = ref("");
 const google_auth_secret = ref("");
 const showKeyboard = ref(false);
 const googleverifyCode = ref(""); //谷歌验证码code
 const imgshow = ref(true);
 const google_auth_url = ref("");
 const dialCode = ref(0); //电话号前缀
-const timer = ref(null);
-const time = ref(0);
 const icon = ref("");
 
 onMounted(() => {
   init();
-  clearInterval(timer.value);
-  timer.value = null;
 });
 
 const init = () => {
@@ -137,44 +118,6 @@ const init = () => {
     title.value = t("googleAuthenticatorEn");
     getGoogleauth();
   }
-};
-const senCode = () => {
-  if (type.value == 2) {
-    if (account.value == "") {
-      showToast(t("entryEmail"));
-      return;
-    }
-    if (account.value.indexOf("@") === -1) {
-      showToast(t("请输入正确的邮箱地址"));
-      return;
-    }
-  }
-  if (type.value == 1 && account.value == "") {
-    showToast(t("entryPhone"));
-    return;
-  }
-  if (type.value == 1 && isNaN(account.value)) {
-    showToast(t("请输入正确的手机号码"));
-    return;
-  }
-  if (time.value > 0) {
-    return false;
-  }
-  _sendVerifyCode({
-    target: type.value == 1 ? `${dialCode.value}${account.value}` : account.value,
-  }).then((res) => {
-    showToast(t("sendSuccess"));
-    time.value = 30;
-    timer.value = setInterval(() => {
-      if (time.value > 0) {
-        time.value = time.value - 1;
-      } else {
-        time.value = 0;
-        clearInterval(timer.value);
-        timer.value = null;
-      }
-    }, 1000);
-  });
 };
 const submit = () => {
   if (type.value == 2) {
@@ -206,7 +149,6 @@ const submit = () => {
 const bindEmail = () => {
   _bindEmail({
     email: account.value,
-    verifcode: verifyCode.value,
   }).then((res) => {
     showToast(t("bindSuccess"));
     router.push("/safety");
@@ -215,7 +157,6 @@ const bindEmail = () => {
 const bindPhone = () => {
   _bindPhone({
     phone: `${dialCode.value || ""}${account.value}`,
-    verifcode: verifyCode.value,
   }).then((res) => {
     showToast(t("bindSuccess"));
     router.push("/safety");

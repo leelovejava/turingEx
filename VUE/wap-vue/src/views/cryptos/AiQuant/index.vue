@@ -139,13 +139,13 @@
           <span class="dep-value">{{ depositContext.earningsRange }}</span>
         </div>
         <div class="deposit-hr" />
-        <!-- 周期天数步进器：点击 −/+ 调整天数，最小为 1 -->
+        <!-- 周期天数步进器：体验模式下周期不可修改 -->
         <div class="deposit-row deposit-stepper-row">
           <span class="dep-label">{{ t('aiQuantPeriodDays') }}</span>
           <div class="stepper">
-            <button type="button" class="step-btn" @click="periodDays = Math.max(1, periodDays - 1)">−</button>
+            <button type="button" class="step-btn" :class="{ disabled: isTestMode }" @click="!isTestMode && (periodDays = Math.max(1, periodDays - 1))">−</button>
             <span class="step-val">{{ periodDays }}</span>
-            <button type="button" class="step-btn" @click="periodDays += 1">+</button>
+            <button type="button" class="step-btn" :class="{ disabled: isTestMode }" @click="!isTestMode && (periodDays += 1)">+</button>
           </div>
         </div>
         <div class="deposit-hr" />
@@ -272,6 +272,8 @@ const activeStrategies = computed(() => products.value)
 const depositOpen = ref(false)
 // 认购周期（天）
 const periodDays = ref(3)
+// 是否为体验模式（周期不可修改）
+const isTestMode = ref(false)
 // 认购金额
 const amount = ref(100)
 // 最大可认购金额（由产品 investment_max 决定）
@@ -305,6 +307,8 @@ async function openDeposit(strategy) {
   }
   // 周期：0 表示无限期，默认填 3 天
   periodDays.value = strategy.cycle > 0 ? strategy.cycle : 3
+  // 判断是否为体验模式（is_test 或 test 为 Y）
+  isTestMode.value = strategy.is_test === 'Y' || strategy.test === 'Y' || strategy.test === true
   // 默认金额取产品最低投资额
   amount.value = strategy.investment_min || 100
   maxAmount.value = strategy.investment_max || 100000
@@ -717,6 +721,13 @@ async function onConfirmDeposit() {
   font-size: 32px;
   line-height: 1;
   cursor: pointer;
+}
+
+.step-btn.disabled {
+  background: $grey_bg;
+  color: $text_color1;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .step-val {

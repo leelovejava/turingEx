@@ -36,12 +36,7 @@
                 </div>
             </div>
             <ExChecked class="mb-5" :list="list" @checkedSelect="onChecked"></ExChecked>
-            <div v-if="currentType == 0">
-                <ExInput :label="$t('fundsPassword')" :placeholderText="$t('fundsPasswordContTips')" v-model="password"
-                    :tips="$t('funsPasswordTips')" typeText="password" />
-                <ExInput :label="$t('confirmFundsPassword')" :placeholderText="$t('fundsPasswordContTips')"
-                    v-model="repassword" :tips="$t('funsPasswordTips')" typeText="password" />
-            </div>
+            
             <ExInput :max="250" :label="$t('message')" :placeholderText="$t('entryMessage')" v-model="remark" />
             <van-button class="w-full" style="margin-top:10px;" @click="submit" type="primary">
                 {{ $t('submit') }}
@@ -70,20 +65,16 @@ const repassword = ref('')
 const currentType = ref(0)
 const list = ref([
     {
-        name: t('resetFundsPassword'),
+        name: t('resetPhone'),
         type: 0
     },
     {
-        name: t('resetPhone'),
+        name: t('resetEmail'),
         type: 1
     },
     {
-        name: t('resetEmail'),
-        type: 2
-    },
-    {
         name: t('resetGoogleVerify'),
-        type: 3
+        type: 2
     },
 ])
 const frontFile = ref([])
@@ -106,14 +97,12 @@ onMounted(() => {
 })
 
 const init = (type) => {
-    if (type == 1) {
+    if (type == 0) {
         title.value = t("artificialResetPhone");
-    } else if (type == 2) {
+    } else if (type == 1) {
         title.value = t("artificialResetEmail");
-    } else if (type == 3) {
+    } else if (type == 2) {
         title.value = t("artificialResetGoogleVerify");
-    } else {
-        title.value = t("artificialResetFundsPassword");
     }
 }
 const onChecked = (index) => {
@@ -159,21 +148,17 @@ const getSafewordApply = () => {
 const setSafewordApply = () => {
     let operate;
     if (currentType.value == 0) {
-        operate = 0
+        operate = 2 // 取消手机绑定
     } else if (currentType.value == 1) {
-        operate = 2
+        operate = 3 // 取消邮箱绑定
     } else if (currentType.value == 2) {
-        operate = 3
-    } else if (currentType.value == 3) {
-        operate = 1
+        operate = 1 // 取消谷歌绑定
     }
     _setSafewordApply({
         idcard_path_front: frontFile.value.length && frontFile.value[0].resURL || idcard_path_front_path.value || '',
         idcard_path_back: reverseFile.value.length && reverseFile.value[0].resURL || idcard_path_back_path.value || '',
         idcard_path_hold: fileList.value.length && fileList.value[0].resURL || idcard_path_back_path.value || '',
-        operate: operate, //0 修改资金 1取消谷歌绑定 ，2取消手机绑定 3取消邮箱绑定
-        safeword: password.value,
-        safeword_confirm: repassword.value,
+        operate: operate, //1取消谷歌绑定，2取消手机绑定，3取消邮箱绑定
         remark: remark.value
     }).then((res) => {
         router.push({ name: 'resetSuccess', query: { type: currentType.value } })
