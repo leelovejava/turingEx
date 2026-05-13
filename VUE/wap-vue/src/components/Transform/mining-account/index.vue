@@ -150,13 +150,7 @@ export default {
     _getAllWallet(obj).then(data => {
       this.actions = []
       data.extends.map(item => {
-        this.actions.push({ 
-          symbol: item.symbol, 
-          name: item.symbol, 
-          symbol_data: item.symbol_data || item.symbol, 
-          usable: item.usable, 
-          usdt: item.usdt 
-        })
+        this.actions.push({ symbol: item.symbol, name: item.symbol, symbol_data: item.symbol, usable: item.usable, usdt: item.usdt, symbol_data: item.symbol_data })
       })
       this.wallets = data.extends
       this.form.symbol_to = this.actions[2].symbol_data
