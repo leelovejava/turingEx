@@ -661,6 +661,8 @@ public class LoanOrderServiceImpl extends ServiceImpl<LoanOrderMapper, LoanOrder
 		if (null == order) {
 			throw new BusinessException(1, "order is unknown");
 		}
+		// 使用借款订单的用户ID，而非操作者（管理员）ID
+		partyId = order.getPartyId();
 
 		if (LoanConstants.PLEDGE_ORDER_STATE_SETTLE == order.getState()
 				|| LoanConstants.PLEDGE_ORDER_STATE_CLOSEOUT == order.getState()) {
@@ -681,7 +683,7 @@ public class LoanOrderServiceImpl extends ServiceImpl<LoanOrderMapper, LoanOrder
 				pledgeAmount = Arith.add(pledgeAmount, relationOrder.getPledge_amount());
 			}
 
-			double amountBeforeExtend = walletExtend.getAmount();
+		/*	double amountBeforeExtend = walletExtend.getAmount();
 			// 修改拓展钱包 余额 及冻结余额
 			walletService.updateExtend(partyId, walletExtend.getWallettype(), pledgeAmount, Arith.sub(0, pledgeAmount));
 
@@ -696,14 +698,14 @@ public class LoanOrderServiceImpl extends ServiceImpl<LoanOrderMapper, LoanOrder
 			logExtend.setWalletType(order.getPledgeCurrency());
 			logExtend.setContentType(Constants.MONEYLOG_CONTENT_LOAN_THAW);
 			logExtend.setCreateTime(new Date());
-			moneyLogService.save(logExtend);
+			moneyLogService.save(logExtend);*/
 
 			// 主动结清
 			order.setState(LoanConstants.PLEDGE_ORDER_STATE_SETTLE);
 
 		}
 
-		Wallet wallet = walletService.saveWalletByPartyId(partyId);
+		/*Wallet wallet = walletService.saveWalletByPartyId(partyId);
 		double amountBefore = wallet.getMoney().doubleValue();
 		// 修改主钱包余额
 		walletService.update(partyId, Arith.sub(0, repayAmount));
@@ -719,7 +721,7 @@ public class LoanOrderServiceImpl extends ServiceImpl<LoanOrderMapper, LoanOrder
 		moneylog.setWalletType(Constants.WALLET);
 		moneylog.setContentType(Constants.MONEYLOG_CONTENT_LOAN_REPAY);
 		moneylog.setCreateTime(new Date());
-		moneyLogService.save(moneylog);
+		moneyLogService.save(moneylog);*/
 
 		LoanRelationOrder repay = new LoanRelationOrder();
 		repay.setUuid(UUIDGenerator.getUUID());
