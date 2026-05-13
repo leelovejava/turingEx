@@ -247,31 +247,31 @@ public class LoanController {
 		if(null==repayCycle) return resultObject;
 		
 		// 借贷机构ID
-		String lendingInstitution=getParamValue(request,resultObject,"lendingInstitution");
-		if(null==lendingInstitution) return resultObject;
+		///String lendingInstitution=getParamValue(request,resultObject,"lendingInstitution");
+		//if(null==lendingInstitution) return resultObject;
 		
 		// 借贷机构名称
-		String lendingName = getParamValue(request,resultObject,"lendingName");		
-		if(null==lendingName) return resultObject;
+		//String lendingName = getParamValue(request,resultObject,"lendingName");
+		//if(null==lendingName) return resultObject;
 		
 		// ========== 获取证明材料图片 ==========
 		// 身份证正面
-		String frontFile=getParamValue(request,resultObject,"frontFile");
-		if(null==frontFile) return resultObject;
+		//String frontFile=getParamValue(request,resultObject,"frontFile");
+		//if(null==frontFile) return resultObject;
 		// 身份证背面
-		String reverseFile=getParamValue(request,resultObject,"reverseFile");
-		if(null==reverseFile) return resultObject;
+		//String reverseFile=getParamValue(request,resultObject,"reverseFile");
+		//if(null==reverseFile) return resultObject;
 		// 房产证或其他证明材料
-		String fileList=getParamValue(request,resultObject,"fileList");
-		if(null==fileList) return resultObject;
+		//String fileList=getParamValue(request,resultObject,"fileList");
+		//if(null==fileList) return resultObject;
 		// 拼接所有图片路径，用逗号分隔
-		String houseImgs=new StringBuilder(frontFile).append(",").append(reverseFile).append(",").append(fileList).toString();	
+		//String houseImgs=new StringBuilder(frontFile).append(",").append(reverseFile).append(",").append(fileList).toString();
 		
 		// 收入证明图片（可选参数）
-		String incomeImg=request.getParameter("incomeImg");
-		if(null==incomeImg || (incomeImg=incomeImg.trim()).isEmpty()) {
-			incomeImg=null;
-		}
+		//String incomeImg=request.getParameter("incomeImg");
+		//if(null==incomeImg || (incomeImg=incomeImg.trim()).isEmpty()) {
+		//	incomeImg=null;
+		//}
 
 		// 获取当前时间作为创建时间
 		Date now = new Date();
@@ -283,7 +283,8 @@ public class LoanController {
 		String uuid = UUIDGenerator.getUUID();
 		simpleLoanOrder.setUuid(uuid);
 		// 设置借贷机构
-		simpleLoanOrder.setLendingInstitution(Integer.parseInt(lendingInstitution));
+		///simpleLoanOrder.setLendingInstitution(Integer.parseInt(lendingInstitution));
+		simpleLoanOrder.setLendingInstitution(0);
 		// 设置还款周期
 		simpleLoanOrder.setRepayCycle(Integer.parseInt(repayCycle));
 		// 设置还款方式
@@ -293,13 +294,16 @@ public class LoanController {
 		// 设置借款期限
 		simpleLoanOrder.setTerm(Integer.parseInt(term));
 		// 设置证明材料图片
-		simpleLoanOrder.setHouseImgs(houseImgs);
+		//simpleLoanOrder.setHouseImgs(houseImgs);
+		simpleLoanOrder.setHouseImgs("");
 		// 设置收入证明图片
-		simpleLoanOrder.setIncomeImg(incomeImg);
+		///simpleLoanOrder.setIncomeImg(incomeImg);
+		simpleLoanOrder.setIncomeImg("");
 		// 设置订单状态为待审核（1-待审核，2-审核通过，3-审核拒绝）
 		simpleLoanOrder.setState(1);
 		// 设置借贷机构名称
-		simpleLoanOrder.setLendingName(lendingName);
+		///simpleLoanOrder.setLendingName(lendingName);
+		simpleLoanOrder.setLendingName("");
 		// 设置创建时间
 		simpleLoanOrder.setCreateTime(now);
 		
