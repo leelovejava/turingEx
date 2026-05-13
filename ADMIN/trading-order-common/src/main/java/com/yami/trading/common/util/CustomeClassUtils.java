@@ -146,8 +146,8 @@ public class CustomeClassUtils extends org.springframework.util.ClassUtils {
 	    return false;
 	}
 
-	public static List<Field> listDateTypeFields(Class clazz) {
-		List<Field> dateTypeFieldList = new ArrayList();
+	public static List<Field> listDateTypeFields(Class<?> clazz) {
+		List<Field> dateTypeFieldList = new ArrayList<Field>();
 		List<Field> allFieldList = getAllFields(clazz);
 		for (Field oneField : allFieldList) {
 			Class fieldType = oneField.getType();
@@ -159,9 +159,8 @@ public class CustomeClassUtils extends org.springframework.util.ClassUtils {
 		return dateTypeFieldList;
 	}
 
-	@SuppressWarnings("unchecked")
-	public static List<Class> getAllClassByInterface(Class c) {
-		List returnClassList = new ArrayList<Class>();
+	public static List<Class<?>> getAllClassByInterface(Class<?> c) {
+		List<Class<?>> returnClassList = new ArrayList<Class<?>>();
 		// 判断是不是接口,不是接口不作处理
 		if (c.isInterface()) {
 			Package pkg = c.getPackage();
@@ -172,7 +171,7 @@ public class CustomeClassUtils extends org.springframework.util.ClassUtils {
 				packageName = c.getName().substring(0, c.getName().lastIndexOf(".")); // 获得当前包名
 			}
 			try {
-				List<Class> allClass = getClasses(packageName, c.getClassLoader());// 获得当前包以及子包下的所有类
+				List<Class<?>> allClass = getClasses(packageName, c.getClassLoader());// 获得当前包以及子包下的所有类
 
 				// 判断是否是一个接口
 				for (int i = 0; i < allClass.size(); i++) {
@@ -192,7 +191,7 @@ public class CustomeClassUtils extends org.springframework.util.ClassUtils {
 		return returnClassList;
 	}
 
-	public static List<Class> getClasses(String packageName, ClassLoader classLoader)
+	public static List<Class<?>> getClasses(String packageName, ClassLoader classLoader)
 			throws ClassNotFoundException, IOException {
 		String path = packageName.replace(".", "/");
 		Enumeration<URL> resources = classLoader.getResources(path);
@@ -202,7 +201,7 @@ public class CustomeClassUtils extends org.springframework.util.ClassUtils {
 			dirs.add(new File(resource.getFile()));
 		}
 
-		ArrayList<Class> classes = new ArrayList<Class>();
+		ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
 		for (File directory : dirs) {
 			classes.addAll(findClass(directory, packageName, classLoader));
 		}
@@ -210,9 +209,9 @@ public class CustomeClassUtils extends org.springframework.util.ClassUtils {
 		return classes;
 	}
 
-	private static List<Class> findClass(File directory, String packageName, ClassLoader classLoader)
+	private static List<Class<?>> findClass(File directory, String packageName, ClassLoader classLoader)
 			throws ClassNotFoundException {
-		List<Class> classes = new ArrayList<Class>();
+		List<Class<?>> classes = new ArrayList<Class<?>>();
 		if (!directory.exists()) {
 			return classes;
 		}

@@ -3,6 +3,7 @@ package com.yami.trading.common.util;
 import cn.hutool.core.util.NumberUtil;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Arith {
     /**
@@ -57,7 +58,7 @@ public class Arith {
         BigDecimal b2 = new BigDecimal(v2);
         BigDecimal result = b1.add(b2);
         if (decimals != null && decimals > 0) {
-            result = result.setScale(decimals, BigDecimal.ROUND_HALF_UP);
+            result = result.setScale(decimals, RoundingMode.HALF_UP);
         }
         return result.toPlainString();
     }
@@ -68,7 +69,7 @@ public class Arith {
         BigDecimal b2 = new BigDecimal(v2);
         BigDecimal result = b1.add(b2);
         if (decimals != null && decimals > 0) {
-            result = result.setScale(decimals, BigDecimal.ROUND_HALF_UP);
+            result = result.setScale(decimals, RoundingMode.HALF_UP);
         }
         return result.doubleValue();
     }
@@ -117,7 +118,7 @@ public class Arith {
         BigDecimal b2 = new BigDecimal(v2);
         BigDecimal result = b1.subtract(b2);
         if (decimals != null && decimals > 0) {
-            result = result.setScale(decimals, BigDecimal.ROUND_HALF_UP);
+            result = result.setScale(decimals, RoundingMode.HALF_UP);
         }
         return result.toPlainString();
     }
@@ -134,7 +135,7 @@ public class Arith {
         BigDecimal b2 = new BigDecimal(v2);
         BigDecimal result = b1.subtract(b2);
         if (decimals != null && decimals > 0) {
-            result = result.setScale(decimals, BigDecimal.ROUND_HALF_UP);
+            result = result.setScale(decimals, RoundingMode.HALF_UP);
         }
         return result.doubleValue();
     }
@@ -149,7 +150,7 @@ public class Arith {
 //    public static double mul(double v1, double v2) {
 //        BigDecimal b1 = new BigDecimal(Double.toString(v1));
 //        BigDecimal b2 = new BigDecimal(Double.toString(v2));
-//        return b1.multiply(b2).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//        return b1.multiply(b2).setScale(2, RoundingMode.HALF_UP).doubleValue();
 //    }
 
     public static double mul(double v1, double v2) {
@@ -161,7 +162,7 @@ public class Arith {
     public static double mul(double v1, double v2, Integer decimals) {
         BigDecimal b1 = new BigDecimal(Double.toString(v1));
         BigDecimal b2 = new BigDecimal(Double.toString(v2));
-        return b1.multiply(b2).setScale(decimals, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return b1.multiply(b2).setScale(decimals, RoundingMode.HALF_UP).doubleValue();
     }
 
     /**
@@ -175,7 +176,7 @@ public class Arith {
         // 必须转换成String
         BigDecimal b1 = new BigDecimal(v1);
         BigDecimal b2 = new BigDecimal(v2);
-        return b1.multiply(b2).setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
+        return b1.multiply(b2).setScale(2, RoundingMode.HALF_UP).toPlainString();
     }
 
     /**
@@ -192,7 +193,7 @@ public class Arith {
         BigDecimal b2 = new BigDecimal(v2);
         BigDecimal result = b1.multiply(b2);
         if (decimals != null && decimals > 0) {
-            result = result.setScale(decimals, BigDecimal.ROUND_HALF_UP);
+            result = result.setScale(decimals, RoundingMode.HALF_UP);
         }
         return result.toPlainString();
     }
@@ -220,7 +221,7 @@ public class Arith {
         BigDecimal b1 = new BigDecimal(v1);
         BigDecimal b2 = new BigDecimal(v2);
         BigDecimal result = b1.divide(b2);
-        result = result.setScale(2, BigDecimal.ROUND_HALF_UP);
+        result = result.setScale(2, RoundingMode.HALF_UP);
         return result.toPlainString();
     }
 
@@ -236,7 +237,7 @@ public class Arith {
         BigDecimal b2 = new BigDecimal(v2);
         BigDecimal result = b1.divide(b2);
         if (decimals != null && decimals > 0) {
-            result = result.setScale(decimals, BigDecimal.ROUND_HALF_UP);
+            result = result.setScale(decimals, RoundingMode.HALF_UP);
         }
         return result.toPlainString();
     }
@@ -255,7 +256,7 @@ public class Arith {
         }
         BigDecimal b1 = new BigDecimal(Double.toString(v1));
         BigDecimal b2 = new BigDecimal(Double.toString(v2));
-        return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return b1.divide(b2, scale, RoundingMode.HALF_UP).doubleValue();
     }
 
     /**
@@ -271,7 +272,7 @@ public class Arith {
         }
         BigDecimal b = new BigDecimal(Double.toString(v));
         BigDecimal one = new BigDecimal("1");
-        return b.divide(one, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return b.divide(one, scale, RoundingMode.HALF_UP).doubleValue();
     }
 
 
@@ -301,7 +302,7 @@ public class Arith {
      * @return
      */
     public static String str(Object o, Integer decimals){
-        return NumberUtil.toBigDecimal(o.toString()).setScale(decimals, BigDecimal.ROUND_HALF_UP).toPlainString();
+        return NumberUtil.toBigDecimal(o.toString()).setScale(decimals, RoundingMode.HALF_UP).toPlainString();
 
     }
 
