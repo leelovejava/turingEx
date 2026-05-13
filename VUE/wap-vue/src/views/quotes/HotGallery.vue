@@ -17,7 +17,7 @@
         </div>
         <div class="hero-brand-block">
           <h1 class="hero-main-title">
-            <span class="hero-brand">TuringEx</span><span class="hero-title-rest"> {{ t('投资者基金') }}</span>
+            <span class="hero-brand">Helix-Capita</span><span class="hero-title-rest"> {{ t('投资者基金') }}</span>
           </h1>
         </div>
         <div class="hero-stats">
@@ -320,7 +320,7 @@ const fallbackNewsItems = [
     time: '2025-12-08 17:12:03',
   },
   {
-    title: '【TuringEx 投资者基金】季度策略说明：稳健型组合加仓高评级固收与量化对冲仓位。',
+    title: '【Helix-Capita 投资者基金】季度策略说明：稳健型组合加仓高评级固收与量化对冲仓位。',
     time: '2025-12-08 15:30:21',
   },
 ]
