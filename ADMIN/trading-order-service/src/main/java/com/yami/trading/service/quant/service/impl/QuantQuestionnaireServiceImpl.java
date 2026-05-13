@@ -40,4 +40,16 @@ public class QuantQuestionnaireServiceImpl extends ServiceImpl<QuantQuestionnair
         questionnaire.setQuestion5Question("期望的周收益率");
         return questionnaire;
     }
+
+    @Override
+    public QuantQuestionnaire getByUserId(String userId) {
+        if (StringUtils.isBlank(userId)) {
+            return null;
+        }
+        QueryWrapper<QuantQuestionnaire> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", userId);
+        queryWrapper.orderByDesc("create_time");
+        queryWrapper.last("LIMIT 1");
+        return this.getOne(queryWrapper);
+    }
 }

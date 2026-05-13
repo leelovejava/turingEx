@@ -41,6 +41,9 @@ public class ApiQuantQuestionController {
 
         Map<String, Object> data = new HashMap<>();
         data.put("exist", one != null);
+        if (one != null) {
+            data.put("status", one.getStatus());
+        }
         return Result.succeed(data);
     }
 

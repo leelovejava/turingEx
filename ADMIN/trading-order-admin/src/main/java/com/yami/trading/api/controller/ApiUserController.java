@@ -615,21 +615,9 @@ public class ApiUserController {
 // 电话号码已绑定其他用户
             throw new YamiShopBindException("Phone number is already bound to another user");
         }
-        String authcode = identifyingCodeTimeWindowService.getAuthCode(phone);
-        String bind_phone_email_ver = this.sysparaService.find("bind_phone_email_ver").getSvalue();
         String bind_usercode = this.sysparaService.find("bind_usercode").getSvalue();
         // 如果是演示用户，则不判断验证码
         if (!"GUEST".contentEquals(party.getRoleName())) {
-            if ("1".contentEquals(bind_phone_email_ver)) {
-                if (StringUtils.isEmptyString(verifcode)) {
-// 请填写正确的验证码
-                    throw new YamiShopBindException("Please enter correct verification code");
-                }
-                if ((null == authcode) || (!authcode.equals(verifcode))) {
-// 验证码不正确
-                    throw new YamiShopBindException("Verification code is incorrect");
-                }
-            }
             if ("1".contentEquals(bind_usercode)) {
                 if (StringUtils.isEmptyString(usercode)) {
 // 请输入推荐码

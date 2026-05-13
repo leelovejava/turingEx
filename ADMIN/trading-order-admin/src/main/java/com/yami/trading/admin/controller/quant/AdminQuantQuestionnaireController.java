@@ -48,6 +48,17 @@ public class AdminQuantQuestionnaireController {
     @ApiOperation("提交问卷")
     @PostMapping("save.action")
     public Result<String> save(@Valid @RequestBody QuantQuestionnaireSaveModel model) {
+        QuantQuestionnaire existQuestionnaire = quantQuestionnaireService.getByUserId(model.getUserId());
+        if (existQuestionnaire != null) {
+            if ("PASS".equalsIgnoreCase(existQuestionnaire.getStatus())) {
+                return Result.failed("该用户问卷已审核通过，无需再次提交");
+            }
+            BeanUtils.copyProperties(model, existQuestionnaire);
+            existQuestionnaire.setStatus("N");
+            existQuestionnaire.setAuditRemark("");
+            quantQuestionnaireService.updateById(existQuestionnaire);
+            return Result.ok("修改成功");
+        }
         QuantQuestionnaire questionnaire = new QuantQuestionnaire();
         BeanUtils.copyProperties(model, questionnaire);
         questionnaire.setStatus("N");

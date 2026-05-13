@@ -10,4 +10,6 @@ public interface QuantQuestionnaireService extends IService<QuantQuestionnaire> 
     IPage<QuantQuestionnaire> listPage(Page<QuantQuestionnaire> page, String userCode, String status);
 
     QuantQuestionnaire fillQuestions(QuantQuestionnaire questionnaire);
+
+    QuantQuestionnaire getByUserId(String userId);
 }
