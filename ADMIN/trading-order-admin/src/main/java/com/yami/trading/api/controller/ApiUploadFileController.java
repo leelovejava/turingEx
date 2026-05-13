@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiUploadFileController {
 
     @Autowired
-    AwsS3OSSFileService awsS3OSSFileService;
+    private AwsS3OSSFileService awsS3OSSFileService;
 
     @PostMapping(value = "/api/uploadFile")
     @ApiOperation("文件上传")
@@ -34,7 +34,7 @@ public class ApiUploadFileController {
             String path = awsS3OSSFileService.uploadFile(model.getModuleName(), model.getFile());
             return Result.succeed(path);
         } catch (Exception e) {
-            log.error("文件上传异常:",e);
+            log.error("文件上传异常:", e);
             throw new YamiShopBindException(e.getMessage());
         }
     }
