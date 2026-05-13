@@ -187,7 +187,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             }
 
             // 检查实名认证是否超过7天（超过7天则体验资格作废）
-            Date authTime = realNameAuth.getOperationTime();
+            Date authTime = realNameAuth.getUpdateTime();
             if (authTime != null) {
                 long daysDiff = (new Date().getTime() - authTime.getTime()) / (1000 * 60 * 60 * 24);
                 if (daysDiff > 7) {
@@ -229,10 +229,12 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             entity.setAmount(-amount);
         }
 
-        // 扣钱
+        // 扣钱（体验矿机不扣钱）
         String buyCurrency = miner.getBuy_currency();
         double close = 0;
-        if ("usdt".equals(buyCurrency)) {
+        if (miner.getTest().equals("Y")) {
+            // 体验矿机不扣钱，跳过
+        } else if ("usdt".equals(buyCurrency)) {
             saveMinerBuyUsdt(entity);
         } else {
             List<Realtime> realtimes = this.dataService.realtime(buyCurrency);
