@@ -6,7 +6,6 @@ import com.yami.trading.common.annotation.BeanFieldName;
 import com.yami.trading.common.constants.DataTimeConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.misc.Unsafe;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -1343,101 +1342,4 @@ public abstract class ObjectTools {
 		return bytes;
 	}
 	
-	public static Unsafe getUnsafe() {
-		try {
-			Field f = Unsafe.class.getDeclaredField("theUnsafe");
-			f.setAccessible(true);
-			Unsafe unsafe = (Unsafe) f.get(null);
-			
-			return unsafe;
-		} catch (Exception e) {
-			return null;
-		}
 	}
-	
-	/**
-	 * 通过结合Java反射和objectFieldOffset()函数实现一个C-like sizeOf()函数。
-	 * 
-	 * @param o
-	 * @return
-	 */
-	private static long sizeOf(Object o) {
-	    Unsafe u = getUnsafe();
-	    HashSet<Field> fields = new HashSet();
-	    Class c = o.getClass();
-	    while (c != Object.class) {
-	        for (Field f : c.getDeclaredFields()) {
-	            if ((f.getModifiers() & Modifier.STATIC) == 0) {
-	                fields.add(f);
-	            }
-	        }
-	        c = c.getSuperclass();
-	    }
-	 
-	    // get offset
-	    long maxSize = 0;
-	    for (Field f : fields) {
-	        long offset = u.objectFieldOffset(f);
-	        if (offset > maxSize) {
-	            maxSize = offset;
-	        }
-	    }
-	 
-	    return ((maxSize/8) + 1) * 8;   // padding
-	}
-
-//	/**
-//	 * 在32位的JVM中，可以通过读取class文件偏移为12的long来获取size。
-//	 * 
-//	 * @param object
-//	 * @return
-//	 */
-//	public static long sizeOf(Object object){
-//	    return getUnsafe().getAddress(
-//	        normalize(getUnsafe().getInt(object, 4L)) + 12L);
-//	}
-	/**
-	 * 将有符号int转为无符号long
-	 * 
-	 * @param value
-	 * @return
-	 */
-	private static long normalize(int value) {
-	    if(value >= 0) return value;
-	    return (~0L >>> 32) & value;
-	}
-
-	/**
-	 * 利用 Unsafe 实现对象浅复制
-	 * 
-	 * @param obj
-	 * @return
-	 */
-	public static Object shallowCopy(Object obj) {
-	    long size = sizeOf(obj);
-	    long start = toAddress(obj);
-	    long address = getUnsafe().allocateMemory(size);
-	    getUnsafe().copyMemory(start, address, size);
-	    return fromAddress(address);
-	}
-	
-	/**
-	 * 分别将对象转换到它的地址以及相反操作
-	 * 
-	 * @param obj
-	 * @return
-	 */
-	public static long toAddress(Object obj) {
-	    Object[] array = new Object[] {obj};
-	    long baseOffset = getUnsafe().arrayBaseOffset(Object[].class);
-	    return normalize(getUnsafe().getInt(array, baseOffset));
-	}
-	 
-	public static Object fromAddress(long address) {
-	    Object[] array = new Object[] {null};
-	    long baseOffset = getUnsafe().arrayBaseOffset(Object[].class);
-	    getUnsafe().putLong(array, baseOffset, address);
-	    return array[0];
-	}
-	
-}
