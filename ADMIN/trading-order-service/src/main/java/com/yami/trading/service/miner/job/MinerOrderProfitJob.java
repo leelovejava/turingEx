@@ -219,7 +219,7 @@ public class MinerOrderProfitJob {
 	// ==================== 定时任务调度器 ====================
 
 	/**
-	 * 矿机收益定时任务（每12分钟执行一次）
+	 * 矿机收益定时任务（每5分钟26秒执行一次）
 	 * 
 	 * <p>使用Spring的@Scheduled注解实现定时调度
 	 * 表示每12分钟的第0秒执行一次。
@@ -239,12 +239,17 @@ public class MinerOrderProfitJob {
 	 *   <li>处理失败的订单会被跳过，不影响其他订单</li>
 	 * </ul>
 	 */
-	@Scheduled(fixedDelay = 386000, initialDelay = 5000)
+	@Scheduled(cron = "26 0/5 * * * ?")
 	public void twelveMinuteJobHandle() {
-		logger.info("========== 矿机收益定时任务开始执行（每6分26秒）==========");
+		try {
+			// 随机延迟 1-60 秒
+			long delay = (long) (Math.random() * 60000) + 1000;
+			Thread.sleep(delay);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 		this.taskJob();
-		logger.info("========== 矿机收益定时任务执行结束 ==========");
-	}
+	}	
 
 	/**
 	 * 矿机收益定时任务（凌晨4点执行，已废弃）
