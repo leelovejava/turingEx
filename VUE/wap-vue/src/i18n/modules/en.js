@@ -3076,6 +3076,7 @@ export default {
     aiQuantEarningsRedeem: 'Redeem',
     aiQuantEarningsRedeemToast: 'Redeem request submitted',
     aiQuantEarningsNotFound: 'Record not found',
+    aiQuantEarningsEmpty: 'No earnings yet',
     '棣栨棩娑ㄥ箙': 'First day increase',
     '外汇交割': 'Forex Delivery',
     '交割': 'Delivery',

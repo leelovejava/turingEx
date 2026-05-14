@@ -3028,6 +3028,7 @@ export default {
     aiQuantEarningsRedeem: 'Εξαργύρωση',
     aiQuantEarningsRedeemToast: 'Υποβλήθηκε αίτημα εξαργύρωσης',
     aiQuantEarningsNotFound: 'Η εγγραφή δεν βρέθηκε',
+    aiQuantEarningsEmpty: 'Δεν υπάρχουν κέρδη',
 }
 
 

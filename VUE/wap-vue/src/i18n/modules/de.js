@@ -3069,5 +3069,6 @@ export default {
     aiQuantEarningsRedeem: 'Einlösen',
     aiQuantEarningsRedeemToast: 'Einlösungsantrag eingereicht',
     aiQuantEarningsNotFound: 'Datensatz nicht gefunden',
+    aiQuantEarningsEmpty: 'Keine Erträge vorhanden',
 }
 

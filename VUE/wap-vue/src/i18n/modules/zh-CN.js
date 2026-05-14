@@ -3077,5 +3077,6 @@ export default {
     aiQuantEarningsRedeem: '赎回',
     aiQuantEarningsRedeemToast: '已提交赎回申请',
     aiQuantEarningsNotFound: '记录不存在',
+    aiQuantEarningsEmpty: '暂无收益',
     '首日涨幅': '首日涨幅',
 }

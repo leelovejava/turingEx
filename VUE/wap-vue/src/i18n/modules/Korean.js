@@ -3033,6 +3033,7 @@ export default {
     aiQuantEarningsRedeem: '상환',
     aiQuantEarningsRedeemToast: '상환 요청이 제출되었습니다',
     aiQuantEarningsNotFound: '기록을 찾을 수 없습니다',
+    aiQuantEarningsEmpty: '수익이 없습니다',
 }
 
 

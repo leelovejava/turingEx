@@ -6,6 +6,7 @@
 
     <!-- 收益列表容器 -->
     <div class="earnings-list-shell">
+      <div v-if="!records.length && !loading" class="earnings-empty">{{ t('aiQuantEarningsEmpty') }}</div>
       <!-- 遍历收益记录，渲染收益卡片 -->
       <div v-for="item in records" :key="item.id" class="earnings-card">
         <!-- 收益开始时间 -->
@@ -16,7 +17,7 @@
         <!-- 收益结束时间 -->
         <div class="earnings-cell">
           <span class="earnings-label">{{ t('aiQuantEarningsEndTime') }}</span>
-          <span class="earnings-value">{{ formatDate(item.stopTime) }}</span>
+          <span class="earnings-value">{{ formatDate(item.endTime) }}</span>
         </div>
         <!-- 收益金额（根据正负显示不同颜色） -->
         <div class="earnings-cell">
@@ -137,6 +138,13 @@ function formatDate(d) {
 </script>
 
 <style lang="scss" scoped>
+.earnings-empty {
+  text-align: center;
+  padding: 60px 0;
+  color: $text_color1;
+  font-size: 28px;
+}
+
 .earnings-list-page {
   min-height: 100vh;
   background: $main_background;

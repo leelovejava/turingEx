@@ -2994,6 +2994,7 @@ export default {
     aiQuantEarningsRedeem: 'Racheter',
     aiQuantEarningsRedeemToast: 'Demande de rachat soumise',
     aiQuantEarningsNotFound: 'Enregistrement non trouvé',
+    aiQuantEarningsEmpty: 'Aucun bénéfice disponible',
 }
 
 

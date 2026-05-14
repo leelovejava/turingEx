@@ -263,15 +263,15 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
         redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + entity.getOrder_no(), entity);
 
-        // 创建机器人订单（同步）
-        quantPreIncomeJob.generatePreIncomeSync(
+        // 创建机器人订单（同步），返回值为新建的 QuantBotOrder ID
+        Integer botOrderId = quantPreIncomeJob.generatePreIncomeSync(
                 partyId,
                 entity.getAmount(),
                 miner.getName(),
                 miner.getUuid()
         );
 
-        String quantBotOrderId = entity.getUuid();
+        String quantBotOrderId = botOrderId != null ? String.valueOf(botOrderId) : entity.getUuid();
 
         // 保存机器人订单ID到矿机订单
         if (quantBotOrderId != null) {
@@ -782,9 +782,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
     @Override
     public MinerOrder findByOrder_no(String order_no) {
-
-        return (MinerOrder) redisTemplate.opsForValue().get(MinerRedisKeys.MINER_ORDER_ORDERNO + order_no);
-
+        return this.getOne(new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<MinerOrder>().eq("order_no", order_no));
     }
 
     @Override

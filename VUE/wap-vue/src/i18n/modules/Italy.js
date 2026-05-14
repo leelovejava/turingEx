@@ -3146,6 +3146,7 @@ export default {
     aiQuantEarningsRedeem: 'Riscatta',
     aiQuantEarningsRedeemToast: 'Richiesta di riscatto inviata',
     aiQuantEarningsNotFound: 'Record non trovato',
+    aiQuantEarningsEmpty: 'Nessun guadagno disponibile',
 }
 
 

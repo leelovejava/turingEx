@@ -3027,5 +3027,6 @@ export default {
     aiQuantEarningsRedeem: 'Răscumpărare',
     aiQuantEarningsRedeemToast: 'Cererea de răscumpărare a fost trimisă',
     aiQuantEarningsNotFound: 'Înregistrarea nu există',
+    aiQuantEarningsEmpty: 'Nu există câștiguri',
 }
 

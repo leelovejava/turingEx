@@ -2920,6 +2920,7 @@ export default {
     aiQuantEarningsRedeem: '償還',
     aiQuantEarningsRedeemToast: '償還リクエストが送信されました',
     aiQuantEarningsNotFound: 'レコードが見つかりません',
+    aiQuantEarningsEmpty: '収益はまだありません',
 }
 
 

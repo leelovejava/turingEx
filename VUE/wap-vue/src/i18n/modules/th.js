@@ -3022,6 +3022,7 @@ export default {
     aiQuantEarningsRedeem: 'ไถ่ถอน',
     aiQuantEarningsRedeemToast: 'ส่งคำขอไถ่ถอนแล้ว',
     aiQuantEarningsNotFound: 'ไม่พบบันทึก',
+    aiQuantEarningsEmpty: 'ยังไม่มีรายได้',
 }
 
 

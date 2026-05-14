@@ -2828,6 +2828,7 @@ export default {
     aiQuantEarningsRedeem: 'Canjear',
     aiQuantEarningsRedeemToast: 'Solicitud de canje enviada',
     aiQuantEarningsNotFound: 'Registro no encontrado',
+    aiQuantEarningsEmpty: 'Sin ganancias disponibles',
     '外汇交割': 'Entrega de Forex',
     '交割': 'Entrega',
     'delivery': 'Entrega',

@@ -3028,5 +3028,6 @@ export default {
     aiQuantEarningsRedeem: 'Geri al',
     aiQuantEarningsRedeemToast: 'Geri alma talebi gönderildi',
     aiQuantEarningsNotFound: 'Kayıt bulunamadı',
+    aiQuantEarningsEmpty: 'Henüz kazanç yok',
 }
 

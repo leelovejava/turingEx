@@ -2991,6 +2991,7 @@ export default {
     aiQuantEarningsRedeem: 'Đổi',
     aiQuantEarningsRedeemToast: 'Đã gửi yêu cầu đổi',
     aiQuantEarningsNotFound: 'Không tìm thấy bản ghi',
+    aiQuantEarningsEmpty: 'Chưa có thu nhập',
 }
 
 

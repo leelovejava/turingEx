@@ -3011,6 +3011,7 @@ export default {
     aiQuantEarningsRedeem: 'Resgatar',
     aiQuantEarningsRedeemToast: 'Solicitação de resgate enviada',
     aiQuantEarningsNotFound: 'Registro não encontrado',
+    aiQuantEarningsEmpty: 'Sem ganhos disponíveis',
 }
 
 
