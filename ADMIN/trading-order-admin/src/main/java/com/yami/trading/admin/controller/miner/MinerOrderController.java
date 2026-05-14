@@ -138,35 +138,23 @@ public class MinerOrderController {
 
                 if ((boolean) data.get("test")) {
                     Double minerTestProfit = sysparaService.find("miner_test_profit").getDouble();
-                    data.put("daily_profit", minerTestProfit);
                     data.put("daily_rate", minerTestProfit);
                     data.put("cycle", data.get("cycle"));
                     data.put("all_rate", Arith.mul(minerTestProfit, Integer.valueOf(data.get("cycle").toString())));
                 } else {
-                    double dailyProfitRate = Arith.mul(Double.valueOf(data.get("daily_rate").toString()), 0.01d);
-                    double dailyProfitAmount = Arith.mul(dailyProfitRate, Double.valueOf(data.get("amount").toString()));
-                    data.put("daily_profit", df.format(dailyProfitAmount));
                     data.put("daily_rate", data.get("daily_rate"));
                     data.put("cycle", data.get("cycle_close"));
                     double all_rate = Arith.mul(30, Double.valueOf(data.get("daily_rate").toString()));
                     data.put("all_rate", df.format(all_rate));
                 }
-                // 今日收益 / 总收益（最终收益 = 日收益 × 支付金额 × 天数）
-                String quantOrderId = data.get("id") != null ? data.get("id").toString()
-                        : (data.get("uuid") != null ? data.get("uuid").toString() : null);
-                if (quantOrderId != null) {
-                    double amount = Double.valueOf(data.get("amount").toString());
-                    int days = runningDays;
-                    double dailyRate;
-                    if ((boolean) data.get("test")) {
-                        dailyRate = sysparaService.find("miner_test_profit").getDouble();
-                    } else {
-                        dailyRate = Arith.mul(Double.valueOf(data.get("daily_rate").toString()), 0.01d);
-                    }
-                    double dayIncome = Arith.mul(dailyRate, amount);
-                    double totalIncome = Arith.mul(dayIncome, days);
-                    data.put("day_income", df.format(dayIncome));
-                    data.put("total_income", df.format(totalIncome));
+                // daily_profit 今日实际收益，与 day_income 保持一致，从 income 表读取
+                String uuid2 = data.get("uuid") != null ? data.get("uuid").toString() : null;
+                data.put("daily_profit", uuid2 != null ? quantPreIncomeService.selectDayIncome(uuid2) : "0");
+                // 今日收益 / 总收益（与 get 接口保持一致，从 income 表读取）
+                String uuid = data.get("uuid") != null ? data.get("uuid").toString() : null;
+                if (uuid != null) {
+                    data.put("day_income", quantPreIncomeService.selectDayIncome(uuid));
+                    data.put("total_income", quantPreIncomeService.selectTotalIncome(uuid));
                 } else {
                     data.put("day_income", "0");
                     data.put("total_income", "0");
@@ -590,13 +578,7 @@ public class MinerOrderController {
         map.put("close_timeStr", order.getClose_time());
         
         // 停止时间展示
-        if (miner.getTest().equals("Y")) {
-            // 根据对外展示时区设置，修改时间
-            Date showStopTime = DateTimeTools.transferToShowTime(order.getStop_time());
-            map.put("stop_timeStr", DateUtils.format(showStopTime, DateUtils.DF_yyyyMMdd));
-        } else {
-            map.put("stop_timeStr", null);
-        }
+        map.put("stop_timeStr", order.getStop_time() != null ? DateUtils.format(order.getStop_time(), DateUtils.DF_yyyyMMdd) : null);
 
         // 起息时间展示（根据对外展示时区设置）
         Date showEarnTime = DateTimeTools.transferToShowTime(order.getEarn_time());

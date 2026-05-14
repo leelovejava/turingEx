@@ -227,7 +227,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         // 预计总收益 = 预计日收益 × 周期天数（cycle 确定后再计算）
         int cycleDaysForExpected = entity.getCycle() > 0 ? entity.getCycle() : (int) miner.getCycle();
         entity.setExpectedTotalIncome(expectedDailyIncome * cycleDaysForExpected);
-        entity.setTotalIncome(BigDecimal.valueOf(actualDailyIncome * cycleDaysForExpected));
+        entity.setTotalIncome(BigDecimal.valueOf(entity.getAmount() * randomRate / 100 * cycleDaysForExpected));
 
         if (findByFist(partyId)) {
             // 标识首次购买
