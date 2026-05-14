@@ -193,7 +193,7 @@ public class TokenStore {
         UserInfoInTokenBO userInfoInTokenBO = (UserInfoInTokenBO) redisTemplate.opsForValue()
                 .get(getAccessKey(realAccessToken));
         if (userInfoInTokenBO == null) {
-            throw new YamiShopBindException(403, "accessToken已过期");
+            throw new YamiShopBindException(403, "accessToken has expired");
         }
        int expireIn=  getExpiresIn(userInfoInTokenBO.getSysType());
         if (expireIn>-1){
