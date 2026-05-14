@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.trading.dao.user.UserNoticeMapper">
+
+  <select id="pageNotice" resultType="com.yami.trading.bean.dto.UserNoticeDto">
+    select
+      n.*,
+      u.user_code,
+      u.user_name
+    from
+      t_user_notice n
+        left join tz_user u on n.user_id = u.user_id
+        where 1=1
+    <if test="title!=null and title!=''">
+      and n.title like  CONCAT('%', #{title}, '%')
+    </if>
+    <if test="noticeType!=null and noticeType!=''">
+      and n.notice_type=#{noticeType}
+    </if>
+    <if test="userCode!=null and userCode!=''">
+        and u.user_code=#{userCode} or u.user_name=#{userCode}
+    </if>
+     order by   n.create_time desc
+  </select>
+</mapper>

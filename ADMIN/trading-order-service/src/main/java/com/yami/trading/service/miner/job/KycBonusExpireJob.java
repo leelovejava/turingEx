@@ -60,7 +60,8 @@ public class KycBonusExpireJob {
                 MoneyLog moneyLog = new MoneyLog();
                 moneyLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
                 moneyLog.setAmount(BigDecimal.valueOf(-amount));
-                moneyLog.setLog("实名体验金7天未使用，自动取消冻结");
+                // KYC体验金7天未使用，自动取消冻结
+                moneyLog.setLog("KYC bonus not used within 7 days, auto cancelled");
                 moneyLog.setUserId(user.getUserId());
                 moneyLog.setWalletType(WalletConstants.WALLET_USDT);
                 moneyLog.setContentType(WalletConstants.MONEYLOG_CONTENT_KYC_BONUS_EXPIRE);

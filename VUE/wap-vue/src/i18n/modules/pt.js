@@ -1335,6 +1335,7 @@ export default {
     verifyPhoneTips: 'Por favor insira o código de verificação de 6 dígitos que você recebeu em {account} por telefone. O código é válido por 30 minutos.',
     verifyGoogleTips: 'Por favor insira o código de verificação de 6 dígitos do Google Authenticator',
     '重新发送验证码': 'Reenviar código de verificação',
+    '发送验证码': 'Enviar código',
     '账号注册': 'Registro de conta',
     '安全绑定': 'Vinculação de segurança',
     '去交易': 'Negociar',

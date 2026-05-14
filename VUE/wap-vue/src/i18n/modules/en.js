@@ -1366,6 +1366,7 @@ export default {
     verifyPhoneTips: 'Please enter the 6-digit verification code you received at your mobile phone number {account}, the verification code is valid for 30 minutes',
     verifyGoogleTips: 'Please enter your 6-digit verification code in Google Authenticator',
     '重新发送验证码': 'Resend',
+    '发送验证码': 'Send Code',
     '账号注册': 'Sign up',
     '安全绑定': 'Security binding',
     '去交易': 'Trading',

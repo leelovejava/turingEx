@@ -1387,6 +1387,7 @@ export default {
     verifyPhoneTips: 'Vui lòng nhập mã xác minh gồm 6 chữ số mà bạn nhận được từ số điện thoại di động {tài khoản} của mình, mã xác minh có hiệu lực trong 30 phút',
     verifyGoogleTips: 'Vui lòng nhập mã xác minh gồm 6 chữ số của bạn trong trình xác thực Google Authenticator',
     '重新发送验证码': 'Gửi lại',
+    '发送验证码': 'Gửi mã',
     '账号注册': 'Đăng nhập',
     '安全绑定': 'Liên kết bảo mật',
     '去交易': 'Giao dịch',

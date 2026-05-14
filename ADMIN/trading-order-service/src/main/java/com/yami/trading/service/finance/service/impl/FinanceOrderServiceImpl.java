@@ -115,7 +115,8 @@ public class FinanceOrderServiceImpl extends ServiceImpl<FinanceOrderMapper, Fin
         moneylog.setAmountBefore(BigDecimal.valueOf(amount_before));
         moneylog.setAmount(BigDecimal.valueOf(amount));
         moneylog.setAmountAfter(BigDecimal.valueOf(amount_after));
-        moneylog.setLog("购买理财产品，订单号[" + entity.getOrderNo() + "]");
+        // 购买理财产品
+        moneylog.setLog("Buy finance product, orderNo[" + entity.getOrderNo() + "]");
         moneylog.setUserId((String) entity.getPartyId());
         moneylog.setWalletType(Constants.WALLET);
         moneylog.setContentType(WalletConstants.MONEYLOG_CONTENT_FINANCE_BUY);
@@ -164,7 +165,8 @@ public class FinanceOrderServiceImpl extends ServiceImpl<FinanceOrderMapper, Fin
             moneylog.setAmountBefore(BigDecimal.valueOf(amount_before));
             moneylog.setAmount(BigDecimal.valueOf(Arith.add(0, get_amount)));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amount_before, get_amount)));
-            moneylog.setLog("赎回理财产品，订单号[" + entity.getOrderNo() + "]");
+            // 赎回理财产品
+            moneylog.setLog("Redeem finance product, orderNo[" + entity.getOrderNo() + "]");
             moneylog.setUserId((String) entity.getPartyId());
             moneylog.setWalletType(Constants.WALLET);
             moneylog.setContentType(WalletConstants.MONEYLOG_CONTENT_FINANCE_BACK);
@@ -202,7 +204,8 @@ public class FinanceOrderServiceImpl extends ServiceImpl<FinanceOrderMapper, Fin
             moneylog.setAmountBefore(BigDecimal.valueOf(amount_before));
             moneylog.setAmount(BigDecimal.valueOf(Arith.add(0, get_amount)));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(wallet.getMoney().doubleValue(), get_amount)));
-            moneylog.setLog("赎回理财产品，订单号[" + entity.getOrderNo() + "]");
+            // 赎回理财产品
+            moneylog.setLog("Redeem finance product, orderNo[" + entity.getOrderNo() + "]");
             moneylog.setUserId(entity.getPartyId().toString());
             moneylog.setWalletType(Constants.WALLET);
             moneylog.setContentType(WalletConstants.MONEYLOG_CONTENT_FINANCE_BACK);
@@ -507,7 +510,8 @@ public class FinanceOrderServiceImpl extends ServiceImpl<FinanceOrderMapper, Fin
                         moneyLog.setAmountAfter(
                                 BigDecimal.valueOf(
                                         Arith.add(wallet_parent.getMoney().doubleValue(), parent_get_money)));
-                        moneyLog.setLog("第" + (i + 1) + "代下级用户，每日理财收益奖励金");
+                        // 下级用户每日理财收益奖励金
+                        moneyLog.setLog("Level " + (i + 1) + " user daily finance profit bonus");
                         moneyLog.setUserId(party_parent.getUserId());
                         moneyLog.setWalletType(Constants.WALLET);
                         moneyLog.setContentType(WalletConstants.MONEYLOG_CONTENT_FINANCE_RECOM_PROFIT);
@@ -538,7 +542,8 @@ public class FinanceOrderServiceImpl extends ServiceImpl<FinanceOrderMapper, Fin
             moneylog.setAmount(BigDecimal.valueOf(Arith.add(0, get_amount)));
             moneylog.setAmountAfter(BigDecimal.valueOf(
                     Arith.add(wallet.getMoney().doubleValue(), get_amount)));
-            moneylog.setLog("理财产品每日收益，订单号[" + order.getOrderNo() + "]");
+            // 理财产品每日收益
+            moneylog.setLog("Finance product daily profit, orderNo[" + order.getOrderNo() + "]");
             moneylog.setUserId(order.getPartyId().toString());
             moneylog.setWalletType(Constants.WALLET);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_FINANCE_PROFIT);
@@ -718,7 +723,8 @@ public class FinanceOrderServiceImpl extends ServiceImpl<FinanceOrderMapper, Fin
                         moneyLog.setAmount(BigDecimal.valueOf(parent_get_money));
                         moneyLog.setAmountAfter(
                                 BigDecimal.valueOf(Arith.add(wallet_parent.getMoney().doubleValue(), parent_get_money)));
-                        moneyLog.setLog("第" + (i + 1) + "代下级用户，每日理财收益奖励金");
+                        // 下级用户每日理财收益奖励金
+                        moneyLog.setLog("Level " + (i + 1) + " user daily finance profit bonus");
                         moneyLog.setUserId(party_parent.getUserId());
 //						moneyLog.setPartyId(party_parent.getId().toString());
                         moneyLog.setWalletType(Constants.WALLET);
@@ -750,7 +756,8 @@ public class FinanceOrderServiceImpl extends ServiceImpl<FinanceOrderMapper, Fin
             moneylog.setAmountBefore(BigDecimal.valueOf(amount_before));
             moneylog.setAmount(BigDecimal.valueOf(Arith.add(0, get_amount)));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(wallet.getMoney().doubleValue(), get_amount)));
-            moneylog.setLog("理财产品每日收益，订单号[" + order.getOrderNo() + "]");
+            // 理财产品每日收益
+            moneylog.setLog("Finance product daily profit, orderNo[" + order.getOrderNo() + "]");
             moneylog.setUserId(order.getPartyId().toString());
             moneylog.setWalletType(Constants.WALLET);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_FINANCE_PROFIT);
@@ -787,7 +794,8 @@ public class FinanceOrderServiceImpl extends ServiceImpl<FinanceOrderMapper, Fin
             moneylog.setAmountBefore(BigDecimal.valueOf(amount_before));
             moneylog.setAmount(BigDecimal.valueOf(Arith.add(0, get_amount)));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(wallet.getMoney().doubleValue(), get_amount)));
-            moneylog.setLog("赎回理财产品，订单号[" + entity.getOrderNo() + "]");
+            // 赎回理财产品
+            moneylog.setLog("Redeem finance product, orderNo[" + entity.getOrderNo() + "]");
             moneylog.setUserId(entity.getPartyId().toString());
             moneylog.setWalletType(Constants.WALLET);
             moneylog.setContentType(WalletConstants.MONEYLOG_CONTENT_FINANCE_BACK);

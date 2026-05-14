@@ -1376,6 +1376,7 @@ export default {
     verifyPhoneTips: "Bitte geben Sie den 6-stelligen Verifizierungscode ein, den Sie auf Ihre Handynummer {account} erhalten haben. Der Verifizierungscode ist 30 Minuten gültig. ",
     verifyGoogleTips: "Bitte geben Sie Ihren 6-stelligen Verifizierungscode in Google Validator ein",
     "重新发送验证码": "Verifizierungscode erneut senden",
+    "发送验证码": "Code senden",
     "账号注册": "Registrierung des Kontos",
     "安全绑定": "Sichere Bindung",
     "去交易": "Zu Handel",

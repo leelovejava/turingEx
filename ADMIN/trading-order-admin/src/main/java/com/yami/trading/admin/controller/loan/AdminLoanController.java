@@ -146,7 +146,21 @@ public class AdminLoanController {
 		
 		return Result.ok("操作成功");
 	}
-	
+
+	@RequestMapping("normal/loanadmin!partialRepay.action")
+	public Result partialRepay(HttpServletRequest request) {
+		String orderId = request.getParameter("orderId");
+		String amountStr = request.getParameter("amount");
+		if (orderId == null || amountStr == null) return Result.failed("参数不能为空");
+		try {
+			loanService.partialRepay(orderId, new BigDecimal(amountStr));
+		} catch (Exception e) {
+			logger.error("partialRepay error:", e);
+			return Result.failed(e.getMessage());
+		}
+		return Result.ok("操作成功");
+	}
+
 	/**
 	 * 返回借贷申请单添加页面
 	 * @return 添加申请单表单页面

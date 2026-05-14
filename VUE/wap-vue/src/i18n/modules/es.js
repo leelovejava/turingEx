@@ -1362,6 +1362,7 @@ export default {
     verifyPhoneTips: ' Por favor, introduzca el código de verificación de 6 dígitos que ha recibido en su número de teléfono móvil {cuenta}, el código es válido durante 30 minutos',
     verifyGoogleTips: ' Introduzca el código de verificación de 6 dígitos que ha recibido en Google Authenticator',
     '重新发送验证码': 'Reenviar el código de verificación',
+    '发送验证码': 'Enviar código',
     '账号注册': 'Registro de cuentas',
     '安全绑定': 'Enlace de seguridad',
     '去交易': 'Ir a Comercio',

@@ -4,10 +4,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.yami.trading.common.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("t_money_log")
 public class MoneyLog extends BaseEntity {

@@ -322,8 +322,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                     this.userDataService.saveGiftMoneyHandle(partyId, money_revise);
                 }
 
-                log.setLog("ip:" + ip + ",手动添加赠送金额。修改币种[usdt]，修改数量[" + money_revise + "]");
-                moneyLog.setLog("手动添加赠送金额");
+                // 手动添加赠送金额
+                log.setLog("ip:" + ip + ", manually add gift amount, currency[usdt], amount[" + money_revise + "]");
+                moneyLog.setLog("Manually add gift amount");
 
                 this.checkGiftUserLine(party);
             }
@@ -336,8 +337,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                     this.userDataService.saveRechargeHandle(partyId, money_revise, "usdt");
                 }
 
-                log.setLog("ip:" + ip + ",手动添加充值金额。修改币种[usdt]，修改数量[" + money_revise + "]");
-                moneyLog.setLog("手动添加充值金额");
+                // 手动添加充值金额（USDT）
+                log.setLog("ip:" + ip + ", manually add recharge amount, currency[usdt], amount[" + money_revise + "]");
+                moneyLog.setLog("Manually add recharge amount");
             }
 
             this.moneyLogService.save(moneyLog);
@@ -406,8 +408,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                     this.userDataService.saveRechargeHandle(partyId, money_revise, coin_type);
                 }
 
-                log.setLog("ip:" + ip + ",手动添加充值金额。修改币种[" + coin_type + "]" + coin_str + "，修改数量[" + money_revise + "]");
-                moneyLog.setLog("手动添加充值金额");
+                // 手动添加充值金额（其他币种）
+                log.setLog("ip:" + ip + ", manually add recharge amount, currency[" + coin_type + "]" + coin_str + ", amount[" + money_revise + "]");
+                moneyLog.setLog("Manually add recharge amount");
             }
 
             moneyLogService.save(moneyLog);
@@ -2368,8 +2371,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             log.setUsername(party.getUserName());
             log.setOperator(operator_name);
             log.setUserId(partyId);
-            log.setLog("ip:" + ip + ",手动减少充值金额，修改币种[usdt]，" + "修改数量[" + money_revise + "]");
-            moneyLog.setLog("手动减少充值金额，减少余额不记录报表");
+            // 手动减少充值金额（USDT，不记录报表）
+            log.setLog("ip:" + ip + ", manually reduce recharge amount, currency[usdt], amount[" + money_revise + "]");
+            moneyLog.setLog("Manually reduce recharge amount, not recorded in report");
 
             this.moneyLogService.save(moneyLog);
             this.logService.save(log);
@@ -2428,8 +2432,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 coin_str = "[用户钱包USDT映射]";
             }
 
-            log.setLog("ip:" + ip + ",手动减少充值金额，修改币种[" + coin_type + "]" + coin_str + "，" + "修改数量[" + money_revise + "]");
-            moneyLog.setLog("手动减少充值金额");
+            // 手动减少充值金额（其他币种）
+            log.setLog("ip:" + ip + ", manually reduce recharge amount, currency[" + coin_type + "]" + coin_str + ", amount[" + money_revise + "]");
+            moneyLog.setLog("Manually reduce recharge amount");
 
             this.moneyLogService.save(moneyLog);
             this.logService.save(log);

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yami.trading.bean.loan.LoanParam;
 import com.yami.trading.bean.loan.SimpleLoanOrder;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,5 +80,7 @@ public interface LoanService {
 
 	public void setParamMap(HashMap<String,Object> params);
 	public HashMap<String,Object> getParamMap();
+
+	void partialRepay(String orderId, BigDecimal amount);
 
 }

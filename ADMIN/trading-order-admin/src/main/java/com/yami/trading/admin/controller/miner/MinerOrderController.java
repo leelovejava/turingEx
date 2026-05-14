@@ -151,12 +151,22 @@ public class MinerOrderController {
                     double all_rate = Arith.mul(30, Double.valueOf(data.get("daily_rate").toString()));
                     data.put("all_rate", df.format(all_rate));
                 }
-                // 今日收益 / 总收益（基于预收益记录）
+                // 今日收益 / 总收益（最终收益 = 日收益 × 支付金额 × 天数）
                 String quantOrderId = data.get("id") != null ? data.get("id").toString()
                         : (data.get("uuid") != null ? data.get("uuid").toString() : null);
                 if (quantOrderId != null) {
-                    data.put("day_income", df.format(quantPreIncomeService.selectDayIncome(quantOrderId)));
-                    data.put("total_income", df.format(quantPreIncomeService.selectTotalIncome(quantOrderId)));
+                    double amount = Double.valueOf(data.get("amount").toString());
+                    int days = runningDays;
+                    double dailyRate;
+                    if ((boolean) data.get("test")) {
+                        dailyRate = sysparaService.find("miner_test_profit").getDouble();
+                    } else {
+                        dailyRate = Arith.mul(Double.valueOf(data.get("daily_rate").toString()), 0.01d);
+                    }
+                    double dayIncome = Arith.mul(dailyRate, amount);
+                    double totalIncome = Arith.mul(dayIncome, days);
+                    data.put("day_income", df.format(dayIncome));
+                    data.put("total_income", df.format(totalIncome));
                 } else {
                     data.put("day_income", "0");
                     data.put("total_income", "0");
@@ -548,23 +558,38 @@ public class MinerOrderController {
 
     }
 
+    /**
+     * 构建矿机订单详情数据
+     *
+     * @param order 矿机订单对象
+     * @return 包含订单详情的Map集合
+     * @throws ParseException 日期解析异常
+     */
     protected Map<String, Object> bulidData(MinerOrder order) throws ParseException {
         System.out.println("bulidData => " + order);
         Miner miner = new Miner();
         miner = minerService.findById(order.getMiner_id());
         System.out.println("miner => " + miner);
 
+        // 初始化小数格式器（保留两位小数）
         DecimalFormat df = new DecimalFormat("#.##");
         Map<String, Object> map = new HashMap<String, Object>();
+        
+        // ==================== 矿机信息 ====================
         map.put("miner_name", miner.getName());
         map.put("miner_name_en", miner.getName_en());
         map.put("miner_name_cn", miner.getName_cn());
         Double miner_test_profit = sysparaService.find("miner_test_profit").getDouble();
 
+        // 日利率：体验矿机使用测试收益，普通矿机使用配置的日利率
         map.put("daily_rate", miner.getTest().equals("Y") ? miner_test_profit : miner.getDaily_rate());
+        
+        // ==================== 时间信息 ====================
         Date create_time = order.getCreate_time();
         map.put("create_timeStr", create_time);
         map.put("close_timeStr", order.getClose_time());
+        
+        // 停止时间展示
         if (miner.getTest().equals("Y")) {
             // 根据对外展示时区设置，修改时间
             Date showStopTime = DateTimeTools.transferToShowTime(order.getStop_time());
@@ -573,36 +598,38 @@ public class MinerOrderController {
             map.put("stop_timeStr", null);
         }
 
-        // 根据对外展示时区设置，修改时间
+        // 起息时间展示（根据对外展示时区设置）
         Date showEarnTime = DateTimeTools.transferToShowTime(order.getEarn_time());
         map.put("earn_timeStr", DateUtils.format(showEarnTime, DateUtils.DF_yyyyMMdd));
 
-        //System.out.println("getTest => "+miner.getTest().equals("Y") );
-        //System.out.println("stop_timeStr => "+DateUtils.format(order.getStop_time(), DateUtils.DF_yyyyMMdd));
-
-        Date date_now = new Date();// 取时间
+        // 计算剩余天数（到停止时间还有多少天）
+        Date date_now = new Date();
         int daysBetween = order.getStop_time() == null ? 0 : daysBetween(date_now, order.getStop_time());
         daysBetween = Math.max(daysBetween, 0);
         map.put("days", daysBetween);
+        
+        // 计算已运行天数
         int last_days = daysBetween(create_time, date_now);
         map.put("can_close", last_days >= miner.getCycle_close());
-        double rate = Arith.mul(miner.getDaily_rate(), 0.01d);
-        map.put("profit_may", miner.getTest().equals("Y") ? String.valueOf(Arith.mul(miner_test_profit, miner.getCycle()))
-                : String.valueOf(Arith.mul(order.getAmount(), Arith.mul(rate, 30d))));
+        
+        // ==================== 订单基本信息 ====================
         map.put("order_no", order.getOrder_no());
         map.put("amount", order.getAmount());
-        // map.put("cycle", miner.getCycle());
         map.put("id", order.getOrder_no());
-
         map.put("state", order.getState());
+        // 实际收益
         map.put("profit", order.getProfit());
 
+        // 周期天数：体验矿机使用配置周期，普通矿机使用平仓周期
         int cycle = miner.getTest().equals("Y") ? miner.getCycle() : miner.getCycle_close();
         map.put("cycle", cycle);
+        
+        // 总收益率
         double all_rate = Arith.mul(30, miner.getDaily_rate());
         map.put("all_rate", miner.getTest().equals("Y") ? Arith.mul(miner_test_profit, miner.getCycle()) : df.format(all_rate));
 
-        map.put("expected_total_income", order.getExpected_total_income());
+        // ==================== 预期总收益 ====================
+        map.put("expected_total_income", order.getExpectedTotalIncome());
         map.put("test", miner.getTest());
         map.put("buyCurrency", miner.getBuy_currency());
         map.put("outputCurrency", miner.getOutput_currency());
@@ -611,36 +638,57 @@ public class MinerOrderController {
             symbol = (miner.getBuy_currency() + "/" + miner.getOutput_currency()).toUpperCase();
         }
         map.put("symbol", symbol);
-        // 今日收益 / 总收益
+        
+        // ==================== 今日收益 / 总收益（最终收益 = 日收益 × 支付金额 × 天数） ====================
         String uuid = order.getUuid();
+        double totalGeneratedIncome = 0;
         if (uuid != null) {
-            map.put("day_income", df.format(quantPreIncomeService.selectDayIncome(uuid)));
-            map.put("total_income", df.format(quantPreIncomeService.selectTotalIncome(uuid)));
+            double amount = order.getAmount();
+            int days = last_days;
+            // 使用订单创建时存储的随机日利率（在 daily_rate_start 和 daily_rate_end 之间随机生成）
+            double dailyRate = order.getRandom_daily_rate();
+            // 将百分比转换为小数（例如 2% → 0.02）
+            double dailyRateDecimal = Arith.mul(dailyRate, 0.01d);
+            // 计算今日收益
+            double dayIncome = Arith.mul(dailyRateDecimal, amount);
+            // 计算总收益
+            double totalIncome = Arith.mul(dayIncome, days);
+            totalGeneratedIncome = totalIncome;
+            map.put("day_income", df.format(dayIncome));
+            map.put("total_income", df.format(totalIncome));
         } else {
             map.put("day_income", "0");
             map.put("total_income", "0");
         }
+        
+        // ==================== 资产信息 ====================
+        // 总资产 = 本金 + 已产生的收益
+        double totalAsset = Arith.add(order.getAmount(), totalGeneratedIncome);
+        map.put("total_asset", df.format(totalAsset));
+        // 已产生收益
+        map.put("generated_income", df.format(totalGeneratedIncome));
 
+        // ==================== 根据订单状态设置数据 ====================
+        // 状态 1：已结束/已平仓
         if ("1".equals(order.getState())) {
-
             map.put("profit", order.getProfit());
-
             map.put("default_amount", 0);
             map.put("principal_amount", 0);
         }
+        // 状态 2：违约/强制平仓
         if ("2".equals(order.getState())) {
             map.put("profit", 0);
             map.put("default_amount", 0);
             map.put("principal_amount", df.format(order.getAmount()));
         }
-        if ("0".equals(order.getState())) {// 正常
+        // 状态 0：运行中
+        if ("0".equals(order.getState())) {
             map.put("profit", order.getProfit());
             map.put("default_amount", 0);
             map.put("principal_amount", df.format(order.getAmount()));
         }
 
         return map;
-
     }
 
     public static int daysBetween(Date smdate, Date bdate) throws ParseException {

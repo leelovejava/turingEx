@@ -118,7 +118,8 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         log.setOperator(operator);
         log.setUsername(secUser.getUserName());
         log.setUserId(entity.getPartyId().toString());
-        log.setLog("手动新增矿机订单。订单号[" + entity.getOrder_no() + "],订单金额[" + entity.getAmount() + "]。");
+        // 手动新增量化订单
+        log.setLog("Manually add Quant Order, orderNo[" + entity.getOrder_no() + "], amount[" + entity.getAmount() + "]");
 
         logService.save(log);
     }
@@ -179,7 +180,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         double randomRate = generateRandomDailyRate(miner.getDaily_rate_start(), miner.getDaily_rate_end());
         entity.setRandom_daily_rate(randomRate);
 
-        // 预计总收益：随机整数日收益 × 周期天数，且不等于实际日收益取整
+        // 预计日收益（用于后续计算预计总收益）
         long actualDailyIncome = (long) (entity.getAmount() * randomRate / 100);
         long expectedDailyIncome;
         do {
@@ -188,8 +189,6 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             expectedDailyIncome = actualDailyIncome + (Math.random() < 0.5 ? offset : -offset);
             if (expectedDailyIncome < 1) expectedDailyIncome = actualDailyIncome + offset;
         } while (expectedDailyIncome == actualDailyIncome);
-        int cycleDaysForExpected = entity.getCycle() > 0 ? entity.getCycle() : (int) miner.getCycle();
-        entity.setExpected_total_income(expectedDailyIncome * cycleDaysForExpected);
 
         if (miner.getTest().equals("Y")) {
             // 检查用户实名认证状态
@@ -228,6 +227,10 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             LocalDateTime stopTime = entity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusDays(cycleDays);
             entity.setStop_time(Date.from(stopTime.atZone(ZoneId.systemDefault()).toInstant()));
         }
+
+        // 预计总收益 = 预计日收益 × 周期天数（cycle 确定后再计算）
+        int cycleDaysForExpected = entity.getCycle() > 0 ? entity.getCycle() : (int) miner.getCycle();
+        entity.setExpectedTotalIncome(expectedDailyIncome * cycleDaysForExpected);
 
         if (findByFist(partyId)) {
             // 标识首次购买
@@ -391,7 +394,8 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             MoneyLog bonusUseLog = new MoneyLog();
             bonusUseLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             bonusUseLog.setAmount(BigDecimal.valueOf(-300));
-            bonusUseLog.setLog("购买体验矿机，消费300U体验金，订单号[" + entity.getOrder_no() + "]");
+            // 购买体验量化订单，消费300U体验金
+            bonusUseLog.setLog("Buy experience Quant Order, use 300U bonus, orderNo[" + entity.getOrder_no() + "]");
             bonusUseLog.setUserId(entity.getPartyId());
             bonusUseLog.setWalletType(WalletConstants.WALLET_USDT);
             bonusUseLog.setContentType(WalletConstants.MONEYLOG_CONTENT_KYC_BONUS_USE);
@@ -566,7 +570,8 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, back_money)));
         moneylog.setUserId(entity.getPartyId());
         moneylog.setWalletType(WalletConstants.WALLET_USDT);
-        moneylog.setLog("矿机赎回，本金+收益从冻结转入余额，订单号[" + entity.getOrder_no() + "]");
+        // 量化订单赎回，本金+收益从冻结转入余额
+        moneylog.setLog("Quant Order redeem, principal+profit from frozen to available, orderNo[" + entity.getOrder_no() + "]");
         moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BACK);
         moneyLogService.save(moneylog);
     }
@@ -590,7 +595,8 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         moneylog_deposit.setAmountBefore(BigDecimal.valueOf(amount_before));
         moneylog_deposit.setAmount(BigDecimal.valueOf(back_money));
         moneylog_deposit.setAmountAfter(BigDecimal.valueOf(Arith.add(amount_before, back_money)));
-        moneylog_deposit.setLog("矿机赎回，本金+收益退回，订单号[" + entity.getOrder_no() + "]");
+        // 量化订单赎回，本金+收益退回
+        moneylog_deposit.setLog("Quant Order redeem, principal+profit returned, orderNo[" + entity.getOrder_no() + "]");
         moneylog_deposit.setUserId(entity.getPartyId().toString());
         moneylog_deposit.setWalletType(symbol);
         moneylog_deposit.setContentType(Constants.MONEYLOG_CONTENT_MINER_BACK);
@@ -707,7 +713,8 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, back_money)));
             moneylog.setUserId(entity.getUuid());
             moneylog.setWalletType(WalletConstants.WALLET_USDT);
-            moneylog.setLog("矿机赎回，本金+收益从冻结转入余额，订单号[" + entity.getOrder_no() + "]");
+            // 量化订单赎回，本金+收益从冻结转入余额
+            moneylog.setLog("Quant Order redeem, principal+profit from frozen to available, orderNo[" + entity.getOrder_no() + "]");
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BACK);
             moneyLogService.save(moneylog);
         }

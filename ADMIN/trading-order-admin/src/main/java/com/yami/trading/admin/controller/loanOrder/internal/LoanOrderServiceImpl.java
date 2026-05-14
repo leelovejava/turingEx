@@ -125,7 +125,8 @@ public class LoanOrderServiceImpl extends ServiceImpl<LoanOrderMapper, LoanOrder
 		moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
 		moneylog.setAmount(BigDecimal.valueOf(loanAmount));
 		moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, loanAmount)));
-		moneylog.setLog("质押借币，订单号[" + orderNo + "]，" + "借款：" + loanAmount);
+		// 质押借币，订单号[orderNo]，借款：loanAmount
+			moneylog.setLog("Pledge loan, order no.[" + orderNo + "], loan amount: " + loanAmount);
 		moneylog.setUserId(partyId);
 		moneylog.setWalletType(Constants.WALLET);
 		moneylog.setContentType(Constants.MONEYLOG_CONTENT_LOAN_ADD);
@@ -625,7 +626,8 @@ public class LoanOrderServiceImpl extends ServiceImpl<LoanOrderMapper, LoanOrder
 		moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
 		moneylog.setAmount(BigDecimal.valueOf(loanAmountRq));
 		moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, loanAmountRq)));
-		moneylog.setLog("质押借币，订单号[" + order.getOrderNo() + "]，" + "借款：" + loanAmountRq);
+		// 质押借币，订单号[orderNo]，借款：loanAmountRq
+			moneylog.setLog("Pledge loan, order no.[" + order.getOrderNo() + "], loan amount: " + loanAmountRq);
 		moneylog.setUserId(partyId);
 		moneylog.setWalletType(Constants.WALLET);
 		moneylog.setContentType(Constants.MONEYLOG_CONTENT_LOAN_ADD);
@@ -716,7 +718,8 @@ public class LoanOrderServiceImpl extends ServiceImpl<LoanOrderMapper, LoanOrder
 		moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
 		moneylog.setAmount(BigDecimal.valueOf(repayAmount));
 		moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(amountBefore, repayAmount)));
-		moneylog.setLog("借币还款，订单号[" + order.getOrderNo() + "]，" + "还款：" + repayAmount);
+		// 借币还款，订单号[orderNo]，还款：repayAmount
+			moneylog.setLog("Loan repayment, order no.[" + order.getOrderNo() + "], repay amount: " + repayAmount);
 		moneylog.setUserId(partyId);
 		moneylog.setWalletType(Constants.WALLET);
 		moneylog.setContentType(Constants.MONEYLOG_CONTENT_LOAN_REPAY);

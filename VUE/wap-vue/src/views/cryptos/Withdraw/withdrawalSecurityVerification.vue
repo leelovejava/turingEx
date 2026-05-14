@@ -51,11 +51,12 @@ export default {
       // 邮箱验证码相关
       emailCode: '',
       sendDisabled: false,
-      sendText: '发送验证码',
+      sendText: '',
       countdown: 60
     }
   },
   created() {
+    this.sendText = this.$t('发送验证码')
     // _getIsGoogleAuth({ code: 'google_auth_secret_open' }).then(res => {
     //   this.isGoogleInput = res.data.google_auth_secret_open === '1'
     // })
@@ -93,7 +94,7 @@ export default {
         if (this.countdown <= 0) {
           clearInterval(timer)
           this.sendDisabled = false
-          this.sendText = '发送验证码'
+          this.sendText = this.$t('发送验证码')
         } else {
           this.sendText = `${this.countdown}s`
         }

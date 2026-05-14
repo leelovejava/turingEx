@@ -171,7 +171,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             moneyLog.setAmountBefore(new BigDecimal(amountBefore));
             moneyLog.setAmount(new BigDecimal(c2cOrder.getCoinAmount()));
             moneyLog.setAmountAfter(new BigDecimal(amountAfter));
-            moneyLog.setLog("c2c订单购买放行，订单号[" + c2cOrder.getOrderNo() + "]");
+            // c2c订单购买放行
+            moneyLog.setLog("C2C order buy approved, orderNo[" + c2cOrder.getOrderNo() + "]");
             moneyLog.setUserId(c2cOrder.getPartyId());
             moneyLog.setWalletType(c2cOrder.getSymbol());
             moneyLog.setSymbol(c2cOrder.getSymbol());
@@ -418,7 +419,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             moneyLog.setAmountBefore(new BigDecimal(amountBefore));
             moneyLog.setAmount(new BigDecimal(c2cOrder.getCoinAmount()));
             moneyLog.setAmountAfter(new BigDecimal(amountAfter));
-            moneyLog.setLog("银行卡订单取消，订单号[" + c2cOrder.getOrderNo() + "]");
+            // 银行卡订单取消
+            moneyLog.setLog("Bank card order cancelled, orderNo[" + c2cOrder.getOrderNo() + "]");
             moneyLog.setUserId(c2cOrder.getPartyId());
             moneyLog.setWalletType(c2cOrder.getSymbol());
             moneyLog.setSymbol(c2cOrder.getSymbol());
@@ -491,7 +493,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             moneyLog.setAmountBefore(new BigDecimal(amountBefore));
             moneyLog.setAmount(new BigDecimal(c2cOrder.getCoinAmount()));
             moneyLog.setAmountAfter(new BigDecimal(amountAfter));
-            moneyLog.setLog("银行卡订单取消，订单号[" + c2cOrder.getOrderNo() + "]");
+            // 银行卡订单取消
+            moneyLog.setLog("Bank card order cancelled, orderNo[" + c2cOrder.getOrderNo() + "]");
             moneyLog.setUserId(c2cOrder.getPartyId());
             moneyLog.setWalletType(c2cOrder.getSymbol());
             moneyLog.setSymbol(c2cOrder.getSymbol());
@@ -582,7 +585,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             moneyLog.setAmountBefore(new BigDecimal(amountBefore));
             moneyLog.setAmount(new BigDecimal(c2cOrder.getCoinAmount()));
             moneyLog.setAmountAfter(new BigDecimal(amountAfter));
-            moneyLog.setLog("银行卡订单充值放行，订单号[" + c2cOrder.getOrderNo() + "]");
+            // 银行卡订单充值放行
+            moneyLog.setLog("Bank card order recharge approved, orderNo[" + c2cOrder.getOrderNo() + "]");
             moneyLog.setUserId(c2cOrder.getPartyId());
             moneyLog.setWalletType(c2cOrder.getSymbol());
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_BANK_CARD_RECHARGE);
@@ -899,7 +903,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         moneylog.setAmountBefore(new BigDecimal(amountBefore));
         moneylog.setAmount(new BigDecimal(Arith.sub(0, c2cOrder.getCoinAmount())));
         moneylog.setAmountAfter(new BigDecimal(amountAfter));
-        moneylog.setLog("c2c卖币，币种[" + c2cOrder.getSymbol() + "]，订单号[" + c2cOrder.getOrderNo() + "]");
+        // c2c卖币
+        moneylog.setLog("C2C sell coin, symbol[" + c2cOrder.getSymbol() + "], orderNo[" + c2cOrder.getOrderNo() + "]");
         moneylog.setUserId(c2cOrder.getPartyId());
         moneylog.setWalletType(c2cOrder.getSymbol());
         moneylog.setContentType(Constants.MONEYLOG_CONTENT_C2C_SELL);
@@ -1248,7 +1253,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         moneylog.setAmountBefore(new BigDecimal(amountBefore));
         moneylog.setAmount(new BigDecimal(Arith.sub(0, c2cOrder.getCoinAmount())));
         moneylog.setAmountAfter(new BigDecimal(amountAfter));
-        moneylog.setLog("银行卡提现，币种[" + c2cOrder.getSymbol() + "]，订单号[" + c2cOrder.getOrderNo() + "]");
+        // 银行卡提现
+        moneylog.setLog("Bank card withdrawal, symbol[" + c2cOrder.getSymbol() + "], orderNo[" + c2cOrder.getOrderNo() + "]");
         moneylog.setUserId(c2cOrder.getPartyId());
         moneylog.setWalletType(c2cOrder.getSymbol());
         moneylog.setSymbol(c2cOrder.getSymbol());

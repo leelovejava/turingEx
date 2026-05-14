@@ -247,7 +247,8 @@ public class ExchangeLeverProfitServiceImpl implements ExchangeLeverProfitServic
         moneylog.setAmountBefore(new BigDecimal(amountBefore));
         moneylog.setAmount(new BigDecimal(profit));
         moneylog.setAmountAfter(new BigDecimal(Arith.add(amountBefore, profit)));
-        moneylog.setLog("全仓杠杆,保证金中余额不足无法支付利息,直接平仓,利息[" + interest + "],订单号["
+        // 全仓杠杆，保证金不足直接平仓
+        moneylog.setLog("Full-position leverage, insufficient margin, force close, interest[" + interest + "], orderNo["
                 + order.getOrderNo() + "]");
         moneylog.setUserId(order.getPartyId());
         moneylog.setWalletType(paySymbol);
@@ -278,7 +279,8 @@ public class ExchangeLeverProfitServiceImpl implements ExchangeLeverProfitServic
         moneylog.setAmountBefore(new BigDecimal(amountBefore));
         moneylog.setAmount(new BigDecimal(Arith.sub(0, interest)));
         moneylog.setAmountAfter(new BigDecimal(amountBefore));
-        moneylog.setLog("全仓杠杆,仅在订单保证金中扣除利息,利息[" + interest + "],剩余保证金[" + order.getDeposit() + "],订单号["
+        // 全仓杠杆，仅扣除利息
+        moneylog.setLog("Full-position leverage, deduct interest from margin, interest[" + interest + "], remaining margin[" + order.getDeposit() + "], orderNo["
                 + order.getOrderNo() + "]");
         moneylog.setUserId(order.getPartyId());
         moneylog.setWalletType(paySymbol);

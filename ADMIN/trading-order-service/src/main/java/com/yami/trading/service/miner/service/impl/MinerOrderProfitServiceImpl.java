@@ -318,7 +318,8 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
             moneylog.setAmount(BigDecimal.valueOf(getSymbolVolume));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, getSymbolVolume)));
-            moneylog.setLog("矿机收益，订单号[" + order.getOrder_no() + "]");
+            // 量化订单收益
+            moneylog.setLog("Quant Order profit, orderNo[" + order.getOrder_no() + "]");
             moneylog.setUserId(order.getPartyId());
             moneylog.setWalletType(realtime.getSymbol());
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_PROFIT);
@@ -336,7 +337,8 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
             moneylog.setAmount(BigDecimal.valueOf(day_profit));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, day_profit)));
-            moneylog.setLog("矿机收益（冻结），订单号[" + order.getOrder_no() + "]");
+            // 量化订单收益（冻结）
+            moneylog.setLog("Quant Order profit (frozen), orderNo[" + order.getOrder_no() + "]");
             moneylog.setUserId(order.getPartyId());
             moneylog.setWalletType(WalletConstants.WALLET_USDT);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_PROFIT);
@@ -380,7 +382,8 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
             moneylog.setAmount(BigDecimal.valueOf(get_symbol_volume));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, get_symbol_volume)));
-            moneylog.setLog("矿机收益，订单号[" + order.getOrder_no() + "]");
+            // 量化订单收益
+            moneylog.setLog("Quant Order profit, orderNo[" + order.getOrder_no() + "]");
             moneylog.setUserId(order.getPartyId());
             moneylog.setWalletType(realtime.getSymbol());
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_PROFIT);
@@ -398,7 +401,8 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneylog.setAmountBefore(BigDecimal.valueOf(amountBefore));
             moneylog.setAmount(BigDecimal.valueOf(day_profit));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, day_profit)));
-            moneylog.setLog("矿机收益（冻结），订单号[" + order.getOrder_no() + "]");
+            // 量化订单收益（冻结）
+            moneylog.setLog("Quant Order profit (frozen), orderNo[" + order.getOrder_no() + "]");
             moneylog.setUserId(order.getPartyId());
             moneylog.setWalletType(WalletConstants.WALLET_USDT);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_PROFIT);
@@ -508,7 +512,8 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneyLog.setAmountBefore(BigDecimal.valueOf(amountBefore));
             moneyLog.setAmount(BigDecimal.valueOf(entry.getValue()));
             moneyLog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, entry.getValue())));
-            moneyLog.setLog("矿机推荐奖励金");
+            // 量化订单推荐奖励金
+            moneyLog.setLog("Quant Order referral bonus");
             moneyLog.setUserId(entry.getKey());
             moneyLog.setWalletType(Constants.WALLET);
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_MINER_RECOM_PROFIT);
@@ -544,7 +549,8 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneyLog.setAmountBefore(BigDecimal.valueOf(amountBefore));
             moneyLog.setAmount(BigDecimal.valueOf(entry.getValue()));
             moneyLog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, entry.getValue())));
-            moneyLog.setLog("矿机推荐奖励金");
+            // 量化订单推荐奖励金
+            moneyLog.setLog("Quant Order referral bonus");
             moneyLog.setUserId(entry.getKey());
             moneyLog.setWalletType(Constants.WALLET);
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_MINER_RECOM_PROFIT);

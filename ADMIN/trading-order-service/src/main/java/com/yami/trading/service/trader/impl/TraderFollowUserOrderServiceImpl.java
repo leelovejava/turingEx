@@ -474,8 +474,9 @@ public class TraderFollowUserOrderServiceImpl implements TraderFollowUserOrderSe
 			moneylog.setAmount_before(new BigDecimal(wallet_before));
 			moneylog.setAmount(BigDecimal.valueOf(Arith.sub(0, follow_order_profit)));
 			moneylog.setAmount_after(BigDecimal.valueOf(Arith.sub(wallet.getMoney().doubleValue(), follow_order_profit)));
-			moneylog.setLog("交易员订单号[" + traderFollowUserOrder.getTraderOrderNo() + "],跟单用户订单号["
-					+ contractOrder.getOrderNo() + "],跟单手续费[" + Arith.sub(0, follow_order_profit) + "]");
+			// 交易员订单号[traderOrderNo]，跟单用户订单号[orderNo]，跟单手续费[fee]
+			moneylog.setLog("Trader order no.[" + traderFollowUserOrder.getTraderOrderNo() + "], copy-trade user order no.["
+					+ contractOrder.getOrderNo() + "], copy-trade fee[" + Arith.sub(0, follow_order_profit) + "]");
 			moneylog.setUserId(contractOrder.getPartyId());
 			moneylog.setWalletType(Constants.WALLET);
 			moneylog.setContent_type(Constants.MONEYLOG_CONTENT_FOLLOW_UP_FEE);
@@ -491,8 +492,9 @@ public class TraderFollowUserOrderServiceImpl implements TraderFollowUserOrderSe
 			moneylog_trader.setAmount_before(new BigDecimal(wallet_trader_before));
 			moneylog_trader.setAmount(new BigDecimal(follow_order_profit));
 			moneylog_trader.setAmount_after(BigDecimal.valueOf(Arith.add(wallet_trader.getMoney().doubleValue(), follow_order_profit)));
-			moneylog_trader.setLog("交易员订单号[" + traderFollowUserOrder.getTraderOrderNo() + "],跟单用户订单号["
-					+ contractOrder.getOrderNo() + "],带单手续费收益[" + follow_order_profit + "]");
+			// 交易员订单号[traderOrderNo]，跟单用户订单号[orderNo]，带单手续费收益[profit]
+				moneylog_trader.setLog("Trader order no.[" + traderFollowUserOrder.getTraderOrderNo() + "], copy-trade user order no.["
+					+ contractOrder.getOrderNo() + "], lead-trade fee income[" + follow_order_profit + "]");
 			moneylog_trader.setUserId(wallet_trader.getUserId());
 			moneylog_trader.setWalletType(Constants.WALLET);
 			moneylog_trader.setContent_type(Constants.MONEYLOG_CONTENT_FOLLOW_UP_FEE);
@@ -627,7 +629,8 @@ public class TraderFollowUserOrderServiceImpl implements TraderFollowUserOrderSe
 			moneyLog.setAmount_before(new BigDecimal(amount_before));
 			moneyLog.setAmount(new BigDecimal(get_money));
 			moneyLog.setAmount_after(BigDecimal.valueOf(Arith.add(wallet.getMoney().doubleValue(), get_money)));
-			moneyLog.setLog("第" + (i + 1) + "代用户跟单产生了交易，手续费奖励[" + get_money + "]");
+			// 第N代用户跟单产生了交易，手续费奖励[get_money]
+			moneyLog.setLog("Generation " + (i + 1) + " user copy-trade transaction, fee reward[" + get_money + "]");
 			moneyLog.setUserId(recom_parents.get(i).getRecomUserId());
 			moneyLog.setWalletType(Constants.WALLET);
 			moneyLog.setContent_type(Constants.MONEYLOG_CONTENT_REWARD);
@@ -696,7 +699,8 @@ public class TraderFollowUserOrderServiceImpl implements TraderFollowUserOrderSe
 			moneyLog.setAmount_before(new BigDecimal(amount_before));
 			moneyLog.setAmount(new BigDecimal(get_money));
 			moneyLog.setAmount_after(BigDecimal.valueOf(Arith.add(wallet.getMoney().doubleValue(), get_money)));
-			moneyLog.setLog("第" + (i + 1) + "代用户跟单产生了交易，分红奖励[" + get_money + "]");
+			// 第N代用户跟单产生了交易，分红奖励[get_money]
+			moneyLog.setLog("Generation " + (i + 1) + " user copy-trade transaction, dividend reward[" + get_money + "]");
 			moneyLog.setUserId(recom_parents.get(i).getRecomUserId());
 			moneyLog.setWalletType(Constants.WALLET);
 			moneyLog.setContent_type(Constants.MONEYLOG_CONTENT_REWARD);

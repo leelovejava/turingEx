@@ -942,7 +942,8 @@ public class UserDataServiceImpl extends ServiceImpl<UserDataMapper, UserData> i
             moneylog.setAmountBefore(new BigDecimal(amountBefore));
             moneylog.setAmount(new BigDecimal(commission));
             moneylog.setAmountAfter(new BigDecimal(Arith.add(amountBefore, commission)));
-            moneylog.setLog("基础交易反水usdt"+commission);
+            // 基础交易反水usdt，金额：commission
+            moneylog.setLog("Base trade rebate USDT: " + commission);
             moneylog.setUserId(userId);
             moneylog.setWalletType("usdt");
             moneylog.setContentType(Constants.MONEYLOG_WAllET_EXCHANGE_COMMISSION);

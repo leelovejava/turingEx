@@ -126,7 +126,8 @@ public class FinanceOrderCreateRecomServiceImpl implements FinanceOrderCreateRec
 			moneyLog.setAmountBefore(amount_before_parent);
 			moneyLog.setAmount(BigDecimal.valueOf(entry.getValue()));
 			moneyLog.setAmountAfter(BigDecimal.valueOf(Arith.add(wallet_parent.getMoney(), BigDecimal.valueOf(entry.getValue()))));
-			moneyLog.setLog("下级购买理财佣金奖励");
+			// 下级购买理财佣金奖励
+			moneyLog.setLog("Subordinate finance purchase commission reward");
 			moneyLog.setUserId(entry.getKey());
 			moneyLog.setWalletType(Constants.WALLET);
 			moneyLog.setContentType(WalletConstants.MONEYLOG_CONTENT_FINANCE_RECOM_PROFIT);

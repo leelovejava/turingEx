@@ -121,7 +121,8 @@ public class ExchangeLeverOrderServiceImpl extends ServiceImpl<ExchangeLeverOrde
          moneylog.setAmountBefore(new BigDecimal(amountBefore));
          moneylog.setAmount(new BigDecimal(unpaidInterest));
          moneylog.setAmountAfter(new BigDecimal(Arith.add(amountBefore, unpaidInterest)));
-         moneylog.setLog("全仓杠杆平仓支付利息["+unpaidInterest+"],订单号[" + order.getOrderNo() + "]");
+         // 全仓杠杆平仓支付利息
+         moneylog.setLog("Full-position leverage close, pay interest[" + unpaidInterest + "], orderNo[" + order.getOrderNo() + "]");
          moneylog.setUserId(order.getPartyId());
          moneylog.setWalletType(paySymbol);
          moneylog.setContent_type(Constants.MONEYLOG_CONTENT_EXCHANGE_LEVER_INTEREST);
@@ -163,7 +164,8 @@ public class ExchangeLeverOrderServiceImpl extends ServiceImpl<ExchangeLeverOrde
         moneylog.setAmountBefore(new BigDecimal(amountBefore));
         moneylog.setAmount(new BigDecimal(profit));
         moneylog.setAmountAfter(new BigDecimal(Arith.add(amountBefore, profit)));
-        moneylog.setLog("平仓，平仓全仓杠杆[" + volume + "],订单号[" + order.getOrderNo() + "]");
+        // 平仓，全仓杠杆
+        moneylog.setLog("Close position, full-position leverage volume[" + volume + "], orderNo[" + order.getOrderNo() + "]");
         moneylog.setUserId(order.getPartyId());
         moneylog.setWalletType(paySymbol);
         moneylog.setContent_type(Constants.MONEYLOG_CONTENT_EXCHANGE_LEVER_CLOSE);

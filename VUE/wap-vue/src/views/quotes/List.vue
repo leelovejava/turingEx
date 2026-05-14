@@ -6,6 +6,11 @@
           <span class="title">{{ t('quotes') }}</span>
         </div>
         <div class="icon-group">
+          <div class="icon bell" @click="router.push('/notice/index')">
+            <van-badge :content="unreadCount || ''" max="99">
+              <van-icon name="bell" size="20" :color="'var(--text-color, #fff)'" />
+            </van-badge>
+          </div>
           <div class="icon search" @click="handleSearch">
             <img :src="searchSrc" alt="search" class="w-12 h-12">
           </div>
@@ -51,11 +56,14 @@ import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router';
 import { _getQuotes } from '@/service/quotes.api'
 import { useI18n } from 'vue-i18n'
 import { setStorage, getStorage } from '@/utils'
-
 import { themeStore } from '@/store/theme';
 import { TIME_OUT } from "@/config/index.js";
+import { _noticeUnreadCount } from '@/service/notice.api'
+import { useUserStore } from '@/store/user'
 
 const thStore = themeStore()
+const userStore = useUserStore()
+const unreadCount = ref(0)
 
 
 const { t } = useI18n()
@@ -212,6 +220,9 @@ const listTab = ref([
 onMounted(async () => {
   setTabActive()
   getIsSave()
+  if (userStore.userInfo?.token) {
+    _noticeUnreadCount().then(res => { unreadCount.value = res || 0 })
+  }
 })
 
 
@@ -426,6 +437,9 @@ onBeforeRouteLeave(() => {
           width: 20px;
           height: 20px;
           object-fit: contain;
+        }
+        &.bell {
+          color: $text_color;
         }
       }
     }

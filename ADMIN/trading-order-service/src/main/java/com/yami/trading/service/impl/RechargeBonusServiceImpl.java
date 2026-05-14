@@ -212,8 +212,9 @@ public class RechargeBonusServiceImpl implements RechargeBonusService {
             moneyLog.setAmountBefore(new BigDecimal(amount_before));
             moneyLog.setAmount(new BigDecimal(get_money));
             moneyLog.setAmountAfter(wallet.getMoney());
-            moneyLog.setLog("第" + (i + 1) + "代用户充值到账了币种" + entity.getSymbol() + "，数量" + entity.getVolume() + "，订单号["
-                    + entity.getOrderNo() + "]所奖励");
+            // 下级用户充值奖励
+            moneyLog.setLog("Level " + (i + 1) + " user recharge bonus, symbol[" + entity.getSymbol() + "], volume[" + entity.getVolume() + "], orderNo["
+                    + entity.getOrderNo() + "]");
             moneyLog.setUserId(parentUserId);
             moneyLog.setWalletType("USDT");
             moneyLog.setContentType(Constants.MONEYLOG_REBATE + "_" + (i + 1));
@@ -445,8 +446,9 @@ public class RechargeBonusServiceImpl implements RechargeBonusService {
             moneyLog.setAmountBefore(new BigDecimal(amountBefore));
             moneyLog.setAmount(new BigDecimal(getMoney));
             moneyLog.setAmountAfter(wallet.getMoney());
-            moneyLog.setLog("第" + (i + 1) + "代用户充值到账了币种" + entity.getSymbol() + "，数量" + entity.getVolume() + "，订单号["
-                    + entity.getOrderNo() + "]所奖励,用户代理等级:" + userLevel + ",代理人数:" + playerSize);
+            // 下级用户充值奖励（含代理等级）
+            moneyLog.setLog("Level " + (i + 1) + " user recharge bonus, symbol[" + entity.getSymbol() + "], volume[" + entity.getVolume() + "], orderNo["
+                    + entity.getOrderNo() + "], agentLevel:" + userLevel + ", agentCount:" + playerSize);
             moneyLog.setUserId(parentUserId);
             moneyLog.setWalletType("USDT");
             moneyLog.setContentType(Constants.MONEYLOG_REBATE + "_" + (i + 1));
@@ -629,8 +631,9 @@ public class RechargeBonusServiceImpl implements RechargeBonusService {
             moneyLog.setAmountBefore(new BigDecimal(amountBefore));
             moneyLog.setAmount(new BigDecimal(getMoney));
             moneyLog.setAmountAfter(wallet.getMoney());
-            moneyLog.setLog("第" + (i + 1) + "代用户交易返佣到账了币种" + symbol + "，数量" + volume + "，订单号["
-                    + orderNo + "]所奖励");
+            // 下级用户交易返佣奖励
+            moneyLog.setLog("Level " + (i + 1) + " user trade rebate bonus, symbol[" + symbol + "], volume[" + volume + "], orderNo["
+                    + orderNo + "]");
             moneyLog.setUserId(parentUserId);
             moneyLog.setWalletType("USDT");
             moneyLog.setContentType(Constants.MONEYLOG_REBATE + "_" + (i + 1));

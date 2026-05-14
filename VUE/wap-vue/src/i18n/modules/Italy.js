@@ -1387,6 +1387,7 @@ export default {
     verifyPhoneTips: 'Please enter the 6-digit verification code you received at your mobile phone number {account}, the verification code is valid for 30 minutes',
     verifyGoogleTips: 'Please enter your 6-digit verification code in Google Authenticator',
     '重新发送验证码': 'Codice di rispedizione',
+    '发送验证码': 'Invia codice',
     '账号注册': 'Registra un account',
     '安全绑定': 'legame sicuro',
     '去交易': 'commerciare',

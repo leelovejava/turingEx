@@ -215,7 +215,8 @@ public class ExchangeLeverApplyOrderServiceImpl extends ServiceImpl<ExchangeLeve
         moneylog.setAmountBefore(new BigDecimal(amountBefore));
         moneylog.setAmount(new BigDecimal(profit+money));
         moneylog.setAmountAfter(new BigDecimal(Arith.add(amountBefore, profit+profit)));
-        moneylog.setLog("平仓，平仓现货杠杆数[" + volume + "],订单号[" + applyOrder.getOrderNo() + "]");
+        // 平仓，现货杠杆
+        moneylog.setLog("Close position, spot leverage volume[" + volume + "], orderNo[" + applyOrder.getOrderNo() + "]");
         moneylog.setUserId(applyOrder.getPartyId());
         moneylog.setWalletType(paySymbol);
         moneylog.setContent_type(Constants.MONEYLOG_CONTENT_EXCHANGE_LEVER_CLOSE);
@@ -401,7 +402,8 @@ public class ExchangeLeverApplyOrderServiceImpl extends ServiceImpl<ExchangeLeve
         moneylog_deposit.setAmountBefore(new BigDecimal(amount_before));
         moneylog_deposit.setAmount(new BigDecimal(Arith.sub(0, order.getDeposit())));
         moneylog_deposit.setAmountAfter(new BigDecimal(Arith.sub(amount_before, order.getDeposit())));
-        moneylog_deposit.setLog("委托单，订单号[" + order.getOrderNo() + "]");
+        // 委托单
+        moneylog_deposit.setLog("Pending order, orderNo[" + order.getOrderNo() + "]");
         moneylog_deposit.setUserId(order.getPartyId());
         moneylog_deposit.setWalletType(paySymbol);
         moneylog_deposit.setContent_type(Constants.MONEYLOG_CONTENT_EXCHANGE_LEVER_OPEN);
@@ -502,7 +504,8 @@ public class ExchangeLeverApplyOrderServiceImpl extends ServiceImpl<ExchangeLeve
         moneylog.setAmount_before(new BigDecimal(amount_before));
         moneylog.setAmount(new BigDecimal(Arith.add(order.getDeposit(), order.getFee())));
         moneylog.setAmountAfter(new BigDecimal(Arith.add(wallet.getMoney().doubleValue(), Arith.add(order.getDeposit(), order.getFee()))));
-        moneylog.setLog("撤单，订单号[" + order.getOrderNo() + "]");
+        // 撤单
+        moneylog.setLog("Cancel order, orderNo[" + order.getOrderNo() + "]");
         moneylog.setUserId(order.getPartyId());
         moneylog.setWalletType(Constants.WALLET);
         moneylog.setContent_type(Constants.MONEYLOG_CONTENT_CONTRACT_CONCEL);
@@ -636,7 +639,8 @@ public class ExchangeLeverApplyOrderServiceImpl extends ServiceImpl<ExchangeLeve
         moneylog.setAmountBefore(new BigDecimal(amountBefore));
         moneylog.setAmount(new BigDecimal(profit));
         moneylog.setAmountAfter(new BigDecimal(Arith.add(amountBefore, profit)));
-        moneylog.setLog("平仓，平仓合约数[" + volume + "],订单号[" + order.getOrderNo() + "]");
+        // 平仓，合约
+        moneylog.setLog("Close position, contract volume[" + volume + "], orderNo[" + order.getOrderNo() + "]");
         moneylog.setUserId(order.getPartyId());
         moneylog.setWalletType(paySymbol);
         moneylog.setContent_type(Constants.MONEYLOG_CONTENT_EXCHANGE_LEVER_CLOSE);

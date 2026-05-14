@@ -40,10 +40,10 @@
           <span class="detail-label">{{ t('aiQuantEarningsEndTime') }}</span>
           <span class="detail-value">{{ record.stop_timeStr }}</span>
         </div>
-        <!-- 累计收益 -->
+        <!-- 累计收益(已产生收益) -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsProfit') }}</span>
-          <span class="detail-value">{{ record.total_income }}</span>
+          <span class="detail-value">{{ record.generated_income }}</span>
         </div>
         <!-- 预计总收益 -->
         <div class="detail-row">

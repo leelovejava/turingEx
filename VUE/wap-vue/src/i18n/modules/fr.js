@@ -1207,6 +1207,7 @@ export default {
     verifyPhoneTips: 'Veuillez entrer votre numéro de téléphone mobile{account}Code de vérification à 6 chiffres reçu, code valable pendant 30 minutes',
     verifyGoogleTips: 'Veuillez entrer votre code de vérification à 6 chiffres de Google Verify.',
     '重新发送验证码': `Renvoyez le code de vérification`,
+    '发送验证码': 'Envoyer le code',
     '账号注册': `Inscription`,
     '安全绑定': `Reliure`,
     '去交易': `Commerce`,

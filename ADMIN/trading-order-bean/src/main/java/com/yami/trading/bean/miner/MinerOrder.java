@@ -60,7 +60,7 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	private Date  stop_time;
 
 	/**
-	 * 累计收益
+	 * 累计收益(实际收益)
 	 */
 	private double profit;
 
@@ -107,7 +107,8 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	/**
 	 * 预计总收益（整数，创建时根据随机日收益×周期天数生成）
 	 */
-	private long expected_total_income;
+	@TableField(value = "expected_total_income")
+	private long expectedTotalIncome;
 
 	/**
 	 * 交易对，如 BTC/USDT、ETH/USDT、SOL/USDT
@@ -121,7 +122,6 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	 */
 	@Setter
 	@Getter
-	@TableField(exist = false)
 	private int cycle;
 
 	public String getPartyId() {
@@ -241,17 +241,16 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 		this.random_daily_rate = random_daily_rate;
 	}
 
-	public long getExpected_total_income() {
-		return expected_total_income;
+	public long getExpectedTotalIncome() {
+		return expectedTotalIncome;
 	}
 
-	public void setExpected_total_income(long expected_total_income) {
-		this.expected_total_income = expected_total_income;
+	public void setExpectedTotalIncome(long expectedTotalIncome) {
+		this.expectedTotalIncome = expectedTotalIncome;
 	}
 
 	@Override
 	public int compare(MinerOrder arg0, MinerOrder arg1) {
-		// TODO Auto-generated method stub
 		return -arg0.getCreate_time().compareTo(arg1.getCreate_time());
 	}
 

@@ -20,6 +20,7 @@
         minerOrder.amount amount,DATE_FORMAT(minerOrder.create_time,'%Y-%m-%d %H:%i:%S') create_time,
         DATE(minerOrder.earn_time) earn_time,DATE(minerOrder.stop_time) stop_time,minerOrder.profit profit,
         minerOrder.state state,minerOrder.base_compute_amount base_compute_amount,
+        minerOrder.expected_total_income expected_total_income,
         miner.cycle cycle,miner.cycle_close cycle_close,miner.daily_rate daily_rate,miner.test test,
         miner.name miner_name,miner.name_en miner_name_en,miner.name_cn miner_name_cn
         FROM t_miner_order minerOrder

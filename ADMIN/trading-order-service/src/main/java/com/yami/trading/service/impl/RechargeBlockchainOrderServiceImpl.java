@@ -20,6 +20,7 @@ import com.yami.trading.service.*;
 import com.yami.trading.service.c2c.C2cOrderService;
 import com.yami.trading.service.data.DataService;
 import com.yami.trading.service.syspara.SysparaService;
+import com.yami.trading.service.UserNoticeService;
 import com.yami.trading.service.system.LogService;
 import com.yami.trading.service.system.TipService;
 import com.yami.trading.service.user.UserDataService;
@@ -71,6 +72,8 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
 
     @Autowired
     RechargeBonusService rechargeBonusService;
+    @Autowired
+    UserNoticeService userNoticeService;
 
     @Autowired
     DataService dataService;
@@ -122,9 +125,9 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             entity.setExtra(recharge.getOrderNo());
             entity.setOperator(operator_username);
             entity.setUsername(party.getUserName());
-            entity.setUserId(recharge.getPartyId());
-            entity.setLog("修改充值数量，原充值数量["
-                    + recharge.getVolume() + "],修改后充值数量[" + amount.doubleValue() + "]。订单号[" + recharge.getOrderNo() + "]。");
+            entity.setUserId(recharge.getPartyId());        
+            // 修改充值数量
+            entity.setLog("Modify recharge amount, original[" + recharge.getVolume() + "], new[" + amount.doubleValue() + "], orderNo[" + recharge.getOrderNo() + "]");
             logService.save(entity);
             walletLog.setAmount(amount.doubleValue());
             recharge.setVolume(amount.doubleValue());
@@ -145,7 +148,8 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             moneyLog.setAmountBefore(new BigDecimal(amount_before));
             moneyLog.setAmount(new BigDecimal(amount1));
             moneyLog.setAmountAfter(BigDecimal.valueOf(Arith.add(amount_before, amount1)));
-            moneyLog.setLog("充值订单[" + recharge.getOrderNo() + "]");
+            // 充值订单
+            moneyLog.setLog("Recharge orderNo[" + recharge.getOrderNo() + "]");
             moneyLog.setUserId(recharge.getPartyId());
             moneyLog.setWalletType(Constants.WALLET);
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_RECHARGE);
@@ -252,7 +256,8 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             moneyLog.setAmountBefore(new BigDecimal(amount_before));
             moneyLog.setAmount(new BigDecimal(volume));
             moneyLog.setAmountAfter(new BigDecimal(Arith.add(amount_before, volume)));
-            moneyLog.setLog("充值订单[" + recharge.getOrderNo() + "]");
+            // 充值订单
+            moneyLog.setLog("Recharge orderNo[" + recharge.getOrderNo() + "]");
             moneyLog.setUserId(recharge.getPartyId());
             moneyLog.setWalletType(recharge.getSymbol());
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_RECHARGE);
@@ -350,8 +355,10 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
         entify.setOperator(operator_username);
         entify.setUsername(party.getUserName());
         entify.setUserId(recharge.getPartyId());
-        entify.setLog("手动到账一笔充值订单。订单号[" + recharge.getOrderNo() + "]。");
+        // 手动到账充值订单
+        entify.setLog("Manually confirm recharge, orderNo[" + recharge.getOrderNo() + "]");
         logService.save(entify);
+        userNoticeService.saveNotice(recharge.getPartyId(), "Recharge Successful", "Your recharge order [" + recharge.getOrderNo() + "] has been credited, amount: " + amount, "recharge");
         tipService.deleteTip(recharge.getUuid().toString());
     }
 
@@ -483,7 +490,8 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
         log.setUsername(sec.getUserName());
         log.setOperator(userName);
         log.setUserId(recharge.getPartyId());
-        log.setLog("驳回一笔充值订单。充值订单号[" + recharge.getOrderNo() + "]，驳回理由[" + recharge.getDescription() + "]。");
+        // 驳回充值订单
+        log.setLog("Reject recharge, orderNo[" + recharge.getOrderNo() + "], reason[" + recharge.getDescription() + "]");
         logService.save(log);
         tipService.deleteTip(id);
     }

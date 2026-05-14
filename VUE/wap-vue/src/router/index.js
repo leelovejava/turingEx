@@ -849,6 +849,14 @@ const routes = [
         component: () => import(/* webpackChunkName: "safeVerify" */ '@/views/forget/safeVerify.vue')
       },
       {
+        path: '/notice',
+        component: () => import('@/views/Layout.vue'),
+        children: [
+          { path: 'index', component: () => import('@/views/notice/index.vue') },
+          { path: 'detail', component: () => import('@/views/notice/detail.vue') },
+        ]
+      },
+      {
         path: '/:pathMatch(.*)*',
         name: '404',
         component: () => import(/* webpackChunkName: "no404" */'@/views/404.vue')

@@ -26,6 +26,7 @@ import com.yami.trading.common.util.StringUtils;
 import com.yami.trading.dao.user.WithdrawMapper;
 import com.yami.trading.service.*;
 import com.yami.trading.service.syspara.SysparaService;
+import com.yami.trading.service.UserNoticeService;
 import com.yami.trading.service.system.LogService;
 import com.yami.trading.service.system.TipService;
 import com.yami.trading.service.user.UserDataService;
@@ -72,6 +73,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
     private WalletLogService walletLogService;
     @Autowired
     private LogService logService;
+    @Autowired
+    private UserNoticeService userNoticeService;
 
     /**
      * USDT资产
@@ -126,8 +129,10 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             log.setOperator(operator);
             log.setUsername(user.getUserName());
             log.setUserId(user.getUserId());
-            log.setLog("通过提现申请。订单号[" + withdraw.getOrderNo() + "]。");
+            // 通过提现申请
+            log.setLog("Approve withdrawal, orderNo[" + withdraw.getOrderNo() + "]");
             logService.save(log);
+            userNoticeService.saveNotice(withdraw.getUserId(), "Withdrawal Approved", "Your withdrawal order [" + withdraw.getOrderNo() + "] has been approved, amount: " + withdraw.getAmount(), "withdraw");
             tipService.deleteTip(withdraw.getUuid().toString());
         }
     }
@@ -172,8 +177,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             moneyLog.setAmountAfter(
                    new BigDecimal( Arith.add(amount_before, Arith.add(withdraw.getAmount(), withdraw.getAmountFee()))));
 
-            moneyLog.setLog("驳回提现[" + withdraw.getOrderNo() + "]");
-            // moneyLog.setExtra(withdraw.getOrder_no());
+            // 驳回提现
+            moneyLog.setLog("Reject withdrawal[" + withdraw.getOrderNo() + "]");            // moneyLog.setExtra(withdraw.getOrder_no());
             moneyLog.setUserId(withdraw.getUserId());
             moneyLog.setWalletType(Constants.WALLET);
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_WITHDRAW);
@@ -193,8 +198,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             moneyLog.setAmount(withdraw.getVolume());
             moneyLog.setAmountAfter(new BigDecimal(Arith.add(amount_before, withdraw.getVolume().doubleValue())));
 
-            moneyLog.setLog("驳回提现[" + withdraw.getOrderNo() + "]");
-            // moneyLog.setExtra(withdraw.getOrder_no());
+            // 驳回提现
+            moneyLog.setLog("Reject withdrawal[" + withdraw.getOrderNo() + "]");            // moneyLog.setExtra(withdraw.getOrder_no());
             moneyLog.setUserId(withdraw.getUserId());
             moneyLog.setWalletType(symbol.toUpperCase());
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_WITHDRAW);
@@ -209,7 +214,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         log.setOperator(adminUserName);
         log.setUserId(withdraw.getUserId());
         log.setUsername(user.getUserName());
-        log.setLog("驳回提现申请。原因[" + withdraw.getFailureMsg() + "],订单号[" + withdraw.getOrderNo() + "]");
+        // 驳回提现申请
+        log.setLog("Reject withdrawal, reason[" + withdraw.getFailureMsg() + "], orderNo[" + withdraw.getOrderNo() + "]");
         logService.save(log);
         tipService.deleteTip(withdraw.getUuid().toString());
     }
@@ -393,7 +399,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         moneyLog.setAmountBefore(new BigDecimal(amount_before));
         moneyLog.setAmount(new BigDecimal(Arith.sub(0, withdraw.getVolume().doubleValue())));
         moneyLog.setAmountAfter(new BigDecimal(Arith.sub(amount_before, withdraw.getVolume().doubleValue())));
-        moneyLog.setLog("提现订单[" + withdraw.getOrderNo() + "]");
+        // 提现订单
+        moneyLog.setLog("Withdrawal orderNo[" + withdraw.getOrderNo() + "]");
         // moneyLog.setExtra(withdraw.getOrder_no());
         moneyLog.setUserId(withdraw.getUserId());
         moneyLog.setWalletType(symbol.toUpperCase());
@@ -773,7 +780,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         moneyLog.setAmountBefore(new BigDecimal(amount_before));
         moneyLog.setAmount(new BigDecimal(Arith.sub(0, withdraw.getVolume().doubleValue())));
         moneyLog.setAmountAfter(wallet.getMoney());
-        moneyLog.setLog("提现订单[" + withdraw.getOrderNo() + "]");
+        // 提现订单
+        moneyLog.setLog("Withdrawal orderNo[" + withdraw.getOrderNo() + "]");
         // moneyLog.setExtra(withdraw.getOrder_no());
         moneyLog.setUserId(withdraw.getUserId());
         moneyLog.setWalletType(Constants.WALLET);
@@ -825,7 +833,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         log.setOperator(userName);
         log.setUsername(user.getUserName());
         log.setUserId(user.getUserId());
-        log.setLog("后台手动修改用户提现订单提现地址。提现订单号[" + withdraw.getOrderNo() + "]，旧提现地址[" + oldaddres + "]，修改后提现订单新提现地址[" + newAddress + "]");
+        // 后台手动修改提现地址
+        log.setLog("Admin manually update withdrawal address, orderNo[" + withdraw.getOrderNo() + "], old[" + oldaddres + "], new[" + newAddress + "]");
         logService.save(log);
     }
 

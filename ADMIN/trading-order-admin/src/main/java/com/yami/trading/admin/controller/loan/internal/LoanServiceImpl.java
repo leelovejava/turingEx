@@ -17,8 +17,13 @@ import com.yami.trading.bean.finance.Finance;
 import com.yami.trading.bean.loan.LoanParam;
 import com.yami.trading.bean.loan.SimpleLoanOrder;
 import com.yami.trading.bean.model.User;
+import com.yami.trading.bean.model.MoneyLog;
+import com.yami.trading.bean.model.Wallet;
 import com.yami.trading.common.constants.Constants;
 import com.yami.trading.common.exception.BusinessException;
+import com.yami.trading.common.util.Arith;
+import com.yami.trading.service.MoneyLogService;
+import com.yami.trading.service.WalletService;
 import com.yami.trading.service.user.UserService;
 import lombok.Getter;
 import org.apache.commons.lang3.ObjectUtils;
@@ -45,6 +50,12 @@ public class LoanServiceImpl implements LoanService {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	WalletService walletService;
+
+	@Autowired
+	MoneyLogService moneyLogService;
 
 	@Getter
 	HashMap<String,Object> paramMap = new HashMap<>();
@@ -84,6 +95,7 @@ public class LoanServiceImpl implements LoanService {
 		stateMap.put(3, "驳回");
 		stateMap.put(4, "已逾期");
 		stateMap.put(5, "已还款");
+		stateMap.put(6, "还款中");
 		
 		repayments.put(1,"到期还本息");
 		repayments.put(2,"到期还本金");
@@ -402,11 +414,11 @@ public class LoanServiceImpl implements LoanService {
 		if(null==orderId || (orderId=orderId.trim()).isEmpty()) {
 			throw new BusinessException("申请单ID不能为空!");
 		}
-		
+
 		if(null==status || (status=status.trim()).isEmpty()) {
 			throw new BusinessException("审核状态不能为空!");
 		}
-		
+
 		int state=Integer.parseInt(status);
 		int count=0;
 		if(StringUtils.isNotBlank(reason)) {
@@ -417,7 +429,33 @@ public class LoanServiceImpl implements LoanService {
 		if(1!=count) {
 			throw new BusinessException("根据申请单ID修改了多条记录,说明申请单ID重复!");
 		}
-		
+
+		// 审核通过（state=2），给用户增加资产
+		if (state == 2) {
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(
+				"SELECT party_id, quota, symbol FROM T_SIMPLE_LOAN_ORDER WHERE UUID=?", orderId);
+			if (!rows.isEmpty()) {
+				Map<String, Object> row = rows.get(0);
+				String partyId = (String) row.get("party_id");
+				BigDecimal quota = new BigDecimal(row.get("quota").toString());
+				Wallet wallet = walletService.saveWalletByPartyId(partyId);
+				double amountBefore = wallet.getMoney().doubleValue();
+				walletService.update(partyId, quota.doubleValue());
+
+				MoneyLog moneyLog = new MoneyLog();
+				moneyLog.setCategory(Constants.MONEYLOG_CATEGORY_LOAN);
+				moneyLog.setAmountBefore(BigDecimal.valueOf(amountBefore));
+				moneyLog.setAmount(quota);
+				moneyLog.setAmountAfter(BigDecimal.valueOf(Arith.add(amountBefore, quota.doubleValue())));
+				moneyLog.setLog("借贷审核通过，订单号[" + orderId + "]，放款：" + quota);
+				moneyLog.setUserId(partyId);
+				moneyLog.setWalletType(Constants.WALLET);
+				moneyLog.setContentType(Constants.MONEYLOG_CONTENT_LOAN_ADD);
+				moneyLog.setCreateTime(new Date());
+				moneyLogService.save(moneyLog);
+			}
+		}
+
 		return true;
 	}
 
@@ -569,6 +607,50 @@ public class LoanServiceImpl implements LoanService {
 
 	public void setParamMap(HashMap<String,Object> params){
 		this.paramMap = params;
+	}
+
+	@Override
+	public void partialRepay(String orderId, BigDecimal amount) {
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(
+			"SELECT party_id, quota FROM T_SIMPLE_LOAN_ORDER WHERE UUID=? AND STATE=2", orderId);
+		if (rows.isEmpty()) {
+			throw new BusinessException("订单不存在或状态不正确");
+		}
+		Map<String, Object> row = rows.get(0);
+		String partyId = (String) row.get("party_id");
+		BigDecimal quota = new BigDecimal(row.get("quota").toString());
+		if (amount.compareTo(BigDecimal.ZERO) <= 0 || amount.compareTo(quota) > 0) {
+			throw new BusinessException("还款金额不合法");
+		}
+
+		Wallet wallet = walletService.saveWalletByPartyId(partyId);
+		if (wallet.getMoney().compareTo(amount) < 0) {
+			throw new BusinessException("用户余额不足");
+		}
+		double amountBefore = wallet.getMoney().doubleValue();
+		walletService.update(partyId, -amount.doubleValue());
+
+		MoneyLog moneyLog = new MoneyLog();
+		moneyLog.setCategory(Constants.MONEYLOG_CATEGORY_LOAN);
+		moneyLog.setAmountBefore(BigDecimal.valueOf(amountBefore));
+		moneyLog.setAmount(amount.negate());
+		moneyLog.setAmountAfter(BigDecimal.valueOf(Arith.sub(amountBefore, amount.doubleValue())));
+		moneyLog.setLog("借贷部分还款，订单号[" + orderId + "]，还款：" + amount);
+		moneyLog.setUserId(partyId);
+		moneyLog.setWalletType(Constants.WALLET);
+		moneyLog.setContentType(Constants.MONEYLOG_CONTENT_LOAN_REPAY);
+		moneyLog.setCreateTime(new Date());
+		moneyLogService.save(moneyLog);
+
+		// 更新已还金额，状态改为还款中(6)
+		jdbcTemplate.update(
+			"UPDATE T_SIMPLE_LOAN_ORDER SET STATE=6, REPAID_AMOUNT=IFNULL(REPAID_AMOUNT,0)+? WHERE UUID=?",
+			amount, orderId);
+
+		// 同步用户表：已贷减少，可贷增加
+		jdbcTemplate.update(
+			"UPDATE tz_user SET loan_already_amount=GREATEST(0, IFNULL(loan_already_amount,0)-?), loan_can_amount=IFNULL(loan_can_amount,0)+? WHERE user_id=?",
+			amount, amount, partyId);
 	}
 
 }

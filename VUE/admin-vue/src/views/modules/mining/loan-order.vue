@@ -135,6 +135,25 @@
     </el-dialog>
     <!-- 确认弹窗-end -->
 
+    <!-- 还款弹窗-start -->
+    <el-dialog
+      title="还款"
+      :visible.sync="repayDialogVisible"
+      :append-to-body="true"
+      width="400px"
+    >
+      <el-form label-width="80px">
+        <el-form-item label="还款金额">
+          <el-input v-model="repayAmount" placeholder="请输入还款金额" type="number" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="repayDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="repaySubmit()">确 定</el-button>
+      </div>
+    </el-dialog>
+    <!-- 还款弹窗-end -->
+
   </div>
 </template>
 
@@ -186,6 +205,8 @@ export default {
       dataForm2: {},
       formLabelWidth: "120px",
       row:{},
+      repayDialogVisible: false,
+      repayAmount: '',
     };
   },
   components: {
@@ -355,36 +376,9 @@ export default {
           break;
         case "4": //还款
           {
-            //
-            this.$confirm('', '是否确认还款?', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            }).then(() => {
-              //https://hajhiug.com/384732342/normal/loanadmin!change.action
-              //reason=&orderId=202cc6a1d6173c1ebd4abdfb00b5462e&statusStr=2
-              console.log("/normal/loanadmin!change.action");
-              this.$http({
-                url: this.$http.adornUrl("/normal/loanadmin!change.action"),
-                method: "get",
-                params: this.$http.adornParams(Object.assign({
-                  reason: "", 
-                  orderId: row.uuid,
-                  statusStr: 5
-                })),
-              }).then(({ data }) => {
-                console.log("data => " + JSON.stringify(data));
-                this.getDataList();
-                if (data.code == 0) {
-                  this.dataForm = data.data;
-                }
-              });
-              
-            }).catch((e) => {
-              console.log("/normal/loanadmin!change.action fail " + JSON.stringify(e));
-            });
-            //
-          }    
+            this.repayAmount = '';
+            this.repayDialogVisible = true;
+          }
           break;
         }
         row.select = "";
@@ -410,6 +404,25 @@ export default {
           // }
         });
       //
+    },
+    repaySubmit() {
+      if (!this.repayAmount || isNaN(this.repayAmount) || Number(this.repayAmount) <= 0) {
+        this.$message.error('请输入有效的还款金额');
+        return;
+      }
+      this.$http({
+        url: this.$http.adornUrl("/normal/loanadmin!partialRepay.action"),
+        method: "get",
+        params: this.$http.adornParams({ orderId: this.row.uuid, amount: this.repayAmount }),
+      }).then(({ data }) => {
+        if (data.code == 0) {
+          this.$message({ message: '操作成功', type: 'success' });
+          this.repayDialogVisible = false;
+          this.getDataList();
+        } else {
+          this.$message.error(data.msg || '操作失败');
+        }
+      });
     },
     // 刷新回调用
     refreshChange () {

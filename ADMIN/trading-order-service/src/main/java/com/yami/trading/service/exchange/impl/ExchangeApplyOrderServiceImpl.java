@@ -102,7 +102,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
             log.setAmountBefore(new BigDecimal(amountBefore));
             log.setAmount(returnAmount);
             log.setAmountAfter(BigDecimal.valueOf(amountBefore).add(returnAmount));
-            log.setLog(name + type2 + "买入订单限价成交，回退金额。订单号[" + order.getOrderNo() + "]");
+            // 买入限价成交，回退金额
+            log.setLog(name + type2 + "spot buy limit order filled, refund amount, orderNo[" + order.getOrderNo() + "]");
             log.setUserId(order.getPartyId());
             log.setSymbol(order.getSymbol());
             log.setWalletType(order.getSymbol());
@@ -120,7 +121,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
         log.setAmountBefore(new BigDecimal(amountBeforeExtend));
         log.setAmount(BigDecimal.valueOf(realValue));
         log.setAmountAfter(BigDecimal.valueOf(amountBeforeExtend + realValue));
-        log.setLog(name + type2 + "现货交易买入委托单成交，订单号[" + order.getOrderNo() + "]");
+        // 现货买入委托单成交
+        log.setLog(name + type2 + "spot buy order filled, orderNo[" + order.getOrderNo() + "]");
         log.setUserId(order.getPartyId());
         log.setSymbol(order.getSymbol());
         log.setWalletType(order.getSymbol());
@@ -157,7 +159,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
             log.setAmountBefore(new BigDecimal(amountBeforeExtend));
             log.setAmount(BigDecimal.valueOf(returnValue));
             log.setAmountAfter(BigDecimal.valueOf(amountBeforeExtend + returnValue));
-            log.setLog(name + type2 + "卖出订单限价成交，回退数量。订单号[" + order.getOrderNo() + "]");
+            // 卖出限价成交，回退数量
+            log.setLog(name + type2 + "spot sell limit order filled, refund volume, orderNo[" + order.getOrderNo() + "]");
             log.setUserId(order.getPartyId());
             log.setSymbol(order.getSymbol());
             log.setWalletType(order.getSymbol());
@@ -178,7 +181,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
         log.setAmountBefore(new BigDecimal(amountBefore));
         log.setAmount(new BigDecimal(amount));
         log.setAmountAfter(wallet.getMoney().add(BigDecimal.valueOf(amount)));
-        log.setLog(name + type2 + "现货交易卖出委托单成交，订单号[" + order.getOrderNo() + "]");
+        // 现货卖出委托单成交
+        log.setLog(name + type2 + "spot sell order filled, orderNo[" + order.getOrderNo() + "]");
         log.setUserId(order.getPartyId());
         log.setWalletType(Constants.WALLET);
         log.setContentType(type2 + Constants.MONEYLOG_CONTENT_CLOSE);
@@ -474,7 +478,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
             moneylog.setAmountBefore(new BigDecimal(amountBefore));
             moneylog.setAmount(BigDecimal.valueOf(realAmount));
             moneylog.setAmountAfter(wallet.getMoney());
-            moneylog.setLog(name + type2 + "现货交易买入撤单，订单号[" + order.getOrderNo() + "]");
+            // 现货买入撤单
+            moneylog.setLog(name + type2 + "spot buy cancel order, orderNo[" + order.getOrderNo() + "]");
             moneylog.setUserId(order.getPartyId());
             moneylog.setWalletType(Constants.WALLET);
             moneylog.setContentType(type2 + Constants.MONEYLOG_CONTENT_CANCEL);
@@ -494,7 +499,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
             moneylog.setAmountBefore(new BigDecimal(amountBefore));
             moneylog.setAmount(BigDecimal.valueOf(order.getVolume()));
             moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(walletExtend.getAmount(), order.getVolume())));
-            moneylog.setLog(name + type2 + "现货交易卖出撤单，订单号[" + order.getOrderNo() + "]");
+            // 现货卖出撤单
+            moneylog.setLog(name + type2 + "spot sell cancel order, orderNo[" + order.getOrderNo() + "]");
             moneylog.setUserId(order.getPartyId());
             moneylog.setWalletType(order.getSymbol());
             moneylog.setSymbol(order.getSymbol());
@@ -652,7 +658,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
         log.setAmountBefore(new BigDecimal(amountBefore));
         log.setAmount(BigDecimal.valueOf(-realAmount));
         log.setAmountAfter(BigDecimal.valueOf(Arith.sub(amountBefore, realAmount)));
-        log.setLog(name + type2 + "现货交易买入" + "，订单号[" + order.getOrderNo() + "]");
+        // 现货买入
+        log.setLog(name + type2 + "spot buy, orderNo[" + order.getOrderNo() + "]");
         log.setUserId(order.getPartyId());
         log.setWalletType(Constants.WALLET);
         log.setSymbol(symbol);
@@ -694,7 +701,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
         moneylog.setAmountBefore(new BigDecimal(amount_before));
         moneylog.setAmount(BigDecimal.valueOf(-order.getVolume()));
         moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(amount_before, order.getVolume())));
-        moneylog.setLog(name + type2 + "现货交易卖出，订单号[" + order.getOrderNo() + "]");
+        // 现货卖出
+        moneylog.setLog(name + type2 + "spot sell, orderNo[" + order.getOrderNo() + "]");
         moneylog.setUserId(order.getPartyId());
         moneylog.setWalletType(order.getSymbol());
         moneylog.setSymbol(order.getSymbol());
@@ -747,7 +755,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
         log.setAmountBefore(new BigDecimal(amount_before));
         log.setAmount(new BigDecimal(Arith.sub(0, order.getVolume().doubleValue())));
         log.setAmountAfter(new BigDecimal(Arith.sub(wallet.getMoney().doubleValue(), order.getVolume())));
-        log.setLog(name + "闪兑买入，订单号[" + order.getOrderNo() + "]");
+        // 闪兑买入
+        log.setLog(name + "flash swap buy, orderNo[" + order.getOrderNo() + "]");
         log.setUserId(order.getPartyId());
         log.setWalletType(Constants.WALLET);
         log.setSymbol(order.getSymbol());
@@ -783,7 +792,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
         log.setAmountBefore(new BigDecimal(amount_before));
         log.setAmount(new BigDecimal(Arith.sub(0, order.getVolume())));
         log.setAmountAfter(new BigDecimal(Arith.sub(walletExtend.getAmount(), order.getVolume())));
-        log.setLog(name + "闪兑卖出，订单号[" + order.getOrderNo() + "]");
+        // 闪兑卖出
+        log.setLog(name + "flash swap sell, orderNo[" + order.getOrderNo() + "]");
         log.setUserId(order.getPartyId());
         log.setWalletType(order.getSymbol());
         log.setSymbol(order.getSymbol());
@@ -815,7 +825,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
         log.setAmountBefore(new BigDecimal(amountBefore));
         log.setAmount(new BigDecimal(amount));
         log.setAmountAfter(new BigDecimal(amountBefore + amount));
-        log.setLog(name + "闪兑买入成交，订单号[" + order.getOrderNo() + "]");
+        // 闪兑买入成交
+        log.setLog(name + "flash swap buy filled, orderNo[" + order.getOrderNo() + "]");
         log.setUserId(order.getPartyId());
         log.setSymbol(order.getSymbol());
         log.setWalletType(order.getSymbol());
@@ -846,7 +857,8 @@ public class ExchangeApplyOrderServiceImpl extends ServiceImpl<ExchangeApplyOrde
         log.setAmountBefore(new BigDecimal(amount_before));
         log.setAmount(new BigDecimal(amount));
         log.setAmountAfter(wallet.getMoney());
-        log.setLog(name + "闪兑卖出成交，订单号[" + order.getOrderNo() + "]");
+        // 闪兑卖出成交
+        log.setLog(name + "flash swap sell filled, orderNo[" + order.getOrderNo() + "]");
         log.setUserId(order.getPartyId());
         log.setWalletType(Constants.WALLET);
         log.setContentType(type2 + Constants.MONEYLOG_CONTENT_CLOSE);
