@@ -261,28 +261,18 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
         this.insertMinerOrder(entity);
 
+        // 用矿机订单的 uuid 作为预收益记录的 quant_order_id
+        String minerOrderUuid = entity.getUuid();
+
         redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + entity.getOrder_no(), entity);
 
-        // 创建机器人订单（同步），返回值为新建的 QuantBotOrder ID
-        Integer botOrderId = quantPreIncomeJob.generatePreIncomeSync(
-                partyId,
-                entity.getAmount(),
-                miner.getName(),
-                miner.getUuid()
-        );
+        quantPreIncomeJob.generatePreIncomeSync(partyId, entity.getAmount(), miner.getName(), miner.getUuid());
 
-        String quantBotOrderId = botOrderId != null ? String.valueOf(botOrderId) : entity.getUuid();
-
-        // 保存机器人订单ID到矿机订单
-        if (quantBotOrderId != null) {
-            entity.setUuid(quantBotOrderId);
-            this.updateById(entity);
-            redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + entity.getOrder_no(), entity);
-
+        if (minerOrderUuid != null) {
             // 异步生成预收益记录（220次/天 × 周期天数，80%盈利，20%亏损，总和符合日收益）
             int cycleDays = entity.getCycle() > 0 ? entity.getCycle() : (int) miner.getCycle();
-            double dailyRate = entity.getRandom_daily_rate(); // 使用购买时随机生成的日利率
-            quantPreIncomeJob.generatePreIncomeRecordsAsync(quantBotOrderId, entity.getAmount(), cycleDays, dailyRate);
+            double dailyRate = entity.getRandom_daily_rate();
+            quantPreIncomeJob.generatePreIncomeRecordsAsync(minerOrderUuid, entity.getAmount(), cycleDays, dailyRate);
         }
 
         if (!miner.getTest().equals("Y")) {
