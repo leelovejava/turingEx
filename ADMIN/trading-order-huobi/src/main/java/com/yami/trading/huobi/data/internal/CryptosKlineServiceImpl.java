@@ -81,7 +81,6 @@ public class CryptosKlineServiceImpl implements CryptosKlineService{
         RequestDataHelper.set("symbol", symbol);
         Realtime realtime = DataCache.getRealtime(symbol);
         if (realtime == null) {
-            logger.error("saveOne error, realtime is null,symbol [" + symbol + "]");
             return;
         }
 

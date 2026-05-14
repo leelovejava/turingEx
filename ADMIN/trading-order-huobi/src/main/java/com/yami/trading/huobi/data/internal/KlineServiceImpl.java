@@ -51,7 +51,6 @@ public class KlineServiceImpl implements KlineService {
                          Map<String, List<Kline>> hourlyAndMinuteHistoryMap) {
         RequestDataHelper.set("symbol", symbol);
 
-        logger.info("正在初始化k线图: {}", symbol);
         Map<String, Object> parameters = new HashMap();
         parameters.put("symbol", symbol);
         for (int i = 0; i <= Constants.TABLE_PARTITIONS - 1; i++) {
@@ -84,7 +83,6 @@ public class KlineServiceImpl implements KlineService {
     public void saveInit(String symbol, Map<String, List<Kline>> kline) {
         RequestDataHelper.set("symbol", symbol);
 
-        logger.info("正在初始化k线图: {}", symbol);
         Map<String, Object> parameters = new HashMap();
         parameters.put("symbol", symbol);
         for (int i = 0; i <= Constants.TABLE_PARTITIONS - 1; i++) {

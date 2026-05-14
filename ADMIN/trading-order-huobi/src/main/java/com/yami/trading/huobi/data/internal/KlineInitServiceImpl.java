@@ -108,7 +108,6 @@ public class KlineInitServiceImpl implements KlineInitService {
             try {
                 Map<String, List<Kline>> map = xueQiuDataService.getKlineFromTwelveData(symbol.trim());
                 if (map.isEmpty()) {
-                    log.warn("Twelve Data未返回k线数据, symbol={}", symbol);
                     continue;
                 }
                 List<Kline> klines5P = map.get(Kline.PERIOD_5MIN);

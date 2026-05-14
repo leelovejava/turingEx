@@ -76,7 +76,6 @@ public class DataServiceImpl implements DataService {
 				if (realtime != null) {
 					list.add(realtime);
 				} else {
-					log.error("realtime is null; 币种->{}", oneSymbol);
 				}
 			}
 		}

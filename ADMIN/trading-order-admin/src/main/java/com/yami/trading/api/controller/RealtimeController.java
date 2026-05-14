@@ -359,8 +359,6 @@ public class RealtimeController {
 							.type(item.getType())
 							.build();
 					list.add(dto);
-				} else {
-					log.error("获取行情接口，realtime is null；币种->{}", item.getSymbol());
 				}
 			});
 			Result<List<QueryRealtimeDTO>> ok = Result.ok(list);
