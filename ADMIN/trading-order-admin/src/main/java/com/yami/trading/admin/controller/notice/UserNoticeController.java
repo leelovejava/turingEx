@@ -93,7 +93,7 @@ public class UserNoticeController {
     @ApiOperation(value = "删除")
     @PostMapping("delete")
     public Result<?> delete(@RequestBody @Valid DeleteModel model) {
-        userNoticeService.removeById(model.getId());
+        userNoticeService.deleteByUuid(model.getId());
         return Result.ok(null);
     }
 }

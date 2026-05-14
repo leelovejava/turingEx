@@ -18,4 +18,6 @@ public interface UserNoticeService extends IService<UserNotice> {
      * 分页查询通知
      */
     void pageNotice(Page<UserNoticeDto> page, String title, String noticeType, String userCode);
+
+    void deleteByUuid(String uuid);
 }

@@ -50,4 +50,9 @@ public class UserNoticeServiceImpl extends ServiceImpl<UserNoticeMapper, UserNot
     public void pageNotice(Page<UserNoticeDto> page, String title, String noticeType, String userCode) {
         baseMapper.pageNotice(page, title, noticeType, userCode);
     }
+
+    @Override
+    public void deleteByUuid(String uuid) {
+        baseMapper.deleteByUuid(uuid);
+    }
 }
