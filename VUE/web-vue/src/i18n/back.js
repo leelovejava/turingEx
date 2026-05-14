@@ -727,7 +727,7 @@ export default {
     您当前可分配额度不足: "Your current allocation is insufficient",
 
     购买矿机时间不得低于托管订单剩余时间:
-      "The time to purchase the mining machine must not be less than the remaining time of the escrow order",
+      "The time to purchase the Quant Order must not be less than the remaining time of the escrow order",
     推荐码不正确: "The referral code is incorrect",
     推荐人无权限推荐: "Referrer does not have permission to recommend",
     审核已通过: "Review passed",

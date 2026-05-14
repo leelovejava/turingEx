@@ -1142,7 +1142,7 @@ export default {
     "稳健增值,周期灵活": "Stabile Wertschöpfung, flexible Zyklen",
     "安心理财": "Ruhiges Finanzverwaltung",
     "AI量化": "KI-Quant",
-    "真实矿机租赁，套餐选择灵活": "Real Mining Machine Leasing, flexible Paketauswahl",
+    "真实矿机租赁，套餐选择灵活": "Real Quant Order Leasing, flexible Paketauswahl",
     "搬砖是通过将USDT托管给平台，由平台的专业团队进行搬砖套利，参与者在资金托管期间可获得平台的搬砖收入分成。": "Moving Bricks soll USDT auf der Plattform hosten, und das professionelle Team der Plattform wird Arbitrage durchführen, und die Teilnehmer können während der Depotzeit des Fonds einen Anteil an den Einnahmen der Plattform aus dem Brick-Moving erhalten. ",
     "什么是余币宝": "Was ist Yubibao? ",
     "余币宝说明": "Yubibao ist ein von {TITLE} erstelltes stabiles Vermögensverwaltungsprodukt. Das System wird automatisch übereinstimmen und der Benutzer überträgt Vermögenswerte an Yubibao.. Um die Sicherheit des Benutzervermögens vollständig zu gewährleisten und das Einkommen zu genießen, Yubibao verlässt sich auf das strenge Risikokontrollsystem von {TITLE}. Beschreibung der Einkommenszusammensetzung: 10% der vom Benutzer verliehenen Zinsen werden als Plattformgarantie verwendet, und 90% werden dem verliehenen Benutzer zugewiesen, dh die Zinsen, die dem verliehenen Benutzer zur Verfügung stehen, sind: verliehenes Kapital*aktueller Kredit/365/1*90%",
