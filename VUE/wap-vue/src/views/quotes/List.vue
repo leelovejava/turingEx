@@ -421,7 +421,8 @@ onBeforeRouteLeave(() => {
     }
 
     .icon-group {
-      text-align: right;
+      display: flex;
+      align-items: center;
 
       .icon {
         display: flex;
