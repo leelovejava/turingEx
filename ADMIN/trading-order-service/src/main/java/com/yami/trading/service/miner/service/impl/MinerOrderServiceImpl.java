@@ -199,7 +199,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             }
 
             // 检查用户 kycBonusAmount 是否有效（null 或 0 表示体验资格不可用）
-            User kycUser = secUserService.cacheUserBy(partyId);
+            User kycUser = secUserService.getById(partyId);
             if (kycUser == null || kycUser.getKycBonusAmount() == null || kycUser.getKycBonusAmount() <= 0) {
                 throw new BusinessException("Real-name authentication has expired for more than 7 days, experience quant order qualification is invalid");
             }
