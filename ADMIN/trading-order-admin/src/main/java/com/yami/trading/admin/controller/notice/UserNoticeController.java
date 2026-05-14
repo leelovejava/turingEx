@@ -93,7 +93,6 @@ public class UserNoticeController {
     @ApiOperation(value = "删除")
     @PostMapping("delete")
     public Result<?> delete(@RequestBody @Valid DeleteModel model) {
-        sysUserService.checkSafeWord(model.getLoginSafeword());
         userNoticeService.removeById(model.getId());
         return Result.ok(null);
     }

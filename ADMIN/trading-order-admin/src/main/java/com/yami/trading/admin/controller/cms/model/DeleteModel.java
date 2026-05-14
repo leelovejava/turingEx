@@ -13,8 +13,6 @@ public class DeleteModel {
     @NotBlank
     private  String  id;
 
-
     @ApiModelProperty("登录人资金密码")
-    @NotBlank
     private String loginSafeword;
 }

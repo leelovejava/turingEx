@@ -29,12 +29,12 @@
           icon="el-icon-delete"
           size="small"
           v-if="isAuth('user:notice:deletem')"
-          @click.stop="deleteHandle(scope.row.id)"
+          @click.stop="deleteHandle(scope.row.uuid)"
         >删除</el-button>
       </template>
     </avue-crud>
 
-    <el-dialog :title="form.id ? '修改通知' : '新增通知'" :visible.sync="dialogVisible" width="600px">
+    <el-dialog :title="form.uuid ? '修改通知' : '新增通知'" :visible.sync="dialogVisible" width="600px">
       <el-form :model="form" :rules="rules" ref="form" label-width="100px">
         <el-form-item label="用户UID" prop="userCode">
           <el-input v-model="form.userCode" placeholder="留空表示所有用户" />
@@ -119,7 +119,7 @@ export default {
     submitForm() {
       this.$refs.form.validate(valid => {
         if (!valid) return
-        const url = this.form.id ? '/userNotice/update' : '/userNotice/add'
+        const url = this.form.uuid ? '/userNotice/update' : '/userNotice/add'
         const data = { ...this.form }
         this.$http({
           url: this.$http.adornUrl(url),
