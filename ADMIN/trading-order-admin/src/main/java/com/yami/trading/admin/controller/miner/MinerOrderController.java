@@ -643,19 +643,10 @@ public class MinerOrderController {
         String uuid = order.getUuid();
         double totalGeneratedIncome = 0;
         if (uuid != null) {
-            double amount = order.getAmount();
-            int days = last_days;
-            // 使用订单创建时存储的随机日利率（在 daily_rate_start 和 daily_rate_end 之间随机生成）
-            double dailyRate = order.getRandom_daily_rate();
-            // 将百分比转换为小数（例如 2% → 0.02）
-            double dailyRateDecimal = Arith.mul(dailyRate, 0.01d);
-            // 计算今日收益
-            double dayIncome = Arith.mul(dailyRateDecimal, amount);
-            // 计算总收益
-            double totalIncome = Arith.mul(dayIncome, days);
-            totalGeneratedIncome = totalIncome;
-            map.put("day_income", df.format(dayIncome));
-            map.put("total_income", df.format(totalIncome));
+            // 今日收益
+            map.put("day_income", quantPreIncomeService.selectDayIncome(uuid));
+            // 实际总收益 = income 表 amount 之和
+            map.put("total_income", quantPreIncomeService.selectTotalIncome(uuid));
         } else {
             map.put("day_income", "0");
             map.put("total_income", "0");

@@ -1,5 +1,6 @@
 package com.yami.trading.bean.miner;
 
+import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -109,6 +110,12 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	 */
 	@TableField(value = "expected_total_income")
 	private long expectedTotalIncome;
+
+	/**
+	 * 实际总收益（根据日收益×周期天数生成）
+	 */
+	@TableField(value = "total_income")
+	private BigDecimal totalIncome;
 
 	/**
 	 * 交易对，如 BTC/USDT、ETH/USDT、SOL/USDT

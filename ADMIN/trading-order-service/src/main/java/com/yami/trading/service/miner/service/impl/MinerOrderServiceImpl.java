@@ -44,6 +44,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 
+import com.yami.trading.service.quant.service.QuantPreIncomeService;
 import com.yami.trading.service.miner.service.MinerOrderProfitService;
 import com.yami.trading.service.miner.service.MinerOrderService;
 import com.yami.trading.service.miner.service.MinerRedisKeys;
@@ -102,6 +103,9 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
     @Autowired
     @Lazy
     private MinerOrderProfitService minerOrderProfitService;
+
+    @Autowired
+    private QuantPreIncomeService quantPreIncomeService;
 
     /**
      * 管理员新增订单
@@ -180,15 +184,11 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         double randomRate = generateRandomDailyRate(miner.getDaily_rate_start(), miner.getDaily_rate_end());
         entity.setRandom_daily_rate(randomRate);
 
-        // 预计日收益（用于后续计算预计总收益）
+        // 实际日收益 = 投入金额 × 日收益率
         long actualDailyIncome = (long) (entity.getAmount() * randomRate / 100);
-        long expectedDailyIncome;
-        do {
-            // 在实际日收益 ±(1~5) 范围内随机取整数
-            long offset = 1 + (long) (Math.random() * 5);
-            expectedDailyIncome = actualDailyIncome + (Math.random() < 0.5 ? offset : -offset);
-            if (expectedDailyIncome < 1) expectedDailyIncome = actualDailyIncome + offset;
-        } while (expectedDailyIncome == actualDailyIncome);
+        // 预计日收益：重新随机生成一个区间内的日利率计算
+        double expectedRate = generateRandomDailyRate(miner.getDaily_rate_start(), miner.getDaily_rate_end());
+        long expectedDailyIncome = (long) (entity.getAmount() * expectedRate / 100);
 
         if (miner.getTest().equals("Y")) {
             // 检查用户实名认证状态
@@ -198,14 +198,10 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
                 throw new BusinessException("Please complete real-name authentication before purchasing the experience quant order");
             }
 
-            // 检查实名认证是否超过7天（超过7天则体验资格作废）
-            Date authTime = realNameAuth.getUpdateTime();
-            if (authTime != null) {
-                long daysDiff = (new Date().getTime() - authTime.getTime()) / (1000 * 60 * 60 * 24);
-                if (daysDiff > 7) {
-                    // 实名认证已超过7天，体验AI量化资格已作废
-                    throw new BusinessException("Real-name authentication has expired for more than 7 days, experience quant order qualification is invalid");
-                }
+            // 检查用户 kycBonusAmount 是否有效（null 或 0 表示体验资格不可用）
+            User kycUser = secUserService.cacheUserBy(partyId);
+            if (kycUser == null || kycUser.getKycBonusAmount() == null || kycUser.getKycBonusAmount() <= 0) {
+                throw new BusinessException("Real-name authentication has expired for more than 7 days, experience quant order qualification is invalid");
             }
 
             // 体验矿机固定金额为300U
@@ -231,6 +227,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         // 预计总收益 = 预计日收益 × 周期天数（cycle 确定后再计算）
         int cycleDaysForExpected = entity.getCycle() > 0 ? entity.getCycle() : (int) miner.getCycle();
         entity.setExpectedTotalIncome(expectedDailyIncome * cycleDaysForExpected);
+        entity.setTotalIncome(BigDecimal.valueOf(actualDailyIncome * cycleDaysForExpected));
 
         if (findByFist(partyId)) {
             // 标识首次购买
@@ -720,6 +717,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         }
 
         entity.setClose_time(new Date());// 赎回时间
+        entity.setTotalIncome(BigDecimal.valueOf(quantPreIncomeService.selectTotalIncome(entity.getUuid())));
         this.updateById(entity);
         /**
          * userdata 数据
