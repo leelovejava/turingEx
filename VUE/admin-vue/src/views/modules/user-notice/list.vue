@@ -19,6 +19,12 @@
       </template>
       <template slot-scope="scope" slot="menu">
         <el-button
+          type="text"
+          icon="el-icon-edit"
+          size="small"
+          @click.stop="addOrUpdateHandle(scope.row)"
+        >编辑</el-button>
+        <el-button
           type="danger"
           icon="el-icon-delete"
           size="small"
@@ -54,6 +60,8 @@ const tableOption = {
   border: true,
   selection: false,
   addBtn: false,
+  editBtn: false,
+  delBtn: false,
   searchShow: true,
   searchMenuSpan: 6,
   column: [
@@ -137,7 +145,7 @@ export default {
         this.$http({
           url: this.$http.adornUrl('/userNotice/delete'),
           method: 'post',
-          data: this.$http.adornData({ id })
+          data: this.$http.adornData({ id, loginSafeword: '' })
         }).then(({ data }) => {
           if (data.code === 0) {
             this.$message({ message: '操作成功', type: 'success', duration: 1000 })
