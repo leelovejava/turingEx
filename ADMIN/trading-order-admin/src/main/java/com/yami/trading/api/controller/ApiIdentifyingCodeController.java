@@ -33,8 +33,11 @@ public class ApiIdentifyingCodeController {
         UserInfoInTokenBO userInfoInToken = null;
         String userId = "";
         if (StringUtils.isNotEmpty(accessToken)) {
-            userInfoInToken = tokenStore.getUserInfoByAccessToken(accessToken, true);
-            userId = userInfoInToken.getUserId();
+            try {
+                userInfoInToken = tokenStore.getUserInfoByAccessToken(accessToken, true);
+                userId = userInfoInToken.getUserId();
+            } catch (Exception ignored) {
+            }
         }
         identifyingCodeService.send(target, IPHelper.getIpAddr(), userId);
         return Result.succeed(null);
