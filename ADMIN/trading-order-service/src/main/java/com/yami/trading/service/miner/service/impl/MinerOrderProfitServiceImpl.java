@@ -268,6 +268,9 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                 quantBotOrderService.createBotOrder(botOrder);
 
                 preIncome.setStatus(1);
+                preIncome.setStartTime(new Date());
+                // 当前时间的基础上随机加1-2分钟
+                preIncome.setEndTime(new Date((long) (System.currentTimeMillis() + (60 + Math.random() * 60) * 1000)));
                 quantPreIncomeService.updateById(preIncome);
 
                 saveMinerOrders
