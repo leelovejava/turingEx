@@ -146,18 +146,18 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         Miner miner = minerService.findById(entity.getMiner_id());
         if (null == miner) {
             // 矿机不存在
-            throw new BusinessException("Mining machine does not exist");
+            throw new BusinessException("Quant Order does not exist");
         }
         // 管理员解锁所有，用户正常流程
         if (!isManage && "0".equals(miner.getOn_sale())) {
             // 矿机未解锁，无法购买
-            throw new BusinessException("Mining machine is locked, cannot purchase");
+            throw new BusinessException("Quant Order is locked, cannot purchase");
         }
 
         // 检查用户是否已购买过体验矿机（体验矿机每人仅能购买一次）
         if (miner.getTest().equals("Y") && this.findByTest(partyId)) {
             // 您已购买过体验矿机,不得重复购买
-            throw new BusinessException("You have already purchased the experience AI quant, cannot purchase again");
+            throw new BusinessException("You have already purchased the experience Quant Order, cannot purchase again");
         }
 
         // 买入金额需要在区间内（非体验矿机）
@@ -424,7 +424,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             moneylog.setAmountAfter(
                     BigDecimal.valueOf(Arith.sub(amount_before, entity.getAmount())));
             // 购买矿机产品，订单号[" + entity.getOrder_no() + "]
-            moneylog.setLog("Buy mining machine product, orderNo[" + entity.getOrder_no() + "]");
+            moneylog.setLog("Buy Quant Order product, orderNo[" + entity.getOrder_no() + "]");
             moneylog.setUserId(entity.getPartyId());
             moneylog.setWalletType(Constants.WALLET);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BUY);
@@ -515,7 +515,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         moneylog.setAmount(BigDecimal.valueOf(Arith.sub(0, entity.getAmount())));
         moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(amount_before, entity.getAmount())));
         // 购买矿机产品，订单号[" + entity.getOrder_no() + "]
-        moneylog.setLog("Buy mining machine product, orderNo[" + entity.getOrder_no() + "]");
+        moneylog.setLog("Buy Quant Order product, orderNo[" + entity.getOrder_no() + "]");
         moneylog.setUserId(entity.getPartyId());
         moneylog.setWalletType(Constants.WALLET);
         moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BUY);
@@ -545,7 +545,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         moneylog.setAmount(BigDecimal.valueOf(Arith.sub(0, entity.getAmount())));
         moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(amount_before, entity.getAmount())));
         // 购买矿机产品，订单号[" + entity.getOrder_no() + "]
-        moneylog.setLog("Buy mining machine product, orderNo[" + entity.getOrder_no() + "]");
+        moneylog.setLog("Buy Quant Order product, orderNo[" + entity.getOrder_no() + "]");
         moneylog.setUserId(entity.getUuid());
         moneylog.setWalletType(symbol);
         moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BUY);
