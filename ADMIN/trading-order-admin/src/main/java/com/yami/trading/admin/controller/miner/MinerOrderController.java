@@ -106,20 +106,15 @@ public class MinerOrderController {
                     intervalDaysByTwoDate = 0;
                 }
                 int runningDays = 0;
-                Date runStartDate = null;
-                if (data.get("earn_time") != null) {
-                    runStartDate = DateUtils.toDate(data.get("earn_time").toString());
-                } else if (data.get("create_time") != null) {
-                    runStartDate = DateUtils.toDate(data.get("create_time").toString());
-                }
-                if (runStartDate != null) {
+                if (data.get("create_time") != null) {
+                    Date runStartDate = DateUtils.toDate(data.get("create_time").toString());
                     runningDays = Math.max(daysBetween(runStartDate, new Date()), 0) + 1;
                 }
                 // 运行天数
                 data.put("days", runningDays);
                 data.put("runningDays", runningDays);
 
-                DecimalFormat df = new DecimalFormat("#.##");
+                DecimalFormat df = new DecimalFormat("#.####");
                 data.put("profit", df.format(data.get("profit")));
                 data.put("test", null != data.get("test") && "Y".equals(data.get("test").toString()));
                 data.put("can_close", intervalDaysByTwoDate <= 0);
