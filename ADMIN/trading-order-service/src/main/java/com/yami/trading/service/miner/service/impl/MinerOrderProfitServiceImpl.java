@@ -331,9 +331,9 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
         }
         // 此为收益为USDT，收益进入冻结余额（赎回时再转为可用余额）
         else {
-            WalletExtend walletExtend = walletService.saveExtendByPara(order.getPartyId(), WalletConstants.WALLET_USDT);
-            double amountBefore = walletExtend.getFreezeAmount();
-            this.walletService.updateExtend(order.getPartyId(), WalletConstants.WALLET_USDT, 0, day_profit);
+            Wallet wallet = walletService.saveWalletByPartyId(order.getPartyId());
+            double amountBefore = wallet.getFreezeMoney().doubleValue();
+            walletService.updateWithLockAndFreeze(order.getPartyId(), 0, 0, day_profit);
 
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
@@ -345,6 +345,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneylog.setUserId(order.getPartyId());
             moneylog.setWalletType(WalletConstants.WALLET_USDT);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_PROFIT);
+            moneylog.setCreateTime(new Date());
             moneyLogService.save(moneylog);
         }
     }
@@ -395,9 +396,9 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
         }
         // 此为收益为usdt，收益进入冻结余额（赎回时再转为可用余额）
         else {
-            WalletExtend walletExtend = walletService.saveExtendByPara(order.getPartyId(), WalletConstants.WALLET_USDT);
-            double amountBefore = walletExtend.getFreezeAmount();
-            this.walletService.updateExtend(order.getPartyId(), WalletConstants.WALLET_USDT, 0, day_profit);
+            Wallet wallet = walletService.saveWalletByPartyId(order.getPartyId());
+            double amountBefore = wallet.getFreezeMoney().doubleValue();
+            walletService.updateWithLockAndFreeze(order.getPartyId(), 0, 0, day_profit);
 
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
@@ -409,6 +410,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             moneylog.setUserId(order.getPartyId());
             moneylog.setWalletType(WalletConstants.WALLET_USDT);
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_PROFIT);
+            moneylog.setCreateTime(systemTime);
             moneyLogService.save(moneylog);
         }
     }

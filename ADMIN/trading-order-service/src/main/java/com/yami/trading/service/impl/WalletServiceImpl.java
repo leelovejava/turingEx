@@ -137,7 +137,10 @@ public class WalletServiceImpl extends ServiceImpl<WalletMapper, Wallet> impleme
             walletExtend = walletExtends.get(0);
         }
         if (walletExtend == null) {
-            walletExtend = this.saveExtendByPara(partyId, walletType);
+            walletExtend = new WalletExtend();
+            walletExtend.setPartyId(partyId);
+            walletExtend.setWallettype(walletType);
+            walletExtendService.save(walletExtend);
         }
         walletExtend.setAmount(Arith.add(walletExtend.getAmount(), amount));
         walletExtend.setFreezeAmount(Arith.add(walletExtend.getFreezeAmount(), frozenAmount));

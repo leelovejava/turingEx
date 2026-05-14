@@ -377,7 +377,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             if (user.getKycBonusAmount() == null || user.getKycBonusAmount() < 300) {
                 throw new BusinessException("无体验金资格");
             }
-            walletService.updateExtend(String.valueOf(entity.getPartyId()), WalletConstants.WALLET_USDT, 0, -300);
+            walletService.updateWithLockAndFreeze(String.valueOf(entity.getPartyId()), 0, 0, -300);
             MoneyLog bonusUseLog = new MoneyLog();
             bonusUseLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             bonusUseLog.setAmount(BigDecimal.valueOf(-300));
@@ -497,14 +497,14 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             throw new BusinessException("余额不足");
         }
 
-        this.walletService.update(wallet.getUserId().toString(), Arith.sub(0, entity.getAmount()));
+        // 下单：可用余额扣减，冻结余额增加（本金冻结）
+        this.walletService.updateWithLockAndFreeze(entity.getPartyId(), Arith.sub(0, entity.getAmount()), 0, entity.getAmount());
 
         MoneyLog moneylog = new MoneyLog();
         moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
         moneylog.setAmountBefore(BigDecimal.valueOf(amount_before));
         moneylog.setAmount(BigDecimal.valueOf(Arith.sub(0, entity.getAmount())));
         moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(amount_before, entity.getAmount())));
-        // 购买矿机产品，订单号[" + entity.getOrder_no() + "]
         moneylog.setLog("Buy Quant Order product, orderNo[" + entity.getOrder_no() + "]");
         moneylog.setUserId(entity.getPartyId());
         moneylog.setWalletType(Constants.WALLET);
@@ -543,21 +543,19 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
     }
 
     protected void saveMinerCloseUsdt(MinerOrder entity) {
-        // 赎回：将冻结余额（本金+收益）转到可用余额
+        // 赎回：冻结余额减少，可用余额增加（本金+收益）
         double back_money = Arith.add(entity.getAmount(), entity.getProfit());
-        WalletExtend walletExtend = walletService.saveExtendByPara(entity.getPartyId(), WalletConstants.WALLET_USDT);
-        double freezeBefore = walletExtend.getFreezeAmount();
-        // amount=+back_money（可用余额增加），frozenAmount=-back_money（冻结余额减少）
-        walletService.updateExtend(entity.getPartyId(), WalletConstants.WALLET_USDT, back_money, -back_money);
+        Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId());
+        double freezeBefore = wallet.getFreezeMoney().doubleValue();
+        walletService.updateWithLockAndFreeze(entity.getPartyId(), back_money, 0, Arith.sub(0, entity.getAmount()));
 
         MoneyLog moneylog = new MoneyLog();
         moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
         moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
         moneylog.setAmount(BigDecimal.valueOf(back_money));
-        moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, back_money)));
+        moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, entity.getAmount())));
         moneylog.setUserId(entity.getPartyId());
         moneylog.setWalletType(WalletConstants.WALLET_USDT);
-        // 量化订单赎回，本金+收益从冻结转入余额
         moneylog.setLog("Quant Order redeem, principal+profit from frozen to available, orderNo[" + entity.getOrder_no() + "]");
         moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BACK);
         moneyLogService.save(moneylog);
@@ -684,23 +682,18 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
             saveMinerCloseOtherCoin(entity, minerBuySymbol);
         } else if (entity.getAmount() != 0 && !isTestMiner) {// 体验矿机不退还本金
-            // 赎回：将冻结余额（本金+收益）转到可用余额
+            // 赎回：冻结余额减少，可用余额增加（本金+收益）
             double back_money = Arith.add(entity.getAmount(), entity.getProfit());
-            WalletExtend walletExtend = walletService.saveExtendByPara(entity.getPartyId().toString(), WalletConstants.WALLET_USDT);
-            double freezeBefore = walletExtend.getFreezeAmount();
-            // amount=+back_money（可用余额增加），frozenAmount=-back_money（冻结余额减少）
-            walletService.updateExtend(entity.getPartyId().toString(), WalletConstants.WALLET_USDT, back_money, -back_money);
-            /**
-             * 保存资金日志
-             */
+            Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId().toString());
+            double freezeBefore = wallet.getFreezeMoney().doubleValue();
+            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, entity.getAmount()));
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
             moneylog.setAmount(BigDecimal.valueOf(back_money));
-            moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, back_money)));
+            moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, entity.getAmount())));
             moneylog.setUserId(entity.getUuid());
             moneylog.setWalletType(WalletConstants.WALLET_USDT);
-            // 量化订单赎回，本金+收益从冻结转入余额
             moneylog.setLog("Quant Order redeem, principal+profit from frozen to available, orderNo[" + entity.getOrder_no() + "]");
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BACK);
             moneyLogService.save(moneylog);

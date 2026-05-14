@@ -53,8 +53,8 @@ public class KycBonusExpireJob {
             try {
                 double amount = user.getKycBonusAmount();
 
-                // 从USDT扩展钱包冻结余额中扣除体验金（amount=0表示可用余额不变，frozenAmount=-amount表示解冻）
-                walletService.updateExtend(user.getUserId(), WalletConstants.WALLET_USDT, 0, -amount);
+                // 从tz_wallet冻结余额中扣除体验金
+                walletService.updateWithLockAndFreeze(user.getUserId(), 0, 0, -amount);
 
                 // 记录资金日志
                 MoneyLog moneyLog = new MoneyLog();

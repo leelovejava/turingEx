@@ -73,43 +73,43 @@ public class UserAuthController {
 
     @ApiOperation(value = "列表")
     @PostMapping("list")
-    public Result<Page<RealNameAuthDto>> list(@RequestBody @Valid UserAuthListModel request){
-        List<String> userIds=permissionFacade.getOwnerUserIds();
-        Page<RealNameAuthDto> page=new Page(request.getCurrent(),request.getSize());
-        realNameAuthRecordService.pageRecord(page,request.getRoleName(),request.getIdNumber(),
-                request.getStatus(),request.getUserName(),userIds);
-        for (RealNameAuthDto dto:page.getRecords()){
-            if (StrUtil.isNotBlank(dto.getIdBackImg())){
-                dto.setIdBackImg( awsS3OSSFileService.getUrl(dto.getIdBackImg()));
+    public Result<Page<RealNameAuthDto>> list(@RequestBody @Valid UserAuthListModel request) {
+        List<String> userIds = permissionFacade.getOwnerUserIds();
+        Page<RealNameAuthDto> page = new Page(request.getCurrent(), request.getSize());
+        realNameAuthRecordService.pageRecord(page, request.getRoleName(), request.getIdNumber(),
+                request.getStatus(), request.getUserName(), userIds);
+        for (RealNameAuthDto dto : page.getRecords()) {
+            if (StrUtil.isNotBlank(dto.getIdBackImg())) {
+                dto.setIdBackImg(awsS3OSSFileService.getUrl(dto.getIdBackImg()));
             }
-            if (StrUtil.isNotBlank(dto.getIdFrontImg())){
-                dto.setIdBackImg( awsS3OSSFileService.getUrl(dto.getIdFrontImg()));
+            if (StrUtil.isNotBlank(dto.getIdFrontImg())) {
+                dto.setIdBackImg(awsS3OSSFileService.getUrl(dto.getIdFrontImg()));
             }
         }
 
-        return  Result.ok(page);
+        return Result.ok(page);
     }
 
     @ApiOperation("查询用户信息")
     @GetMapping("getById/{id}")
     public Result<RealNameAuthDto> getById(@PathVariable String id) {
-        if(StringUtils.isEmpty(id)) {
+        if (StringUtils.isEmpty(id)) {
             return Result.failed("记录ID不能为空");
         }
 
         RealNameAuthRecord realNameAuthRecord = realNameAuthRecordService.getOne(Wrappers.<RealNameAuthRecord>lambdaQuery().eq(RealNameAuthRecord::getUuid, id));
-        if(null == realNameAuthRecord) {
+        if (null == realNameAuthRecord) {
             return Result.failed("记录不存在");
         }
         User user = userService.getById(realNameAuthRecord.getUserId());
-        if(null == user) {
+        if (null == user) {
             return Result.failed("用户不存在");
         }
 
         RealNameAuthDto realNameAuthDto = new RealNameAuthDto();
         realNameAuthDto.setUserName(user.getUserName());
         realNameAuthDto.setName(user.getRealName());
-        if(null != realNameAuthRecord) {
+        if (null != realNameAuthRecord) {
             realNameAuthDto.setName(realNameAuthRecord.getName());
 
             realNameAuthDto.setUuid(realNameAuthRecord.getUuid());
@@ -127,34 +127,34 @@ public class UserAuthController {
     @ApiOperation(value = "修改")
     @PutMapping("edit")
     public Result<?> edit(@RequestBody @Valid RealNameAuthUpdateDto dto) {
-       RealNameAuthRecord realNameAuthRecord=  realNameAuthRecordService.getById(dto.getUuid());
-        if(realNameAuthRecord==null) {
+        RealNameAuthRecord realNameAuthRecord = realNameAuthRecordService.getById(dto.getUuid());
+        if (realNameAuthRecord == null) {
             return Result.failed("记录ID不能为空");
         }
-        if(StringUtils.isNotEmpty(dto.getIdName())) {
+        if (StringUtils.isNotEmpty(dto.getIdName())) {
             realNameAuthRecord.setIdName(dto.getIdName());
         }
-        if(StringUtils.isNotEmpty(dto.getIdNumber())) {
+        if (StringUtils.isNotEmpty(dto.getIdNumber())) {
             realNameAuthRecord.setIdNumber(dto.getIdNumber());
         }
-        if(StringUtils.isNotEmpty(dto.getName())) {
+        if (StringUtils.isNotEmpty(dto.getName())) {
             realNameAuthRecord.setName(dto.getName());
         }
-        if(StringUtils.isNotEmpty(dto.getNationality())) {
+        if (StringUtils.isNotEmpty(dto.getNationality())) {
             realNameAuthRecord.setNationality(dto.getNationality());
 
         }
-        if(StringUtils.isNotEmpty(dto.getIdFrontImg())) {
+        if (StringUtils.isNotEmpty(dto.getIdFrontImg())) {
             realNameAuthRecord.setIdFrontImg(dto.getIdFrontImg());
         }
-        if(StringUtils.isNotEmpty(dto.getIdBackImg())) {
+        if (StringUtils.isNotEmpty(dto.getIdBackImg())) {
             realNameAuthRecord.setIdBackImg(dto.getIdBackImg());
 
         }
-        if(StringUtils.isNotEmpty(dto.getHandheldPhoto())) {
+        if (StringUtils.isNotEmpty(dto.getHandheldPhoto())) {
             realNameAuthRecord.setHandheldPhoto(dto.getHandheldPhoto());
         }
-        User user= userService.getById(realNameAuthRecord.getUserId());
+        User user = userService.getById(realNameAuthRecord.getUserId());
         Log log = new Log();
         log.setCategory(Constants.LOG_CATEGORY_OPERATION);
         log.setExtra(realNameAuthRecord.getIdNumber());
@@ -167,21 +167,26 @@ public class UserAuthController {
         return Result.ok("修改成功");
     }
 
+    /**
+     * examine
+     * @param model
+     * @return
+     */
     @ApiOperation(value = "审核")
     @PostMapping("examine")
     @SysLog("用户基础认证-审核")
-    public Result<?> examine(@RequestBody @Valid RealNameExamineModel model){
-        RealNameAuthRecord realNameAuthRecord= realNameAuthRecordService.getById(model.getId());
-        if (realNameAuthRecord==null){
-            throw  new YamiShopBindException("参数错误");
+    public Result<?> examine(@RequestBody @Valid RealNameExamineModel model) {
+        RealNameAuthRecord realNameAuthRecord = realNameAuthRecordService.getById(model.getId());
+        if (realNameAuthRecord == null) {
+            throw new YamiShopBindException("参数错误");
         }
-        int status=  realNameAuthRecord.getStatus();
-        if (model.getType()==1){
+        int status = realNameAuthRecord.getStatus();
+        if (model.getType() == 1) {
             realNameAuthRecord.setStatus(2);
             realNameAuthRecord.setOperationTime(new Date());
             realNameAuthRecordService.updateById(realNameAuthRecord);
 
-           User user= userService.getById(realNameAuthRecord.getUserId());
+            User user = userService.getById(realNameAuthRecord.getUserId());
             user.setRealNameAuthority(true);
             user.setRealName(realNameAuthRecord.getName());
             // 获取用户系统等级：1/新注册；2/邮箱谷歌手机其中有一个已验证；3/用户实名认证； 4/用户高级认证；
@@ -205,11 +210,12 @@ public class UserAuthController {
             logService.save(log);
 
             // 发放300U体验金到USDT冻结账户
-            walletService.updateExtend(user.getUserId(), WalletConstants.WALLET_USDT, 0, 300);
+            walletService.updateWithLockAndFreeze(String.valueOf(user.getUserId()), 0, 0, 300);
             MoneyLog bonusLog = new MoneyLog();
             bonusLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             bonusLog.setAmount(BigDecimal.valueOf(300));
-            bonusLog.setLog("实名认证通过，赠送300U体验金，冻结至USDT账户");
+            // 实名认证通过，赠送300U体验金，冻结至USDT账户
+            bonusLog.setLog("KYC verification passed, 300U experience bonus granted and frozen to USDT account");
             bonusLog.setUserId(user.getUserId());
             bonusLog.setWalletType(WalletConstants.WALLET_USDT);
             bonusLog.setContentType(WalletConstants.MONEYLOG_CONTENT_KYC_BONUS);
@@ -218,12 +224,12 @@ public class UserAuthController {
             user.setKycBonusAmount(300.0);
             userService.updateById(user);
         }
-        if (model.getType()==2){
+        if (model.getType() == 2) {
             realNameAuthRecord.setStatus(3);
             realNameAuthRecord.setMsg(model.getContent());
             realNameAuthRecord.setOperationTime(new Date());
             realNameAuthRecordService.updateById(realNameAuthRecord);
-            User user= userService.getById(realNameAuthRecord.getUserId());
+            User user = userService.getById(realNameAuthRecord.getUserId());
 
             Log log = new Log();
             log.setCategory(Constants.LOG_CATEGORY_OPERATION);
@@ -235,10 +241,8 @@ public class UserAuthController {
             logService.save(log);
         }
         tipService.deleteTip(realNameAuthRecord.getUuid());
-        return  Result.ok(null);
+        return Result.ok(null);
     }
-
-
 
 
 }
