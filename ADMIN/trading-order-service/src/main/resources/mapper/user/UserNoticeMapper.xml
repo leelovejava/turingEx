@@ -5,6 +5,7 @@
   <select id="pageNotice" resultType="com.yami.trading.bean.dto.UserNoticeDto">
     select
       n.*,
+      n.uuid as id,
       u.user_code,
       u.user_name
     from
