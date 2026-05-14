@@ -43,7 +43,7 @@
         <!-- 累计收益(已产生收益) -->
         <div class="detail-row">
           <span class="detail-label">{{ t('aiQuantEarningsProfit') }}</span>
-          <span class="detail-value">{{ record.generated_income }}</span>
+          <span class="detail-value">{{ Number(record.total_income).toFixed(4) }}</span>
         </div>
         <!-- 预计总收益 -->
         <div class="detail-row">

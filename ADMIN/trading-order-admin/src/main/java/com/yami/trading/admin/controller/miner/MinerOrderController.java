@@ -4,13 +4,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -577,21 +571,19 @@ public class MinerOrderController {
         map.put("create_timeStr", create_time);
         map.put("close_timeStr", order.getClose_time());
         
-        // 停止时间展示
-        map.put("stop_timeStr", order.getStop_time() != null ? DateUtils.format(order.getStop_time(), DateUtils.DF_yyyyMMdd) : null);
-
-        // 起息时间展示（根据对外展示时区设置）
-        Date showEarnTime = DateTimeTools.transferToShowTime(order.getEarn_time());
-        map.put("earn_timeStr", DateUtils.format(showEarnTime, DateUtils.DF_yyyyMMdd));
+        SimpleDateFormat dtf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH);
+        map.put("earn_timeStr", order.getEarn_time() != null ? dtf.format(order.getEarn_time()) : null);
+        map.put("stop_timeStr", order.getStop_time() != null ? dtf.format(order.getStop_time()) : null);
 
         // 计算剩余天数（到停止时间还有多少天）
         Date date_now = new Date();
         int daysBetween = order.getStop_time() == null ? 0 : daysBetween(date_now, order.getStop_time());
         daysBetween = Math.max(daysBetween, 0);
         map.put("days", daysBetween);
+        map.put("countdown", daysBetween);
         
         // 计算已运行天数
-        int last_days = daysBetween(create_time, date_now);
+        int last_days = create_time == null ? 0 : daysBetween(create_time, date_now);
         map.put("can_close", last_days >= miner.getCycle_close());
         
         // ==================== 订单基本信息 ====================

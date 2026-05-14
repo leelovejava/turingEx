@@ -782,7 +782,46 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
     @Override
     public MinerOrder findByOrder_no(String order_no) {
-        return this.getOne(new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<MinerOrder>().eq("order_no", order_no));
+        String sql = "SELECT * FROM t_miner_order WHERE order_no = :order_no";
+        List<Map<String, Object>> rows = namedParameterJdbcTemplate.queryForList(sql, java.util.Collections.singletonMap("order_no", order_no));
+        if (rows.isEmpty()) return null;
+        Map<String, Object> row = rows.get(0);
+        MinerOrder o = new MinerOrder();
+        o.setUuid(str(row, "uuid"));
+        o.setOrder_no(str(row, "order_no"));
+        o.setPartyId(str(row, "party_id"));
+        o.setMiner_id(str(row, "miner_id"));
+        o.setState(str(row, "state"));
+        o.setSymbol(str(row, "symbol"));
+        o.setFirst_buy(str(row, "first_buy"));
+        if (row.get("amount") != null) o.setAmount(((Number) row.get("amount")).doubleValue());
+        if (row.get("profit") != null) o.setProfit(((Number) row.get("profit")).doubleValue());
+        if (row.get("base_compute_amount") != null) o.setBase_compute_amount(((Number) row.get("base_compute_amount")).doubleValue());
+        if (row.get("random_daily_rate") != null) o.setRandom_daily_rate(((Number) row.get("random_daily_rate")).doubleValue());
+        if (row.get("expected_total_income") != null) o.setExpectedTotalIncome(((Number) row.get("expected_total_income")).longValue());
+        if (row.get("total_income") != null) o.setTotalIncome(new java.math.BigDecimal(row.get("total_income").toString()));
+        if (row.get("cycle") != null) o.setCycle(((Number) row.get("cycle")).intValue());
+        o.setCreate_time(toDate(row.get("create_time")));
+        o.setEarn_time(toDate(row.get("earn_time")));
+        o.setStop_time(toDate(row.get("stop_time")));
+        o.setClose_time(toDate(row.get("close_time")));
+        o.setCompute_day(toDate(row.get("compute_day")));
+        return o;
+    }
+
+    private static java.util.Date toDate(Object v) {
+        if (v == null) return null;
+        if (v instanceof java.util.Date) return (java.util.Date) v;
+        if (v instanceof java.time.LocalDateTime)
+            return java.util.Date.from(((java.time.LocalDateTime) v).atZone(java.time.ZoneId.systemDefault()).toInstant());
+        if (v instanceof java.time.LocalDate)
+            return java.util.Date.from(((java.time.LocalDate) v).atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
+        return null;
+    }
+
+    private static String str(Map<String, Object> row, String key) {
+        Object v = row.get(key);
+        return v != null ? v.toString() : null;
     }
 
     @Override

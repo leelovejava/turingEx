@@ -23,12 +23,14 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	/**
 	 * 订单 号
 	 */
+	@TableField("order_no")
 	private String order_no;
 
 	/**
 	 * 矿机产品Id
 	 */
 	@Getter
+	@TableField("miner_id")
 	private String miner_id;
 
 	/**
@@ -42,6 +44,7 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 //	@JsonSerialize(using = LocalDateTimeSerializer.class)
 //	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 //	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField("create_time")
 	private Date  create_time;
 
 	/**
@@ -50,6 +53,7 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 //	@JsonSerialize(using = LocalDateTimeSerializer.class)
 //	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 //	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField("earn_time")
 	private Date  earn_time;
 
 	/**
@@ -58,6 +62,7 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 //	@JsonSerialize(using = LocalDateTimeSerializer.class)
 //	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 //	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField("stop_time")
 	private Date  stop_time;
 
 	/**
@@ -75,6 +80,7 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 //	@JsonSerialize(using = LocalDateTimeSerializer.class)
 //	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 //	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField("compute_day")
 	private Date  compute_day;
 	/**
 	 * 赎回时间
@@ -82,19 +88,23 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 //	@JsonSerialize(using = LocalDateTimeSerializer.class)
 //	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 //	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField("close_time")
 	private Date close_time;
 	/**
 	 * 是否首次购买： 1：首次购买，0不是首次
 	 */
+	@TableField("first_buy")
 	private String first_buy;
 	/**
 	 * 基础计息金额
 	 */
+	@TableField("base_compute_amount")
 	private double base_compute_amount;
 
 	/**
 	 * 体验矿机随机日利率(%) - 购买时随机生成，介于日利率开始和结束值之间
 	 */
+	@TableField("random_daily_rate")
 	private double random_daily_rate;
 
 	@Setter
