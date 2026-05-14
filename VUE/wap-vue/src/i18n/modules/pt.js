@@ -2086,6 +2086,7 @@ export default {
     "请输入": "Por favor, insira",
     "邮箱验证": "Verificação de e-mail",
     "邮箱验证码": "Código de verificação de e-mail",
+    "请输入邮箱验证码": "Digite o código de verificação de e-mail",
     "请输入6位验证码": "Por favor, insira um código de 6 dígitos",
     "账号注册成功": "Registro da conta bem-sucedido",
     "登录成功": "Login bem-sucedido",

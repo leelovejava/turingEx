@@ -2127,6 +2127,7 @@ export default {
     "请输入": "Bitte geben Sie ein",
     "邮箱验证": "Authentifizierung per E-Mail",
     "邮箱验证码": "E-Mail-Verifizierungscode ",
+    "请输入邮箱验证码": "E-Mail-Verifizierungscode eingeben",
     "请输入6位验证码": "Bitte geben Sie den 6-stelligen Verifizierungscode ein",
     "账号注册成功": "Kontoregistrierung erfolgreich",
     "登录成功": "erfolgreiche Anmeldung",

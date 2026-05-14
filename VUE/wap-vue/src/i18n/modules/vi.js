@@ -2150,6 +2150,7 @@ export default {
     "请输入": "Vui lòng nhập",
     "邮箱验证": "E-mail ",
     "邮箱验证码": "Mã xác minh email",
+    "请输入邮箱验证码": "Nhập mã xác minh email",
     "请输入6位验证码": "Vui lòng nhập mã xác minh gồm 6 chữ số",
     "账号注册成功": "Đăng ký tài khoản thành công",
     "登录成功": "Đăng nhập thành công",

@@ -2282,6 +2282,7 @@ export default {
     "请输入您在手机%s收到的6位验证码，验证码30分钟有效": "Inserire il codice di verifica a 6 cifre ricevuto sul cellulare %s, il codice di verifica è valido per 30 minuti.",
     "邮箱验证": "Email",
     "邮箱验证码": "Codice di verifica Email",
+    "请输入邮箱验证码": "Inserisci il codice di verifica email",
     "请输入6位验证码": "Inserire il codice di verifica a 6 cifre",
     "向右滑动完成拼图": "Passare il dito a destra per completare il puzzle",
     "账号注册成功": "Registrazione dell'account riuscita",

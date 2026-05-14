@@ -2115,6 +2115,7 @@ export default {
     "请输入": "Por favor ingrese",
     "邮箱验证": "Verificación de buzón",
     "邮箱验证码": "Código de verificación de buzón",
+    "请输入邮箱验证码": "Ingrese el código de verificación de buzón",
     "请输入6位验证码": "Por favor ingrese el código de verificación de 6 bits",
     "账号注册成功": "Registro de cuenta exitoso",
     "登录成功": "Inicio de sesión correctamente",

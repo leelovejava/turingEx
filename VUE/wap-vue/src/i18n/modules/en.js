@@ -2139,6 +2139,7 @@ export default {
     "请输入": "Please enter ",
     "邮箱验证": "Email",
     "邮箱验证码": "Email verification code",
+    "请输入邮箱验证码": "Please enter email verification code",
     "请输入6位验证码": "Please enter the 6-digit verification code",
     "账号注册成功": "Account registration succeeded",
     "登录成功": "Login successful",
