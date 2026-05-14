@@ -163,15 +163,12 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 	 */
 	@Override
 	public double selectDayIncome(String quantOrderId) {
-		// 今日开始时间（00:00:00）
 		Date dayStart = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-		// 今日结束时间（23:59:59.999）
 		Date dayEnd = Date.from(LocalDate.now().atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
 		QueryWrapper<QuantPreIncome> qw = new QueryWrapper<QuantPreIncome>()
 				.eq("quant_order_id", quantOrderId)
-				// 只统计已使用记录
 				.eq("status", 1)
-				.between("end_time", dayStart, dayEnd);
+				.apply("end_time BETWEEN {0} AND {1}", dayStart, dayEnd);
 		return this.list(qw).stream().mapToDouble(o -> o.getIncome() == null ? 0 : o.getIncome()).sum();
 	}
 

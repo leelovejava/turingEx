@@ -97,11 +97,11 @@
             </div>
             <div class="row">
               <span class="label">{{ t('aiQuantProfitAssets') }}</span>
-              <span class="value">{{ o.total_income }}</span>
+              <span class="value">{{ o.profit }}</span>
             </div>
             <div class="row">
               <span class="label">{{ t('aiQuantQuantifiableDays') }}</span>
-              <span class="value">{{ o.quantifiable_days }}</span>
+              <span class="value">{{ o.runningDays }}</span>
             </div>
             <div class="row">
               <span class="label">{{ t('aiQuantCountdownDays') }}</span>

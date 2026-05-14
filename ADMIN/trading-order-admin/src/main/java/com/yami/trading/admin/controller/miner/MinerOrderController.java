@@ -113,7 +113,7 @@ public class MinerOrderController {
                     runStartDate = DateUtils.toDate(data.get("create_time").toString());
                 }
                 if (runStartDate != null) {
-                    runningDays = Math.max(daysBetween(runStartDate, new Date()), 0);
+                    runningDays = Math.max(daysBetween(runStartDate, new Date()), 0) + 1;
                 }
                 // 运行天数
                 data.put("days", runningDays);
@@ -142,10 +142,10 @@ public class MinerOrderController {
                     data.put("all_rate", df.format(all_rate));
                 }
                 // daily_profit 今日实际收益，与 day_income 保持一致，从 income 表读取
-                String uuid2 = data.get("uuid") != null ? data.get("uuid").toString() : null;
+                String uuid2 = data.get("id") != null ? data.get("id").toString() : null;
                 data.put("daily_profit", uuid2 != null ? quantPreIncomeService.selectDayIncome(uuid2) : "0");
                 // 今日收益 / 总收益（与 get 接口保持一致，从 income 表读取）
-                String uuid = data.get("uuid") != null ? data.get("uuid").toString() : null;
+                String uuid = data.get("id") != null ? data.get("id").toString() : null;
                 if (uuid != null) {
                     data.put("day_income", quantPreIncomeService.selectDayIncome(uuid));
                     data.put("total_income", quantPreIncomeService.selectTotalIncome(uuid));
