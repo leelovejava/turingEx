@@ -12,6 +12,8 @@ public interface UserNoticeService extends IService<UserNotice> {
      */
     void saveNotice(String userId, String title, String content, String noticeType);
 
+    void saveNoticeForAllUsers(String title, String content, String noticeType);
+
     /**
      * 分页查询通知
      */

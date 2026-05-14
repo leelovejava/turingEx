@@ -55,7 +55,7 @@ public class UserNoticeController {
     @PostMapping("add")
     public Result<?> add(@RequestBody @Valid UserNoticeModel model) {
         if (StringUtils.isEmptyString(model.getUserCode())) {
-            userNoticeService.saveNotice("", model.getTitle(), model.getContent(), model.getNoticeType());
+            userNoticeService.saveNoticeForAllUsers(model.getTitle(), model.getContent(), model.getNoticeType());
         } else {
             User user = userService.findUserByUserCode(model.getUserCode());
             if (user == null) {

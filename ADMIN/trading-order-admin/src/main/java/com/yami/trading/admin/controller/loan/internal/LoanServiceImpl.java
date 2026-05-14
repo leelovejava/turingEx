@@ -642,10 +642,10 @@ public class LoanServiceImpl implements LoanService {
 		moneyLog.setCreateTime(new Date());
 		moneyLogService.save(moneyLog);
 
-		// 更新已还金额，状态改为还款中(6)
+		// 更新已还金额，若已还完则状态改为已还款(5)，否则还款中(6)
 		jdbcTemplate.update(
-			"UPDATE T_SIMPLE_LOAN_ORDER SET STATE=6, REPAID_AMOUNT=IFNULL(REPAID_AMOUNT,0)+? WHERE UUID=?",
-			amount, orderId);
+			"UPDATE T_SIMPLE_LOAN_ORDER SET REPAID_AMOUNT=IFNULL(REPAID_AMOUNT,0)+?, STATE=CASE WHEN IFNULL(REPAID_AMOUNT,0)+? >= QUOTA THEN 5 ELSE 6 END WHERE UUID=?",
+			amount, amount, orderId);
 
 		// 同步用户表：已贷减少，可贷增加
 		jdbcTemplate.update(

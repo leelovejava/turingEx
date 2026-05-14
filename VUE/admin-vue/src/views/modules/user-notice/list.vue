@@ -9,15 +9,15 @@
       @on-load="getDataList"
     >
       <template slot="menuLeft">
-      </template>
-      <template slot-scope="scope" slot="menu">
         <el-button
           type="primary"
-          icon="el-icon-edit"
+          icon="el-icon-plus"
           size="small"
           v-if="isAuth('user:notice:save')"
-          @click.stop="addOrUpdateHandle(scope.row)"
-        >修改</el-button>
+          @click="addOrUpdateHandle()"
+        >新增通知</el-button>
+      </template>
+      <template slot-scope="scope" slot="menu">
         <el-button
           type="danger"
           icon="el-icon-delete"
@@ -33,10 +33,7 @@
         <el-form-item label="用户UID" prop="userCode">
           <el-input v-model="form.userCode" placeholder="留空表示所有用户" />
         </el-form-item>
-        <el-form-item label="通知类型" prop="noticeType">
-          <el-input v-model="form.noticeType" />
-        </el-form-item>
-        <el-form-item label="标题" prop="title">
+<el-form-item label="标题" prop="title">
           <el-input v-model="form.title" />
         </el-form-item>
         <el-form-item label="内容" prop="content">
@@ -52,18 +49,17 @@
 </template>
 
 <script>
-import { encrypt } from '@/utils/crypto'
 
 const tableOption = {
   border: true,
   selection: false,
+  addBtn: false,
   searchShow: true,
   searchMenuSpan: 6,
   column: [
     { label: '用户UID', prop: 'userCode', search: true },
     { label: '用户名', prop: 'userName' },
-    { label: '通知类型', prop: 'noticeType', search: true },
-    { label: '标题', prop: 'title', search: true },
+{ label: '标题', prop: 'title', search: true },
     { label: '内容', prop: 'content', overHidden: true },
     { label: '状态', prop: 'status', formatter: (row) => row.status === 1 ? '未读' : '已读' },
     { label: '创建时间', prop: 'createTime' }
@@ -133,15 +129,15 @@ export default {
       })
     },
     deleteHandle(id) {
-      this.$prompt('请输入资金密码', '提示', {
+      this.$confirm('确定删除该通知?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        inputType: 'password'
-      }).then(({ value }) => {
+        type: 'warning'
+      }).then(() => {
         this.$http({
           url: this.$http.adornUrl('/userNotice/delete'),
           method: 'post',
-          data: this.$http.adornData({ id, loginSafeword: encrypt(value) })
+          data: this.$http.adornData({ id })
         }).then(({ data }) => {
           if (data.code === 0) {
             this.$message({ message: '操作成功', type: 'success', duration: 1000 })
