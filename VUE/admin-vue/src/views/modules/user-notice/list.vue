@@ -29,7 +29,7 @@
           icon="el-icon-delete"
           size="small"
           v-if="isAuth('user:notice:deletem')"
-          @click.stop="deleteHandle(scope.row.uuid)"
+          @click.stop="deleteHandle(scope.row.id)"
         >删除</el-button>
       </template>
     </avue-crud>
