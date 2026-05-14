@@ -178,14 +178,14 @@ public class AdminMinerOrderController {
 
 					Miner miner = minerService.findById(order.getMiner_id());
 					
-					// 体验矿机不支持提前赎回
 					if ("Y".equals(miner.getTest())) {
-						throw new BusinessException("体验矿机不支持提前赎回");
+						// 体验AI产品不支持提前赎回
+						throw new BusinessException("Trial products do not support redemption");
 					}
 
 					Date date_now = new Date();// 取时间
 					double last_days = daysBetween(order.getCreate_time(), date_now);
-					if ("1".equals(order.getState()) && last_days >= miner.getCycle_close()) {
+					if ("1".equals(order.getState())) {
 						/**
 						 * 扣除违约金
 						 */

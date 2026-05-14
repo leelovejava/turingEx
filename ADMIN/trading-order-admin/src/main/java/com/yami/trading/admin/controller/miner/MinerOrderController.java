@@ -511,10 +511,13 @@ public class MinerOrderController {
 
                 Miner miner = minerService.findById(order.getMiner_id());
 
+                if ("Y".equals(miner.getTest())) {
+                    throw new BusinessException("Trial products do not support redemption");
+                }
                 // 取时间
                 Date date_now = new Date();
                 double last_days = daysBetween(order.getCreate_time(), date_now);
-                if ("1".equals(order.getState()) && last_days >= miner.getCycle_close()) {
+                if ("1".equals(order.getState())) {
                     // 解锁，不扣违约金
                     double default_money = 0;
                     order.setState("2");
