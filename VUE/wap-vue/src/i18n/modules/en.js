@@ -901,7 +901,7 @@ export default {
     '交易信息': 'Trading Information',
     '请先阅读以下内容:': 'Please read the following first:',
     '银行卡转账切勿备注，不然不给予放币和直接封其账号。付款后 需要提供打款后新的交易明细图（如果P图或者隐藏交易明细上报平台冻结账户）': 'Don\'t make a note for bank card transfer, otherwise the Crypto will not be released and the account will be blocked directly. After payment, you need to provide the new transaction details after the payment (if the P diagram or hidden transaction details are reported to the platform to freeze the account.',
-    '请输入金额': 'The repayment amount cannot be 0',
+    '请输入金额': 'Please enter the amount',
     '还款金额不能为0': 'The repayment amount cannot be 0',
     '15分钟': '15 minutes',
     '您可交易的法币': 'Your tradable fiat Crypto',
