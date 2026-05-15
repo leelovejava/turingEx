@@ -333,7 +333,7 @@ public class InternalEmailSenderServiceImpl implements InternalEmailSenderServic
                 // 没有指定模板，使用普通文本内容
                 // setText的第二个参数false表示这是纯文本，不是HTML
                 // 如果想发送HTML邮件，应设置为true
-                messageHelper.setText(emailMessage.getContent());
+                messageHelper.setText(emailMessage.getContent(), true);
             } else {
                 // 指定了模板文件，使用FreeMarker生成HTML内容
                 // 第二个参数true表示这是HTML格式的邮件

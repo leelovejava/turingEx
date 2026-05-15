@@ -2,7 +2,7 @@
 singleServerConfig:
   address: redis://localhost:6379
   database: 0
-  #password:
+  password: f3$seguf$#48
   idleConnectionTimeout: 10000
   connectTimeout: 10000
   timeout: 3000
