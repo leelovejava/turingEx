@@ -75,13 +75,14 @@ public class WorkerOrderServiceImpl extends ServiceImpl<WorkerOrderMapper, Worke
     }
 
     @Override
-    public Page<WorkerOrder> adminList(String workOrderSn, Integer status, Long memberId, long current, long size) {
+    public Page<WorkerOrder> adminList(String workOrderSn, Integer status, Long memberId, long current, long size, List<String> children) {
         Page<WorkerOrder> page = new Page<>(current, size);
         page.addOrder(OrderItem.desc("create_time"));
         LambdaQueryWrapper<WorkerOrder> query = new LambdaQueryWrapper<WorkerOrder>()
                 .like(StrUtil.isNotBlank(workOrderSn), WorkerOrder::getWorkOrderSn, workOrderSn)
                 .eq(status != null, WorkerOrder::getWorkOrderStatus, String.valueOf(status))
-                .eq(memberId != null, WorkerOrder::getMemberId, memberId);
+                .eq(memberId != null, WorkerOrder::getMemberId, memberId)
+                .in(children != null && !children.isEmpty(), WorkerOrder::getMemberId, children);
         return this.page(page, query);
     }
 

@@ -5,6 +5,7 @@ import com.yami.trading.admin.controller.worker.model.WorkerOrderFinishModel;
 import com.yami.trading.admin.controller.worker.model.WorkerOrderListModel;
 import com.yami.trading.admin.controller.worker.model.WorkerOrderReplyModel;
 import com.yami.trading.bean.worker.domain.WorkerOrder;
+import com.yami.trading.admin.facade.PermissionFacade;
 import com.yami.trading.common.domain.Result;
 import com.yami.trading.security.common.util.SecurityUtils;
 import com.yami.trading.service.worker.WorkerOrderService;
@@ -25,6 +26,9 @@ public class WorkerOrderController {
     @Autowired
     private WorkerOrderService workerOrderService;
 
+    @Autowired
+    private PermissionFacade permissionFacade;
+
     @ApiOperation("工单分页")
     @PostMapping("list")
     public Result<Page<WorkerOrder>> list(@RequestBody @Valid WorkerOrderListModel model) {
@@ -33,7 +37,8 @@ public class WorkerOrderController {
                 model.getStatus(),
                 model.getMemberId(),
                 model.getCurrent(),
-                model.getSize()
+                model.getSize(),
+                permissionFacade.getOwnerUserIds()
         );
         return Result.ok(page);
     }

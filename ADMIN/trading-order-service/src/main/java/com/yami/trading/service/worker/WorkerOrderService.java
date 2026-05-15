@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yami.trading.bean.worker.domain.WorkerOrder;
 
+import java.util.List;
 import java.util.Map;
 
 public interface WorkerOrderService extends IService<WorkerOrder> {
@@ -12,7 +13,7 @@ public interface WorkerOrderService extends IService<WorkerOrder> {
 
     Page<WorkerOrder> userList(String memberId, Integer status, long current, long size);
 
-    Page<WorkerOrder> adminList(String workOrderSn, Integer status, Long memberId, long current, long size);
+    Page<WorkerOrder> adminList(String workOrderSn, Integer status, Long memberId, long current, long size, List<String> children);
 
     Map<String, Object> detail(Long orderId);
 
