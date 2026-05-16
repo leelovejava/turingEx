@@ -122,6 +122,11 @@ function goBack() {
  * 赎回收益
  */
 async function onRedeem() {
+  if (record.value.test === 'Y') {
+    // AI体验产品不支持提前赎回
+    showToast({ message: t('aiQuantEarningsTrialNoRedeem'), position: 'middle' })
+    return
+  }
   // 调用赎回API
   await ransomMachineProduct({ order_no: route.params.id })
   // 显示赎回成功提示
