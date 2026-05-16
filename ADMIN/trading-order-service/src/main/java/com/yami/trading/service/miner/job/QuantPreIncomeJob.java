@@ -1,7 +1,7 @@
 package com.yami.trading.service.miner.job;
 
+import cn.hutool.core.util.RandomUtil;
 import com.yami.trading.bean.quant.QuantBotOrder;
-import com.yami.trading.common.util.Arith;
 import com.yami.trading.service.quant.service.QuantBotOrderService;
 import com.yami.trading.service.quant.service.QuantPreIncomeService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -20,9 +21,6 @@ import java.util.List;
 @Component
 @Slf4j
 public class QuantPreIncomeJob {
-
-	private static final int DAILY_COUNT = 220;
-	private static final double PROFIT_RATIO = 0.8; // 80%盈利
 
 	@Autowired
 	private QuantBotOrderService quantBotOrderService;
@@ -70,63 +68,101 @@ public class QuantPreIncomeJob {
 	 */
 	@Async
 	public void generatePreIncomeRecordsAsync(String quantOrderId, Double amount, int cycleDays, double dailyRate) {
+		BigDecimal amountBD = BigDecimal.valueOf(amount);
 		// 每日目标收益 = 投资金额 × 日利率%
-		double dailyProfitTarget = Arith.mul(amount, dailyRate / 100);
-		int profitCount = (int) (DAILY_COUNT * PROFIT_RATIO); // 每天盈利条数
-		int lossCount = DAILY_COUNT - profitCount;            // 每天亏损条数
-		double avgPerTrade = dailyProfitTarget / DAILY_COUNT; // 每条平均收益基准
+		BigDecimal dayIncome = amountBD.multiply(BigDecimal.valueOf(dailyRate / 100)).setScale(4, RoundingMode.DOWN);
 
 		log.info("开始异步生成预收益记录，订单ID：{}，金额：{}，周期：{}天，日利率：{}%，每日目标：{}",
-			quantOrderId, amount, cycleDays, dailyRate, dailyProfitTarget);
+			quantOrderId, amount, cycleDays, dailyRate, dayIncome);
 
 		try {
 			List<com.yami.trading.bean.quant.QuantPreIncome> allList = new ArrayList<>();
 			LocalDateTime now = LocalDateTime.now();
 
 			for (int day = 0; day < cycleDays; day++) {
-				// 生成当天 DAILY_COUNT 条记录（时间窗口连续）
-				List<com.yami.trading.bean.quant.QuantPreIncome> dayList = new ArrayList<>();
-				for (int i = 0; i < DAILY_COUNT; i++) {
-					com.yami.trading.bean.quant.QuantPreIncome income = new com.yami.trading.bean.quant.QuantPreIncome();
-					income.setQuantOrderId(quantOrderId);
-					income.setNumber(amount);
-					income.setStatus(0);
-					long minuteOffset = (long) day * DAILY_COUNT * 10 + i * 10L;
-					LocalDateTime startTime = now.plusMinutes(minuteOffset);
-					income.setStartTime(Date.from(startTime.atZone(ZoneId.systemDefault()).toInstant()));
-					income.setEndTime(Date.from(startTime.plusMinutes(10).atZone(ZoneId.systemDefault()).toInstant()));
-					dayList.add(income);
-				}
+				// 随机涨幅 0.4~0.6，决定当天总亏损
+				BigDecimal change = RandomUtil.randomBigDecimal(BigDecimal.valueOf(0.4), BigDecimal.valueOf(0.6))
+						.setScale(4, RoundingMode.DOWN);
+				BigDecimal totalDeficit = dayIncome.multiply(change).setScale(4, RoundingMode.DOWN);
+				BigDecimal totalProfit = dayIncome.add(totalDeficit);
 
-				// 打乱顺序，使盈亏分布随机
-				Collections.shuffle(dayList);
+				BigDecimal aveProfit = totalProfit.divide(BigDecimal.valueOf(176), 4, RoundingMode.DOWN);
+				BigDecimal aveDeficit = totalDeficit.divide(BigDecimal.valueOf(44), 4, RoundingMode.DOWN);
 
-				// 按胜率分配盈亏，前 profitCount 条盈利，其余亏损
-				double dayTotal = 0;
-				for (int i = 0; i < DAILY_COUNT; i++) {
-					double currentIncome;
-					if (i < profitCount) {
-						double multiplier = 1.5 + Math.random() * 1.5; // 1.5~3.0
-						currentIncome = Arith.mul(avgPerTrade, multiplier);
+				log.info("第{}天，每日目标：{}，总盈利：{}，总亏损：{}", day + 1, dayIncome, totalProfit, totalDeficit);
+
+				List<BigDecimal> incomeList = new ArrayList<>();
+				BigDecimal totalProfitSum = BigDecimal.ZERO;
+				BigDecimal totalDeficitSum = BigDecimal.ZERO;
+
+				// 176次盈利
+				for (int j = 0; j < 176; j++) {
+					BigDecimal num;
+					if (j == 175) {
+						// 最后一次平账
+						num = totalProfit.subtract(totalProfitSum).setScale(4, RoundingMode.DOWN);
+					} else if (RandomUtil.randomInt(1, 3) == 1) {
+						num = aveProfit.subtract(RandomUtil.randomBigDecimal(BigDecimal.valueOf(0.0001), BigDecimal.valueOf(0.003)))
+								.setScale(4, RoundingMode.DOWN);
 					} else {
-						double multiplier = 0.5 + Math.random() * 0.3; // 0.5~0.8（亏损）
-						currentIncome = Arith.mul(avgPerTrade, -multiplier);
+						num = aveProfit.add(RandomUtil.randomBigDecimal(BigDecimal.valueOf(0.0001), BigDecimal.valueOf(0.004)))
+								.setScale(4, RoundingMode.DOWN);
 					}
-					dayList.get(i).setIncome(currentIncome);
-					dayTotal = Arith.add(dayTotal, currentIncome);
+					totalProfitSum = totalProfitSum.add(num);
+					incomeList.add(num);
 				}
 
-				// 调整最后一条，使当天总和精确等于 dailyProfitTarget
-				double diff = Arith.sub(dailyProfitTarget, dayTotal);
-				com.yami.trading.bean.quant.QuantPreIncome last = dayList.get(DAILY_COUNT - 1);
-				last.setIncome(Arith.add(last.getIncome(), diff));
+				// 44次亏损
+				for (int j = 0; j < 44; j++) {
+					BigDecimal num;
+					if (j == 43) {
+						// 最后一次平账
+						num = totalDeficit.subtract(totalDeficitSum).setScale(4, RoundingMode.DOWN);
+						if (num.compareTo(BigDecimal.ZERO) > 0) {
+							num = num.negate();
+						}
+					} else {
+						BigDecimal random = RandomUtil.randomBigDecimal(BigDecimal.valueOf(0.0015), BigDecimal.valueOf(0.0022))
+								.setScale(4, RoundingMode.DOWN);
+						num = RandomUtil.randomInt(1, 3) == 1
+								? aveDeficit.negate().subtract(random)
+								: aveDeficit.negate().add(random);
+					}
+					totalDeficitSum = totalDeficitSum.add(num.abs());
+					incomeList.add(num);
+				}
 
-				allList.addAll(dayList);
+				// 打乱顺序，保证第一条为正数
+				Collections.shuffle(incomeList);
+				if (!incomeList.isEmpty() && incomeList.get(0).compareTo(BigDecimal.ZERO) < 0) {
+					for (int j = 1; j < incomeList.size(); j++) {
+						if (incomeList.get(j).compareTo(BigDecimal.ZERO) > 0) {
+							BigDecimal temp = incomeList.get(0);
+							incomeList.set(0, incomeList.get(j));
+							incomeList.set(j, temp);
+							break;
+						}
+					}
+				}
+
+				LocalDateTime startTime = now.plusDays(day);
+				LocalDateTime endTime = startTime.plusDays(1);
+				for (BigDecimal inc : incomeList) {
+					com.yami.trading.bean.quant.QuantPreIncome record = new com.yami.trading.bean.quant.QuantPreIncome();
+					record.setQuantOrderId(quantOrderId);
+					record.setStartTime(Date.from(startTime.atZone(ZoneId.systemDefault()).toInstant()));
+					record.setEndTime(Date.from(endTime.atZone(ZoneId.systemDefault()).toInstant()));
+					record.setIncome(inc.doubleValue());
+					record.setStatus(0);
+					record.setNumber(amountBD.multiply(
+							RandomUtil.randomBigDecimal(BigDecimal.valueOf(0.2), BigDecimal.valueOf(0.3))
+									.setScale(4, RoundingMode.DOWN)).doubleValue());
+					allList.add(record);
+				}
 			}
 
 			quantPreIncomeService.saveBatch(allList);
-			log.info("异步生成预收益记录成功，订单ID：{}，总记录数：{}，每日目标：{}",
-				quantOrderId, allList.size(), dailyProfitTarget);
+			log.info("异步生成预收益记录成功，订单ID：{}，总记录数：{}", quantOrderId, allList.size());
 		} catch (Exception e) {
 			log.error("异步生成预收益记录失败，订单ID：{}", quantOrderId, e);
 		}
