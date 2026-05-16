@@ -70,75 +70,65 @@ public class QuantPreIncomeJob {
 	 */
 	@Async
 	public void generatePreIncomeRecordsAsync(String quantOrderId, Double amount, int cycleDays, double dailyRate) {
-		// 计算每日目标收益 = 投资金额 × 日利率
+		// 每日目标收益 = 投资金额 × 日利率%
 		double dailyProfitTarget = Arith.mul(amount, dailyRate / 100);
-		// 计算总记录数：220条/天 × 周期天数
-		int totalCount = DAILY_COUNT * cycleDays;
-		// 计算盈利记录数：80% × 总记录数
-		int profitCount = (int) (totalCount * PROFIT_RATIO);
-		// 计算亏损记录数：剩余部分
-		int lossCount = totalCount - profitCount;
-		
-		log.info("开始异步生成预收益记录，机器人订单ID：{}，金额：{}，周期天数：{}，日利率：{}%，每日目标收益：{}", 
+		int profitCount = (int) (DAILY_COUNT * PROFIT_RATIO); // 每天盈利条数
+		int lossCount = DAILY_COUNT - profitCount;            // 每天亏损条数
+		double avgPerTrade = dailyProfitTarget / DAILY_COUNT; // 每条平均收益基准
+
+		log.info("开始异步生成预收益记录，订单ID：{}，金额：{}，周期：{}天，日利率：{}%，每日目标：{}",
 			quantOrderId, amount, cycleDays, dailyRate, dailyProfitTarget);
-		
+
 		try {
-			List<com.yami.trading.bean.quant.QuantPreIncome> incomeList = new ArrayList<>();
+			List<com.yami.trading.bean.quant.QuantPreIncome> allList = new ArrayList<>();
 			LocalDateTime now = LocalDateTime.now();
 
-			for (int i = 0; i < totalCount; i++) {
-				com.yami.trading.bean.quant.QuantPreIncome income = new com.yami.trading.bean.quant.QuantPreIncome();
-				income.setQuantOrderId(quantOrderId);
-				income.setNumber(amount);
-				income.setStatus(0);
-
-				LocalDateTime startTime = now.plusMinutes(i * 10L);
-				LocalDateTime endTime = startTime.plusMinutes(10);
-
-				income.setStartTime(Date.from(startTime.atZone(ZoneId.systemDefault()).toInstant()));
-				income.setEndTime(Date.from(endTime.atZone(ZoneId.systemDefault()).toInstant()));
-
-				incomeList.add(income);
-			}
-
-			Collections.shuffle(incomeList);
-
-			// 平均每次收益（用于确保总和符合目标）
-			double avgPerTrade = dailyProfitTarget / DAILY_COUNT;
-			double totalGenerated = 0;
-
-			for (int i = 0; i < incomeList.size(); i++) {
-				com.yami.trading.bean.quant.QuantPreIncome income = incomeList.get(i);
-				double currentIncome;
-				
-				if (i < profitCount) {
-					// 盈利记录：基于平均收益的1.5~3倍
-					double multiplier = 1.5 + Math.random() * 1.5;
-					currentIncome = Arith.mul(avgPerTrade, multiplier);
-				} else {
-					// 亏损记录：基于平均收益的-2~-0.5倍
-					double multiplier = -2 + Math.random() * 1.5;
-					currentIncome = Arith.mul(avgPerTrade, multiplier);
+			for (int day = 0; day < cycleDays; day++) {
+				// 生成当天 DAILY_COUNT 条记录（时间窗口连续）
+				List<com.yami.trading.bean.quant.QuantPreIncome> dayList = new ArrayList<>();
+				for (int i = 0; i < DAILY_COUNT; i++) {
+					com.yami.trading.bean.quant.QuantPreIncome income = new com.yami.trading.bean.quant.QuantPreIncome();
+					income.setQuantOrderId(quantOrderId);
+					income.setNumber(amount);
+					income.setStatus(0);
+					long minuteOffset = (long) day * DAILY_COUNT * 10 + i * 10L;
+					LocalDateTime startTime = now.plusMinutes(minuteOffset);
+					income.setStartTime(Date.from(startTime.atZone(ZoneId.systemDefault()).toInstant()));
+					income.setEndTime(Date.from(startTime.plusMinutes(10).atZone(ZoneId.systemDefault()).toInstant()));
+					dayList.add(income);
 				}
-				
-				income.setIncome(currentIncome);
-				totalGenerated = Arith.add(totalGenerated, currentIncome);
+
+				// 打乱顺序，使盈亏分布随机
+				Collections.shuffle(dayList);
+
+				// 按胜率分配盈亏，前 profitCount 条盈利，其余亏损
+				double dayTotal = 0;
+				for (int i = 0; i < DAILY_COUNT; i++) {
+					double currentIncome;
+					if (i < profitCount) {
+						double multiplier = 1.5 + Math.random() * 1.5; // 1.5~3.0
+						currentIncome = Arith.mul(avgPerTrade, multiplier);
+					} else {
+						double multiplier = 0.5 + Math.random() * 0.3; // 0.5~0.8（亏损）
+						currentIncome = Arith.mul(avgPerTrade, -multiplier);
+					}
+					dayList.get(i).setIncome(currentIncome);
+					dayTotal = Arith.add(dayTotal, currentIncome);
+				}
+
+				// 调整最后一条，使当天总和精确等于 dailyProfitTarget
+				double diff = Arith.sub(dailyProfitTarget, dayTotal);
+				com.yami.trading.bean.quant.QuantPreIncome last = dayList.get(DAILY_COUNT - 1);
+				last.setIncome(Arith.add(last.getIncome(), diff));
+
+				allList.addAll(dayList);
 			}
 
-			// 调整最后一条记录，使每日总和精确等于目标收益
-			if (totalCount > 0) {
-				double dailyTotalTarget = Arith.mul(dailyProfitTarget, cycleDays);
-				double diff = Arith.sub(dailyTotalTarget, totalGenerated);
-				
-				com.yami.trading.bean.quant.QuantPreIncome lastIncome = incomeList.get(totalCount - 1);
-				lastIncome.setIncome(Arith.add(lastIncome.getIncome(), diff));
-			}
-
-			quantPreIncomeService.saveBatch(incomeList);
-			log.info("异步生成预收益记录成功，机器人订单ID：{}，记录数：{}，每日目标收益：{}", 
-				quantOrderId, incomeList.size(), dailyProfitTarget);
+			quantPreIncomeService.saveBatch(allList);
+			log.info("异步生成预收益记录成功，订单ID：{}，总记录数：{}，每日目标：{}",
+				quantOrderId, allList.size(), dailyProfitTarget);
 		} catch (Exception e) {
-			log.error("异步生成预收益记录失败，机器人订单ID：{}", quantOrderId, e);
+			log.error("异步生成预收益记录失败，订单ID：{}", quantOrderId, e);
 		}
 	}
 }
