@@ -547,7 +547,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         double back_money = Arith.add(entity.getAmount(), entity.getProfit());
         Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId());
         double freezeBefore = wallet.getFreezeMoney().doubleValue();
-        walletService.updateWithLockAndFreeze(entity.getPartyId(), back_money, 0, Arith.sub(0, entity.getAmount()));
+        walletService.updateWithLockAndFreeze(entity.getPartyId(), back_money, 0, Arith.sub(0, back_money));
 
         MoneyLog moneylog = new MoneyLog();
         moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
@@ -686,12 +686,12 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             double back_money = Arith.add(entity.getAmount(), entity.getProfit());
             Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId().toString());
             double freezeBefore = wallet.getFreezeMoney().doubleValue();
-            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, entity.getAmount()));
+            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, back_money));
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
             moneylog.setAmount(BigDecimal.valueOf(back_money));
-            moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, entity.getAmount())));
+            moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, back_money)));
             moneylog.setUserId(entity.getUuid());
             moneylog.setWalletType(WalletConstants.WALLET_USDT);
             moneylog.setLog("Quant Order redeem, principal+profit from frozen to available, orderNo[" + entity.getOrder_no() + "]");

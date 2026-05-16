@@ -187,6 +187,11 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                     preIncome.setStatus(1);
                     quantPreIncomeService.updateById(preIncome);
 
+                    // 每日收益写入冻结余额
+                    if (dailyTotalProfit > 0) {
+                        walletService.updateWithLockAndFreeze(order.getPartyId(), 0, 0, dailyTotalProfit);
+                    }
+
                     saveMinerOrders
                             .add(new MinerOrderMessage(order.getOrder_no(), order.getProfit(), order.getCompute_day()));
                     // 更新矿机订单
@@ -272,6 +277,11 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                 preIncome.setStartTime(new Date((long) (System.currentTimeMillis() - (60 + Math.random() * 60) * 1000)));
                 preIncome.setEndTime(new Date());
                 quantPreIncomeService.updateById(preIncome);
+
+                // 每日收益写入冻结余额
+                if (dailyTotalProfit > 0) {
+                    walletService.updateWithLockAndFreeze(order.getPartyId(), 0, 0, dailyTotalProfit);
+                }
 
                 saveMinerOrders
                         .add(new MinerOrderMessage(order.getOrder_no(), order.getProfit(), order.getCompute_day()));
