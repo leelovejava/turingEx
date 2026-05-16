@@ -183,10 +183,6 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 	 */
 	@Override
 	public double selectTotalIncome(String quantOrderId) {
-		QueryWrapper<QuantPreIncome> qw = new QueryWrapper<QuantPreIncome>()
-				.eq("quant_order_id", quantOrderId)
-				// 只统计已使用记录，排除 status=0（未使用）的预生成数据
-				.eq("status", 1);
-		return this.list(qw).stream().mapToDouble(o -> o.getIncome() == null ? 0 : o.getIncome()).sum();
+		return baseMapper.sumIncomeByOrderId(quantOrderId);
 	}
 }

@@ -543,11 +543,12 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
     }
 
     protected void saveMinerCloseUsdt(MinerOrder entity) {
-        // 赎回：冻结余额减少，可用余额增加（本金+收益）
-        double back_money = Arith.add(entity.getAmount(), entity.getProfit());
+        double realProfit = quantPreIncomeService.selectTotalIncome(entity.getUuid());
+        double totalFreeze = Arith.add(entity.getAmount(), realProfit);
+        double back_money = totalFreeze;
         Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId());
         double freezeBefore = wallet.getFreezeMoney().doubleValue();
-        walletService.updateWithLockAndFreeze(entity.getPartyId(), back_money, 0, Arith.sub(0, back_money));
+        walletService.updateWithLockAndFreeze(entity.getPartyId(), back_money, 0, Arith.sub(0, totalFreeze));
 
         MoneyLog moneylog = new MoneyLog();
         moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
@@ -598,8 +599,15 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         // 体验矿机不退还本金
         boolean isTestMiner = "Y".equals(miner.getTest());
         if ("usdt".equals(buyCurrency)) {
-            if (entity.getAmount() != 0 && !isTestMiner) {
-                saveMinerCloseUsdt(entity);
+            if (entity.getAmount() != 0) {
+                if (isTestMiner) {
+                    // 体验矿机：只退收益，但冻结的本金要扣除
+                    double realProfit = quantPreIncomeService.selectTotalIncome(entity.getUuid());
+                    double totalFreeze = Arith.add(entity.getAmount(), realProfit);
+                    walletService.updateWithLockAndFreeze(entity.getPartyId(), realProfit, 0, Arith.sub(0, totalFreeze));
+                } else {
+                    saveMinerCloseUsdt(entity);
+                }
             }
         } else {
             List<Realtime> realtimes = this.dataService.realtime(buyCurrency);
@@ -670,8 +678,8 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         Miner miner = minerService.findById(entity.getMiner_id());
         boolean isTestMiner = miner != null && "Y".equals(miner.getTest());
 
-        // 赎回时计算收益
-        minerOrderProfitService.saveComputeOrderProfit(entity);
+        // 赎回时统计 status=1 的已结算收益
+        double realProfit = quantPreIncomeService.selectTotalIncome(entity.getUuid());
 
         if (isOtherCoin) {
             List<Realtime> realtimes = this.dataService.realtime(minerBuySymbol);
@@ -681,12 +689,14 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             close = realtimes.get(0).getClose();
 
             saveMinerCloseOtherCoin(entity, minerBuySymbol);
-        } else if (entity.getAmount() != 0 && !isTestMiner) {// 体验矿机不退还本金
-            // 赎回：冻结余额减少，可用余额增加（本金+收益）
-            double back_money = Arith.add(entity.getAmount(), entity.getProfit());
+        } else if (entity.getAmount() != 0) {
+            // freeze_money 包含本金+收益，赎回时全部解冻
+            double totalFreeze = Arith.add(entity.getAmount(), realProfit);
+            // 体验矿机不退本金，只退收益给用户
+            double back_money = isTestMiner ? realProfit : totalFreeze;
             Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId().toString());
             double freezeBefore = wallet.getFreezeMoney().doubleValue();
-            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, back_money));
+            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, totalFreeze));
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
