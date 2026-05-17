@@ -95,7 +95,10 @@
             <!-- 照片示例（仅当可编辑时显示） -->
             <template v-if="!disabled()">
                 <div class="mb-4 textColor text-26">{{ $t('photoExample') }}</div>
-                <img src="@/assets/image/kyc/kyc-demo.png" alt="照片示例" style="width:100%;height:auto;" class="w-auto h-56 mb-24">
+                <div class="flex justify-between mb-24">
+                    <img src="@/assets/image/kyc/kyc_demo1.png" alt="正面示例" style="width:48%;height:auto;">
+                    <img src="@/assets/image/kyc/kyc_demo2.png" alt="反面示例" style="width:48%;height:auto;">
+                </div>
             </template>
             
             <!-- 提交按钮 -->
