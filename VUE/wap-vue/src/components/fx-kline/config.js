@@ -1,4 +1,10 @@
+const toNY = (ts) => {
+  return new Date(ts).toLocaleString('en-US', { timeZone: 'America/New_York', hour12: false })
+    .replace(',', '')
+}
+
 export default {
+  timestampFormat: (ts) => toNY(ts),
   // 网格线
   grid: {
     show: true,
