@@ -57,22 +57,12 @@ export const tableOption = {
     }, {
       label: '手机号',
       prop: 'userMobile',
-      search: true
+      search: true,
+      formatter: (row) => row.userMobile || '未绑定'
     }, {
       label: '邮箱',
       prop: 'userMail',
       search: true
-    }, {
-      label: '手机号绑定',
-      prop: 'userMobileBind',
-      type:'select',
-      dicData:[{
-        label:'已绑定',
-        value:true
-      },{
-        label:'未绑定',
-        value:false
-      }]
     }, {
       label: '邮箱绑定',
       prop: 'mailBind',

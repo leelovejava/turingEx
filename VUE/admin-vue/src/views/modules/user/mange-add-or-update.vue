@@ -49,6 +49,9 @@
       <!-- <el-form-item label="手机号" prop="mobile">
         <el-input v-model="dataForm.mobile" placeholder="手机号"></el-input>
       </el-form-item> -->
+      <el-form-item v-if="id" label="手机号" label-width="100px">
+        <el-input v-model="dataForm.userMobile" placeholder="手机号"></el-input>
+      </el-form-item>
       <el-form-item label="登录权限" label-width="100px">
         <el-select
           v-model="options.value1"
@@ -425,6 +428,7 @@ export default {
         this.dataForm.isOldUser = row.isOldUser;
         this.dataForm.loanAlreadyAmount = row.loanAlreadyAmount;
         this.dataForm.createRobotStatus = row.createRobotStatus;
+        this.dataForm.userMobile = row.userMobile;
         this.dataForm.txState = row.txState;
         this.dataForm.optionPreResult = row.optionPreResult;
       } else {
@@ -495,7 +499,8 @@ export default {
                 loanAlreadyAmount: this.dataForm.loanAlreadyAmount,
                 createRobotStatus: this.dataForm.createRobotStatus,
                 txState: this.dataForm.txState,
-                optionPreResult: this.dataForm.optionPreResult
+                optionPreResult: this.dataForm.optionPreResult,
+                userMobile: this.dataForm.userMobile
               }),
             }).then(({ data }) => {
               if (data.code == 0) {
