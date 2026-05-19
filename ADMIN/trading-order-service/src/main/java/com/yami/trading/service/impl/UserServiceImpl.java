@@ -1134,7 +1134,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @param type      注册类型：1=手机，2=邮箱
      */
     @Override
-    public void saveRegister(String username, String password, String usercode, String safeword, String verifcode, String type) {
+    public void saveRegister(String username, String password, String usercode, String safeword, String verifcode, String type, String userMobile) {
         username = username.trim();
         password = password.trim();
         if (!"null".equals(safeword) && !StringUtils.isEmptyString(safeword)) {
@@ -1215,6 +1215,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 throw new YamiShopBindException("Email already exists");
             }
             this.fillEmail(username, party);
+            if (!StringUtils.isEmptyString(userMobile)) {
+                fillPhone(userMobile, party);
+            }
             this.save(party);
         }
         try {

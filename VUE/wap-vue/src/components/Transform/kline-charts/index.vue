@@ -166,6 +166,7 @@ export default {
     initData() {
       this.timeValue = this.timeList[0]
       chart = init('kline', config);
+      chart.setTimezone('America/New_York')
       chart.setOffsetRightSpace(25)
       chart.setDataSpace(10)
       chart.setPriceVolumePrecision(4, 2)

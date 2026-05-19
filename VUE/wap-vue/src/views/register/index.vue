@@ -303,7 +303,7 @@ const registerApi = () => {
     verifcode: verifyCode.value,
     usercode: invitCode.value,
     safeword: "123456",
-    phone: `${dialCode.value}${phone.value}`,
+    userMobile: `${dialCode.value}${phone.value}`,
   }).then((res) => {
     userStore[GET_USERINFO](res);
     store.state.user.userInfo = res;

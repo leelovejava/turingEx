@@ -148,6 +148,7 @@ const updateCharts = async (nowData) => {
 
 const initData = async () => {
   chart = init('kline', config);
+  chart.setTimezone('America/New_York')
   chart.setOffsetRightSpace(15)
   chart.setDataSpace(10)
   if (props.isShowsolid) {

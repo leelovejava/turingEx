@@ -55,6 +55,14 @@
         ></el-input>
       </el-form-item>
 
+      <el-form-item label="手机号码" prop="userMobile" style="width: auto">
+        <el-input
+          v-model="dataForm.userMobile"
+          placeholder="请输入手机号码"
+          style="width: 510px"
+        ></el-input>
+      </el-form-item>
+
       <span>证件照</span>
       <el-divider></el-divider>
       <el-row>
@@ -354,6 +362,7 @@ export default {
               idFrontImg: this.idFrontImg1,
               idBackImg: this.idBackImg1,
               handheldPhoto: this.handheldPhoto1,
+              userMobile: this.dataForm.userMobile,
             }),
           }).then(({ data }) => {
             if (data.code == 0) {

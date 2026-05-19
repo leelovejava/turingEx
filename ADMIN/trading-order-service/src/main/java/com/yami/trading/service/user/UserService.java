@@ -156,7 +156,7 @@ public interface UserService   extends IService<User> {
      */
     public User findPartyByVerifiedEmail(String email);
 
-    void saveRegister(String username, String password, String usercode, String safeword, String verifcode, String type);
+    void saveRegister(String username, String password, String usercode, String safeword, String verifcode, String type, String userMobile);
 
     void logout(String userId);
 

@@ -194,7 +194,7 @@ public class ApiUserController {
      * 手机/邮箱注册接口
      */
     @RequestMapping("register")
-    public Object register(String username, String password, String safeword, String verifcode, String usercode, String type) {
+    public Object register(String username, String password, String safeword, String verifcode, String usercode, String type, String userMobile) {
         // 注册类型：1/手机；2/邮箱；
         String error = this.validateParam(username, verifcode, password, type);
         if (!StringUtils.isNullOrEmpty(error)) {
@@ -209,7 +209,7 @@ public class ApiUserController {
         // 资金密码不符合设定
             throw new YamiShopBindException("Fund password does not meet requirements");
         }
-        userService.saveRegister(username, password, usercode, safeword, verifcode, type);
+        userService.saveRegister(username, password, usercode, safeword, verifcode, type, userMobile);
         User secUser = userService.findByUserName(username);
         Log log = new Log();
         log.setCategory(Constants.LOG_CATEGORY_SECURITY);

@@ -17,7 +17,6 @@ export const tableOption = {
   delBtn: false,
   viewBtn: false,
   menu:true,
-  selection: false,
   props: {
     label: 'label',
     value: 'value'
@@ -59,8 +58,9 @@ export const tableOption = {
     label: '实名姓名',
     prop: 'name'
   }, {
-    label: '绑定手机',
-    prop: 'userMobile'
+    label: '手机号码',
+    prop: 'userMobile',
+    formatter: (row) => row.userMobile || '未绑定'
   }, {
     label: '绑定邮箱',
     prop: 'userMail'
