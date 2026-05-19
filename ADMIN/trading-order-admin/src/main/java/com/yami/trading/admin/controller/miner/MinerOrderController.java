@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yami.trading.service.miner.service.MinerOrderService;
 import com.yami.trading.service.miner.service.MinerService;
+import com.yami.trading.service.miner.job.MinerOrderProfitJob;
 import com.yami.trading.service.quant.service.QuantPreIncomeService;
 import com.yami.trading.bean.quant.QuantPreIncome;
 
@@ -52,6 +53,8 @@ public class MinerOrderController {
     protected SysparaService sysparaService;
     @Autowired
     protected QuantPreIncomeService quantPreIncomeService;
+    @Autowired
+    protected MinerOrderProfitJob minerOrderProfitJob;
 
     private final String action = "api/minerOrder!";
 
@@ -108,7 +111,15 @@ public class MinerOrderController {
                 int runningDays = 0;
                 if (data.get("create_time") != null) {
                     Date runStartDate = DateUtils.toDate(data.get("create_time").toString());
-                    runningDays = Math.max(daysBetween(runStartDate, new Date()), 0) + 1;
+                    String state2 = data.get("state") != null ? data.get("state").toString() : "1";
+                    if (!"1".equals(state2) && data.get("stop_time") != null) {
+                        // 已结束：运行天数 = create_time 到 stop_time
+                        Date stopDate = DateUtils.toDate(data.get("stop_time").toString());
+                        runningDays = Math.max(daysBetween(runStartDate, stopDate), 0) + 1;
+                    } else {
+                        // 运行中：运行天数 = create_time 到现在
+                        runningDays = Math.max(daysBetween(runStartDate, new Date()), 0) + 1;
+                    }
                 }
                 // 运行天数
                 data.put("days", runningDays);
@@ -668,5 +679,17 @@ public class MinerOrderController {
         return Integer.parseInt(String.valueOf(between_days));
     }
 
+    /**
+     * 手动触发矿机收益计算
+     * https://api.helixcapital.net/api/minerOrder!runProfit.action
+     */
+    @RequestMapping(action + "runProfit.action")
+    public Object runProfit() {
+        ResultObject resultObject = new ResultObject();
+        minerOrderProfitJob.taskJob();
+        resultObject.setCode("0");
+        resultObject.setMsg("success");
+        return resultObject;
+    }
 
 }

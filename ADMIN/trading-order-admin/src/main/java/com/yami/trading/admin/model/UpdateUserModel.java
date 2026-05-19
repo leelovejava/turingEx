@@ -73,4 +73,6 @@ public class UpdateUserModel {
     @ApiModelProperty("期权(杠杆交易)预设结果: -1.亏损,0.未设置,1.盈利")
     private Integer optionPreResult;
 
+    @ApiModelProperty("手机号码")
+    private String userMobile;
 }

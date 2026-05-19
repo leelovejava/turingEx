@@ -68,9 +68,9 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 		queryWrapper.eq("quant_order_id", quantOrderId)
 				// 未使用
 				.eq("status", 0)
-				// end_time 在今日范围内
-				.ge("end_time", dayStart)
-				.lt("end_time", nextDayStart)
+				// start_time 在今日范围内
+				.ge("start_time", dayStart)
+				.lt("start_time", nextDayStart)
 				// 随机取一条
 				.last("ORDER BY RAND() LIMIT 1");
 		return this.getOne(queryWrapper, false);

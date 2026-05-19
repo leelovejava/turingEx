@@ -59,6 +59,11 @@ public class UserDataController {
     @Autowired
     LogService logService;
 
+    /**
+     * userData/list
+     * @param model
+     * @return
+     */
     @PostMapping("list")
     @ApiOperation("列表")
     public Result<Page<UserDataDto>> list(@Valid @RequestBody UserDataListModel model) {
@@ -142,6 +147,9 @@ public class UserDataController {
         }
         if (model.getOptionPreResult() != null) {
             user.setOptionPreResult(model.getOptionPreResult());
+        }
+        if (model.getUserMobile() != null) {
+            user.setUserMobile(model.getUserMobile());
         }
         
         userService.updateById(user);

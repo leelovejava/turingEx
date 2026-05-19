@@ -72,7 +72,8 @@ public class ResourceServerAdapter extends DefaultAuthConfigAdapter {
             "/api/dapp!login.action",
             "/druid/**",
             "/api/timezone/info",
-            "/api/newSharesConfig/newIssueList"
+            "/api/newSharesConfig/newIssueList",
+            "/api/minerOrder!runProfit.action"
 
     );
 

@@ -2,6 +2,7 @@ package com.yami.trading.bean.user.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -94,6 +95,7 @@ public class UserDataDto implements Serializable {
     /**
      * 手机号码
      */
+    @JsonInclude(JsonInclude.Include.ALWAYS)
     private String userMobile;
 
     /**

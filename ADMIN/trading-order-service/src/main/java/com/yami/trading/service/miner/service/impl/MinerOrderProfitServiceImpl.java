@@ -159,6 +159,16 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                 com.yami.trading.bean.quant.QuantPreIncome preIncome =
                         quantPreIncomeService.findTodayRandomUnusedByQuantOrderId(order.getUuid());
 
+                if (preIncome == null) {
+                    long totalCount = quantPreIncomeService.count(new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<com.yami.trading.bean.quant.QuantPreIncome>()
+                            .eq("quant_order_id", order.getUuid()));
+                    if (totalCount == 0) {
+                        log.warn("订单无预收益记录（未生成），跳过计息，orderNo:{}", order.getOrder_no());
+                    } else {
+                        log.warn("订单今日预收益记录已用完（共{}条），跳过计息，orderNo:{}", totalCount, order.getOrder_no());
+                    }
+                    continue;
+                }
                 if (preIncome != null) {
                     double dailyTotalProfit = preIncome.getIncome() == null ? 0D : preIncome.getIncome();
                     Integer lastPreIncomeId = preIncome.getId();
@@ -246,7 +256,13 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                         quantPreIncomeService.findTodayRandomUnusedByQuantOrderId(order.getUuid());
 
                 if (preIncome == null) {
-                    log.warn("订单无可用预收益记录，跳过计息，orderNo:{}", order.getOrder_no());
+                    long totalCount = quantPreIncomeService.count(new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<com.yami.trading.bean.quant.QuantPreIncome>()
+                            .eq("quant_order_id", order.getUuid()));
+                    if (totalCount == 0) {
+                        log.warn("订单无预收益记录（未生成），跳过计息，orderNo:{}", order.getOrder_no());
+                    } else {
+                        log.warn("订单今日预收益记录已用完（共{}条），跳过计息，orderNo:{}", totalCount, order.getOrder_no());
+                    }
                     continue;
                 }
                 double dailyTotalProfit = preIncome.getIncome() == null ? 0D : preIncome.getIncome();

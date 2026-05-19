@@ -37,7 +37,6 @@
 
 
     <select id="listUser" resultType="com.yami.trading.bean.user.dto.UserDto">
-
         SELECT u.*, u.user_mobile AS userMobile, w.money FROM tz_user u LEFT JOIN tz_wallet w ON u.user_id=w.user_id
 
         where 1=1 and u.role_name in
@@ -94,12 +93,10 @@
     </select>
 
     <select id="listUserAndRecom" resultType="com.yami.trading.bean.user.dto.UserDataDto">
-
-        SELECT u.*,r.user_name AS 'recomUserName' FROM tz_user u LEFT JOIN
+        SELECT u.*, u.user_mobile AS userMobile, r.user_name AS recomUserName FROM tz_user u LEFT JOIN
         tz_user r
         ON u.user_recom=r.user_id
-
-        where 1=1 and u.role_name in
+        where u.role_name in
         <foreach collection="roleNames" separator="," index="index" open="(" close=")" item="r">
             #{r}
         </foreach>
