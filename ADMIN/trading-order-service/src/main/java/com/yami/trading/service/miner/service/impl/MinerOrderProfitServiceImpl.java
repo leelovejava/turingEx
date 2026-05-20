@@ -197,8 +197,8 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                     preIncome.setStatus(1);
                     quantPreIncomeService.updateById(preIncome);
 
-                    // 每日收益写入冻结余额
-                    if (dailyTotalProfit > 0) {
+                    // 每日收益写入冻结余额（正负收益都写入，保持与profit一致）
+                    if (dailyTotalProfit != 0) {
                         walletService.updateWithLockAndFreeze(order.getPartyId(), 0, 0, dailyTotalProfit);
                     }
 
@@ -294,8 +294,8 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                 preIncome.setEndTime(new Date());
                 quantPreIncomeService.updateById(preIncome);
 
-                // 每日收益写入冻结余额
-                if (dailyTotalProfit > 0) {
+                // 每日收益写入冻结余额（正负收益都写入，保持与profit一致）
+                if (dailyTotalProfit != 0) {
                     walletService.updateWithLockAndFreeze(order.getPartyId(), 0, 0, dailyTotalProfit);
                 }
 

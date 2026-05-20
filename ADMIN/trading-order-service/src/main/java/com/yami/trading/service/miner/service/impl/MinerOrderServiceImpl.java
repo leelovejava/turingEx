@@ -601,10 +601,11 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         if ("usdt".equals(buyCurrency)) {
             if (entity.getAmount() != 0) {
                 if (isTestMiner) {
-                    // 体验矿机：只退收益，但冻结的本金要扣除
+                    // 体验矿机：只退收益，冻结余额全部清零（用实际freeze_money避免残留）
                     double realProfit = quantPreIncomeService.selectTotalIncome(entity.getUuid());
-                    double totalFreeze = Arith.add(entity.getAmount(), realProfit);
-                    walletService.updateWithLockAndFreeze(entity.getPartyId(), realProfit, 0, Arith.sub(0, totalFreeze));
+                    Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId());
+                    double actualFreeze = wallet.getFreezeMoney().doubleValue();
+                    walletService.updateWithLockAndFreeze(entity.getPartyId(), realProfit, 0, Arith.sub(0, actualFreeze));
                 } else {
                     saveMinerCloseUsdt(entity);
                 }
@@ -690,13 +691,13 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
             saveMinerCloseOtherCoin(entity, minerBuySymbol);
         } else if (entity.getAmount() != 0) {
-            // freeze_money 包含本金+收益，赎回时全部解冻
-            double totalFreeze = Arith.add(entity.getAmount(), realProfit);
-            // 体验矿机不退本金，只退收益给用户
-            double back_money = isTestMiner ? realProfit : totalFreeze;
             Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId().toString());
             double freezeBefore = wallet.getFreezeMoney().doubleValue();
-            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, totalFreeze));
+            // 用实际freeze_money全部解冻，避免历史负收益未写入导致残留
+            double actualFreeze = freezeBefore;
+            // 体验矿机不退本金，只退收益给用户
+            double back_money = isTestMiner ? realProfit : actualFreeze;
+            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, actualFreeze));
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
