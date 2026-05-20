@@ -21,7 +21,7 @@ public interface RechargeBlockchainOrderService  extends IService<RechargeBlockc
      * 手动到账
      * @param id
      */
-    void manualReceipt(String id, BigDecimal amount,String operator_username);
+    void manualReceipt(String id, BigDecimal amount, String operator_username, String coinType);
 
     /**
      * 驳回申请

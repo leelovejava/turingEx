@@ -22,4 +22,7 @@ public class ManualReceiptModel {
     @ApiModelProperty("资金密码")
     @NotBlank
     private  String safePasssword;
+
+    @ApiModelProperty("到账币种(BTC/ETH/USDT)，为空则使用订单原始币种")
+    private String coinType;
 }

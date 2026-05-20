@@ -96,7 +96,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
 
     @Override
     @Transactional
-    public void manualReceipt(String id, BigDecimal amount, String operator_username) {
+    public void manualReceipt(String id, BigDecimal amount, String operator_username, String coinType) {
 //        Date now = new Date();
         RechargeBlockchainOrder recharge = getById(id);
         if (recharge == null) {
@@ -116,6 +116,8 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             updateById(recharge);
             return;
         }
+        // 到账币种：优先使用前端传入的 coinType，否则使用订单原始币种
+        String targetSymbol = (coinType != null && !coinType.isEmpty()) ? coinType.toLowerCase() : recharge.getSymbol();
         recharge.setReviewTime(new Date());
         recharge.setSucceeded(1);
         WalletLog walletLog = walletLogService.find(Constants.MONEYLOG_CATEGORY_RECHARGE, recharge.getOrderNo());
@@ -125,9 +127,9 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             entity.setExtra(recharge.getOrderNo());
             entity.setOperator(operator_username);
             entity.setUsername(party.getUserName());
-            entity.setUserId(recharge.getPartyId());        
+            entity.setUserId(recharge.getPartyId());
             // 修改充值数量
-            entity.setLog("Modify recharge amount, original[" + recharge.getVolume() + "], new[" + amount.doubleValue() + "], orderNo[" + recharge.getOrderNo() + "]");
+            entity.setLog("Modify recharge amount, original[" + recharge.getVolume() + "], new[" + amount.doubleValue() + "], orderNo[" + recharge.getOrderNo() + "], targetCoin[" + targetSymbol + "]");
             logService.save(entity);
             walletLog.setAmount(amount.doubleValue());
             recharge.setVolume(amount.doubleValue());
@@ -136,7 +138,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
          * 如果是usdt则加入wallet，否则寻找walletExtend里相同币种
          */
         Syspara user_recom_bonus_open = sysparaService.find("user_recom_bonus_open");
-        if (isUsdtAssetSymbol(recharge.getSymbol())) {
+        if (isUsdtAssetSymbol(targetSymbol)) {
             double amount1 = recharge.getVolume();
             Wallet wallet = new Wallet();
             wallet = walletService.saveWalletByPartyId(recharge.getPartyId());
@@ -231,7 +233,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             userService.updateById(party);
         } else {
 
-            List<Realtime> realtime_list = this.dataService.realtime(recharge.getSymbol());
+            List<Realtime> realtime_list = this.dataService.realtime(targetSymbol);
             log.error("手动到账realtime_list::" + realtime_list);
             Realtime realtime = null;
             if (realtime_list.size() > 0) {
@@ -242,7 +244,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             // 对应usdt价格
             double transfer_usdt = realtime.getClose();
             WalletExtend walletExtend = new WalletExtend();
-            walletExtend = walletService.saveExtendByPara(recharge.getPartyId(), recharge.getSymbol());
+            walletExtend = walletService.saveExtendByPara(recharge.getPartyId(), targetSymbol);
             double volume = recharge.getVolume();
             double amount_before = walletExtend.getAmount();
             // walletExtend = walletService.saveWalletExtendByParaAndUpdate(String.valueOf(recharge.getPartyId()), recharge.getSymbol(), volume);
@@ -259,7 +261,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             // 充值订单
             moneyLog.setLog("Recharge orderNo[" + recharge.getOrderNo() + "]");
             moneyLog.setUserId(recharge.getPartyId());
-            moneyLog.setWalletType(recharge.getSymbol());
+            moneyLog.setWalletType(targetSymbol);
             moneyLog.setContentType(Constants.MONEYLOG_CONTENT_RECHARGE);
             moneyLogService.save(moneyLog);
             walletLog.setStatus(recharge.getSucceeded());
@@ -268,7 +270,7 @@ public class RechargeBlockchainOrderServiceImpl extends ServiceImpl<RechargeBloc
             /**
              * 给他的代理添加充值记录
              */
-            userDataService.saveRechargeHandle(recharge.getPartyId(), recharge.getVolume(), recharge.getSymbol());
+            userDataService.saveRechargeHandle(recharge.getPartyId(), recharge.getVolume(), targetSymbol);
             /**
              * 买币-币冲充值其他非usdt币时使用
              */

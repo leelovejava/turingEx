@@ -4,11 +4,23 @@
     :close-on-click-modal="false"
     :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule"  ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
-      <el-form-item v-if="type=='n'" label="币种"  prop="coin">
+      <el-form-item v-if="type=='n'" label="原始币种" prop="coin">
         <el-input v-model="dataForm.coin" disabled placeholder="用户充值币种"></el-input>
       </el-form-item>
-      <el-form-item  v-if="type=='n'" label="充值数量"  prop="amount">
-        <el-input v-model="dataForm.amount" type="number" placeholder="充值币种数量"></el-input>
+      <el-form-item v-if="type=='n'" label="到账币种" prop="targetCoin">
+        <el-select v-model="dataForm.targetCoin" @change="onTargetCoinChange" style="width:100%">
+          <el-option label="BTC" value="BTC"></el-option>
+          <el-option label="ETH" value="ETH"></el-option>
+          <el-option label="USDT" value="USDT"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item v-if="type=='n'" label="充值数量" prop="amount">
+        <el-input v-model="dataForm.amount" type="number" placeholder="充值币种数量">
+          <template slot="append">{{ dataForm.targetCoin }}</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item v-if="type=='n' && rateInfo" label="汇率参考">
+        <span style="color:#909399;font-size:12px">{{ rateInfo }}</span>
       </el-form-item>
       <el-form-item v-if="type=='n'" label="资金密码"  prop="safePasssword">
         <el-input v-model="dataForm.safePasssword" type="password" placeholder="资金密码"></el-input>
@@ -55,13 +67,14 @@
         visible: false,
         id:'',
         type:'',//n.手动转   m驳回
+        rateInfo: '',
+        originalAmount: '',
         dataForm: {
           amount: '',
           safePasssword: '',
           coin:'',
+          targetCoin:'',
           content:'',
-          amount:'',
-          //channelAmount
         },
         dataRule: {
           amount: [
@@ -84,26 +97,70 @@
     },
     methods: {
       init (type,id,coin,channelAmount) {
-        this.dataForm.content= ''
         this.resClear()
         this.id = id || ''
         this.type = type || ''
+        this.originalAmount = channelAmount || ''
         this.dataForm.amount = channelAmount
-        if(coin){
-          this.dataForm.coin = coin
-        }
+        this.dataForm.coin = coin || ''
+        this.dataForm.targetCoin = coin ? coin.toUpperCase() : 'USDT'
+        this.rateInfo = ''
         this.visible = true
-        this.$nextTick(() => {
-        //this.$refs.dataForm.resetFields()  
-      })
       },
       resClear(){
         this.dataForm = {
           amount: '',
           safePasssword: '',
           coin:'',
+          targetCoin:'',
           content:'',
         }
+        this.rateInfo = ''
+        this.originalAmount = ''
+      },
+      onTargetCoinChange(targetCoin) {
+        const sourceCoin = (this.dataForm.coin || '').toUpperCase()
+        if (!sourceCoin || !this.originalAmount) return
+        if (sourceCoin === targetCoin) {
+          this.dataForm.amount = this.originalAmount
+          this.rateInfo = ''
+          return
+        }
+        // 查询两个币种的 USDT 汇率
+        this.$http({
+          url: this.$http.adornUrl('/rate/exchangeRate/list'),
+          method: 'get',
+          params: this.$http.adornParams({ current: 1, size: 100 })
+        }).then(({ data }) => {
+          if (data.code !== 0) return
+          const list = data.data.records || data.data || []
+          const getRate = (coin) => {
+            const item = list.find(r => r.name && r.name.toUpperCase() === coin)
+            return item ? parseFloat(item.rata) : null
+          }
+          // 若源币种是 USDT，直接用目标汇率换算
+          let convertedAmount
+          if (sourceCoin === 'USDT') {
+            const targetRate = getRate(targetCoin)
+            if (!targetRate) { this.$message.error('未找到 ' + targetCoin + ' 汇率'); return }
+            convertedAmount = (parseFloat(this.originalAmount) / targetRate).toFixed(8)
+            this.rateInfo = `1 ${targetCoin} ≈ ${targetRate} USDT`
+          } else if (targetCoin === 'USDT') {
+            const sourceRate = getRate(sourceCoin)
+            if (!sourceRate) { this.$message.error('未找到 ' + sourceCoin + ' 汇率'); return }
+            convertedAmount = (parseFloat(this.originalAmount) * sourceRate).toFixed(2)
+            this.rateInfo = `1 ${sourceCoin} ≈ ${sourceRate} USDT`
+          } else {
+            const sourceRate = getRate(sourceCoin)
+            const targetRate = getRate(targetCoin)
+            if (!sourceRate) { this.$message.error('未找到 ' + sourceCoin + ' 汇率'); return }
+            if (!targetRate) { this.$message.error('未找到 ' + targetCoin + ' 汇率'); return }
+            const usdtAmount = parseFloat(this.originalAmount) * sourceRate
+            convertedAmount = (usdtAmount / targetRate).toFixed(8)
+            this.rateInfo = `1 ${sourceCoin} ≈ ${sourceRate} USDT，1 ${targetCoin} ≈ ${targetRate} USDT`
+          }
+          this.dataForm.amount = convertedAmount
+        })
       },
       // 表单提交
       dataFormSubmit: Debounce(function () {
@@ -117,6 +174,7 @@
                 'id': this.id,
                 'safePasssword':encrypt(this.dataForm.safePasssword),
                 'amount': this.dataForm.amount,
+                'coinType': this.dataForm.targetCoin,
               })
             }).then(({data}) => {
               if(data.code == 0){

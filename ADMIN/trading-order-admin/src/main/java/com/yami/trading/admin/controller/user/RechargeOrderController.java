@@ -73,7 +73,7 @@ public class RechargeOrderController {
     public Result<?> manualReceipt(@RequestBody @Valid ManualReceiptModel model) {
         SysUser user = sysUserService.getSysUserById(SecurityUtils.getSysUser().getUserId());
         sysUserService.checkSafeWord(model.getSafePasssword());
-        rechargeBlockchainOrderService.manualReceipt(model.getId(), model.getAmount(), user.getUsername());
+        rechargeBlockchainOrderService.manualReceipt(model.getId(), model.getAmount(), user.getUsername(), model.getCoinType());
         return Result.ok(null);
     }
 
