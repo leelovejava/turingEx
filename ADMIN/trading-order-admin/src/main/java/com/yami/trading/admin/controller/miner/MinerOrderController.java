@@ -115,10 +115,10 @@ public class MinerOrderController {
                     if (!"1".equals(state2) && data.get("stop_time") != null) {
                         // 已结束：运行天数 = create_time 到 stop_time
                         Date stopDate = DateUtils.toDate(data.get("stop_time").toString());
-                        runningDays = Math.max(daysBetween(runStartDate, stopDate), 0) + 1;
+                        runningDays = Math.max(daysBetween(runStartDate, stopDate), 0);
                     } else {
                         // 运行中：运行天数 = create_time 到现在
-                        runningDays = Math.max(daysBetween(runStartDate, new Date()), 0) + 1;
+                        runningDays = Math.max(daysBetween(runStartDate, new Date()), 0);
                     }
                 }
                 // 运行天数
