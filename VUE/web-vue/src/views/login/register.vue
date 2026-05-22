@@ -205,7 +205,7 @@ const clickChange = (index) => {
   subPwd.value = "";
 };
 const verifyEmailNoPass = () => {
-  let emailReg = /[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/;
+  let emailReg = /@/;
   if (recordActive.value == 0 && !emailReg.test(register.value.username)) {
     ElMessage.error(t("qsr_zhengquedeyouxiang"));
     return true;

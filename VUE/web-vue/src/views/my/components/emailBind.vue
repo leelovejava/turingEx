@@ -114,7 +114,7 @@ export default {
     },
     confirmBtn() {
       //let emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-      let emailReg = /[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/; 
+      let emailReg = /@/;
       if (!emailReg.test(this.email)) {
         ElMessage.error(this.$t("message.user.qsr_zhengquedeyouxiang"));
         return;

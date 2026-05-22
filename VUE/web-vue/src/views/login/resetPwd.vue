@@ -197,7 +197,7 @@ const tansferSelecCoun = () => {
 };
 
 const verifyEmailNoPass = () => {
-  let emailReg = /[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/;
+  let emailReg = /@/;
   // 验证邮箱
   if (currentType.value == 2 && !emailReg.test(restObj.value.username)) {
     ElMessage.error(t("qsr_zhengquedeyouxiang"));

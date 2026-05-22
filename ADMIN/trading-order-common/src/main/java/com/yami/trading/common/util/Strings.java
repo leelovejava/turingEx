@@ -477,7 +477,7 @@ public class Strings {
     /**
      * 正则表达式：验证邮箱
      */
-    public static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+    public static final String REGEX_EMAIL = "^[^@]+@[^@]+$";
  
     /**
      * 正则表达式：验证汉字
