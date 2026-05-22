@@ -2969,6 +2969,7 @@ export default {
     aiQuantStrategyBalanced: 'Estratégia equilibrada',
     aiQuantStrategyGrowth: 'Estratégia de crescimento',
     aiQuantSubmitOk: 'Enviado',
+    buyTooFrequent: 'Muito frequente, tente novamente após 30 segundos',
     aiQuantChooseTitle: 'Escolher',
     aiQuantSpotCopyTitle: 'Copy trading a vista',
     aiQuantSpotCopyDesc: 'Siga os principais especialistas em trading a vista do mundo',

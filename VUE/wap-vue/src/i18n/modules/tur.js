@@ -2986,6 +2986,7 @@ export default {
     aiQuantStrategyBalanced: 'Dengeli strateji',
     aiQuantStrategyGrowth: 'Büyüme stratejisi',
     aiQuantSubmitOk: 'Gönderildi',
+    buyTooFrequent: 'Çok sık, lütfen 30 saniye sonra tekrar deneyin',
     aiQuantChooseTitle: 'Seç',
     aiQuantSpotCopyTitle: 'Spot kopyalama',
     aiQuantSpotCopyDesc: 'Dünyanın en iyi spot tüccarlarını takip edin',

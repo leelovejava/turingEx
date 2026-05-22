@@ -2986,6 +2986,7 @@ export default {
     aiQuantStrategyBalanced: 'Ισορροπημένη στρατηγική',
     aiQuantStrategyGrowth: 'Στρατηγική ανάπτυξης',
     aiQuantSubmitOk: 'Υποβλήθηκε',
+    buyTooFrequent: 'Πολύ συχνά, δοκιμάστε ξανά μετά από 30 δευτερόλεπτα',
     aiQuantChooseTitle: 'Επιλογή',
     aiQuantSpotCopyTitle: 'Copy trading spot',
     aiQuantSpotCopyDesc: 'Ακολουθήστε τους κορυφαίους ειδικούς spot trading στον κόσμο',

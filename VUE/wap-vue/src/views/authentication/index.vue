@@ -253,9 +253,13 @@ const onSubmit = () => {
     showToast(t('entryCredent'))
     return
   }
-  // 证件正面和背面必须都上传
+  // 证件正面和背面必须都上传且上传完成
   if (!frontFile.value.length || !reverseFile.value.length) {
     showToast(t('uploadComplete'))
+    return
+  }
+  if (!frontFile.value[0].resURL || !reverseFile.value[0].resURL) {
+    showToast(t('uploading'))
     return
   }
   _applyIdentify({

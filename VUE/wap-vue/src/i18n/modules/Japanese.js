@@ -2878,6 +2878,7 @@ export default {
     aiQuantStrategyBalanced: 'バランス戦略',
     aiQuantStrategyGrowth: '成長戦略',
     aiQuantSubmitOk: '送信完了',
+    buyTooFrequent: '操作が頻繁すぎます。30秒後に再試行してください',
     aiQuantChooseTitle: '選択',
     aiQuantSpotCopyTitle: '現物コピートレード',
     aiQuantSpotCopyDesc: '世界トップクラスの現物トレード専門家をフォロー',

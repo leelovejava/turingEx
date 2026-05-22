@@ -2949,6 +2949,7 @@ export default {
     aiQuantStrategyBalanced: 'Chiến lược cân bằng',
     aiQuantStrategyGrowth: 'Chiến lược tăng trưởng',
     aiQuantSubmitOk: 'Đã gửi',
+    buyTooFrequent: 'Quá thường xuyên, vui lòng thử lại sau 30 giây',
     aiQuantChooseTitle: 'Chọn',
     aiQuantSpotCopyTitle: 'Sao chép giao dịch tiền mặt',
     aiQuantSpotCopyDesc: 'Theo dõi các chuyên gia giao dịch tiền mặt hàng đầu thế giới',

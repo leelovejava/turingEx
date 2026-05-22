@@ -160,7 +160,7 @@
         <!-- 底部操作：取消 / 确认认购 -->
         <div class="deposit-footer">
           <button type="button" class="link-cancel" @click="depositOpen = false">{{ t('aiQuantCancel') }}</button>
-          <button type="button" class="link-confirm" @click="onConfirmDeposit">{{ t('aiQuantConfirm') }}</button>
+          <button type="button" class="link-confirm" :disabled="buyLoading" @click="onConfirmDeposit">{{ t('aiQuantConfirm') }}</button>
         </div>
       </div>
     </van-popup>
@@ -286,6 +286,8 @@ const buyCurrency = ref('usdt')
 const currentMinerId = ref('')
 // 当前选中的交易对，如 BTC/USDT
 const currentSymbol = ref('')
+// 购买请求进行中
+const buyLoading = ref(false)
 // 弹窗展示的上下文信息（币种标签、预期收益区间）
 const depositContext = ref({
   pairLabel: 'BTC/USDT',
@@ -324,16 +326,22 @@ async function openDeposit(strategy) {
 
 // 确认认购：先调 getOpen 获取 session_token，再调 open 实际下单
 async function onConfirmDeposit() {
-  const preview = await machineMakeOrder({ minerId: currentMinerId.value, amount: amount.value, cycle: periodDays.value })
-  await confirmMichineOrder({
-    session_token: preview?.session_token,
-    minerId: currentMinerId.value,
-    amount: amount.value,
-    symbol: currentSymbol.value,
-    cycle: periodDays.value,
-  })
-  depositOpen.value = false
-  showToast({ message: t('aiQuantSubmitOk'), position: 'middle' })
+  if (buyLoading.value) return
+  buyLoading.value = true
+  try {
+    const preview = await machineMakeOrder({ minerId: currentMinerId.value, amount: amount.value, cycle: periodDays.value })
+    await confirmMichineOrder({
+      session_token: preview?.session_token,
+      minerId: currentMinerId.value,
+      amount: amount.value,
+      symbol: currentSymbol.value,
+      cycle: periodDays.value,
+    })
+    depositOpen.value = false
+    showToast({ message: t('aiQuantSubmitOk'), position: 'middle' })
+  } finally {
+    buyLoading.value = false
+  }
 }
 </script>
 

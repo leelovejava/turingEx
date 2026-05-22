@@ -2985,6 +2985,7 @@ export default {
     aiQuantStrategyBalanced: 'Strategie echilibrată',
     aiQuantStrategyGrowth: 'Strategie de creștere',
     aiQuantSubmitOk: 'Trimis',
+    buyTooFrequent: 'Prea frecvent, încercați din nou după 30 de secunde',
     aiQuantChooseTitle: 'Alege',
     aiQuantSpotCopyTitle: 'Copiere spot',
     aiQuantSpotCopyDesc: 'Urmărește comercianți de top la nivel mondial',

@@ -2980,6 +2980,7 @@ export default {
     aiQuantStrategyBalanced: 'กลยุทธ์สมดุล',
     aiQuantStrategyGrowth: 'กลยุทธ์การเติบโต',
     aiQuantSubmitOk: 'ส่งแล้ว',
+    buyTooFrequent: 'บ่อยเกินไป กรุณาลองอีกครั้งหลังจาก 30 วินาที',
     aiQuantChooseTitle: 'เลือก',
     aiQuantSpotCopyTitle: 'คัดลอกการซื้อขายสปอต',
     aiQuantSpotCopyDesc: 'ติดตามผู้เชี่ยวชาญการซื้อขายสปอตชั้นนำระดับโลก',

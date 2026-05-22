@@ -2991,6 +2991,7 @@ export default {
     aiQuantStrategyBalanced: '균형 전략',
     aiQuantStrategyGrowth: '성장 전략',
     aiQuantSubmitOk: '제출 완료',
+    buyTooFrequent: '너무 자주 시도했습니다. 30초 후에 다시 시도하세요',
     aiQuantChooseTitle: '선택',
     aiQuantSpotCopyTitle: '현물 카피 트레이딩',
     aiQuantSpotCopyDesc: '세계 최고의 현물 트레이딩 전문가를 팔로우하세요',

@@ -3026,6 +3026,7 @@ export default {
     aiQuantStrategyBalanced: '平衡策略',
     aiQuantStrategyGrowth: '增长策略',
     aiQuantSubmitOk: '已提交',
+    buyTooFrequent: '操作太频繁，请30秒后再试',
     aiQuantChooseTitle: '选择',
     aiQuantSpotCopyTitle: '现货跟单',
     aiQuantSpotCopyDesc: '跟随全球顶尖现货交易高手',

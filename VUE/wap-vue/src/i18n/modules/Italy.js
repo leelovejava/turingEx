@@ -3104,6 +3104,7 @@ export default {
     aiQuantStrategyBalanced: 'Strategia bilanciata',
     aiQuantStrategyGrowth: 'Strategia di crescita',
     aiQuantSubmitOk: 'Inviato',
+    buyTooFrequent: 'Troppo frequente, riprova dopo 30 secondi',
     aiQuantChooseTitle: 'Scegli',
     aiQuantSpotCopyTitle: 'Copy trading spot',
     aiQuantSpotCopyDesc: 'Segui i migliori esperti di trading spot al mondo',

@@ -3027,6 +3027,7 @@ export default {
     aiQuantStrategyBalanced: 'Ausgewogene Strategie',
     aiQuantStrategyGrowth: 'Wachstumsstrategie',
     aiQuantSubmitOk: 'Eingereicht',
+    buyTooFrequent: 'Zu häufig, bitte nach 30 Sekunden erneut versuchen',
     aiQuantChooseTitle: 'Wählen',
     aiQuantSpotCopyTitle: 'Spot-Copy-Trading',
     aiQuantSpotCopyDesc: 'Folgen Sie den weltweit besten Spot-Trading-Experten',

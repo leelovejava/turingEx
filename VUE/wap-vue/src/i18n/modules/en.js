@@ -3030,6 +3030,7 @@ export default {
     aiQuantStrategyBalanced: 'Balanced Strategy',
     aiQuantStrategyGrowth: 'Growth Strategy',
     aiQuantSubmitOk: 'Submitted',
+    buyTooFrequent: 'Too frequent, please try again after 30 seconds',
     aiQuantChooseTitle: 'Choose',
     aiQuantSpotCopyTitle: 'Spot Copy Trading',
     aiQuantSpotCopyDesc: "Follow the world's top spot trading experts",

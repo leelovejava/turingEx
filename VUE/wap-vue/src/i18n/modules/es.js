@@ -2786,6 +2786,7 @@ export default {
     aiQuantStrategyBalanced: 'Estrategia equilibrada',
     aiQuantStrategyGrowth: 'Estrategia de crecimiento',
     aiQuantSubmitOk: 'Enviado',
+    buyTooFrequent: 'Demasiado frecuente, intente de nuevo después de 30 segundos',
     aiQuantChooseTitle: 'Elegir',
     aiQuantSpotCopyTitle: 'Copy trading al contado',
     aiQuantSpotCopyDesc: 'Sigue a los mejores expertos en trading al contado del mundo',
