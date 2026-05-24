@@ -21,6 +21,8 @@ import com.yami.trading.service.syspara.SysparaService;
 import com.yami.trading.service.user.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,8 @@ import com.yami.trading.service.miner.service.MinerService;
 import com.yami.trading.service.miner.job.MinerOrderProfitJob;
 import com.yami.trading.service.quant.service.QuantPreIncomeService;
 import com.yami.trading.bean.quant.QuantPreIncome;
+
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -55,8 +59,11 @@ public class MinerOrderController {
     protected QuantPreIncomeService quantPreIncomeService;
     @Autowired
     protected MinerOrderProfitJob minerOrderProfitJob;
+    @Autowired
+    private RedissonClient redissonClient;
 
     private final String action = "api/minerOrder!";
+    private static final long ORDER_LOCK_LEASE_SECONDS = 60L;
 
     /**
      * 矿池订单 列表
@@ -338,6 +345,8 @@ public class MinerOrderController {
 //		}
 //		String partyId = this.getLoginPartyId();
         String partyId = SecurityUtils.getCurrentUserId();
+        RLock rLock = null;
+        boolean lockResult = false;
         try {
             String session_token = request.getParameter("session_token");
             String minerId = request.getParameter("minerId");
@@ -345,8 +354,15 @@ public class MinerOrderController {
             String symbol = request.getParameter("symbol");
             String cycleParam = request.getParameter("cycle");
 
-            String object = this.sessionTokenService.cacheGet(session_token);
-            this.sessionTokenService.del(session_token);
+            rLock = redissonClient.getLock("miner_order_open_" + partyId);
+            lockResult = rLock.tryLock(0, ORDER_LOCK_LEASE_SECONDS, TimeUnit.SECONDS);
+            if (!lockResult) {
+                resultObject.setCode("1");
+                resultObject.setMsg("Please try again later");
+                return resultObject;
+            }
+
+            String object = this.sessionTokenService.consume(session_token);
             if ((!partyId.equals(object))) {
                 resultObject.setCode("1");
                 resultObject.setMsg("请稍后再试");
@@ -384,6 +400,10 @@ public class MinerOrderController {
             resultObject.setCode("1");
             resultObject.setMsg("程序错误");
             logger.error("error:", e);
+        } finally {
+            if (lockResult && rLock != null && rLock.isHeldByCurrentThread()) {
+                rLock.unlock();
+            }
         }
         return resultObject;
     }

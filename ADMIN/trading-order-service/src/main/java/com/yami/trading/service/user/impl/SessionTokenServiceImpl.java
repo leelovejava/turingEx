@@ -27,6 +27,14 @@ public class SessionTokenServiceImpl implements SessionTokenService {
     }
 
     @Override
+    public String consume(String session_token) {
+        if (StringUtils.isNullOrEmpty(session_token)) {
+            return null;
+        }
+        return cache.remove(session_token);
+    }
+
+    @Override
     public void del(String session_token) {
         if (StringUtils.isNullOrEmpty(session_token)) {
             return;

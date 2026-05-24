@@ -8,6 +8,8 @@ public interface SessionTokenService {
 
     public String cacheGet(String session_token);
 
+    public String consume(String session_token);
+
     public void del(String session_token);
 
 }
