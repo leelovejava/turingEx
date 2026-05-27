@@ -8,6 +8,7 @@
           <el-option label="已完成" :value="2" />
         </el-select>
         <el-input v-model.number="query.memberId" placeholder="用户ID" clearable class="w140" />
+        <el-input v-model="query.userMobile" placeholder="手机号码" clearable class="w140" />
         <el-button type="primary" @click="loadData(1)">查询</el-button>
       </div>
 
@@ -16,6 +17,7 @@
         <el-table-column prop="workOrderSn" label="工单号" min-width="180" />
         <el-table-column prop="title" label="标题" min-width="180" />
         <el-table-column prop="account" label="账号" min-width="140" />
+        <el-table-column prop="userMobile" label="手机号码" min-width="130" />
         <el-table-column prop="memberId" label="用户ID" width="110" />
         <el-table-column label="状态" width="100">
           <template slot-scope="scope">
@@ -84,6 +86,7 @@ export default {
         workOrderSn: '',
         status: null,
         memberId: null,
+        userMobile: '',
       },
       page: {
         current: 1,
@@ -120,6 +123,7 @@ export default {
           workOrderSn: this.query.workOrderSn || null,
           status: this.query.status,
           memberId: this.query.memberId,
+          userMobile: this.query.userMobile || null,
         }),
       }).then(({ data }) => {
         const pageData = data.data || {}
