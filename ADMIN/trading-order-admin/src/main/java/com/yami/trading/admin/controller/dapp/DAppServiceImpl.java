@@ -35,7 +35,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.web3j.utils.Convert;
@@ -99,9 +98,6 @@ public class DAppServiceImpl implements DAppService {
 	private PasswordCheckManager passwordCheckManager;
 	@Autowired
 	private PasswordManager passwordManager;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
 	// todo
 //	@Override
 //	public List<MiningPledgeConfig> getPledgeConfig() {
@@ -153,7 +149,7 @@ public class DAppServiceImpl implements DAppService {
 		// 注册类型：1/手机；2/邮箱；3/用户名；
 		int type = 5;
 
-		user = userService.register(username, passwordEncoder.encode(password), usercode, type,false);
+		user = userService.register(username, password, usercode, type,false);
 
 
 

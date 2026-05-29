@@ -49,6 +49,14 @@ public class QuantPreIncomeServiceImpl extends ServiceImpl<QuantPreIncomeMapper,
 		return this.list(queryWrapper);
 	}
 
+	@Override
+	public boolean markAsUsedIfUnused(Integer id) {
+		if (id == null) {
+			return false;
+		}
+		return baseMapper.markAsUsedIfUnused(id) == 1;
+	}
+
 	/**
 	 * 从今日未使用的收益记录中随机取一条（用于前端实时展示当日交易波动）
 	 *

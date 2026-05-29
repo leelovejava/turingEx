@@ -4,9 +4,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yami.trading.bean.quant.QuantPreIncome;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface QuantPreIncomeMapper extends BaseMapper<QuantPreIncome> {
 
     @Select("SELECT COALESCE(SUM(income), 0) FROM t_quant_pre_income WHERE quant_order_id = #{quantOrderId} AND status = 1")
     double sumIncomeByOrderId(@Param("quantOrderId") String quantOrderId);
+
+    @Update("UPDATE t_quant_pre_income SET status = 1 WHERE id = #{id} AND status = 0")
+    int markAsUsedIfUnused(@Param("id") Integer id);
 }

@@ -3,6 +3,7 @@ package com.yami.trading.service.miner.job;
 import com.yami.trading.bean.constans.WalletConstants;
 import com.yami.trading.bean.model.MoneyLog;
 import com.yami.trading.bean.model.User;
+import com.yami.trading.bean.model.Wallet;
 import com.yami.trading.common.constants.Constants;
 import com.yami.trading.service.MoneyLogService;
 import com.yami.trading.service.WalletService;
@@ -52,14 +53,19 @@ public class KycBonusExpireJob {
         for (User user : users) {
             try {
                 double amount = user.getKycBonusAmount();
+                Wallet wallet = walletService.saveWalletByPartyId(user.getUserId());
+                double freezeMoney = wallet.getFreezeMoney() == null ? 0D : wallet.getFreezeMoney().doubleValue();
+                double deductAmount = Math.min(amount, Math.max(freezeMoney, 0D));
 
-                // 从tz_wallet冻结余额中扣除体验金
-                walletService.updateWithLockAndFreeze(user.getUserId(), 0, 0, -amount);
+                // 从tz_wallet冻结余额中扣除体验金，最多扣到0，避免历史异常或重复任务扣成负数
+                if (deductAmount > 0D) {
+                    walletService.updateWithLockAndFreeze(user.getUserId(), 0, 0, -deductAmount);
+                }
 
                 // 记录资金日志
                 MoneyLog moneyLog = new MoneyLog();
                 moneyLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
-                moneyLog.setAmount(BigDecimal.valueOf(-amount));
+                moneyLog.setAmount(BigDecimal.valueOf(-deductAmount));
                 // KYC体验金7天未使用，自动取消冻结
                 moneyLog.setLog("KYC bonus not used within 7 days, auto cancelled");
                 moneyLog.setUserId(user.getUserId());
@@ -72,7 +78,7 @@ public class KycBonusExpireJob {
                 user.setKycBonusTime(null);
                 userService.updateById(user);
 
-                log.info("体验金过期处理成功, userId={}, amount={}", user.getUserId(), amount);
+                log.info("体验金过期处理成功, userId={}, amount={}, deductAmount={}", user.getUserId(), amount, deductAmount);
             } catch (Exception e) {
                 log.error("体验金过期处理失败, userId={}", user.getUserId(), e);
             }

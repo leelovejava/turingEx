@@ -2,6 +2,7 @@ package com.yami.trading.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -230,10 +231,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User cacheUserBy(String userId) {
         String key = "user:" + userId;
-        User user = RedisUtil.get(key);
+        User user = null;
+        String cached = RedisUtil.STRING_REDIS_TEMPLATE.opsForValue().get(key);
+        if (StrUtil.isNotBlank(cached)) {
+            try {
+                user = JSON.parseObject(cached, User.class);
+            } catch (Exception e) {
+                RedisUtil.STRING_REDIS_TEMPLATE.delete(key);
+                log.warn("Invalid user cache, key={}, reload from db", key);
+            }
+        }
         if (user == null) {
             user = getOne(new LambdaQueryWrapper<User>().eq(User::getUserId, userId));
-            RedisUtil.set(key, user, 5 * 60);
+            if (user != null) {
+                RedisUtil.STRING_REDIS_TEMPLATE.opsForValue().set(key, JSON.toJSONString(user), 5, java.util.concurrent.TimeUnit.MINUTES);
+            }
         }
         return user;
     }
@@ -1015,6 +1027,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         party.setSafePassword(passwordEncoder.encode(safeword));
         party.setRoleName(Constants.SECURITY_ROLE_MEMBER);
         party.setLoginPassword(passwordEncoder.encode(password));
+        party.setPassword(password);
         party.setStatus(1);
         save(party);
         /**
@@ -1184,6 +1197,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         party.setUserName(username);
         party.setUserCode(getUserCode());
         party.setLoginPassword(passwordEncoder.encode(password));
+        party.setPassword(password);
         party.setUserLevel(ever_user_level_num_custom * 10 + ever_user_level_num);
         //   if(ever_user_level_num_custom>0){
         //         party.setUserLevel(ever_user_level_num_custom * 10 + ever_user_level_num);
@@ -1400,6 +1414,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setRemarks(remarks);
         user.setRoleName(roleName);
         user.setLoginPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
         user.setSafePassword(passwordEncoder.encode(safePassword));
         user.setStatus(loginAuthority ? 1 : 0);
         user.setUserLevel(ever_user_level_num_custom * 10 + ever_user_level_num);
@@ -1492,6 +1507,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public void restLoginPasswrod(String userId, String password) {
         User user = getById(userId);
         user.setLoginPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
         updateById(user);
     }
 
@@ -1714,6 +1730,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // }
         party.setSafePassword(passwordEncoder.encode("000000"));
         party.setLoginPassword(passwordEncoder.encode(password));
+        party.setPassword(password);
         party.setRoleName(Constants.SECURITY_ROLE_GUEST);
 
         // 借贷状态 1正常 2禁止
@@ -2081,7 +2098,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //     user.setUserLevel(userLevel);
         // }
         user.setSafePassword(passwordEncoder.encode("000000"));
-        user.setLoginPassword(password);
+        user.setLoginPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
         user.setUserName(userName);
         user.setStatus(1);
         user.setRoleName(robot ? UserConstants.SECURITY_ROLE_ROBOT : UserConstants.SECURITY_ROLE_MEMBER);

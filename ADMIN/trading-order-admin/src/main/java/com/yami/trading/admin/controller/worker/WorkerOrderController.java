@@ -36,6 +36,7 @@ public class WorkerOrderController {
                 model.getWorkOrderSn(),
                 model.getStatus(),
                 model.getMemberId(),
+                model.getUserMobile(),
                 model.getCurrent(),
                 model.getSize(),
                 permissionFacade.getOwnerUserIds()

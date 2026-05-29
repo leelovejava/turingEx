@@ -29,7 +29,6 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,8 +57,6 @@ public class ApiIndexController {
     private PasswordCheckManager passwordCheckManager;
     @Autowired
     UserService userService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
     @Autowired
     SysparaService sysparaService;
     @Autowired
@@ -136,7 +133,7 @@ public class ApiIndexController {
         int type = model.getType();
 
         User user = userService.register(model.getUserName(),
-                passwordEncoder.encode(password)
+                password
                 , model.getUserCode(), model.getType(), false);
         UserInfoInTokenBO userInfoInToken = new UserInfoInTokenBO();
         userInfoInToken.setUserId(user.getUserId());
@@ -170,7 +167,7 @@ public class ApiIndexController {
         }
 
         User user = userService.register(username,
-                passwordEncoder.encode(password)
+                password
                 , model.getUserCode(), model.getType(), false);
         UserInfoInTokenBO userInfoInToken = new UserInfoInTokenBO();
         userInfoInToken.setUserId(user.getUserId());
@@ -219,7 +216,7 @@ public class ApiIndexController {
             User user = userService.findByUserName(reg.getUserName());
             if (user == null) {
                 user = userService.register(reg.getUserName(),
-                        passwordEncoder.encode(reg.getPassword())
+                        reg.getPassword()
                         , reg.getUserCode(), reg.getType(), false);
                 user.setWithdrawAuthority(false);
                 user.setRoleName(UserConstants.SECURITY_ROLE_TEST);

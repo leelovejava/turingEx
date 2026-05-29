@@ -27,6 +27,7 @@ import com.yami.trading.common.constants.WalletRedisKeys;
 import com.yami.trading.common.exception.BusinessException;
 import com.yami.trading.common.exception.YamiShopBindException;
 import com.yami.trading.common.util.*;
+import com.yami.trading.dao.WalletExtendMapper;
 import com.yami.trading.dao.user.WalletMapper;
 import com.yami.trading.service.MoneyLogService;
 import com.yami.trading.service.WalletService;
@@ -80,6 +81,8 @@ public class WalletServiceImpl extends ServiceImpl<WalletMapper, Wallet> impleme
     @Autowired
     WalletExtendService walletExtendService;
     @Autowired
+    WalletExtendMapper walletExtendMapper;
+    @Autowired
     @Lazy
     FinanceOrderService financeOrderService;
     @Autowired
@@ -131,51 +134,12 @@ public class WalletServiceImpl extends ServiceImpl<WalletMapper, Wallet> impleme
 
     @Override
     public void updateExtend(String partyId, String walletType, double amount, double frozenAmount) {
-        List<WalletExtend> walletExtends = walletExtendService.findByUserIdAndWallettype(partyId, walletType);
-        WalletExtend walletExtend = null;
-        if (CollectionUtils.isNotEmpty(walletExtends)) {
-            walletExtend = walletExtends.get(0);
-        }
-        if (walletExtend == null) {
-            walletExtend = new WalletExtend();
-            walletExtend.setPartyId(partyId);
-            walletExtend.setWallettype(walletType);
-            walletExtendService.save(walletExtend);
-        }
-        walletExtend.setAmount(Arith.add(walletExtend.getAmount(), amount));
-        walletExtend.setFreezeAmount(Arith.add(walletExtend.getFreezeAmount(), frozenAmount));
-        if (walletExtend.getAmount() < 0) {
-            log.error("钱包操作失败，类型：{}，余额：{}", walletType, walletExtend.getAmount());
-            throw new YamiShopBindException("余额不足");
-        }
-        if (!walletExtendService.updateById(walletExtend)) {
-            log.error("钱包操作失败，类型：{}，余额：{}", walletType, walletExtend.getAmount());
-            throw new YamiShopBindException("余额不足");
-        }
-        redisTemplate.opsForValue().set(WalletRedisKeys.WALLET_EXTEND_PARTY_ID + partyId + walletType, walletExtend);
+        updateExtendBalanceDelta(partyId, walletType, amount, 0, frozenAmount);
     }
 
     @Override
     public void updateExtend(String partyId, String walletType, double amount) {
-        List<WalletExtend> walletExtends = walletExtendService.findByUserIdAndWallettype(partyId, walletType);
-        WalletExtend walletExtend = null;
-        if (CollectionUtils.isNotEmpty(walletExtends)) {
-            walletExtend = walletExtends.get(0);
-        }
-        if (walletExtend == null) {
-            walletExtend = this.saveExtendByPara(partyId, walletType);
-        }
-        log.info(JSONUtil.toJsonStr(walletExtend));
-        walletExtend.setAmount(Arith.add(walletExtend.getAmount(), amount));
-        if (walletExtend.getAmount() < 0) {
-            log.error("钱包操作失败，用户：{}，类型：{}，余额：{}", partyId, walletType, walletExtend.getAmount());
-            throw new YamiShopBindException("余额不足");
-        }
-        if (!walletExtendService.updateById(walletExtend)) {
-            log.error("钱包操作失败，用户：{}，类型：{}，余额：{}", partyId, walletType, walletExtend.getAmount());
-            throw new YamiShopBindException("余额不足");
-        }
-        redisTemplate.opsForValue().set(WalletRedisKeys.WALLET_EXTEND_PARTY_ID + partyId + walletType, walletExtend);
+        updateExtendBalanceDelta(partyId, walletType, amount, 0, 0);
     }
 
     @Override
@@ -209,13 +173,8 @@ public class WalletServiceImpl extends ServiceImpl<WalletMapper, Wallet> impleme
         Date now = new Date();
         Wallet wallet = saveWalletByPartyId(userId);
         BigDecimal amountBefore = wallet.getMoney();
-        wallet.setMoney(wallet.getMoney().add(money));
-        wallet.setUpdateTime(now);
-        wallet.setUpdateTimeTs(now.getTime() / 1000L);
-        if (wallet.getMoney().doubleValue() < 0) {
-            throw new YamiShopBindException("余额不足");
-        }
-        updateById(wallet);
+        updateWalletBalanceDelta(userId, money, BigDecimal.ZERO, BigDecimal.ZERO);
+        Wallet walletAfter = findByUserId(userId);
 
         // 账变日志
         MoneyLog moneyLog = new MoneyLog();
@@ -227,7 +186,7 @@ public class WalletServiceImpl extends ServiceImpl<WalletMapper, Wallet> impleme
         moneyLog.setCategory(category);
         moneyLog.setAmountBefore(amountBefore);
         moneyLog.setAmount(money);
-        moneyLog.setAmountAfter(wallet.getMoney());
+        moneyLog.setAmountAfter(walletAfter.getMoney());
         moneyLog.setUserId(userId);
         moneyLog.setWalletType(walletType);
         moneyLog.setContentType(contentType);
@@ -855,40 +814,55 @@ public class WalletServiceImpl extends ServiceImpl<WalletMapper, Wallet> impleme
 
     @Override
     public void update(String userId, double amount) {
-        Wallet wallet = findByUserId(userId);
-        wallet.setMoney(new BigDecimal(Arith.add(wallet.getMoney().doubleValue(), amount)));
-        try {
-            if (!updateById(wallet)) {
-                log.error("钱包操作失败，用户：{}，变更：{}，余额：{}", userId, amount, wallet.getMoney());
-                throw new YamiShopBindException("余额不足");
-            }
-        } catch (Exception e) {
-            log.error("钱包操作失败", e);
-            throw new YamiShopBindException("余额不足");
-        }
+        updateWalletBalanceDelta(userId, amount, 0, 0);
 
     }
 
 
     @Override
     public void updateExtendWithLockAndFreeze(String partyId, String walletType, double amount, double lockAmount, double freezeAmount) {
-        List<WalletExtend> walletExtends = walletExtendService.findByUserIdAndWallettype(partyId, walletType);
-        WalletExtend walletExtend = walletExtends.get(0);
-        walletExtend.setAmount(Arith.add(walletExtend.getAmount(), amount));
-        walletExtend.setLockAmount(Arith.add(walletExtend.getLockAmount(), lockAmount));
-        walletExtend.setFreezeAmount(Arith.add(walletExtend.getFreezeAmount(), freezeAmount));
-        walletExtendService.updateById(walletExtend);
+        updateExtendBalanceDelta(partyId, walletType, amount, lockAmount, freezeAmount);
     }
 
 
     @Override
     public void updateWithLockAndFreeze(String partyId, double amount, double lockAmount, double freezeAmount) {
 
-        Wallet wallet = (Wallet) findByUserId(partyId);
-        wallet.setMoney(new BigDecimal(Arith.add(wallet.getMoney().doubleValue(), amount)));
-        wallet.setLockMoney(new BigDecimal(Arith.add(wallet.getLockMoney().doubleValue(), lockAmount)));
-        wallet.setFreezeMoney(new BigDecimal(Arith.add(wallet.getFreezeMoney().doubleValue(), freezeAmount)));
-        updateById(wallet);
+        updateWalletBalanceDelta(partyId, amount, lockAmount, freezeAmount);
+    }
+
+    private void updateWalletBalanceDelta(String partyId, double amount, double lockAmount, double freezeAmount) {
+        updateWalletBalanceDelta(partyId, BigDecimal.valueOf(amount), BigDecimal.valueOf(lockAmount), BigDecimal.valueOf(freezeAmount));
+    }
+
+    private void updateWalletBalanceDelta(String partyId, BigDecimal amount, BigDecimal lockAmount, BigDecimal freezeAmount) {
+        saveWalletByPartyId(partyId);
+        int updated = baseMapper.updateBalanceDelta(partyId, amount, lockAmount, freezeAmount);
+        if (updated != 1) {
+            log.error("钱包操作失败，用户：{}，可用变更：{}，锁定变更：{}，冻结变更：{}", partyId, amount, lockAmount, freezeAmount);
+            throw new YamiShopBindException("余额不足");
+        }
+    }
+
+    private void updateExtendBalanceDelta(String partyId, String walletType, double amount, double lockAmount, double freezeAmount) {
+        ensureWalletExtend(partyId, walletType);
+        int updated = walletExtendMapper.updateBalanceDelta(partyId, walletType, amount, lockAmount, freezeAmount);
+        if (updated != 1) {
+            log.error("钱包操作失败，用户：{}，类型：{}，可用变更：{}，锁定变更：{}，冻结变更：{}", partyId, walletType, amount, lockAmount, freezeAmount);
+            throw new YamiShopBindException("余额不足");
+        }
+        redisTemplate.delete(WalletRedisKeys.WALLET_EXTEND_PARTY_ID + partyId + walletType);
+    }
+
+    private void ensureWalletExtend(String partyId, String walletType) {
+        List<WalletExtend> walletExtends = walletExtendService.findByUserIdAndWallettype(partyId, walletType);
+        if (CollectionUtils.isNotEmpty(walletExtends)) {
+            return;
+        }
+        WalletExtend walletExtend = new WalletExtend();
+        walletExtend.setPartyId(partyId);
+        walletExtend.setWallettype(walletType);
+        walletExtendService.save(walletExtend);
     }
 
     @Override
@@ -995,18 +969,17 @@ public class WalletServiceImpl extends ServiceImpl<WalletMapper, Wallet> impleme
 
     @Override
     public void updateMoney(String symbol, String userId, BigDecimal moneyRevise) {
-        Wallet wallet = findByUserId(userId);
+        Wallet wallet = saveWalletByPartyId(userId);
         BigDecimal amountBefore = wallet.getMoney();
-        wallet.setMoney(wallet.getMoney().add(moneyRevise));
-        wallet.setUpdateTime(new Date());
-        updateById(wallet);
+        updateWalletBalanceDelta(userId, moneyRevise, BigDecimal.ZERO, BigDecimal.ZERO);
+        Wallet walletAfter = findByUserId(userId);
 
         // 账变日志
         MoneyLog moneyLog = new MoneyLog();
         moneyLog.setCategory(WalletConstants.MONEYLOG_CATEGORY_COIN);
         moneyLog.setAmountBefore(amountBefore);
         moneyLog.setAmount(moneyRevise);
-        moneyLog.setAmountAfter(wallet.getMoney().add(moneyRevise));
+        moneyLog.setAmountAfter(walletAfter.getMoney());
         moneyLog.setUserId(userId);
         moneyLog.setWalletType(WalletConstants.WALLET_USDT);
         moneyLog.setContentType(WalletConstants.MONEYLOG_CONTENT_RECHARGE);

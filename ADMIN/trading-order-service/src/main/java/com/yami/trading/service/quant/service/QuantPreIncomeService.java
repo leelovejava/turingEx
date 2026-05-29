@@ -29,6 +29,8 @@ public interface QuantPreIncomeService extends IService<QuantPreIncome> {
 	 */
 	void markAsUsed(Integer id);
 
+	boolean markAsUsedIfUnused(Integer id);
+
 	/** 查询今日已结算收益 */
 	double selectDayIncome(String quantOrderId);
 

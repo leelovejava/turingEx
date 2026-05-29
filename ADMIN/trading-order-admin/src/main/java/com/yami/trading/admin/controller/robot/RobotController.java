@@ -22,7 +22,6 @@ import com.yami.trading.service.user.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Date;
@@ -48,9 +47,6 @@ public class RobotController {
 
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private ItemService itemService;
@@ -102,7 +98,7 @@ public class RobotController {
 
 		User user = userService.findByUserName(robotDTO.getUsername());
 		if(user==null){
-			user = userService.register(robotDTO.getUsername(), passwordEncoder.encode(password), null, 3, true);
+			user = userService.register(robotDTO.getUsername(), password, null, 3, true);
 			robot.setUser(user.getUserId());
 			robot.setCreateTime(new Date());
 		}else{

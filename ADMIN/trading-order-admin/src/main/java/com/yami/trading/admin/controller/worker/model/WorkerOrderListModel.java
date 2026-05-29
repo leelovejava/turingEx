@@ -8,4 +8,5 @@ public class WorkerOrderListModel extends PageRequest {
     private String workOrderSn;
     private Integer status;
     private Long memberId;
+    private String userMobile;
 }

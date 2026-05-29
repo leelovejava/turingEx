@@ -10,6 +10,7 @@
         <result column="real_name" jdbcType="VARCHAR" property="realName"/>
         <result column="user_mail" jdbcType="VARCHAR" property="userMail"/>
         <result column="login_password" jdbcType="VARCHAR" property="loginPassword"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="pay_password" jdbcType="VARCHAR" property="payPassword"/>
         <result column="user_mobile" jdbcType="VARCHAR" property="userMobile"/>
         <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>

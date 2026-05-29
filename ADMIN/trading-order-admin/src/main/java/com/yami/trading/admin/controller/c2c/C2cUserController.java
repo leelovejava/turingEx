@@ -30,7 +30,6 @@ import com.yami.trading.sys.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,9 +63,6 @@ public class C2cUserController {
 
     @Autowired
     SysparaService sysparaService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     /**
      * 获取 承兑商 列表
@@ -419,7 +415,7 @@ public class C2cUserController {
             }
         } else if ("1".equals(c2c_user_type)) {
             ///  后台承兑商
-            party = userService.register(username_front, passwordEncoder.encode(password_front), usercode_front, Integer.valueOf(type_front), false);
+            party = userService.register(username_front, password_front, usercode_front, Integer.valueOf(type_front), false);
             if (null == party) {
                 throw new YamiShopBindException("后台承兑商：注册失败");
             }

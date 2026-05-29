@@ -18,13 +18,26 @@
     <select id="pagedQuery1" resultType="java.util.HashMap">
         select minerOrder.uuid id,minerOrder.order_no order_no ,minerOrder.miner_id minerId  ,
         minerOrder.amount amount,DATE_FORMAT(minerOrder.create_time,'%Y-%m-%d %H:%i:%S') create_time,
-        DATE(minerOrder.earn_time) earn_time,DATE(minerOrder.stop_time) stop_time,minerOrder.profit profit,
+        DATE(minerOrder.earn_time) earn_time,DATE(minerOrder.stop_time) stop_time,
+        (
+            SELECT COALESCE(SUM(qpi.income), 0)
+            FROM t_quant_pre_income qpi
+            WHERE qpi.quant_order_id = minerOrder.uuid
+            AND qpi.status = 1
+        ) profit,
         minerOrder.state state,minerOrder.base_compute_amount base_compute_amount,
         minerOrder.expected_total_income expected_total_income,
+        (
+            SELECT COALESCE(SUM(qpi.income), 0)
+            FROM t_quant_pre_income qpi
+            WHERE qpi.quant_order_id = minerOrder.uuid
+            AND qpi.status = 1
+        ) total_income,
         miner.cycle cycle,miner.cycle_close cycle_close,miner.daily_rate daily_rate,miner.test test,
         miner.name miner_name,miner.name_en miner_name_en,miner.name_cn miner_name_cn
         FROM t_miner_order minerOrder
-        LEFT JOIN t_miner miner ON miner.uuid= minerOrder.miner_id where 1=1
+        LEFT JOIN t_miner miner ON miner.uuid= minerOrder.miner_id
+        where 1=1
         <if test="partyId!=null and partyId!=''">
             AND minerOrder.party_id=#{partyId}
         </if>
@@ -46,9 +59,22 @@
     </select>
 
     <select id="pagedQueryAdmin" resultType="java.util.HashMap">
-        SELECT minerOrder.uuid id,minerOrder.order_no order_no  ,minerOrder.miner_id minerId  , minerOrder.amount amount,minerOrder.create_time create_time,minerOrder.base_compute_amount base_compute_amount,
-        minerOrder.earn_time earn_time,minerOrder.stop_time stop_time,minerOrder.profit profit,
+        SELECT minerOrder.uuid id,minerOrder.uuid uuid,minerOrder.order_no order_no  ,minerOrder.miner_id minerId  , minerOrder.amount amount,minerOrder.create_time create_time,minerOrder.base_compute_amount base_compute_amount,
+        minerOrder.earn_time earn_time,minerOrder.stop_time stop_time,
+        (
+            SELECT COALESCE(SUM(qpi.income), 0)
+            FROM t_quant_pre_income qpi
+            WHERE qpi.quant_order_id = minerOrder.uuid
+            AND qpi.status = 1
+        ) profit,
+        (
+            SELECT COALESCE(SUM(qpi.income), 0)
+            FROM t_quant_pre_income qpi
+            WHERE qpi.quant_order_id = minerOrder.uuid
+            AND qpi.status = 1
+        ) total_income,
         minerOrder.state state,minerOrder.close_time close_time,minerOrder.default_money default_money,
+        minerOrder.random_daily_rate random_daily_rate,minerOrder.symbol symbol,
         party.user_name username,party.user_code usercode,party.role_name rolename,
         miner.name miner_name,miner.name_en miner_name_en
         FROM t_miner_order minerOrder

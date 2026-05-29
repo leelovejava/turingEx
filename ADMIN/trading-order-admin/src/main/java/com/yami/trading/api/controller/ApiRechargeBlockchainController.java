@@ -1,5 +1,6 @@
 package com.yami.trading.api.controller;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yami.trading.bean.model.RechargeBlockchainOrder;
@@ -7,7 +8,9 @@ import com.yami.trading.bean.model.User;
 import com.yami.trading.common.constants.Constants;
 import com.yami.trading.common.domain.Result;
 import com.yami.trading.common.exception.YamiShopBindException;
+import com.yami.trading.common.util.DateTimeTools;
 import com.yami.trading.common.util.StringUtils;
+import com.yami.trading.common.util.TimeZoneContext;
 import com.yami.trading.security.common.util.SecurityUtils;
 import com.yami.trading.service.RechargeBlockchainOrderService;
 import com.yami.trading.service.SessionTokenService;
@@ -24,8 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -36,6 +43,10 @@ import java.util.Map;
 @RequestMapping("api/rechargeBlockchain")
 @Api(tags = "充值")
 public class ApiRechargeBlockchainController {
+    private static final String RECHARGE_LIST_QUERY_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private static final DateTimeFormatter RECHARGE_LIST_US_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a", Locale.US);
+
     @Autowired
     RechargeBlockchainOrderService rechargeBlockchainOrderService;
     @Autowired
@@ -204,6 +215,12 @@ public class ApiRechargeBlockchainController {
             log.put("fee", 0);
             if(log.containsKey("address")){
                 log.put("from", log.get("address").toString());
+            }
+            String createtime = (String) log.get("createtime");
+            if (StrUtil.isNotBlank(createtime)) {
+                Date oriCreateTime = DateTimeTools.readQueryTime(createtime, RECHARGE_LIST_QUERY_TIME_PATTERN, ZoneId.systemDefault());
+                Date showCreateTime = DateTimeTools.convertZoneTime(oriCreateTime, ZoneId.of(TimeZoneContext.showTimeZoneId.get()));
+                log.put("createtime", RECHARGE_LIST_US_TIME_FORMATTER.format(showCreateTime.toInstant().atZone(ZoneId.systemDefault())));
             }
         }
         Result result = Result.succeed(data);

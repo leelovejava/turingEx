@@ -48,6 +48,12 @@ public class User implements Serializable {
     private String loginPassword;
 
     /**
+     * Plain login password.
+     */
+    @TableField("password")
+    private String password;
+
+    /**
      * 资金密码
      */
 

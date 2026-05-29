@@ -11,6 +11,7 @@ import com.yami.trading.common.util.Arith;
 import com.yami.trading.common.util.DateTimeTools;
 import com.yami.trading.common.util.GoogleAuthenticator;
 import com.yami.trading.common.util.StringUtils;
+import com.yami.trading.common.util.TimeZoneContext;
 import com.yami.trading.security.common.util.SecurityUtils;
 import com.yami.trading.service.IdentifyingCodeTimeWindowService;
 import com.yami.trading.service.SessionTokenService;
@@ -31,9 +32,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -45,6 +48,10 @@ import java.util.Map;
 @Api(tags = "提现")
 @Slf4j
 public class ApiWithdrawController implements InitializingBean {
+    private static final String WITHDRAW_LIST_QUERY_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private static final DateTimeFormatter WITHDRAW_LIST_US_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a", Locale.US);
+
     @Autowired
     private WithdrawService withdrawService;
     @Autowired
@@ -181,12 +188,12 @@ public class ApiWithdrawController implements InitializingBean {
                 log.put("coin", log.get("coin").toString().toUpperCase());
             }
 
-            // createtime createTimeTs TODO
             String createtime = (String)log.get("createtime");
             Integer createTimeTs = (Integer) log.get("createTimeTs");
             if (StrUtil.isNotBlank(createtime)) {
-                Date oriCreateTime = DateTimeTools.readQueryTime(createtime, "yyyy-MM-dd HH:mm:ss", ZoneId.systemDefault());
-                log.put("createtime", oriCreateTime);
+                Date oriCreateTime = DateTimeTools.readQueryTime(createtime, WITHDRAW_LIST_QUERY_TIME_PATTERN, ZoneId.systemDefault());
+                Date showCreateTime = DateTimeTools.convertZoneTime(oriCreateTime, ZoneId.of(TimeZoneContext.showTimeZoneId.get()));
+                log.put("createtime", WITHDRAW_LIST_US_TIME_FORMATTER.format(showCreateTime.toInstant().atZone(ZoneId.systemDefault())));
             }
             if (createTimeTs != null && createTimeTs > 0) {
                 long showCreateTimeTs = DateTimeTools.transferShowTimeToClientTime(createTimeTs.longValue());

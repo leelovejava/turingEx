@@ -428,6 +428,7 @@ public class ApiUserController {
             }
         }
         party.setLoginPassword(passwordEncoder.encode(password));
+        party.setPassword(password);
         // 更新密码
         userService.updateById(party);
         return Result.succeed();
@@ -767,6 +768,7 @@ public class ApiUserController {
             }
         }
         party.setLoginPassword(passwordEncoder.encode(password));
+        party.setPassword(password);
         // 更新密码
         userService.updateById(party);
         return Result.succeed();
@@ -805,6 +807,7 @@ public class ApiUserController {
             throw new YamiShopBindException("New passwords do not match");
         }
         secUser.setLoginPassword(passwordEncoder.encode(re_password));
+        secUser.setPassword(re_password);
         userService.updateById(secUser);
         return Result.succeed(null);
     }

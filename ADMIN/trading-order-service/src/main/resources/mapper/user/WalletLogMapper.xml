@@ -8,7 +8,7 @@
         select
             log.order_no as order_no,
         log.create_time_ts as createTimeTs,
-        log.wallettype as coin, log.amount as amount, log.status as status, date_format(log.create_time,'%y-%m-%d %h:%i:%s') as createtime,
+        log.wallettype as coin, log.amount as amount, log.status as status, date_format(log.create_time,'%Y-%m-%d %H:%i:%s') as createtime,
             recharge.description as failure_msg, recharge.tx as hash, recharge.address as address, recharge.channel_amount as volume,
             recharge.coin as symbol, recharge.blockchain_name as blockchain_name, recharge.tx as tx
 
@@ -40,7 +40,7 @@
         log.wallettype as coin,
         log.amount as amount,
         log.status as status,
-        date_format(log.create_time, '%Y-%m-%d %h:%i:%s') as createtime,
+        date_format(log.create_time, '%Y-%m-%d %H:%i:%s') as createtime,
         withdraw.amount_fee as fee,
         log.create_time_ts as createTimeTs,
         withdraw.address as 'to',

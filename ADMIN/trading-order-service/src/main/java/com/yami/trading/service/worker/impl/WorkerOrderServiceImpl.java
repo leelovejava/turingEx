@@ -5,11 +5,13 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yami.trading.bean.model.User;
 import com.yami.trading.bean.worker.domain.WorkerOrder;
 import com.yami.trading.bean.worker.domain.WorkerOrderContent;
 import com.yami.trading.common.exception.YamiShopBindException;
 import com.yami.trading.dao.worker.WorkerOrderContentMapper;
 import com.yami.trading.dao.worker.WorkerOrderMapper;
+import com.yami.trading.service.user.UserService;
 import com.yami.trading.service.worker.WorkerOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class WorkerOrderServiceImpl extends ServiceImpl<WorkerOrderMapper, Worke
 
     @Autowired
     private WorkerOrderContentMapper workerOrderContentMapper;
+
+    @Autowired
+    private UserService userService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -75,15 +80,38 @@ public class WorkerOrderServiceImpl extends ServiceImpl<WorkerOrderMapper, Worke
     }
 
     @Override
-    public Page<WorkerOrder> adminList(String workOrderSn, Integer status, Long memberId, long current, long size, List<String> children) {
+    public Page<WorkerOrder> adminList(String workOrderSn, Integer status, Long memberId, String userMobile, long current, long size, List<String> children) {
+        // 按手机号筛选：先查出对应的 memberId 列表
+        List<String> mobileUserIds = null;
+        if (StrUtil.isNotBlank(userMobile)) {
+            mobileUserIds = userService.list(new LambdaQueryWrapper<User>()
+                    .like(User::getUserMobile, userMobile)
+                    .select(User::getUserId))
+                    .stream().map(User::getUserId).collect(java.util.stream.Collectors.toList());
+            if (mobileUserIds.isEmpty()) {
+                return new Page<>(current, size);
+            }
+        }
+        final List<String> finalMobileUserIds = mobileUserIds;
         Page<WorkerOrder> page = new Page<>(current, size);
         page.addOrder(OrderItem.desc("create_time"));
         LambdaQueryWrapper<WorkerOrder> query = new LambdaQueryWrapper<WorkerOrder>()
                 .like(StrUtil.isNotBlank(workOrderSn), WorkerOrder::getWorkOrderSn, workOrderSn)
                 .eq(status != null, WorkerOrder::getWorkOrderStatus, String.valueOf(status))
                 .eq(memberId != null, WorkerOrder::getMemberId, memberId)
+                .in(finalMobileUserIds != null, WorkerOrder::getMemberId, finalMobileUserIds != null ? finalMobileUserIds : java.util.Collections.emptyList())
                 .in(children != null && !children.isEmpty(), WorkerOrder::getMemberId, children);
-        return this.page(page, query);
+        Page<WorkerOrder> result = this.page(page, query);
+        // 批量填充手机号
+        if (!result.getRecords().isEmpty()) {
+            List<String> memberIds = result.getRecords().stream().map(WorkerOrder::getMemberId).distinct().collect(java.util.stream.Collectors.toList());
+            Map<String, String> mobileMap = userService.list(new LambdaQueryWrapper<User>()
+                    .in(User::getUserId, memberIds)
+                    .select(User::getUserId, User::getUserMobile))
+                    .stream().collect(java.util.stream.Collectors.toMap(User::getUserId, u -> u.getUserMobile() == null ? "" : u.getUserMobile()));
+            result.getRecords().forEach(o -> o.setUserMobile(mobileMap.get(o.getMemberId())));
+        }
+        return result;
     }
 
     @Override

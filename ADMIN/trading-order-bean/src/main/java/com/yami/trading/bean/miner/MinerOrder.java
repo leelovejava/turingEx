@@ -116,6 +116,12 @@ public class MinerOrder extends UUIDEntity implements Comparator<MinerOrder> {
 	private double default_money;
 
 	/**
+	 * 璧庡洖閲戦
+	 */
+	@TableField("back_money")
+	private double back_money;
+
+	/**
 	 * 预计总收益（整数，创建时根据随机日收益×周期天数生成）
 	 */
 	@TableField(value = "expected_total_income")

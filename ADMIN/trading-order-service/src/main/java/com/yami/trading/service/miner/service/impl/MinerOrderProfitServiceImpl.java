@@ -135,6 +135,11 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                 continue;
             }
             // 非体验矿机，今天<起息时间 不计息，表示满24小时才开始计息
+            MinerOrder lockedOrder = baseMapper.selectByOrderNoForUpdate(order.getOrder_no());
+            if (lockedOrder == null || !"1".equals(lockedOrder.getState())) {
+                continue;
+            }
+            order = lockedOrder;
             if (miner.getTest().equals("N") && systemTime.before(order.getEarn_time())) {
                 continue;
             }
@@ -170,6 +175,10 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                     continue;
                 }
                 if (preIncome != null) {
+                    if (!quantPreIncomeService.markAsUsedIfUnused(preIncome.getId())) {
+                        log.info("pre income already used, skip compute, preIncomeId:{}, orderNo:{}", preIncome.getId(), order.getOrder_no());
+                        continue;
+                    }
                     double dailyTotalProfit = preIncome.getIncome() == null ? 0D : preIncome.getIncome();
                     Integer lastPreIncomeId = preIncome.getId();
 
@@ -203,7 +212,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                     }
 
                     saveMinerOrders
-                            .add(new MinerOrderMessage(order.getOrder_no(), order.getProfit(), order.getCompute_day()));
+                            .add(new MinerOrderMessage(order.getOrder_no(), dailyTotalProfit, order.getCompute_day()));
                     // 更新矿机订单
                     redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + order.getOrder_no(), order);
                 }
@@ -241,6 +250,11 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             }
 
             log.info("订单结束时间:{}", order.getStop_time());
+            MinerOrder lockedOrder = baseMapper.selectByOrderNoForUpdate(order.getOrder_no());
+            if (lockedOrder == null || !"1".equals(lockedOrder.getState())) {
+                continue;
+            }
+            order = lockedOrder;
             if (order.getStop_time() != null && new Date().after(order.getStop_time())) {
                 log.info("当前时间>截止时间");
                 // 当前时间>截止时间
@@ -266,6 +280,10 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                     continue;
                 }
                 double dailyTotalProfit = preIncome.getIncome() == null ? 0D : preIncome.getIncome();
+                if (!quantPreIncomeService.markAsUsedIfUnused(preIncome.getId())) {
+                    log.info("pre income already used, skip compute, preIncomeId:{}, orderNo:{}", preIncome.getId(), order.getOrder_no());
+                    continue;
+                }
                 Integer lastPreIncomeId = preIncome.getId();
 
                 order.setCompute_day(new Date());// 记息日期
@@ -300,7 +318,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                 }
 
                 saveMinerOrders
-                        .add(new MinerOrderMessage(order.getOrder_no(), order.getProfit(), order.getCompute_day()));
+                        .add(new MinerOrderMessage(order.getOrder_no(), dailyTotalProfit, order.getCompute_day()));
                 // 更新矿机订单
                 redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ORDER_ORDERNO + order.getOrder_no(), order);
             }
@@ -447,7 +465,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
      * @param orderList
      */
     protected void updateBatchMinerOrdersProfit(final List<MinerOrderMessage> orderList) {
-        String sql = "UPDATE T_MINER_ORDER SET PROFIT=?,COMPUTE_DAY=? WHERE ORDER_NO=?";
+        String sql = "UPDATE T_MINER_ORDER SET PROFIT=COALESCE(PROFIT, 0)+?,COMPUTE_DAY=? WHERE ORDER_NO=? AND STATE='1'";
         int[] batchUpdate = jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {

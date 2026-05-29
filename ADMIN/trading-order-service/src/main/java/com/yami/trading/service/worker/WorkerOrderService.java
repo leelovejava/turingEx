@@ -13,7 +13,7 @@ public interface WorkerOrderService extends IService<WorkerOrder> {
 
     Page<WorkerOrder> userList(String memberId, Integer status, long current, long size);
 
-    Page<WorkerOrder> adminList(String workOrderSn, Integer status, Long memberId, long current, long size, List<String> children);
+    Page<WorkerOrder> adminList(String workOrderSn, Integer status, Long memberId, String userMobile, long current, long size, List<String> children);
 
     Map<String, Object> detail(Long orderId);
 

@@ -1,6 +1,7 @@
 package com.yami.trading.bean.worker.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -22,4 +23,7 @@ public class WorkerOrder {
     private String memberId;
     private Date localCreateTime;
     private Date createTime;
+
+    @TableField(exist = false)
+    private String userMobile;
 }

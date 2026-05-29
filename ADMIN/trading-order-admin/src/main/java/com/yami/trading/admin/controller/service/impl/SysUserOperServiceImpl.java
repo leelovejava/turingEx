@@ -98,6 +98,7 @@ public class SysUserOperServiceImpl implements SysUserOperService {
             throw new YamiShopBindException("代理商不存在!");
         }
         user.setLoginPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
         userService.updateById(user);
         SysUser sysUser = sysUserService.getByUserName(user.getUserName());
         sysUser.setPassword(passwordEncoder.encode(password));

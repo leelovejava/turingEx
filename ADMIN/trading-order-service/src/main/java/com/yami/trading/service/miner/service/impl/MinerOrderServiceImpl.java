@@ -55,6 +55,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOrder> implements MinerOrderService {
+    private static final long KYC_BONUS_VALID_MILLIS = 7L * 24 * 60 * 60 * 1000;
+
     //	protected PagedQueryDao pagedDao;
     @Autowired
     protected WalletService walletService;
@@ -200,7 +202,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
             // 检查用户 kycBonusAmount 是否有效（null 或 0 表示体验资格不可用）
             User kycUser = secUserService.getById(partyId);
-            if (kycUser == null || kycUser.getKycBonusAmount() == null || kycUser.getKycBonusAmount() <= 0) {
+            if (!hasAvailableKycBonus(kycUser, 0)) {
                 throw new BusinessException("Real-name authentication has expired for more than 7 days, experience quant order qualification is invalid");
             }
 
@@ -374,7 +376,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
         } else if (miner.getTest().equals("Y")) {
             // 体验矿机：从KYC体验金冻结余额扣除300U
             User user = partyService.getById(entity.getPartyId());
-            if (user.getKycBonusAmount() == null || user.getKycBonusAmount() < 300) {
+            if (!hasAvailableKycBonus(user, 300)) {
                 throw new BusinessException("无体验金资格");
             }
             walletService.updateWithLockAndFreeze(String.valueOf(entity.getPartyId()), 0, 0, -300);
@@ -544,17 +546,19 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
     protected void saveMinerCloseUsdt(MinerOrder entity) {
         double realProfit = quantPreIncomeService.selectTotalIncome(entity.getUuid());
-        double totalFreeze = Arith.add(entity.getAmount(), realProfit);
-        double back_money = totalFreeze;
+        double back_money = getUsdtRedeemAmount(entity, false, realProfit);
         Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId());
+        double moneyBefore = wallet.getMoney().doubleValue();
         double freezeBefore = wallet.getFreezeMoney().doubleValue();
-        walletService.updateWithLockAndFreeze(entity.getPartyId(), back_money, 0, Arith.sub(0, totalFreeze));
+        double freezeDeduct = getUsdtFreezeDeductAmount(freezeBefore, back_money);
+        walletService.updateWithLockAndFreeze(entity.getPartyId(), back_money, 0, Arith.sub(0, freezeDeduct));
+        entity.setBack_money(back_money);
 
         MoneyLog moneylog = new MoneyLog();
         moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
-        moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
+        moneylog.setAmountBefore(BigDecimal.valueOf(moneyBefore));
         moneylog.setAmount(BigDecimal.valueOf(back_money));
-        moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, entity.getAmount())));
+        moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(moneyBefore, back_money)));
         moneylog.setUserId(entity.getPartyId());
         moneylog.setWalletType(WalletConstants.WALLET_USDT);
         moneylog.setLog("Quant Order redeem, principal+profit from frozen to available, orderNo[" + entity.getOrder_no() + "]");
@@ -594,6 +598,13 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
      * 赎回
      */
     public void saveClose(MinerOrder entity, Miner miner) {
+        Date closeTime = new Date();
+        int closed = baseMapper.closeIfRunning(entity.getOrder_no(), entity.getState(), entity.getCompute_day(), closeTime);
+        if (closed != 1) {
+            log.info("Quant Order already closed or closing, skip redeem, orderNo[{}]", entity.getOrder_no());
+            return;
+        }
+        entity.setClose_time(closeTime);
         String buyCurrency = miner.getBuy_currency();
         double close = 0;
         // 体验矿机不退还本金
@@ -620,7 +631,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             saveMinerCloseOtherCoin(entity, buyCurrency);
         }
 
-        entity.setClose_time(new Date());// 赎回时间
+        entity.setClose_time(closeTime);// 赎回时间
 
         this.updateMinerOrder(entity);
 
@@ -648,7 +659,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
             MinerOrder minerOld = map_partyid.get(entity.getOrder_no());
             // 状态：0/正常赎回； 1/ 托管中 ；2/提前赎回 (违约)；3/取消；
-            if ("1".equals(minerOld.getState())) {
+            if (minerOld != null && "1".equals(minerOld.getState())) {
 
                 // 获取 单个订单 矿机总资产
                 Double minerAssetsOld = minerOld.getAmount();
@@ -671,6 +682,13 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
     @Override
     public void saveClose(MinerOrder entity) {
+        Date closeTime = new Date();
+        int closed = baseMapper.closeIfRunning(entity.getOrder_no(), entity.getState(), entity.getCompute_day(), closeTime);
+        if (closed != 1) {
+            log.info("Quant Order already closed or closing, skip redeem, orderNo[{}]", entity.getOrder_no());
+            return;
+        }
+        entity.setClose_time(closeTime);
         String minerBuySymbol = sysparaService.find("miner_buy_symbol").getSvalue();
         // 是否是其他币种购买
         boolean isOtherCoin = !StringUtils.isEmptyString(minerBuySymbol);
@@ -692,25 +710,25 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             saveMinerCloseOtherCoin(entity, minerBuySymbol);
         } else if (entity.getAmount() != 0) {
             Wallet wallet = walletService.saveWalletByPartyId(entity.getPartyId().toString());
+            double moneyBefore = wallet.getMoney().doubleValue();
             double freezeBefore = wallet.getFreezeMoney().doubleValue();
-            // 用实际freeze_money全部解冻，避免历史负收益未写入导致残留
-            double actualFreeze = freezeBefore;
-            // 体验矿机不退本金，只退收益给用户
-            double back_money = isTestMiner ? realProfit : actualFreeze;
-            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, actualFreeze));
+            double back_money = getUsdtRedeemAmount(entity, isTestMiner, realProfit);
+            double freezeDeduct = getUsdtFreezeDeductAmount(freezeBefore, back_money);
+            walletService.updateWithLockAndFreeze(entity.getPartyId().toString(), back_money, 0, Arith.sub(0, freezeDeduct));
+            entity.setBack_money(back_money);
             MoneyLog moneylog = new MoneyLog();
             moneylog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
-            moneylog.setAmountBefore(BigDecimal.valueOf(freezeBefore));
+            moneylog.setAmountBefore(BigDecimal.valueOf(moneyBefore));
             moneylog.setAmount(BigDecimal.valueOf(back_money));
-            moneylog.setAmountAfter(BigDecimal.valueOf(Arith.sub(freezeBefore, back_money)));
-            moneylog.setUserId(entity.getUuid());
+            moneylog.setAmountAfter(BigDecimal.valueOf(Arith.add(moneyBefore, back_money)));
+            moneylog.setUserId(entity.getPartyId());
             moneylog.setWalletType(WalletConstants.WALLET_USDT);
             moneylog.setLog("Quant Order redeem, principal+profit from frozen to available, orderNo[" + entity.getOrder_no() + "]");
             moneylog.setContentType(Constants.MONEYLOG_CONTENT_MINER_BACK);
             moneyLogService.save(moneylog);
         }
 
-        entity.setClose_time(new Date());// 赎回时间
+        entity.setClose_time(closeTime);// 赎回时间
         entity.setTotalIncome(BigDecimal.valueOf(quantPreIncomeService.selectTotalIncome(entity.getUuid())));
         this.updateById(entity);
         /**
@@ -740,7 +758,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
             Double minerAssets = (Double) redisTemplate.opsForValue().get(MinerRedisKeys.MINER_ASSETS_PARTY_ID + entity.getPartyId().toString());
 
             // 状态：0/正常赎回； 1/ 托管中 ；2/提前赎回 (违约)；3/取消；
-            if ("1".equals(minerOld.getState())) {
+            if (minerOld != null && "1".equals(minerOld.getState())) {
 
                 // 获取 单个订单 矿机总资产
                 Double minerAssetsOld = minerOld.getAmount();
@@ -759,6 +777,36 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
             redisTemplate.opsForValue().set(MinerRedisKeys.MINER_ASSETS_PARTY_ID + entity.getPartyId().toString(), null == minerAssets ? 0.000D : minerAssets);
         }
+    }
+
+    private boolean hasAvailableKycBonus(User user, double requiredAmount) {
+        if (user == null || user.getKycBonusAmount() == null) {
+            return false;
+        }
+        if (requiredAmount > 0 && user.getKycBonusAmount() < requiredAmount) {
+            return false;
+        }
+        if (requiredAmount <= 0 && user.getKycBonusAmount() <= 0) {
+            return false;
+        }
+        Date bonusTime = user.getKycBonusTime();
+        if (bonusTime == null) {
+            return false;
+        }
+        return System.currentTimeMillis() - bonusTime.getTime() <= KYC_BONUS_VALID_MILLIS;
+    }
+
+    private double getUsdtRedeemAmount(MinerOrder entity, boolean isTestMiner, double realProfit) {
+        double principal = isTestMiner ? 0D : entity.getAmount();
+        double redeemAmount = Arith.add(principal, realProfit);
+        return redeemAmount < 0D ? 0D : redeemAmount;
+    }
+
+    private double getUsdtFreezeDeductAmount(double freezeBefore, double redeemAmount) {
+        if (freezeBefore <= 0D || redeemAmount <= 0D) {
+            return 0D;
+        }
+        return Math.min(freezeBefore, redeemAmount);
     }
 
     public List<Map<String, Object>> findAllByState(String state) {
