@@ -2,6 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yami.trading.dao.miner.MinerOrderMapper">
 
+    <resultMap id="MinerOrderMap" type="com.yami.trading.bean.miner.MinerOrder">
+        <id column="uuid" property="uuid"/>
+        <result column="party_id" property="party_id"/>
+        <result column="order_no" property="order_no"/>
+        <result column="miner_id" property="miner_id"/>
+        <result column="amount" property="amount"/>
+        <result column="create_time" property="create_time"/>
+        <result column="earn_time" property="earn_time"/>
+        <result column="stop_time" property="stop_time"/>
+        <result column="profit" property="profit"/>
+        <result column="state" property="state"/>
+        <result column="compute_day" property="compute_day"/>
+        <result column="close_time" property="close_time"/>
+        <result column="first_buy" property="first_buy"/>
+        <result column="base_compute_amount" property="base_compute_amount"/>
+        <result column="random_daily_rate" property="random_daily_rate"/>
+        <result column="back_money" property="back_money"/>
+        <result column="expected_total_income" property="expectedTotalIncome"/>
+        <result column="total_income" property="totalIncome"/>
+        <result column="symbol" property="symbol"/>
+    </resultMap>
+
+    <select id="selectByOrderNoForUpdate" resultMap="MinerOrderMap">
+        SELECT * FROM t_miner_order WHERE order_no = #{orderNo} FOR UPDATE
+    </select>
+
+    <select id="selectExpiredOrders" resultMap="MinerOrderMap">
+        SELECT * FROM t_miner_order WHERE state = '1' AND stop_time &lt; NOW()
+    </select>
+
     <select id="pagedQuery" resultType="java.util.HashMap">
         select finance.uuid id,finance.name name,finance.name_en name_en,finance.name_cn name_cn,
         finance.name_kn name_kn,finance.name_jn name_jn,finance.img img,finance.cycle cycle,
@@ -54,7 +84,7 @@
     </select>
 
 
-    <select id="pagedQueryComputeOrder" resultType="java.util.HashMap">
+    <select id="pagedQueryComputeOrder" resultMap="MinerOrderMap">
         select * FROM t_miner_order WHERE state =1
     </select>
 

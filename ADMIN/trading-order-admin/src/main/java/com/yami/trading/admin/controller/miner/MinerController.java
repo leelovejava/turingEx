@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yami.trading.service.miner.job.MinerOrderExpireJob;
+import com.yami.trading.service.miner.job.MinerOrderProfitJob;
 import com.yami.trading.service.miner.service.MinerService;
 
 /**
@@ -31,7 +33,13 @@ public class MinerController {
 	
 	@Autowired
 	protected MinerService minerService;
-	
+
+	@Autowired
+	protected MinerOrderProfitJob minerOrderProfitJob;
+
+	@Autowired
+	protected MinerOrderExpireJob minerOrderExpireJob;
+
 	private final String action = "api/miner!";
 
 	/**
@@ -85,6 +93,44 @@ public class MinerController {
 			logger.error("error:", e);
 		}
 
+		return resultObject;
+	}
+
+	/**
+	 * 手动触发矿机收益计算任务
+	 */
+	@RequestMapping(action + "runProfitJob.action")
+	public Object runProfitJob() {
+		ResultObject resultObject = new ResultObject();
+		try {
+			logger.info("手动触发矿机收益计算任务");
+			minerOrderProfitJob.taskJob();
+			resultObject.setCode("0");
+			resultObject.setMsg("矿机收益计算任务执行成功");
+		} catch (Exception e) {
+			resultObject.setCode("1");
+			resultObject.setMsg("任务执行失败: " + e.getMessage());
+			logger.error("手动触发矿机收益计算任务失败:", e);
+		}
+		return resultObject;
+	}
+
+	/**
+	 * 手动触发到期订单关闭任务
+	 */
+	@RequestMapping(action + "runExpireJob.action")
+	public Object runExpireJob() {
+		ResultObject resultObject = new ResultObject();
+		try {
+			logger.info("手动触发到期订单关闭任务");
+			minerOrderExpireJob.closeExpiredOrders();
+			resultObject.setCode("0");
+			resultObject.setMsg("到期订单关闭任务执行成功");
+		} catch (Exception e) {
+			resultObject.setCode("1");
+			resultObject.setMsg("任务执行失败: " + e.getMessage());
+			logger.error("手动触发到期订单关闭任务失败:", e);
+		}
 		return resultObject;
 	}
 }

@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yami.trading.bean.finance.Finance;
 import com.yami.trading.bean.miner.MinerOrder;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.Date;
@@ -26,8 +25,9 @@ public interface MinerOrderMapper extends BaseMapper<MinerOrder> {
                          @Param("rolename_para") String rolename_para,
                          @Param("name_para") String name_para);
 
-    @Select("SELECT * FROM t_miner_order WHERE order_no = #{orderNo} FOR UPDATE")
     MinerOrder selectByOrderNoForUpdate(@Param("orderNo") String orderNo);
+
+    List<MinerOrder> selectExpiredOrders();
 
     @Update("UPDATE t_miner_order " +
             "SET state = #{targetState}, close_time = #{closeTime}, compute_day = #{computeDay} " +

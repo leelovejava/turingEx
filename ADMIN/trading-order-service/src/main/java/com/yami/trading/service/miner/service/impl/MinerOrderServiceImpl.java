@@ -681,6 +681,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
     }
 
     @Override
+    @Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRES_NEW)
     public void saveClose(MinerOrder entity) {
         Date closeTime = new Date();
         int closed = baseMapper.closeIfRunning(entity.getOrder_no(), entity.getState(), entity.getCompute_day(), closeTime);

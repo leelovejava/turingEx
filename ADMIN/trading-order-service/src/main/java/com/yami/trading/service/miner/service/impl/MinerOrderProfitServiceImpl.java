@@ -125,7 +125,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
         List<MinerOrderMessage> saveMinerOrders = new ArrayList<>();
         Double miner_test_profit = sysparaService.find("miner_test_profit").getDouble();
         for (Object order1 : orders) {
-            MinerOrder order = JSON.parseObject(JSON.toJSONString(order1), MinerOrder.class);
+            MinerOrder order = (MinerOrder) order1;
             /**
              * 截止时间要大于现在这个时间则计算收益
              */
@@ -136,22 +136,36 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
             }
             // 非体验矿机，今天<起息时间 不计息，表示满24小时才开始计息
             MinerOrder lockedOrder = baseMapper.selectByOrderNoForUpdate(order.getOrder_no());
-            if (lockedOrder == null || !"1".equals(lockedOrder.getState())) {
+            if (lockedOrder == null) {
+                log.warn("订单到期检查：数据库中找不到该订单，跳过，orderNo:{}", order.getOrder_no());
+                continue;
+            }
+            if (!"1".equals(lockedOrder.getState())) {
+                log.warn("订单到期检查：订单状态非托管中，跳过，orderNo:{}, state:{}", order.getOrder_no(), lockedOrder.getState());
                 continue;
             }
             order = lockedOrder;
+            log.debug("订单检查，orderNo:{}, stopTime:{}, systemTime:{}", order.getOrder_no(), order.getStop_time(), systemTime);
             if (miner.getTest().equals("N") && systemTime.before(order.getEarn_time())) {
+                log.warn("订单未到起息时间，跳过，orderNo:{}, earnTime:{}", order.getOrder_no(), order.getEarn_time());
                 continue;
             }
             // 体验矿机判断：systemTime < 当日起息日零点 则不计息（体验矿机当天购买当天计息）
             if (miner.getTest().equals("Y") && systemTime.before(DateUtils.getDayStart(order.getEarn_time()))) {
+                log.warn("体验订单未到起息时间，跳过，orderNo:{}, earnTime:{}", order.getOrder_no(), order.getEarn_time());
                 continue;
             }
 
             if (order.getStop_time() != null && systemTime.after(order.getStop_time())) {// 当前时间>截止时间
+                log.info("订单到期，准备关闭，orderNo:{}, stopTime:{}", order.getOrder_no(), order.getStop_time());
                 order.setState("0");// 正常赎回，停止计息，退还本金
                 order.setCompute_day(systemTime);
-                minerOrderService.saveClose(order);// 截止日=今天时就已经返还完毕
+                try {
+                    minerOrderService.saveClose(order);// 截止日=今天时就已经返还完毕
+                    log.info("订单到期关闭成功，orderNo:{}", order.getOrder_no());
+                } catch (Exception e) {
+                    log.error("订单到期关闭失败，orderNo:{}, error:{}", order.getOrder_no(), e.getMessage(), e);
+                }
             } else {
                 // 当天计算过，则不再计算，例如 1号4点计算， 则2号0点以前进入都判定计算过
                 if (order.getCompute_day() != null
@@ -239,7 +253,7 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
         List<MinerOrderMessage> saveMinerOrders = new ArrayList<MinerOrderMessage>();
         ///Double miner_test_profit = sysparaService.find("miner_test_profit").getDouble();
         for (Object obj : orders) {
-            MinerOrder order = JSON.parseObject(JSON.toJSONString(obj), MinerOrder.class);
+            MinerOrder order = (MinerOrder) obj;
             /**
              * 截止时间要大于现在这个时间则计算收益
              */
@@ -249,20 +263,27 @@ public class MinerOrderProfitServiceImpl extends ServiceImpl<MinerOrderMapper, M
                 continue;
             }
 
-            log.info("订单结束时间:{}", order.getStop_time());
             MinerOrder lockedOrder = baseMapper.selectByOrderNoForUpdate(order.getOrder_no());
-            if (lockedOrder == null || !"1".equals(lockedOrder.getState())) {
+            if (lockedOrder == null) {
+                log.warn("订单到期检查：数据库中找不到该订单，跳过，orderNo:{}", order.getOrder_no());
+                continue;
+            }
+            if (!"1".equals(lockedOrder.getState())) {
+                log.warn("订单到期检查：订单状态非托管中，跳过，orderNo:{}, state:{}", order.getOrder_no(), lockedOrder.getState());
                 continue;
             }
             order = lockedOrder;
+            log.debug("订单检查，orderNo:{}, stopTime:{}, now:{}", order.getOrder_no(), order.getStop_time(), new Date());
             if (order.getStop_time() != null && new Date().after(order.getStop_time())) {
-                log.info("当前时间>截止时间");
-                // 当前时间>截止时间
-                // 正常赎回，停止计息，退还本金
+                log.info("订单到期，准备关闭，orderNo:{}, stopTime:{}", order.getOrder_no(), order.getStop_time());
                 order.setState("0");
                 order.setCompute_day(new Date());
-                // 截止日=今天时就已经返还完毕
-                minerOrderService.saveClose(order);
+                try {
+                    minerOrderService.saveClose(order);
+                    log.info("订单到期关闭成功，orderNo:{}", order.getOrder_no());
+                } catch (Exception e) {
+                    log.error("订单到期关闭失败，orderNo:{}, error:{}", order.getOrder_no(), e.getMessage(), e);
+                }
             } else {
 
                 // 从预收益表中读取收益（属于该订单的预收益记录）
