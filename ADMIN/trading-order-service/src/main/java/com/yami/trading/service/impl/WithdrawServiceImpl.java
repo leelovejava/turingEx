@@ -478,17 +478,28 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
     public void saveApply(Withdraw withdraw, String channel, String method_id,String language) {
         List<Withdraw> withdrawList = findLastByUserId(withdraw.getUserId());
         if (withdrawList.size() > 0 && !withdrawList.get(0).getAddress().equals(withdraw.getAddress())) {
-            withdraw.setRemarks("系统提示: 本次提现地址[" + withdraw.getAddress() + "] 和上次提现地址["
-                    + withdrawList.get(0).getAddress() +"]不同, 请注意核对!!!");
+            // 系统提示: 本次提现地址
+            // 和上次提现地址
+            // 不同, 请注意核对!!!
+            withdraw.setRemarks("System notification: Withdrawal address for this transaction[" + withdraw.getAddress() + "] Same as the last withdrawal address["
+                    + withdrawList.get(0).getAddress() +"]Different, please check carefully.!!!");
         }
         if (withdrawList.size() > 0 && null != withdrawList.get(0).getDeviceIp() &&
                 !withdrawList.get(0).getDeviceIp().equals(withdraw.getDeviceIp())) {
             if (null != withdraw.getRemarks()) {
-                withdraw.setRemarks("系统提示: 本次提现地址["+withdraw.getAddress()+"]及本次设备IP["+withdraw.getDeviceIp()
-                        +"] 和上次提现地址["+withdrawList.get(0).getAddress()+"]及上次设备IP["+withdrawList.get(0).getDeviceIp()+"]不同, 请注意核对!!!");
+                // 系统提示: 本次提现地址
+                // 及本次设备IP
+                // 和上次提现地址
+                // 及上次设备IP
+                // 不同, 请注意核对
+                withdraw.setRemarks("System notification: Withdrawal address for this transaction["+withdraw.getAddress()+"]and the IP address of this device["+withdraw.getDeviceIp()
+                        +"] Same as the last withdrawal address["+withdrawList.get(0).getAddress()+"]and the last device IP["+withdrawList.get(0).getDeviceIp()+"]Different, please check carefully.!!!");
             } else {
-                withdraw.setRemarks("系统提示: 本次提现用户设备IP["+withdraw.getDeviceIp()+"] 和上次提现用户设备IP["
-                        +withdrawList.get(0).getDeviceIp()+"]不同, 请注意核对!!!");
+                // 系统提示: 本次提现用户设备IP
+                // 和上次提现用户设备IP
+                // 不同, 请注意核对
+                withdraw.setRemarks("System notification: The IP address of the user device used for this withdrawal.["+withdraw.getDeviceIp()+"] The IP address of the user device that made the last withdrawal["
+                        +withdrawList.get(0).getDeviceIp()+"]Different, please check carefully.!!!");
             }
         }
         log.info("saveApply:channel:{}", channel);
@@ -497,16 +508,19 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         Map<String, String> limitMap = this.getWithdrawLimitBySymbol(symbol, true);
         String withdraw_limit = limitMap.get("limit");
         if (withdraw.getVolume().doubleValue() < Double.valueOf(withdraw_limit)) {
-            throw new YamiShopBindException("提现不得小于限额");
+            // 提现不得小于限额
+            throw new YamiShopBindException("Withdrawals must not be less than the limit.");
         }
         String withdraw_limit_max = limitMap.get("limitMax");
         if (withdraw.getVolume().doubleValue() > Double.valueOf(withdraw_limit_max)) {
-            throw new YamiShopBindException("提现不得大于限额");
+            // 提现不得大于限额
+            throw new YamiShopBindException("Withdrawals must not exceed the limit.");
         }
 
         List<Withdraw> allNotCompleteList = this.findAllNotComplete(withdraw.getUserId(), 0);
         if (!CollectionUtils.isEmpty(allNotCompleteList)) {
-            throw new YamiShopBindException("当前有待处理提现订单，请稍后提现！");
+            // 当前有待处理提现订单，请稍后提现！
+            throw new YamiShopBindException("There are pending withdrawal orders. Please withdraw your funds later!");
         }
 
         withdraw.setMethod(channel);
@@ -519,7 +533,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         }
         User party = userService.getById(withdraw.getUserId());
         if (Constants.SECURITY_ROLE_TEST.equals(party.getRoleName())) {
-            throw new YamiShopBindException("无权限");
+            // 无权限
+            throw new YamiShopBindException("No permission");
         }
 
         Syspara syspara = sysparaService.find("stop_user_internet");
@@ -527,11 +542,9 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         if(org.apache.commons.lang3.StringUtils.isNotEmpty(stopUserInternet)) {
             String[] stopUsers = stopUserInternet.split(",");
 
-            System.out.println("userName = " + party.getUserName());
-            System.out.println("stopUserInternet = " + stopUserInternet);
-
             if(Arrays.asList(stopUsers).contains(party.getUserName())){
-                throw new YamiShopBindException("无网络");
+                // 无网络
+                throw new YamiShopBindException("No network");
             }
         }
 
@@ -541,7 +554,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             party_kyc=new RealNameAuthRecord();
         }
         if (!(party_kyc.getStatus() == 2) && "true".equals(sysparaService.find("withdraw_by_kyc").getSvalue())) {
-            throw new YamiShopBindException("未基础认证");
+            // 未基础认证
+            throw new YamiShopBindException("No basic certification");
         }
         if (party_kycHighLevel==null){
             party_kycHighLevel=new HighLevelAuthRecord();
@@ -549,17 +563,20 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         double withdraw_by_high_kyc = Double.valueOf(sysparaService.find("withdraw_by_high_kyc").getSvalue());
         if (withdraw_by_high_kyc > 0 && withdraw.getVolume().doubleValue() > withdraw_by_high_kyc
                 && !(party_kycHighLevel.getStatus() == 2)) {
-            throw new YamiShopBindException(1001,"请先通过高级认证");
+            // 请先通过高级认证
+            throw new YamiShopBindException(1001,"Please complete the advanced certification first.");
         }
         if (party.isWithdrawAuthority() == false) {
-            throw new YamiShopBindException(1, "无权限");
+            // 无权限
+            throw new YamiShopBindException(1, "No permission");
         }
         if (party.getStatus() != 1) {
             throw new YamiShopBindException("Your account has been frozen");
         }
         Wallet wallet = walletService.saveWalletByPartyId(withdraw.getUserId());
         if (wallet.getMoney().doubleValue() < withdraw.getVolume().doubleValue()) {
-            throw new YamiShopBindException("余额不足");
+            // 余额不足
+            throw new YamiShopBindException("Insufficient balance");
         }
         // 手续费(USDT)
         /**
@@ -601,7 +618,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         List<Withdraw> withdraw_days = findAllByDate(withdraw.getUserId().toString());
         if (withdraw_limit_num > 0 && withdraw_days != null) {
             if (withdraw_days.size() >= withdraw_limit_num) {
-                throw new YamiShopBindException("当日可提现次数不足");
+                // 当日可提现次数不足
+                throw new YamiShopBindException("Insufficient number of withdrawals available that day");
             }
         }
         /**
@@ -616,7 +634,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             //
             String dateString = sdf.format(date);
             if (dateString.compareTo(withdraw_time[0]) < 0 || dateString.compareTo(withdraw_time[1]) > 0) {
-                throw new YamiShopBindException("不在可提现时间内");
+                // 不在可提现时间内
+                throw new YamiShopBindException("Not within the withdrawal period");
             }
         }
         /**
@@ -712,7 +731,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
                 // 流水小于限额
                 if (userdata_turnover < party_withdraw) {
                     fact_withdraw_amount = Arith.sub(party_withdraw, userdata_turnover);
-                    throw new YamiShopBindException( "流水小于限额");
+                    // 流水小于限额
+                    throw new YamiShopBindException( "Flow rate less than the limit");
                 }
             }
         }
@@ -741,7 +761,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
 //			withdraw.setMethod("USDT");
 //		}
         else if ("OTC".equals(channel)) {
-            throw new YamiShopBindException("渠道未开通");
+            // 渠道未开通
+            throw new YamiShopBindException("Channel not yet open");
 //			if (StringUtils.isNullOrEmpty(method_id)) {
 //				throw new BusinessException("请选择付款账号");
 //			}
@@ -756,7 +777,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
 //			withdraw.setQdcode(paymentMethod.getQdcode());
 //			withdraw.setUsername(withdraw.getUsername());
         } else {
-            throw new YamiShopBindException("渠道未开通");
+            // 渠道未开通
+            throw new YamiShopBindException("Channel not yet open");
         }
 
         if ("".equals(withdraw.getOrderNo()) || withdraw.getOrderNo() == null) {

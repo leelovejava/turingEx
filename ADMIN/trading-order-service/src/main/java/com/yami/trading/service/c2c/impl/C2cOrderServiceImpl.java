@@ -145,7 +145,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         DecimalFormat df = new DecimalFormat("#.########");
         C2cAdvert c2cAdvert = this.c2cAdvertService.getById(c2cOrder.getC2cAdvertId());
         if (null == c2cAdvert) {
-            throw new YamiShopBindException("广告不存在");
+            // 广告不存在
+            throw new YamiShopBindException("Advert does not exist");
         }
 //		double symbolClose = symbolClose(c2cOrder.getSymbol());
         double symbolClose = c2cAdvert.getSymbolClose();
@@ -205,7 +206,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         this.updateNofinishOrderCount(c2cOrder);
         C2cUser c2cUser = this.c2cUserService.getById(c2cOrder.getC2cUserId());
         if (null == c2cUser) {
-            throw new YamiShopBindException("承兑商不存在");
+            // 承兑商不存在
+            throw new YamiShopBindException("Merchant does not exist");
         }
         if (C2cOrder.DIRECTION_BUY.equals(c2cOrder.getDirection())) {
             // 买币
@@ -232,10 +234,12 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
     public void savePass(C2cOrder c2cOrder, String safeword, String operator_username) {
 
         if ("3".equals(c2cOrder.getState())) {
-            throw new YamiShopBindException("订单已完成，无法放行");
+            // 订单已完成，无法放行
+            throw new YamiShopBindException("Order is completed and cannot be approved");
         }
         if ("4".equals(c2cOrder.getState())) {
-            throw new YamiShopBindException("订单已取消，无法放行");
+            // 订单已取消，无法放行
+            throw new YamiShopBindException("Order is cancelled and cannot be approved");
         }
         saveOrderPass(c2cOrder);
         User order_user = userService.getById(c2cOrder.getPartyId());
@@ -399,10 +403,12 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
 
         DecimalFormat df = new DecimalFormat("#.########");
         if ("4".equals(c2cOrder.getState())) {
-            throw new YamiShopBindException("该订单已取消");
+            // 该订单已取消
+            throw new YamiShopBindException("Order has been cancelled");
         }
         if ("3".equals(c2cOrder.getState())) {
-            throw new YamiShopBindException("该订单已完成");
+            // 该订单已完成
+            throw new YamiShopBindException("Order has been completed");
         }
         if ("recharge".equals(c2cOrder.getDirection())) {
             // 充值
@@ -473,10 +479,12 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
 
         DecimalFormat df = new DecimalFormat("#.########");
         if ("4".equals(c2cOrder.getState())) {
-            throw new YamiShopBindException("该订单已取消");
+            // 该订单已取消
+            throw new YamiShopBindException("Order has been cancelled");
         }
         if ("3".equals(c2cOrder.getState())) {
-            throw new YamiShopBindException("该订单已完成");
+            // 该订单已完成
+            throw new YamiShopBindException("Order has been completed");
         }
         if ("recharge".equals(c2cOrder.getDirection())) {
             // 充值
@@ -561,10 +569,12 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
     @Transactional
     public void manualRelease(C2cOrder c2cOrder, String operator_username) {
         if ("3".equals(c2cOrder.getState())) {
-            throw new YamiShopBindException("订单已完成，无法放行");
+            // 订单已完成，无法放行
+            throw new YamiShopBindException("Order is completed and cannot be approved");
         }
         if ("4".equals(c2cOrder.getState())) {
-            throw new YamiShopBindException("订单已取消，无法放行");
+            // 订单已取消，无法放行
+            throw new YamiShopBindException("Order is cancelled and cannot be approved");
         }
 
         DecimalFormat df = new DecimalFormat("#.########");
@@ -685,31 +695,37 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         log.error("saveOpen start:" + remark);
         C2cAdvert c2cAdvert = this.c2cAdvertService.getById(c2cOrder.getC2cAdvertId());
         if (null == c2cAdvert) {
-            throw new YamiShopBindException("广告不存在");
+            // 广告不存在
+            throw new YamiShopBindException("Advert does not exist");
         }
 
         if (1 != c2cAdvert.getOnSale()) {
-            throw new YamiShopBindException("广告已下架");
+            // 广告已下架
+            throw new YamiShopBindException("Advert has been taken down");
         }
 
         User party = userService.getById(c2cOrder.getPartyId());
         if (null == party) {
-            throw new YamiShopBindException("用户信息不存在");
+            // 用户信息不存在
+            throw new YamiShopBindException("User information does not exist");
         }
 
         C2cUser c2cUser = this.c2cUserService.getById(c2cAdvert.getC2cUserId());
         if (null == c2cUser) {
-            throw new YamiShopBindException("承兑商不存在");
+            // 承兑商不存在
+            throw new YamiShopBindException("Merchant does not exist");
         }
         User c2cParty = userService.getById(c2cUser.getC2cUserPartyId());
 
         if (null == c2cParty) {
-            throw new YamiShopBindException("承兑商的用户信息不存在");
+            // 承兑商的用户信息不存在
+            throw new YamiShopBindException("Merchant user information does not exist");
         }
 
         C2cPaymentMethod method = this.c2cPaymentMethodService.get(c2cOrder.getPaymentMethodId());
         if (null == method) {
-            throw new YamiShopBindException("支付方式不存在");
+            // 支付方式不存在
+            throw new YamiShopBindException("Payment method does not exist");
         }
 
         if (C2cAdvert.DIRECTION_SELL.equals(c2cAdvert.getDirection())) {
@@ -722,7 +738,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             this.checkSellNum(c2cOrder.getPartyId());
 
             if (!method.getPartyId().equals(c2cOrder.getPartyId())) {
-                throw new YamiShopBindException("支付方式不匹配该用户");
+                // 支付方式不匹配该用户
+                throw new YamiShopBindException("Payment method does not match this user");
             }
         } else {
 
@@ -794,7 +811,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             // 卖币
             this.saveSell(c2cOrder, c2cAdvert, symbolValue, remark);
         } else {
-            throw new YamiShopBindException("买卖方式不正确");
+            // 买卖方式不正确
+            throw new YamiShopBindException("Buy/sell direction is incorrect");
         }
 
         this.tipService.saveTip(c2cOrder.getUuid().toString(), TipConstants.C2C_ORDER, c2cOrder.getPartyId());
@@ -815,7 +833,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
 
             if (c2c_sell_limit_num > 0 && c2cOrders != null) {
                 if (c2cOrders.size() >= c2c_sell_limit_num) {
-                    throw new BusinessException(1, "当日可提现次数不足");
+                    // 当日可提现次数不足
+                    throw new BusinessException(1, "Daily withdrawal limit reached");
                 }
             }
         }
@@ -832,7 +851,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
                 party_kyc = new RealNameAuthRecord();
             }
             if (!(party_kyc.getStatus() == 2) && "true".equals(this.sysparaService.find("c2c_sell_by_kyc").getSvalue())) {
-                throw new BusinessException(401, "无权限");
+                // 无权限
+                throw new BusinessException(401, "No permission");
             }
         }
         HighLevelAuthRecord party_kycHighLevel = highLevelAuthRecordService.findByUserId(partyId);
@@ -842,7 +862,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
                 party_kycHighLevel = new HighLevelAuthRecord();
             }
             if (!(party_kycHighLevel.getStatus() == 2) && "true".equals(this.sysparaService.find("c2c_sell_by_high_kyc").getSvalue())) {
-                throw new BusinessException(1, "请先通过高级认证");
+                // 请先通过高级认证
+                throw new BusinessException(1, "Please complete advanced verification first");
             }
         }
     }
@@ -868,7 +889,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         log.error("save save end::" + remark);
         // 买入金额需要在区间内
         if (c2cOrder.getAmount() > c2cAdvert.getInvestmentMax() || c2cOrder.getAmount() < c2cAdvert.getInvestmentMin()) {
-            throw new YamiShopBindException("金额不在购买区间");
+            // 金额不在购买区间
+            throw new YamiShopBindException("Amount is not within the purchase range");
         }
 
         double amountBefore = 0d;
@@ -878,7 +900,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
 
             Wallet wallet = this.walletService.saveWalletByPartyId(c2cOrder.getPartyId());
             if (c2cOrder.getCoinAmount() > wallet.getMoney().doubleValue()) {
-                throw new YamiShopBindException("用户剩余数量不足");
+                // 用户剩余数量不足
+                throw new YamiShopBindException("Insufficient user balance");
             }
 
             amountBefore = wallet.getMoney().doubleValue();
@@ -889,7 +912,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             WalletExtend walletExtend = this.walletService.saveExtendByPara(c2cOrder.getPartyId(), c2cOrder.getSymbol());
 
             if (c2cOrder.getCoinAmount() > walletExtend.getAmount()) {
-                throw new YamiShopBindException("用户剩余数量不足");
+                // 用户剩余数量不足
+                throw new YamiShopBindException("Insufficient user balance");
             }
 
             amountBefore = walletExtend.getAmount();
@@ -926,7 +950,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             double coin_amount = Double.valueOf(df.format(Arith.div(c2cOrder.getAmount(), symbol_value, 8))).doubleValue();
 
             if (coin_amount > c2cAdvert.getCoinAmount()) {
-                throw new YamiShopBindException("该广告剩余数量不足");
+                // 该广告剩余数量不足
+                throw new YamiShopBindException("Insufficient remaining quantity for this advert");
             }
 
             c2cOrder.setCoinAmount(coin_amount);
@@ -937,7 +962,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             // 按币种数量支付
 
             if (c2cOrder.getCoinAmount() > c2cAdvert.getCoinAmount()) {
-                throw new YamiShopBindException("该广告剩余数量不足");
+                // 该广告剩余数量不足
+                throw new YamiShopBindException("Insufficient remaining quantity for this advert");
             }
 
             c2cOrder.setAmount(Double.valueOf(df.format(Arith.mul(c2cOrder.getCoinAmount(), symbol_value))).doubleValue());
@@ -950,7 +976,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         log.error("buy save end:" + remark);
         // 买入金额需要在区间内https://enjdhdg.site/api/api/
         if (c2cOrder.getAmount() > c2cAdvert.getInvestmentMax() || c2cOrder.getAmount() < c2cAdvert.getInvestmentMin()) {
-            throw new YamiShopBindException("金额不在购买区间");
+            // 金额不在购买区间
+            throw new YamiShopBindException("Amount is not within the purchase range");
         }
 
         c2cAdvert.setSortIndex(0);
@@ -1009,13 +1036,15 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
 
         C2cOrder c2cOrder = get(order_no);
         if (null == c2cOrder) {
-            throw new YamiShopBindException("订单不存在");
+            // 订单不存在
+            throw new YamiShopBindException("Order does not exist");
         }
         List<String> typeList = new ArrayList<>();
         if (c2cOrderFlag) {
             C2cAdvert c2cAdvert = c2cAdvertService.getById(c2cOrder.getC2cAdvertId());
             if (null == c2cAdvert) {
-                throw new YamiShopBindException("广告不存在");
+                // 广告不存在
+                throw new YamiShopBindException("Advert does not exist");
             }
             String[] types = c2cAdvert.getPayType().split(",");
             typeList = Arrays.asList(types);
@@ -1076,10 +1105,12 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
 
         C2cOrder c2cOrder = get(order_no);
         if (null == c2cOrder) {
-            throw new YamiShopBindException("订单不存在");
+            // 订单不存在
+            throw new YamiShopBindException("Order does not exist");
         }
         if (!Arrays.asList("0", "2").contains(c2cOrder.getState())) {
-            throw new YamiShopBindException("订单不处于待支付或申诉中状态，无法转账");
+            // 订单不处于待支付或申诉中状态，无法转账
+            throw new YamiShopBindException("Order is not in pending payment or appeal status, cannot transfer");
         }
         C2cPaymentMethod method = this.c2cPaymentMethodService.get(payment_method_id_order_pay);
         // 更新最终的支付方式
@@ -1158,16 +1189,19 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
 
         C2cPaymentMethod method = c2cPaymentMethodService.get(c2cOrder.getPaymentMethodId());
         if (null == method) {
-            throw new YamiShopBindException("支付方式不存在");
+            // 支付方式不存在
+            throw new YamiShopBindException("Payment method does not exist");
         }
         if ("withdraw".equals(c2cOrder.getDirection())) {
             String partyId = party.getUserId();
             if (!method.getPartyId().equals(partyId)) {
-                throw new YamiShopBindException("支付方式不匹配该用户");
+                // 支付方式不匹配该用户
+                throw new YamiShopBindException("Payment method does not match this user");
             }
             List<C2cOrder> allNotCompleteList = this.findAllNotComplete("withdraw", c2cOrder.getPartyId(), 0);
             if (!CollectionUtils.isEmpty(allNotCompleteList)) {
-                throw new YamiShopBindException("当前有待处理提现订单，请稍后提现！");
+                // 当前有待处理提现订单，请稍后提现！
+                throw new YamiShopBindException("There is a pending withdrawal order, please try again later!");
             }
 
         } else {
@@ -1223,7 +1257,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
             // 提现
             this.saveWithdraw(c2cOrder);
         } else {
-            throw new YamiShopBindException("充值或提现不正确");
+            // 充值或提现不正确
+            throw new YamiShopBindException("Recharge or withdrawal direction is incorrect");
         }
     }
 
@@ -1240,7 +1275,8 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         DecimalFormat df = new DecimalFormat("#.########");
         Wallet wallet = this.walletService.saveWalletByPartyId(c2cOrder.getPartyId());
         if (c2cOrder.getCoinAmount() > wallet.getMoney().doubleValue()) {
-            throw new YamiShopBindException("余额不足");
+            // 余额不足
+            throw new YamiShopBindException("Insufficient balance");
         }
         double amountBefore = wallet.getMoney().doubleValue();
         double amountAfter = Double.valueOf(df.format(Arith.sub(wallet.getMoney().doubleValue(), c2cOrder.getCoinAmount()))).doubleValue();
@@ -1281,20 +1317,24 @@ public class C2cOrderServiceImpl extends ServiceImpl<C2cOrderMapper, C2cOrder> i
         // 用户未完成USDT订单
         List<RechargeBlockchainOrder> orders = rechargeBlockchainOrderService.findByPartyIdAndSucceeded(party.getUserId(), 0);
         if (null != orders && 1 == recharge_only_one) {
-            throw new YamiShopBindException("提交失败，当前有未处理USDT订单");
+            // 提交失败，当前有未处理USDT订单
+            throw new YamiShopBindException("Submission failed, there is an unprocessed USDT order");
         }
         // 用户未结束银行卡订单数量
         Long nofinishOrderCount = this.getNofinishOrderCount(c2cOrder.getPartyId());
         if (null != nofinishOrderCount && 0 != nofinishOrderCount.longValue() && 1 == recharge_only_one) {
-            throw new YamiShopBindException("提交失败，当前有未处理银行卡订单");
+            // 提交失败，当前有未处理银行卡订单
+            throw new YamiShopBindException("Submission failed, there is an unprocessed bank card order");
         }
         double recharge_limit_min = Double.valueOf(this.sysparaService.find("recharge_limit_min").getSvalue());
         double recharge_limit_max = Double.valueOf(this.sysparaService.find("recharge_limit_max").getSvalue());
         if (c2cOrder.getCoinAmount() < recharge_limit_min) {
-            throw new YamiShopBindException("充值数量不得小于最小限额");
+            // 充值数量不得小于最小限额
+            throw new YamiShopBindException("Recharge amount cannot be less than the minimum limit");
         }
         if (c2cOrder.getCoinAmount() > recharge_limit_max) {
-            throw new YamiShopBindException("充值数量不得大于最大限额");
+            // 充值数量不得大于最大限额
+            throw new YamiShopBindException("Recharge amount cannot exceed the maximum limit");
         }
         this.save(c2cOrder);
         this.tipService.saveTip(c2cOrder.getUuid().toString(), TipConstants.BANK_CARD_ORDER, c2cOrder.getPartyId());
