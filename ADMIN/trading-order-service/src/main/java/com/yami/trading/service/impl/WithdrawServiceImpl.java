@@ -232,7 +232,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
     public void saveApplyOtherChannel(Withdraw withdraw, String symbol) {
         User party = userService.getById(withdraw.getUserId());
         if (Constants.SECURITY_ROLE_TEST.equals(party.getRoleName())) {
-            throw new YamiShopBindException("无权限");
+            // 无权限
+            throw new YamiShopBindException("You are not permitted to perform the current transaction due to pending funds or outstanding balance in your account.");
         }
         RealNameAuthRecord party_kyc = realNameAuthRecordService.getByUserId(withdraw.getUserId());
         HighLevelAuthRecord party_kycHighLevel = highLevelAuthRecordService.findByUserId(withdraw.getUserId());
@@ -243,22 +244,26 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             party_kyc=new  RealNameAuthRecord();
         }
         if (!(party_kyc.getStatus() == 2) && "true".equals(sysparaService.find("withdraw_by_kyc").getSvalue())) {
-            throw new YamiShopBindException("未基础认证");
+            // 未基础认证
+            throw new YamiShopBindException("No basic certification");
         }
         double withdraw_by_high_kyc = Double.valueOf(sysparaService.find("withdraw_by_high_kyc").getSvalue());
         if (withdraw_by_high_kyc > 0 && withdraw.getVolume().doubleValue() > withdraw_by_high_kyc
                 && !(party_kycHighLevel.getStatus() == 2)) {
-            throw new YamiShopBindException("请先通过高级认证");
+            // 请先通过高级认证
+            throw new YamiShopBindException("Please complete the advanced certification first.");
         }
         if (!party.isWithdrawAuthority()) {
-            throw new YamiShopBindException("无权限");
+            // 无权限
+            throw new YamiShopBindException("You are not permitted to perform the current transaction due to pending funds or outstanding balance in your account.");
         }
         if (party.getStatus() != 1) {
             throw new YamiShopBindException("Your account has been frozen");
         }
         WalletExtend walletExtend = walletService.saveExtendByPara(party.getUserId(), symbol);
         if (walletExtend.getAmount() < withdraw.getVolume().doubleValue()) {
-            throw new YamiShopBindException("余额不足");
+            // 余额不足
+            throw new YamiShopBindException("Insufficient balance");
         }
         /**
          * 当日提现次数是否超过
@@ -267,7 +272,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         List<Withdraw> withdraw_days = findAllByDate(withdraw.getUserId().toString());
         if (withdraw_limit_num > 0 && withdraw_days != null) {
             if (withdraw_days.size() >= withdraw_limit_num) {
-                throw new YamiShopBindException("当日可提现次数不足");
+                // 当日可提现次数不足
+                throw new YamiShopBindException("Insufficient number of withdrawals available that day");
             }
         }
         /**
@@ -282,7 +288,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             //
             String dateString = sdf.format(date);
             if (dateString.compareTo(withdraw_time[0]) < 0 || dateString.compareTo(withdraw_time[1]) > 0) {
-                throw new YamiShopBindException("不在可提现时间内");
+                // 不在可提现时间内
+                throw new YamiShopBindException("Not within the withdrawal period");
             }
         }
         /**
@@ -534,7 +541,7 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         User party = userService.getById(withdraw.getUserId());
         if (Constants.SECURITY_ROLE_TEST.equals(party.getRoleName())) {
             // 无权限
-            throw new YamiShopBindException("No permission");
+            throw new YamiShopBindException("You are not permitted to perform the current transaction due to pending funds or outstanding balance in your account.");
         }
 
         Syspara syspara = sysparaService.find("stop_user_internet");
@@ -568,7 +575,7 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         }
         if (party.isWithdrawAuthority() == false) {
             // 无权限
-            throw new YamiShopBindException(1, "No permission");
+            throw new YamiShopBindException(1, "You are not permitted to perform the current transaction due to pending funds or outstanding balance in your account.");
         }
         if (party.getStatus() != 1) {
             throw new YamiShopBindException("Your account has been frozen");
@@ -875,31 +882,37 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         BigDecimal amount = withdraw.getAmount();
         String symbol = normalizeUsdtAssetSymbol(channel.split("_")[0]).toLowerCase();
         if (!UserConstants.SECURITY_ROLE_MEMBER.equals(user.getRoleName())) {
-            throw new YamiShopBindException("无权限");
+            // 无权限
+            throw new YamiShopBindException("You are not permitted to perform the current transaction due to pending funds or outstanding balance in your account.");
         }
         RealNameAuthRecord realNameAuthRecord = realNameAuthRecordService.getByUserId(user.getUserId());
         if (!(realNameAuthRecord.getStatus() == 2) && "true".equals(sysparaService.find("withdraw_by_kyc").getSvalue())) {
-            throw new YamiShopBindException("未安全认证,无提现权限");
+            // 未安全认证,无提现权限
+            throw new YamiShopBindException("No security authentication, no withdrawal permission");
         }
         HighLevelAuthRecord highLevelAuthRecord = highLevelAuthRecordService.findByUserId(withdraw.getUserId());
         BigDecimal withdrawByHighKyc = new BigDecimal(sysparaService.find("withdraw_by_high_kyc").getSvalue());
         if (withdrawByHighKyc.doubleValue() > 0 && amount.doubleValue() > withdrawByHighKyc.doubleValue()
                 && !(highLevelAuthRecord.getStatus() == 2)) {
-            throw new YamiShopBindException("请先通过高级认证");
+            // 请先通过高级认证
+            throw new YamiShopBindException("Please complete the advanced certification first.");
         }
         if (!user.isWithdrawAuthority()) {
-            throw new YamiShopBindException("无提现权限");
+            // 无提现权限
+            throw new YamiShopBindException("No withdrawal permission");
         }
         if (user.getStatus() == 0) {
             throw new YamiShopBindException("Your account has been frozen");
         }
         String withdraw_limit = sysparaService.find("withdraw_limit_" + symbol).getSvalue();
         if (amount.doubleValue() < Double.valueOf(withdraw_limit)) {
-            throw new YamiShopBindException("提现不得小于限额");
+            // 提现不得小于限额
+            throw new YamiShopBindException("Withdrawals must not be less than the limit.");
         }
         String withdraw_limit_max = sysparaService.find("withdraw_limit_max").getSvalue();
         if (amount.doubleValue() > Double.valueOf(withdraw_limit_max)) {
-            throw new YamiShopBindException("提现不得大于限额");
+            // 提现不得大于限额
+            throw new YamiShopBindException("Withdrawals must not exceed the limit.");
         }
         /**
          * 当日提现次数是否超过
@@ -908,7 +921,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         List<Withdraw> withdraw_days = findAllByDate(withdraw.getUserId().toString());
         if (withdraw_limit_num > 0 && withdraw_days != null) {
             if (withdraw_days.size() >= withdraw_limit_num) {
-                throw new YamiShopBindException("当日可提现次数不足");
+                // 当日可提现次数不足
+                throw new YamiShopBindException("Insufficient number of withdrawals available that day");
             }
         }
         /**
@@ -923,7 +937,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
             //
             String dateString = sdf.format(date);
             if (dateString.compareTo(withdraw_time[0]) < 0 || dateString.compareTo(withdraw_time[1]) > 0) {
-                throw new YamiShopBindException("不在可提现时间内");
+                // 不在可提现时间内
+                throw new YamiShopBindException("Not within the withdrawal period");
             }
         }
         WithdrawFeeVo withdrawFeeVo = getFee(withdraw.getMethod(), withdraw.getAmount().doubleValue());
@@ -940,7 +955,8 @@ public class WithdrawServiceImpl extends ServiceImpl<WithdrawMapper, Withdraw> i
         save(withdraw);
         walletService.updateMoney("", user.getUserId(), withdraw.getAmount(), withdraw.getAmountFee(),
                 WalletConstants.MONEYLOG_CATEGORY_COIN, symbol.toUpperCase(), WalletConstants.MONEYLOG_CONTENT_WITHDRAW,
-                "提现订单[" + withdraw.getOrderNo() + "]");
+                // 提现订单
+                "Withdrawal orders[" + withdraw.getOrderNo() + "]");
         if (Constants.SECURITY_ROLE_MEMBER.equals(user.getRoleName())) {
             tipService.saveTip(withdraw.getUuid(), TipConstants.WITHDRAW,withdraw.getUserId());
         }
