@@ -1207,6 +1207,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         party.setSafePassword(this.passwordEncoder.encode(safeword));
         party.setRoleName(Constants.SECURITY_ROLE_MEMBER);
 
+
 //		if (reg.getUsername().indexOf("@") == -1) {
         if (type.equals("1")) {
             // 手机注册
@@ -1217,6 +1218,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             }
 
             fillPhone(username, party);
+            party.setUserMobileBind(true);
             this.save(party);
         } else {
             // 邮箱注册
@@ -1232,6 +1234,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             if (!StringUtils.isEmptyString(userMobile)) {
                 fillPhone(userMobile, party);
             }
+            party.setMailBind(true);
             this.save(party);
         }
         try {
