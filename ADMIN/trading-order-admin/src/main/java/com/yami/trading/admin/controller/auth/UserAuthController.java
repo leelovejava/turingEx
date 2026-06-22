@@ -209,11 +209,11 @@ public class UserAuthController {
             log.setLog("审核通过用户[" + user.getUserName() + "]认证申请。");
             logService.save(log);
 
-            // 发放300U体验金到USDT冻结账户
+            // 发放100U体验金到USDT冻结账户
             walletService.updateWithLockAndFreeze(String.valueOf(user.getUserId()), 0, 0, 300);
             MoneyLog bonusLog = new MoneyLog();
             bonusLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
-            bonusLog.setAmount(BigDecimal.valueOf(300));
+            bonusLog.setAmount(BigDecimal.valueOf(100));
             // 实名认证通过，赠送300U体验金，冻结至USDT账户
             bonusLog.setLog("KYC verification passed, 300U experience bonus granted and frozen to USDT account");
             bonusLog.setUserId(user.getUserId());
