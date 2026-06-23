@@ -210,18 +210,18 @@ public class UserAuthController {
             logService.save(log);
 
             // 发放100U体验金到USDT冻结账户
-            walletService.updateWithLockAndFreeze(String.valueOf(user.getUserId()), 0, 0, 300);
+            walletService.updateWithLockAndFreeze(String.valueOf(user.getUserId()), 0, 0, 100);
             MoneyLog bonusLog = new MoneyLog();
             bonusLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
             bonusLog.setAmount(BigDecimal.valueOf(100));
-            // 实名认证通过，赠送300U体验金，冻结至USDT账户
-            bonusLog.setLog("KYC verification passed, 300U experience bonus granted and frozen to USDT account");
+            // 实名认证通过，赠送100U体验金，冻结至USDT账户
+            bonusLog.setLog("KYC verification passed, 100U experience bonus granted and frozen to USDT account");
             bonusLog.setUserId(user.getUserId());
             bonusLog.setWalletType(WalletConstants.WALLET_USDT);
             bonusLog.setContentType(WalletConstants.MONEYLOG_CONTENT_KYC_BONUS);
             moneyLogService.save(bonusLog);
             user.setKycBonusTime(new Date());
-            user.setKycBonusAmount(300.0);
+            user.setKycBonusAmount(100.0);
             userService.updateById(user);
         }
         if (model.getType() == 2) {
