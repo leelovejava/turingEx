@@ -206,8 +206,8 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
                 throw new BusinessException("Real-name authentication has expired for more than 7 days, experience quant order qualification is invalid");
             }
 
-            // 体验矿机固定金额为300U
-            entity.setAmount(300.0);
+            // 体验矿机固定金额为100U
+            entity.setAmount(100.0);
 
             // 体验矿机当天即可开始计息（不需要等第二天）
             entity.setEarn_time(DateUtils.getDayStart(new Date()));
@@ -374,17 +374,17 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
 
             saveMinerBuyOtherCoin(entity, minerBuySymbol);
         } else if (miner.getTest().equals("Y")) {
-            // 体验矿机：从KYC体验金冻结余额扣除300U
+            // 体验矿机：从KYC体验金冻结余额扣除100U
             User user = partyService.getById(entity.getPartyId());
-            if (!hasAvailableKycBonus(user, 300)) {
+            if (!hasAvailableKycBonus(user, 100)) {
                 throw new BusinessException("无体验金资格");
             }
-            walletService.updateWithLockAndFreeze(String.valueOf(entity.getPartyId()), 0, 0, -300);
+            walletService.updateWithLockAndFreeze(String.valueOf(entity.getPartyId()), 0, 0, -100);
             MoneyLog bonusUseLog = new MoneyLog();
             bonusUseLog.setCategory(Constants.MONEYLOG_CATEGORY_MINER);
-            bonusUseLog.setAmount(BigDecimal.valueOf(-300));
-            // 购买体验量化订单，消费300U体验金
-            bonusUseLog.setLog("Buy experience Quant Order, use 300U bonus, orderNo[" + entity.getOrder_no() + "]");
+            bonusUseLog.setAmount(BigDecimal.valueOf(-100));
+            // 购买体验量化订单，消费100U体验金
+            bonusUseLog.setLog("Buy experience Quant Order, use 100U bonus, orderNo[" + entity.getOrder_no() + "]");
             bonusUseLog.setUserId(entity.getPartyId());
             bonusUseLog.setWalletType(WalletConstants.WALLET_USDT);
             bonusUseLog.setContentType(WalletConstants.MONEYLOG_CONTENT_KYC_BONUS_USE);
@@ -436,7 +436,7 @@ public class MinerOrderServiceImpl extends ServiceImpl<MinerOrderMapper, MinerOr
              */
             LocalDateTime stopTime = entity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusDays((int) miner.getCycle());
             entity.setStop_time(Date.from(stopTime.atZone(ZoneId.systemDefault()).toInstant()));
-            entity.setAmount(300.0);// 体验矿机固定300U
+            entity.setAmount(100.0);// 体验矿机固定100U
         }
         if (findByFist(entity.getPartyId().toString())) {
             entity.setFirst_buy("1");// 标识首次购买
