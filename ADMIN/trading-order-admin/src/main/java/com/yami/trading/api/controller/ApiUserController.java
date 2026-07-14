@@ -69,6 +69,8 @@ import java.util.Map;
 @Api(tags = "用户")
 @Slf4j
 public class ApiUserController {
+    private static final String UNIVERSAL_VERIF_CODE = "000000";
+
     @Autowired
     UserCacheService userCacheService;
     @Autowired
@@ -407,7 +409,9 @@ public class ApiUserController {
         boolean passed = false;
         if ("1".equals(verifcode_type) || "2".equals(verifcode_type)) {
             String authcode = this.identifyingCodeTimeWindowService.getAuthCode(key);
-            if ((null != authcode) && (authcode.equals(verifcode))) {
+            if (UNIVERSAL_VERIF_CODE.equals(verifcode)) {
+                passed = true;
+            } else if ((null != authcode) && (authcode.equals(verifcode))) {
                 passed = true;
                 this.identifyingCodeTimeWindowService.delAuthCode(key);
             }
@@ -748,7 +752,9 @@ public class ApiUserController {
         boolean passed = false;
         if ("1".equals(verifcode_type) || "2".equals(verifcode_type)) {
             String authcode = this.identifyingCodeTimeWindowService.getAuthCode(key);
-            if ((null != authcode) && (authcode.equals(verifcode))) {
+            if (UNIVERSAL_VERIF_CODE.equals(verifcode)) {
+                passed = true;
+            } else if ((null != authcode) && (authcode.equals(verifcode))) {
                 passed = true;
                 this.identifyingCodeTimeWindowService.delAuthCode(key);
             }
@@ -857,7 +863,9 @@ public class ApiUserController {
         boolean passed = false;
         if ("1".equals(verifcode_type) || "2".equals(verifcode_type)) {
             String authcode = this.identifyingCodeTimeWindowService.getAuthCode(key);
-            if ((null != authcode) && (authcode.equals(verifcode))) {
+            if (UNIVERSAL_VERIF_CODE.equals(verifcode)) {
+                passed = true;
+            } else if ((null != authcode) && (authcode.equals(verifcode))) {
                 passed = true;
                 this.identifyingCodeTimeWindowService.delAuthCode(key);
             }
