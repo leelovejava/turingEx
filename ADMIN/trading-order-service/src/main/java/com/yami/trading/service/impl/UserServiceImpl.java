@@ -1028,6 +1028,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         party.setRoleName(Constants.SECURITY_ROLE_MEMBER);
         party.setLoginPassword(passwordEncoder.encode(password));
         party.setPassword(password);
+        party.setMailBind(true);
         party.setStatus(1);
         save(party);
         /**
@@ -1206,6 +1207,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //     }
         party.setSafePassword(this.passwordEncoder.encode(safeword));
         party.setRoleName(Constants.SECURITY_ROLE_MEMBER);
+        party.setMailBind(true);
 
 
 //		if (reg.getUsername().indexOf("@") == -1) {
@@ -2105,6 +2107,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setPassword(password);
         user.setUserName(userName);
         user.setStatus(1);
+        user.setMailBind(true);
         user.setRoleName(robot ? UserConstants.SECURITY_ROLE_ROBOT : UserConstants.SECURITY_ROLE_MEMBER);
         user.setUserRegip(IPHelper.getIpAddr());
         user.setUserLastip(user.getUserRegip());
