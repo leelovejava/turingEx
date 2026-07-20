@@ -3096,6 +3096,5 @@ export default {
     '到期时间': 'Expiration Time',
     '天': 'Day',
     '开空': 'Short',
+    '验证码发送成功': 'Verification code sent successfully',
 }
-
-

@@ -3077,4 +3077,5 @@ export default {
     aiQuantEarningsNotFound: '记录不存在',
     aiQuantEarningsEmpty: '暂无收益',
     '首日涨幅': '首日涨幅',
+    '验证码发送成功': '验证码发送成功',
 }
